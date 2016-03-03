@@ -66,6 +66,17 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="app\404.html" />
+    <Content Include="app\favicon.ico" />
+    <Content Include="app\images\yeoman.png" />
+    <Content Include="app\index.html" />
+    <Content Include="app\robots.txt" />
+    <Content Include="app\scripts\app.js" />
+    <Content Include="app\scripts\controllers\about.js" />
+    <Content Include="app\scripts\controllers\main.js" />
+    <Content Include="app\styles\main.css" />
+    <Content Include="app\views\about.html" />
+    <Content Include="app\views\main.html" />
     <Content Include="packages.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
