@@ -8,5 +8,11 @@ namespace Zeus.Entities
 {
     public class LogisticsProvider : Provider
     {
+        public IList<string> Items { get; set; }
+
+        public LogisticsProvider():base()
+        {
+            this.Items = new List<string>();
+        }
     }
 }

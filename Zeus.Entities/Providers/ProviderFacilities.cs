@@ -6,11 +6,9 @@ using System.Threading.Tasks;
 
 namespace Zeus.Entities
 {
-    public class SecurityProvider : Provider
+    public class ProviderFacilities : Entity
     {
-        public SecurityProvider():base()
-        {
-
-        }
+        public string ProviderId { get; set; }
+        public string FacilityId { get; set; }
     }
 }

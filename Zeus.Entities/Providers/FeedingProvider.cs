@@ -8,5 +8,8 @@ namespace Zeus.Entities
 {
     public class FeedingProvider : Provider
     {
+        public FeedingProvider():base()
+        {
+        }
     }
 }
