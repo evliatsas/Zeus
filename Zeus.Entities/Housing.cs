@@ -8,5 +8,7 @@ namespace Zeus.Entities
 {
     public class Housing
     {
+        public string Type { get; set; }
+        public int Capacity { get; set; }
     }
 }

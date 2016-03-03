@@ -8,5 +8,8 @@ namespace Zeus.Entities
 {
     public class Transportation
     {
+        public string Type { get; set; }
+        public string UniqueId { get; set; }
+        public string Owner { get; set; }
     }
 }
