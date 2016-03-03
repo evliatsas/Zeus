@@ -44,6 +44,7 @@
     <Compile Include="Entity.cs" />
     <Compile Include="Facility.cs" />
     <Compile Include="Location.cs" />
+    <Compile Include="PhoneNo.cs" />
     <Compile Include="Reports\FeedingReport.cs" />
     <Compile Include="Reports\HousingReport.cs" />
     <Compile Include="Reports\MovementReport.cs" />
