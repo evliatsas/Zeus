@@ -8,5 +8,13 @@ namespace Zeus.Entities
 {
     public abstract class Report : Entity
     {
+        public Auth.User User { get; set; }
+        public Facility Facility { get; set; }
+        public DateTime DateTime { get; set; }
+        
+        public Report()
+        {
+            this.DateTime = DateTime.Now;
+        }
     }
 }

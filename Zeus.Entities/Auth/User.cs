@@ -4,12 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Zeus.Entities
+namespace Zeus.Entities.Auth
 {
-    public class ProblemReport : Report
+    public class User : Entity
     {
-        public ProblemReport():base()
-        {
-        }
+        public Contact Contact { get; set; }
     }
 }

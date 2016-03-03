@@ -8,5 +8,12 @@ namespace Zeus.Entities
 {
     public class FeedingReport : Report
     {
+        public FeedingProvider Provider { get; set; }
+        public int Rations { get; set; }
+        public string Meal { get; set; }
+
+        public FeedingReport():base()
+        {
+        }
     }
 }

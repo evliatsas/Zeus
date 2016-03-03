@@ -8,5 +8,10 @@ namespace Zeus.Entities
 {
     public class SituationReport : Report
     {
+        public int PersonCount { get; set; }
+
+        public SituationReport():base()
+        {
+        }
     }
 }

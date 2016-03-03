@@ -8,5 +8,8 @@ namespace Zeus.Entities
 {
     public class RequestReport : Report
     {
+        public RequestReport():base()
+        {
+        }
     }
 }
