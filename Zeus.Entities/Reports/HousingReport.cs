@@ -8,5 +8,11 @@ namespace Zeus.Entities
 {
     public class HousingReport : Report
     {
+        public int HousedCount { get; set; }
+        public Housing Housing { get; set; }
+
+        public HousingReport():base()
+        {
+        }
     }
 }

@@ -52,6 +52,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Auth\User.cs" />
     <Compile Include="Contacts\Contact.cs" />
     <Compile Include="Contacts\ProviderContact.cs" />
     <Compile Include="Entity.cs" />
