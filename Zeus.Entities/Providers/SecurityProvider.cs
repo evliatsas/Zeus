@@ -8,5 +8,9 @@ namespace Zeus.Entities
 {
     public class SecurityProvider : Provider
     {
+        public SecurityProvider():base()
+        {
+
+        }
     }
 }

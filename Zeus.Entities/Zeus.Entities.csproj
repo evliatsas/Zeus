@@ -40,10 +40,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Contact.cs" />
+    <Compile Include="Contacts\Contact.cs" />
+    <Compile Include="Contacts\ProviderContact.cs" />
     <Compile Include="Entity.cs" />
     <Compile Include="Facility.cs" />
+    <Compile Include="Contacts\FacilityContact.cs" />
     <Compile Include="Location.cs" />
+    <Compile Include="PhoneNo.cs" />
+    <Compile Include="Providers\ProviderFacilities.cs" />
     <Compile Include="Reports\FeedingReport.cs" />
     <Compile Include="Reports\HousingReport.cs" />
     <Compile Include="Reports\MovementReport.cs" />
