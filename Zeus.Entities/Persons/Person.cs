@@ -27,6 +27,7 @@ namespace Zeus.Entities
             this.Age = null;
             this.Nationality = "Άγνωστο";
             this.IsSensitive = false;
+            this.Relatives = new List<FamilyRelation>();
         }
     }    
 }

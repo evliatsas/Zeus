@@ -11,7 +11,7 @@ using Zeus.Entities;
 namespace Zeus.Controllers
 {
     [ActionFilters.GzipCompressed]
-    [RoutePrefix(Zeus.Routes.ProvidersController)]
+    [RoutePrefix(Zeus.Routes.Providers)]
     public class ProvidersController : ApiController
     {
         private Entities.Repositories.Context context;
@@ -38,8 +38,7 @@ namespace Zeus.Controllers
         [HttpGet]
         public async Task<IHttpActionResult> GetProvider(string id)
         {
-            var result = await context.Providers.Get(x => x.Id == id);
-            var provider = result.FirstOrDefault();
+            var provider = await context.Providers.GetById(id);
             if (provider != null)
             {
                 var multiContacts = await context.ProviderContacts.Get(x => x.ProviderId == id);
@@ -85,7 +84,7 @@ namespace Zeus.Controllers
 
             try
             {
-                var data = await context.Providers.Get(x => x.Id == id);
+                var data = await context.Providers.GetById(id);
                 await context.Providers.Delete(id);
                 await context.ProviderContacts.Delete(x => x.ProviderId == id);
                 await context.ProviderFacilities.Delete(x => x.ProviderId == id);
@@ -102,6 +101,7 @@ namespace Zeus.Controllers
         }
 
         [Route("")]
+        [ResponseType(typeof(Provider))]
         [HttpPut]
         public async Task<IHttpActionResult> UpdateProvider(Provider provider)
         {
@@ -121,5 +121,143 @@ namespace Zeus.Controllers
                 return this.BadRequest("Σφάλμα Ενημέρωσης Προμηθευτή");
             }
         }
+
+        #region Facilities
+
+        [Route(Routes.Facilities)]
+        [ResponseType(typeof(ProviderFacility))]
+        [HttpPost]
+        public async Task<IHttpActionResult> CreateFacilityProvider(ProviderFacility providerFacility)
+        {
+            var user = await Helper.GetUserByRequest(User as ClaimsPrincipal);
+
+            try
+            {
+                var data = await context.ProviderFacilities.Insert(providerFacility);
+
+                Log.Information("ProviderFacility({ProviderFacility}) created By {user}", data, user);
+                return this.Ok(data);
+            }
+            catch (Exception exc)
+            {
+                Log.Error("Error {Exception} creating ProviderFacility By {user}", exc, user);
+                return this.BadRequest("Σφάλμα Δημιουργίας Συνδέσμου Δομής Φιλοξενίας και Προμηθευτή");
+            }
+        }
+
+        [Route(Routes.Facilities + "/{id}")]
+        [HttpDelete]
+        public async Task<IHttpActionResult> DeleteFacilityProvider(string id)
+        {
+            var user = await Helper.GetUserByRequest(User as ClaimsPrincipal);
+
+            try
+            {
+                var data = await context.ProviderFacilities.GetById(id);
+                await context.ProviderFacilities.Delete(id);
+
+                Log.Information("ProviderFacility({ProviderFacility}) deleted By {user}", data, user);
+
+                return this.Ok();
+            }
+            catch (Exception exc)
+            {
+                Log.Error("Error {Exception} deleting ProviderFacility By {user}", exc, user);
+                return this.BadRequest("Σφάλμα Διαγραφής Συνδέσμων Δομής Φιλοξενίας και Προμηθευτή");
+            }
+        }
+
+        [Route(Routes.Facilities)]
+        [ResponseType(typeof(ProviderFacility))]
+        [HttpPut]
+        public async Task<IHttpActionResult> UpdateFacilityProvider(ProviderFacility providerFacility)
+        {
+            var user = await Helper.GetUserByRequest(User as ClaimsPrincipal);
+
+            try
+            {
+                var result = await context.ProviderFacilities.Update(providerFacility);
+
+                Log.Information("ProviderFacility({ProviderFacility}) updated By {user}", result, user);
+
+                return this.Ok(result);
+            }
+            catch (Exception exc)
+            {
+                Log.Error("Error {Exception} updating ProviderFacility By {user}", exc, user);
+                return this.BadRequest("Σφάλμα Ενημέρωσης Συνδέσμου Δομής Φιλοξενίας και Προμηθευτή");
+            }
+        }
+
+        #endregion
+
+        #region Contacts
+
+        [Route(Routes.Contacts)]
+        [ResponseType(typeof(ProviderContact))]
+        [HttpPost]
+        public async Task<IHttpActionResult> CreateProviderContact(ProviderContact providerContact)
+        {
+            var user = await Helper.GetUserByRequest(User as ClaimsPrincipal);
+
+            try
+            {
+                var data = await context.ProviderContacts.Insert(providerContact);
+
+                Log.Information("ProviderContact({ProviderContact}) created By {user}", data, user);
+                return this.Ok(data);
+            }
+            catch (Exception exc)
+            {
+                Log.Error("Error {Exception} creating ProviderContact By {user}", exc, user);
+                return this.BadRequest("Σφάλμα Δημιουργίας Συνδέσμου Προμηθευτή");
+            }
+        }
+
+        [Route(Routes.Contacts + "/{id}")]
+        [HttpDelete]
+        public async Task<IHttpActionResult> DeleteProviderContact(string id)
+        {
+            var user = await Helper.GetUserByRequest(User as ClaimsPrincipal);
+
+            try
+            {
+                var data = await context.ProviderContacts.GetById(id);
+                await context.ProviderContacts.Delete(id);
+
+                Log.Information("ProviderContact({ProviderContact}) deleted By {user}", data, user);
+
+                return this.Ok();
+            }
+            catch (Exception exc)
+            {
+                Log.Error("Error {Exception} deleting ProviderContact By {user}", exc, user);
+                return this.BadRequest("Σφάλμα Διαγραφής Συνδέσμων Προμηθευτή");
+            }
+        }
+
+        [Route(Routes.Contacts)]
+        [ResponseType(typeof(ProviderContact))]
+        [HttpPut]
+        public async Task<IHttpActionResult> UpdateProviderContact(ProviderContact providerContact)
+        {
+            var user = await Helper.GetUserByRequest(User as ClaimsPrincipal);
+
+            try
+            {
+                var result = await context.ProviderContacts.Update(providerContact);
+
+                Log.Information("ProviderContact({ProviderContact}) updated By {user}", result, user);
+
+                return this.Ok(result);
+            }
+            catch (Exception exc)
+            {
+                Log.Error("Error {Exception} updating ProviderContact By {user}", exc, user);
+                return this.BadRequest("Σφάλμα Ενημέρωσης Συνδέσμου Προμηθευτή");
+            }
+        }
+
+        #endregion
     }
 }

@@ -12,7 +12,7 @@ using Zeus.Entities;
 namespace Zeus.Controllers
 {
     [ActionFilters.GzipCompressed]
-    [RoutePrefix(Zeus.Routes.FacilitiesController)]
+    [RoutePrefix(Zeus.Routes.Facilities)]
     public class FacilitiesController : ApiController
     {
         private Entities.Repositories.Context context;
@@ -39,8 +39,7 @@ namespace Zeus.Controllers
         [HttpGet]
         public async Task<IHttpActionResult> GetFacility(string id)
         {
-            var result = await context.Facilities.Get(x => x.Id == id);
-            var facility = result.FirstOrDefault();
+            var facility = await context.Facilities.GetById(id);
             if (facility != null)
             {
                 var multiContacts = await context.FacilityContacts.Get(x => x.FacilityId == id);
@@ -60,13 +59,13 @@ namespace Zeus.Controllers
         [Route("")]
         [ResponseType(typeof(Facility))]
         [HttpPost]
-        public async Task<IHttpActionResult> CreateFacility(Facility Facility)
+        public async Task<IHttpActionResult> CreateFacility(Facility facility)
         {
             var user = await Helper.GetUserByRequest(User as ClaimsPrincipal);
 
             try
             {
-                var data = await context.Facilities.Insert(Facility);
+                var data = await context.Facilities.Insert(facility);
 
                 Log.Information("Facility({Facility.Id}) created By {user}", data.Id, user);
                 return this.Ok(data);
@@ -86,7 +85,7 @@ namespace Zeus.Controllers
 
             try
             {
-                var data = await context.Facilities.Get(x => x.Id == id);
+                var data = await context.Facilities.GetById(id);
                 await context.Facilities.Delete(id);
                 await context.FacilityContacts.Delete(x => x.FacilityId == id);
                 await context.ProviderFacilities.Delete(x => x.FacilityId == id);
@@ -108,14 +107,15 @@ namespace Zeus.Controllers
         }
 
         [Route("")]
+        [ResponseType(typeof(Facility))]
         [HttpPut]
-        public async Task<IHttpActionResult> UpdateFacility(Facility Facility)
+        public async Task<IHttpActionResult> UpdateFacility(Facility facility)
         {
             var user = await Helper.GetUserByRequest(User as ClaimsPrincipal);
 
             try
             {
-                var result = await context.Facilities.Update(Facility);
+                var result = await context.Facilities.Update(facility);
 
                 Log.Information("Facility({Facility.Id}) updated By {user}", result.Id, user);
 
@@ -128,7 +128,7 @@ namespace Zeus.Controllers
             }
         }
 
-        [Route(Routes.PersonsController)]
+        [Route(Routes.Persons)]
         [ResponseType(typeof(IEnumerable<Person>))]
         [HttpGet]
         public async Task<IHttpActionResult> GetFacilityPersons(string id)
@@ -137,5 +137,74 @@ namespace Zeus.Controllers
 
             return result == null ? (IHttpActionResult)this.NotFound() : this.Ok(result);
         }
+
+        #region Contacts
+
+        [Route(Routes.Contacts)]
+        [ResponseType(typeof(FacilityContact))]
+        [HttpPost]
+        public async Task<IHttpActionResult> CreateFacilityContact(FacilityContact providerContact)
+        {
+            var user = await Helper.GetUserByRequest(User as ClaimsPrincipal);
+
+            try
+            {
+                var data = await context.FacilityContacts.Insert(providerContact);
+
+                Log.Information("FacilityContact({FacilityContact}) created By {user}", data, user);
+                return this.Ok(data);
+            }
+            catch (Exception exc)
+            {
+                Log.Error("Error {Exception} creating FacilityContact By {user}", exc, user);
+                return this.BadRequest("Σφάλμα Δημιουργίας Συνδέσμου Δομής Φιλοξενίας");
+            }
+        }
+
+        [Route(Routes.Contacts + "/{id}")]
+        [HttpDelete]
+        public async Task<IHttpActionResult> DeleteFacilityContact(string id)
+        {
+            var user = await Helper.GetUserByRequest(User as ClaimsPrincipal);
+
+            try
+            {
+                var data = await context.FacilityContacts.GetById(id);
+                await context.FacilityContacts.Delete(id);
+
+                Log.Information("FacilityContact({FacilityContact}) deleted By {user}", data, user);
+
+                return this.Ok();
+            }
+            catch (Exception exc)
+            {
+                Log.Error("Error {Exception} deleting FacilityContact By {user}", exc, user);
+                return this.BadRequest("Σφάλμα Διαγραφής Συνδέσμων Δομής Φιλοξενίας");
+            }
+        }
+
+        [Route(Routes.Contacts)]
+        [ResponseType(typeof(FacilityContact))]
+        [HttpPut]
+        public async Task<IHttpActionResult> UpdateFacilityContact(FacilityContact providerContact)
+        {
+            var user = await Helper.GetUserByRequest(User as ClaimsPrincipal);
+
+            try
+            {
+                var result = await context.FacilityContacts.Update(providerContact);
+
+                Log.Information("FacilityContact({FacilityContact}) updated By {user}", result, user);
+
+                return this.Ok(result);
+            }
+            catch (Exception exc)
+            {
+                Log.Error("Error {Exception} updating FacilityContact By {user}", exc, user);
+                return this.BadRequest("Σφάλμα Ενημέρωσης Συνδέσμου Δομής Φιλοξενίας");
+            }
+        }
+
+        #endregion
     }
 }

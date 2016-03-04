@@ -12,7 +12,7 @@ using Zeus.Entities;
 namespace Zeus.Controllers
 {
     [ActionFilters.GzipCompressed]
-    [RoutePrefix(Zeus.Routes.FacilitiesController)]
+    [RoutePrefix(Zeus.Routes.Facilities)]
     public class ReportsController : ApiController
     {
         private Entities.Repositories.Context context;
@@ -39,8 +39,7 @@ namespace Zeus.Controllers
         [HttpGet]
         public async Task<IHttpActionResult> GetReport(string id)
         {
-            var result = await context.Reports.Get(x => x.Id == id);
-            var report = result.FirstOrDefault();
+            var report = await context.Reports.GetById(id);
 
             return report == null ? (IHttpActionResult)this.NotFound() : this.Ok(report);
         }
@@ -74,7 +73,7 @@ namespace Zeus.Controllers
 
             try
             {
-                var data = await context.Reports.Get(x => x.Id == id);
+                var data = await context.Reports.GetById(id);
                 await context.Reports.Delete(id);
 
                 Log.Information("Report({Report}) deleted By {user}", data, user);
@@ -89,6 +88,7 @@ namespace Zeus.Controllers
         }
 
         [Route("")]
+        [ResponseType(typeof(Report))]
         [HttpPut]
         public async Task<IHttpActionResult> UpdateReport(Report report)
         {

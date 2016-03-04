@@ -12,7 +12,7 @@ using Zeus.Entities;
 namespace Zeus.Controllers
 {
     [ActionFilters.GzipCompressed]
-    [RoutePrefix(Zeus.Routes.PersonsController)]
+    [RoutePrefix(Zeus.Routes.Persons)]
     public class PersonsController : ApiController
     {
         private Entities.Repositories.Context context;
@@ -39,8 +39,7 @@ namespace Zeus.Controllers
         [HttpGet]
         public async Task<IHttpActionResult> GetPerson(string id)
         {
-            var result = await context.Persons.Get(x => x.Id == id);
-            var person = result.FirstOrDefault();
+            var person = await context.Persons.GetById(id);
             if(person != null)
             {
                 if(!string.IsNullOrEmpty(person.FacilityId))
@@ -51,9 +50,77 @@ namespace Zeus.Controllers
             }
 
             return person == null ? (IHttpActionResult)this.NotFound() : this.Ok(person);
+        }       
+
+        [Route("")]
+        [ResponseType(typeof(Person))]
+        [HttpPost]
+        public async Task<IHttpActionResult> CreatePerson(Person person)
+        {
+            var user = await Helper.GetUserByRequest(User as ClaimsPrincipal);
+
+            try
+            {
+                var data = await context.Persons.Insert(person);
+
+                Log.Information("Person({Person.Id}) created By {user}", data.Id, user);
+                return this.Ok(data);
+            }
+            catch (Exception exc)
+            {
+                Log.Error("Error {Exception} creating Person By {user}", exc, user);
+                return this.BadRequest("Σφάλμα Δημιουργίας δεδομένων Ατόμου");
+            }
         }
 
-        [Route(Routes.PersonRelation + "/{id}")]
+        [Route("{id}")]
+        [HttpDelete]
+        public async Task<IHttpActionResult> DeletePerson(string id)
+        {
+            var user = await Helper.GetUserByRequest(User as ClaimsPrincipal);
+
+            try
+            {
+                var data = await context.Persons.GetById(id);
+                await context.Persons.Delete(id);
+                await context.FamilyRelations.Delete(x => x.PersonId == id || x.RelativeId == id);
+
+                Log.Information("Person({Person}) deleted By {user}", data, user);
+
+                return this.Ok();
+            }
+            catch (Exception exc)
+            {
+                Log.Error("Error {Exception} deleting Person By {user}", exc, user);
+                return this.BadRequest("Σφάλμα Διαγραφής δεδομένων Ατόμου");
+            }
+        }
+
+        [Route("")]
+        [ResponseType(typeof(Person))]
+        [HttpPut]
+        public async Task<IHttpActionResult> UpdatePerson(Person person)
+        {
+            var user = await Helper.GetUserByRequest(User as ClaimsPrincipal);
+
+            try
+            {
+                var result = await context.Persons.Update(person);
+
+                Log.Information("Person({Person.Id}) updated By {user}", result.Id, user);
+
+                return this.Ok(result);
+            }
+            catch (Exception exc)
+            {
+                Log.Error("Error {Exception} updating Person By {user}", exc, user);
+                return this.BadRequest("Σφάλμα Ενημέρωσης δεδομένων Ατόμου");
+            }
+        }
+
+        #region Family Relations
+
+        [Route(Routes.FamilyRelations + "/{id}")]
         [ResponseType(typeof(IEnumerable<FamilyRelation>))]
         [HttpGet]
         public async Task<IHttpActionResult> GetPersonRelatives(string id)
@@ -75,69 +142,70 @@ namespace Zeus.Controllers
                 return this.NotFound();
         }
 
-        [Route("")]
+        [Route(Routes.FamilyRelations)]
         [ResponseType(typeof(Person))]
         [HttpPost]
-        public async Task<IHttpActionResult> CreatePerson(Person person)
+        public async Task<IHttpActionResult> CreateFamilyRelation(FamilyRelation relation)
         {
             var user = await Helper.GetUserByRequest(User as ClaimsPrincipal);
 
             try
             {
-                var data = await context.Persons.Insert(person);
+                var data = await context.FamilyRelations.Insert(relation);
 
-                Log.Information("Person({Person.Id}) created By {user}", data.Id, user);
+                Log.Information("FamilyRelation({FamilyRelation}) created By {user}", data, user);
                 return this.Ok(data);
             }
             catch (Exception exc)
             {
-                Log.Error("Error {Exception} creating Person By {user}", exc, user);
-                return this.BadRequest("Σφάλμα Δημιουργίας Αναφοράς");
+                Log.Error("Error {Exception} creating FamilyRelation By {user}", exc, user);
+                return this.BadRequest("Σφάλμα Δημιουργίας Συγγένιας Ατόμων");
             }
         }
 
-        [Route("{id}")]
+        [Route(Routes.FamilyRelations + "/{id}")]
         [HttpDelete]
-        public async Task<IHttpActionResult> DeletePerson(string id)
+        public async Task<IHttpActionResult> DeleteFamilyRelation(string id)
         {
             var user = await Helper.GetUserByRequest(User as ClaimsPrincipal);
 
             try
             {
-                var data = await context.Persons.Get(x => x.Id == id);
-                await context.Persons.Delete(id);
-                await context.FamilyRelations.Delete(x => x.PersonId == id || x.RelativeId == id);
+                var data = await context.FamilyRelations.GetById(id);
+                await context.FamilyRelations.Delete(id);
 
-                Log.Information("Person({Person}) deleted By {user}", data, user);
+                Log.Information("FamilyRelation({FamilyRelation}) deleted By {user}", data, user);
 
                 return this.Ok();
             }
             catch (Exception exc)
             {
-                Log.Error("Error {Exception} deleting Person By {user}", exc, user);
-                return this.BadRequest("Σφάλμα Διαγραφής Αναφοράς");
+                Log.Error("Error {Exception} deleting FamilyRelation By {user}", exc, user);
+                return this.BadRequest("Σφάλμα Διαγραφής Συγγένιας Ατόμων");
             }
         }
 
-        [Route("")]
+        [Route(Routes.FamilyRelations)]
         [HttpPut]
-        public async Task<IHttpActionResult> UpdatePerson(Person person)
+        public async Task<IHttpActionResult> UpdateFamilyRelation(FamilyRelation relation)
         {
             var user = await Helper.GetUserByRequest(User as ClaimsPrincipal);
 
             try
             {
-                var result = await context.Persons.Update(person);
+                var result = await context.FamilyRelations.Update(relation);
 
-                Log.Information("Person({Person.Id}) updated By {user}", result.Id, user);
+                Log.Information("FamilyRelation({FamilyRelation.Id}) updated By {user}", result.Id, user);
 
                 return this.Ok(result);
             }
             catch (Exception exc)
             {
-                Log.Error("Error {Exception} updating Person By {user}", exc, user);
-                return this.BadRequest("Σφάλμα Ενημέρωσης Αναφοράς");
+                Log.Error("Error {Exception} updating FamilyRelation By {user}", exc, user);
+                return this.BadRequest("Σφάλμα Ενημέρωσης Συγγένιας Ατόμων");
             }
         }
+
+        #endregion
     }
 }

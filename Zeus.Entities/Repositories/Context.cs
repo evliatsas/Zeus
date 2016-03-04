@@ -13,7 +13,7 @@ namespace Zeus.Entities.Repositories
         public MongoDbRepository<Facility> Facilities { get; private set; }
         public MongoDbRepository<FacilityContact> FacilityContacts { get; private set; }
         public MongoDbRepository<Provider> Providers { get; private set; }
-        public MongoDbRepository<ProviderFacilities> ProviderFacilities { get; private set; }
+        public MongoDbRepository<ProviderFacility> ProviderFacilities { get; private set; }
         public MongoDbRepository<ProviderContact> ProviderContacts { get; private set; }
         public MongoDbRepository<Person> Persons { get; private set; }
         public MongoDbRepository<Contact> Contacts { get; private set; }
@@ -75,7 +75,7 @@ namespace Zeus.Entities.Repositories
                 Users = new MongoDbRepository<Auth.User>(this.Database, "Users");
                 Facilities = new MongoDbRepository<Facility>(this.Database, "Facilities");
                 Providers = new MongoDbRepository<Provider>(this.Database, "Providers");
-                ProviderFacilities = new MongoDbRepository<Entities.ProviderFacilities>(this.Database, "ProviderFacilities");
+                ProviderFacilities = new MongoDbRepository<Entities.ProviderFacility>(this.Database, "ProviderFacilities");
                 FacilityContacts = new MongoDbRepository<FacilityContact>(this.Database, "FacilityContacts");
                 ProviderContacts = new MongoDbRepository<ProviderContact>(this.Database, "ProviderContacts");
                 Persons = new MongoDbRepository<Person>(this.Database, "Persons");
