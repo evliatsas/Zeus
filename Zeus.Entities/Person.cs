@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MongoDB.Bson.Serialization.Attributes;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,6 +16,9 @@ namespace Zeus.Entities
         public bool IsSensitive { get; set; }
         public string Sensitivity { get; set; }
         public FamilyRelation FamilyRelation { get; set; }
+        public string FacilityId { get; set; }
+        [BsonIgnore]
+        public Facility Facility { get; set; }
 
         public Person()
         {

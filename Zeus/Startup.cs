@@ -1,6 +1,8 @@
 ﻿using Microsoft.Owin;
 using Microsoft.Owin.Cors;
+using MongoDB.Driver;
 using Owin;
+using Serilog;
 using System.Net.Http.Headers;
 using System.Web.Http;
 
@@ -14,24 +16,36 @@ namespace Zeus
         {
             //init DB Contexts
             var context = new Zeus.Entities.Repositories.Context();
-            
+
+            //Configure Log
+            ConfigureLog(context.Database);
+
             //Configure CORS
             app.UseCors(CorsOptions.AllowAll);
+
             //Configure OWIN
             app.Map("/api", api =>
             {
                 var config = new HttpConfiguration();
 
-                //Adding JSON Formatter & custom Message Handlers
+                // Adding JSON Formatter & custom Message Handlers
                 //config.Formatters.JsonFormatter.SupportedMediaTypes.Add(new MediaTypeHeaderValue("text/html"));
                 config.Formatters.Remove(config.Formatters.XmlFormatter);
-                //Mapping Routes and starting up WebAPI
+                // Mapping Routes and starting up WebAPI
                 config.MapHttpAttributeRoutes();
                 // require authentication for all controllers
-                config.Filters.Add(new AuthorizeAttribute());
+                //config.Filters.Add(new AuthorizeAttribute());
                 api.UseWebApi(config);
             });
         }
 
+        private void ConfigureLog(IMongoDatabase db)
+        {
+            var log = new LoggerConfiguration()
+            .WriteTo.MongoDB(db, Serilog.Events.LogEventLevel.Information)
+            .CreateLogger();
+
+            Log.Logger = log;
+        }
     }
 }

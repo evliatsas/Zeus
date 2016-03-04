@@ -56,10 +56,10 @@
     <Compile Include="Contacts\Contact.cs" />
     <Compile Include="Contacts\ProviderContact.cs" />
     <Compile Include="Entity.cs" />
-    <Compile Include="Facility.cs" />
+    <Compile Include="Facilities\Facility.cs" />
     <Compile Include="Contacts\FacilityContact.cs" />
-    <Compile Include="Location.cs" />
-    <Compile Include="PhoneNo.cs" />
+    <Compile Include="Facilities\Location.cs" />
+    <Compile Include="Contacts\PhoneNo.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
@@ -72,7 +72,7 @@
     <Compile Include="Reports\ProblemReport.cs" />
     <Compile Include="Providers\FeedingProvider.cs" />
     <Compile Include="Providers\HealthcareProvider.cs" />
-    <Compile Include="Housing.cs" />
+    <Compile Include="Facilities\Housing.cs" />
     <Compile Include="Providers\LogisticsProvider.cs" />
     <Compile Include="Person.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -83,7 +83,7 @@
     <Compile Include="Reports\SituationReport.cs" />
     <Compile Include="Repositories\Context.cs" />
     <Compile Include="Repositories\MongoDbRepository.cs" />
-    <Compile Include="Transportation.cs" />
+    <Compile Include="Facilities\Transportation.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
