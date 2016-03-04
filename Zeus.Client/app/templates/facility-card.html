@@ -1,21 +1,27 @@
 <div class="panel panel-primary" ng-class="{ 'panel-warning': facility.Utilization > 74, 'panel-danger': facility.Utilization > 100 }">
     <div class="panel-heading">
         <a href="#" style="color: white">
-            <i class="material-icons md-36 pull-left">terrain</i>
+            <i class="material-icons md-36 pull-left">home</i>
             <h4>
 				<span style="padding-left:10px">{{facility.Name}}</span>
 				<span class="pull-right"><strong>{{facility.Utilization}}%</strong></span>
 			</h4>
         </a>
     </div>
-    <div class="panel-body" style="min-height: 80px">
-        <a href="#" class="btn btn-primary">asd</a>
-        <a href="#" class="btn btn-primary">asd</a>
-        <a href="#" class="btn btn-primary">asd</a>
-        <a href="#" class="btn btn-primary">asd</a>
-        <div class="btn">test</div>
+    <div class="panel-body" style="height: 100px">
+        <p style="height: 50px; overflow: hidden; text-overflow: ellipsis">{{facility.Description}}</p>
+
+        <p class="text-primary">
+            Φιλοξενούμενοι: {{facility.Attendance}} / {{facility.Capacity}}
+        </p>
     </div>
-    <div class="panel-footer" style="height: 64px">
-        <span>{{facility.Description}}</span>
+    <div class="panel-footer" style="padding: 5px">
+        <div class="btn-group btn-group-justified" style="margin: 0px">
+            <a href="#" class="btn btn-xs"><i class="material-icons md-48">assignment</i></a>
+            <a href="#" class="btn btn-xs"><i class="material-icons md-48">shopping_cart</i></a>
+            <a href="#" class="btn btn-xs"><i class="material-icons md-48">airport_shuttle</i></a>
+            <a href="#" class="btn btn-xs"><i class="material-icons md-48">local_hospital</i></a>
+        </div>
     </div>
+
 </div>
