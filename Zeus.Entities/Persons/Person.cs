@@ -15,7 +15,8 @@ namespace Zeus.Entities
         public string Nationality { get; set; }
         public bool IsSensitive { get; set; }
         public string Sensitivity { get; set; }
-        public FamilyRelation FamilyRelation { get; set; }
+        [BsonIgnore]
+        public IList<FamilyRelation> Relatives { get; set; }
         public string FacilityId { get; set; }
         [BsonIgnore]
         public Facility Facility { get; set; }
@@ -27,24 +28,5 @@ namespace Zeus.Entities
             this.Nationality = "Άγνωστο";
             this.IsSensitive = false;
         }
-    }
-
-    public class FamilyRelation
-    {
-        public Relationship Relationship { get; set; }
-        public string Relative { get; set; }
-    }
-
-    public enum Relationship
-    {
-        Husband,
-        Wife,
-        Father,
-        Mother,
-        Child,
-        Brother,
-        Sister,
-        FatherInLaw,
-        MotherInLaw
-    }
+    }    
 }

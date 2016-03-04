@@ -22,9 +22,9 @@ namespace Zeus.Controllers
             context = Entities.Repositories.Context.Instance;
         }
 
-        [ResponseType(typeof(IEnumerable<Facility>))]
-        [HttpGet]
         [Route("")]
+        [ResponseType(typeof(IEnumerable<Facility>))]
+        [HttpGet]       
         public async Task<IHttpActionResult> GetFacilities()
         {
             var user = await Helper.GetUserByRequest(User as ClaimsPrincipal);
@@ -56,10 +56,10 @@ namespace Zeus.Controllers
 
             return facility == null ? (IHttpActionResult)this.NotFound() : this.Ok(facility);
         }
-        
+
+        [Route("")]
         [ResponseType(typeof(Facility))]
         [HttpPost]
-        [Route("")]
         public async Task<IHttpActionResult> CreateFacility(Facility Facility)
         {
             var user = await Helper.GetUserByRequest(User as ClaimsPrincipal);
@@ -107,8 +107,8 @@ namespace Zeus.Controllers
             }
         }
 
-        [HttpPut]
         [Route("")]
+        [HttpPut]
         public async Task<IHttpActionResult> UpdateFacility(Facility Facility)
         {
             var user = await Helper.GetUserByRequest(User as ClaimsPrincipal);

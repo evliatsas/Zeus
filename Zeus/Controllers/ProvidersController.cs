@@ -21,6 +21,7 @@ namespace Zeus.Controllers
             context = Entities.Repositories.Context.Instance;
         }
 
+        [Route("")]
         [ResponseType(typeof(IEnumerable<Provider>))]
         [HttpGet]
         public async Task<IHttpActionResult> GetProviders()
@@ -55,6 +56,7 @@ namespace Zeus.Controllers
             return provider == null ? (IHttpActionResult)this.NotFound() : this.Ok(provider);
         }
 
+        [Route("")]
         [ResponseType(typeof(Provider))]
         [HttpPost]
         public async Task<IHttpActionResult> CreateProvider(Provider provider)
@@ -99,6 +101,7 @@ namespace Zeus.Controllers
             }
         }
 
+        [Route("")]
         [HttpPut]
         public async Task<IHttpActionResult> UpdateProvider(Provider provider)
         {

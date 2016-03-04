@@ -13,5 +13,7 @@ namespace Zeus
         public const string ProvidersController = "providers";
         public const string ReportsController = "reports";
         public const string PersonsController = "persons";
+
+        public const string PersonRelation = "relation";
     }
 }
