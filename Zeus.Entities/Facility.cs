@@ -13,7 +13,8 @@ namespace Zeus.Entities
         public Location Location { get; set; }
         public IList<Housing> Housings { get; set; }
         public int Capacity { get; set; }
-        public int Attendance { get { return this.Persons.Count; } }        
+        public int Attendance { get { return this.Persons.Count; } }
+        public double Utilization { get { return Attendance == 0 ? 0.0 : Math.Round((double)(Capacity / Attendance), 1); } }
         public bool IsSecure { get { return this.Providers.Any(p => p is SecurityProvider); } }
         public bool HasHealthcare { get { return this.Providers.Any(p => p is HealthcareProvider); } }
         public string Status { get; set; }
