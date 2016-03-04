@@ -11,6 +11,13 @@ namespace Zeus.Entities.Repositories
         public MongoDB.Driver.IMongoDatabase Database { get; private set; }
         
         public MongoDbRepository<Facility> Facilities { get; private set; }
+        public MongoDbRepository<FacilityContact> FacilityContacts { get; private set; }
+        public MongoDbRepository<Provider> Providers { get; private set; }
+        public MongoDbRepository<ProviderFacilities> ProviderFacilities { get; private set; }
+        public MongoDbRepository<ProviderContact> ProviderContacts { get; private set; }
+        public MongoDbRepository<Person> Persons { get; private set; }
+        public MongoDbRepository<Contact> Contacts { get; private set; }
+        public MongoDbRepository<Auth.User> Users { get; private set; }
         
         #region Static
 
@@ -61,10 +68,16 @@ namespace Zeus.Entities.Repositories
             {
                 var client = new MongoDB.Driver.MongoClient(Context.ConnectionString);
                 Database = client.GetDatabase(Context.DatabaseName);
-                
+
                 //Register Mongo collections
+                Users = new MongoDbRepository<Auth.User>(this.Database, "Users");
                 Facilities = new MongoDbRepository<Facility>(this.Database, "Facilities");
-                
+                Providers = new MongoDbRepository<Provider>(this.Database, "Providers");
+                ProviderFacilities = new MongoDbRepository<Entities.ProviderFacilities>(this.Database, "ProviderFacilities");
+                FacilityContacts = new MongoDbRepository<FacilityContact>(this.Database, "FacilityContacts");
+                ProviderContacts = new MongoDbRepository<ProviderContact>(this.Database, "ProviderContacts");
+                Persons = new MongoDbRepository<Person>(this.Database, "Persons");
+                Contacts = new MongoDbRepository<Contact>(this.Database, "Contacts");
                 //set the static instance property
                 _instance = this;
             }

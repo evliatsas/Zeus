@@ -41,6 +41,13 @@ namespace Zeus.Entities.Repositories
             return entity;
         }
 
+        public virtual async Task<bool> UpdateMany(FilterDefinition<T> filter, UpdateDefinition<T> update)
+        {
+            var result = await collection.UpdateManyAsync(filter, update);
+
+            return result.MatchedCount == result.ModifiedCount;
+        }
+
         public virtual async Task<IEnumerable<T>> BulkInsert(IEnumerable<T> entities)
         {
             await collection.InsertManyAsync(entities);
@@ -66,6 +73,13 @@ namespace Zeus.Entities.Repositories
         public virtual async Task<bool> Delete(T entity)
         {
             return await this.Delete(entity.Id);
+        }
+
+        public virtual async Task<bool> Delete(Expression<Func<T, bool>> predicate)
+        {
+            var result = await collection.DeleteManyAsync(predicate);
+
+            return result.IsAcknowledged && result.DeletedCount > 0;
         }
 
         public async Task<IEnumerable<T>> GetAll()
