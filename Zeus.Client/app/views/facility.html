@@ -1,0 +1,70 @@
+<uib-tabset active="active">
+    <uib-tab index="0" heading="Λεπτομέρειες">
+        <div class="form-group label-static is-empty">
+            <label for="i1" class="control-label">Ονομασία</label>
+            <input type="text" class="form-control" id="i1" placeholder="Ονομασία" ng-model="data.Name">
+        </div>
+        <div class="form-group label-static is-empty">
+            <label for="i2" class="control-label">Περιγραφή</label>
+            <input type="text" class="form-control" id="i2" placeholder="Περιγραφή" ng-model="data.Description">
+        </div>
+        <div class="form-group label-static is-empty">
+            <label for="i3" class="control-label">Κατηγορία</label>
+            <input type="text" class="form-control" id="i3" placeholder="Κατηγορία" ng-model="data.Type" uib-typeahead="state for state in categories | filter:$viewValue">
+        </div>
+        <div class="form-group label-static is-empty">
+            <label for="i4" class="control-label">Χωρητικότητα</label>
+            <input type="number" class="form-control" id="i4" placeholder="Χωρητικότητα" ng-model="data.Capacity">
+        </div>
+        <div class="form-group label-static is-empty">
+            <label for="i5" class="control-label">Φιλοξενούμενοι</label>
+            <input type="number" class="form-control" id="i5" placeholder="Φιλοξενούμενοι" ng-model="data.Attendance" readonly="true">
+        </div>
+        <div class="form-group">
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" ng-model="data.IsSecure" disabled> Φυλασσόμενος Χώρος
+                </label>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" ng-model="data.HasHealthcare" disabled> Υγεινομική Υποστήριξη
+                </label>
+            </div>
+        </div>
+        <div class="form-group label-static is-empty">
+            <label for="Status" class="control-label">Κατάσταση</label>
+            <input type="text" class="form-control" id="Status" placeholder="Κατάσταση" ng-model="data.Status" uib-typeahead="state for state in statuses | filter:$viewValue">
+        </div>
+        <div class="form-group">
+            <label for="StatusDateTime" class="control-label">Ημ. Κατάστασης</label>
+            <div class="input-group" id="StatusDateTime">
+                <input type="text" class="form-control" uib-datepicker-popup="{{dateformat}}" ng-model="data.StatusDateTime" show-button-bar="false" is-open="datePicker1.opened" placeholder="Έναρξη" />
+                <span class="input-group-btn">
+            <button type="button" class="btn btn-default" ng-click="openDatePicker($event, 1)"><i class="material-icons md-36">date_range</i></button>
+        </span>
+                <uib-timepicker ng-model="data.StatusDateTime" hour-step="hstep" minute-step="mstep" show-meridian="false" class="mydatepicker" style="padding-bottom: 50px"></uib-timepicker>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="StatusECT" class="control-label">Ημ. Αποκατάστασης</label>
+            <div class="input-group" id="StatusECT">
+                <input type="text" class="form-control" uib-datepicker-popup="{{dateformat}}" ng-model="data.StatusECT" show-button-bar="false" is-open="datePicker1.opened" placeholder="Έναρξη" />
+                <span class="input-group-btn">
+            <button type="button" class="btn btn-default" ng-click="openDatePicker($event, 1)"><i class="material-icons md-36">date_range</i></button>
+        </span>
+                <uib-timepicker ng-model="data.StatusECT" hour-step="hstep" minute-step="mstep" show-meridian="false" class="mydatepicker" style="padding-bottom: 50px"></uib-timepicker>
+            </div>
+        </div>
+        <div class="form-group label-static is-empty">
+            <label for="Administration" class="control-label">Διαχειριστής</label>
+            <input type="text" class="form-control" id="Administration" placeholder="Διαχειριστής" ng-model="data.Administration" uib-typeahead="state for state in administrations | filter:$viewValue">
+        </div>
+    </uib-tab>
+    <uib-tab index="1" heading="Στέγαση">Στέγαση</uib-tab>
+    <uib-tab index="2" heading="Επαφές">Επαφές</uib-tab>
+    <uib-tab index="3" heading="Υποστήριξη">Υποστήριξη</uib-tab>
+    <uib-tab index="4" heading="Αναφορές">Αναφορές</uib-tab>
+</uib-tabset>

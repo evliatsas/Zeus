@@ -9,6 +9,7 @@
  */
 angular.module('zeusclientApp')
   .controller('MainCtrl', function () {
+  	$.material.init();
     this.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',

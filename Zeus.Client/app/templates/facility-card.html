@@ -1,6 +1,6 @@
 <div class="panel panel-primary" ng-class="{ 'panel-warning': facility.Utilization > 74, 'panel-danger': facility.Utilization > 100 }">
     <div class="panel-heading">
-        <a href="#" style="color: white">
+        <a href="#/facilities/{{facility.Id}}" style="color: white">
             <i class="material-icons md-36 pull-left">home</i>
             <h4>
 				<span style="padding-left:10px">{{facility.Name}}</span>
@@ -15,12 +15,14 @@
             Φιλοξενούμενοι: {{facility.Attendance}} / {{facility.Capacity}}
         </p>
     </div>
-    <div class="panel-footer" style="padding: 5px">
-        <div class="btn-group btn-group-justified" style="margin: 0px">
-            <a href="#" class="btn btn-xs"><i class="material-icons md-48">assignment</i></a>
-            <a href="#" class="btn btn-xs"><i class="material-icons md-48">shopping_cart</i></a>
-            <a href="#" class="btn btn-xs"><i class="material-icons md-48">airport_shuttle</i></a>
-            <a href="#" class="btn btn-xs"><i class="material-icons md-48">local_hospital</i></a>
+    <div class="panel-footer">
+        <div class="btn-group btn-group-justified">
+            <a href="#" class="btn btn-xs" title="Αίτηση" style="padding: 0px"><i class="material-icons md-36">message</i></a>
+            <a href="#" class="btn btn-xs" title="Στέγαση" style="padding: 0px"><i class="material-icons md-36">local_hotel</i></a>
+            <a href="#" class="btn btn-xs" title="Μετακίνηση" style="padding: 0px"><i class="material-icons md-36">airport_shuttle</i></a>
+            <a href="#" class="btn btn-xs" title="Σίτιση" style="padding: 0px"><i class="material-icons md-36">restaurant_menu</i></a>
+            <a href="#" class="btn btn-xs" title="Αναφορά" style="padding: 0px"><i class="material-icons md-36">assignment</i></a>
+            <a href="#" class="btn btn-xs" title="Πρόβλημα" style="padding: 0px"><i class="material-icons md-36">error</i></a>
         </div>
     </div>
 
