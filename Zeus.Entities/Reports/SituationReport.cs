@@ -10,8 +10,10 @@ namespace Zeus.Entities
     {
         public int PersonCount { get; set; }
 
-        public SituationReport():base()
+        public SituationReport()
         {
+            this.DateTime = DateTime.Now;
+            this.Type = ReportType.SituationReport;
         }
     }
 }

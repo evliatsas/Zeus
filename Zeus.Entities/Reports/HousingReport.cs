@@ -11,8 +11,10 @@ namespace Zeus.Entities
         public int HousedCount { get; set; }
         public Housing Housing { get; set; }
 
-        public HousingReport():base()
+        public HousingReport()
         {
+            this.DateTime = DateTime.Now;
+            this.Type = ReportType.HousingReport;
         }
     }
 }
