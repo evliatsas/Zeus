@@ -51,34 +51,10 @@
 </div>
 
 <div class="row">
-    <date-time-picker class="col-xs-12 col-sm-12 col-md-12 col-lg-12" label="testing dtp" placeholder="testing dtp placeholder" format="dd/MM/yy" date="facility.StatusDateTime"></date-time-picker>
-
-
-    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-        <div class="form-group">
-            <label class="control-label" for="StatusDateTime">Ημ. Κατάστασης</label>
-            <div class="input-group">
-                <input type="text" id="StatusDateTime" class="form-control" uib-datepicker-popup="{{dateformat}}" ng-model="facility.StatusDateTime" show-button-bar="false" is-open="datePicker1.opened" placeholder="Έναρξη" />
-                <span class="input-group-btn">
-                    <button type="button" class="btn btn-default" ng-click="openDatePicker($event, 1)"><i class="material-icons md-36">date_range</i></button>
-                </span>
-                <uib-timepicker ng-model="facility.StatusDateTime" hour-step="hstep" minute-step="mstep" show-meridian="false" class="mydatepicker"></uib-timepicker>
-            </div>
-        </div>
-    </div>
-    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-        <div class="form-group">
-            <label class="control-label" for="StatusECT">Ημ. Αποκατάστασης</label>
-            <div class="input-group">
-                <input type="text" id="StatusECT" class="form-control" uib-datepicker-popup="{{dateformat}}" ng-model="facility.StatusECT" show-button-bar="false" is-open="datePicker2.opened" placeholder="Έναρξη" />
-                <span class="input-group-btn">
-                    <button type="button" class="btn btn-default" ng-click="openDatePicker($event, 2)"><i class="material-icons md-36">date_range</i></button>
-                </span>
-                <uib-timepicker ng-model="facility.StatusECT" hour-step="hstep" minute-step="mstep" show-meridian="false" class="mydatepicker"></uib-timepicker>
-            </div>
-        </div>
-    </div>
+    <date-time-picker class="col-xs-12 col-sm-12 col-md-12 col-lg-12" label="Ημερομηνία Κατάστασης" placeholder="Ημ. Κατάστασης" format="dd/MM/yy" date="facility.StatusDateTime"></date-time-picker>
+    <date-time-picker class="col-xs-12 col-sm-12 col-md-12 col-lg-12" label="Ημερομηνία Αποκατάστασης" placeholder="Ημ. Αποκατάστασης" format="dd/MM/yy" date="facility.StatusECT"></date-time-picker>
 </div>
+
 <div class="form-group label-static is-empty">
     <label for="Administration" class="control-label">Διαχειριστής</label>
     <input type="text" class="form-control" id="Administration" placeholder="Διαχειριστής" ng-model="facility.Administration" uib-typeahead="state for state in administrations | filter:$viewValue">
