@@ -78,17 +78,22 @@
     <Content Include="app\scripts\controllers\facility.js" />
     <Content Include="app\scripts\controllers\main.js" />
     <Content Include="app\scripts\controllers\menu.js" />
+    <Content Include="app\scripts\directives\contact-card.js" />
     <Content Include="app\scripts\directives\facility-card.js" />
     <Content Include="app\scripts\directives\facility-details.js" />
     <Content Include="app\scripts\directives\facility-housing.js" />
     <Content Include="app\scripts\directives\on-finish-render.js" />
+    <Content Include="app\scripts\directives\phone.js" />
     <Content Include="app\styles\main.css" />
     <Content Include="app\styles\material.css" />
     <Content Include="app\styles\site.css" />
     <Content Include="app\styles\typeahead.css" />
+    <Content Include="app\templates\contact-card.html" />
     <Content Include="app\templates\facility-card.html" />
+    <Content Include="app\templates\facility-contacts.html" />
     <Content Include="app\templates\facility-details.html" />
     <Content Include="app\templates\facility-housing.html" />
+    <Content Include="app\templates\phone.html" />
     <Content Include="app\views\about.html" />
     <Content Include="app\views\facilities.html" />
     <Content Include="app\views\facility.html" />
@@ -116,11 +121,11 @@
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
-          <UseIIS>False</UseIIS>
+          <UseIIS>True</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>61064</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:61064/</IISUrl>
+          <IISUrl>http://localhost:61064</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

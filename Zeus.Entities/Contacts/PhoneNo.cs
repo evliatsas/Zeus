@@ -14,8 +14,8 @@ namespace Zeus.Entities
 
     public enum PhoneType
     {
-        Landline,
         Mobile,
+        Landline,
         Fax,
         Crypto
     }
