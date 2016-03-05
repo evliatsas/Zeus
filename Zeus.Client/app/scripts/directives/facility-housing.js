@@ -11,7 +11,8 @@ angular.module('zeusclientApp')
 .directive('facilityHousing', function () {
     return {
         scope: {
-            facility: '='
+            housing: '=',
+            index: '='
         },
         templateUrl: '/templates/facility-housing.html',
         link: function postLink(scope, element, attrs) {
