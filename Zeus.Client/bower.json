@@ -16,7 +16,8 @@
     "toastr": "^2.1.2",
     "material-design-icons": "^2.2.0",
     "angular-bootstrap": "^1.2.2",
-    "arrive": "^2.3.1"
+    "arrive": "^2.3.1",
+    "moment": "^2.11.2"
   },
   "devDependencies": {
     "angular-mocks": "^1.4.0"
