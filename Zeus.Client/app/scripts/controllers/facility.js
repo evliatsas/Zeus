@@ -10,6 +10,23 @@
 angular.module('zeusclientApp')
     .controller('FacilityCtrl', function ($scope) {
 
+        $scope.reporttypes = [
+            { Id: 0, Description: '<i class="material-icons md-18" title="Αναφορά Σίτισης">restaurant_menu</i>' },
+            { Id: 1, Description: '<i class="material-icons md-18" title="Αναφορά Στέγασης">local_hotel</i>' },
+            { Id: 2, Description: '<i class="material-icons md-18" title="Αναφορά Μετακίνησης">airport_shuttle</i>' },
+            { Id: 3, Description: '<i class="material-icons md-18" title="Αναφορά Προβλήματος">error</i>' },
+            { Id: 4, Description: '<i class="material-icons md-18" title="Αναφορά Αίτησης">message</i>' },
+            { Id: 5, Description: '<i class="material-icons md-18" title="Αναφορά Κατάστασης">assignment</i>' }
+        ];
+
+        $scope.reportcolumns = [
+            { Caption: 'Τύπος', Field: 'Type', Type: 'LookupHtml', Values: $scope.reporttypes, Tooltip: 'Τύπος Αναφοράς' },
+            { Caption: 'Θέμα', Field: 'Notes' },
+            { Caption: 'Τίτλος', Field: 'Title' },
+            { Caption: 'Συντάκτης', Field: 'User.Title' },
+            { Caption: 'Ημερομηνία', Field: 'DateTime', Type: 'DateTime' }
+        ];
+
         $scope.data = {
             "Id": "ABCD",
             "Name": "Λιμάνι Πειραιά",
@@ -108,7 +125,59 @@ angular.module('zeusclientApp')
                     "Email": "eliatsas@gea.haf.gr",
                     "Type": "ΚΕΠΙΧ",
                     "Notes": "Διαχειριστής Εφαρμογής Ζεύς"
+                }
+            ],
+            "Reports": [
+                {
+                    "_id": "56daea1fb51eb41e38277438",
+                    "Tag": null,
+                    "Notes": null,
+                    "User": {
+                        "UserName": "eliatsas",
+                        "Contact": {
+                            "Name": "Ευάγγελος Λιάτσας",
+                            "Title": "Διευθυντής",
+                            "Company": "ΓΕΕΘΑ"
+                        }
+                    },
+                    "Facility": null,
+                    "DateTime": "2016-03-05T14:15:59.214Z",
+                    "Type": 0,
+                    "FeedingProvider": null,
+                    "Rations": 0,
+                    "Meal": "fasolia",
+                    "IsAcknowledged": true
                 },
+                {
+                    "_id": "56daea1fb51eb41e38277437",
+                    "Tag": null,
+                    "Notes": "request",
+                    "User": {
+                        "UserName": "akatarachias",
+                        "Name": "Αντώνης Καταραχιάς",
+                        "Title": "Διευθυντής Εγκαταστάσεων",
+                        "Company": "Υπ. Εσωτερικών",
+                    },
+                    "Facility": null,
+                    "DateTime": "2016-03-05T14:15:59.214Z",
+                    "Type": 4,
+                    "IsAcknowledged": true
+                },
+                {
+                    "_id": "56daea1fb51eb41e38277436",                    
+                    "Tag": null,
+                    "Notes": "Πρόβλημα εγκατάστασης",
+                    "User": {
+                        "UserName": "akatarachias",
+                        "Name": "Αντώνης Καταραχιάς",
+                        "Title": "Διευθυντής Εγκαταστάσεων",
+                        "Company": "Υπ. Εσωτερικών",
+                    },
+                    "Facility": null,
+                    "DateTime": "2016-03-05T14:15:59.214Z",
+                    "Type": 3,
+                    "IsAcknowledged": true
+                }
             ]
         };
 

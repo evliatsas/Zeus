@@ -26,6 +26,8 @@ namespace Zeus.Entities
         [BsonIgnore]
         public IList<Provider> Providers { get; set; }
         [BsonIgnore]
+        public IList<Report> Reports { get; set; }
+        [BsonIgnore]
         public IList<Person> Persons { get; set; }
         
 
@@ -33,6 +35,7 @@ namespace Zeus.Entities
         {
             this.Contacts = new List<Contact>();
             this.Providers = new List<Provider>();
+            this.Reports = new List<Report>();
             this.Persons = new List<Person>();
             this.Housings = new List<Housing>();
         }

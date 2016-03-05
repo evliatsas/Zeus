@@ -25,6 +25,14 @@
             </div>
         </uib-tab>
         <uib-tab index="3" heading="Υποστήριξη">Υποστήριξη</uib-tab>
-        <uib-tab index="4" heading="Αναφορές">Αναφορές</uib-tab>
+        <uib-tab index="4" heading="Αναφορές">
+            <cinnamon-grid grid-columns="reportcolumns"
+                      grid-items="data.Reports"
+                      show-grid-buttons="false"
+                      hide-item-buttons="true"
+                      highlight="!item.IsAcknowledged"
+                      row-click-fn="showReport(item)">
+            </cinnamon-grid>
+        </uib-tab>
     </uib-tabset>
 </div>
