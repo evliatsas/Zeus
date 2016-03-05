@@ -21,8 +21,10 @@ namespace Zeus.Entities
         public string MovementType { get; set; }
         public bool IsTransportHired { get; set; }
 
-        public MovementReport():base()
+        public MovementReport()
         {
+            this.DateTime = DateTime.Now;
+            this.Type = ReportType.MovementReport;
         }
     }
 }

@@ -15,8 +15,8 @@ namespace Zeus.Entities
         public int Capacity { get; set; }
         public int Attendance { get; set; }
         public int Utilization { get { return (int)((double)Attendance / (double)Capacity) * 100; } }
-        public bool IsSecure { get { return this.Providers.Any(p => p is SecurityProvider); } }
-        public bool HasHealthcare { get { return this.Providers.Any(p => p is HealthcareProvider); } }
+        public bool IsSecure { get { return this.Providers.Any(p => p.Type == ProviderType.Security); } }
+        public bool HasHealthcare { get { return this.Providers.Any(p => p.Type == ProviderType.Healthcare); } }
         public string Status { get; set; }
         public Nullable<DateTime> StatusDateTime { get; set; }
         public Nullable<DateTime> StatusECT { get; set; }

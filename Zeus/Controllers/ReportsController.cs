@@ -12,7 +12,7 @@ using Zeus.Entities;
 namespace Zeus.Controllers
 {
     [ActionFilters.GzipCompressed]
-    [RoutePrefix(Zeus.Routes.Facilities)]
+    [RoutePrefix(Zeus.Routes.Reports)]
     public class ReportsController : ApiController
     {
         private Entities.Repositories.Context context;

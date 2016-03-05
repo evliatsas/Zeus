@@ -8,8 +8,10 @@ namespace Zeus.Entities
 {
     public class RequestReport : Report
     {
-        public RequestReport():base()
+        public RequestReport()
         {
+            this.DateTime = DateTime.Now;
+            this.Type = ReportType.RequestReport;
         }
     }
 }

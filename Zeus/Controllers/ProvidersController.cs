@@ -30,7 +30,7 @@ namespace Zeus.Controllers
 
             var result = await context.Providers.GetAll();
 
-            return result == null ? this.Ok(new List<Provider>().AsEnumerable()) : this.Ok(result.OrderByDescending(o => o.Name).AsEnumerable());
+            return result == null ? this.Ok(new List<Provider>().AsEnumerable()) : this.Ok(result.OrderByDescending(o => o.Name).AsEnumerable());            
         }
 
         [Route("{id}")]
