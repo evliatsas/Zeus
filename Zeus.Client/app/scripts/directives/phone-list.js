@@ -8,19 +8,26 @@
  * Controller of the zeusclientApp
  */
 angular.module('zeusclientApp')
-.directive('phone', function () {
+.directive('phoneList', function () {
     return {
         scope: {
-            phoneNo: '='
+            phones: '='
         },
-        templateUrl: '/templates/phone.html',
+        templateUrl: '/templates/phone-list.html',
         link: function postLink(scope, element, attrs) {
             scope.phoneTypes = [                
                 'Κινητό',
                 'Σταθερό',
                 'Fax',
                 'Crypto'
-            ];           
+            ];
+
+            scope.addPhone = function () {
+                scope.phones.push({
+                    "Type": "Κινητό",
+                    "Number": ""
+                });
+            }
         }
     };
 });
