@@ -11,7 +11,7 @@ function grid($http, $filter, moment, commonUtilities) {
         scope: {
             gridColumns: '=',
             gridItems: '=',
-            selectedItems: '=',
+            selectedItems: '=?',
             showGridButtons: '=',
             showCheckBoxes: '=',
             hidePagingDropdown: '=',
