@@ -78,6 +78,7 @@
     <Content Include="app\scripts\controllers\facility.js" />
     <Content Include="app\scripts\controllers\main.js" />
     <Content Include="app\scripts\controllers\menu.js" />
+    <Content Include="app\scripts\directives\date-time-picker.js" />
     <Content Include="app\scripts\directives\facility-card.js" />
     <Content Include="app\scripts\directives\facility-details.js" />
     <Content Include="app\scripts\directives\facility-housing.js" />
@@ -86,6 +87,7 @@
     <Content Include="app\styles\material.css" />
     <Content Include="app\styles\site.css" />
     <Content Include="app\styles\typeahead.css" />
+    <Content Include="app\templates\date-time-picker.html" />
     <Content Include="app\templates\facility-card.html" />
     <Content Include="app\templates\facility-details.html" />
     <Content Include="app\templates\facility-housing.html" />
@@ -116,7 +118,7 @@
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
-          <UseIIS>False</UseIIS>
+          <UseIIS>True</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>61064</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
