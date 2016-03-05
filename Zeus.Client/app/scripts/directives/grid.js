@@ -1,11 +1,11 @@
 'use strict';
 
-angular.module('common.layout')
-       .directive('misGrid', grid);
+angular.module('zeusclientApp')
+       .directive('dataGrid', grid);
 
-grid.$inject = ['$http', '$filter', 'moment', 'commonUtilities', 'cdnUri'];
+grid.$inject = ['$http', '$filter', 'moment', 'commonUtilities'];
 
-function grid($http, $filter, moment, commonUtilities, cdnUri) {
+function grid($http, $filter, moment, commonUtilities) {
     return {
         scope: {
             gridColumns: '=',
@@ -289,14 +289,6 @@ function grid($http, $filter, moment, commonUtilities, cdnUri) {
                         }
                         count += items.length;
                     }
-
-                    //for (var i = 0; i < scope.items.length; i++) {
-                    //    var p = Math.floor(i / scope.pageSize);
-                    //    if (i % scope.pageSize === 0) {
-                    //        scope.pages[p] = [];
-                    //    }
-                    //    scope.pages[p].push(scope.items[i]);
-                    //}
                 }
             };
         }

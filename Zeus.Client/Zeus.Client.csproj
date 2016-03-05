@@ -86,6 +86,7 @@
     <Content Include="app\scripts\directives\grid.js" />
     <Content Include="app\scripts\directives\on-finish-render.js" />
     <Content Include="app\scripts\directives\phone.js" />
+    <Content Include="app\scripts\services\utilities.js" />
     <Content Include="app\styles\main.css" />
     <Content Include="app\styles\material.css" />
     <Content Include="app\styles\site.css" />
