@@ -18,7 +18,58 @@ angular.module('zeusclientApp')
             "Capacity": 200,
             "Attendance": 300,
             "Utilization": 150,
-            "Status": "Ενεργό"
+            "Status": "Ενεργό",
+            "Housings": [
+                {
+                    "Type": "ISOBOX",
+                    "Capacity": 200,
+                    "Attendance": 300,
+                    "Utilization": 150,
+                    "Status": "Ενεργό"
+                },
+                {
+                    "Type": "Σκηνή",
+                    "Capacity": 200,
+                    "Attendance": 300,
+                    "Utilization": 150,
+                    "Status": "Ενεργό"
+                },
+                {
+                    "Type": "ISOBOX",
+                    "Capacity": 200,
+                    "Attendance": 300,
+                    "Utilization": 150,
+                    "Status": "Ενεργό"
+                },
+                {
+                    "Type": "Σκηνή",
+                    "Capacity": 200,
+                    "Attendance": 300,
+                    "Utilization": 150,
+                    "Status": "Ενεργό"
+                },
+                {
+                    "Type": "Σκηνή",
+                    "Capacity": 200,
+                    "Attendance": 300,
+                    "Utilization": 150,
+                    "Status": "Ενεργό"
+                },
+                {
+                    "Type": "ISOBOX",
+                    "Capacity": 200,
+                    "Attendance": 300,
+                    "Utilization": 150,
+                    "Status": "Ενεργό"
+                },
+                {
+                    "Type": "Σκηνή",
+                    "Capacity": 200,
+                    "Attendance": 300,
+                    "Utilization": 150,
+                    "Status": "Ενεργό"
+                }
+            ]
         };
 
     });

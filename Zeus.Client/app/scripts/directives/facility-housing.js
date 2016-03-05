@@ -13,6 +13,10 @@ angular.module('zeusclientApp')
         scope: {
             facility: '='
         },
-        templateUrl: '/templates/facility-housing.html'
+        templateUrl: '/templates/facility-housing.html',
+        link: function postLink(scope, element, attrs) {
+            scope.categories = ['ISOBOX', 'Σκηνή', 'Ξενοδοχείο', 'Οικία', 'Ανοικτός Χώρος'];
+            scope.statuses = ['Σε Λειτουργία', 'Υπο Επισκευή', 'Υπο Κατασκευή', 'Κατεστραμένο', 'Ανενεργό'];
+        }
     };
 });
