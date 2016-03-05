@@ -94,7 +94,6 @@
     <Content Include="app\templates\contact-card.html" />
     <Content Include="app\templates\date-time-picker.html" />
     <Content Include="app\templates\facility-card.html" />
-    <Content Include="app\templates\facility-contacts.html" />
     <Content Include="app\templates\facility-details.html" />
     <Content Include="app\templates\facility-housing.html" />
     <Content Include="app\templates\grid.html" />
