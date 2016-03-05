@@ -11,12 +11,12 @@ angular.module('zeusclientApp')
     .controller('FacilityCtrl', function ($scope) {
 
         $scope.reporttypes = [
-            { Id: 0, Description: '<i class="material-icons md-18" title="Αναφορά Σίτισης">restaurant_menu</i>' },
-            { Id: 1, Description: '<i class="material-icons md-18" title="Αναφορά Στέγασης">local_hotel</i>' },
-            { Id: 2, Description: '<i class="material-icons md-18" title="Αναφορά Μετακίνησης">airport_shuttle</i>' },
-            { Id: 3, Description: '<i class="material-icons md-18" title="Αναφορά Προβλήματος">error</i>' },
-            { Id: 4, Description: '<i class="material-icons md-18" title="Αναφορά Αίτησης">message</i>' },
-            { Id: 5, Description: '<i class="material-icons md-18" title="Αναφορά Κατάστασης">assignment</i>' }
+            { Id: 0, Description: '<i class="text-primary material-icons md-18" title="Αναφορά Σίτισης">restaurant_menu</i>' },
+            { Id: 1, Description: '<i class="text-primary material-icons md-18" title="Αναφορά Στέγασης">local_hotel</i>' },
+            { Id: 2, Description: '<i class="text-primary material-icons md-18" title="Αναφορά Μετακίνησης">airport_shuttle</i>' },
+            { Id: 3, Description: '<i class="text-danger material-icons md-18" title="Αναφορά Προβλήματος">error</i>' },
+            { Id: 4, Description: '<i class="text-warning material-icons md-18" title="Αναφορά Αίτησης">message</i>' },
+            { Id: 5, Description: '<i class="text-info material-icons md-18" title="Αναφορά Κατάστασης">assignment</i>' }
         ];
 
         $scope.reportcolumns = [
@@ -131,14 +131,15 @@ angular.module('zeusclientApp')
                 {
                     "_id": "56daea1fb51eb41e38277438",
                     "Tag": null,
-                    "Notes": null,
+                    "Notes": "Σίτηση μεσημέρι",
                     "User": {
                         "UserName": "eliatsas",
                         "Contact": {
                             "Name": "Ευάγγελος Λιάτσας",
                             "Title": "Διευθυντής",
                             "Company": "ΓΕΕΘΑ"
-                        }
+                        },
+                        "Title": "ΓΕΕΘΑ/Ευάγγελος Λιάτσας"
                     },
                     "Facility": null,
                     "DateTime": "2016-03-05T14:15:59.214Z",
@@ -146,7 +147,7 @@ angular.module('zeusclientApp')
                     "FeedingProvider": null,
                     "Rations": 0,
                     "Meal": "fasolia",
-                    "IsAcknowledged": true
+                    "IsAcknowledged": false
                 },
                 {
                     "_id": "56daea1fb51eb41e38277437",
@@ -154,9 +155,12 @@ angular.module('zeusclientApp')
                     "Notes": "request",
                     "User": {
                         "UserName": "akatarachias",
-                        "Name": "Αντώνης Καταραχιάς",
-                        "Title": "Διευθυντής Εγκαταστάσεων",
-                        "Company": "Υπ. Εσωτερικών",
+                        "Contact": {
+                            "Name": "Αντώνης Καταραχιάς",
+                            "Title": "Διευθυντής Εγκαταστάσεων",
+                            "Company": "Υπ. Εσωτερικών"
+                        },
+                        "Title": "Υπ. Εσωτερικών/Αντώνης Καταραχιάς"
                     },
                     "Facility": null,
                     "DateTime": "2016-03-05T14:15:59.214Z",
@@ -169,14 +173,17 @@ angular.module('zeusclientApp')
                     "Notes": "Πρόβλημα εγκατάστασης",
                     "User": {
                         "UserName": "akatarachias",
-                        "Name": "Αντώνης Καταραχιάς",
-                        "Title": "Διευθυντής Εγκαταστάσεων",
-                        "Company": "Υπ. Εσωτερικών",
+                        "Contact": {
+                            "Name": "Αντώνης Καταραχιάς",
+                            "Title": "Διευθυντής Εγκαταστάσεων",
+                            "Company": "Υπ. Εσωτερικών"
+                        },
+                        "Title": "Υπ. Εσωτερικών/Αντώνης Καταραχιάς"
                     },
                     "Facility": null,
                     "DateTime": "2016-03-05T14:15:59.214Z",
                     "Type": 3,
-                    "IsAcknowledged": true
+                    "IsAcknowledged": false
                 }
             ]
         };
