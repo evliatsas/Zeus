@@ -44,7 +44,7 @@
                 </th>
                 <th ng-repeat="column in gridColumns" title="{{column.Tooltip}}">
                     <span class="btn-link" ng-click="sortBy(column.Field)" title="Ταξινόμηση">
-                        <strong>{{column.Caption | translate}}</strong>
+                        <strong>{{column.Caption}}</strong>
                         <i ng-if="column.Field == sortingOrder && reverse == false" class="{{sortAscIcon ? sortAscIcon : 'fa fa-sort-asc' }}"></i>
                         <i ng-if="column.Field == sortingOrder && reverse == true" class="{{sortDescIcon ? sortDescIcon : 'fa fa-sort-desc' }}"></i>
                     </span>
@@ -77,7 +77,7 @@
         -->
 
                     <div ng-if="column.Type == '' || column.Type == undefined" ng-click="gridRowClick(item)"><div ng-if="column.Labels" ng-repeat="label in $eval(labels)"><span class="label label-primary pull-left">{{label}}</span></div>{{$eval('item.'+ column.Field)}}</div>
-                    <div ng-if="column.Type == 'Lookup'" ng-click="gridRowClick(item)">{{ (column.Values | filter: {Id: $eval('item.' + column.Field)})[0]['Description'] | translate }}</div>
+                    <div ng-if="column.Type == 'Lookup'" ng-click="gridRowClick(item)">{{ (column.Values | filter: {Id: $eval('item.' + column.Field)})[0]['Description'] }}</div>
                     <div ng-if="column.Type == 'DateTime'" ng-click="gridRowClick(item)">{{formatDateTime($eval('item.'+ column.Field), column.format)}}</div>
                     <div ng-if="column.Type == 'Html'" ng-bind-html="$eval('item.'+ column.Field)" ng-click="gridRowClick(item)"></div>
                     <div ng-if="column.Type == 'LookupHtml'" ng-click="gridRowClick(item)" ng-bind-html="(column.Values | filter: {Id: $eval('item.' + column.Field)})[0]['Description']"></div>
@@ -109,8 +109,8 @@
 </div>
 <div style="padding-top: 0px; padding-bottom: 10px; margin-top: 0px">
 
-    <span ng-if="items.length > 0"><strong><span ng-if="!hidePagingDropdown && items.length > pageSize">{{(page)*pageSize+1}}-{{page == pages.length-1 ? items.length : (page)*pageSize + pageSize}} / </span>{{items.length}} {{ 'GRID_PAGE_ITEMS' | translate }}</strong></span>
-    <span ng-if="items.length == 0"><strong>0 / 0 {{ 'GRID_PAGE_ITEMS' | translate }}</strong></span>
+    <span ng-if="items.length > 0"><strong><span ng-if="!hidePagingDropdown && items.length > pageSize">{{(page)*pageSize+1}}-{{page == pages.length-1 ? items.length : (page)*pageSize + pageSize}} / </span>{{items.length}} εγγρ.</strong></span>
+    <span ng-if="items.length == 0"><strong>0 / 0 εγγρ.</strong></span>
 
     <ul ng-if="pageSize > 0" class="pagination pagination-inverse pagination-sm pull-right" style="margin:0px">
         <li ng-class="{disabled: page == 0}"><a ng-click="firstPage()"><i class="fa fa-fast-backward" /> Πρώτη</a>
