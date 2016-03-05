@@ -4,20 +4,26 @@
 
 <div class="col-md-8">
     <uib-tabset active="active">
-        <uib-tab index="0" heading="Λεπτομέρειες">
-
-        </uib-tab>
-        <uib-tab index="1" heading="Στέγαση">
+        <uib-tab index="0" heading="Στέγαση">
+            <div class="col-xs-1 col-sm-1 col-md-1">
+                <a href="javascript:void(0)" class="btn btn-info btn-fab"><i class="material-icons">add</i></a>
+            </div>
             <div class="col-xs-11 col-sm-11 col-md-11">
-                <div ng-repeat="housing in data.Housings" class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
-                    <facility-housing housing="housing"></facility-housing>
+                <div ng-repeat="housing in data.Housings" class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                    <facility-housing housing="housing" index="$index"></facility-housing>
+                </div>
+            </div>            
+        </uib-tab>
+        <uib-tab index="2" heading="Επαφές">
+            <div class="col-xs-11 col-sm-11 col-md-11">
+                <div ng-repeat="item in data.Contacts" class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                    <contact-card contact="item"></contact-card>
                 </div>
             </div>
             <div class="col-xs-1 col-sm-1 col-md-1">
                 <a href="javascript:void(0)" class="btn btn-info btn-fab"><i class="material-icons">add</i></a>
             </div>
         </uib-tab>
-        <uib-tab index="2" heading="Επαφές">Επαφές</uib-tab>
         <uib-tab index="3" heading="Υποστήριξη">Υποστήριξη</uib-tab>
         <uib-tab index="4" heading="Αναφορές">Αναφορές</uib-tab>
     </uib-tabset>

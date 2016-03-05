@@ -12,13 +12,13 @@
 
         <div class="row">
             <div class="col-md-6">
-                <div class="form-group label-static is-empty">
-                    <label for="Type" class="control-label">Κατηγορία</label>
-                    <input type="text" class="form-control" id="Type" placeholder="Κατηγορία" ng-model="housing.Type" uib-typeahead="state for state in categories | filter:$viewValue">
+                <div class="form-group label-floating ng-is-empty">
+                    <label for="{{index + 1}}" class="control-label">Κατηγορία</label>
+                    <input type="text" class="form-control" id="{{$index + 1}}" placeholder="Κατηγορία" ng-model="housing.Type" uib-typeahead="state for state in categories | filter:$viewValue">
                 </div>
             </div>
             <div class="col-md-6">
-                <div class="form-group label-static is-empty">
+                <div class="form-group label-floating is-empty">
                     <label for="Count" class="control-label">Πλήθος</label>
                     <input type="number" class="form-control" id="Count" placeholder="Πλήθος" ng-model="housing.Count">
                 </div>

@@ -8,14 +8,14 @@ namespace Zeus.Entities
 {
     public class Phone
     {
-        public PhoneType Type { get; set; }
+        public string Type { get; set; }
         public string Number { get; set; }
     }
 
     public enum PhoneType
     {
-        Landline,
         Mobile,
+        Landline,
         Fax,
         Crypto
     }

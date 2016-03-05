@@ -1,0 +1,42 @@
+﻿<div class="panel panel-primary">
+    <div class="panel-heading">
+        <h4>
+            <span style="padding-left:10px">{{contact.Name}}</span>
+        </h4>
+    </div>
+    <div class="panel-body">
+        <div class="form-group label-floating ng-is-empty">
+            <label for="c_i1" class="control-label">Τίτλος</label>
+            <input type="text" class="form-control" id="c_i1" ng-model="contact.Title" uib-typeahead="title for title in titles | filter:$viewValue">
+        </div>
+        <div class="form-group label-floating ng-ng-is-empty">
+            <label for="c_i2" class="control-label">Οργανισμός</label>
+            <input type="text" class="form-control" id="c_i2" ng-model="contact.Company" uib-typeahead="company for company in companies | filter:$viewValue">
+        </div>
+        <div class="form-group label-floating ng-is-empty">
+            <label for="c_i3" class="control-label">Διεύθυνση Επικοινωνίας</label>
+            <textarea class="form-control" id="c_i3" type="text" ng-model="contact.Address"></textarea>
+        </div>
+
+        <label class="control-label">Τηλέφωνο</label>
+        <span class="pull-right">
+            <a href="javascript:void(0)" class="btn btn-info btn-fab-mini"><i class="material-icons">add</i></a>
+        </span>
+
+        <div ng-repeat="phone in contact.Phones">
+            <phone phone-no="phone"></phone>
+        </div>
+
+        <div class="form-group label-floating ng-has-error">
+            <label for="c_i4" class="control-label">email</label>
+            <input type="email" class="form-control" id="c_i4" ng-model="contact.Email">
+            <span class="material-input"></span>
+        </div>
+        <div class="form-group label-floating ng-is-empty">
+            <label for="c_i5" class="control-label">Τύπος Επαφής</label>
+            <input type="text" class="form-control" id="c_i5" ng-model="contact.Type" uib-typeahead="type for type in types | filter:$viewValue">
+        </div>
+    </div>
+    <div class="panel-footer">
+    </div>
+</div>
