@@ -1,19 +1,19 @@
-<div>
+ο»Ώ<div>
     <div class="btn-group" ng-if="showGridButtons">
         <button ng-if="checkAction('New')" type="button" class="btn btn-default" data-toggle="modal" data-target="#editModal" ng-click="createItem()">
-            <i class="fa fa-plus"></i> Νέο
+            <i class="fa fa-plus"></i> ΞΞ­ΞΏ
         </button>
         <button type="button" class="btn btn-default">
-            <i class="fa fa-copy"></i> Αντιγραφή
+            <i class="fa fa-copy"></i> Ξ‘Ξ½Ο„ΞΉΞ³ΟΞ±Ο†Ξ®
         </button>
         <button type="button" class="btn btn-default">
-            <i class="fa fa-external-link"></i> Εξαγωγή
+            <i class="fa fa-external-link"></i> Ξ•ΞΎΞ±Ξ³Ο‰Ξ³Ξ®
         </button>
     </div>
     <div class="btn-group" ng-if="!hidePagingDropdown" style="padding-right: 20px">
-        <a ng-show="pageSize == 0" class="btn btn-sm btn-primary">Όλα {{ '(' + items.length + ')' }}</a>
-        <a ng-hide="pageSize == 0" class="btn btn-sm btn-primary">{{ pageSize }} εγγρ.</a>
-        <a class="btn btn-sm btn-primary dropdown-toggle" data-toggle="dropdown"><span class="caret"></span></a>
+        <a ng-show="pageSize == 0" class="btn btn-primary btn-raised">ΞΞ»Ξ± {{ '(' + items.length + ')' }}</a>
+        <a ng-hide="pageSize == 0" class="btn btn-primary btn-raised">{{ pageSize }} ΞµΞ³Ξ³Ο.</a>
+        <a class="btn btn-primary btn-raised dropdown-toggle" data-target="#" data-toggle="dropdown"><span class="caret"></span></a>
         <ul class="dropdown-menu">
             <li><a href="" ng-click="setPageSize(10)">10</a></li>
             <li><a href="" ng-click="setPageSize(15)">15</a></li>
@@ -23,14 +23,17 @@
             <li><a href="" ng-click="setPageSize(100)">100</a></li>
         </ul>
     </div>
-    <div class="btn-group">
-        <div ng-include="toolbar"></div>
+    <div class="input-group">
+        <input type="text" placeholder="Ξ‘Ξ½Ξ±Ξ¶Ξ®Ο„Ξ·ΟƒΞ·" class="form-control" ng-model="gridFilter" ng-change="filtering()">
+        <span class="input-group-btn">
+            <i class="text-primary material-icons md-24">search</i>
+        </span>
     </div>
-    <div class="btn-group pull-right">
-        <span>Αναζήτηση<strong>:</strong></span>
+    <!--<div class="btn-group pull-right">
+        <span>Ξ‘Ξ½Ξ±Ξ¶Ξ®Ο„Ξ·ΟƒΞ·<strong>:</strong></span>
         <input type="text" ng-model="gridFilter" ng-change="filtering()" class="right-rounded" style="min-width: 200px">
         <span class="right-rounded-icon text-primary" style="margin-left:-30px;font-size:1.19em;vertical-align:middle"><i class="fa fa-search"></i></span>
-    </div>
+    </div>-->
 </div>
 <div class="table-responsive" style="padding-top: 10px; padding-bottom: 0px">
     <table class="table" ng-class="{'table-striped': striped}">
@@ -40,13 +43,13 @@
                     <input type="checkbox" ng-checked="allSelected()" ng-click="toggleSelectAll()">
                 </th>
                 <th ng-repeat="column in gridColumns" title="{{column.Tooltip}}">
-                    <span class="btn-link" ng-click="sortBy(column.Field)" title="Ταξινόμηση">
-                        <strong>{{column.Caption | translate}}</strong>
+                    <span class="btn-link" ng-click="sortBy(column.Field)" title="Ξ¤Ξ±ΞΎΞΉΞ½ΟΞΌΞ·ΟƒΞ·">
+                        <strong>{{column.Caption}}</strong>
                         <i ng-if="column.Field == sortingOrder && reverse == false" class="{{sortAscIcon ? sortAscIcon : 'fa fa-sort-asc' }}"></i>
                         <i ng-if="column.Field == sortingOrder && reverse == true" class="{{sortDescIcon ? sortDescIcon : 'fa fa-sort-desc' }}"></i>
                     </span>
                 </th>
-                <th ng-if="!hideItemButtons">Ενέργειες</th>
+                <th ng-if="!hideItemButtons">Ξ•Ξ½Ξ­ΟΞ³ΞµΞΉΞµΟ‚</th>
             </tr>
         </thead>
         <tbody ng-repeat="group in pages[page]">
@@ -74,7 +77,7 @@
         -->
 
                     <div ng-if="column.Type == '' || column.Type == undefined" ng-click="gridRowClick(item)"><div ng-if="column.Labels" ng-repeat="label in $eval(labels)"><span class="label label-primary pull-left">{{label}}</span></div>{{$eval('item.'+ column.Field)}}</div>
-                    <div ng-if="column.Type == 'Lookup'" ng-click="gridRowClick(item)">{{ (column.Values | filter: {Id: $eval('item.' + column.Field)})[0]['Description'] | translate }}</div>
+                    <div ng-if="column.Type == 'Lookup'" ng-click="gridRowClick(item)">{{ (column.Values | filter: {Id: $eval('item.' + column.Field)})[0]['Description'] }}</div>
                     <div ng-if="column.Type == 'DateTime'" ng-click="gridRowClick(item)">{{formatDateTime($eval('item.'+ column.Field), column.format)}}</div>
                     <div ng-if="column.Type == 'Html'" ng-bind-html="$eval('item.'+ column.Field)" ng-click="gridRowClick(item)"></div>
                     <div ng-if="column.Type == 'LookupHtml'" ng-click="gridRowClick(item)" ng-bind-html="(column.Values | filter: {Id: $eval('item.' + column.Field)})[0]['Description']"></div>
@@ -86,16 +89,16 @@
                 </td>
                 <td ng-if="!hideItemButtons" style="width: 100px">
                     <div class="btn-group">
-                        <button ng-if="checkAction('Edit')" type="button" title="Επεξεργασία" class="btn btn-link btn-xs" data-toggle="modal" data-target="#editModal" ng-click="editGridItem(item)">
+                        <button ng-if="checkAction('Edit')" type="button" title="Ξ•Ο€ΞµΞΎΞµΟΞ³Ξ±ΟƒΞ―Ξ±" class="btn btn-link btn-xs" data-toggle="modal" data-target="#editModal" ng-click="editGridItem(item)">
                             <i class="fa fa-edit"></i>
                         </button>
-                        <button ng-if="checkAction('Details')" type="button" title="Λεπτομέρειες" class="btn btn-link btn-xs" ng-click="viewGridItemDetails(item)">
+                        <button ng-if="checkAction('Details')" type="button" title="Ξ›ΞµΟ€Ο„ΞΏΞΌΞ­ΟΞµΞΉΞµΟ‚" class="btn btn-link btn-xs" ng-click="viewGridItemDetails(item)">
                             <i class="fa fa-reorder"></i>
                         </button>
-                        <button ng-if="checkAction('DetailsTab')" type="button" title="Άνοιγμα σε νέο παρ." class="btn btn-link btn-xs" ng-click="viewGridItemDetailsInTab(item)">
+                        <button ng-if="checkAction('DetailsTab')" type="button" title="Ξ†Ξ½ΞΏΞΉΞ³ΞΌΞ± ΟƒΞµ Ξ½Ξ­ΞΏ Ο€Ξ±Ο." class="btn btn-link btn-xs" ng-click="viewGridItemDetailsInTab(item)">
                             <i class="fa fa-external-link"></i>
                         </button>
-                        <button ng-if="checkAction('Delete')" type="button" title="Διαγραφή" class="btn btn-link btn-xs" data-toggle="modal" data-target="#deleteModal" ng-click="deleteGridItem(item)">
+                        <button ng-if="checkAction('Delete')" type="button" title="Ξ”ΞΉΞ±Ξ³ΟΞ±Ο†Ξ®" class="btn btn-link btn-xs" data-toggle="modal" data-target="#deleteModal" ng-click="deleteGridItem(item)">
                             <i class="fa fa-remove"></i>
                         </button>                        
                     </div>
@@ -106,14 +109,14 @@
 </div>
 <div style="padding-top: 0px; padding-bottom: 10px; margin-top: 0px">
 
-    <span ng-if="items.length > 0"><strong><span ng-if="!hidePagingDropdown && items.length > pageSize">{{(page)*pageSize+1}}-{{page == pages.length-1 ? items.length : (page)*pageSize + pageSize}} / </span>{{items.length}} {{ 'GRID_PAGE_ITEMS' | translate }}</strong></span>
-    <span ng-if="items.length == 0"><strong>0 / 0 {{ 'GRID_PAGE_ITEMS' | translate }}</strong></span>
+    <span ng-if="items.length > 0"><strong><span ng-if="!hidePagingDropdown && items.length > pageSize">{{(page)*pageSize+1}}-{{page == pages.length-1 ? items.length : (page)*pageSize + pageSize}} / </span>{{items.length}} ΞµΞ³Ξ³Ο.</strong></span>
+    <span ng-if="items.length == 0"><strong>0 / 0 ΞµΞ³Ξ³Ο.</strong></span>
 
     <ul ng-if="pageSize > 0" class="pagination pagination-inverse pagination-sm pull-right" style="margin:0px">
-        <li ng-class="{disabled: page == 0}"><a ng-click="firstPage()"><i class="fa fa-fast-backward" /> Πρώτη</a>
-        <li ng-class="{disabled: page == 0}"><a ng-click="previousPage()"><i class="fa fa-step-backward" /> Προηγούμενη</a></li>
-        <li ng-class="{disabled: page == pages.length - 1}"><a ng-click="nextPage()">Επόμενη <i class="fa fa-step-forward" /></a></li>
-        <li ng-class="{disabled: page == pages.length - 1}"><a ng-click="lastPage()">Τελευταία <i class="fa fa-fast-forward" /></a></li>
+        <li ng-class="{disabled: page == 0}"><a ng-click="firstPage()"><i class="fa fa-fast-backward" /> Ξ ΟΟΟ„Ξ·</a>
+        <li ng-class="{disabled: page == 0}"><a ng-click="previousPage()"><i class="fa fa-step-backward" /> Ξ ΟΞΏΞ·Ξ³ΞΏΟΞΌΞµΞ½Ξ·</a></li>
+        <li ng-class="{disabled: page == pages.length - 1}"><a ng-click="nextPage()">Ξ•Ο€ΟΞΌΞµΞ½Ξ· <i class="fa fa-step-forward" /></a></li>
+        <li ng-class="{disabled: page == pages.length - 1}"><a ng-click="lastPage()">Ξ¤ΞµΞ»ΞµΟ…Ο„Ξ±Ξ―Ξ± <i class="fa fa-fast-forward" /></a></li>
     </ul>
 
 </div>

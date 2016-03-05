@@ -1,0 +1,23 @@
+﻿<div class="panel panel-primary">
+    <div class="panel-heading">
+        <a href="#/facilities/{{provider.Id}}" style="color: white">
+            <i class="material-icons md-36 pull-left">cloud</i>
+            <h4>
+                <span style="padding-left:10px">{{provider.Name}}</span>
+            </h4>
+        </a>
+    </div>
+    <div class="panel-body">
+        <p style="height: 100px; overflow: auto; text-overflow: ellipsis">{{provider.Description}}</p>
+
+        <p class="text-primary">
+            Αρ. Υπαλλήλων: {{provider.PersonnelCount}}
+        </p>
+    </div>
+    <div class="panel-footer">
+        <div class="btn-group btn-group-justified">
+            <a href="#" class="btn btn-xs" title="Αίτηση" style="padding: 0px"><i class="material-icons md-36">edit</i></a>
+            <a href="#" class="btn btn-xs" title="Στέγαση" style="padding: 0px"><i class="material-icons md-36">delete</i></a>
+        </div>
+    </div>
+</div>

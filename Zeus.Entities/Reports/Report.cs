@@ -21,6 +21,7 @@ namespace Zeus.Entities
         public Facility Facility { get; set; }
         public DateTime DateTime { get; set; }
         public ReportType Type { get; set; }
+        public bool IsAcknoledged { get; set; }
     }
 
     public enum ReportType
