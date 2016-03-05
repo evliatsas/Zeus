@@ -16,7 +16,7 @@ angular.module('zeusclientApp')
         templateUrl: '/templates/phone.html',
         link: function postLink(scope, element, attrs) {
             scope.phoneTypes = [                
-                "Κινητό",
+                'Κινητό',
                 'Σταθερό',
                 'Fax',
                 'Crypto'
