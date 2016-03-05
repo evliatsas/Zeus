@@ -86,7 +86,7 @@
     <Content Include="app\scripts\directives\facility-housing.js" />
     <Content Include="app\scripts\directives\grid.js" />
     <Content Include="app\scripts\directives\on-finish-render.js" />
-    <Content Include="app\scripts\directives\phone.js" />
+    <Content Include="app\scripts\directives\phone-list.js" />
     <Content Include="app\scripts\services\utilities.js" />
     <Content Include="app\styles\main.css" />
     <Content Include="app\styles\material.css" />
@@ -99,7 +99,7 @@
     <Content Include="app\templates\facility-details.html" />
     <Content Include="app\templates\facility-housing.html" />
     <Content Include="app\templates\grid.html" />
-    <Content Include="app\templates\phone.html" />
+    <Content Include="app\templates\phone-list.html" />
     <Content Include="app\views\about.html" />
     <Content Include="app\views\facilities.html" />
     <Content Include="app\views\facility.html" />

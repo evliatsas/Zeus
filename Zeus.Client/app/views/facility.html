@@ -5,22 +5,28 @@
 <div class="col-md-8">
     <uib-tabset justified="true" active="active">
         <uib-tab index="0" heading="Στέγαση">
-            <div class="col-xs-1 col-sm-1 col-md-1">
+            <div class="hidden-xs hidden-sm" style="position: fixed; right: 20px; bottom: 20px; z-index: 999">
+                <a href="javascript:void(0)" class="hidden-xs hidden-sm btn btn-info btn-fab"><i class="material-icons">add</i></a>
+            </div>
+            <div class="hidden-md hidden-lg btn-group-sm" style="position: fixed; right: 20px; bottom: 20px; z-index: 999">
                 <a href="javascript:void(0)" class="btn btn-info btn-fab"><i class="material-icons">add</i></a>
             </div>
-            <div class="col-xs-11 col-sm-11 col-md-11">
-                <div ng-repeat="housing in data.Housings" class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+            <div style="padding: 0px">
+                <div ng-repeat="housing in data.Housings" class="col-lg-6 col-md-6 col-sm-6 col-xs-12" style="padding: 5px">
                     <facility-housing housing="housing" index="$index"></facility-housing>
                 </div>
             </div>
         </uib-tab>
         <uib-tab index="2" heading="Επαφές">
-            <div class="col-xs-11 col-sm-11 col-md-11">
-                <div ng-repeat="item in data.Contacts" class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+            <div style="padding: 0px">
+                <div ng-repeat="item in data.Contacts" class="col-lg-6 col-md-6 col-sm-12 col-xs-12" style="padding: 5px">
                     <contact-card contact="item"></contact-card>
                 </div>
             </div>
-            <div class="col-xs-1 col-sm-1 col-md-1">
+            <div class="hidden-xs hidden-sm" style="position: fixed; right: 20px; bottom: 20px; z-index: 999">
+                <a href="javascript:void(0)" class="hidden-xs hidden-sm btn btn-info btn-fab" ><i class="material-icons">add</i></a>
+            </div>
+            <div class="hidden-md hidden-lg btn-group-sm" style="position: fixed; right: 20px; bottom: 20px; z-index: 999">
                 <a href="javascript:void(0)" class="btn btn-info btn-fab"><i class="material-icons">add</i></a>
             </div>
         </uib-tab>
