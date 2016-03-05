@@ -11,9 +11,9 @@
         </button>
     </div>
     <div class="btn-group" ng-if="!hidePagingDropdown" style="padding-right: 20px">
-        <a ng-show="pageSize == 0" class="btn btn-sm btn-primary">Όλα {{ '(' + items.length + ')' }}</a>
-        <a ng-hide="pageSize == 0" class="btn btn-sm btn-primary">{{ pageSize }} εγγρ.</a>
-        <a class="btn btn-sm btn-primary dropdown-toggle" data-toggle="dropdown"><span class="caret"></span></a>
+        <a ng-show="pageSize == 0" class="btn btn-primary btn-raised">Όλα {{ '(' + items.length + ')' }}</a>
+        <a ng-hide="pageSize == 0" class="btn btn-primary btn-raised">{{ pageSize }} εγγρ.</a>
+        <a class="btn btn-primary btn-raised dropdown-toggle" data-target="#" data-toggle="dropdown"><span class="caret"></span></a>
         <ul class="dropdown-menu">
             <li><a href="" ng-click="setPageSize(10)">10</a></li>
             <li><a href="" ng-click="setPageSize(15)">15</a></li>
@@ -23,14 +23,17 @@
             <li><a href="" ng-click="setPageSize(100)">100</a></li>
         </ul>
     </div>
-    <div class="btn-group">
-        <div ng-include="toolbar"></div>
+    <div class="input-group">
+        <input type="text" placeholder="Αναζήτηση" class="form-control" ng-model="gridFilter" ng-change="filtering()">
+        <span class="input-group-btn">
+            <i class="text-primary material-icons md-24">search</i>
+        </span>
     </div>
-    <div class="btn-group pull-right">
+    <!--<div class="btn-group pull-right">
         <span>Αναζήτηση<strong>:</strong></span>
         <input type="text" ng-model="gridFilter" ng-change="filtering()" class="right-rounded" style="min-width: 200px">
         <span class="right-rounded-icon text-primary" style="margin-left:-30px;font-size:1.19em;vertical-align:middle"><i class="fa fa-search"></i></span>
-    </div>
+    </div>-->
 </div>
 <div class="table-responsive" style="padding-top: 10px; padding-bottom: 0px">
     <table class="table" ng-class="{'table-striped': striped}">
