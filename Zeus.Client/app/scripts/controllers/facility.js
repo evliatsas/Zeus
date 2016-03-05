@@ -78,11 +78,11 @@ angular.module('zeusclientApp')
                     "Address": "Λεωφ. Κατεχάκης 44",
                     "Phones": [
                         {
-                            "Type": 0,
+                            "Type": "Κινητό",
                             "Number":"+03 6983511111"
                         },
                         {
-                            "Type": 2,
+                            "Type": "Σταθερό",
                             "Number":"+03 2106593750"
                         }
                     ],
@@ -97,11 +97,11 @@ angular.module('zeusclientApp')
                     "Address": "Λεωφ. Μεσογείων 233",
                     "Phones": [
                         {
-                            "Type": 0,
+                            "Type": "Κινητό",
                             "Number": "+03 6983513485"
                         },
                         {
-                            "Type": 3,
+                            "Type": "Crypto",
                             "Number": "+112 5556487"
                         }
                     ],

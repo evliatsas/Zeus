@@ -1,12 +1,9 @@
-﻿<div class="input-group">
-    <div class="col-xs-3 col-sm-3 col-md-3">
-        <select class="form-control" ng-model="phoneNo.Type">
-            <option ng-repeat="phoneType in phoneTypes" value="{{phoneType.Id}}" ng-selected="phoneNo.Type == phoneType.Id">
-                {{phoneType.Description}}
-            </option>
-        </select>
-    </div>
-    <div class="col-xs-9 col-sm-9 col-md-9">
-        <input type="text" class="form-control" placeholder="Αριθμός" ng-model="phoneNo.Number">
-    </div>
+﻿
+<div class="form-inline">
+    <select class="form-control" ng-model="phoneNo.Type">
+        <option ng-repeat="phoneType in phoneTypes" value="{{phoneType}}">
+            {{phoneType}}
+        </option>
+    </select>
+    <input type="text" class="form-control" placeholder="Αριθμός" ng-model="phoneNo.Number">
 </div>
