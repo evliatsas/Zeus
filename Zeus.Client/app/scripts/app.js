@@ -20,6 +20,7 @@ angular
     'ui.bootstrap'
   ])
   .config(function ($routeProvider) {
+    $.material.init();
     $routeProvider
       .when('/', {
         templateUrl: 'views/main.html',

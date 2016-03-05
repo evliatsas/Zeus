@@ -10,7 +10,9 @@ namespace Zeus.Entities
     {
         public string Type { get; set; }
         public int Capacity { get; set; }
+        public int Attendance { get; set; }
         public int Count { get; set; }
+        public int Utilization { get { return (int)((double)Attendance / (double)(Capacity * Count)) * 100; } }
         public string Status { get; set; }
     }
 }

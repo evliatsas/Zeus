@@ -14,6 +14,7 @@ namespace Zeus.Entities
         public IList<Housing> Housings { get; set; }
         public int Capacity { get; set; }
         public int Attendance { get; set; }
+        public int Utilization { get { return (int)((double)Attendance / (double)Capacity) * 100; } }
         public bool IsSecure { get { return this.Providers.Any(p => p is SecurityProvider); } }
         public bool HasHealthcare { get { return this.Providers.Any(p => p is HealthcareProvider); } }
         public string Status { get; set; }

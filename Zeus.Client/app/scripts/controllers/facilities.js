@@ -9,8 +9,7 @@
  */
 angular.module('zeusclientApp')
     .controller('FacilitiesCtrl', function($scope) {
-        $.material.init();
-
+        
         this.list = [{
             "Id": "ABCD",
             "Name": "Λιμάνι Πειραιά",

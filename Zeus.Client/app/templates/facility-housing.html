@@ -1,0 +1,53 @@
+﻿<div class="panel panel-primary" ng-class="{ 'panel-warning': housing.Utilization > 74, 'panel-danger': housing.Utilization > 100 }">
+    <div class="panel-heading">
+        
+            <i class="material-icons md-36 pull-left">home</i>
+            <h4>
+                <span style="padding-left:10px">{{housing.Type}}</span>
+                <span class="pull-right"><strong>{{housing.Utilization}}%</strong></span>
+            </h4>
+        
+    </div>
+    <div class="panel-body">
+
+        <div class="form-group label-static is-empty">
+            <label for="Type" class="control-label">Κατηγορία</label>
+            <input type="text" class="form-control" id="Type" placeholder="Κατηγορία" ng-model="housing.Type" uib-typeahead="state for state in categories | filter:$viewValue">
+        </div>
+
+        <div class="form-group label-static is-empty">
+            <label for="Status" class="control-label">Κατάσταση</label>
+            <input type="text" class="form-control" id="Status" placeholder="Κατάσταση" ng-model="housing.Status" uib-typeahead="state for state in categories | filter:$viewValue">
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group label-static is-empty">
+                    <label for="Capacity" class="control-label">Χωρητικότητα</label>
+                    <input type="number" class="form-control" id="Capacity" placeholder="Χωρητικότητα" ng-model="housing.Capacity">
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group label-static is-empty col-md-6">
+                    <label for="Attendance" class="control-label">Φιλοξενούμενοι</label>
+                    <input type="number" class="form-control" id="Attendance" placeholder="Φιλοξενούμενοι" ng-model="housing.Attendance" readonly>
+                </div>
+            </div>
+        </div>
+
+        <p class="text-primary">
+            Φιλοξενούμενοι: {{housing.Attendance}} / {{housing.Capacity}}
+        </p>
+    </div>
+    <div class="panel-footer">
+        <div class="btn-group btn-group-justified">
+            <a href="#" class="btn btn-xs" title="Αίτηση" style="padding: 0px"><i class="material-icons md-36">message</i></a>
+            <a href="#" class="btn btn-xs" title="Στέγαση" style="padding: 0px"><i class="material-icons md-36">local_hotel</i></a>
+            <a href="#" class="btn btn-xs" title="Μετακίνηση" style="padding: 0px"><i class="material-icons md-36">airport_shuttle</i></a>
+            <a href="#" class="btn btn-xs" title="Σίτιση" style="padding: 0px"><i class="material-icons md-36">restaurant_menu</i></a>
+            <a href="#" class="btn btn-xs" title="Αναφορά" style="padding: 0px"><i class="material-icons md-36">assignment</i></a>
+            <a href="#" class="btn btn-xs" title="Πρόβλημα" style="padding: 0px"><i class="material-icons md-36">error</i></a>
+        </div>
+    </div>
+
+</div>
