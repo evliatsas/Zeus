@@ -1,5 +1,6 @@
 ﻿<!doctype html>
 <html>
+
 <head>
     <meta charset="utf-8">
     <title></title>
@@ -22,6 +23,7 @@
     <link rel="stylesheet" href="styles/typeahead.css">
     <!-- endbuild -->
 </head>
+
 <body ng-app="zeusclientApp">
     <!--[if lte IE 8]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
@@ -46,8 +48,9 @@
 
                     <ul class="nav navbar-nav">
                         <li ng-class="menu.getClass('/')"><a href="#/">Home</a></li>
-                        <li ng-class="menu.getClass('/about')"><a ng-href="#/about">About</a></li>
                         <li ng-class="menu.getClass('/facilities')"><a ng-href="#/facilities">Δομές Φιλοξενίας</a></li>
+                        <li ng-class="menu.getClass('/map')"><a ng-href="#/map">Χάρτης</a></li>
+                        <li ng-class="menu.getClass('/about')"><a ng-href="#/about">About</a></li>
                     </ul>
                 </div>
             </div>
@@ -55,7 +58,7 @@
     </div>
 
     <div class="container-fluid">
-        <div ng-view=""></div>
+        <div ng-view="" class="map-container"></div>
     </div>
 
     <div class="footer">
@@ -107,6 +110,7 @@
     <script src="scripts/controllers/menu.js"></script>
     <script src="scripts/controllers/facilities.js"></script>
     <script src="scripts/controllers/facility.js"></script>
+    <script src="scripts/controllers/map.js"></script>
     <script src="scripts/directives/facility-card.js"></script>
     <script src="scripts/directives/facility-details.js"></script>
     <script src="scripts/directives/facility-housing.js"></script>
@@ -116,6 +120,9 @@
     <script src="scripts/directives/date-time-picker.js"></script>
     <script src="scripts/directives/grid.js"></script>
     <script src="scripts/services/utilities.js"></script>
+    <script src="http://maps.googleapis.com/maps/api/js">
+    </script>
     <!-- endbuild -->
 </body>
+
 </html>

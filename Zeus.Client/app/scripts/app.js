@@ -42,6 +42,11 @@ angular
         controller: 'FacilityCtrl',
         controllerAs: 'facility'
       })
+      .when('/map', {
+        templateUrl: 'views/map.html',
+        controller: 'MapCtrl',
+        controllerAs: 'map'
+      })
       .otherwise({
         redirectTo: '/'
       });
