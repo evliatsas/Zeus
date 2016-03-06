@@ -134,6 +134,7 @@
     <Compile Include="Controllers\ProvidersController.cs" />
     <Compile Include="Controllers\ReportsController.cs" />
     <Compile Include="Models\Helpers.cs" />
+    <Compile Include="Models\Report.cs" />
     <Compile Include="Models\Routes.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
