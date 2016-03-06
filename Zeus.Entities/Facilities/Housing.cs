@@ -12,7 +12,7 @@ namespace Zeus.Entities
         public int Capacity { get; set; }
         public int Attendance { get; set; }
         public int Count { get; set; }
-        public int Utilization { get { return (int)((double)Attendance / (double)(Capacity * Count)) * 100; } }
+        public int Utilization { get { return Convert.ToInt32(((double)Attendance / (double)(Capacity * (double)Count)) * 100D); } }
         public string Status { get; set; }
     }
 }
