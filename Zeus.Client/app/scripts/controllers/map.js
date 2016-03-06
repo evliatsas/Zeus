@@ -8,7 +8,7 @@
  * Controller of the zeusclientApp
  */
 angular.module('zeusclientApp')
-  .controller('MapCtrl', function ($http, $scope) {
+  .controller('MapCtrl', function ($http, $scope, $compile) {
       var map;
       map = new google.maps.Map(document.getElementById('map'), {
           center: { lat: 38.5306122, lng: 25.4556341 },
@@ -34,9 +34,9 @@ angular.module('zeusclientApp')
               icon: "http://maps.google.com/mapfiles/ms/icons/green-dot.png"
           });
           marker.addListener('click', function () {
-              var infowindow = new google.maps.InfoWindow({
-                  content: marker.title
-              });
+              var infowindow = new google.maps.InfoWindow();
+              var content = '<div ng-include src="\'/templates/facility-card.html\'"></div>';
+              infowindow.setContent(content);
               infowindow.open(map, marker);
           });
 
@@ -45,5 +45,10 @@ angular.module('zeusclientApp')
 
           if (element.Utilization > 100)
               marker.setIcon("http://maps.google.com/mapfiles/ms/icons/red-dot.png");
+
+          if (element.Utilization == 0) {
+              marker.setIcon("http://maps.google.com/mapfiles/ms/icons/blue-dot.png");
+              marker.setDraggable(true);
+          }
       }
   });
