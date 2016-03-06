@@ -8,20 +8,11 @@
  * Controller of the zeusclientApp
  */
 angular.module('zeusclientApp')
-    .controller('FacilityCtrl', function ($scope) {
-
-        $scope.reporttypes = [
-            { Id: 0, Description: '<i class="text-primary material-icons md-18" title="Αναφορά Σίτισης">restaurant_menu</i>' },
-            { Id: 1, Description: '<i class="text-primary material-icons md-18" title="Αναφορά Στέγασης">local_hotel</i>' },
-            { Id: 2, Description: '<i class="text-primary material-icons md-18" title="Αναφορά Μετακίνησης">airport_shuttle</i>' },
-            { Id: 3, Description: '<i class="text-danger material-icons md-18" title="Αναφορά Προβλήματος">error</i>' },
-            { Id: 4, Description: '<i class="text-warning material-icons md-18" title="Αναφορά Αίτησης">message</i>' },
-            { Id: 5, Description: '<i class="text-info material-icons md-18" title="Αναφορά Κατάστασης">assignment</i>' }
-        ];
+    .controller('FacilityCtrl', function ($scope, lookupService) {
 
         $scope.reportcolumns = [
-            { Caption: 'Τύπος', Field: 'Type', Type: 'LookupHtml', Values: $scope.reporttypes, Tooltip: 'Τύπος Αναφοράς' },
-            { Caption: 'Θέμα', Field: 'Notes' },
+            { Caption: 'Τύπος', Field: 'Type', Type: 'LookupHtml', Values: lookupService.getReportTypes(), Tooltip: 'Τύπος Αναφοράς' },
+            { Caption: 'Θέμα', Field: 'Subject' },
             { Caption: 'Τίτλος', Field: 'Title' },
             { Caption: 'Συντάκτης', Field: 'User.Title' },
             { Caption: 'Ημερομηνία', Field: 'DateTime', Type: 'DateTime' }

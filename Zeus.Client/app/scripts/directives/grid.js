@@ -4,8 +4,6 @@ angular.module('zeusclientApp')
     .constant("moment", moment)
        .directive('cinnamonGrid', grid);
 
-//grid.$inject = ['$http', '$filter', 'moment', 'commonUtilities'];
-
 function grid($http, $filter, moment, commonUtilities) {
     return {
         scope: {
