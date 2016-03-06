@@ -1,6 +1,6 @@
 ﻿html { height: 100% }
 body { height: 100% }
-.container-fluid { height: 100%; height: calc(100% - 160px); } 
+.container-fluid { height: 100%; height: calc(100% - 165px); } 
 .map-container { height: 100%; height: calc(100% - 0px);}
 
 .mydatepicker .btn {

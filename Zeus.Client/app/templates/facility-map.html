@@ -1,0 +1,20 @@
+<div class="panel panel-primary" ng-class="{ 'panel-warning': facility.Utilization > 74, 'panel-danger': facility.Utilization > 100 }">
+    <div class="panel-heading">
+        <a href="#/facilities/{{facility.Id}}" style="color: white">
+            <i class="material-icons md-36 pull-left">home</i>
+            <h4>
+				<span style="padding-left:10px">{{facility.Name}}</span>
+				<span class="pull-right"><strong>{{facility.Utilization}}%</strong></span>
+			</h4>
+        </a>
+    </div>
+    <div class="panel-body" style="height: 100px">
+        <p style="height: 50px; overflow: hidden; text-overflow: ellipsis">{{facility.Description}}</p>
+
+        <p class="text-primary">
+            Φιλοξενούμενοι: {{facility.Attendance}} / {{facility.Capacity}}
+        </p>
+
+        <a href="javascript:void(0)" ng-click="moveMarker()" class="btn btn-xs pull-right" title="Μετακίνηση" style="padding: 0px"><i class="material-icons md-24">open_with</i></a>
+    </div>
+</div>
