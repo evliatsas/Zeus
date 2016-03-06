@@ -20,8 +20,10 @@ namespace Zeus.Entities
         public Auth.User User { get; set; }
         public Facility Facility { get; set; }
         public DateTime DateTime { get; set; }
+        public string Subject { get; set; }
         public ReportType Type { get; set; }
         public bool IsAcknoledged { get; set; }
+        public bool IsArchived { get; set; }
     }
 
     public enum ReportType

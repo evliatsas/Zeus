@@ -5,8 +5,6 @@
         .module('zeusclientApp')
         .factory('commonUtilities', utilities);
 
-    utilities.$inject = ['$filter', '$route'];
-
     function utilities($filter, $route) {
 
         var service = {

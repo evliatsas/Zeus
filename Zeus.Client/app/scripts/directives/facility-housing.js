@@ -8,7 +8,7 @@
  * Controller of the zeusclientApp
  */
 angular.module('zeusclientApp')
-.directive('facilityHousing', function () {
+.directive('facilityHousing', function (lookupService) {
     return {
         scope: {
             housing: '=',
@@ -16,8 +16,8 @@ angular.module('zeusclientApp')
         },
         templateUrl: '/templates/facility-housing.html',
         link: function postLink(scope, element, attrs) {
-            scope.categories = ['ISOBOX', 'Σκηνή', 'Ξενοδοχείο', 'Οικία', 'Ανοικτός Χώρος'];
-            scope.statuses = ['Σε Λειτουργία', 'Υπο Επισκευή', 'Υπο Κατασκευή', 'Κατεστραμένο', 'Ανενεργό'];
+            scope.categories = lookupService.getFacilityCategories();
+            scope.statuses = lookupService.getStatus();
         }
     };
 });

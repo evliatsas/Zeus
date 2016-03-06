@@ -29,7 +29,7 @@ namespace Zeus.Controllers
         {
             var user = await Helper.GetUserByRequest(User as ClaimsPrincipal);
 
-            var result = await context.Reports.GetAll();
+            var result = await context.Reports.Get(x=>!x.IsArchived);
 
             return result == null ? this.Ok(new List<Report>().AsEnumerable()) : this.Ok(result.OrderByDescending(o => o.DateTime).AsEnumerable());
         }
@@ -42,6 +42,26 @@ namespace Zeus.Controllers
             var report = await context.Reports.GetById(id);
 
             return report == null ? (IHttpActionResult)this.NotFound() : this.Ok(report);
+        }
+
+        [Route(Routes.Facilities + "/{id}")]
+        [ResponseType(typeof(IEnumerable<Report>))]
+        [HttpGet]
+        public async Task<IHttpActionResult> GetFacilityReports(string id)
+        {
+            var reports = await context.Reports.Get(x=>!x.IsArchived && x.Facility.Id == id);
+
+            return reports == null ? (IHttpActionResult)this.NotFound() : this.Ok(reports);
+        }
+
+        [Route(Routes.Facilities + "/archive/{id}")]
+        [ResponseType(typeof(IEnumerable<Report>))]
+        [HttpGet]
+        public async Task<IHttpActionResult> GetFacilityArchiveReports(string id)
+        {
+            var reports = await context.Reports.Get(x => x.IsArchived && x.Facility.Id == id);
+
+            return reports == null ? (IHttpActionResult)this.NotFound() : this.Ok(reports);
         }
 
         [Route("")]

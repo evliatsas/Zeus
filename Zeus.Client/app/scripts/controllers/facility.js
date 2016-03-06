@@ -8,24 +8,22 @@
  * Controller of the zeusclientApp
  */
 angular.module('zeusclientApp')
-    .controller('FacilityCtrl', function ($scope) {
-
-        $scope.reporttypes = [
-            { Id: 0, Description: '<i class="text-primary material-icons md-18" title="Αναφορά Σίτισης">restaurant_menu</i>' },
-            { Id: 1, Description: '<i class="text-primary material-icons md-18" title="Αναφορά Στέγασης">local_hotel</i>' },
-            { Id: 2, Description: '<i class="text-primary material-icons md-18" title="Αναφορά Μετακίνησης">airport_shuttle</i>' },
-            { Id: 3, Description: '<i class="text-danger material-icons md-18" title="Αναφορά Προβλήματος">error</i>' },
-            { Id: 4, Description: '<i class="text-warning material-icons md-18" title="Αναφορά Αίτησης">message</i>' },
-            { Id: 5, Description: '<i class="text-info material-icons md-18" title="Αναφορά Κατάστασης">assignment</i>' }
-        ];
+    .controller('FacilityCtrl', function ($scope, lookupService, messageService) {
 
         $scope.reportcolumns = [
-            { Caption: 'Τύπος', Field: 'Type', Type: 'LookupHtml', Values: $scope.reporttypes, Tooltip: 'Τύπος Αναφοράς' },
-            { Caption: 'Θέμα', Field: 'Notes' },
-            { Caption: 'Τίτλος', Field: 'Title' },
+            { Caption: 'Τύπος', Field: 'Type', Type: 'LookupHtml', Values: lookupService.getReportTypes(), Tooltip: 'Τύπος Αναφοράς' },
+            { Caption: 'Θέμα', Field: 'Subject' },
             { Caption: 'Συντάκτης', Field: 'User.Title' },
             { Caption: 'Ημερομηνία', Field: 'DateTime', Type: 'DateTime' }
         ];
+
+        var testFunc = function () {
+            var q = 5;
+        }
+
+        $scope.addFacility = function () {
+            messageService.askConfirmation(testFunc);
+        }
 
         $scope.data = {
             "Id": "ABCD",
@@ -149,6 +147,7 @@ angular.module('zeusclientApp')
                     },
                     "Facility": null,
                     "DateTime": "2016-03-05T14:15:59.214Z",
+                    "Subject": "Πρόβλημα σε Χίο",
                     "Type": 0,
                     "FeedingProvider": null,
                     "Rations": 0,
@@ -170,6 +169,7 @@ angular.module('zeusclientApp')
                     },
                     "Facility": null,
                     "DateTime": "2016-03-05T14:15:59.214Z",
+                    "Subject": "Επείγουσα Αερομεταφορά",
                     "Type": 4,
                     "IsAcknowledged": true
                 },
@@ -188,6 +188,7 @@ angular.module('zeusclientApp')
                     },
                     "Facility": null,
                     "DateTime": "2016-03-05T14:15:59.214Z",
+                    "Subject": "Πρωινό Γεύμα",
                     "Type": 3,
                     "IsAcknowledged": false
                 }
