@@ -13,7 +13,6 @@ angular.module('zeusclientApp')
         $scope.reportcolumns = [
             { Caption: 'Τύπος', Field: 'Type', Type: 'LookupHtml', Values: lookupService.getReportTypes(), Tooltip: 'Τύπος Αναφοράς' },
             { Caption: 'Θέμα', Field: 'Subject' },
-            { Caption: 'Τίτλος', Field: 'Title' },
             { Caption: 'Συντάκτης', Field: 'User.Title' },
             { Caption: 'Ημερομηνία', Field: 'DateTime', Type: 'DateTime' }
         ];
@@ -140,6 +139,7 @@ angular.module('zeusclientApp')
                     },
                     "Facility": null,
                     "DateTime": "2016-03-05T14:15:59.214Z",
+                    "Subject": "Πρόβλημα σε Χίο",
                     "Type": 0,
                     "FeedingProvider": null,
                     "Rations": 0,
@@ -161,6 +161,7 @@ angular.module('zeusclientApp')
                     },
                     "Facility": null,
                     "DateTime": "2016-03-05T14:15:59.214Z",
+                    "Subject": "Επείγουσα Αερομεταφορά",
                     "Type": 4,
                     "IsAcknowledged": true
                 },
@@ -179,6 +180,7 @@ angular.module('zeusclientApp')
                     },
                     "Facility": null,
                     "DateTime": "2016-03-05T14:15:59.214Z",
+                    "Subject": "Πρωινό Γεύμα",
                     "Type": 3,
                     "IsAcknowledged": false
                 }

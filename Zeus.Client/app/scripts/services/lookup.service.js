@@ -10,7 +10,9 @@
             getPriorities: getPriorities,
             getClassifications: getClassifications,
             getReportTypes: getReportTypes,
-            getStatus: getStatus
+            getHtmlStatus: getHtmlStatus,
+            getStatus: getStatus,
+            getFacilityCategories: getFacilityCategories
         };
 
         var priorities = [
@@ -34,12 +36,26 @@
             { Id: 4, Description: '<i class="text-warning material-icons md-18" title="Αναφορά Αίτησης">message</i>' },
             { Id: 5, Description: '<i class="text-info material-icons md-18" title="Αναφορά Κατάστασης">assignment</i>' }
         ];
+        var htmlStatus = [
+            { Id: 0, Description: '<i class="text-success material-icons md-18" title="Σε Λειτουργία">fiber_manual_record</i>' },
+            { Id: 1, Description: '<i class="text-warning material-icons md-18" title="Υπο Επισκευή">fiber_manual_record</i>' },
+            { Id: 2, Description: '<i class="text-info material-icons md-18" title="Υπο Κατασκευή">fiber_manual_record</i>' },
+            { Id: 2, Description: '<i class="text-muted material-icons md-18" title="Κατεστραμένο">fiber_manual_record</i>' },
+            { Id: 2, Description: '<i class="text-danger material-icons md-18" title="Ανενεργό">fiber_manual_record</i>' }
+        ];
         var status = [
-            { Id: 0, Description: '<i class="fa fa-square text-muted" title="Δεν Ξεκίνησε">' },
-            { Id: 1, Description: '<i class="fa fa-square text-info" title="Σε Εξέλιξη">' },
-            { Id: 2, Description: '<i class="fa fa-square text-success" title="Ολοκληρώθηκε">' },
-            { Id: 2, Description: '<i class="fa fa-square text-warning" title="Αναμονή Άλλου">' },
-            { Id: 2, Description: '<i class="fa fa-square text-danger" title="Αναβλήθηκε">' }
+            'Σε Λειτουργία',
+            'Υπο Επισκευή',
+            'Υπο Κατασκευή',
+            'Κατεστραμένο',
+            'Ανενεργό'
+        ];
+        var facilityCategories = [
+            'ISOBOX',
+            'Σκηνή',
+            'Ξενοδοχείο',
+            'Οικία',
+            'Ανοικτός Χώρος'
         ];
 
         function getPriorities() {
@@ -51,8 +67,14 @@
         function getReportTypes() {
             return reporttypes;
         }
+        function getHtmlStatus() {
+            return htmlStatus;
+        }
         function getStatus() {
             return status;
+        }
+        function getFacilityCategories() {
+            return facilityCategories;
         }
 
         return service;
