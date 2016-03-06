@@ -1,24 +1,68 @@
 ﻿html { height: 100% }
-body { height: 100% }
-.container-fluid { height: 100%; height: calc(100% - 165px); } 
-.map-container { height: 100%; height: calc(100% - 0px);}
+body { height: 100%; }
+.container-fluid { height: 100%; height: calc(100% - 160px); }
+.map-container { height: 100%; height: calc(100% - 0px); }
 
-.mydatepicker .btn {
-    padding: 0px;
-    margin: 0px;
-  }
+.mydatepicker .btn { padding: 0px; margin: 0px; }
+.mydatepicker .form-group .form-control { padding: 0px; margin: 0px; }
 
-.mydatepicker .form-group .form-control {
-  padding: 0px;
-  margin: 0px;
+    @media only screen and (max-device-width: 640px) {
+        .fab > .btn-fab {
+            padding: 5px 10px;
+            font-size: 12px;
+            line-height: 1.5;
+            border-radius: 3px;
+        }
+	}
+
+.nav-tabs {
+    border-bottom: 2px solid #DDD;
 }
 
-.nav-tabs { border-bottom: 2px solid #DDD; }
-    .nav-tabs > li.active > a, .nav-tabs > li.active > a:focus, .nav-tabs > li.active > a:hover { border-width: 0; }
-    .nav-tabs > li > a { border: none; color: #ff5722; }
-        .nav-tabs > li.active > a, .nav-tabs > li > a:hover { border: none; color: #fff !important; background: transparent; }
-        .nav-tabs > li > a::after { content: ""; background: #ff5722; height: 2px; position: absolute; width: 100%; left: 0px; bottom: -1px; transition: all 250ms ease 0s; transform: scale(0); }
-    .nav-tabs > li.active > a::after, .nav-tabs > li:hover > a::after { transform: scale(1); }
-.tab-nav > li > a::after { background: #21527d none repeat scroll 0% 0%; color: #fff; }
-.tab-pane { padding: 15px 0px 0px 0px; }
-.tab-content { padding: 0px }
+    .nav-tabs > li > a {
+        border: none;
+        color: #ff5722;
+    }
+
+        .nav-tabs > li.active > a, .nav-tabs > li > a:hover {
+            border: none;
+            color: #fff !important;
+            background: transparent;
+        }
+
+        .nav-tabs > li > a::after {
+            content: "";
+            background: #ff5722;
+            height: 2px;
+            position: absolute;
+            width: 100%;
+            left: 0px;
+            bottom: -1px;
+            transition: all 250ms ease 0s;
+            transform: scale(0);
+        }
+
+    .nav-tabs > li.active > a::after, .nav-tabs > li:hover > a::after {
+        transform: scale(1);
+    }
+
+.tab-nav > li > a::after {
+    background: #21527d none repeat scroll 0% 0%;
+    color: #fff;
+}
+
+.tab-pane {
+    padding: 15px 0px 0px 0px;
+}
+
+.tab-content {
+    padding: 0px;
+}
+
+.tabset-inverted .nav-tabs {
+    border-bottom: 2px solid #ddd;
+}
+
+    .tabset-inverted .nav-tabs > li {
+        background: #ff5722;
+    }
