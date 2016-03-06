@@ -25,6 +25,10 @@ angular.module('zeusclientApp')
             messageService.askConfirmation(testFunc);
         }
 
+        $scope.addHousing = function () {
+            messageService.askConfirmation(testFunc);
+        }
+
         $scope.data = {
             "Id": "ABCD",
             "Name": "Λιμάνι Πειραιά",

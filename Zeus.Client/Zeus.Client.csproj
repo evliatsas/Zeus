@@ -79,6 +79,7 @@
     <Content Include="app\scripts\controllers\main.js" />
     <Content Include="app\scripts\controllers\map.js" />
     <Content Include="app\scripts\controllers\menu.js" />
+    <Content Include="app\scripts\directives\fab.js" />
     <Content Include="app\scripts\directives\provider-card.js" />
     <Content Include="app\scripts\directives\contact-card.js" />
     <Content Include="app\scripts\directives\date-time-picker.js" />
@@ -95,6 +96,7 @@
     <Content Include="app\styles\material.css" />
     <Content Include="app\styles\site.css" />
     <Content Include="app\styles\typeahead.css" />
+    <Content Include="app\templates\fab.html" />
     <Content Include="app\templates\provider-card.html" />
     <Content Include="app\templates\contact-card.html" />
     <Content Include="app\templates\date-time-picker.html" />
