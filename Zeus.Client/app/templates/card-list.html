@@ -1,0 +1,10 @@
+﻿<div style="padding: 0px">
+    <div ng-if="cards.length == 0" class="alert alert-dismissible alert-info center-block" style="width: 70%; margin-top: 100px; fill-opacity: 0.8">
+        <button type="button" class="close" data-dismiss="alert">×</button>
+        <span ng-bind-html="emptyMessage"></span>
+    </div>
+    <div ng-repeat="card in cards" class="{{cardClass}}" style="padding: 5px">
+        <card-list-item card-template="{{cardTemplate}}"></card-list-item>
+    </div>
+</div>
+<fab icon="add" on-click="addCard()"></fab>

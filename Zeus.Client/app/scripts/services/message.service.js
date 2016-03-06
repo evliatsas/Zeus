@@ -36,8 +36,10 @@
                 cancelButtonText: "Ακύρωση",
                 closeOnConfirm: true
             },
-                function () {
-                    return executionMethod();
+                function (isConfirm) {
+                    if (isConfirm) {
+                        return executionMethod();
+                    }
                 }
             );
         }

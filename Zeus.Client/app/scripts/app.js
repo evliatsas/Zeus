@@ -20,34 +20,36 @@ angular
     'ui.bootstrap'
   ])
   .config(function ($routeProvider) {
-    $.material.init();
-    $routeProvider
-      .when('/', {
-        templateUrl: 'views/main.html',
-        controller: 'MainCtrl',
-        controllerAs: 'main'
-      })
-      .when('/about', {
-        templateUrl: 'views/about.html',
-        controller: 'AboutCtrl',
-        controllerAs: 'about'
-      })
-      .when('/facilities', {
-        templateUrl: 'views/facilities.html',
-        controller: 'FacilitiesCtrl',
-        controllerAs: 'facilities'
-      })
-      .when('/facilities/:id', {
-        templateUrl: 'views/facility.html',
-        controller: 'FacilityCtrl',
-        controllerAs: 'facility'
-      })
-      .when('/map', {
-        templateUrl: 'views/map.html',
-        controller: 'MapCtrl',
-        controllerAs: 'map'
-      })
-      .otherwise({
-        redirectTo: '/'
-      });
-  });
+      $.material.init();
+      $routeProvider
+        .when('/', {
+            templateUrl: 'views/main.html',
+            controller: 'MainCtrl',
+            controllerAs: 'main'
+        })
+        .when('/about', {
+            templateUrl: 'views/about.html',
+            controller: 'AboutCtrl',
+            controllerAs: 'about'
+        })
+        .when('/facilities', {
+            templateUrl: 'views/facilities.html',
+            controller: 'FacilitiesCtrl',
+            controllerAs: 'facilities'
+        })
+        .when('/facilities/:id', {
+            templateUrl: 'views/facility.html',
+            controller: 'FacilityCtrl',
+            controllerAs: 'facility'
+        })
+        .when('/map', {
+            templateUrl: 'views/map.html',
+            controller: 'MapCtrl',
+            controllerAs: 'map'
+        })
+        .otherwise({
+            redirectTo: '/'
+        });
+  })
+  .constant("moment", moment)
+  .constant('toastr', toastr);

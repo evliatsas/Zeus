@@ -1,7 +1,6 @@
 ﻿'use strict';
 
 angular.module('zeusclientApp')
-    .constant("moment", moment)
        .directive('cinnamonGrid', grid);
 
 function grid($http, $filter, moment, commonUtilities) {

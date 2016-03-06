@@ -21,12 +21,23 @@ angular.module('zeusclientApp')
             var q = 5;
         }
 
-        $scope.addFacility = function () {
-            messageService.askConfirmation(testFunc);
+        $scope.addHousing = function () {
+            alert('add housing');
+        }
+        $scope.removeHousing = function (index) {
+            $scope.data.Housings.splice(index, 1);
         }
 
-        $scope.addHousing = function () {
-            messageService.askConfirmation(testFunc);
+        $scope.addContact = function () {
+            alert('add contact');
+        }
+
+        $scope.addProvider = function () {
+            alert('add provider');
+        }
+
+        $scope.addReport = function () {
+            alert('add report');
         }
 
         $scope.data = {

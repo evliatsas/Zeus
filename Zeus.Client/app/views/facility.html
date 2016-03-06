@@ -5,54 +5,48 @@
 <div class="col-md-8">
     <uib-tabset justified="true" active="active">
         <uib-tab index="0" heading="Στέγαση">
-            <div style="padding: 0px">
-                <div ng-repeat="housing in data.Housings" class="col-lg-6 col-md-6 col-sm-6 col-xs-12" style="padding: 5px">
-                    <facility-housing housing="housing" index="$index"></facility-housing>
-                </div>
-            </div>
-            <fab fab-icon="add" fab-on-click="addHousing()"></fab>
+            <card-list cards="data.Housings"
+                       card-template="/templates/housing-card.html"
+                       card-class="col-lg-6 col-md-6 col-sm-12 col-xs-12"
+                       add-card="addHousing()">
+            </card-list>
         </uib-tab>
         <uib-tab index="2" heading="Επαφές">
-            <div style="padding: 0px">
-                <div ng-repeat="item in data.Contacts" class="col-lg-6 col-md-6 col-sm-12 col-xs-12" style="padding: 5px">
-                    <contact-card contact="item"></contact-card>
-                </div>
-            </div>
-            <fab fab-icon="add" fab-click="addContact()"></fab>
+            <card-list cards="data.Contacts"
+                       card-template="/templates/contact-card.html"
+                       card-class="col-lg-6 col-md-6 col-sm-12 col-xs-12"
+                       add-card="addContact()">
+            </card-list>
         </uib-tab>
         <uib-tab index="3" heading="Υποστήριξη">
             <uib-tabset justified="true" active="active" class="tabset-inverted">
                 <uib-tab index="0" heading="Υγειονομική">
-                    <div class="col-xs-11 col-sm-11 col-md-11">
-                        <div ng-repeat="item in data.Providers" class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                            <provider-card provider="item"></provider-card>
-                        </div>
-                        <fab fab-icon="add" fab-click="addProvider()"></fab>
-                    </div>
+                    <card-list cards="data.Providers"
+                               card-template="/templates/provider-card.html"
+                               card-class="col-lg-6 col-md-6 col-sm-12 col-xs-12"
+                               add-card="addProvider()">
+                    </card-list>
                 </uib-tab>
                 <uib-tab index="1" heading="Φύλαξη">
-                    <div class="col-xs-11 col-sm-11 col-md-11">
-                        <div ng-repeat="item in data.Providers" class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                            <provider-card provider="item"></provider-card>
-                        </div>
-                    </div>
-                    <fab fab-icon="add" fab-click="addProvider()"></fab>
+                    <card-list cards="data.Providers"
+                               card-template="/templates/provider-card.html"
+                               card-class="col-lg-6 col-md-6 col-sm-12 col-xs-12"
+                               add-card="addProvider()">
+                    </card-list>
                 </uib-tab>
                 <uib-tab index="2" heading="Σίτιση">
-                    <div class="col-xs-11 col-sm-11 col-md-11">
-                        <div ng-repeat="item in data.Providers" class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                            <provider-card provider="item"></provider-card>
-                        </div>
-                    </div>
-                    <fab fab-icon="add" fab-click="addProvider()"></fab>
+                    <card-list cards="data.Providers"
+                               card-template="/templates/provider-card.html"
+                               card-class="col-lg-6 col-md-6 col-sm-12 col-xs-12"
+                               add-card="addProvider()">
+                    </card-list>
                 </uib-tab>
                 <uib-tab index="3" heading="Εφοδιασμός">
-                    <div class="col-xs-11 col-sm-11 col-md-11">
-                        <div ng-repeat="item in data.Providers" class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                            <provider-card provider="item"></provider-card>
-                        </div>
-                    </div>
-                    <fab fab-icon="add" fab-click="addProvider()"></fab>
+                    <card-list cards="data.Providers"
+                               card-template="/templates/provider-card.html"
+                               card-class="col-lg-6 col-md-6 col-sm-12 col-xs-12"
+                               add-card="addProvider()">
+                    </card-list>
                 </uib-tab>
             </uib-tabset>
         </uib-tab>
@@ -64,6 +58,7 @@
                            highlight="!item.IsAcknowledged"
                            row-click-fn="showReport(item)">
             </cinnamon-grid>
+            <fab icon="add" on-click="addReport()"></fab>
         </uib-tab>
     </uib-tabset>
 </div>

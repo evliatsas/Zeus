@@ -4,9 +4,9 @@ angular.module('zeusclientApp')
 .directive('fab', function () {
     return {
         scope: {
-            fabIcon: '@',
-            fabClick: '&fabOnClick',
-            fabSmall: '='
+            icon: '@',
+            click: '&onClick',
+            small: '='
         },
         transclude: true,
         templateUrl: '/templates/fab.html',

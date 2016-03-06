@@ -1,6 +1,6 @@
-
-<div class="row">
-    <div ng-repeat="facility in facilities.list" class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
-        <facility-card facility="facility"></facility-card>
-    </div>
-</div>
+<card-list class="row"
+           cards="facilities.list"
+           card-template="/templates/facility-card.html"
+           card-class="col-lg-3 col-md-4 col-sm-6 col-xs-12"
+           add-card="addFacility()">
+</card-list>

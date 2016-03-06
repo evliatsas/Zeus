@@ -7,8 +7,13 @@
  * # MainCtrl
  * Controller of the zeusclientApp
  */
-angular.module('zeusclientApp')
-    .controller('FacilitiesCtrl', function($scope) {
+angular
+    .module('zeusclientApp')
+    .controller('FacilitiesCtrl', function ($scope) {
+
+        $scope.addFacility = function () {
+            alert('add facility');
+        }
         
         this.list = [{
             "Id": "ABCD",
