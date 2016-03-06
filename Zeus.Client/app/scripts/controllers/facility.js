@@ -8,7 +8,7 @@
  * Controller of the zeusclientApp
  */
 angular.module('zeusclientApp')
-    .controller('FacilityCtrl', function ($scope, lookupService) {
+    .controller('FacilityCtrl', function ($scope, lookupService, messageService) {
 
         $scope.reportcolumns = [
             { Caption: 'Τύπος', Field: 'Type', Type: 'LookupHtml', Values: lookupService.getReportTypes(), Tooltip: 'Τύπος Αναφοράς' },
@@ -16,6 +16,14 @@ angular.module('zeusclientApp')
             { Caption: 'Συντάκτης', Field: 'User.Title' },
             { Caption: 'Ημερομηνία', Field: 'DateTime', Type: 'DateTime' }
         ];
+
+        var testFunc = function () {
+            var q = 5;
+        }
+
+        $scope.addFacility = function () {
+            messageService.askConfirmation(testFunc);
+        }
 
         $scope.data = {
             "Id": "ABCD",

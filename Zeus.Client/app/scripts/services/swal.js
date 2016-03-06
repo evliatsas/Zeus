@@ -5,7 +5,7 @@
         .module('zeusclientApp')
         .factory('messageService', messageService);
 
-    function messageService(swal) {
+    function messageService() {
         var service = {
             deleteSuccess: deleteSuccess,
             showError: showError,
@@ -34,7 +34,7 @@
                 confirmButtonClass: "btn-danger",
                 confirmButtonText: "Διαγραφή",
                 cancelButtonText: "Ακύρωση",
-                closeOnConfirm: false
+                closeOnConfirm: true
             },
                 function () {
                     return executionMethod();
