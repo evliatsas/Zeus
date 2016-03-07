@@ -1,0 +1,44 @@
+﻿<div class="col-md-6">
+    <div class="form-group label-floating ng-is-empty">
+        <label for="Name" class="control-label">Όνομα</label>
+        <input type="text" class="form-control" id="Name" ng-model="data.Name">
+    </div>
+    <div class="form-group label-floating ng-is-empty">
+        <label for="Passport" class="control-label">Διαβατήριο</label>
+        <input type="text" class="form-control" id="Passport" ng-model="data.Passport">
+    </div>
+    <div class="form-group label-floating ng-is-empty">
+        <label for="Nationality" class="control-label">Εθνικότητα</label>
+        <input type="text" class="form-control" id="Nationality" ng-model="data.Nationality">
+    </div>
+    <div class="form-group">
+        <div class="checkbox">
+            <label>
+                <input type="checkbox" ng-model="data.IsSensitive"> Ευπαθής
+            </label>
+        </div>
+    </div>
+    <div class="form-group label-floating ng-is-empty">
+        <label for="Sensitivity" class="control-label">Ευπάθεια</label>
+        <input type="text" class="form-control" id="Sensitivity" ng-model="data.Sensitivity">
+    </div>
+    <div class="form-group label-floating ng-is-empty">
+        <label for="FacilityId" class="control-label">Δομή Φιλοξενείας</label>
+        <select id="FacilityId" class="form-control" ng-model="data.FacilityId">
+            <option ng-repeat="facility in facilities" value="{{facility.Id}}">
+                {{facility.Name}}
+            </option>
+        </select>
+    </div>
+</div>
+<div class="col-md-6">
+    <h1>Συγγενείς</h1>
+    <cinnamon-grid grid-columns="reportcolumns"
+                   grid-items="data"
+                   show-grid-buttons="false"
+                   hide-item-buttons="true"
+                   highlight="false"
+                   row-click-fn="showRelative(item)">
+    </cinnamon-grid>
+    <fab icon="add" on-click="addRelative()"></fab>
+</div>

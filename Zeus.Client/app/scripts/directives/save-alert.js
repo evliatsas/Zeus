@@ -6,12 +6,14 @@ angular
         return {
             scope: {
                 entity: '=',
+                noAnimation: '=',
                 onSave: '&'
             },
             transclude: true,
             templateUrl: '/templates/save-alert.html',
             link: function postLink(scope, element, attrs) {
                 scope.hasChanges = false;
+                scope.closed = false;
 
                 scope.save = function () {
                     var saved = scope.onSave();
@@ -21,7 +23,7 @@ angular
                 };
 
                 scope.cancel = function () {
-                    scope.hasChanges = false;
+                    scope.closed = true;
                 };
 
                 scope.$watch('entity', function (newValue, oldValue) {

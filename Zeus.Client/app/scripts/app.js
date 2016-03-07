@@ -47,6 +47,16 @@ angular
             controller: 'MapCtrl',
             controllerAs: 'map'
         })
+        .when('/persons', {
+            templateUrl: 'views/persons.html',
+            controller: 'PersonsCtrl',
+            controllerAs: 'persons'
+        })
+        .when('/persons/:id', {
+            templateUrl: 'views/person.html',
+            controller: 'PersonCtrl',
+            controllerAs: 'person'
+        })
         .otherwise({
             redirectTo: '/'
         });
