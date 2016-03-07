@@ -63,7 +63,18 @@
                 'Περιφέρεια',
                 'ΜΚΟ',
                 'ΓΕΕΘΑ'
-            ]
+            ],
+            relationships: [
+                { Id: 0, Description: 'Άνδρας' },
+                { Id: 1, Description: 'Γυναίκα' },
+                { Id: 2, Description: 'Πατέρας' },
+                { Id: 3, Description: 'Μητέρα' },
+                { Id: 4, Description: 'Παιδί' },
+                { Id: 5, Description: 'Αδερφός' },
+                { Id: 6, Description: 'Αδερφή' },
+                { Id: 7, Description: 'Πεθερός' },
+                { Id: 8, Description: 'Πεθερά' }
+            ],
         };
     }
 })();

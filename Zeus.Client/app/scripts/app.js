@@ -47,6 +47,11 @@ angular
             controller: 'MapCtrl',
             controllerAs: 'map'
         })
+        .when('/persons', {
+            templateUrl: 'views/persons.html',
+            controller: 'PersonsCtrl',
+            controllerAs: 'persons'
+        })
         .otherwise({
             redirectTo: '/'
         });

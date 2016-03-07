@@ -76,7 +76,7 @@
                     <div ng-if="column.Type == 'DateTime'" ng-click="gridRowClick(item)">{{formatDateTime($eval('item.'+ column.Field), column.format)}}</div>
                     <div ng-if="column.Type == 'Html'" ng-bind-html="$eval('item.'+ column.Field)" ng-click="gridRowClick(item)"></div>
                     <div ng-if="column.Type == 'LookupHtml'" ng-click="gridRowClick(item)" ng-bind-html="(column.Values | filter: {Id: $eval('item.' + column.Field)})[0]['Description']"></div>
-                    <div ng-if="column.Type == 'Boolean'" class="center-block" style="text-align:center;" ng-click="gridRowClick(item)"><input type="checkbox" ng-checked="$eval('item.'+ column.Field)" readonly></div>
+                    <div ng-if="column.Type == 'Boolean'" style="text-align:center;" ng-click="gridRowClick(item)"><div class="checkbox"><label><input type="checkbox" ng-checked="$eval('item.'+ column.Field)" disabled></label></div></div>
                     <div ng-if="column.Type == 'Percentage'" class="progress progress-striped" ng-click="gridRowClick(item)">
                         <div class="progress-bar progress-bar-info" ng-style="{width: $eval('item.'+ column.Field) + '%'}">{{$eval('item.'+ column.Field) + '%'}}</div>
                     </div>
