@@ -5,7 +5,8 @@ angular
     .controller('FacilityCtrl', function ($scope, $window, $timeout, lookupService, messageService) {
 
         $scope.reportcolumns = [
-            { Caption: 'Τύπος', Field: 'Type', Type: 'LookupHtml', Values: lookupService.reportTypes, Tooltip: 'Τύπος Αναφοράς' },
+            { Caption: 'Τ', Field: 'Type', Type: 'LookupHtml', Values: lookupService.reportTypes, Tooltip: 'Τύπος Αναφοράς' },
+            { Caption: 'Π', Field: 'Priority', Type: 'LookupHtml', Values: lookupService.priorities, Tooltip: 'Προτεραιότητα Αναφοράς' },
             { Caption: 'Θέμα', Field: 'Subject' },
             { Caption: 'Συντάκτης', Field: 'User.Title' },
             { Caption: 'Ημερομηνία', Field: 'DateTime', Type: 'DateTime' }
@@ -168,6 +169,7 @@ angular
                         "Title": "ΓΕΕΘΑ/Ευάγγελος Λιάτσας"
                     },
                     "Facility": null,
+                    "Priority": 1,
                     "DateTime": "2016-03-05T14:15:59.214Z",
                     "Subject": "Πρόβλημα σε Χίο",
                     "Type": 0,
@@ -190,6 +192,7 @@ angular
                         "Title": "Υπ. Εσωτερικών/Αντώνης Καταραχιάς"
                     },
                     "Facility": null,
+                    "Priority": 0,
                     "DateTime": "2016-03-05T14:15:59.214Z",
                     "Subject": "Επείγουσα Αερομεταφορά",
                     "Type": 4,
@@ -208,6 +211,7 @@ angular
                         },
                         "Title": "Υπ. Εσωτερικών/Αντώνης Καταραχιάς"
                     },
+                    "Priority": 2,
                     "Facility": null,
                     "DateTime": "2016-03-05T14:15:59.214Z",
                     "Subject": "Πρωινό Γεύμα",

@@ -29,11 +29,6 @@
             <i class="text-primary material-icons md-24" style="padding-top:15px; margin-left:-15px;">search</i>
         </span>
     </div>
-    <!--<div class="btn-group pull-right">
-        <span>Αναζήτηση<strong>:</strong></span>
-        <input type="text" ng-model="gridFilter" ng-change="filtering()" class="right-rounded" style="min-width: 200px">
-        <span class="right-rounded-icon text-primary" style="margin-left:-30px;font-size:1.19em;vertical-align:middle"><i class="fa fa-search"></i></span>
-    </div>-->
 </div>
 <div class="table-responsive" style="padding-top: 10px; padding-bottom: 0px">
     <table class="table" ng-class="{'table-striped': striped}">
@@ -45,8 +40,8 @@
                 <th ng-repeat="column in gridColumns" title="{{column.Tooltip}}">
                     <span class="btn-link" ng-click="sortBy(column.Field)" title="Ταξινόμηση">
                         <strong>{{column.Caption}}</strong>
-                        <i ng-if="column.Field == sortingOrder && reverse == false" class="{{sortAscIcon ? sortAscIcon : 'fa fa-sort-asc' }}"></i>
-                        <i ng-if="column.Field == sortingOrder && reverse == true" class="{{sortDescIcon ? sortDescIcon : 'fa fa-sort-desc' }}"></i>
+                        <i ng-if="column.Field == sortingOrder && reverse == false" class="material-icons md-18" style="vertical-align:middle">keyboard_arrow_up</i>
+                        <i ng-if="column.Field == sortingOrder && reverse == true" class="material-icons md-18" style="vertical-align:middle">keyboard_arrow_down</i>
                     </span>
                 </th>
                 <th ng-if="!hideItemButtons">Ενέργειες</th>

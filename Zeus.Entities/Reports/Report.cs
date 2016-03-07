@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using MongoDB.Bson.Serialization.Attributes;
+using System.ComponentModel;
 
 namespace Zeus.Entities
 {
@@ -21,6 +22,7 @@ namespace Zeus.Entities
         public Auth.User User { get; set; }
         public Facility Facility { get; set; }
         public DateTime DateTime { get; set; }
+        public ReportPriority Priority { get; set; }
         public string Subject { get; set; }
         public ReportType Type { get; set; }
         public bool IsAcknoledged { get; set; }
@@ -36,5 +38,19 @@ namespace Zeus.Entities
         RequestReport,
         SituationReport,
         Message
+    }
+
+    public enum ReportPriority
+    {
+        [Description("ΚΟΙΝΟ")]
+        Routine,
+        [Description("ΕΠΕΙΓΟΝ")]
+        Priority,
+        [Description("ΚΑΤΕΠΕΙΓΟΝ")]
+        OpsImmediate,
+        [Description("ΑΜΕΣΟ")]
+        Immediate,
+        [Description("ΑΣΤΡΑΠΙΑΙΟ")]
+        Flash
     }
 }
