@@ -1,7 +1,6 @@
-﻿<div class="form-inline">
-    <div class="form-control" ng-bind-html="lookup.reportTypesHtml[reportType].Description"></div>
-    <div class="form-control">{{lookup.reportTypes[reportType].Description}}</div>
-</div>
+﻿
+<div ng-bind-html="lookup.reportTitles[reportType].Description" />
+
 <div class="form-group label-floating ng-is-empty">
     <label for="i1" class="control-label">Θέμα</label>
     <input type="text" class="form-control" id="i1" ng-model="report.Subject">

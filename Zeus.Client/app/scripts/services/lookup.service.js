@@ -20,14 +20,14 @@
                 { Id: 2, Description: '<i class="fa fa-square text-warning" title="Εμπιστευτικό (ΕΠ)">' },
                 { Id: 3, Description: '<i class="fa fa-square text-danger" title="Απόρρητο (ΑΠ)">' }
             ],
-            reportTypes: [
-                { Id: 0, Description: 'Αναφορά Σίτισης' },
+            reportTitles: [
+                { Id: 0, Description: '<span class="text-primary material-icons md-48" title="Αναφορά Σίτισης">restaurant_menu</span><span style="font-size:36pt">Αναφορά Σίτισης</span>' },
                 { Id: 1, Description: 'Αναφορά Στέγασης' },
                 { Id: 2, Description: 'Αναφορά Μετακίνησης' },
                 { Id: 3, Description: 'Αναφορά Προβλήματος' },
                 { Id: 4, Description: 'Αναφορά Αίτησης' },
                 { Id: 5, Description: 'Αναφορά Κατάστασης' },
-                { Id: 6, Description: 'Μήνυμα' }
+                { Id: 6, Description: '<p style="display:inline; vertical-align:bottom"><i class="text-primary material-icons md-36" title="Μήνυμα">email</i><span class="h1">Μήνυμα</h2></span>' }
             ],
             reportTypesHtml: [
                 { Id: 0, Description: '<i class="text-primary material-icons md-18" title="Αναφορά Σίτισης">restaurant_menu</i>' },
