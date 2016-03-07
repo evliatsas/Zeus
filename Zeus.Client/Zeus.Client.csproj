@@ -79,6 +79,7 @@
     <Content Include="app\scripts\controllers\main.js" />
     <Content Include="app\scripts\controllers\map.js" />
     <Content Include="app\scripts\controllers\menu.js" />
+    <Content Include="app\scripts\controllers\report.js" />
     <Content Include="app\scripts\directives\fab.js" />
     <Content Include="app\scripts\directives\card-list.js" />
     <Content Include="app\scripts\directives\date-time-picker.js" />

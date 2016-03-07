@@ -8,11 +8,11 @@
     function lookupService() {
         return {
             priorities: [
-                { Id: 0, Description: '<i class="fa fa-flag text-muted" title="Χαμηλή">' },
-                { Id: 1, Description: '<i class="fa fa-flag text-success" title="Κανονική">' },
-                { Id: 2, Description: '<i class="fa fa-flag text-info" title="Επείγον">' },
-                { Id: 3, Description: '<i class="fa fa-flag text-warning" title="Άμεσο">' },
-                { Id: 4, Description: '<i class="fa fa-flag text-danger" title="Αστραπιαίο">' },
+                { Id: 0, Description: '<i class="text-muted material-icons md-18" title="Χαμηλή">flag</i>' },
+                { Id: 1, Description: '<i class="text-success material-icons md-18" title="Κανονική">flag</i>' },
+                { Id: 2, Description: '<i class="text-info material-icons md-18" title="Επείγον">flag</i>' },
+                { Id: 3, Description: '<i class="text-warning material-icons md-18" title="Άμεσο">flag</i>' },
+                { Id: 4, Description: '<i class="text-danger material-icons md-18" title="Αστραπιαίο">flag</i>' },
             ],
             classifications: [
                 { Id: 0, Description: '<i class="fa fa-square text-muted" title="Αδιαβάθμητο (ΑΔ)">' },
