@@ -2,7 +2,7 @@
 
 angular
     .module('zeusclientApp')
-    .controller('MapCtrl', function ($http, $scope, $compile, $templateRequest, messageService) {
+    .controller('MapCtrl', function ($http, $scope, $compile, $templateRequest, basseUrl, messageService) {
       
       var map = new google.maps.Map(document.getElementById('map'), {
           center: { lat: 38.5306122, lng: 25.4556341 },
@@ -17,7 +17,7 @@ angular
 
       $http({
           method: 'GET',
-          url: 'http://localhost:8080/api/facilities'
+          url: basseUrl + '/facilities'
       }).then(function successCallback(response) {
           $scope.facilities = response.data;
           $scope.markers = [];
@@ -85,7 +85,7 @@ angular
           $http({
               method: 'PUT',
               data: facility,
-              url: 'http://localhost:8080/api/facilities'
+              url: basseUrl + '/facilities'
           }).then(function successCallback(response) {
               marker.setDraggable(false);
               infowindow.close();

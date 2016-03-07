@@ -68,4 +68,5 @@ angular
         });
   })
   .constant("moment", moment)
+  .constant("baseUrl", "http://localhost:8080/api")
   .constant('toastr', toastr);

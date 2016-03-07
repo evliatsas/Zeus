@@ -2,7 +2,7 @@
 
 angular
     .module('zeusclientApp')
-    .controller('PersonsCtrl', function ($scope, $location, lookupService) {
+    .controller('PersonsCtrl', function ($scope, $location, $http, basseUrl, lookupService) {
 
         $scope.addPerson = function () {
             alert('add person');
@@ -23,24 +23,12 @@ angular
             { Caption: 'Δομή', Field: 'Facility.Name'}
         ];
 
-        $scope.data = [{
-            "Id": "ABCD",
-            "Name": "Λιμάνι Πειραιά"
-        }, {
-            "Name": "Στρατόπεδο Παπάγου"
-        }, {
-            "Name": "Στρατόπεδο Παπάγου"
-        }, {
-            "Name": "Στρατόπεδο Παπάγου"
-        }, {
-            "Name": "Στρατόπεδο Παπάγου"
-        }, {
-            "Name": "Στρατόπεδο Παπάγου"
-        }, {
-            "Name": "Σπίτι Κανελλόπουλου"
-        }, {
-            "Name": "Στρατόπεδο Παπάγου"
-        }, {
-            "Name": "Στρατόπεδο Παπάγου"
-        }];
+        $http({
+            method: 'GET',
+            url: basseUrl + '/persons'
+        }).then(function successCallback(response) {
+            $scope.data = response.data;
+        }, function errorCallback(response) {
+            messageService.showError();
+        });
     });
