@@ -2,7 +2,7 @@
 
 angular
     .module('zeusclientApp')
-    .controller('FacilityCtrl', function ($scope, lookupService, messageService) {
+    .controller('FacilityCtrl', function ($scope, $window, $timeout, lookupService, messageService) {
 
         $scope.reportcolumns = [
             { Caption: 'Τύπος', Field: 'Type', Type: 'LookupHtml', Values: lookupService.reportTypes, Tooltip: 'Τύπος Αναφοράς' },
@@ -15,22 +15,35 @@ angular
             var q = 5;
         }
 
-        $scope.addHousing = function () {
-            alert('add housing');
+        $scope.saveFacility = function () {
+            alert('facility saved');
+            return true;
         }
-        $scope.removeHousing = function (index) {
-            $scope.data.Housings.splice(index, 1);
+
+        var scrollToEnd = function () {
+            $timeout(
+                function () {
+                    $window.scrollTo(0, document.body.scrollHeight);
+                }, 0);
+        }
+
+        $scope.addHousing = function () {
+            $scope.data.Housings.push({});
+            scrollToEnd();
         }
 
         $scope.addContact = function () {
-            alert('add contact');
+            $scope.data.Contacts.push({});
+            scrollToEnd();
         }
 
         $scope.addProvider = function () {
-            alert('add provider');
+            $scope.data.Providers.push({});
+            scrollToEnd();
         }
 
         $scope.addReport = function () {
+            // gamise mas edw den lynetai me aplo push sto array
             alert('add report');
         }
 
@@ -203,5 +216,4 @@ angular
                 }
             ]
         };
-
     });

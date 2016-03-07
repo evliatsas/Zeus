@@ -6,8 +6,7 @@ angular
         return {
             scope: {
                 icon: '@',
-                click: '&onClick',
-                small: '='
+                click: '&onClick'
             },
             transclude: true,
             templateUrl: '/templates/fab.html',

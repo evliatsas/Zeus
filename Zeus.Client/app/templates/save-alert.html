@@ -1,0 +1,11 @@
+﻿<div ng-if="hasChanges" class="hidden-xs hidden-sm alert alert-info alert-dismissible" style="padding: 10px; position: fixed; bottom: 0px; width: 450px; height: 44px; z-index: 999">
+    <span class="pull-left" style="padding-top: 1px"><strong>Υπάρχουν αλλαγές που δεν έχετε αποθηκεύσει</strong></span>
+    <div class="btn-group-sm pull-right" style="padding: 0px; margin: 0px">
+        <span class="btn btn-raised" ng-click="save()" style="padding: 0px; margin-top: 0px; margin-bottom: 0px"><i class="material-icons">save</i></span>
+        <span class="btn btn-raised btn-danger" ng-click="cancel()" style="padding: 0px; margin-top: 0px; margin-bottom: 0px"><i class="material-icons">clear</i></span>
+    </div>
+</div>
+
+<div ng-if="hasChanges" class="hidden-md hidden-lg btn-group-sm" style="position: fixed; left: 20px; bottom: 20px; z-index: 999">
+    <span class="btn btn-danger btn-fab fab" ng-click="save()"><i class="material-icons" title="Υπάρχουν αλλαγές που δεν έχετε αποθηκεύσει">save</i></span>
+</div>

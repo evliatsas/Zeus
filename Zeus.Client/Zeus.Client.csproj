@@ -86,6 +86,7 @@
     <Content Include="app\scripts\directives\grid.js" />
     <Content Include="app\scripts\directives\on-finish-render.js" />
     <Content Include="app\scripts\directives\phone-list.js" />
+    <Content Include="app\scripts\directives\save-alert.js" />
     <Content Include="app\scripts\services\lookup.service.js" />
     <Content Include="app\scripts\services\message.service.js" />
     <Content Include="app\scripts\services\utilities.js" />
@@ -103,6 +104,7 @@
     <Content Include="app\templates\housing-card.html" />
     <Content Include="app\templates\grid.html" />
     <Content Include="app\templates\phone-list.html" />
+    <Content Include="app\templates\save-alert.html" />
     <Content Include="app\views\about.html" />
     <Content Include="app\views\facilities.html" />
     <Content Include="app\views\facility.html" />
