@@ -69,7 +69,9 @@
     <Content Include="app\404.html" />
     <Content Include="app\favicon.ico" />
     <Content Include="app\images\facility.jpg" />
-    <Content Include="app\images\yeoman.png" />
+    <Content Include="app\images\gr_parliament.png" />
+    <Content Include="app\images\logo.jpg" />
+    <Content Include="app\images\running.png" />
     <Content Include="app\index.html" />
     <Content Include="app\robots.txt" />
     <Content Include="app\scripts\app.js" />
