@@ -79,6 +79,7 @@
     <Content Include="app\scripts\controllers\main.js" />
     <Content Include="app\scripts\controllers\map.js" />
     <Content Include="app\scripts\controllers\menu.js" />
+    <Content Include="app\scripts\controllers\person.js" />
     <Content Include="app\scripts\controllers\persons.js" />
     <Content Include="app\scripts\controllers\report.js" />
     <Content Include="app\scripts\directives\fab.js" />
@@ -113,6 +114,7 @@
     <Content Include="app\views\facility.html" />
     <Content Include="app\views\main.html" />
     <Content Include="app\views\map.html" />
+    <Content Include="app\views\person.html" />
     <Content Include="app\views\persons.html" />
     <Content Include="packages.config" />
     <Content Include="Web.config" />
