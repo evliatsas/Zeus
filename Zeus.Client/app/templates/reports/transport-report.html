@@ -1,37 +1,37 @@
 ﻿<save-alert entity="report" on-save="save()"></save-alert>
 
-<div class="form-group label-floating ng-is-empty">
+<div class="form-group label-static ng-is-empty">
     <label for="i2" class="control-label">Από (Δομή Φιλοξενίας)</label>
     <input type="text" class="form-control" id="i2" ng-model="report.StartingPoint.Name" uib-typeahead="dest for dest in facilities | filter:$viewValue">
 </div>
-<div class="form-group label-floating ng-is-empty">
+<div class="form-group label-static ng-is-empty">
     <label for="i4" class="control-label">Πρός</label>
     <input type="text" class="form-control" id="i4" ng-model="report.Destination.Name" uib-typeahead="dest for dest in facilities | filter:$viewValue">
 </div>
-<div class="form-group label-floating ng-is-empty">
+<div class="form-group label-static ng-is-empty">
     <label for="i3" class="control-label">Είδος Μετακίνησης</label>
     <input type="text" class="form-control" id="i3" ng-model="report.MovementType" uib-typeahead="type for type in lookup.movementTypes | filter:$viewValue">
 </div>
-<div class="form-group label-floating ng-is-empty">
+<div class="form-group label-static ng-is-empty">
     <label for="i5" class="control-label">Πλήθος Ατόμων</label>
     <input type="number" class="form-control" id="i5" ng-model="report.PersonCount">
     <span class="material-input"></span>
 </div>
 <date-time-picker label="Αναχώρηση" format="dd/MM/yy" date="report.Departure"></date-time-picker>
 <date-time-picker label="Εκτιμώμενη Άφιξη" format="dd/MM/yy" date="report.ETA"></date-time-picker>
-<div class="form-group label-floating ng-is-empty">
+<div class="form-group label-static ng-is-empty">
     <label for="i6" class="control-label">Μέσο Μεταφοράς</label>
     <input type="text" class="form-control" id="i6" ng-model="report.Transportation.Type" uib-typeahead="trans for trans in lookup.transportation | filter:$viewValue">
 </div>
-<div class="form-group label-floating ng-is-empty">
+<div class="form-group label-static ng-is-empty">
     <label for="i6" class="control-label">Μον. Αναγνωριστικό</label>
     <input type="text" class="form-control" id="i6" ng-model="report.Transportation.UniqueId">
 </div>
-<div class="form-group label-floating ng-is-empty">
+<div class="form-group label-static ng-is-empty">
     <label for="i6" class="control-label">Μον. Αναγνωριστικό</label>
     <input type="text" class="form-control" id="i6" ng-model="report.Transportation.UniqueId">
 </div>
-<div class="form-group label-floating ng-is-empty">
+<div class="form-group label-static ng-is-empty">
     <label for="i6" class="control-label">Ιδιοκτήτης</label>
     <input type="text" class="form-control" id="i6" ng-model="report.Transportation.Owner">
 </div>

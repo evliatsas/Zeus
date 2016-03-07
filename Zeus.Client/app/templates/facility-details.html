@@ -1,24 +1,24 @@
-﻿<div class="form-group label-floating ng-is-empty">
+﻿<div class="form-group label-static ng-is-empty">
     <label for="i1" class="control-label">Ονομασία</label>
     <input type="text" class="form-control" id="i1" ng-model="facility.Name">
 </div>
-<div class="form-group label-floating ng-is-empty">
+<div class="form-group label-static ng-is-empty">
     <label for="i2" class="control-label">Περιγραφή</label>
     <input type="text" class="form-control" id="i2" ng-model="facility.Description">
 </div>
-<div class="form-group label-floating ng-is-empty">
+<div class="form-group label-static ng-is-empty">
     <label for="i3" class="control-label">Κατηγορία</label>
     <input type="text" class="form-control" id="i3" ng-model="facility.Type" uib-typeahead="state for state in lookup.facilityCategories | filter:$viewValue">
 </div>
 <div class="row">
     <div class="col-md-6">
-        <div class="form-group label-floating ng-is-empty">
+        <div class="form-group label-static ng-is-empty">
             <label for="Capacity" class="control-label">Χωρητικότητα</label>
             <input type="number" class="form-control" id="Capacity" ng-model="facility.Capacity">
         </div>
     </div>
     <div class="col-md-6">
-        <div class="form-group label-floating ng-is-empty">
+        <div class="form-group label-static ng-is-empty">
             <label for="Attendance" class="control-label">Φιλοξενούμενοι</label>
             <input type="number" class="form-control" id="Attendance" ng-model="facility.Attendance" readonly>
         </div>
@@ -45,7 +45,7 @@
         </div>
     </div>
 </div>
-<div class="form-group label-floating ng-is-empty">
+<div class="form-group label-static ng-is-empty">
     <label for="Status" class="control-label">Κατάσταση</label>
     <input type="text" class="form-control" id="Status" ng-model="facility.Status" uib-typeahead="state for state in lookup.statuses | filter:$viewValue">
 </div>
@@ -55,7 +55,7 @@
     <date-time-picker class="col-xs-12 col-sm-12 col-md-12 col-lg-12" label="Ημερομηνία Αποκατάστασης" format="dd/MM/yy" date="facility.StatusECT"></date-time-picker>
 </div>
 
-<div class="form-group label-floating ng-is-empty">
+<div class="form-group label-static ng-is-empty">
     <label for="Administration" class="control-label">Διαχειριστής</label>
     <input type="text" class="form-control" id="Administration" ng-model="facility.Administration" uib-typeahead="state for state in lookup.administrations | filter:$viewValue">
 </div>
