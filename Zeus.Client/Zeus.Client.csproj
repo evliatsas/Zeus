@@ -116,10 +116,10 @@
     <Content Include="app\views\facility.html" />
     <Content Include="app\views\main.html" />
     <Content Include="app\views\map.html" />
-    <Content Include="app\templates\reports\feeding-report.html" />
-    <Content Include="app\templates\reports\housing-report.html" />
-    <Content Include="app\templates\reports\transport-report.html" />
-    <Content Include="app\templates\reports\situation-report.html" />
+    <Content Include="app\views\reports\feeding-report.html" />
+    <Content Include="app\views\reports\housing-report.html" />
+    <Content Include="app\views\reports\transport-report.html" />
+    <Content Include="app\views\reports\situation-report.html" />
     <Content Include="app\views\report.html" />
     <Content Include="app\views\person.html" />
     <Content Include="app\views\persons.html" />

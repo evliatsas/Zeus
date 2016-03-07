@@ -21,13 +21,22 @@
                 { Id: 3, Description: '<i class="fa fa-square text-danger" title="Απόρρητο (ΑΠ)">' }
             ],
             reportTypes: [
+                { Id: 0, Description: 'Αναφορά Σίτισης' },
+                { Id: 1, Description: 'Αναφορά Στέγασης' },
+                { Id: 2, Description: 'Αναφορά Μετακίνησης' },
+                { Id: 3, Description: 'Αναφορά Προβλήματος' },
+                { Id: 4, Description: 'Αναφορά Αίτησης' },
+                { Id: 5, Description: 'Αναφορά Κατάστασης' },
+                { Id: 6, Description: 'Μήνυμα' }
+            ],
+            reportTypesHtml: [
                 { Id: 0, Description: '<i class="text-primary material-icons md-18" title="Αναφορά Σίτισης">restaurant_menu</i>' },
                 { Id: 1, Description: '<i class="text-primary material-icons md-18" title="Αναφορά Στέγασης">local_hotel</i>' },
                 { Id: 2, Description: '<i class="text-primary material-icons md-18" title="Αναφορά Μετακίνησης">airport_shuttle</i>' },
                 { Id: 3, Description: '<i class="text-danger material-icons md-18" title="Αναφορά Προβλήματος">error</i>' },
                 { Id: 4, Description: '<i class="text-warning material-icons md-18" title="Αναφορά Αίτησης">message</i>' },
                 { Id: 5, Description: '<i class="text-info material-icons md-18" title="Αναφορά Κατάστασης">assignment</i>' },
-                { Id: 6, Description: '<i class="text-primary material-icons md-18" title="Μήνυμα προς Εγκατάσταση">email</i>' }
+                { Id: 6, Description: '<i class="text-primary material-icons md-18" title="Μήνυμα">email</i>' }
             ],
             htmlStatus: [
                 { Id: 0, Description: '<i class="text-success material-icons md-18" title="Σε Λειτουργία">fiber_manual_record</i>' },

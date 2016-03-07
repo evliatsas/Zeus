@@ -5,7 +5,7 @@ angular
     .controller('FacilityCtrl', function ($scope, $window, $timeout, lookupService, messageService) {
 
         $scope.reportcolumns = [
-            { Caption: 'Τ', Field: 'Type', Type: 'LookupHtml', Values: lookupService.reportTypes, Tooltip: 'Τύπος Αναφοράς' },
+            { Caption: 'Τ', Field: 'Type', Type: 'LookupHtml', Values: lookupService.reportTypesHtml, Tooltip: 'Τύπος Αναφοράς' },
             { Caption: 'Π', Field: 'Priority', Type: 'LookupHtml', Values: lookupService.priorities, Tooltip: 'Προτεραιότητα Αναφοράς' },
             { Caption: 'Θέμα', Field: 'Subject' },
             { Caption: 'Συντάκτης', Field: 'User.Title' },
