@@ -22,7 +22,7 @@
         <label for="Sensitivity" class="control-label">Ευπάθεια</label>
         <input type="text" class="form-control" id="Sensitivity" ng-model="data.Sensitivity">
     </div>
-    <div class="form-group label-floating ng-is-empty">
+    <div class="form-group label-static ng-is-empty is-empty">
         <label for="FacilityId" class="control-label">Δομή Φιλοξενείας</label>
         <select id="FacilityId" class="form-control" ng-model="data.FacilityId">
             <option ng-repeat="facility in facilities" value="{{facility.Id}}">

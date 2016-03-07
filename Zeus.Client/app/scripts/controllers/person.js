@@ -8,6 +8,16 @@ angular
             "Name" : "Tasos",
         }
 
+        $scope.reportcolumns = [
+            { Caption: 'Όνομα', Field: 'Name' },
+            { Caption: 'Εθνικότητα', Field: 'Nationality' },
+            { Caption: 'Διαβατήριο', Field: 'Passport' },
+            { Caption: 'Ηλικία', Field: 'Age', Type: 'Number' },
+            { Caption: 'Ευπαθής', Field: 'IsSensitive', Type: 'Boolean' },
+            { Caption: 'Ευπάθεια', Field: 'Sensitivity' },
+            { Caption: 'Δομή', Field: 'Facility.Name' }
+        ];
+
         $scope.facilities = [{
             "Id": "",
             "Name": ""
@@ -86,4 +96,8 @@ angular
             "Utilization": 25,
             "Status": "Ενεργό"
         }];
+
+        $scope.addRelative = function () {
+            alert('add relative');
+        }
     });
