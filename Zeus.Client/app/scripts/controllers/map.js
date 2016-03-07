@@ -36,6 +36,17 @@ angular
               messageService.showError();
           });
       }
+
+      var icon = function (color) {
+          return {
+              path: "M19 2H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h4l3 3 3-3h4c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-7 3.3c1.49 0 2.7 1.21 2.7 2.7 0 1.49-1.21 2.7-2.7 2.7-1.49 0-2.7-1.21-2.7-2.7 0-1.49 1.21-2.7 2.7-2.7zM18 16H6v-.9c0-2 4-3.1 6-3.1s6 1.1 6 3.1v.9z",
+              fillColor: color,
+              fillOpacity: 1,
+              anchor: new google.maps.Point(12, 25),
+              strokeWeight: 0,
+              scale: 1.4
+          };
+      }
             
       function addMarker(element, index, array) {
           var myLatLng = { lat: element.Location.Coordinates[0], lng: element.Location.Coordinates[1] };
@@ -43,7 +54,7 @@ angular
               position: myLatLng,
               map: map,
               title: element.Name,
-              icon: "http://maps.google.com/mapfiles/ms/icons/green-dot.png",
+              icon: icon('#009688'),
               customInfo: element
           });
 
@@ -55,14 +66,10 @@ angular
           });
 
           if (element.Utilization > 74)
-              marker.setIcon("http://maps.google.com/mapfiles/ms/icons/yellow-dot.png");
+              marker.setIcon(icon('#ff5722'));
 
           if (element.Utilization > 100)
-              marker.setIcon("http://maps.google.com/mapfiles/ms/icons/red-dot.png");
-
-          if (element.Utilization == 0) {
-              marker.setIcon("http://maps.google.com/mapfiles/ms/icons/blue-dot.png");
-          }
+              marker.setIcon(icon('#f44336'));
 
           $scope.markers.push(marker);
       }
