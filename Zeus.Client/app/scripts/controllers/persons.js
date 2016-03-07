@@ -2,10 +2,15 @@
 
 angular
     .module('zeusclientApp')
-    .controller('PersonsCtrl', function ($scope, lookupService) {
+    .controller('PersonsCtrl', function ($scope, $location, lookupService) {
 
         $scope.addPerson = function () {
             alert('add person');
+        }
+
+        $scope.showPerson = function (person)
+        {
+            $location.url("/persons/" + person.Id);
         }
 
         $scope.reportcolumns = [

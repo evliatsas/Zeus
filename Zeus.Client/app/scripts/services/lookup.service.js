@@ -26,7 +26,8 @@
                 { Id: 2, Description: '<i class="text-primary material-icons md-18" title="Αναφορά Μετακίνησης">airport_shuttle</i>' },
                 { Id: 3, Description: '<i class="text-danger material-icons md-18" title="Αναφορά Προβλήματος">error</i>' },
                 { Id: 4, Description: '<i class="text-warning material-icons md-18" title="Αναφορά Αίτησης">message</i>' },
-                { Id: 5, Description: '<i class="text-info material-icons md-18" title="Αναφορά Κατάστασης">assignment</i>' }
+                { Id: 5, Description: '<i class="text-info material-icons md-18" title="Αναφορά Κατάστασης">assignment</i>' },
+                { Id: 6, Description: '<i class="text-primary material-icons md-18" title="Μήνυμα προς Εγκατάσταση">email</i>' }
             ],
             htmlStatus: [
                 { Id: 0, Description: '<i class="text-success material-icons md-18" title="Σε Λειτουργία">fiber_manual_record</i>' },
@@ -75,6 +76,16 @@
                 { Id: 7, Description: 'Πεθερός' },
                 { Id: 8, Description: 'Πεθερά' }
             ],
+            ],
+            movementTypes: [
+                'Είσοδος',
+                'Έξοδος',
+                'Επιστροφή',
+                'Εθελούσια',
+                'Απέλαση',
+                'Άφιξη',
+                'Μετεγκατάσταση'
+            ]
         };
     }
 })();
