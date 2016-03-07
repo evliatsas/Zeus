@@ -33,19 +33,7 @@ namespace Zeus.Controllers
 
             return result == null ? this.Ok(new List<Facility>().AsEnumerable()) : this.Ok(result.OrderByDescending(o => o.Name).AsEnumerable());
         }
-
-        [Route("/lookup")]
-        [ResponseType(typeof(IEnumerable<Lookup>))]
-        [HttpGet]
-        public async Task<IHttpActionResult> GetFacilitiesAsLookup()
-        {
-            var user = await Helper.GetUserByRequest(User as ClaimsPrincipal);
-
-            var result = context.GetFacilitiesLookup();
-
-            return result == null ? this.Ok(new List<Lookup>().AsEnumerable()) : this.Ok(result.OrderByDescending(o => o.Description).AsEnumerable());
-        }
-
+        
         [Route("{id}")]
         [ResponseType(typeof(Facility))]
         [HttpGet]

@@ -58,7 +58,7 @@ angular
             controller: 'PersonCtrl',
             controllerAs: 'person'
         })
-        .when('reports/:type/:fid/:rid', {
+        .when('/reports/:type/:fid/:rid', {
             templateUrl: 'views/report.html',
             controller: 'ReportCtrl',
             controllerAs: 'reportCtrl'

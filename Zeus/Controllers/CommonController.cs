@@ -50,5 +50,17 @@ namespace Zeus.Controllers
                 return null;
             }
         }
+
+        [Route("facilities")]
+        [ResponseType(typeof(IEnumerable<Lookup>))]
+        [HttpGet]
+        public async Task<IHttpActionResult> GetFacilitiesAsLookup()
+        {
+            var user = await Helper.GetUserByRequest(User as ClaimsPrincipal);
+
+            var result = context.GetFacilitiesLookup();
+
+            return result == null ? this.Ok(new List<Lookup>().AsEnumerable()) : this.Ok(result.OrderByDescending(o => o.Description).AsEnumerable());
+        }
     }
 }

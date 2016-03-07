@@ -2,7 +2,7 @@
 
 angular
     .module('zeusclientApp')
-    .controller('ReportCtrl', function ($scope, $http, lookupService, messageService) {
+    .controller('ReportCtrl', function ($scope, $http, $routeParams, lookupService, messageService) {
 
         $scope.lookup = lookupService;
         $scope.facilities = [];
@@ -39,7 +39,7 @@ angular
                 else if ($scope.reportType == "2") {
                     $http({
                         method: 'GET',
-                        url: 'http://localhost:8080/api/facilities/lookup' //lookup facilities
+                        url: 'http://localhost:8080/api/common/facilities' //lookup facilities
                     }).then(function successCallback(response) {
                         $scope.facilities = response.data;
                     }, function errorCallback(response) {
