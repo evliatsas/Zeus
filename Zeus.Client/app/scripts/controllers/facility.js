@@ -17,8 +17,17 @@ angular
         }
 
         $scope.saveFacility = function () {
-            alert('facility saved');
-            return true;
+            $http({
+                method: $routeParams.id == "new" ? 'POST' : 'PUT',
+                data: $scope.data,
+                url: baseUrl + '/facilities'
+            }).then(function successCallback(response) {
+                $scope.data = response.data;
+                return true;
+            }, function errorCallback(response) {
+                messageService.showError();
+                return false;
+            });
         }
 
         var scrollToEnd = function () {
@@ -48,12 +57,19 @@ angular
             alert('add report');
         }
 
-        $http({
-            method: 'GET',
-            url: baseUrl + '/facilities/' + $routeParams.id
-        }).then(function successCallback(response) {
-            $scope.data = response.data;
-        }, function errorCallback(response) {
-            messageService.showError();
-        });
+        if ($routeParams.id == "new") {
+
+            $scope.data = {};
+
+        } else {
+
+            $http({
+                method: 'GET',
+                url: baseUrl + '/facilities/' + $routeParams.id
+            }).then(function successCallback(response) {
+                $scope.data = response.data;
+            }, function errorCallback(response) {
+                messageService.showError();
+            });
+        }
     });
