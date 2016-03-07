@@ -13,7 +13,7 @@
             <div class="col-md-6">
                 <div class="form-group label-floating ng-is-empty">
                     <label for="{{index + 1}}" class="control-label">Κατηγορία</label>
-                    <input type="text" class="form-control" id="{{$index + 1}}" ng-model="card.Type" uib-typeahead="state for state in lookup.getFacilityCategories() | filter:$viewValue">
+                    <input type="text" class="form-control" id="{{$index + 1}}" ng-model="card.Type" uib-typeahead="state for state in lookup.facilityCategories | filter:$viewValue">
                 </div>
             </div>
             <div class="col-md-6">
@@ -26,7 +26,7 @@
 
         <div class="form-group label-floating ng-is-empty">
             <label for="Status" class="control-label">Κατάσταση</label>
-            <input type="text" class="form-control" id="Status" ng-model="card.Status" uib-typeahead="state for state in lookup.getStatus() | filter:$viewValue">
+            <input type="text" class="form-control" id="Status" ng-model="card.Status" uib-typeahead="state for state in lookup.statuses | filter:$viewValue">
         </div>
 
         <div class="row">

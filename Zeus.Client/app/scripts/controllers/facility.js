@@ -1,17 +1,11 @@
 'use strict';
 
-/**
- * @ngdoc function
- * @name zeusclientApp.controller:MainCtrl
- * @description
- * # MainCtrl
- * Controller of the zeusclientApp
- */
-angular.module('zeusclientApp')
+angular
+    .module('zeusclientApp')
     .controller('FacilityCtrl', function ($scope, lookupService, messageService) {
 
         $scope.reportcolumns = [
-            { Caption: 'Τύπος', Field: 'Type', Type: 'LookupHtml', Values: lookupService.getReportTypes(), Tooltip: 'Τύπος Αναφοράς' },
+            { Caption: 'Τύπος', Field: 'Type', Type: 'LookupHtml', Values: lookupService.reportTypes, Tooltip: 'Τύπος Αναφοράς' },
             { Caption: 'Θέμα', Field: 'Subject' },
             { Caption: 'Συντάκτης', Field: 'User.Title' },
             { Caption: 'Ημερομηνία', Field: 'DateTime', Type: 'DateTime' }

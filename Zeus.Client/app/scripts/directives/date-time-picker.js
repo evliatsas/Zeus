@@ -1,5 +1,6 @@
-﻿angular.module('zeusclientApp')
-       .directive('dateTimePicker', function ($window) {
+﻿angular
+    .module('zeusclientApp')
+    .directive('dateTimePicker', function ($window) {
         return {
             scope: {
                 label: '@',
