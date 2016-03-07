@@ -13,7 +13,7 @@ namespace Zeus.Entities
         public Message()
         {
             this.DateTime = DateTime.Now;
-            this.Type = ReportType.RequestReport;
+            this.Type = ReportType.Message;
         }
     }
 }
