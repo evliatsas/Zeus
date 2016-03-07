@@ -34,6 +34,7 @@ namespace Zeus.Entities
         MovementReport,
         ProblemReport,
         RequestReport,
-        SituationReport
+        SituationReport,
+        Message
     }
 }

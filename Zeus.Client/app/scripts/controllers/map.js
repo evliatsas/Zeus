@@ -2,7 +2,7 @@
 
 angular
     .module('zeusclientApp')
-    .controller('MapCtrl', function ($http, $scope, $compile, $templateRequest) {
+    .controller('MapCtrl', function ($http, $scope, $compile, $templateRequest, messageService) {
       
       var map = new google.maps.Map(document.getElementById('map'), {
           center: { lat: 38.5306122, lng: 25.4556341 },
@@ -11,6 +11,8 @@ angular
 
       var infowindow = new google.maps.InfoWindow();
       $scope.facilities = [];
+      $scope.markers = [];
+      $scope.mnarker = null;
       $scope.facility = null;
 
       $http({
@@ -18,10 +20,11 @@ angular
           url: 'http://localhost:8080/api/facilities'
       }).then(function successCallback(response) {
           $scope.facilities = response.data;
+          $scope.markers = [];
           makeInfoWindow();
           $scope.facilities.forEach(addMarker);
       }, function errorCallback(response) {
-          alert(response.data);
+          messageService.showError();
       });
 
       function makeInfoWindow()
@@ -30,7 +33,7 @@ angular
               var content = $compile(template)($scope);
               infowindow.setContent(content[0]);
           }, function () {
-              alert("error");
+              messageService.showError();
           });
       }
             
@@ -46,6 +49,7 @@ angular
 
           marker.addListener('click', function () {
               $scope.facility = marker['customInfo'];
+              $scope.marker = marker;
               $scope.$apply();
               infowindow.open(map, marker);
           });
@@ -58,12 +62,28 @@ angular
 
           if (element.Utilization == 0) {
               marker.setIcon("http://maps.google.com/mapfiles/ms/icons/blue-dot.png");
-              marker.setDraggable(true);
           }
+
+          $scope.markers.push(marker);
       }
 
-      $scope.moveMarker = function()
+      $scope.moveMarker = function(facility,marker)
       {
+          marker.setDraggable(true);
+      }
 
+      $scope.saveMarker = function (facility, marker) {
+          var position = marker.getPosition();
+          facility.Location.Coordinates = [position.lat(), position.lng()];
+          $http({
+              method: 'PUT',
+              data: facility,
+              url: 'http://localhost:8080/api/facilities'
+          }).then(function successCallback(response) {
+              marker.setDraggable(false);
+              infowindow.close();
+          }, function errorCallback(response) {
+              messageService.showError();
+          });
       }
   });

@@ -32,8 +32,8 @@
                 type: "warning",
                 showCancelButton: true,
                 confirmButtonClass: "btn-danger",
-                confirmButtonText: "Διαγραφή",
-                cancelButtonText: "Ακύρωση",
+                confirmButtonText: "Διαγραφη",
+                cancelButtonText: "Ακυρωση",
                 closeOnConfirm: true
             },
                 function (isConfirm) {

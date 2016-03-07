@@ -35,23 +35,26 @@ namespace Zeus.Models
 
             switch (report.Type)
             {
-                case Entities.ReportType.FeedingReport:
+                case ReportType.FeedingReport:
                     title = "ΑΝΑΦΟΡΑ ΣΙΤΙΣΗΣ";
                     break;
-                case Entities.ReportType.HousingReport:
+                case ReportType.HousingReport:
                     title = "ΑΝΑΦΟΡΑ ΣΤΕΓΑΣΗΣ";
                     break;
-                case Entities.ReportType.MovementReport:
+                case ReportType.MovementReport:
                     title = "ΑΝΑΦΟΡΑ ΜΕΤΑΚΙΝΗΣΗΣ";
                     break;
-                case Entities.ReportType.ProblemReport:
+                case ReportType.ProblemReport:
                     title = "ΑΝΑΦΟΡΑ ΠΡΟΒΛΗΜΑΤΟΣ";
                     break;
-                case Entities.ReportType.RequestReport:
+                case ReportType.RequestReport:
                     title = "ΑΝΑΦΟΡΑ ΑΙΤΗΣΗΣ";
                     break;
-                case Entities.ReportType.SituationReport:
+                case ReportType.SituationReport:
                     title = "ΑΝΑΦΟΡΑ ΚΑΤΑΣΤΑΣΗΣ";
+                    break;
+                case ReportType.Message:
+                    title = "ΜΗΝΥΜΑ ΠΡΟΣ ΕΓΚΑΤΑΣΤΑΣΗ";
                     break;
             }
 
@@ -76,13 +79,7 @@ namespace Zeus.Models
 
             doc.Open();
 
-            Image jpg = Image.GetInstance(global::Zeus.Properties.Resources.logo, System.Drawing.Imaging.ImageFormat.Jpeg);
-            jpg.ScaleToFit(PageSize.A4.Height, PageSize.A4.Width);
-            jpg.Alignment = Image.UNDERLYING;
-            jpg.SetAbsolutePosition(0, 0);
-
             doc.NewPage();
-            doc.Add(jpg);
             doc.Add(reportHeader());
             doc.Add(reportInfo());
 
@@ -111,16 +108,23 @@ namespace Zeus.Models
 
         private PdfPTable reportHeader()
         {
-            PdfPTable table = new PdfPTable(2);
+            PdfPTable table = new PdfPTable(3);
             table.HorizontalAlignment = Element.ALIGN_CENTER;
             table.WidthPercentage = 100;
-            table.SetWidths(new float[] { 43, 57 });
             table.DefaultCell.Border = border;
 
             {
                 PdfPCell cell = new PdfPCell(reportLeftHeader());
                 cell.HorizontalAlignment = Element.ALIGN_CENTER;
                 cell.Border = border;
+                table.AddCell(cell);
+            }
+
+            {
+                PdfPCell cell = new PdfPCell(reportInfoHeader());
+                cell.HorizontalAlignment = Element.ALIGN_CENTER;
+                cell.Border = border;
+                cell.MinimumHeight = 75;
                 table.AddCell(cell);
             }
 
@@ -145,17 +149,10 @@ namespace Zeus.Models
                 PdfPCell cell = new PdfPCell(reportLogo());
                 cell.HorizontalAlignment = Element.ALIGN_CENTER;
                 cell.Border = border;
-                cell.MinimumHeight = 60;
                 table.AddCell(cell);
             }
 
-            {
-                PdfPCell cell = new PdfPCell(reportInfoHeader());
-                cell.HorizontalAlignment = Element.ALIGN_CENTER;
-                cell.Border = border;
-                cell.MinimumHeight = 75;
-                table.AddCell(cell);
-            }
+            
 
             return table;
         }
@@ -180,12 +177,14 @@ namespace Zeus.Models
 
         private PdfPTable reportLogo()
         {
+            Image jpg = Image.GetInstance(global::Zeus.Properties.Resources.logo, System.Drawing.Imaging.ImageFormat.Jpeg);
+
             PdfPTable table = new PdfPTable(1);
             table.HorizontalAlignment = Element.ALIGN_CENTER;
             table.WidthPercentage = 100;
             table.DefaultCell.Border = border;
 
-            PdfPCell cell = new PdfPCell(new Phrase("", boldFont));
+            PdfPCell cell = new PdfPCell(jpg);
             cell.HorizontalAlignment = Element.ALIGN_CENTER;
             cell.Border = border;
             table.AddCell(cell);
@@ -253,12 +252,52 @@ namespace Zeus.Models
             table.AddCell(new Phrase("Δομή Φιλοξενίας:", bodyFont));
             table.AddCell(new Phrase(report.Facility.Name, bodyFont));
 
+            switch (report.Type)
+            {
+                case Entities.ReportType.FeedingReport:
+                    var fReport = report as FeedingReport;
+                    table.AddCell(new Phrase("Προμηθευτής:", bodyFont));
+                    table.AddCell(new Phrase(fReport.FeedingProvider.Name, bodyFont));
+                    table.AddCell(new Phrase("Γεύμα:", bodyFont));
+                    table.AddCell(new Phrase(fReport.Meal, bodyFont));
+                    table.AddCell(new Phrase("Μερίδες:", bodyFont));
+                    table.AddCell(new Phrase(fReport.Rations.ToString(), bodyFont));
+                    break;
+                case Entities.ReportType.HousingReport:
+                    var hReport = report as HousingReport;
+                    table.AddCell(new Phrase("Είδος Στέγασης:", bodyFont));
+                    table.AddCell(new Phrase(hReport.Housing.Type, bodyFont));
+                    table.AddCell(new Phrase("Πλήθος Ατόμων:", bodyFont));
+                    table.AddCell(new Phrase(hReport.HousedCount.ToString(), bodyFont));
+                    break;
+                case Entities.ReportType.MovementReport:
+                    var mReport = report as MovementReport;
+                    table.AddCell(new Phrase("Είδος:", bodyFont));
+                    table.AddCell(new Phrase(mReport.MovementType, bodyFont));
+                    table.AddCell(new Phrase("Πρός:", bodyFont));
+                    table.AddCell(new Phrase(mReport.Destination.Name, bodyFont));
+                    table.AddCell(new Phrase("Πλήθος Ατόμων:", bodyFont));
+                    table.AddCell(new Phrase(mReport.PersonCount.ToString(), bodyFont));
+                    table.AddCell(new Phrase("Μέσο Μεταφοράς:", bodyFont));
+                    table.AddCell(new Phrase(mReport.Transportation.Type, bodyFont));
+                    table.AddCell(new Phrase("Αναχώρηση:", bodyFont));
+                    table.AddCell(new Phrase(mReport.Departure.ToString("ddd dd/MM/yyyy HH:mm"), bodyFont));
+                    table.AddCell(new Phrase("Εκτιμώμενη Άφιξη:", bodyFont));
+                    table.AddCell(new Phrase(mReport.ETA.ToString("ddd dd/MM/yyyy HH:mm"), bodyFont));
+                    table.AddCell(new Phrase("Ναυλωμένο:", bodyFont));
+                    table.AddCell(new Phrase(mReport.IsTransportHired ? "ΝΑΙ" : "ΟΧΙ", bodyFont));
+                    break;
+                case Entities.ReportType.SituationReport:
+                    var sReport = report as SituationReport;
+                    table.AddCell(new Phrase("Πλήθος Ατόμων:", bodyFont));
+                    table.AddCell(new Phrase(sReport.PersonCount.ToString(), bodyFont));
+                    break;
+            }
+
             table.AddCell(new Phrase("Σημειώσεις:", bodyFont));
             table.AddCell(new Phrase(report.Notes, bodyFont));
 
             #endregion
-
-            
 
             return table;
         }
