@@ -12,8 +12,11 @@ namespace Zeus.Entities
         public string Type { get; set; }        
         public Location Location { get; set; }
         public IList<Housing> Housings { get; set; }
+        public int MaxCapacity { get; set; }
         public int Capacity { get; set; }
         public int Attendance { get; set; }
+        public int Children { get; set; }
+        public int SensitiveCount { get; set; }
         public int Utilization { get { return Convert.ToInt32(((double)Attendance / (double)Capacity) * 100D); } }
         public bool IsSecure { get { return this.Providers.Any(p => p.Type == ProviderType.Security); } }
         public bool HasHealthcare { get { return this.Providers.Any(p => p.Type == ProviderType.Healthcare); } }

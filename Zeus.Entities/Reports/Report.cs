@@ -14,7 +14,8 @@ namespace Zeus.Entities
         typeof(MovementReport), 
         typeof(ProblemReport), 
         typeof(RequestReport), 
-        typeof(SituationReport))]
+        typeof(SituationReport),
+        typeof(Message))]
     public abstract class Report : Entity
     {
         public Auth.User User { get; set; }

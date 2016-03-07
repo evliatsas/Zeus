@@ -69,6 +69,7 @@
     <Compile Include="Providers\ProviderFacility.cs" />
     <Compile Include="Reports\FeedingReport.cs" />
     <Compile Include="Reports\HousingReport.cs" />
+    <Compile Include="Reports\Message.cs" />
     <Compile Include="Reports\MovementReport.cs" />
     <Compile Include="Reports\ProblemReport.cs" />
     <Compile Include="Facilities\Housing.cs" />
