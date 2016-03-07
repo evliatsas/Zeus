@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using MongoDB.Driver;
 
 namespace Zeus.Entities.Repositories
 {
@@ -84,6 +85,23 @@ namespace Zeus.Entities.Repositories
                 //set the static instance property
                 _instance = this;
             }
+        }
+
+        #endregion
+
+        #region Lookup Queries
+
+        public IEnumerable<Lookup> GetFacilitiesLookup()
+        {
+            var facilities = this.Database.GetCollection<Facility>("Facilities");
+            var query = from c in facilities.AsQueryable<Facility>()
+                        select new Lookup()
+                        {
+                            Id = c.Id,
+                            Description = c.Name
+                        };
+
+            return query.AsEnumerable();
         }
 
         #endregion

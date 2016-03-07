@@ -5,6 +5,11 @@ angular
     .controller('ReportCtrl', function ($scope, $http, lookupService, messageService) {
 
         $scope.lookup = lookupService;
+        $scope.facilities = [];
+        $scope.providers = [];
+        $scope.report = {};
+        $scope.reportType = $routeParams.type;
+
         var isInsert = $routeParams.rid == 'new';
         if (!isInsert) {
             $http({
@@ -20,27 +25,34 @@ angular
             $scope.report = {};
         }
 
-        var reportType = $routeParams.type;
-
         $http({
             method: 'GET',
             url: 'http://localhost:8080/api/facilities/' + $routeParams.fid //the unique id of the facility
-        }).then(function successCallback(response) {
-            $scope.report.Facility = response.data;
-            if (reportType == "0") {
-                $scope.providers = [];
-                for (var index in response.data.Facility.Providers) {
-                    if (response.data.Facility.Providers[index].Type == reportType)
-                        $scope.providers.push(response.data.Facility.Providers[index]);
+            }).then(function successCallback(response) {
+                $scope.report.Facility = response.data;
+                if ($scope.reportType == "0") {
+                    for (var index in response.data.Facility.Providers) {
+                        if (response.data.Facility.Providers[index].Type == reportType)
+                            $scope.providers.push(response.data.Facility.Providers[index]);
+                    }
                 }
-            }                
-        }, function errorCallback(response) {
-            $scope.report.Facility = {};
+                else if ($scope.reportType == "2") {
+                    $http({
+                        method: 'GET',
+                        url: 'http://localhost:8080/api/facilities/lookup' //lookup facilities
+                    }).then(function successCallback(response) {
+                        $scope.facilities = response.data;
+                    }, function errorCallback(response) {
+                        $scope.facilities = [];
+                    });
+                }
+            }, function errorCallback(response) {
+                $scope.report.Facility = {};
         });
 
 
         $scope.save = function () {
-            report.Type = reportType;
+            report.Type = $scope.reportType;
             report._t = [
                 'Report',
                 getReportType()
@@ -81,7 +93,7 @@ angular
         }
 
         var getReportType = function () {
-            switch (reportType) {
+            switch ($scope.reportType) {
                 case 0:
                     return 'FeedingReport';
                 case 1:

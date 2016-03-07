@@ -60,6 +60,7 @@
     <Compile Include="Contacts\FacilityContact.cs" />
     <Compile Include="Facilities\Location.cs" />
     <Compile Include="Contacts\PhoneNo.cs" />
+    <Compile Include="Lookup.cs" />
     <Compile Include="Persons\FamilyRelation.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
