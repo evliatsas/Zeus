@@ -2,10 +2,10 @@
 
 angular
     .module('zeusclientApp')
-    .controller('PersonsCtrl', function ($scope, $location, $http, basseUrl, lookupService) {
+    .controller('PersonsCtrl', function ($scope, $location, $http, baseUrl, lookupService) {
 
         $scope.addPerson = function () {
-            alert('add person');
+            $location.url("/persons/new");
         }
 
         $scope.showPerson = function (person)
@@ -25,7 +25,7 @@ angular
 
         $http({
             method: 'GET',
-            url: basseUrl + '/persons'
+            url: baseUrl + '/persons'
         }).then(function successCallback(response) {
             $scope.data = response.data;
         }, function errorCallback(response) {

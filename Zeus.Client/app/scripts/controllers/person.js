@@ -2,7 +2,7 @@
 
 angular
     .module('zeusclientApp')
-    .controller('PersonCtrl', function ($scope, $http, $routeParams, baseUrl, lookupService) {
+    .controller('PersonCtrl', function ($scope, $http, $routeParams, baseUrl, lookupService, messageService) {
 
         $scope.reportcolumns = [
             { Caption: 'Όνομα', Field: 'Name' },
@@ -23,16 +23,35 @@ angular
             messageService.showError();
         });
 
-        $http({
-            method: 'GET',
-            url: basseUrl + '/persons/' + $routeParams.id
-        }).then(function successCallback(response) {
-            $scope.data = response.data;
-        }, function errorCallback(response) {
-            messageService.showError();
-        });
-        
+
+        if ($routeParams.id == "new") {
+            $scope.data = {};
+        } else {
+            $http({
+                method: 'GET',
+                url: baseUrl + '/persons/' + $routeParams.id
+            }).then(function successCallback(response) {
+                $scope.data = response.data;
+            }, function errorCallback(response) {
+                messageService.showError();
+            });
+        }
+
         $scope.addRelative = function () {
             alert('add relative');
+        }
+
+        $scope.savePerson = function () {
+            $http({
+                method: $routeParams.id == "new" ? 'POST' : 'PUT',
+                data: $scope.data,
+                url: baseUrl + '/persons'
+            }).then(function successCallback(response) {
+                $scope.data = response.data;
+                return true;
+            }, function errorCallback(response) {
+                messageService.showError();
+                return false;
+            });
         }
     });
