@@ -27,7 +27,7 @@ angular
         $scope.providerscolumns = [
          { Caption: 'Όνομα', Field: 'Name', Tooltip: 'Ονοματεπώνυμο' },
          { Caption: 'Περιγραφή', Field: 'Description', Tooltip: 'Τίτλος' },
-         { Caption: 'Πρωσοπικό', Field: 'PersonnelCount', Tooltip: 'Φορέας' },
+         { Caption: 'Προσωπικό', Field: 'PersonnelCount', Tooltip: 'Προσωπικό' },
          { Caption: 'Υπαγωγή', Field: 'Administration', Values: lookupService.administrations, Tooltip: 'Υπαγωγή' },
          { Caption: 'Καθήκοντα', Field: 'Items', Tooltip: 'Καθήκοντα' },
          { Caption: 'Επαφές', Field: 'Contacts', Tooltip: 'Διεύθυνση' },
