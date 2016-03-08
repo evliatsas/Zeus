@@ -26,14 +26,11 @@ angular
         ];
 
         $scope.providerscolumns = [
-         { Caption: 'Όνομα', Field: 'Name', Tooltip: 'Ονοματεπώνυμο' },
-         { Caption: 'Περιγραφή', Field: 'Description', Tooltip: 'Τίτλος' },
-         { Caption: 'Προσωπικό', Field: 'PersonnelCount', Tooltip: 'Προσωπικό' },
-         { Caption: 'Υπαγωγή', Field: 'Administration', Values: lookupService.administrations, Tooltip: 'Υπαγωγή' },
-         { Caption: 'Καθήκοντα', Field: 'Items', Tooltip: 'Καθήκοντα' },
-         { Caption: 'Επαφές', Field: 'Contacts', Tooltip: 'Διεύθυνση' },
-         { Caption: 'Τηλέφωνα', Field: 'Facilities', Tooltip: 'Τηλέφωνα' },
-         { Caption: 'Τύπος Προμηθευτή', Field: 'Type', Values: lookupService.providerTypes, Tooltip: 'Τύπος Προμηθευτή' }
+         { Caption: 'Τύπος', Field: 'Type', Values: lookupService.providerTypes, Tooltip: 'Τύπος Προμηθευτή' },
+         { Caption: 'Όνομα', Field: 'Name', Tooltip: 'Όνομα Προμηθευτή' },
+         { Caption: 'Περιγραφή', Field: 'Description', Tooltip: 'Περιγραφή Προμηθευτή' },
+         { Caption: 'Προσωπικό', Field: 'PersonnelCount', Tooltip: 'Πλήθος Προσωπικού' },
+         { Caption: 'Υπαγωγή', Field: 'Administration', Values: lookupService.administrations, Tooltip: 'Διοικητική Υπαγωγή' }
         ]; 
 
         $scope.reportcolumns = [
