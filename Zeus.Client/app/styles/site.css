@@ -150,3 +150,7 @@ body {
         -ms-transform: translate(0, -5em);
         transform: translate(0, -5em);
     }
+
+.form-control{
+    max-width:900px;
+}

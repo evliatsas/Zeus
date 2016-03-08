@@ -25,7 +25,7 @@ angular
             }
         };
     })
-    .directive('cardListItem', function ($templateRequest, $compile) {
+    .directive('cardListItem', function ($templateRequest, $compile, $location) {
         return {
             transclude: true,
             link: function postLink(scope, element, attrs) {
@@ -36,6 +36,13 @@ angular
                         // Insert the compiled, linked element into the DOM
                         element.append(contents);
                     });
+
+
+
+                // issue new report
+                scope.issueReport = function (reportType, fid) {
+                    $location.url('/reports/' + reportType + '/' + fid + '/new');
+                }
             }
         }
     });

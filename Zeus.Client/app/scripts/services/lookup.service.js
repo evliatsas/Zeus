@@ -14,20 +14,36 @@
                 { Id: 3, Description: '<i class="text-warning material-icons md-18" title="Άμεσο">flag</i>' },
                 { Id: 4, Description: '<i class="text-danger material-icons md-18" title="Αστραπιαίο">flag</i>' },
             ],
+            prioritiesTitles: [
+                { Id: 0, Description: 'Χαμηλή' },
+                { Id: 1, Description: 'Κανονική' },
+                { Id: 2, Description: 'Επείγον' },
+                { Id: 3, Description: 'Άμεσο' },
+                { Id: 4, Description: 'Αστραπιαίο' },
+            ],
             classifications: [
                 { Id: 0, Description: '<i class="fa fa-square text-muted" title="Αδιαβάθμητο (ΑΔ)">' },
                 { Id: 1, Description: '<i class="fa fa-square text-success" title="Περιορισμένης Χρήσης (ΠΧ)">' },
                 { Id: 2, Description: '<i class="fa fa-square text-warning" title="Εμπιστευτικό (ΕΠ)">' },
                 { Id: 3, Description: '<i class="fa fa-square text-danger" title="Απόρρητο (ΑΠ)">' }
             ],
-            reportTypes: [
+            reportTitles: [
+                { Id: 0, Description: '<h3><i class="text-primary material-icons md-48" title="Αναφορά Σίτισης"/>restaurant_menu <small>Αναφορά Σίτισης</small></h3>' },
+                { Id: 1, Description: '<h3><i class="text-primary material-icons md-48" title="Αναφορά Στέγασης"/>local_hotel <small>Αναφορά Στέγασης</small></h3>' },
+                { Id: 2, Description: '<h3><i class="text-primary material-icons md-48" title="Αναφορά Μετακίνησης"/>airport_shuttle <small>Αναφορά Μετακίνησης</small></h3>' },
+                { Id: 3, Description: '<h3><i class="text-primary material-icons md-48" title="Αναφορά Προβλήματος"/>error <small>Αναφορά Προβλήματος</small></h3>' },
+                { Id: 4, Description: '<h3><i class="text-primary material-icons md-48" title="Αναφορά Αίτησης"/>message <small>Αναφορά Αίτησης</small></h3>' },
+                { Id: 5, Description: '<h3><i class="text-primary material-icons md-48" title="Αναφορά Κατάστασης"/>assignment <small>Αναφορά Κατάστασης</small></h3>' },
+                { Id: 6, Description: '<h3><i class="text-primary material-icons md-48" title="Μήνυμα"/>email <small>Μήνυμα</small></h3>' }
+            ],
+            reportTypesHtml: [
                 { Id: 0, Description: '<i class="text-primary material-icons md-18" title="Αναφορά Σίτισης">restaurant_menu</i>' },
                 { Id: 1, Description: '<i class="text-primary material-icons md-18" title="Αναφορά Στέγασης">local_hotel</i>' },
                 { Id: 2, Description: '<i class="text-primary material-icons md-18" title="Αναφορά Μετακίνησης">airport_shuttle</i>' },
                 { Id: 3, Description: '<i class="text-danger material-icons md-18" title="Αναφορά Προβλήματος">error</i>' },
                 { Id: 4, Description: '<i class="text-warning material-icons md-18" title="Αναφορά Αίτησης">message</i>' },
                 { Id: 5, Description: '<i class="text-info material-icons md-18" title="Αναφορά Κατάστασης">assignment</i>' },
-                { Id: 6, Description: '<i class="text-primary material-icons md-18" title="Μήνυμα προς Εγκατάσταση">email</i>' }
+                { Id: 6, Description: '<i class="text-primary material-icons md-18" title="Μήνυμα">email</i>' }
             ],
             htmlStatus: [
                 { Id: 0, Description: '<i class="text-success material-icons md-18" title="Σε Λειτουργία">fiber_manual_record</i>' },

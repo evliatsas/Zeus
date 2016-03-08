@@ -2,20 +2,16 @@
 
 angular
     .module('zeusclientApp')
-    .controller('FacilityCtrl', function ($scope, $window, $timeout, $http, $routeParams, lookupService, messageService, baseUrl) {
+    .controller('FacilityCtrl', function ($scope, $window, $timeout, $http, $routeParams, $location, lookupService, messageService, baseUrl) {
 
         $scope.reportcolumns = [
-            { Caption: 'Τ', Field: 'Type', Type: 'LookupHtml', Values: lookupService.reportTypes, Tooltip: 'Τύπος Αναφοράς' },
+            { Caption: 'Τ', Field: 'Type', Type: 'LookupHtml', Values: lookupService.reportTypesHtml, Tooltip: 'Τύπος Αναφοράς' },
             { Caption: 'Π', Field: 'Priority', Type: 'LookupHtml', Values: lookupService.priorities, Tooltip: 'Προτεραιότητα Αναφοράς' },
             { Caption: 'Θέμα', Field: 'Subject' },
             { Caption: 'Συντάκτης', Field: 'User.Title' },
             { Caption: 'Ημερομηνία', Field: 'DateTime', Type: 'DateTime' }
         ];
-
-        var testFunc = function () {
-            var q = 5;
-        }
-
+               
         $scope.saveFacility = function () {
             $http({
                 method: $routeParams.id == "new" ? 'POST' : 'PUT',
@@ -52,11 +48,6 @@ angular
             scrollToEnd();
         }
 
-        $scope.addReport = function () {
-            // gamise mas edw den lynetai me aplo push sto array
-            alert('add report');
-        }
-
         if ($routeParams.id == "new") {
 
             $scope.data = {};
@@ -71,5 +62,12 @@ angular
             }, function errorCallback(response) {
                 messageService.showError();
             });
+        }
+
+        // REPORTS
+
+        // issue a message to a contact
+        $scope.sendMessage = function (fid, rid) {
+            $location.url('/reports/6/' + fid + '/new');
         }
     });

@@ -22,6 +22,7 @@ angular
   ])
   .config(function ($routeProvider) {
       $.material.init();
+
       $routeProvider
         .when('/', {
             templateUrl: 'views/main.html',
@@ -59,7 +60,22 @@ angular
             controllerAs: 'person'
         })
         .when('/reports/:type/:fid/:rid', {
-            templateUrl: 'views/report.html',
+            templateUrl: function (params) {
+                var type = params.type;
+                var tempUrl = 'views/reports/';
+                if (type == 0)
+                    tempUrl += 'feeding-report.html';
+                else if(type == 1)
+                    tempUrl += 'housing-report.html';
+                else if (type == 2)
+                    tempUrl += 'transport-report.html';
+                else if (type == 5)
+                    tempUrl += 'situation-report.html';
+                else
+                    tempUrl += 'report.html';
+
+                return tempUrl;
+            },
             controller: 'ReportCtrl',
             controllerAs: 'reportCtrl'
         })
