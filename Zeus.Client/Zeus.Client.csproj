@@ -78,6 +78,7 @@
     <Content Include="app\scripts\controllers\about.js" />
     <Content Include="app\scripts\controllers\facilities.js" />
     <Content Include="app\scripts\controllers\facility.js" />
+    <Content Include="app\scripts\controllers\login.js" />
     <Content Include="app\scripts\controllers\main.js" />
     <Content Include="app\scripts\controllers\map.js" />
     <Content Include="app\scripts\controllers\menu.js" />
@@ -93,6 +94,7 @@
     <Content Include="app\scripts\directives\on-finish-render.js" />
     <Content Include="app\scripts\directives\phone-list.js" />
     <Content Include="app\scripts\directives\save-alert.js" />
+    <Content Include="app\scripts\services\auth.interceptor.service.js" />
     <Content Include="app\scripts\services\lookup.service.js" />
     <Content Include="app\scripts\services\message.service.js" />
     <Content Include="app\scripts\services\utilities.js" />
@@ -115,6 +117,7 @@
     <Content Include="app\views\about.html" />
     <Content Include="app\views\facilities.html" />
     <Content Include="app\views\facility.html" />
+    <Content Include="app\views\login.html" />
     <Content Include="app\views\main.html" />
     <Content Include="app\views\map.html" />
     <Content Include="app\views\provider.html" />

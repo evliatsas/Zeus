@@ -1,4 +1,4 @@
-﻿html {
+﻿/*html {
     height: 100%;
 }
 
@@ -11,14 +11,13 @@ body {
     height: calc(100% - 165px);
 }
 
-.map-container {
-    height: 100%;
-    height: calc(100% - 0px);
-}
-
 .mydatepicker .btn {
     padding: 0px;
     margin: 0px;
+}*/
+
+.map-container {
+    box-shadow: 0 0 2px rgba(0,0,0,.12),0 2px 4px rgba(0,0,0,.24);
 }
 
 .mydatepicker .form-group .form-control {
@@ -161,3 +160,32 @@ body {
     padding-bottom:30px;
     color: #555;
 }
+
+#loading-bar .bar {
+    background-color: #ff5722;
+}
+
+#loading-bar-spinner {
+    display: none;
+}
+
+
+/* Width breakpoints */
+@media only screen and (min-width: 1000px) { .content-container { width: 86%; } }
+@media only screen and (min-width: 1280px) {
+    .content-container {
+        width: 87%;
+        background-color: white;
+        box-shadow: 0 0 2px rgba(0,0,0,.12),0 2px 4px rgba(0,0,0,.24);
+        padding: 0px;
+    }
+}
+@media only screen and (min-width: 1600px) { .content-container { width: 90%; } }
+
+/* Height breakpoints */
+@media only screen and (max-height: 567px) { .map-container { height: 440px; } }
+@media only screen and (min-height: 568px) { .map-container { height: 440px; } }
+@media only screen and (min-height: 600px) { .map-container { height: 480px; } }
+@media only screen and (min-height: 700px) { .map-container { height: 580px; } }
+@media only screen and (min-height: 800px) { .map-container { height: 680px; } }
+@media only screen and (min-height: 900px) { .map-container { height: 780px; } }

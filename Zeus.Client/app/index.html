@@ -53,6 +53,7 @@
                         <li ng-class="menu.getClass('/persons')"><a ng-href="#/persons">Ταυτοποιήσεις</a></li>
                         <li ng-class="menu.getClass('/map')"><a ng-href="#/map">Χάρτης</a></li>
                         <li ng-class="menu.getClass('/about')"><a ng-href="#/about">About</a></li>
+                        <li ng-class="menu.getClass('/login')"><a ng-href="#/login">Login</a></li>
                     </ul>
                 </div>
             </div>
@@ -60,12 +61,12 @@
     </div>
 
     <div class="container-fluid">
-        <div ng-view="" class="map-container"></div>
+        <div ng-view=""></div>
     </div>
 
     <div class="footer">
         <div class="container-fluid">
-            <p><span class="glyphicon glyphicon-copyright-mark"></span> from the Cinnamon team</p>
+            <div><i class="material-icons md-18">copyright</i> from the Cinnamon team</div>
         </div>
     </div>
 
@@ -104,6 +105,7 @@
     <script src="bower_components/arrive/src/arrive.js"></script>
     <script src="bower_components/moment/moment.js"></script>
     <script src="bower_components/angular-loading-bar/build/loading-bar.js"></script>
+    <script src="bower_components/angular-local-storage/dist/angular-local-storage.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
     <!-- build:js({.tmp,app}) scripts/scripts.js -->
@@ -117,6 +119,7 @@
     <script src="scripts/controllers/facility.js"></script>
     <script src="scripts/controllers/report.js"></script>
     <script src="scripts/controllers/map.js"></script>
+    <script src="scripts/controllers/login.js"></script>
     <script src="scripts/directives/facility-details.js"></script>
     <script src="scripts/directives/on-finish-render.js"></script>
     <script src="scripts/directives/phone-list.js"></script>
@@ -128,6 +131,7 @@
     <script src="scripts/services/utilities.js"></script>
     <script src="scripts/services/lookup.service.js"></script>
     <script src="scripts/services/message.service.js"></script>
+    <script src="scripts/services/auth.interceptor.service.js"></script>
     <script src="http://maps.googleapis.com/maps/api/js">
     </script>
     <!-- endbuild -->

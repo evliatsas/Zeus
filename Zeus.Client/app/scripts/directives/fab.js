@@ -7,6 +7,7 @@ angular
             scope: {
                 icon: '@',
                 title: '@?',
+                hide: '=',
                 click: '&onClick'
             },
             transclude: true,
