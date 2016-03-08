@@ -50,7 +50,12 @@ angular
 
         if ($routeParams.id == "new") {
 
-            $scope.data = {};
+            $scope.data = {
+                Location: {
+                    Type: 'Point',
+                    Coordinates: [38.5306122, 25.4556341]
+                }
+            };
 
         } else {
 
