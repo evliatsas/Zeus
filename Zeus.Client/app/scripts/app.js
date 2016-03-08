@@ -19,8 +19,7 @@ angular
     'ngTouch',
     'ui.bootstrap',
     'angular-loading-bar',
-    'LocalStorageModule',
-    'authInterceptorService'
+    'LocalStorageModule'
   ])
   .config(function ($routeProvider) {
       $.material.init();
@@ -90,11 +89,13 @@ angular
             redirectTo: '/'
         });
   })
-  .config(function (localStorageServiceProvider) {
+  .config(function ($httpProvider, localStorageServiceProvider) {
     localStorageServiceProvider
         .setPrefix('ZeusApp')
         .setStorageType('sessionStorage')
         .setNotify(true, true)
+
+    $httpProvider.interceptors.push('authInterceptorService');
   })
   .constant("moment", moment)
   .constant("baseUrl", "http://localhost:8080/api")

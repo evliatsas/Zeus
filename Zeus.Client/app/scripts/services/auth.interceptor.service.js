@@ -13,9 +13,9 @@
         var _request = function (config) {
             config.headers = config.headers || {};
 
-            var authData = localStorageService.get('authorizationData');
+            var authData = localStorageService.get('jwt');
             if (authData && authData.token) {
-                config.headers.Authorization = 'Bearer ' + authData.token;
+                config.headers.Authorization = 'Bearer ' + authData.access_token;
             }
 
             return config;
@@ -23,8 +23,7 @@
 
         var _responseError = function (rejection) {
             if (rejection.status == 401) {
-                localStorageService.remove('authorizationData');
-                localStorageService.remove('userInfo');
+                localStorageService.remove('jwt');
                 $rootScope.redirectLocation = $location.path() == '/login' ? '/' : $location.path();
                 $location.path('/login');                
             }
