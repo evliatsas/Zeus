@@ -27,11 +27,11 @@ angular
         $scope.save = function () {
             provider.Type = $scope.providerType;
             if (isInsert) {
-                // Create report
+                // Create provider
                 var method = 'POST';
             }
             else {
-                // Update report
+                // Update provider
                 var method = 'PUT';
             }
 
