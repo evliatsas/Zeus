@@ -1,4 +1,13 @@
-﻿<div class="col-md-6">
+﻿<div class="pull-right">
+    <span class="btn btn-danger btn-fab fab" ng-click="delete()">
+        <i class="material-icons" title="Διαγραφή Προμηθευτή">delete</i>
+    </span>
+    <span class="btn btn-success btn-fab fab" ng-click="save()">
+        <i class="material-icons" title="Αποθήκευση Προμηθευτή">save</i>
+    </span>
+</div>
+
+<div class="col-md-6">
     <div class="form-group label-static ng-is-empty">
         <label for="Name" class="control-label">Όνομα</label>
         <input type="text" class="form-control" id="Name" ng-model="data.Name">
@@ -26,7 +35,7 @@
         <label for="FacilityId" class="control-label">Δομή Φιλοξενείας</label>
         <select id="FacilityId" class="form-control" ng-model="data.FacilityId">
             <option ng-repeat="facility in facilities" value="{{facility.Id}}">
-                {{facility.Name}}
+                {{facility.Description}}
             </option>
         </select>
     </div>
@@ -34,7 +43,7 @@
 <div class="col-md-6">
     <h1>Συγγενείς</h1>
     <cinnamon-grid grid-columns="reportcolumns"
-                   grid-items="data"
+                   grid-items="data.Relatives"
                    show-grid-buttons="true"
                    hide-item-buttons="true"
                    highlight="false"

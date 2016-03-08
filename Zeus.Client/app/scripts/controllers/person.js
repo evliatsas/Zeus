@@ -25,7 +25,7 @@ angular
 
 
         if ($routeParams.id == "new") {
-            $scope.data = {};
+            //$scope.data = {};
         } else {
             $http({
                 method: 'GET',
