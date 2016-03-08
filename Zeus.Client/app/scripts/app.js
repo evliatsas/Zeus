@@ -23,6 +23,7 @@ angular
   ])
   .config(function ($routeProvider) {
       $.material.init();
+      moment.locale('el');
 
       $routeProvider
         .when('/', {

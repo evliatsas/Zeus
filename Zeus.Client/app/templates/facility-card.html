@@ -1,30 +1,27 @@
 <div class="panel panel-primary" ng-class="{ 'panel-warning': card.Utilization > 74, 'panel-danger': card.Utilization > 100 }">
-    <div class="panel-heading">
-        <a href="#/facilities/{{card.Id}}" style="color: white">
-            <i class="material-icons md-36 pull-left">home</i>
-            <h4>
-				<span style="padding-left:10px">{{card.Name}}</span>
-				<span class="pull-right"><strong>{{card.Utilization}}%</strong></span>
-			</h4>
-        </a>
+    <div class="panel-heading" ng-click="goto('/facilities/' + card.Id)" style="cursor: pointer">
+        <i class="material-icons md-36 pull-left">home</i>
+        <h4>
+            <span style="padding-left:10px">{{card.Name}}</span>
+            <span class="pull-right"><strong>{{card.Utilization}}%</strong></span>
+        </h4>
     </div>
     <div class="panel-body" style="height: 100px">
         <p style="height: 50px; overflow: hidden; text-overflow: ellipsis">{{card.Description}}</p>
-        <div>
-            <p class="text-primary pull-left">
-                Φιλοξενούμενοι: {{card.Attendance}} / {{card.Capacity}}
-            </p>
-            
-        </div>
+
+        <p class="text-primary pull-left">
+            Φιλοξενούμενοι: {{card.Attendance}} / {{card.Capacity}}
+        </p>
     </div>
     <div class="panel-footer">
         <div class="btn-group btn-group-justified">
-            <a href="javascript:void(0)" ng-click="issueReport(4, card.Id)" class="btn btn-xs" title="Αίτηση" style="padding: 0px"><i class="text-info material-icons md-36">message</i></a>
-            <a href="javascript:void(0)" ng-click="issueReport(1, card.Id)" class="btn btn-xs" title="Στέγαση" style="padding: 0px"><i class="text-info material-icons md-36">local_hotel</i></a>
-            <a href="javascript:void(0)" ng-click="issueReport(2, card.Id)" class="btn btn-xs" title="Μετακίνηση" style="padding: 0px"><i class="text-info material-icons md-36">airport_shuttle</i></a>
-            <a href="javascript:void(0)" ng-click="issueReport(0, card.Id)" class="btn btn-xs" title="Σίτιση" style="padding: 0px"><i class="text-info material-icons md-36">restaurant_menu</i></a>
-            <a href="javascript:void(0)" ng-click="issueReport(5, card.Id)" class="btn btn-xs" title="Αναφορά" style="padding: 0px"><i class="text-info material-icons md-36">assignment</i></a>
-            <a href="javascript:void(0)" ng-click="issueReport(3, card.Id)" class="btn btn-xs" title="Πρόβλημα" style="padding: 0px"><i class="text-danger material-icons md-36">error</i></a>
+            <a href="javascript:void(0)" ng-click="issueReport(4, card.Id)" class="btn btn-xs" title="Αίτηση" style="padding: 0px"><i class="text-info material-icons md-24">message</i></a>
+            <a href="javascript:void(0)" ng-click="issueReport(1, card.Id)" class="btn btn-xs" title="Στέγαση" style="padding: 0px"><i class="text-info material-icons md-24">local_hotel</i></a>
+            <a href="javascript:void(0)" ng-click="issueReport(2, card.Id)" class="btn btn-xs" title="Μετακίνηση" style="padding: 0px"><i class="text-info material-icons md-24">airport_shuttle</i></a>
+            <a href="javascript:void(0)" ng-click="issueReport(0, card.Id)" class="btn btn-xs" title="Σίτιση" style="padding: 0px"><i class="text-info material-icons md-24">restaurant_menu</i></a>
+            <a href="javascript:void(0)" ng-click="issueReport(5, card.Id)" class="btn btn-xs" title="Αναφορά" style="padding: 0px"><i class="text-info material-icons md-24">assignment</i></a>
+            <a href="javascript:void(0)" ng-click="issueReport(3, card.Id)" class="btn btn-xs" title="Πρόβλημα" style="padding: 0px"><i class="text-danger material-icons md-24">error</i></a>
+            <a href="javascript:void(0)" ng-click="issueReport(6, card.Id)" class="btn btn-xs" title="Μήνυμα" style="padding: 0px"><i class="text-success material-icons md-24">email</i></a>
         </div>
     </div>
 </div>

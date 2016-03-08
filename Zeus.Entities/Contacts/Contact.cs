@@ -12,6 +12,7 @@ namespace Zeus.Entities
         public string Title { get; set; }
         public string Company { get; set; }
         public string Address { get; set; }
+        public string Administration { get; set; }
         public IList<Phone> Phones{ get; set; }
         public string Email { get; set; }
         public string Type { get; set; }

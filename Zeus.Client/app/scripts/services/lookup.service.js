@@ -31,7 +31,7 @@
                 { Id: 0, Description: '<i class="text-primary material-icons md-48 pull-left" title="Αναφορά Σίτισης">restaurant_menu </i><div class="report-header">Αναφορά Σίτισης</div>' },
                 { Id: 1, Description: '<i class="text-primary material-icons md-48 pull-left" title="Αναφορά Στέγασης">local_hotel </i><div class="report-header">Αναφορά Στέγασης</div>' },
                 { Id: 2, Description: '<i class="text-primary material-icons md-48 pull-left" title="Αναφορά Μετακίνησης">airport_shuttle </i><div class="report-header">Αναφορά Μετακίνησης</div>' },
-                { Id: 3, Description: '<i class="text-danger material-icons md-48 pull-left" title="Αναφορά Προβλήματος">error </i><div class="report-header"><span>Αναφορά Προβλήματος</span></div>' },
+                { Id: 3, Description: '<i class="text-danger material-icons md-48 pull-left" title="Αναφορά Προβλήματος">error </i><div class="report-header"><span>Αναφορά Προβλήματος</div>' },
                 { Id: 4, Description: '<i class="text-warning material-icons md-48 pull-left" title="Αναφορά Αίτησης">message </i><div class="report-header">Αναφορά Αίτησης</div>' },
                 { Id: 5, Description: '<i class="text-info material-icons md-48 pull-left" title="Αναφορά Κατάστασης">assignment </i><div class="report-header">Αναφορά Κατάστασης</div>' },
                 { Id: 6, Description: '<i class="text-primary material-icons md-48 pull-left" title="Μήνυμα">email </i><div class="report-header">Μήνυμα</div>' }
@@ -106,6 +106,13 @@
                 'Απέλαση',
                 'Άφιξη',
                 'Μετεγκατάσταση'
+            ],
+            contactTypes: [
+               'Υπεύθυνος',
+               'Υπάλληλος',
+               'POC',
+               'Διαχειριστής',
+               'Ιδιοκτήτης'
             ],
             transportation: [
                 'Λεωφορείο',
