@@ -14,7 +14,7 @@
             config.headers = config.headers || {};
 
             var authData = localStorageService.get('jwt');
-            if (authData && authData.token) {
+            if (authData && authData.access_token) {
                 config.headers.Authorization = 'Bearer ' + authData.access_token;
             }
 
