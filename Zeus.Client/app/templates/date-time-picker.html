@@ -1,9 +1,9 @@
-﻿
-<div class="form-group label-static ng-is-empty">
-    <label class="control-label" for="dtp">{{label}}</label>
-    <div>
-        <input type="text" id="dtp" class="form-control" uib-datepicker-popup="{{format}}" ng-model="date" show-button-bar="false" is-open="opened" />
-        <button type="button" class="btn btn-xs" ng-click="opened = true" style="padding: 0px; position: absolute; bottom: 6px; right: 110px"><i class="material-icons md-24">date_range</i></button>
-        <uib-timepicker ng-model="date" hour-step="1" minute-step="15" show-meridian="false" class="mydatepicker" style="position: absolute; top: -21px; right: 0px"></uib-timepicker>
+﻿<div class="form-group">
+    <label class="control-label">{{label}}</label>
+    <div class='input-group date'>
+        <input type='text' class="form-control" ng-model="date"/>
+        <span class="input-group-addon">
+            <i class="material-icons md-24">date_range</i>
+        </span>
     </div>
 </div>

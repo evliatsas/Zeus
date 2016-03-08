@@ -1,19 +1,17 @@
 ﻿angular
     .module('zeusclientApp')
     .directive('dateTimePicker', function ($window) {
+        var uniqueId = 1;
         return {
             scope: {
                 label: '@',
-                placeholder: '@',
-                format: '@',
                 date: '='
             },
             templateUrl: '/templates/date-time-picker.html',
             link: function postLink(scope, element, attrs) {
-                scope.opened = false;
-                scope.width = function () {
-                    return $window.innerWidth;
-                }
+                var dt = 'dt' + uniqueId++;
+                element.find('input').parent().attr('id', dt);
+                $('#' + dt).datetimepicker();
             }
         };
-});
+    });
