@@ -112,6 +112,14 @@ angular
         }
 
         $scope.addHousing = function () {
-            var q = 5;
+            
+        }
+
+        $scope.addContact = function () {
+
+        }
+
+        $scope.addProvider = function () {
+
         }
     });

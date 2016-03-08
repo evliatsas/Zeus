@@ -11,7 +11,7 @@
     <facility-details facility="data"></facility-details>
 </div>
 
-<div class="col-md-8">
+<div class="col-md-8" style="padding-top:20px;">
     <uib-tabset justified="true" active="active">
         <uib-tab index="0" heading="Στέγαση">
             <cinnamon-grid grid-columns="housingcolumns"
@@ -24,49 +24,33 @@
             </cinnamon-grid>
         </uib-tab>
         <uib-tab index="2" heading="Επαφές">
-            <div class="shadow-box btn-group-sm">
-                <span class="btn btn-info btn-fab fab pull-right" ng-click="addContact()">
-                    <i class="material-icons" title="Προσθήκη Επαφής">add</i>
-                </span>
-                <i>Επαφές</i>
-                <cinnamon-grid grid-columns="contactscolumns"
-                               grid-items="data.Contacts"
-                               show-grid-buttons="false"
-                               hide-item-buttons="true"
-                               highlight="!item.IsAcknowledged"
-                               row-click-fn="showContact(item)">
-                </cinnamon-grid>
-            </div>
+            <cinnamon-grid grid-columns="contactscolumns"
+                           grid-items="data.Contacts"
+                           show-grid-buttons="true"
+                           hide-item-buttons="true"
+                           highlight="!item.IsAcknowledged"
+                           row-click-fn="showContact(item)"
+                           grid-create-fn="addHousing()">
+            </cinnamon-grid>
         </uib-tab>
         <uib-tab index="3" heading="Υποστήριξη">
-            <div class="shadow-box btn-group-sm">
-                <span class="btn btn-info btn-fab fab pull-right" ng-click="addContact()">
-                    <i class="material-icons" title="Προσθήκη Επαφής">add</i>
-                </span>
-                <i>Επαφές</i>
-                <cinnamon-grid grid-columns="providerscolumns"
-                               grid-items="data.Providers"
-                               show-grid-buttons="false"
-                               hide-item-buttons="true"
-                               highlight="!item.IsAcknowledged"
-                               row-click-fn="showProvider(item)">
-                </cinnamon-grid>
-            </div>
+            <cinnamon-grid grid-columns="providerscolumns"
+                           grid-items="data.Providers"
+                           show-grid-buttons="true"
+                           hide-item-buttons="true"
+                           highlight="!item.IsAcknowledged"
+                           row-click-fn="showProvider(item)"
+                           grid-create-fn="addHousing()">
+            </cinnamon-grid>
         </uib-tab>
         <uib-tab index="4" heading="Αναφορές">
-            <div class="shadow-box btn-group-sm">
-                <span class="btn btn-info btn-fab fab pull-right" ng-click="addContact()">
-                    <i class="material-icons" title="Προσθήκη Επαφής">add</i>
-                </span>
-                <i>Επαφές</i>
-                <cinnamon-grid grid-columns="reportcolumns"
-                               grid-items="data.Reports"
-                               show-grid-buttons="false"
-                               hide-item-buttons="true"
-                               highlight="!item.IsAcknowledged"
-                               row-click-fn="showReport(item)">
-                </cinnamon-grid>
-            </div>
+            <cinnamon-grid grid-columns="reportcolumns"
+                           grid-items="data.Reports"
+                           show-grid-buttons="false"
+                           hide-item-buttons="true"
+                           highlight="!item.IsAcknowledged"
+                           row-click-fn="showReport(item)">
+            </cinnamon-grid>
         </uib-tab>
     </uib-tabset>
 </div>
