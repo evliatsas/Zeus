@@ -16,11 +16,11 @@ angular
         ];
 
         $scope.addItem = function () {
-            $location.url(baseUrl + '/providers/0/new');
+            $location.url('/providers/new');
         }
 
         $scope.openItem = function (provider) {
-            $location.url(baseUrl + '/providers/' + provider.Type + '/' + provider.Id);
+            $location.url('/providers/' + provider.Id);
         }
 
         $http({

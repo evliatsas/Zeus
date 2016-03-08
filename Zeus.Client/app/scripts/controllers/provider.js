@@ -15,7 +15,7 @@ angular
         if (!isInsert) {
             $http({
                 method: 'GET',
-                url: baseUrl + '/providers/' + $routeParams.rid //the unique id of the provider
+                url: baseUrl + '/providers/' + $routeParams.pid //the unique id of the provider
             }).then(function successCallback(response) {
                 $scope.provider = response.data;
             }, function errorCallback(response) {
@@ -27,8 +27,10 @@ angular
             $scope.provider.Items = [];
         }
 
+        var i = 1;
         $scope.addItem = function () {
-            $scope.provider.Items.push('');
+            i++;
+            $scope.provider.Items.push({"Id":i,"Description":"Test"});
         }
 
         $scope.removeItem = function (index) {
@@ -36,7 +38,6 @@ angular
         }
 
         $scope.save = function () {
-            provider.Type = $scope.providerType;
             if (isInsert) {
                 // Create provider
                 var method = 'POST';
