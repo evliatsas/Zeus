@@ -92,6 +92,12 @@
                 { Id: 7, Description: 'Πεθερός' },
                 { Id: 8, Description: 'Πεθερά' }
             ],
+            providerTypes: [
+                { Id: 0, Description: 'Υγειονομική Υποστήριξη' },
+                { Id: 1, Description: 'Εφοδιασμός' },
+                { Id: 2, Description: 'Φύλαξη' },
+                { Id: 3, Description: 'Τροφοδοσία' }
+            ],
             movementTypes: [
                 'Είσοδος',
                 'Έξοδος',

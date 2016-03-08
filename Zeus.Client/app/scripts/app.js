@@ -85,6 +85,11 @@ angular
             controller: 'ReportCtrl',
             controllerAs: 'reportCtrl'
         })
+        .when('/providers/:type/:pid', {
+            templateUrl: 'views/provider.html',
+            controller: 'ProviderCtrl',
+            controllerAs: 'providerCtrl'
+        })
         .otherwise({
             redirectTo: '/'
         });

@@ -169,6 +169,13 @@ body {
     display: none;
 }
 
+.shadow-box {
+    background-color: white;
+    box-shadow: 0 0 2px rgba(0,0,0,.12),0 2px 4px rgba(0,0,0,.24);
+    padding: 15px 15px 15px 15px;
+    margin-bottom: 30px;
+}
+
 
 /* Width breakpoints */
 @media only screen and (min-width: 1000px) { .content-container { width: 86%; } }

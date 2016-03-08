@@ -1,10 +1,79 @@
-﻿<!DOCTYPE html>
-<html>
-<head>
-    <title></title>
-	<meta charset="utf-8" />
-</head>
-<body>
+﻿<div style="padding-bottom:60px">
+    <span class="btn btn-danger btn-fab fab pull-right" ng-click="delete()">
+        <i class="material-icons" title="Διαγραφή Προμηθευτή">delete</i>
+    </span>
+    <span class="btn btn-success btn-fab fab pull-right" style="margin-right:15px;" ng-click="save()">
+        <i class="material-icons" title="Αποθήκευση Προμηθευτή">save</i>
+    </span>
+</div>
+<div class="col-md-4">
+    <div class="form-group label-static ng-is-empty">
+        <label for="i1" class="control-label">Ονομασία</label>
+        <input type="text" class="form-control" id="i1" ng-model="provider.Name">
+    </div>
+    <div class="form-group label-static ng-is-empty">
+        <label for="i2" class="control-label">Περιγραφή</label>
+        <textarea class="form-control" id="i2" ng-model="provider.Description" />
+    </div>
+    <div class="form-group label-static ng-is-empty">
+        <label for="i3" class="control-label">Κατηγορία</label>
+        <select class="form-control" ng-model="provider.Type" required>
+            <option ng-repeat="type in lookup.providerTypes" value="{{type.Id}}">
+                {{type.Description}}
+            </option>
+        </select>
+    </div>
+    <div class="form-group label-static ng-is-empty">
+        <label for="i4" class="control-label">Πλήθος Προσωπικού</label>
+        <input type="number" class="form-control" id="i4" ng-model="provider.PersonnelCount">
+        <span class="material-input"></span>
+    </div>
+    <div>
+        <label class="control-label">Προσφερόμενες Υπηρεσίες</label>
+        <span class="btn-group-sm pull-right">
+            <a href="javascript:void(0)" class="btn btn-info" ng-click="addItem()"><i class="material-icons">add</i></a>
+        </span>
+        <div ng-repeat="item in provider.Items">
+            <div class="form-inline" >
+                <input type="text" class="form-control" placeholder="Υπηρεσία" ng-model="item">
+                <a href="javascript:void(0)" class="btn btn-info" style="padding: 0px; left: -25px; top: 5px" ng-click="removeItem($index)"><i class="material-icons">clear</i></a>
+            </div>
+        </div>
+        
+    </div>
+    <div class="form-group label-static ng-is-empty">
+        <label for="i5" class="control-label">Σημειώσεις</label>
+        <textarea class="form-control" id="i5" ng-model="provider.Notes" />
+    </div>
+</div>
 
-</body>
-</html>
+<div class="col-md-8">
+    <div class="shadow-box btn-group-sm">
+        <span class="btn btn-info btn-fab fab pull-right" ng-click="addContact()">
+            <i class="material-icons" title="Προσθήκη Επαφής">add</i>
+        </span>
+        <i>Επαφές</i>
+        <cinnamon-grid grid-columns="lookupColumns"
+                       hide-paging-dropdown ="true"
+                       page-size="0"
+                       grid-items="provider.Contacts"
+                       show-grid-buttons="false"
+                       hide-item-buttons="true"
+                       row-click-fn="showContact(item)">
+        </cinnamon-grid>
+    </div>
+    <div class="shadow-box btn-group-sm">
+        <span class="btn btn-info btn-fab fab pull-right" ng-click="addFacility()">
+            <i class="material-icons" title="Προσθήκη Δ.Φ.">add</i>
+        </span>
+        <i>Δομές Φιλοξ. που Εξυπηρετεί</i>
+        <cinnamon-grid grid-columns="lookupColumns"
+                       hide-paging-dropdown ="true"
+                       page-size="0"
+                       grid-items="provider.Facilities"
+                       show-grid-buttons="false"
+                       hide-item-buttons="true"
+                       row-click-fn="showFacility(item)">
+        </cinnamon-grid>
+    </div>
+</div>

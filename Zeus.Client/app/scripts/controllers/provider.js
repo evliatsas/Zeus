@@ -5,9 +5,12 @@ angular
     .controller('ProviderCtrl', function ($scope, $http, $routeParams, lookupService, messageService, baseUrl) {
 
         $scope.lookup = lookupService;
-        $scope.facilities = [];
         $scope.provider = {};
         $scope.providerType = $routeParams.type;
+
+        $scope.lookupColumns = [
+            { Caption: 'Όνομα', Field: 'Description' }
+        ];
 
         var isInsert = $routeParams.pid == 'new';
         if (!isInsert) {
@@ -22,6 +25,15 @@ angular
         }
         else {
             $scope.provider = {};
+            $scope.provider.Items = [];
+        }
+
+        $scope.addItem = function () {
+            $scope.provider.Items.push('');
+        }
+
+        $scope.removeItem = function (index) {
+            $scope.provider.Items.splice(index, 1);
         }
 
         $scope.save = function () {
