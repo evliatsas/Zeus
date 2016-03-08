@@ -22,7 +22,7 @@ angular
           { Caption: 'Διεύθυνση', Field: 'Address', Tooltip: 'Διεύθυνση' },
           { Caption: 'Τηλέφωνα', Field: 'Phones', Tooltip: 'Τηλέφωνα' },
           { Caption: 'Email', Field: 'Email', Tooltip: 'Email' }
-        ]; providerscolumns
+        ];
 
         $scope.providerscolumns = [
          { Caption: 'Όνομα', Field: 'Name', Tooltip: 'Ονοματεπώνυμο' },
