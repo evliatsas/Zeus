@@ -15,15 +15,15 @@ namespace Zeus.Entities
         public string Administration { get; set; }
         public IList<string> Items { get; set; }
         [BsonIgnore]
-        public IList<Contact> Contacts { get; set; }
+        public IList<Lookup> Contacts { get; set; }
         [BsonIgnore]
-        public IList<Facility> Facilities { get; set; }
+        public IList<Lookup> Facilities { get; set; }
         public ProviderType Type { get; set; }
 
         public Provider()
         {
-            this.Contacts = new List<Contact>();
-            this.Facilities = new List<Facility>();
+            this.Contacts = new List<Lookup>();
+            this.Facilities = new List<Lookup>();
             this.Items = new List<string>();
         }
     }
