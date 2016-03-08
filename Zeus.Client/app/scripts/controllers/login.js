@@ -2,7 +2,7 @@
 
 angular
     .module('zeusclientApp')
-    .controller('LoginCtrl', function ($scope, $http, baseUrl) {
+    .controller('LoginCtrl', function ($scope, $http, $location, messageService, localStorageService) {
 
         $scope.login = function () {
             $http({
@@ -17,8 +17,8 @@ angular
                 },
                 data: { username: $scope.username, password: $scope.password, grant_type: "password", client_id:"099153c2625149bc8ecb3e85e03f0022" }
             }).then(function (response) {
-                store.set('jwt', response.data);
-                $state.go('home');
+                localStorageService.set('jwt', response.data);
+                $location.path("/");
             }, function (error) {
                 messageService.showError();
             });
