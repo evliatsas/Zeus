@@ -120,7 +120,7 @@
     <Content Include="app\views\reports\housing-report.html" />
     <Content Include="app\views\reports\transport-report.html" />
     <Content Include="app\views\reports\situation-report.html" />
-    <Content Include="app\views\report.html" />
+    <Content Include="app\views\reports\report.html" />
     <Content Include="app\views\person.html" />
     <Content Include="app\views\persons.html" />
     <Content Include="packages.config" />
