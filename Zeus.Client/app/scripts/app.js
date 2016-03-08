@@ -19,7 +19,8 @@ angular
     'ngTouch',
     'ui.bootstrap',
     'angular-loading-bar',
-    'LocalStorageModule'
+    'LocalStorageModule',
+    'authInterceptorService'
   ])
   .config(function ($routeProvider) {
       $.material.init();

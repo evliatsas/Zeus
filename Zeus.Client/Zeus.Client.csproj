@@ -93,6 +93,7 @@
     <Content Include="app\scripts\directives\on-finish-render.js" />
     <Content Include="app\scripts\directives\phone-list.js" />
     <Content Include="app\scripts\directives\save-alert.js" />
+    <Content Include="app\scripts\services\auth.interceptor.service.js" />
     <Content Include="app\scripts\services\lookup.service.js" />
     <Content Include="app\scripts\services\message.service.js" />
     <Content Include="app\scripts\services\utilities.js" />
