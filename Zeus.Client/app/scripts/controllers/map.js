@@ -24,7 +24,7 @@ angular
           makeInfoWindow();
           $scope.facilities.forEach(addMarker);
       }, function errorCallback(response) {
-          messageService.showError();
+          messageService.getFailed(response.error);
       });
 
       function makeInfoWindow()

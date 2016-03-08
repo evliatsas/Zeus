@@ -7,22 +7,27 @@
 
     function messageService() {
         var service = {
-            deleteSuccess: deleteSuccess,
             showError: showError,
+            getFailed: getFailed,
             saveSuccess: saveSuccess,
+            deleteSuccess: deleteSuccess,
             askConfirmation: askConfirmation
         };
 
         function saveSuccess() {
-            swal("Αποθήκευση Δεδομένων", "Οι μεταβολές στα δεδομένα αποθηκεύτηκαν με επιτυχία.", "success");
+            swal("Αποθήκευση Δεδομένων", "Οι μεταβολές στα δεδομένα αποθηκεύτηκαν με επιτυχία", "success");
         }
 
-        function showError() {
-            swal("Αποθήκευση Δεδομένων", "Παρουσιάστηκε πρόβλημα κατα την αποθήκευση των μεταβολών", "error");
+        function getFailed(message) {
+            swal("Σφάλμα", message ? message : "Παρουσιάστηκε πρόβλημα κατά την προσπάθεια ανάκτησης των δεδομένων. Ελέξτε τη σύνδεσή σας με το διακομιστή.", "error");
+        }
+
+        function showError(message) {
+            swal("Σφάλμα", message ? message : "Παρουσιάστηκε πρόβλημα κατα την αποθήκευση των μεταβολών", "error");
         }
 
         function deleteSuccess() {
-            swal("Διαγραφή Εγγράφου", "Η εγγραφή διαγράφηκε.", "success");
+            swal("Διαγραφή", "Η εγγραφή διαγράφηκε με επιτυχία", "success");
         }
 
         function askConfirmation(executionMethod) {
