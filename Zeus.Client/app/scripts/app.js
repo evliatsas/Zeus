@@ -54,6 +54,11 @@ angular
             controller: 'PersonsCtrl',
             controllerAs: 'persons'
         })
+        .when('/login', {
+            templateUrl: 'views/login.html',
+            controller: 'LoginCtrl',
+            controllerAs: 'loginCtrl'
+        })
         .when('/persons/:id', {
             templateUrl: 'views/person.html',
             controller: 'PersonCtrl',
