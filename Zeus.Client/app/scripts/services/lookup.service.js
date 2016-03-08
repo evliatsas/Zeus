@@ -28,13 +28,13 @@
                 { Id: 3, Description: '<i class="fa fa-square text-danger" title="Απόρρητο (ΑΠ)">' }
             ],
             reportTitles: [
-                { Id: 0, Description: '<h3><i class="text-primary material-icons md-48" title="Αναφορά Σίτισης"/>restaurant_menu <small>Αναφορά Σίτισης</small></h3>' },
-                { Id: 1, Description: '<h3><i class="text-primary material-icons md-48" title="Αναφορά Στέγασης"/>local_hotel <small>Αναφορά Στέγασης</small></h3>' },
-                { Id: 2, Description: '<h3><i class="text-primary material-icons md-48" title="Αναφορά Μετακίνησης"/>airport_shuttle <small>Αναφορά Μετακίνησης</small></h3>' },
-                { Id: 3, Description: '<h3><i class="text-primary material-icons md-48" title="Αναφορά Προβλήματος"/>error <small>Αναφορά Προβλήματος</small></h3>' },
-                { Id: 4, Description: '<h3><i class="text-primary material-icons md-48" title="Αναφορά Αίτησης"/>message <small>Αναφορά Αίτησης</small></h3>' },
-                { Id: 5, Description: '<h3><i class="text-primary material-icons md-48" title="Αναφορά Κατάστασης"/>assignment <small>Αναφορά Κατάστασης</small></h3>' },
-                { Id: 6, Description: '<h3><i class="text-primary material-icons md-48" title="Μήνυμα"/>email <small>Μήνυμα</small></h3>' }
+                { Id: 0, Description: '<i class="text-primary material-icons md-48 pull-left" title="Αναφορά Σίτισης">restaurant_menu</i><div class="report-header">Αναφορά Σίτισης</div>' },
+                { Id: 1, Description: '<i class="text-primary material-icons md-48 pull-left" title="Αναφορά Στέγασης">local_hotel</i><div class="report-header">Αναφορά Στέγασης</div>' },
+                { Id: 2, Description: '<i class="text-primary material-icons md-48 pull-left" title="Αναφορά Μετακίνησης">airport_shuttle</i><div class="report-header">Αναφορά Μετακίνησης</div>' },
+                { Id: 3, Description: '<i class="text-primary material-icons md-48 pull-left" title="Αναφορά Προβλήματος">error</i><div class="report-header"><span>Αναφορά Προβλήματος</span></div>' },
+                { Id: 4, Description: '<i class="text-primary material-icons md-48 pull-left" title="Αναφορά Αίτησης">message</i><div class="report-header">Αναφορά Αίτησης</div>' },
+                { Id: 5, Description: '<i class="text-primary material-icons md-48 pull-left" title="Αναφορά Κατάστασης">assignment</i><div class="report-header">Αναφορά Κατάστασης</div>' },
+                { Id: 6, Description: '<i class="text-primary material-icons md-48 pull-left" title="Μήνυμα">email</i><div class="report-header">Μήνυμα</div>' }
             ],
             reportTypesHtml: [
                 { Id: 0, Description: '<i class="text-primary material-icons md-18" title="Αναφορά Σίτισης">restaurant_menu</i>' },
