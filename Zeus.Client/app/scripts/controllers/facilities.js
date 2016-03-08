@@ -2,7 +2,7 @@
 
 angular
     .module('zeusclientApp')
-    .controller('FacilitiesCtrl', function ($scope, $http, $location, baseUrl) {
+    .controller('FacilitiesCtrl', function ($scope, $http, $location, baseUrl, messageService) {
 
         $scope.addFacility = function () {
             $location.url("/facilities/new");
