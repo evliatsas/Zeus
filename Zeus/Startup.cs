@@ -3,14 +3,13 @@ using Microsoft.Owin.Cors;
 using MongoDB.Driver;
 using Owin;
 using Serilog;
-using System.Net.Http.Headers;
 using System.Web.Http;
 
 [assembly: OwinStartup(typeof(Zeus.Startup))]
 
 namespace Zeus
 {
-    public class Startup
+    public partial class Startup
     {
         public void Configuration(IAppBuilder app)
         {
@@ -37,6 +36,9 @@ namespace Zeus
                 //config.Filters.Add(new AuthorizeAttribute());
                 api.UseWebApi(config);
             });
+
+            //Configure Auth
+            ConfigureAuth(app);
         }
 
         private void ConfigureLog(IMongoDatabase db)
