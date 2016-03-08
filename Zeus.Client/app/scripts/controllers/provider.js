@@ -29,8 +29,7 @@ angular
 
         var i = 1;
         $scope.addItem = function () {
-            i++;
-            $scope.provider.Items.push({"Id":i,"Description":"Test"});
+           $scope.provider.Items.push({"Id":"", "Description":""});
         }
 
         $scope.removeItem = function (index) {

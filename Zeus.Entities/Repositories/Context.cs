@@ -20,7 +20,6 @@ namespace Zeus.Entities.Repositories
         public MongoDbRepository<Contact> Contacts { get; private set; }
         public MongoDbRepository<Report> Reports { get; private set; }
         public MongoDbRepository<FamilyRelation> FamilyRelations { get; private set; }
-        public MongoDbRepository<Auth.User> Users { get; private set; }
         
         #region Static
 
@@ -73,7 +72,6 @@ namespace Zeus.Entities.Repositories
                 Database = client.GetDatabase(Context.DatabaseName);
 
                 //Register Mongo collections
-                Users = new MongoDbRepository<Auth.User>(this.Database, "Users");
                 Facilities = new MongoDbRepository<Facility>(this.Database, "Facilities");
                 Providers = new MongoDbRepository<Provider>(this.Database, "Providers");
                 ProviderFacilities = new MongoDbRepository<Entities.ProviderFacility>(this.Database, "ProviderFacilities");
@@ -111,7 +109,7 @@ namespace Zeus.Entities.Repositories
                         select new Lookup()
                         {
                             Id = c.Id,
-                            Description = String.Format("{0} ({1})", c.Name, c.Title)
+                            Description = c.Name
                         };
 
             return query.AsEnumerable();

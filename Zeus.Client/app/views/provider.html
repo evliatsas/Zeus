@@ -33,9 +33,9 @@
         <span class="btn-group-sm pull-right">
             <a href="javascript:void(0)" class="btn btn-info" ng-click="addItem()"><i class="material-icons">add</i></a>
         </span>
-        <div ng-repeat="pr in provider.Items track by pr.Id">
+        <div ng-repeat="item in provider.Items">
             <div class="form-inline" >
-                <input type="text" class="form-control" placeholder="Υπηρεσία" ng-model="pr.Description">
+                <input type="text" class="form-control" placeholder="Υπηρεσία" ng-model="item.Id">
                 <a href="javascript:void(0)" class="btn btn-info" style="padding: 0px; left: -25px; top: 5px" ng-click="removeItem($index)"><i class="material-icons">clear</i></a>
             </div>
         </div>

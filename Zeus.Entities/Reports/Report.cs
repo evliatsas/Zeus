@@ -19,7 +19,7 @@ namespace Zeus.Entities
         typeof(Message))]
     public abstract class Report : Entity
     {
-        public Auth.User User { get; set; }
+        public string User { get; set; }
         public Facility Facility { get; set; }
         public DateTime DateTime { get; set; }
         public ReportPriority Priority { get; set; }

@@ -13,7 +13,7 @@ namespace Zeus.Entities
         public string Description { get; set; }      
         public int PersonnelCount { get; set; }
         public string Administration { get; set; }
-        public IList<string> Items { get; set; }
+        public IList<Lookup> Items { get; set; }
         [BsonIgnore]
         public IList<Lookup> Contacts { get; set; }
         [BsonIgnore]
@@ -24,7 +24,7 @@ namespace Zeus.Entities
         {
             this.Contacts = new List<Lookup>();
             this.Facilities = new List<Lookup>();
-            this.Items = new List<string>();
+            this.Items = new List<Lookup>();
         }
     }
 

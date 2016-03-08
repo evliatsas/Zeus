@@ -38,19 +38,26 @@ namespace Zeus.Controllers
         [HttpGet]
         public async Task<IHttpActionResult> GetProvider(string id)
         {
-            var provider = await context.Providers.GetById(id);
-            if (provider != null)
+            try
             {
-                var multiContacts = await context.ProviderContacts.Get(x => x.ProviderId == id);
-                var contactIds = multiContacts.Select(x => x.ContactId);
-                provider.Contacts = context.GetContactsLookup().Where(x => contactIds.Contains(x.Id)).ToList();
+                var provider = await context.Providers.GetById(id);
+                if (provider != null)
+                {
+                    var multiContacts = await context.ProviderContacts.Get(x => x.ProviderId == id);
+                    var contactIds = multiContacts.Select(x => x.ContactId);
+                    provider.Contacts = context.GetContactsLookup().Where(x => contactIds.Contains(x.Id)).ToList();
 
-                var multiFacilities = await context.ProviderFacilities.Get(x => x.ProviderId == id);
-                var facilityIds = multiFacilities.Select(x => x.FacilityId);
-                provider.Facilities = context.GetFacilitiesLookup().Where(x => facilityIds.Contains(x.Id)).ToList();
+                    var multiFacilities = await context.ProviderFacilities.Get(x => x.ProviderId == id);
+                    var facilityIds = multiFacilities.Select(x => x.FacilityId);
+                    provider.Facilities = context.GetFacilitiesLookup().Where(x => facilityIds.Contains(x.Id)).ToList();
+                }
+
+                return provider == null ? (IHttpActionResult)this.NotFound() : this.Ok(provider);
             }
-
-            return provider == null ? (IHttpActionResult)this.NotFound() : this.Ok(provider);
+            catch(Exception exc)
+            {
+                return this.BadRequest(exc.ToString());
+            }
         }
 
         [Route("")]

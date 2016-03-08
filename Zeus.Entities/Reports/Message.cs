@@ -8,7 +8,7 @@ namespace Zeus.Entities
 {
     public class Message : Report
     {
-        public Contact Sender { get { return this.User.Contact; } }
+        public string Sender { get { return this.User; } }
         public Contact Recipient { get; set; }
         public Message()
         {
