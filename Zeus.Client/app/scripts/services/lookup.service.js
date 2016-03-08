@@ -14,6 +14,13 @@
                 { Id: 3, Description: '<i class="text-warning material-icons md-18" title="Άμεσο">flag</i>' },
                 { Id: 4, Description: '<i class="text-danger material-icons md-18" title="Αστραπιαίο">flag</i>' },
             ],
+            prioritiesTitles: [
+                { Id: 0, Description: 'Χαμηλή' },
+                { Id: 1, Description: 'Κανονική' },
+                { Id: 2, Description: 'Επείγον' },
+                { Id: 3, Description: 'Άμεσο' },
+                { Id: 4, Description: 'Αστραπιαίο' },
+            ],
             classifications: [
                 { Id: 0, Description: '<i class="fa fa-square text-muted" title="Αδιαβάθμητο (ΑΔ)">' },
                 { Id: 1, Description: '<i class="fa fa-square text-success" title="Περιορισμένης Χρήσης (ΠΧ)">' },
@@ -21,8 +28,8 @@
                 { Id: 3, Description: '<i class="fa fa-square text-danger" title="Απόρρητο (ΑΠ)">' }
             ],
             reportTitles: [
-                { Id: 0, Description: '<span class="text-primary material-icons md-48" title="Αναφορά Σίτισης">restaurant_menu</span><span style="font-size:36pt">Αναφορά Σίτισης</span>' },
-                { Id: 1, Description: 'Αναφορά Στέγασης' },
+                { Id: 0, Description: '<h3><i class="text-primary material-icons md-48" title="Αναφορά Σίτισης"/>restaurant_menu <small style="margin-top:0px;">Αναφορά Σίτισης</small></h3>' },
+                { Id: 1, Description: '<h3>Αναφορά Στέγασης <span "class="text-primary material-icons md-18" title="Αναφορά Στέγασης">local_hotel</span></h3>' },
                 { Id: 2, Description: 'Αναφορά Μετακίνησης' },
                 { Id: 3, Description: 'Αναφορά Προβλήματος' },
                 { Id: 4, Description: 'Αναφορά Αίτησης' },
