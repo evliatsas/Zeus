@@ -2,7 +2,7 @@
 
 angular
     .module('zeusclientApp')
-    .controller('ReportCtrl', function ($scope, $http, $routeParams, lookupService, messageService) {
+    .controller('ReportCtrl', function ($scope, $http, $routeParams, lookupService, messageService, baseUrl) {
 
         $scope.lookup = lookupService;
         $scope.facilities = [];
@@ -14,7 +14,7 @@ angular
         if (!isInsert) {
             $http({
                 method: 'GET',
-                url: 'http://localhost:8080/api/reports/' + $routeParams.rid //the unique id of the report
+                url: baseUrl + '/reports/' + $routeParams.rid //the unique id of the report
             }).then(function successCallback(response) {
                 $scope.report = response.data;
             }, function errorCallback(response) {
@@ -27,7 +27,7 @@ angular
 
         $http({
             method: 'GET',
-            url: 'http://localhost:8080/api/facilities/' + $routeParams.fid //the unique id of the facility
+            url: baseUrl + '/facilities/' + $routeParams.fid //the unique id of the facility
             }).then(function successCallback(response) {
                 $scope.report.Facility = response.data;
                 if ($scope.reportType == "0") {
@@ -39,7 +39,7 @@ angular
                 else if ($scope.reportType == "2") {
                     $http({
                         method: 'GET',
-                        url: 'http://localhost:8080/api/common/facilities' //lookup facilities
+                        url: baseUrl + '/common/facilities' //lookup facilities
                     }).then(function successCallback(response) {
                         $scope.facilities = response.data;
                     }, function errorCallback(response) {
@@ -70,7 +70,7 @@ angular
             $http({
                 method: method,
                 data: report,
-                url: 'http://localhost:8080/api/reports'
+                url: baseUrl + '/reports'
             }).then(function successCallback(response) {
                 messageService.saveSuccess();
             }, function errorCallback(response) {
@@ -81,7 +81,7 @@ angular
         var deleteReport = function () {
             $http({
                 method: 'DELETE',
-                url: 'http://localhost:8080/api/reports' + report.Id
+                url: baseUrl + '/reports/' + report.Id
             }).then(function successCallback(response) {
                 messageService.deleteSuccess();
             }, function errorCallback(response) {

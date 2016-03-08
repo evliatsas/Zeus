@@ -43,13 +43,11 @@ namespace Zeus.Controllers
             {
                 var multiContacts = await context.ProviderContacts.Get(x => x.ProviderId == id);
                 var contactIds = multiContacts.Select(x => x.ContactId);
-                var contacts = await context.Contacts.Get(x => contactIds.Contains(x.Id));
-                provider.Contacts = contacts.ToList();
+                provider.Contacts = context.GetContactsLookup().Where(x => contactIds.Contains(x.Id)).ToList();
 
                 var multiFacilities = await context.ProviderFacilities.Get(x => x.ProviderId == id);
                 var facilityIds = multiFacilities.Select(x => x.FacilityId);
-                var facilities = await context.Facilities.Get(x => facilityIds.Contains(x.Id));
-                provider.Facilities = facilities.ToList();
+                provider.Facilities = context.GetFacilitiesLookup().Where(x => facilityIds.Contains(x.Id)).ToList();
             }
 
             return provider == null ? (IHttpActionResult)this.NotFound() : this.Ok(provider);
@@ -65,6 +63,24 @@ namespace Zeus.Controllers
             try
             {
                 var data = await context.Providers.Insert(provider);
+                foreach (var facility in provider.Facilities)
+                {
+                    var providerFacility = new ProviderFacility()
+                    {
+                        FacilityId = facility.Id,
+                        ProviderId = data.Id
+                    };
+                    await context.ProviderFacilities.Insert(providerFacility);
+                }
+                foreach(var contact in provider.Contacts)
+                {
+                    var providerContact = new ProviderContact()
+                    {
+                        ContactId = contact.Id,
+                        ProviderId = data.Id
+                    };
+                    await context.ProviderContacts.Insert(providerContact);
+                }
 
                 Log.Information("Provider({Provider.Id}) created By {user}", data.Id, user);
                 return this.Ok(data);

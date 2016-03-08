@@ -84,6 +84,7 @@
     <Content Include="app\scripts\controllers\menu.js" />
     <Content Include="app\scripts\controllers\person.js" />
     <Content Include="app\scripts\controllers\persons.js" />
+    <Content Include="app\scripts\controllers\provider.js" />
     <Content Include="app\scripts\controllers\report.js" />
     <Content Include="app\scripts\directives\fab.js" />
     <Content Include="app\scripts\directives\card-list.js" />
@@ -119,6 +120,7 @@
     <Content Include="app\views\login.html" />
     <Content Include="app\views\main.html" />
     <Content Include="app\views\map.html" />
+    <Content Include="app\views\provider.html" />
     <Content Include="app\views\reports\feeding-report.html" />
     <Content Include="app\views\reports\housing-report.html" />
     <Content Include="app\views\reports\transport-report.html" />
