@@ -11,15 +11,13 @@ angular
                 addCard: '&',
                 hideAddButton: '=',
                 removeCard: '&',
-                lookup: '=?',
-                emptyMessage: '@'
+                lookup: '=?'
             },
             transclude: true,
             templateUrl: '/templates/card-list.html',
             link: function postLink(scope, element, attrs) {
                 if (scope.cards == null) { scope.cards = []; }
                 scope.lookup = lookupService;
-                scope.emptyMessage = scope.emptyMessage || "<div class=\"btn-group-sm\">Δεν υπάρχουν κάρτες για προβολή. Πατήστε το κουμπί  <span class=\"btn btn-warning btn-fab fab\"><i class=\"material-icons\">add</i></span>  κάτω δεξιά για να προσθέσετε μια νέα κάρτα</div>";
                 scope.removeCard = function (index) {
                     //messageService.askConfirmation(function () { return scope.cards.splice(index, 1); });
                     scope.cards.splice(index, 1);
@@ -39,7 +37,9 @@ angular
                         element.append(contents);
                     });
 
-
+                scope.goto = function (path) {
+                    $location.url(path);
+                }
 
                 // issue new report
                 scope.issueReport = function (reportType, fid) {

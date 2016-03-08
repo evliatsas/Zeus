@@ -1,19 +1,17 @@
 <div class="panel panel-primary" ng-class="{ 'panel-warning': card.Utilization > 74, 'panel-danger': card.Utilization > 100 }">
-    <div class="panel-heading">
-        <a href="#/facilities/{{card.Id}}" style="color: white">
-            <i class="material-icons md-36 pull-left">home</i>
-            <h4>
-				<span style="padding-left:10px">{{card.Name}}</span>
-				<span class="pull-right"><strong>{{card.Utilization}}%</strong></span>
-			</h4>
-        </a>
+    <div class="panel-heading" ng-click="goto('/facilities/' + card.Id)" style="cursor: pointer">
+        <i class="material-icons md-36 pull-left">home</i>
+        <h4>
+            <span style="padding-left:10px">{{card.Name}}</span>
+            <span class="pull-right"><strong>{{card.Utilization}}%</strong></span>
+        </h4>
     </div>
     <div class="panel-body" style="height: 100px">
         <p style="height: 50px; overflow: hidden; text-overflow: ellipsis">{{card.Description}}</p>
-       
-            <p class="text-primary pull-left">
-                Φιλοξενούμενοι: {{card.Attendance}} / {{card.Capacity}}
-            </p>
+
+        <p class="text-primary pull-left">
+            Φιλοξενούμενοι: {{card.Attendance}} / {{card.Capacity}}
+        </p>
     </div>
     <div class="panel-footer">
         <div class="btn-group btn-group-justified">

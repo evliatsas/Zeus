@@ -50,10 +50,8 @@
     <input type="text" class="form-control" id="Status" ng-model="facility.Status" uib-typeahead="state for state in lookup.statuses | filter:$viewValue">
 </div>
 
-<div class="row">
-    <date-time-picker class="col-xs-12 col-sm-12 col-md-12 col-lg-12" label="Ημερομηνία Κατάστασης" format="dd/MM/yy" date="facility.StatusDateTime"></date-time-picker>
-    <date-time-picker class="col-xs-12 col-sm-12 col-md-12 col-lg-12" label="Ημερομηνία Αποκατάστασης" format="dd/MM/yy" date="facility.StatusECT"></date-time-picker>
-</div>
+<date-time-picker id = "StatusDateTime" label="Ημερομηνία Κατάστασης" date="facility.StatusDateTime"></date-time-picker>
+<date-time-picker id = "StatusECT" label="Ημερομηνία Αποκατάστασης" date="facility.StatusECT"></date-time-picker>
 
 <div class="form-group label-static ng-is-empty">
     <label for="Administration" class="control-label">Διαχειριστής</label>
