@@ -35,10 +35,10 @@
     <h1>Συγγενείς</h1>
     <cinnamon-grid grid-columns="reportcolumns"
                    grid-items="data"
-                   show-grid-buttons="false"
+                   show-grid-buttons="true"
                    hide-item-buttons="true"
                    highlight="false"
-                   row-click-fn="showRelative(item)">
+                   row-click-fn="showRelative(item)"
+                   grid-create-fn="addRelative()">
     </cinnamon-grid>
-    <fab icon="add" on-click="addRelative()"></fab>
 </div>
