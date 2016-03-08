@@ -21,7 +21,7 @@ angular
                 $scope.data = response.data;
                 return true;
             }, function errorCallback(response) {
-                messageService.showError();
+                messageService.getFailed(response.error);
                 return false;
             });
         }

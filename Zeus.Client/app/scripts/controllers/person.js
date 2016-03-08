@@ -20,7 +20,7 @@ angular
         }).then(function successCallback(response) {
             $scope.facilities = response.data;
         }, function errorCallback(response) {
-            messageService.showError();
+            messageService.getFailed(response.error);
         });
 
 

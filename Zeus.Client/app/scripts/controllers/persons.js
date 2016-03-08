@@ -2,7 +2,7 @@
 
 angular
     .module('zeusclientApp')
-    .controller('PersonsCtrl', function ($scope, $location, $http, baseUrl, lookupService) {
+    .controller('PersonsCtrl', function ($scope, $location, $http, baseUrl, lookupService, messageService) {
 
         $scope.addPerson = function () {
             $location.url("/persons/new");
@@ -29,6 +29,6 @@ angular
         }).then(function successCallback(response) {
             $scope.data = response.data;
         }, function errorCallback(response) {
-            messageService.showError();
+            messageService.getFailed(response.error);
         });
     });

@@ -18,7 +18,7 @@ angular
             }).then(function successCallback(response) {
                 $scope.report = response.data;
             }, function errorCallback(response) {
-                messageService.showError();
+                messageService.getFailed(response.error);
             });
         }
         else {
@@ -44,6 +44,7 @@ angular
                         $scope.facilities = response.data;
                     }, function errorCallback(response) {
                         $scope.facilities = [];
+                        messageService.getFailed(response.error);
                     });
                 }
             }, function errorCallback(response) {
