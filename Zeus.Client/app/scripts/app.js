@@ -86,10 +86,15 @@ angular
             controller: 'ReportCtrl',
             controllerAs: 'reportCtrl'
         })
-        .when('/providers/:type/:pid', {
+        .when('/providers/:pid', {
             templateUrl: 'views/provider.html',
             controller: 'ProviderCtrl',
             controllerAs: 'providerCtrl'
+        })
+        .when('/providers', {
+            templateUrl: 'views/providers.html',
+            controller: 'ProvidersCtrl',
+            controllerAs: 'providersCtrl'
         })
         .otherwise({
             redirectTo: '/'
