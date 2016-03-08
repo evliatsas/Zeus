@@ -14,6 +14,13 @@
                 { Id: 3, Description: '<i class="text-warning material-icons md-18" title="Άμεσο">flag</i>' },
                 { Id: 4, Description: '<i class="text-danger material-icons md-18" title="Αστραπιαίο">flag</i>' },
             ],
+            prioritiesTitles: [
+                { Id: 0, Description: 'Χαμηλή' },
+                { Id: 1, Description: 'Κανονική' },
+                { Id: 2, Description: 'Επείγον' },
+                { Id: 3, Description: 'Άμεσο' },
+                { Id: 4, Description: 'Αστραπιαίο' },
+            ],
             classifications: [
                 { Id: 0, Description: '<i class="fa fa-square text-muted" title="Αδιαβάθμητο (ΑΔ)">' },
                 { Id: 1, Description: '<i class="fa fa-square text-success" title="Περιορισμένης Χρήσης (ΠΧ)">' },
@@ -21,13 +28,13 @@
                 { Id: 3, Description: '<i class="fa fa-square text-danger" title="Απόρρητο (ΑΠ)">' }
             ],
             reportTitles: [
-                { Id: 0, Description: '<span class="text-primary material-icons md-48" title="Αναφορά Σίτισης">restaurant_menu</span><span style="font-size:36pt">Αναφορά Σίτισης</span>' },
-                { Id: 1, Description: 'Αναφορά Στέγασης' },
-                { Id: 2, Description: 'Αναφορά Μετακίνησης' },
-                { Id: 3, Description: 'Αναφορά Προβλήματος' },
-                { Id: 4, Description: 'Αναφορά Αίτησης' },
-                { Id: 5, Description: 'Αναφορά Κατάστασης' },
-                { Id: 6, Description: '<p style="display:inline; vertical-align:bottom"><i class="text-primary material-icons md-36" title="Μήνυμα">email</i><span class="h1">Μήνυμα</h2></span>' }
+                { Id: 0, Description: '<i class="text-primary material-icons md-48 pull-left" title="Αναφορά Σίτισης">restaurant_menu</i><div class="report-header">Αναφορά Σίτισης</div>' },
+                { Id: 1, Description: '<i class="text-primary material-icons md-48 pull-left" title="Αναφορά Στέγασης">local_hotel</i><div class="report-header">Αναφορά Στέγασης</div>' },
+                { Id: 2, Description: '<i class="text-primary material-icons md-48 pull-left" title="Αναφορά Μετακίνησης">airport_shuttle</i><div class="report-header">Αναφορά Μετακίνησης</div>' },
+                { Id: 3, Description: '<i class="text-primary material-icons md-48 pull-left" title="Αναφορά Προβλήματος">error</i><div class="report-header"><span>Αναφορά Προβλήματος</span></div>' },
+                { Id: 4, Description: '<i class="text-primary material-icons md-48 pull-left" title="Αναφορά Αίτησης">message</i><div class="report-header">Αναφορά Αίτησης</div>' },
+                { Id: 5, Description: '<i class="text-primary material-icons md-48 pull-left" title="Αναφορά Κατάστασης">assignment</i><div class="report-header">Αναφορά Κατάστασης</div>' },
+                { Id: 6, Description: '<i class="text-primary material-icons md-48 pull-left" title="Μήνυμα">email</i><div class="report-header">Μήνυμα</div>' }
             ],
             reportTypesHtml: [
                 { Id: 0, Description: '<i class="text-primary material-icons md-18" title="Αναφορά Σίτισης">restaurant_menu</i>' },

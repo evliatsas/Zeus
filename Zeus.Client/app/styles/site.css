@@ -152,6 +152,8 @@ body {
     }
 
 .form-control {
+    max-width:900px;
+.form-control {
     max-width: 900px;
 }
 
@@ -165,6 +167,13 @@ body {
         box-shadow: 0 0 2px rgba(0,0,0,.12),0 2px 4px rgba(0,0,0,.24);
         padding: 0px;
     }
+}
+
+.report-header {
+    padding-left:20px; 
+    font-size:28pt;
+    padding-bottom:30px;
+    color: #555;
 }
 @media only screen and (min-width: 1600px) { .content-container { width: 90%; } }
 

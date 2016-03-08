@@ -18,7 +18,8 @@ angular
     'ngSanitize',
     'ngTouch',
     'ui.bootstrap',
-    'angular-loading-bar'
+    'angular-loading-bar',
+    'LocalStorageModule'
   ])
   .config(function ($routeProvider) {
       $.material.init();
@@ -54,6 +55,11 @@ angular
             controller: 'PersonsCtrl',
             controllerAs: 'persons'
         })
+        .when('/login', {
+            templateUrl: 'views/login.html',
+            controller: 'LoginCtrl',
+            controllerAs: 'loginCtrl'
+        })
         .when('/persons/:id', {
             templateUrl: 'views/person.html',
             controller: 'PersonCtrl',
@@ -65,7 +71,7 @@ angular
                 var tempUrl = 'views/reports/';
                 if (type == 0)
                     tempUrl += 'feeding-report.html';
-                else if(type == 1)
+                else if (type == 1)
                     tempUrl += 'housing-report.html';
                 else if (type == 2)
                     tempUrl += 'transport-report.html';
@@ -82,6 +88,12 @@ angular
         .otherwise({
             redirectTo: '/'
         });
+  })
+  .config(function (localStorageServiceProvider) {
+    localStorageServiceProvider
+        .setPrefix('ZeusApp')
+        .setStorageType('sessionStorage')
+        .setNotify(true, true)
   })
   .constant("moment", moment)
   .constant("baseUrl", "http://localhost:8080/api")
