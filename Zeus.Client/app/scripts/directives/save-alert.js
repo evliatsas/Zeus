@@ -2,11 +2,10 @@
 
 angular
     .module('zeusclientApp')
-    .directive('saveAlert', function () {
+    .directive('saveAlert', function ($timeout) {
         return {
             scope: {
                 entity: '=',
-                noAnimation: '=',
                 onSave: '&'
             },
             transclude: true,
@@ -25,11 +24,12 @@ angular
                 scope.cancel = function () {
                     scope.closed = true;
                 };
-
-                scope.$watch('entity', function (newValue, oldValue) {
-                    if (newValue && !angular.equals(newValue, oldValue))
-                        scope.hasChanges = true;
-                }, true);
+                $timeout(function () {
+                    scope.$watch('entity', function (newValue, oldValue) {
+                        if (newValue && !angular.equals(newValue, oldValue))
+                            scope.hasChanges = true;
+                    }, true);
+                }, 10);
             }
         };
     });

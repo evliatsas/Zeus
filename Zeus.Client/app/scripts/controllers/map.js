@@ -49,6 +49,9 @@ angular
       }
             
       function addMarker(element, index, array) {
+          if (element == null || element.Location == null) {
+              return;
+          }
           var myLatLng = { lat: element.Location.Coordinates[0], lng: element.Location.Coordinates[1] };
           var marker = new google.maps.Marker({
               position: myLatLng,
