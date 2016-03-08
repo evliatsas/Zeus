@@ -151,6 +151,13 @@ body {
         transform: translate(0, -5em);
     }
 
-.form-control{
+.form-control {
     max-width:900px;
+}
+
+.report-header {
+    padding-left:20px; 
+    font-size:28pt;
+    padding-bottom:30px;
+    color: #555;
 }
