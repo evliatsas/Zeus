@@ -6,7 +6,6 @@ angular
 
         $scope.lookup = lookupService;
         $scope.provider = {};
-        $scope.providerType = $routeParams.type;
 
         $scope.lookupColumns = [
             { Caption: 'Όνομα', Field: 'Description' }
@@ -49,7 +48,7 @@ angular
 
             $http({
                 method: method,
-                data: provider,
+                data: $scope.provider,
                 url: baseUrl + '/providers'
             }).then(function successCallback(response) {
                 messageService.saveSuccess();
@@ -61,7 +60,7 @@ angular
         var deleteProvider = function () {
             $http({
                 method: 'DELETE',
-                url: baseUrl + '/providers/' + provider.Id
+                url: baseUrl + '/providers/' + $scope.provider.Id
             }).then(function successCallback(response) {
                 messageService.deleteSuccess();
             }, function errorCallback(response) {
