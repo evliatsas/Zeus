@@ -1,14 +1,8 @@
 ﻿<div>
-    <div class="btn-group" ng-if="showGridButtons">
-        <button ng-if="checkAction('New')" type="button" class="btn btn-default" data-toggle="modal" data-target="#editModal" ng-click="createItem()">
-            <i class="fa fa-plus"></i> Νέο
-        </button>
-        <button type="button" class="btn btn-default">
-            <i class="fa fa-copy"></i> Αντιγραφή
-        </button>
-        <button type="button" class="btn btn-default">
-            <i class="fa fa-external-link"></i> Εξαγωγή
-        </button>
+    <div class="btn-group-sm" ng-if="showGridButtons">
+        <span class="btn btn-info btn-fab fab pull-right"  style="margin-left:30px" ng-click="createItem()">
+            <i class="material-icons" title="Προσθήκη Επαφής">add</i>
+        </span>    
     </div>
     <div class="btn-group" ng-if="!hidePagingDropdown" style="padding-right: 20px; max-width:250px;">
         <a ng-show="pageSize == 0" class="btn btn-primary btn-raised">Όλα {{ '(' + items.length + ')' }}</a>

@@ -107,4 +107,11 @@ angular
             $location.url('/reports/6/' + fid + '/new');
         }
        
+        $scope.checkActions = function (action) {
+            return true;
+        }
+
+        $scope.addHousing = function () {
+            var q = 5;
+        }
     });
