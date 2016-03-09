@@ -53,10 +53,11 @@ angular
 
 
         $scope.save = function () {
-            report.Type = $scope.reportType;
-            report._t = [
+            $scope.report.Type = $scope.reportType;
+            var rt = getReportType();
+            $scope.report._t = [
                 'Report',
-                getReportType()
+                rt
             ]
             if (isInsert) {
                 // Create report
@@ -69,7 +70,7 @@ angular
 
             $http({
                 method: method,
-                data: report,
+                data: $scope.report,
                 url: baseUrl + '/reports'
             }).then(function successCallback(response) {
                 messageService.saveSuccess();
@@ -81,7 +82,7 @@ angular
         var deleteReport = function () {
             $http({
                 method: 'DELETE',
-                url: baseUrl + '/reports/' + report.Id
+                url: baseUrl + '/reports/' + $scope.report.Id
             }).then(function successCallback(response) {
                 messageService.deleteSuccess();
             }, function errorCallback(response) {
@@ -95,20 +96,20 @@ angular
 
         var getReportType = function () {
             switch ($scope.reportType) {
-                case 0:
+                case "0":
                     return 'FeedingReport';
-                case 1:
+                case "1":
                     return 'HousingReport';
-                case 2:
+                case "2":
                     return 'MovementReport'
-                case 3:
+                case "3":
                     return 'ProblemReport';
-                case 4:
+                case "4":
                     return 'RequestReport';
-                case 5:
+                case "5":
                     return 'SituationReport';
-                case 6:
-                    return 'MessageReport';
+                case "6":
+                    return 'Message';
             }
         }
 
