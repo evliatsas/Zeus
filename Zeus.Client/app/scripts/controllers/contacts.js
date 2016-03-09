@@ -6,7 +6,7 @@ angular
 
         var isInsert = $routeParams.pid == 'new';
 
-        $scope.columns = [
+        $scope.contactcolumns = [
             { Caption: 'Τίτλος', Field: 'Title', Tooltip: 'Τίτλος Προμηθευτή' },
             { Caption: 'Όνομα', Field: 'Name', Tooltip: 'Όνομα Επαφής' },
             { Caption: 'Εταιρία', Field: 'Company', Tooltip: 'Εταιρία' },
