@@ -82,6 +82,7 @@ namespace Zeus.Entities.Repositories
                 Contacts = new MongoDbRepository<Contact>(this.Database, "Contacts");
                 Reports = new MongoDbRepository<Report>(this.Database, "Reports");
                 FamilyRelations = new MongoDbRepository<FamilyRelation>(this.Database, "FamilyRelations");
+                Users = new MongoDbRepository<User>(this.Database, "Users");
                 //set the static instance property
                 _instance = this;
             }

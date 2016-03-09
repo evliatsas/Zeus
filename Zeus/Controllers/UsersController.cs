@@ -24,7 +24,6 @@ namespace Zeus.Controllers
             context = Entities.Repositories.Context.Instance;
         }
 
-        [AllowAnonymous]
         [Route("")]
         [ResponseType(typeof(IEnumerable<User>))]
         [HttpGet]
