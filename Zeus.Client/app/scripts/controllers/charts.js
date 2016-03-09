@@ -4,6 +4,16 @@ angular
     .module('zeusclientApp')
     .controller('ChartsCtrl', function () {
 
+        $http({
+            method: 'GET',
+            url: baseUrl + '/reports/facilities/stats'
+        }).then(function successCallback(response) {
+            
+        }, function errorCallback(response) {
+            messageService.getFailed(response.error);
+        });
+
+
         var data = {
             labels: ["January", "February", "March", "April", "May", "June", "July"],
             datasets: [
@@ -30,6 +40,14 @@ angular
             ]
         };
 
+        var options = {
+            responsive: true,
+            animation: true,
+            animationSteps: 60,
+            legendTemplate: "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<datasets.length; i++){%><li><span style=\"background-color:<%=datasets[i].strokeColor%>\"></span><%if(datasets[i].label){%><%=datasets[i].label%><%}%></li><%}%></ul>"
+        };
+
         var ctx = document.getElementById("myChart").getContext("2d");
-        var myLineChart = new Chart(ctx).Line(data);
+        var myLineChart = new Chart(ctx).Line(data, options);
+        document.getElementById('myLegend').innerHTML = myLineChart.generateLegend();
     });
