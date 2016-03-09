@@ -7,9 +7,9 @@ angular
         var isInsert = $routeParams.pid == 'new';
 
         $scope.housingcolumns = [
-          { Caption: 'Τύπος', Field: 'Type', Values: lookupService.housingCategories, Tooltip: 'Τύπος Εγκατάστασης' },
+          { Caption: 'Κατηγορία', Field: 'Type', Values: lookupService.housingCategories, Tooltip: 'Κατηγορία Εγκατάστασης' },
           { Caption: 'Χωρητικότητα', Field: 'Capacity', Type: 'LookupHtml', Tooltip: 'Χωρητικότητα' },
-          { Caption: 'Παρευρισκόμενοι', Field: 'Attendance', Tooltip: 'Παρευρισκόμενοι' },
+          { Caption: 'Φιλοξενούμενοι', Field: 'Attendance', Tooltip: 'Φιλοξενούμενοι' },
           { Caption: 'Πλήθος', Field: 'Count', Tooltip: 'Πλήθος' },
           { Caption: 'Ποσοστό', Field: 'Utilization', Tooltip: 'Ποσοστό' },
           { Caption: 'Κατάσταση', Field: 'Status', Values: lookupService.statuses, Tooltip: 'Κατάσταση' }
