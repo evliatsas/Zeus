@@ -32,7 +32,8 @@ function grid($http, $filter, moment, commonUtilities) {
             toolbar: '@',
             toolbarFn: '&toolbarFn',
             overrideEqualFn: '&overrideEqualFn',
-            customActionFn: '&customActionFn'
+            customActionFn: '&customActionFn',
+            pageSize: '=?'
         },
         templateUrl: '/templates/grid.html',
         restrict: 'E',
@@ -44,7 +45,7 @@ function grid($http, $filter, moment, commonUtilities) {
 
             scope.gridFilter = '';
             scope.items = [];
-            scope.pageSize = 15; //scope.pageSize == null ? 15 : scope.pageSize;
+            scope.pageSize = scope.pageSize == null ? 15 : scope.pageSize;
             scope.page = 0;
             scope.pages = [];
 
@@ -128,10 +129,7 @@ function grid($http, $filter, moment, commonUtilities) {
             }
 
             scope.allSelected = function () {
-                if (scope.items)
-                    return scope.selectedItems.length == scope.items.length ? true : false;
-                else
-                    return false;
+                return scope.selectedItems.length == scope.items.length ? true : false;
             }
 
             scope.isSelected = function (_item) {

@@ -5,7 +5,8 @@
         </span>  
     </div>
     <div class="btn-group" ng-if="!hidePagingDropdown" style="padding-right: 20px; max-width:250px;">
-        <a class="btn btn-primary btn-raised">{{ pageSize }} εγγρ.</a>
+        <a ng-show="pageSize == 0" class="btn btn-primary btn-raised">Όλα {{ '(' + items.length + ')' }}</a>
+        <a ng-hide="pageSize == 0" class="btn btn-primary btn-raised">{{ pageSize }} εγγρ.</a>
         <a class="btn btn-primary btn-raised dropdown-toggle" data-target="#" data-toggle="dropdown"><span class="caret"></span></a>
         <ul class="dropdown-menu">
             <li><a href="" ng-click="setPageSize(10)">10</a></li>

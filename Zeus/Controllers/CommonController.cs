@@ -43,7 +43,7 @@ namespace Zeus.Controllers
 
                 return result;
             }
-            catch
+            catch(Exception exc)
             {
                 return null;
             }
