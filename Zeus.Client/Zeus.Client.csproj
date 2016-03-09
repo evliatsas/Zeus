@@ -84,13 +84,13 @@
     <Content Include="app\scripts\controllers\main.js" />
     <Content Include="app\scripts\controllers\map.js" />
     <Content Include="app\scripts\controllers\menu.js" />
+    <Content Include="app\scripts\controllers\contact.js" />
     <Content Include="app\scripts\controllers\person.js" />
     <Content Include="app\scripts\controllers\persons.js" />
     <Content Include="app\scripts\controllers\provider.js" />
     <Content Include="app\scripts\controllers\contacts.js" />
     <Content Include="app\scripts\controllers\providers.js" />
     <Content Include="app\scripts\controllers\report.js" />
-    <Content Include="app\scripts\controllers\users.js" />
     <Content Include="app\scripts\directives\add-grid-button.js" />
     <Content Include="app\scripts\directives\card-list.js" />
     <Content Include="app\scripts\directives\date-time-picker.js" />

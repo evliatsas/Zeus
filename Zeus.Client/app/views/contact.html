@@ -6,45 +6,40 @@
         <i class="material-icons" title="Αποθήκευση Προμηθευτή">save</i>
     </span>
 </div>
-<h2>Φoρέας Υποστήριξης</h2>
+<h2>Επαφή</h2>
 <div class="col-md-4">
     <div class="form-group label-static ng-is-empty">
-        <label for="i1" class="control-label">Ονομασία</label>
-        <input type="text" class="form-control" id="i1" ng-model="contact.Name">
+        <label for="i1" class="control-label">Τίτλος</label>
+        <input type="text" class="form-control" id="i1" ng-model="contact.Title">
     </div>
     <div class="form-group label-static ng-is-empty">
-        <label for="i2" class="control-label">Περιγραφή</label>
-        <textarea class="form-control" id="i2" ng-model="provider.Description" />
+        <label for="i2" class="control-label">Όνοματεπώνυμο</label>
+        <textarea class="form-control" id="i2" ng-model="contact.Name" />
     </div>
     <div class="form-group label-static ng-is-empty">
-        <label for="i3" class="control-label">Κατηγορία</label>
-        <select class="form-control" ng-model="provider.Type" required convert-to-number>
-            <option ng-repeat="type in lookup.providerTypes" value="{{type.Id}}">
-                {{type.Description}}
-            </option>
-        </select>
+        <label for="i3" class="control-label">Εταιρία</label>
+        <textarea class="form-control" id="i2" ng-model="contact.Company" />
     </div>
     <div class="form-group label-static ng-is-empty">
-        <label for="i4" class="control-label">Πλήθος Προσωπικού</label>
-        <input type="number" class="form-control" id="i4" ng-model="provider.PersonnelCount">
+        <label for="Administration" class="control-label">Διαχειριστής</label>
+        <input type="text" class="form-control" id="Administration" ng-model="contact.Administration" uib-typeahead="state for state in lookup.administrations | filter:$viewValue">
+    </div>
+    <div class="form-group label-static ng-is-empty">
+        <label for="i4" class="control-label">Κατηγορία</label>
+        <input type="text" class="form-control" id="Type" ng-model="contact.Type" uib-typeahead="type for type in lookup.contactTypes | filter:$viewValue">
+    </div>
+    <div class="form-group label-static ng-is-empty">
+        <label for="i4" class="control-label">Διεύθυνση</label>
+        <input type="number" class="form-control" id="i4" ng-model="contact.Address">
+    </div>
+    <div class="form-group label-static ng-is-empty">
+        <label for="i4" class="control-label">Τηλέφωνα</label>
+        <input type="number" class="form-control" id="i4" ng-model="contact.Phones">
+    </div>
+    <div class="form-group label-static ng-is-empty">
+        <label for="i4" class="control-label">Email</label>
+        <input type="number" class="form-control" id="i4" ng-model="contact.Email">
         <span class="material-input"></span>
-    </div>
-    <div>
-        <label class="control-label">Προσφερόμενες Υπηρεσίες</label>
-        <span class="btn-group-sm pull-right">
-            <a href="javascript:void(0)" class="btn btn-info" ng-click="addItem()"><i class="material-icons">add</i></a>
-        </span>
-        <div ng-repeat="item in provider.Items">
-            <div class="form-inline" >
-                <input type="text" class="form-control" placeholder="Υπηρεσία" ng-model="item.Id">
-                <a href="javascript:void(0)" class="btn btn-info" style="padding: 0px; left: -25px; top: 5px" ng-click="removeItem($index)"><i class="material-icons">clear</i></a>
-            </div>
-        </div>
-        
-    </div>
-    <div class="form-group label-static ng-is-empty">
-        <label for="i5" class="control-label">Σημειώσεις</label>
-        <textarea class="form-control" id="i5" ng-model="provider.Notes" />
     </div>
 </div>
 
