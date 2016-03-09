@@ -7,7 +7,7 @@ angular
         $scope.lookup = lookupService;
         $scope.providers = [];
 
-        $scope.columns = [
+        $scope.providercolumns = [
              { Caption: 'Τύπος', Field: 'Type', Values: lookupService.providerTypes, Tooltip: 'Τύπος Προμηθευτή' },
              { Caption: 'Όνομα', Field: 'Name', Tooltip: 'Όνομα Προμηθευτή' },
              { Caption: 'Περιγραφή', Field: 'Description', Tooltip: 'Περιγραφή Προμηθευτή' },
