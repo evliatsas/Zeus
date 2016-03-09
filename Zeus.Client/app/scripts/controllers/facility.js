@@ -5,6 +5,7 @@ angular
     .controller('FacilityCtrl', function ($scope, $window, $timeout, $http, $routeParams, $location, lookupService, messageService, baseUrl) {
 
         var isInsert = $routeParams.pid == 'new';
+
         $scope.housingcolumns = [
           { Caption: 'Τύπος', Field: 'Type', Values: lookupService.housingCategories, Tooltip: 'Τύπος Εγκατάστασης' },
           { Caption: 'Χωρητικότητα', Field: 'Capacity', Type: 'LookupHtml', Tooltip: 'Χωρητικότητα' },
@@ -40,21 +41,7 @@ angular
             { Caption: 'Συντάκτης', Field: 'User.Title' },
             { Caption: 'Ημερομηνία', Field: 'DateTime', Type: 'DateTime' }
         ];
-               
-        $scope.saveFacility = function () {
-            $http({
-                method: $routeParams.id == "new" ? 'POST' : 'PUT',
-                data: $scope.data,
-                url: baseUrl + '/facilities'
-            }).then(function successCallback(response) {
-                $scope.data = response.data;
-                return true;
-            }, function errorCallback(response) {
-                messageService.getFailed(response.error);
-                return false;
-            });
-        }
-
+       
         var scrollToEnd = function () {
             $timeout(
                 function () {

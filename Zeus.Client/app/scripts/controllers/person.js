@@ -2,7 +2,9 @@
 
 angular
     .module('zeusclientApp')
-    .controller('PersonCtrl', function ($scope, $http, $routeParams, baseUrl, lookupService, messageService) {
+    .controller('PersonCtrl', function ($scope, $http, $routeParams, $location, baseUrl, lookupService, messageService) {
+
+        var isInsert = $routeParams.id == 'new';
 
         $scope.reportcolumns = [
             { Caption: 'Όνομα', Field: 'Name' },
@@ -24,7 +26,7 @@ angular
         });
 
 
-        if ($routeParams.id == "new") {
+        if (isInsert) {
             //$scope.data = {};
         } else {
             $http({
@@ -41,17 +43,42 @@ angular
             alert('add relative');
         }
 
-        $scope.savePerson = function () {
+        // SAVE - DELETE
+        $scope.save = function () {
+            if (isInsert) {
+                // Create facility
+                var method = 'POST';
+            }
+            else {
+                // Update facility
+                var method = 'PUT';
+            }
+
             $http({
-                method: $routeParams.id == "new" ? 'POST' : 'PUT',
+                method: method,
                 data: $scope.data,
                 url: baseUrl + '/persons'
             }).then(function successCallback(response) {
+                messageService.saveSuccess();
                 $scope.data = response.data;
-                return true;
             }, function errorCallback(response) {
                 messageService.showError();
-                return false;
             });
+        }
+
+        var deleteItem = function () {
+            $http({
+                method: 'DELETE',
+                url: baseUrl + '/persons/' + $scope.data.Id
+            }).then(function successCallback(response) {
+                messageService.deleteSuccess();
+                $location.url('/persons');
+            }, function errorCallback(response) {
+                messageService.showError();
+            });
+        }
+
+        $scope.delete = function () {
+            messageService.askDeleteConfirmation(deleteItem);
         }
     });

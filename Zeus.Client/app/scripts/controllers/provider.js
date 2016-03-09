@@ -2,7 +2,9 @@
 
 angular
     .module('zeusclientApp')
-    .controller('ProviderCtrl', function ($scope, $http, $routeParams, lookupService, messageService, baseUrl) {
+    .controller('ProviderCtrl', function ($scope, $http, $routeParams, $location, lookupService, messageService, baseUrl) {
+
+        var isInsert = $routeParams.pid == 'new';
 
         $scope.lookup = lookupService;
         $scope.provider = {};
@@ -11,7 +13,6 @@ angular
             { Caption: 'Όνομα', Field: 'Description' }
         ];
 
-        var isInsert = $routeParams.pid == 'new';
         if (!isInsert) {
             $http({
                 method: 'GET',
@@ -63,6 +64,7 @@ angular
                 url: baseUrl + '/providers/' + $scope.provider.Id
             }).then(function successCallback(response) {
                 messageService.deleteSuccess();
+                $location.url('/providers');
             }, function errorCallback(response) {
                 messageService.showError();
             });
