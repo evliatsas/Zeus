@@ -118,18 +118,18 @@ namespace Zeus.Entities.Repositories
             return query.AsEnumerable();
         }
 
-        public IEnumerable<Lookup> GetProvidersLookup()
+        public async Task<IEnumerable<Lookup>> GetProvidersLookup()
         {
-            var providers = this.Database.GetCollection<Provider>("Providers");
-            var query = from c in providers.AsQueryable<Provider>()
-                        select new Lookup()
+            var query = await Instance.Providers.GetAll();
+            var list  = query.Select(c=>
+                        new Lookup()
                         {
                             Id = c.Id,
                             Description = c.Name,
                             Tag = c.Type.ToString()
-                        };
+                        });
 
-            return query.AsEnumerable();
+            return list;
         }
 
         #endregion

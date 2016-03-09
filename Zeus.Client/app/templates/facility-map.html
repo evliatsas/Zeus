@@ -1,21 +1,29 @@
-<div class="panel panel-primary" ng-class="{ 'panel-warning': facility.Utilization > 74, 'panel-danger': facility.Utilization > 100 }">
-    <div class="panel-heading">
-        <a href="#/facilities/{{facility.Id}}" style="color: white">
-            <i class="material-icons md-36 pull-left">home</i>
-            <h4>
-				<span style="padding-left:10px">{{facility.Name}}</span>
-				<span class="pull-right"><strong>{{facility.Utilization}}%</strong></span>
-			</h4>
-        </a>
+<div>
+    <h3><strong>{{facility.Name}}</strong></h3>
+    <div style="border-top: 1px ridge; border-bottom: 1px ridge">
+        <table style="margin-top: 15px; margin-bottom: 15px">
+            <tr>
+                <td style="padding-right: 8px">Φιλοξενούμενοι</td>
+                <td style="padding-right: 8px">:</td>
+                <td><strong>{{facility.Attendance}}</strong></td>
+            </tr>
+            <tr>
+                <td>Χωρητικότητα:</td>
+                <td>:</td>
+                <td><strong>{{facility.Capacity}}</strong></td>
+            </tr>
+            <tr>
+                <td style="padding-top: 5px">Πληρότητα</td>
+                <td style="padding-top: 5px">:</td>
+                <td style="padding-top: 5px" ng-class="{ 'text-warning': facility.Utilization > 74, 'text-danger': facility.Utilization > 100 }"><strong>{{facility.Utilization}}%</strong></td>
+            </tr>
+        </table>
     </div>
-    <div class="panel-body" style="height: 100px">
-        <p style="height: 50px; overflow: hidden; text-overflow: ellipsis">{{facility.Description}}</p>
 
-        <p class="text-primary">
-            Φιλοξενούμενοι: {{facility.Attendance}} / {{facility.Capacity}}
-        </p>
+    <div class="btn-group">
+        <a href="#/facilities/{{facility.Id}}" class="btn btn-info pull-left" title="Μετάβαση" style="padding: 0px; margin-right: 50px"><i class="material-icons md-24">open_in_browser</i></a>
 
-        <a href="javascript:void(0)" ng-click="moveMarker(facility,marker)" class="btn btn-xs pull-right" title="Μετακίνηση" style="padding: 0px"><i class="material-icons md-24">open_with</i></a>
-        <a href="javascript:void(0)" ng-click="saveMarker(facility,marker)" class="btn btn-xs pull-right" title="Μετακίνηση" style="padding: 0px"><i class="material-icons md-24">save</i></a>
+        <a ng-click="saveMarker(facility,marker)" class="btn btn-xs btn-info pull-right" title="Αποθήκευση" style="padding: 0px; padding-left: 5px"><i class="material-icons md-24">save</i></a>
+        <a ng-click="moveMarker(facility,marker)" class="btn btn-xs btn-info pull-right" title="Μετακίνηση" style="padding: 0px"><i class="material-icons md-24">open_with</i></a>
     </div>
 </div>
