@@ -14,24 +14,10 @@ angular
           { Caption: 'Κατάσταση', Field: 'Status', Values: lookupService.statuses, Tooltip: 'Κατάσταση' }
         ];
 
-        $scope.contactscolumns = [
-          { Caption: 'Ονοματεπώνυμο', Field: 'Name', Tooltip: 'Ονοματεπώνυμο' },
-          { Caption: 'Τίτλος', Field: 'Title', Tooltip: 'Τίτλος' },
-          { Caption: 'Φορέας', Field: 'Company', Tooltip: 'Φορέας' },
-          { Caption: 'Υπαγωγή', Field: 'Administration', Values: lookupService.administrations, Tooltip: 'Υπαγωγή' },
-          { Caption: 'Καθήκοντα', Field: 'Type', Values: lookupService.contactTypes, Tooltip: 'Καθήκοντα' },
-          { Caption: 'Διεύθυνση', Field: 'Address', Tooltip: 'Διεύθυνση' },
-          { Caption: 'Τηλέφωνα', Field: 'Phones', Tooltip: 'Τηλέφωνα' },
-          { Caption: 'Email', Field: 'Email', Tooltip: 'Email' }
+        $scope.lookupColumns = [
+                    { Caption: 'Τύπος', Field: 'Tag' },
+                    { Caption: 'Όνομα', Field: 'Description' }
         ];
-
-        $scope.providerscolumns = [
-         { Caption: 'Τύπος', Field: 'Type', Values: lookupService.providerTypes, Tooltip: 'Τύπος Προμηθευτή' },
-         { Caption: 'Όνομα', Field: 'Name', Tooltip: 'Όνομα Προμηθευτή' },
-         { Caption: 'Περιγραφή', Field: 'Description', Tooltip: 'Περιγραφή Προμηθευτή' },
-         { Caption: 'Προσωπικό', Field: 'PersonnelCount', Tooltip: 'Πλήθος Προσωπικού' },
-         { Caption: 'Υπαγωγή', Field: 'Administration', Values: lookupService.administrations, Tooltip: 'Διοικητική Υπαγωγή' }
-        ]; 
 
         $scope.reportcolumns = [
             { Caption: 'Τ', Field: 'Type', Type: 'LookupHtml', Values: lookupService.reportTypesHtml, Tooltip: 'Τύπος Αναφοράς' },
