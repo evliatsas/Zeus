@@ -31,11 +31,13 @@ angular
             url: httpUrl
         }).then(function successCallback(response) {
             vm.list = response.data;
-            for(var item in modaldata.selected){
-                var index = vm.list.indexOf(item);
-                if(index > -1)
-                    vm.selectedItems.push(vm.list[index]);
-            }
+            vm.list.forEach(function (element, index, array) {
+                for (var item in modaldata.selected) {
+                    if (element.Id == modaldata.selected[item].Id)
+                        vm.selectedItems.push(element);
+                }
+            })
+            
         }, function errorCallback(response) {
             vm.list = [];
         });
