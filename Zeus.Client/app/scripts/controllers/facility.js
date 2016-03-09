@@ -7,17 +7,28 @@ angular
         var isInsert = $routeParams.id == 'new';
 
         $scope.housingcolumns = [
-          { Caption: 'Τύπος', Field: 'Type', Values: lookupService.housingCategories, Tooltip: 'Τύπος Εγκατάστασης' },
-          { Caption: 'Χωρητικότητα', Field: 'Capacity', Type: 'LookupHtml', Tooltip: 'Χωρητικότητα' },
-          { Caption: 'Παρευρισκόμενοι', Field: 'Attendance', Tooltip: 'Παρευρισκόμενοι' },
-          { Caption: 'Πλήθος', Field: 'Count', Tooltip: 'Πλήθος' },
-          { Caption: 'Ποσοστό', Field: 'Utilization', Tooltip: 'Ποσοστό' },
-          { Caption: 'Κατάσταση', Field: 'Status', Values: lookupService.statuses, Tooltip: 'Κατάσταση' }
+            { Caption: 'Τύπος', Field: 'Type', Values: lookupService.housingCategories, Tooltip: 'Τύπος Εγκατάστασης' },
+            { Caption: 'Χωρητικότητα', Field: 'Capacity', Type: 'LookupHtml', Tooltip: 'Χωρητικότητα' },
+            { Caption: 'Παρευρισκόμενοι', Field: 'Attendance', Tooltip: 'Παρευρισκόμενοι' },
+            { Caption: 'Πλήθος', Field: 'Count', Tooltip: 'Πλήθος' },
+            { Caption: 'Ποσοστό', Field: 'Utilization', Tooltip: 'Ποσοστό' },
+            { Caption: 'Κατάσταση', Field: 'Status', Values: lookupService.statuses, Tooltip: 'Κατάσταση' }
         ];
 
-        $scope.lookupColumns = [
-                    { Caption: 'Τύπος', Field: 'Tag' },
-                    { Caption: 'Όνομα', Field: 'Description' }
+        $scope.contactColumns = [
+            { Caption: 'Τύπος', Field: 'Type' },
+            { Caption: 'Όνομα', Field: 'Name' },
+            { Caption: 'Τίτλος', Field: 'Title' },
+            { Caption: 'Οργανισμός', Field: 'Company' },
+            { Caption: 'Διαχείριση', Field: 'Administration' }
+        ];
+
+        $scope.providerColumns = [
+           { Caption: 'Τύπος', Field: 'Type', Type: 'Lookup', Values: lookupService.providerTypes, Tooltip: 'Τύπος Υποστήριξης' },
+           { Caption: 'Όνομα', Field: 'Name' },
+           { Caption: 'Περιγραφή', Field: 'Description' },
+           { Caption: 'Πλ. Πρσ.', Field: 'PersonnelCount', Tooltip: 'Πλήθος Προσωπικού' },
+           { Caption: 'Διαχείριση', Field: 'Administration' }
         ];
 
         $scope.reportcolumns = [

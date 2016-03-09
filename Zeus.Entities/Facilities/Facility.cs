@@ -24,28 +24,28 @@ namespace Zeus.Entities
                 return Capacity == 0 ? 0 : Convert.ToInt32(((double)Attendance / (double)Capacity) * 100D);
             }
         }
-        public bool IsSecure { get { return this.Providers.Any(p => p.Tag == ProviderType.Security.ToString()); } }
-        public bool HasHealthcare { get { return this.Providers.Any(p => p.Tag == ProviderType.Healthcare.ToString()); } }
+        public bool IsSecure { get { return this.Providers.Any(p => p.Type == ProviderType.Security); } }
+        public bool HasHealthcare { get { return this.Providers.Any(p => p.Type == ProviderType.Healthcare); } }
         public string Status { get; set; }
         public Nullable<DateTime> StatusDateTime { get; set; }
         public Nullable<DateTime> StatusECT { get; set; }
         public string Administration { get; set; }
         [BsonIgnore]
-        public IList<Lookup> Contacts { get; set; }
+        public IList<Contact> Contacts { get; set; }
         [BsonIgnore]
-        public IList<Lookup> Providers { get; set; }
+        public IList<Provider> Providers { get; set; }
         [BsonIgnore]
         public IList<Report> Reports { get; set; }
         [BsonIgnore]
-        public IList<Lookup> Persons { get; set; }
+        public IList<Person> Persons { get; set; }
 
 
         public Facility()
         {
-            this.Contacts = new List<Lookup>();
-            this.Providers = new List<Lookup>();
+            this.Contacts = new List<Contact>();
+            this.Providers = new List<Provider>();
             this.Reports = new List<Report>();
-            this.Persons = new List<Lookup>();
+            this.Persons = new List<Person>();
             this.Housings = new List<Housing>();
         }
     }
