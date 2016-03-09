@@ -79,6 +79,7 @@
     <Content Include="app\scripts\controllers\facilities.js" />
     <Content Include="app\scripts\controllers\facility.js" />
     <Content Include="app\scripts\controllers\login.js" />
+    <Content Include="app\scripts\controllers\lookup-modal.js" />
     <Content Include="app\scripts\controllers\main.js" />
     <Content Include="app\scripts\controllers\map.js" />
     <Content Include="app\scripts\controllers\menu.js" />
@@ -87,8 +88,7 @@
     <Content Include="app\scripts\controllers\provider.js" />
     <Content Include="app\scripts\controllers\providers.js" />
     <Content Include="app\scripts\controllers\report.js" />
-    <Content Include="app\scripts\directives\lookup-picker.js" />
-    <Content Include="app\scripts\directives\fab.js" />
+    <Content Include="app\scripts\directives\add-grid-button.js" />
     <Content Include="app\scripts\directives\card-list.js" />
     <Content Include="app\scripts\directives\date-time-picker.js" />
     <Content Include="app\scripts\directives\facility-details.js" />
@@ -103,10 +103,11 @@
     <Content Include="app\styles\material.css" />
     <Content Include="app\styles\site.css" />
     <Content Include="app\styles\typeahead.css" />
+    <Content Include="app\templates\add-grid-button.html" />
     <Content Include="app\templates\fab.html" />
     <Content Include="app\templates\card-list.html" />
     <Content Include="app\templates\facility-map.html" />
-    <Content Include="app\templates\lookup-picker.html" />
+    <Content Include="app\templates\lookup-modal.html" />
     <Content Include="app\templates\provider-card.html" />
     <Content Include="app\templates\contact-card.html" />
     <Content Include="app\templates\date-time-picker.html" />
