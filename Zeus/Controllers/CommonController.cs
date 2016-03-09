@@ -1,19 +1,14 @@
-﻿using Serilog;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Security.Claims;
-using System.Text;
 using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Description;
 using Zeus.Entities;
-using Microsoft.AspNet.Identity.Owin;
-using Microsoft.AspNet.Identity;
-using Zeus.Models;
 
 namespace Zeus.Controllers
 {
@@ -88,23 +83,6 @@ namespace Zeus.Controllers
             var result = await context.GetProvidersLookup();
 
             return result == null ? this.Ok(new List<Lookup>().AsEnumerable()) : this.Ok(result.OrderByDescending(o => o.Description).AsEnumerable());
-        }
-
-        [Route("changepassword")]
-        [HttpPost]
-        public async Task<IHttpActionResult> ChangePassword([FromBody] string oldPassword, string newPassword)
-        {
-            var userManager = this.Request.GetOwinContext().GetUserManager<ApplicationUserManager>();
-
-            var result = await userManager.ChangePasswordAsync(User.Identity.GetUserId(), oldPassword, newPassword);
-            if (result.Succeeded)
-            {
-                return Ok();                
-            }
-            else
-            {
-                return BadRequest();
-            }
-        }
+        }        
     }
 }

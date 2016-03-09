@@ -91,6 +91,7 @@
     <Content Include="app\scripts\controllers\contacts.js" />
     <Content Include="app\scripts\controllers\providers.js" />
     <Content Include="app\scripts\controllers\report.js" />
+    <Content Include="app\scripts\controllers\users.js" />
     <Content Include="app\scripts\directives\add-grid-button.js" />
     <Content Include="app\scripts\directives\card-list.js" />
     <Content Include="app\scripts\directives\date-time-picker.js" />

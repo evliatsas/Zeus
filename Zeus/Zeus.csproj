@@ -154,6 +154,7 @@
     <Compile Include="App_Start\EnsureAuthIndexes.cs" />
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Controllers\CommonController.cs" />
     <Compile Include="Controllers\FacilitiesController.cs" />
     <Compile Include="Controllers\ContactsController.cs" />

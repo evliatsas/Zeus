@@ -16,5 +16,6 @@ namespace Zeus
 
         public const string FamilyRelations = "family";
         public const string Contacts = "contacts";
+        public const string Users = "users";
     }
 }

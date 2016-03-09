@@ -109,7 +109,7 @@
         };
 
         function changePassword(value) {
-            return $http({ method: 'POST', url: baseUrl + 'common/changepassword', data: value }).
+            return $http({ method: 'POST', url: baseUrl + '/users/password', data: value }).
                 success(function (data, status, headers, config) {
                     return data;
                 }).
