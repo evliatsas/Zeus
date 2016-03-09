@@ -11,6 +11,26 @@ angular
         $scope.reportType = $routeParams.type;
 
         var isInsert = $routeParams.rid == 'new';
+
+        var getReportType = function () {
+            switch ($scope.reportType) {
+                case "0":
+                    return 'FeedingReport';
+                case "1":
+                    return 'HousingReport';
+                case "2":
+                    return 'MovementReport'
+                case "3":
+                    return 'ProblemReport';
+                case "4":
+                    return 'RequestReport';
+                case "5":
+                    return 'SituationReport';
+                case "6":
+                    return 'Message';
+            }
+        }
+
         if (!isInsert) {
             $http({
                 method: 'GET',
@@ -22,7 +42,7 @@ angular
             });
         }
         else {
-            $scope.report = {};
+            $scope.report = { $type: 'Zeus.Entities.' + getReportType() + ' ,Zeus.Entities' };
         }
 
         $http({
@@ -94,23 +114,6 @@ angular
             messageService.askDeleteConfirmation(deleteReport);
         }
 
-        var getReportType = function () {
-            switch ($scope.reportType) {
-                case "0":
-                    return 'FeedingReport';
-                case "1":
-                    return 'HousingReport';
-                case "2":
-                    return 'MovementReport'
-                case "3":
-                    return 'ProblemReport';
-                case "4":
-                    return 'RequestReport';
-                case "5":
-                    return 'SituationReport';
-                case "6":
-                    return 'Message';
-            }
-        }
+
 
     });

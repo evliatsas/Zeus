@@ -28,13 +28,8 @@ namespace Zeus
             {
                 var config = new HttpConfiguration();
 
-                var formatter =  config.Formatters.JsonFormatter;
-                formatter.SerializerSettings = new JsonSerializerSettings
-                {
-                    //Formatting = Formatting.Indented,
-                    TypeNameHandling = TypeNameHandling.Auto,
-                    //ContractResolver = new CamelCasePropertyNamesContractResolver()
-                };
+                var jsonSettings = config.Formatters.JsonFormatter.SerializerSettings;
+                jsonSettings.TypeNameHandling = TypeNameHandling.Auto;
 
                 // Adding JSON Formatter & custom Message Handlers
                 //config.Formatters.JsonFormatter.SupportedMediaTypes.Add(new MediaTypeHeaderValue("text/html"));
