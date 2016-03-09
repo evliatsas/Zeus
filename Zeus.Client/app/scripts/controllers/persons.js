@@ -2,19 +2,19 @@
 
 angular
     .module('zeusclientApp')
-    .controller('PersonsCtrl', function ($scope, $location, $http, baseUrl, lookupService, messageService) {
+    .controller('UsersCtrl', function ($scope, $location, $http, baseUrl, lookupService, messageService) {
 
         $scope.addPerson = function () {
-            $location.url("/persons/new");
+            $location.url("/Users/new");
         }
 
-        $scope.showPerson = function (person)
+        $scope.showPerson = function (user)
         {
-            $location.url("/persons/" + person.Id);
+            $location.url("/Users/" + user.Id);
         }
 
         $scope.reportcolumns = [
-            { Caption: 'Όνομα', Field: 'Name' },
+            { Caption: 'Όνοματεπώνυμο', Field: 'Name' },
             { Caption: 'Εθνικότητα', Field: 'Nationality' },
             { Caption: 'Διαβατήριο', Field: 'Passport' },
             { Caption: 'Ηλικία', Field: 'Age', Type: 'Number' },
