@@ -4,11 +4,11 @@ angular
     .module('zeusclientApp')
     .controller('PersonsCtrl', function ($scope, $location, $http, baseUrl, lookupService, messageService) {
 
-        $scope.addPerson = function () {
+        $scope.addItem = function () {
             $location.url("/persons/new");
         }
 
-        $scope.showPerson = function (person)
+        $scope.showItem = function (person)
         {
             $location.url("/persons/" + person.Id);
         }
