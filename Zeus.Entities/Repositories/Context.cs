@@ -80,6 +80,7 @@ namespace Zeus.Entities.Repositories
                 Persons = new MongoDbRepository<Person>(this.Database, "Persons");
                 Contacts = new MongoDbRepository<Contact>(this.Database, "Contacts");
                 Reports = new MongoDbRepository<Report>(this.Database, "Reports");
+                FamilyRelations = new MongoDbRepository<FamilyRelation>(this.Database, "FamilyRelations");
                 //set the static instance property
                 _instance = this;
             }
@@ -96,7 +97,8 @@ namespace Zeus.Entities.Repositories
                         select new Lookup()
                         {
                             Id = c.Id,
-                            Description = c.Name
+                            Description = c.Name,
+                            Tag = c.Type
                         };
 
             return query.AsEnumerable();
@@ -109,7 +111,22 @@ namespace Zeus.Entities.Repositories
                         select new Lookup()
                         {
                             Id = c.Id,
-                            Description = c.Name
+                            Description = c.Name,
+                            Tag = c.Type
+                        };
+
+            return query.AsEnumerable();
+        }
+
+        public IEnumerable<Lookup> GetProvidersLookup()
+        {
+            var providers = this.Database.GetCollection<Provider>("Providers");
+            var query = from c in providers.AsQueryable<Provider>()
+                        select new Lookup()
+                        {
+                            Id = c.Id,
+                            Description = c.Name,
+                            Tag = c.Type.ToString()
                         };
 
             return query.AsEnumerable();

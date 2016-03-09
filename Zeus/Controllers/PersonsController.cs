@@ -82,9 +82,9 @@ namespace Zeus.Controllers
             try
             {
                 var data = await context.Persons.GetById(id);
-                await context.Persons.Delete(id);
                 await context.FamilyRelations.Delete(x => x.PersonId == id || x.RelativeId == id);
-
+                await context.Persons.Delete(id);
+                
                 Log.Information("Person({Person}) deleted By {user}", data, user);
 
                 return this.Ok();

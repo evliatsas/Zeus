@@ -108,9 +108,9 @@ namespace Zeus.Controllers
             try
             {
                 var data = await context.Providers.GetById(id);
-                await context.Providers.Delete(id);
                 await context.ProviderContacts.Delete(x => x.ProviderId == id);
                 await context.ProviderFacilities.Delete(x => x.ProviderId == id);
+                await context.Providers.Delete(id);
 
                 Log.Information("Provider({Provider}) deleted By {user}", data, user);
 

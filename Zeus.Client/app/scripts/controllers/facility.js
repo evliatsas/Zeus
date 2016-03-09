@@ -5,6 +5,7 @@ angular
     .controller('FacilityCtrl', function ($scope, $window, $timeout, $http, $routeParams, $location, lookupService, messageService, baseUrl) {
 
         var isInsert = $routeParams.pid == 'new';
+
         $scope.housingcolumns = [
           { Caption: 'Τύπος', Field: 'Type', Values: lookupService.housingCategories, Tooltip: 'Τύπος Εγκατάστασης' },
           { Caption: 'Χωρητικότητα', Field: 'Capacity', Type: 'LookupHtml', Tooltip: 'Χωρητικότητα' },
@@ -14,24 +15,10 @@ angular
           { Caption: 'Κατάσταση', Field: 'Status', Values: lookupService.statuses, Tooltip: 'Κατάσταση' }
         ];
 
-        $scope.contactscolumns = [
-          { Caption: 'Ονοματεπώνυμο', Field: 'Name', Tooltip: 'Ονοματεπώνυμο' },
-          { Caption: 'Τίτλος', Field: 'Title', Tooltip: 'Τίτλος' },
-          { Caption: 'Φορέας', Field: 'Company', Tooltip: 'Φορέας' },
-          { Caption: 'Υπαγωγή', Field: 'Administration', Values: lookupService.administrations, Tooltip: 'Υπαγωγή' },
-          { Caption: 'Καθήκοντα', Field: 'Type', Values: lookupService.contactTypes, Tooltip: 'Καθήκοντα' },
-          { Caption: 'Διεύθυνση', Field: 'Address', Tooltip: 'Διεύθυνση' },
-          { Caption: 'Τηλέφωνα', Field: 'Phones', Tooltip: 'Τηλέφωνα' },
-          { Caption: 'Email', Field: 'Email', Tooltip: 'Email' }
+        $scope.lookupColumns = [
+                    { Caption: 'Τύπος', Field: 'Tag' },
+                    { Caption: 'Όνομα', Field: 'Description' }
         ];
-
-        $scope.providerscolumns = [
-         { Caption: 'Τύπος', Field: 'Type', Values: lookupService.providerTypes, Tooltip: 'Τύπος Προμηθευτή' },
-         { Caption: 'Όνομα', Field: 'Name', Tooltip: 'Όνομα Προμηθευτή' },
-         { Caption: 'Περιγραφή', Field: 'Description', Tooltip: 'Περιγραφή Προμηθευτή' },
-         { Caption: 'Προσωπικό', Field: 'PersonnelCount', Tooltip: 'Πλήθος Προσωπικού' },
-         { Caption: 'Υπαγωγή', Field: 'Administration', Values: lookupService.administrations, Tooltip: 'Διοικητική Υπαγωγή' }
-        ]; 
 
         $scope.reportcolumns = [
             { Caption: 'Τ', Field: 'Type', Type: 'LookupHtml', Values: lookupService.reportTypesHtml, Tooltip: 'Τύπος Αναφοράς' },
@@ -40,21 +27,7 @@ angular
             { Caption: 'Συντάκτης', Field: 'User.Title' },
             { Caption: 'Ημερομηνία', Field: 'DateTime', Type: 'DateTime' }
         ];
-               
-        $scope.saveFacility = function () {
-            $http({
-                method: $routeParams.id == "new" ? 'POST' : 'PUT',
-                data: $scope.data,
-                url: baseUrl + '/facilities'
-            }).then(function successCallback(response) {
-                $scope.data = response.data;
-                return true;
-            }, function errorCallback(response) {
-                messageService.getFailed(response.error);
-                return false;
-            });
-        }
-
+       
         var scrollToEnd = function () {
             $timeout(
                 function () {
