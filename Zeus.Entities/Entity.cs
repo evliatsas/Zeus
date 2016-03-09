@@ -1,5 +1,5 @@
-﻿using MongoDB.Bson.Serialization.Attributes;
-using MongoDB.Bson.Serialization.IdGenerators;
+﻿using MongoDB.Bson;
+using MongoDB.Bson.Serialization.Attributes;
 
 namespace Zeus.Entities
 {
@@ -11,7 +11,8 @@ namespace Zeus.Entities
         /// <summary>
         /// The Unique Identification (Primary Key) of the Entity
         /// </summary>
-        [BsonId(IdGenerator = typeof(StringObjectIdGenerator))]
+        [BsonId]
+        [BsonRepresentation(BsonType.ObjectId)]
         public virtual string Id { get; set; }
 
         /// <summary>

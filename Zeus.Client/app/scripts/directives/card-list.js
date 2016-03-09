@@ -2,7 +2,7 @@
 
 angular
     .module('zeusclientApp')
-    .directive('cardList', function ($templateRequest, $compile, lookupService, messageService) {
+    .directive('cardList', function ($templateRequest, $compile, $location, lookupService, messageService) {
         return {
             scope: {
                 cards: '=',
@@ -18,9 +18,14 @@ angular
             link: function postLink(scope, element, attrs) {
                 if (scope.cards == null) { scope.cards = []; }
                 scope.lookup = lookupService;
+
                 scope.removeCard = function (index) {
                     //messageService.askConfirmation(function () { return scope.cards.splice(index, 1); });
                     scope.cards.splice(index, 1);
+                }
+
+                scope.addFacility = function () {
+                    $location.url("/facilities/new");
                 }
             }
         };
@@ -45,6 +50,7 @@ angular
                 scope.issueReport = function (reportType, fid) {
                     $location.url('/reports/' + reportType + '/' + fid + '/new');
                 }
+
             }
         }
     });
