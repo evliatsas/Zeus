@@ -13,7 +13,7 @@ angular
             { Caption: 'Υπαγωγή', Field: 'Administration', Values: lookupService.administrations, Tooltip: 'Διοικητική Υπαγωγή' },
             { Caption: 'Τύπος', Field: 'Type', Values: lookupService.contactTypes, Tooltip: 'Τύπος Επαφής' },
             { Caption: 'Διεύθυνση', Field: 'Address', Tooltip: 'Διεύθυνση' },
-            { Caption: 'Υπαγωγή', Field: 'Administration', Tooltip: 'Διοικητική Υπαγωγή' },
+            { Caption: 'Τηλέφωνα', Field: 'Administration', Tooltip: 'Τηλέφωνα' },
             { Caption: 'Email', Field: 'Email', Tooltip: 'Email Επαφής' }
         ];
 
