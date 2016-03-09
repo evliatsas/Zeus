@@ -87,11 +87,14 @@ namespace Zeus.Controllers
         public async Task<IHttpActionResult> GetStatReports()
         {
             var reports = await context.Reports.Get(x => x.Type == ReportType.SituationReport);
+            var facilities = await context.Facilities.GetAll();
 
-            //var list = from r in reports
-            //           group r by r.
-
-
+            reports = reports.Select(s =>
+            {
+                s.Facility = facilities.FirstOrDefault(t => t.Id == s.FacilityId);
+                return s;
+            });
+            
             return reports == null ? (IHttpActionResult)this.NotFound() : this.Ok(reports);
         }
 
