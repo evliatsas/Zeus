@@ -10,7 +10,7 @@ angular
                     { Caption: 'Όνομα', Field: 'Description' }
         ];
 
-        vm.selectedItems = modaldata.selected;
+        vm.selectedItems = [];
 
         var httpUrl = baseUrl;
         if (modaldata.type == 'Contact') {
@@ -31,12 +31,17 @@ angular
             url: httpUrl
         }).then(function successCallback(response) {
             vm.list = response.data;
+            for(var item in modaldata.selected){
+                var index = vm.list.indexOf(item);
+                if(index > -1)
+                    vm.selectedItems.push(vm.list[index]);
+            }
         }, function errorCallback(response) {
             vm.list = [];
         });
 
         vm.selectItem = function (item) {
-            var index = $scope.selectedItems.indexOf(item);
+            var index = vm.selectedItems.indexOf(item);
             if (index > -1) {
                 vm.selectedItems.splice(index, 1);
             }
@@ -47,7 +52,7 @@ angular
 
         vm.ok = function () {
             var result = {
-                selected: scope.selectedItems
+                selected: vm.selectedItems
             };
             $uibModalInstance.close(result);
         };
