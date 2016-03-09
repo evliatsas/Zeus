@@ -40,7 +40,8 @@ namespace Zeus.Controllers
         public async Task<IHttpActionResult> GetReport(string id)
         {
             var report = await context.Reports.GetById(id);
-
+            var facility = await context.Facilities.GetById(report.FacilityId);
+            report.Facility = facility;
             return report == null ? (IHttpActionResult)this.NotFound() : this.Ok(report);
         }
 
@@ -60,6 +61,20 @@ namespace Zeus.Controllers
         public async Task<IHttpActionResult> GetFacilityArchiveReports(string id)
         {
             var reports = await context.Reports.Get(x => x.IsArchived && x.Facility.Id == id);
+
+            return reports == null ? (IHttpActionResult)this.NotFound() : this.Ok(reports);
+        }
+
+        [Route(Routes.Facilities + "/stats")]
+        [ResponseType(typeof(IEnumerable<Report>))]
+        [HttpGet]
+        public async Task<IHttpActionResult> GetStatReports()
+        {
+            var reports = await context.Reports.Get(x => x.Type == ReportType.SituationReport);
+
+            //var list = from r in reports
+            //           group r by r.
+
 
             return reports == null ? (IHttpActionResult)this.NotFound() : this.Ok(reports);
         }
