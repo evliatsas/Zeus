@@ -1,4 +1,5 @@
-﻿<div class="form-group label-static ng-is-empty">
+﻿<h2>Δομή Φιλοξενίας</h2>
+<div class="form-group label-static ng-is-empty">
     <label for="i1" class="control-label">Ονομασία</label>
     <input type="text" class="form-control" id="i1" ng-model="facility.Name">
 </div>
@@ -50,8 +51,8 @@
     <input type="text" class="form-control" id="Status" ng-model="facility.Status" uib-typeahead="state for state in lookup.statuses | filter:$viewValue">
 </div>
 
-<date-time-picker id = "StatusDateTime" label="Ημερομηνία Κατάστασης" date="facility.StatusDateTime"></date-time-picker>
-<date-time-picker id = "StatusECT" label="Ημερομηνία Αποκατάστασης" date="facility.StatusECT"></date-time-picker>
+<date-time-picker id = "StatusDateTime" label="Ημερομηνία Κατάστασης" format="dd/MM/yy" date="facility.StatusDateTime"></date-time-picker>
+<date-time-picker id = "StatusECT" label="Ημερομηνία Αποκατάστασης" format="dd/MM/yy" date="facility.StatusECT"></date-time-picker>
 
 <div class="form-group label-static ng-is-empty">
     <label for="Administration" class="control-label">Διαχειριστής</label>
