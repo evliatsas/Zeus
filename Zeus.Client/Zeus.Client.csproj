@@ -92,7 +92,6 @@
     <Content Include="app\scripts\controllers\providers.js" />
     <Content Include="app\scripts\controllers\report.js" />
     <Content Include="app\scripts\controllers\users.js" />
-    <Content Include="app\scripts\directives\add-grid-button.js" />
     <Content Include="app\scripts\directives\card-list.js" />
     <Content Include="app\scripts\directives\date-time-picker.js" />
     <Content Include="app\scripts\directives\facility-details.js" />
@@ -108,7 +107,6 @@
     <Content Include="app\styles\material.css" />
     <Content Include="app\styles\site.css" />
     <Content Include="app\styles\typeahead.css" />
-    <Content Include="app\templates\add-grid-button.html" />
     <Content Include="app\templates\fab.html" />
     <Content Include="app\templates\card-list.html" />
     <Content Include="app\templates\facility-map.html" />

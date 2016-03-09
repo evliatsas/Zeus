@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MongoDB.Bson.Serialization.Attributes;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,11 +9,14 @@ namespace Zeus.Entities
 {
     public class MovementReport : Report
     {
+        [BsonIgnore]
         public Facility StartingPoint
         {
             get { return this.Facility; }
-            set { this.Facility = value; }
+            set { this.Facility = value; this.FacilityId = value.Id; }
         }
+        public string DestinationFacilityId { get; set; }
+        [BsonIgnore]
         public Facility Destination { get; set; }
         public int PersonCount { get; set; }
         public Transportation Transportation { get; set; }
