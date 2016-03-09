@@ -6,6 +6,7 @@ angular.module('zeusclientApp')
 function grid($http, $filter, moment, commonUtilities) {
     return {
         scope: {
+            lookupType: '=',
             gridColumns: '=',
             gridItems: '=',
             selectedItems: '=?',

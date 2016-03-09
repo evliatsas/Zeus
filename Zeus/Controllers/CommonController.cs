@@ -51,7 +51,7 @@ namespace Zeus.Controllers
             }
         }
 
-        [Route("facilities")]
+        [Route(Routes.Facilities)]
         [ResponseType(typeof(IEnumerable<Lookup>))]
         [HttpGet]
         public async Task<IHttpActionResult> GetFacilitiesAsLookup()
@@ -59,6 +59,30 @@ namespace Zeus.Controllers
             var user = await Helper.GetUserByRequest(User as ClaimsPrincipal);
 
             var result = context.GetFacilitiesLookup();
+
+            return result == null ? this.Ok(new List<Lookup>().AsEnumerable()) : this.Ok(result.OrderByDescending(o => o.Description).AsEnumerable());
+        }
+
+        [Route(Routes.Contacts)]
+        [ResponseType(typeof(IEnumerable<Lookup>))]
+        [HttpGet]
+        public async Task<IHttpActionResult> GetContactsAsLookup()
+        {
+            var user = await Helper.GetUserByRequest(User as ClaimsPrincipal);
+
+            var result = context.GetContactsLookup();
+
+            return result == null ? this.Ok(new List<Lookup>().AsEnumerable()) : this.Ok(result.OrderByDescending(o => o.Description).AsEnumerable());
+        }
+
+        [Route(Routes.Providers)]
+        [ResponseType(typeof(IEnumerable<Lookup>))]
+        [HttpGet]
+        public async Task<IHttpActionResult> GetProvidersAsLookup()
+        {
+            var user = await Helper.GetUserByRequest(User as ClaimsPrincipal);
+
+            var result = await context.GetProvidersLookup();
 
             return result == null ? this.Ok(new List<Lookup>().AsEnumerable()) : this.Ok(result.OrderByDescending(o => o.Description).AsEnumerable());
         }

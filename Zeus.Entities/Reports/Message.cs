@@ -9,7 +9,7 @@ namespace Zeus.Entities
     public class Message : Report
     {
         public string Sender { get { return this.User; } }
-        public Contact Recipient { get; set; }
+        public string Recipient { get; set; }
         public Message()
         {
             this.DateTime = DateTime.Now;

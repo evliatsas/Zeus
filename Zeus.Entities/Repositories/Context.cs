@@ -20,7 +20,8 @@ namespace Zeus.Entities.Repositories
         public MongoDbRepository<Contact> Contacts { get; private set; }
         public MongoDbRepository<Report> Reports { get; private set; }
         public MongoDbRepository<FamilyRelation> FamilyRelations { get; private set; }
-        
+        public MongoDbRepository<User> Users { get; private set; }
+
         #region Static
 
         public static string ConnectionString { get; private set; }
