@@ -1,6 +1,7 @@
 ﻿using Microsoft.Owin;
 using Microsoft.Owin.Cors;
 using MongoDB.Driver;
+using Newtonsoft.Json;
 using Owin;
 using Serilog;
 using System.Web.Http;
@@ -26,6 +27,9 @@ namespace Zeus
             app.Map("/api", api =>
             {
                 var config = new HttpConfiguration();
+
+                var jsonSettings = config.Formatters.JsonFormatter.SerializerSettings;
+                jsonSettings.TypeNameHandling = TypeNameHandling.Auto;
 
                 // Adding JSON Formatter & custom Message Handlers
                 //config.Formatters.JsonFormatter.SupportedMediaTypes.Add(new MediaTypeHeaderValue("text/html"));

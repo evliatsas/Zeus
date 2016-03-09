@@ -73,7 +73,7 @@ namespace Zeus.Controllers
 
             try
             {
-                report.User = user;
+                //report.User = user;
                 report.DateTime = DateTime.Now;
 
                 var data = await context.Reports.Insert(report);
