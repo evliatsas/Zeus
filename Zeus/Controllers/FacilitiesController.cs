@@ -125,6 +125,7 @@ namespace Zeus.Controllers
 
             try
             {
+
                 var result = await context.Facilities.Update(facility);
 
                 Log.Information("Facility({Facility.Id}) updated By {user}", result.Id, user);

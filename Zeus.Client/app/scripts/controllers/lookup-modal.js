@@ -57,8 +57,19 @@ angular
         }
 
         vm.ok = function () {
+            var fullData = [];
+            for (var index in vm.selectedItems) {
+                $http({
+                    method: 'GET',
+                    url: findUrl + vm.selectedItems[index].Id
+                }).then(function successCallback(response) {
+                    fullData.push(response.data);
+                }, function errorCallback(response) {
+                    //on error do nothing
+                });
+            }
             var result = {
-                selected: vm.selectedItems
+                selected: fullData
             };
             $uibModalInstance.close(result);
         };
