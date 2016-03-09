@@ -4,7 +4,7 @@ angular
     .module('zeusclientApp')
     .controller('FacilityCtrl', function ($scope, $window, $timeout, $http, $routeParams, $location, $uibModal, lookupService, messageService, baseUrl) {
 
-        var isInsert = $routeParams.pid == 'new';
+        var isInsert = $routeParams.id == 'new';
 
         $scope.housingcolumns = [
           { Caption: 'Τύπος', Field: 'Type', Values: lookupService.housingCategories, Tooltip: 'Τύπος Εγκατάστασης' },
@@ -88,17 +88,14 @@ angular
             });
         }
 
-        if ($routeParams.id == "new") {
-
+        if (isInsert) {
             $scope.data = {
                 Location: {
                     Type: 'Point',
                     Coordinates: [38.5306122, 25.4556341]
                 }
             };
-
         } else {
-
             $http({
                 method: 'GET',
                 url: baseUrl + '/facilities/' + $routeParams.id
@@ -153,21 +150,5 @@ angular
         // issue a message to a contact
         $scope.sendMessage = function (fid, rid) {
             $location.url('/reports/6/' + fid + '/new');
-        }
-       
-        $scope.checkActions = function (action) {
-            return true;
-        }
-
-        $scope.addHousing = function () {
-            
-        }
-
-        $scope.addContact = function () {
-
-        }
-
-        $scope.addProvider = function () {
-
         }
     });
