@@ -18,7 +18,6 @@
                            grid-items="data.Housings"
                            show-grid-buttons="true"
                            hide-item-buttons="true"
-                           highlight="!item.IsAcknowledged"
                            row-click-fn="showHousing(item)"
                            grid-create-fn="addHousing()">
             </cinnamon-grid>
@@ -29,9 +28,7 @@
                            lookup-type="'Contact'"
                            show-grid-buttons="true"
                            hide-item-buttons="true"
-                           highlight="!item.IsAcknowledged"
-                           row-click-fn="showContact(item)"
-                           grid-create-fn="addHousing()">
+                           row-click-fn="showContact(item)">
             </cinnamon-grid>
         </uib-tab>
         <uib-tab index="3" heading="Υποστήριξη">
@@ -40,9 +37,7 @@
                            lookup-type="'Provider'"
                            show-grid-buttons="true"
                            hide-item-buttons="true"
-                           highlight="!item.IsAcknowledged"
-                           row-click-fn="showProvider(item)"
-                           grid-create-fn="addHousing()">
+                           row-click-fn="showProvider(item)">
             </cinnamon-grid>
         </uib-tab>
         <uib-tab index="4" heading="Αναφορές">

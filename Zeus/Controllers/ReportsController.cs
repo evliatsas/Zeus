@@ -64,6 +64,16 @@ namespace Zeus.Controllers
             return reports == null ? (IHttpActionResult)this.NotFound() : this.Ok(reports);
         }
 
+        [Route(Routes.Facilities + "/stats")]
+        [ResponseType(typeof(IEnumerable<Report>))]
+        [HttpGet]
+        public async Task<IHttpActionResult> GetStatReports()
+        {
+            var reports = await context.Reports.Get(x => x.Type == ReportType.SituationReport);
+
+            return reports == null ? (IHttpActionResult)this.NotFound() : this.Ok(reports);
+        }
+
         [Route("")]
         [ResponseType(typeof(Report))]
         [HttpPost]

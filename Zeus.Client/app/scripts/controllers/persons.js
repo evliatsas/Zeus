@@ -13,7 +13,7 @@ angular
             $location.url("/persons/" + person.Id);
         }
 
-        $scope.reportcolumns = [
+        $scope.personcolumns = [
             { Caption: 'Όνομα', Field: 'Name' },
             { Caption: 'Εθνικότητα', Field: 'Nationality' },
             { Caption: 'Διαβατήριο', Field: 'Passport' },

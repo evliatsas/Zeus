@@ -1,6 +1,6 @@
 ﻿<div>
     <div class="btn-group-sm" ng-if="showGridButtons">
-        <add-grid-button type="lookupType" list=""></add-grid-button>    
+        <add-grid-button type="lookupType" list="items" custom="createItem"></add-grid-button>    
     </div>
     <div class="btn-group" ng-if="!hidePagingDropdown" style="padding-right: 20px; max-width:250px;">
         <a ng-show="pageSize == 0" class="btn btn-primary btn-raised">Όλα {{ '(' + items.length + ')' }}</a>
