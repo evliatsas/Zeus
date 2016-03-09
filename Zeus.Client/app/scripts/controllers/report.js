@@ -50,6 +50,7 @@ angular
             url: baseUrl + '/facilities/' + $routeParams.fid //the unique id of the facility
             }).then(function successCallback(response) {
                 $scope.report.Facility = response.data;
+                $scope.report.FacilityId = response.data.Id;
                 if ($scope.reportType == "0") {
                     for (var index in response.data.Facility.Providers) {
                         if (response.data.Facility.Providers[index].Type == reportType)
