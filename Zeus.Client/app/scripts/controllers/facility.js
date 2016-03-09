@@ -4,6 +4,7 @@ angular
     .module('zeusclientApp')
     .controller('FacilityCtrl', function ($scope, $window, $timeout, $http, $routeParams, $location, lookupService, messageService, baseUrl) {
 
+        var isInsert = $routeParams.pid == 'new';
         $scope.lookup = lookupService;
         $scope.housingcolumns = [
           { Caption: 'Τύπος', Field: 'Type', Values: lookupService.housingCategories, Tooltip: 'Τύπος Εγκατάστασης' },
@@ -127,7 +128,7 @@ angular
                 url: baseUrl + '/facilities/' + $scope.data.Id
             }).then(function successCallback(response) {
                 messageService.deleteSuccess();
-                $location('/facilities');
+                $location.url('/facilities');
             }, function errorCallback(response) {
                 messageService.showError();
             });
