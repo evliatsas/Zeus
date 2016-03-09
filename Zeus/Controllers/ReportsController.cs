@@ -71,6 +71,10 @@ namespace Zeus.Controllers
         {
             var reports = await context.Reports.Get(x => x.Type == ReportType.SituationReport);
 
+            //var list = from r in reports
+            //           group r by r.
+
+
             return reports == null ? (IHttpActionResult)this.NotFound() : this.Ok(reports);
         }
 
