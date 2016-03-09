@@ -77,7 +77,7 @@
     <Content Include="app\scripts\app.js" />
     <Content Include="app\scripts\controllers\about.js" />
     <Content Include="app\scripts\controllers\facilities.js" />
-    <Content Include="app\scripts\controllers\facilitiesCharts.js" />
+    <Content Include="app\scripts\controllers\charts.js" />
     <Content Include="app\scripts\controllers\facility.js" />
     <Content Include="app\scripts\controllers\login.js" />
     <Content Include="app\scripts\controllers\lookup-modal.js" />
@@ -90,6 +90,7 @@
     <Content Include="app\scripts\controllers\contacts.js" />
     <Content Include="app\scripts\controllers\providers.js" />
     <Content Include="app\scripts\controllers\report.js" />
+    <Content Include="app\scripts\controllers\users.js" />
     <Content Include="app\scripts\directives\add-grid-button.js" />
     <Content Include="app\scripts\directives\card-list.js" />
     <Content Include="app\scripts\directives\date-time-picker.js" />
@@ -120,7 +121,7 @@
     <Content Include="app\templates\phone-list.html" />
     <Content Include="app\templates\save-alert.html" />
     <Content Include="app\views\about.html" />
-    <Content Include="app\views\Charts\facilitiesCharts.html" />
+    <Content Include="app\views\charts.html" />
     <Content Include="app\views\facilities.html" />
     <Content Include="app\views\facility.html" />
     <Content Include="app\views\login.html" />
@@ -137,6 +138,7 @@
     <Content Include="app\views\reports\report.html" />
     <Content Include="app\views\person.html" />
     <Content Include="app\views\persons.html" />
+    <Content Include="app\views\users.html" />
     <Content Include="packages.config" />
     <Content Include="Web.config" />
     <None Include="Web.Debug.config">

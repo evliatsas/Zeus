@@ -18,7 +18,7 @@ namespace Zeus.Models
         private Font boldFont;
         private int border = Rectangle.NO_BORDER;
         string fontType;
-        private int rowsPerPage = 27;
+        //private int rowsPerPage = 27;
 
         private Report report;
         private string title;

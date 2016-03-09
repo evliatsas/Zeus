@@ -106,6 +106,16 @@ angular
             controller: 'ContactsCtrl',
             controllerAs: 'contactsCtrl'
         })
+        .when('/charts', {
+            templateUrl: 'views/charts.html',
+            controller: 'ChartsCtrl',
+            controllerAs: 'chartsCtrl'
+        })
+        .when('/users', {
+            templateUrl: 'views/users.html',
+            controller: 'UsersCtrl',
+            controllerAs: 'usersCtrl'
+        })
         .otherwise({
             redirectTo: '/'
         });
