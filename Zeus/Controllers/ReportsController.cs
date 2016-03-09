@@ -40,7 +40,8 @@ namespace Zeus.Controllers
         public async Task<IHttpActionResult> GetReport(string id)
         {
             var report = await context.Reports.GetById(id);
-
+            var facility = await context.Facilities.GetById(report.FacilityId);
+            report.Facility = facility;
             return report == null ? (IHttpActionResult)this.NotFound() : this.Ok(report);
         }
 

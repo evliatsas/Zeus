@@ -116,17 +116,22 @@ angular
             controller: 'UsersCtrl',
             controllerAs: 'usersCtrl'
         })
+        .when('/users/:uid', {
+            templateUrl: 'views/users.html',
+            controller: 'UsersCtrl',
+            controllerAs: 'usersCtrl'
+        })
         .otherwise({
             redirectTo: '/'
         });
   })
   .config(function ($httpProvider, localStorageServiceProvider) {
-    localStorageServiceProvider
-        .setPrefix('ZeusApp')
-        .setStorageType('sessionStorage')
-        .setNotify(true, true)
+      localStorageServiceProvider
+          .setPrefix('ZeusApp')
+          .setStorageType('sessionStorage')
+          .setNotify(true, true)
 
-    $httpProvider.interceptors.push('authInterceptorService');
+      $httpProvider.interceptors.push('authInterceptorService');
   })
   .constant("moment", moment)
   .constant("baseUrl", "http://localhost:8080/api")
