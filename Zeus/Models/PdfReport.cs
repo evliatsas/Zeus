@@ -275,7 +275,7 @@ namespace Zeus.Models
                     table.AddCell(new Phrase("Είδος:", bodyFont));
                     table.AddCell(new Phrase(mReport.MovementType, bodyFont));
                     table.AddCell(new Phrase("Πρός:", bodyFont));
-                    table.AddCell(new Phrase(mReport.Destination.Name, bodyFont));
+                    table.AddCell(new Phrase(mReport.Destination, bodyFont));
                     table.AddCell(new Phrase("Πλήθος Ατόμων:", bodyFont));
                     table.AddCell(new Phrase(mReport.PersonCount.ToString(), bodyFont));
                     table.AddCell(new Phrase("Μέσο Μεταφοράς:", bodyFont));
