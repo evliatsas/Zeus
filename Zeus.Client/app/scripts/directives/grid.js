@@ -133,18 +133,17 @@ function grid($http, $filter, moment, commonUtilities) {
             }
 
             scope.isSelected = function (_item) {
-                return false;
-                //if (!scope.selectedItems) {
-                //    return false;
-                //}
-                //else if (scope.hasEqualOverride) {
-                //    var index = scope.overrideEqualFn({ item: _item });
-                //    return index == -1 ? false : true;
-                //}
-                //else {
-                //    var index = scope.selectedItems.indexOf(_item);
-                //    return index == -1 ? false : true;
-                //}
+                if (!scope.selectedItems) {
+                    return false;
+                }
+                else if (scope.hasEqualOverride) {
+                    var index = scope.overrideEqualFn({ item: _item });
+                    return index == -1 ? false : true;
+                }
+                else {
+                    var index = scope.selectedItems.indexOf(_item);
+                    return index == -1 ? false : true;
+                }
             }
 
             scope.toggleSelect = function (item) {

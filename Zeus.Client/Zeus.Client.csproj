@@ -87,7 +87,7 @@
     <Content Include="app\scripts\controllers\provider.js" />
     <Content Include="app\scripts\controllers\providers.js" />
     <Content Include="app\scripts\controllers\report.js" />
-    <Content Include="app\scripts\directives\contact-picker.js" />
+    <Content Include="app\scripts\directives\lookup-picker.js" />
     <Content Include="app\scripts\directives\fab.js" />
     <Content Include="app\scripts\directives\card-list.js" />
     <Content Include="app\scripts\directives\date-time-picker.js" />
@@ -106,6 +106,7 @@
     <Content Include="app\templates\fab.html" />
     <Content Include="app\templates\card-list.html" />
     <Content Include="app\templates\facility-map.html" />
+    <Content Include="app\templates\lookup-picker.html" />
     <Content Include="app\templates\provider-card.html" />
     <Content Include="app\templates\contact-card.html" />
     <Content Include="app\templates\date-time-picker.html" />
