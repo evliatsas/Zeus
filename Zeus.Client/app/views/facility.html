@@ -25,19 +25,19 @@
         <uib-tab index="2" heading="Επαφές">
             <cinnamon-grid grid-columns="lookupColumns"
                            grid-items="data.Contacts"
-                           lookup-type="'Contact'"
                            show-grid-buttons="true"
                            hide-item-buttons="true"
-                           row-click-fn="showContact(item)">
+                           row-click-fn="showContact(item)"
+                           grid-create-fn="addContact()">
             </cinnamon-grid>
         </uib-tab>
         <uib-tab index="3" heading="Υποστήριξη">
             <cinnamon-grid grid-columns="lookupColumns"
                            grid-items="data.Providers"
-                           lookup-type="'Provider'"
                            show-grid-buttons="true"
                            hide-item-buttons="true"
-                           row-click-fn="showProvider(item)">
+                           row-click-fn="showProvider(item)"
+                           grid-create-fn="addProvider()">
             </cinnamon-grid>
         </uib-tab>
         <uib-tab index="4" heading="Αναφορές">
