@@ -55,7 +55,7 @@ namespace Zeus.Controllers
 
                 var multiProviders = await context.ProviderFacilities.Get(x => x.FacilityId == id);
                 var providerIds = multiProviders.Select(x => x.ProviderId);
-                facility.Providers = context.GetProvidersLookup().Where(x => providerIds.Contains(x.Id)).ToList();
+                facility.Providers = (await context.GetProvidersLookup()).Where(x => providerIds.Contains(x.Id)).ToList();
 
                 var reports = await context.Reports.Get(x => x.Facility.Id == id);
                 facility.Reports = reports.ToList();
