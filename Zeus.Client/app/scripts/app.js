@@ -96,6 +96,16 @@ angular
             controller: 'ProvidersCtrl',
             controllerAs: 'providersCtrl'
         })
+        .when('/contacts/:cid', {
+            templateUrl: 'views/contact.html',
+            controller: 'ContactCtrl',
+            controllerAs: 'contactCtrl'
+        })
+        .when('/contacts', {
+            templateUrl: 'views/contacts.html',
+            controller: 'ContactsCtrl',
+            controllerAs: 'contactsCtrl'
+        })
         .otherwise({
             redirectTo: '/'
         });

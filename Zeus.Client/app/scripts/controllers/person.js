@@ -46,11 +46,11 @@ angular
         // SAVE - DELETE
         $scope.save = function () {
             if (isInsert) {
-                // Create facility
+                // Create person
                 var method = 'POST';
             }
             else {
-                // Update facility
+                // Update person
                 var method = 'PUT';
             }
 
