@@ -41,8 +41,13 @@
         <input type="number" class="form-control" id="i5" ng-model="report.PersonCount">
         <span class="material-input"></span>
     </div>
-    <date-time-picker label="Αναχώρηση" format="dd/MM/yy" date="report.Departure"></date-time-picker>
-    <date-time-picker label="Εκτιμώμενη Άφιξη" format="dd/MM/yy" date="report.ETA"></date-time-picker>
+    <div class="form-group label-static ng-is-empty">
+        <date-time-picker label="Αναχώρηση" format="dd/MM/yy" date="report.Departure"></date-time-picker>
+    </div>
+    <div class="form-group label-static ng-is-empty">
+        <date-time-picker label="Εκτιμώμενη Άφιξη" format="dd/MM/yy" date="report.ETA"></date-time-picker>
+    </div>
+   
     <div class="form-group label-static ng-is-empty">
         <label for="i6" class="control-label">Μέσο Μεταφοράς</label>
         <input type="text" class="form-control" id="i6" ng-model="report.Transportation.Type" uib-typeahead="trans for trans in lookup.transportation | filter:$viewValue">
