@@ -11,7 +11,9 @@
             link: function postLink(scope, element, attrs) {
                 var dt = 'dt' + uniqueId++;
                 element.find('input').parent().attr('id', dt);
-                $('#' + dt).datetimepicker();
+                $('#' + dt).datetimepicker({
+                    format:'dd DD/MM/YYYY HH:mm'
+                });
             }
         };
     });

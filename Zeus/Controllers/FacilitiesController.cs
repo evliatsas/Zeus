@@ -27,11 +27,18 @@ namespace Zeus.Controllers
         [HttpGet]       
         public async Task<IHttpActionResult> GetFacilities()
         {
-            var user = await Helper.GetUserByRequest(User as ClaimsPrincipal);
+            try
+            {
+                var user = await Helper.GetUserByRequest(User as ClaimsPrincipal);
 
-            var result = await context.Facilities.GetAll();
+                var result = await context.Facilities.GetAll();
 
-            return result == null ? this.Ok(new List<Facility>().AsEnumerable()) : this.Ok(result.OrderByDescending(o => o.Name).AsEnumerable());
+                return result == null ? this.Ok(new List<Facility>().AsEnumerable()) : this.Ok(result.OrderByDescending(o => o.Name).AsEnumerable());
+            }
+            catch(Exception exc)
+            {
+                return this.BadRequest(exc.ToString());
+            }
         }
         
         [Route("{id}")]
