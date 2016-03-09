@@ -70,10 +70,10 @@ namespace Zeus.Controllers
         public async Task<IHttpActionResult> CreateReport(Report report)
         {
             var user = await Helper.GetUserByRequest(User as ClaimsPrincipal);
-
+            
             try
             {
-                report.User = user;
+                //report.User = user;
                 report.DateTime = DateTime.Now;
 
                 var data = await context.Reports.Insert(report);
