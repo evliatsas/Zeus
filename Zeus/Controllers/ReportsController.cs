@@ -30,6 +30,12 @@ namespace Zeus.Controllers
             var user = await Helper.GetUserByRequest(User as ClaimsPrincipal);
 
             var result = await context.Reports.Get(x=>!x.IsArchived);
+            var facilities = await context.Facilities.GetAll();
+            result = result.Select(s =>
+            {
+                s.Facility = facilities.FirstOrDefault(t=>t.Id == s.FacilityId);
+                return s;
+            });
 
             return result == null ? this.Ok(new List<Report>().AsEnumerable()) : this.Ok(result.OrderByDescending(o => o.DateTime).AsEnumerable());
         }
@@ -50,8 +56,13 @@ namespace Zeus.Controllers
         [HttpGet]
         public async Task<IHttpActionResult> GetFacilityReports(string id)
         {
-            var reports = await context.Reports.Get(x=>!x.IsArchived && x.Facility.Id == id);
-
+            var reports = await context.Reports.Get(x=>!x.IsArchived && x.FacilityId == id);
+            var facility = await context.Facilities.GetById(id);
+            reports = reports.Select(s =>
+            {
+                s.Facility = facility;
+                return s;
+            });
             return reports == null ? (IHttpActionResult)this.NotFound() : this.Ok(reports);
         }
 
@@ -60,8 +71,13 @@ namespace Zeus.Controllers
         [HttpGet]
         public async Task<IHttpActionResult> GetFacilityArchiveReports(string id)
         {
-            var reports = await context.Reports.Get(x => x.IsArchived && x.Facility.Id == id);
-
+            var reports = await context.Reports.Get(x => x.IsArchived && x.FacilityId == id);
+            var facility = await context.Facilities.GetById(id);
+            reports = reports.Select(s =>
+            {
+                s.Facility = facility;
+                return s;
+            });
             return reports == null ? (IHttpActionResult)this.NotFound() : this.Ok(reports);
         }
 
