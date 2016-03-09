@@ -4,7 +4,7 @@ angular
     .module('zeusclientApp')
     .controller('FacilityCtrl', function ($scope, $window, $timeout, $http, $routeParams, $location, lookupService, messageService, baseUrl) {
 
-        $scope.lookup = lookupService;
+        var isInsert = $routeParams.pid == 'new';
         $scope.housingcolumns = [
           { Caption: 'Τύπος', Field: 'Type', Values: lookupService.housingCategories, Tooltip: 'Τύπος Εγκατάστασης' },
           { Caption: 'Χωρητικότητα', Field: 'Capacity', Type: 'LookupHtml', Tooltip: 'Χωρητικότητα' },
@@ -96,6 +96,45 @@ angular
             }, function errorCallback(response) {
                 messageService.showError();
             });
+        }
+
+        // SAVE - DELETE
+        $scope.save = function () {
+            if (isInsert) {
+                // Create facility
+                var method = 'POST';
+            }
+            else {
+                // Update facility
+                var method = 'PUT';
+            }
+
+            $http({
+                method: method,
+                data: $scope.data,
+                url: baseUrl + '/facilities'
+            }).then(function successCallback(response) {
+                messageService.saveSuccess();
+                $scope.data = response.data;
+            }, function errorCallback(response) {
+                messageService.showError();
+            });
+        }
+
+        var deleteFacility = function () {
+            $http({
+                method: 'DELETE',
+                url: baseUrl + '/facilities/' + $scope.data.Id
+            }).then(function successCallback(response) {
+                messageService.deleteSuccess();
+                $location.url('/facilities');
+            }, function errorCallback(response) {
+                messageService.showError();
+            });
+        }
+
+        $scope.delete = function () {
+            messageService.askDeleteConfirmation(deleteFacility);
         }
 
         // REPORTS

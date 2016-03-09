@@ -2,13 +2,14 @@
 
 angular
     .module('zeusclientApp')
-    .directive('facilityDetails', function () {
+    .directive('facilityDetails', function (lookupService) {
         return {
             scope: {
                 facility: '='
             },
             templateUrl: '/templates/facility-details.html',
             link: function postLink(scope, element, attrs) {
+                scope.lookup = lookupService;
             }
         };
 });

@@ -87,6 +87,7 @@
     <Content Include="app\scripts\controllers\provider.js" />
     <Content Include="app\scripts\controllers\providers.js" />
     <Content Include="app\scripts\controllers\report.js" />
+    <Content Include="app\scripts\directives\contact-picker.js" />
     <Content Include="app\scripts\directives\fab.js" />
     <Content Include="app\scripts\directives\card-list.js" />
     <Content Include="app\scripts\directives\date-time-picker.js" />
@@ -94,7 +95,6 @@
     <Content Include="app\scripts\directives\grid.js" />
     <Content Include="app\scripts\directives\on-finish-render.js" />
     <Content Include="app\scripts\directives\phone-list.js" />
-    <Content Include="app\scripts\directives\save-alert.js" />
     <Content Include="app\scripts\services\auth.interceptor.service.js" />
     <Content Include="app\scripts\services\lookup.service.js" />
     <Content Include="app\scripts\services\message.service.js" />
