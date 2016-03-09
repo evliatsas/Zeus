@@ -4,7 +4,7 @@ angular
     .module('zeusclientApp')
     .controller('UsersCtrl', function ($scope, $http, $routeParams, $location, lookupService, messageService, baseUrl) {
         
-        $scope.users = [];
+        //$scope.users = [];
 
         $scope.usercolumns = [
            { Caption: 'Όνοματεπώνυμο', Field: 'FullName' },
@@ -22,11 +22,11 @@ angular
             messageService.getFailed(response.error);
         });
 
-        $scope.addUser = function () {
+        $scope.addItem = function () {
             $location.url("/users/new");
         }
 
-        $scope.showPerson = function (user) {
+        $scope.openItem = function (user) {
             $location.url("/users/" + user.Id);
         }
 

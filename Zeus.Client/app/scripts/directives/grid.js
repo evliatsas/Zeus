@@ -23,7 +23,7 @@ function grid($http, $filter, moment, commonUtilities) {
             groupIcon: '@',
             groupRowClick: '&groupClickFn',
             rowClick: '&rowClickFn',
-            createItem: '&gridCreateFn',
+            createItemFn: '&gridCreateFn',
             editItem: '&gridEditFn',
             viewItemDetails: '&gridDetailsFn',
             viewItemDetailsInTab: '&gridDetailsInTabFn',
@@ -167,6 +167,10 @@ function grid($http, $filter, moment, commonUtilities) {
 
             scope.customAction = function (_item) {
                 scope.customActionFn({ item: _item })
+            }
+
+            scope.createItem = function () {
+                scope.createItemFn();
             }
 
             scope.editGridItem = function (_item) {
