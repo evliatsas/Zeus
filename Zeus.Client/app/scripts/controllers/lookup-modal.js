@@ -13,16 +13,20 @@ angular
         vm.selectedItems = [];
 
         var httpUrl = baseUrl;
+        var findUrl = baseUrl;
         if (modaldata.type == 'Contact') {
             httpUrl += '/common/contacts';
+            findUrl += '/contacts/';
             vm.title = 'Επιλογή Επαφών';
         }
         else if (modaldata.type == 'Facility') {
             httpUrl += '/common/facilities';
+            findUrl += '/facilities/';
             vm.title = 'Επιλογή Δομών Φιλοξενίας';
         }
         else if (modaldata.type == 'Provider') {
             httpUrl += '/common/providers';
+            findUrl += '/providers/';
             vm.title = 'Επιλογή Προμηθευτή';
         }           
 
