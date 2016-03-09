@@ -69,15 +69,15 @@ angular
         }
 
         $scope.delete = function () {
-            messageService.askConfirmation(deleteProvider);
+            messageService.askDeleteConfirmation(deleteProvider);
         }
 
         $scope.deleteContact = function () {
-            messageService.askConfirmation(removeContact);
+            messageService.askDeleteConfirmation(removeContact);
         }
 
         $scope.deleteFacility = function () {
-            messageService.askConfirmation(removeFacility);
+            messageService.askDeleteConfirmation(removeFacility);
         }
 
         var removeContact = function (index, contactId) {

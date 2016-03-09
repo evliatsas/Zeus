@@ -12,7 +12,7 @@
                 var dt = 'dt' + uniqueId++;
                 element.find('input').parent().attr('id', dt);
                 $('#' + dt).datetimepicker({
-                    format:'dd DD/MM/YYYY HH:mm'
+                    format:'dddd DD/MM/YYYY HH:mm'
                 });
             }
         };

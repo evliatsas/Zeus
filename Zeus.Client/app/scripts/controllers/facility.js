@@ -98,6 +98,45 @@ angular
             });
         }
 
+        // SAVE - DELETE
+        $scope.save = function () {
+            if (isInsert) {
+                // Create facility
+                var method = 'POST';
+            }
+            else {
+                // Update facility
+                var method = 'PUT';
+            }
+
+            $http({
+                method: method,
+                data: $scope.data,
+                url: baseUrl + '/facilities'
+            }).then(function successCallback(response) {
+                messageService.saveSuccess();
+                $scope.data = response.data;
+            }, function errorCallback(response) {
+                messageService.showError();
+            });
+        }
+
+        var deleteFacility = function () {
+            $http({
+                method: 'DELETE',
+                url: baseUrl + '/facilities/' + $scope.data.Id
+            }).then(function successCallback(response) {
+                messageService.deleteSuccess();
+                $location('/facilities');
+            }, function errorCallback(response) {
+                messageService.showError();
+            });
+        }
+
+        $scope.delete = function () {
+            messageService.askDeleteConfirmation(deleteFacility);
+        }
+
         // REPORTS
 
         // issue a message to a contact

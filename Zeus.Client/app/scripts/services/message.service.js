@@ -11,7 +11,7 @@
             getFailed: getFailed,
             saveSuccess: saveSuccess,
             deleteSuccess: deleteSuccess,
-            askConfirmation: askConfirmation
+            askDeleteConfirmation: askDeleteConfirmation
         };
 
         function saveSuccess() {
@@ -30,15 +30,34 @@
             swal("Διαγραφή", "Η εγγραφή διαγράφηκε με επιτυχία", "success");
         }
 
-        function askConfirmation(executionMethod) {
+        function askDeleteConfirmation(executionMethod) {
             swal({
-                title: "Διαγραφή Εγγράφου",
+                title: "Διαγραφή Εγγραφής",
                 text: "Είστε σίγουρος ότι επιθυμείτε την διαγραφή της προβαλλόμενης εγγραφής ?",
                 type: "warning",
                 showCancelButton: true,
                 confirmButtonClass: "btn-danger",
                 confirmButtonText: "Διαγραφη",
-                cancelButtonText: "Ακυρωση",
+                cancelButtonText: "Ακύρωση",
+                closeOnConfirm: true
+            },
+                function (isConfirm) {
+                    if (isConfirm) {
+                        return executionMethod();
+                    }
+                }
+            );
+        }
+
+        function askSaveConfirmation(executionMethod) {
+            swal({
+                title: "Αποθήκευση Εγγραφής",
+                text: "Είστε σίγουρος ότι επιθυμείτε την αποθήκευση της προβαλλόμενης εγγραφής ?",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonClass: "btn-success",
+                confirmButtonText: "Αποθήκευση",
+                cancelButtonText: "Ακύρωση",
                 closeOnConfirm: true
             },
                 function (isConfirm) {

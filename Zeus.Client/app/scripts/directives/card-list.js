@@ -20,7 +20,7 @@ angular
                 scope.lookup = lookupService;
 
                 scope.removeCard = function (index) {
-                    //messageService.askConfirmation(function () { return scope.cards.splice(index, 1); });
+                    //messageService.askDeleteConfirmation(function () { return scope.cards.splice(index, 1); });
                     scope.cards.splice(index, 1);
                 }
 

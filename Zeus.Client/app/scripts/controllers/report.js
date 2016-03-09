@@ -90,7 +90,7 @@ angular
         }
 
         $scope.delete = function () {
-            messageService.askConfirmation(deleteReport);
+            messageService.askDeleteConfirmation(deleteReport);
         }
 
         var getReportType = function () {
