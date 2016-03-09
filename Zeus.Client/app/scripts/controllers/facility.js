@@ -41,13 +41,51 @@ angular
         }
 
         $scope.addContact = function () {
-            $scope.data.Contacts.push({});
-            scrollToEnd();
+            var picker = $uibModal.open({
+                animation: true,
+                size: 'md',
+                templateUrl: '/templates/lookup-modal.html',
+                controller: 'lookupCtrl',
+                controllerAs: 'lookupCtrl',
+                resolve: {
+                    modaldata: function () {
+                        return {
+                            type: 'Contact',
+                            selected: $scope.data.Contacts
+                        };
+                    }
+                }
+            });
+
+            picker.result.then(function (data) {
+                $scope.data.Contacts = data.selected;
+            }, function () {
+                //modal dismissed
+            });
         }
 
         $scope.addProvider = function () {
-            $scope.data.Providers.push({});
-            scrollToEnd();
+            var picker = $uibModal.open({
+                animation: true,
+                size: 'md',
+                templateUrl: '/templates/lookup-modal.html',
+                controller: 'lookupCtrl',
+                controllerAs: 'lookupCtrl',
+                resolve: {
+                    modaldata: function () {
+                        return {
+                            type: 'Provider',
+                            selected: $scope.data.Providers
+                        };
+                    }
+                }
+            });
+
+            picker.result.then(function (data) {
+                $scope.data.Providers = data.selected;
+            }, function () {
+                //modal dismissed
+            });
         }
 
         if ($routeParams.id == "new") {
