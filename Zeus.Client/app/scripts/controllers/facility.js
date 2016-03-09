@@ -2,7 +2,7 @@
 
 angular
     .module('zeusclientApp')
-    .controller('FacilityCtrl', function ($scope, $window, $timeout, $http, $routeParams, $location, lookupService, messageService, baseUrl) {
+    .controller('FacilityCtrl', function ($scope, $window, $timeout, $http, $routeParams, $location, $uibModal, lookupService, messageService, baseUrl) {
 
         var isInsert = $routeParams.pid == 'new';
 
