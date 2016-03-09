@@ -26,6 +26,7 @@
         <uib-tab index="2" heading="Επαφές">
             <cinnamon-grid grid-columns="lookupColumns"
                            grid-items="data.Contacts"
+                           lookup-type="'Contact'"
                            show-grid-buttons="true"
                            hide-item-buttons="true"
                            highlight="!item.IsAcknowledged"
@@ -36,6 +37,7 @@
         <uib-tab index="3" heading="Υποστήριξη">
             <cinnamon-grid grid-columns="lookupColumns"
                            grid-items="data.Providers"
+                           lookup-type="'Provider'"
                            show-grid-buttons="true"
                            hide-item-buttons="true"
                            highlight="!item.IsAcknowledged"
