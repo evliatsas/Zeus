@@ -4,20 +4,31 @@ angular
     .module('zeusclientApp')
     .controller('FacilityCtrl', function ($scope, $window, $timeout, $http, $routeParams, $location, $uibModal, lookupService, messageService, baseUrl) {
 
-        var isInsert = $routeParams.pid == 'new';
+        var isInsert = $routeParams.id == 'new';
 
         $scope.housingcolumns = [
-          { Caption: 'Κατηγορία', Field: 'Type', Values: lookupService.housingCategories, Tooltip: 'Κατηγορία Εγκατάστασης' },
-          { Caption: 'Χωρητικότητα', Field: 'Capacity', Type: 'LookupHtml', Tooltip: 'Χωρητικότητα' },
-          { Caption: 'Φιλοξενούμενοι', Field: 'Attendance', Tooltip: 'Φιλοξενούμενοι' },
-          { Caption: 'Πλήθος', Field: 'Count', Tooltip: 'Πλήθος' },
-          { Caption: 'Ποσοστό', Field: 'Utilization', Tooltip: 'Ποσοστό' },
-          { Caption: 'Κατάσταση', Field: 'Status', Values: lookupService.statuses, Tooltip: 'Κατάσταση' }
+            { Caption: 'Τύπος', Field: 'Type', Values: lookupService.housingCategories, Tooltip: 'Τύπος Εγκατάστασης' },
+            { Caption: 'Χωρητικότητα', Field: 'Capacity', Type: 'LookupHtml', Tooltip: 'Χωρητικότητα' },
+            { Caption: 'Παρευρισκόμενοι', Field: 'Attendance', Tooltip: 'Παρευρισκόμενοι' },
+            { Caption: 'Πλήθος', Field: 'Count', Tooltip: 'Πλήθος' },
+            { Caption: 'Ποσοστό', Field: 'Utilization', Tooltip: 'Ποσοστό' },
+            { Caption: 'Κατάσταση', Field: 'Status', Values: lookupService.statuses, Tooltip: 'Κατάσταση' }
         ];
 
-        $scope.lookupColumns = [
-                    { Caption: 'Τύπος', Field: 'Tag' },
-                    { Caption: 'Όνομα', Field: 'Description' }
+        $scope.contactColumns = [
+            { Caption: 'Τύπος', Field: 'Type' },
+            { Caption: 'Όνομα', Field: 'Name' },
+            { Caption: 'Τίτλος', Field: 'Title' },
+            { Caption: 'Οργανισμός', Field: 'Company' },
+            { Caption: 'Διαχείριση', Field: 'Administration' }
+        ];
+
+        $scope.providerColumns = [
+           { Caption: 'Τύπος', Field: 'Type', Type: 'Lookup', Values: lookupService.providerTypes, Tooltip: 'Τύπος Υποστήριξης' },
+           { Caption: 'Όνομα', Field: 'Name' },
+           { Caption: 'Περιγραφή', Field: 'Description' },
+           { Caption: 'Πλ. Πρσ.', Field: 'PersonnelCount', Tooltip: 'Πλήθος Προσωπικού' },
+           { Caption: 'Διαχείριση', Field: 'Administration' }
         ];
 
         $scope.reportcolumns = [
@@ -88,17 +99,14 @@ angular
             });
         }
 
-        if ($routeParams.id == "new") {
-
+        if (isInsert) {
             $scope.data = {
                 Location: {
                     Type: 'Point',
                     Coordinates: [38.5306122, 25.4556341]
                 }
             };
-
         } else {
-
             $http({
                 method: 'GET',
                 url: baseUrl + '/facilities/' + $routeParams.id
@@ -153,21 +161,5 @@ angular
         // issue a message to a contact
         $scope.sendMessage = function (fid, rid) {
             $location.url('/reports/6/' + fid + '/new');
-        }
-       
-        $scope.checkActions = function (action) {
-            return true;
-        }
-
-        $scope.addHousing = function () {
-            
-        }
-
-        $scope.addContact = function () {
-
-        }
-
-        $scope.addProvider = function () {
-
         }
     });

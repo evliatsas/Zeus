@@ -51,11 +51,13 @@ namespace Zeus.Controllers
             {
                 var multiContacts = await context.FacilityContacts.Get(x => x.FacilityId == id);
                 var contactIds = multiContacts.Select(x => x.ContactId);
-                facility.Contacts = context.GetContactsLookup().Where(x => contactIds.Contains(x.Id)).ToList();
+                var contacts = await context.Contacts.Get(x => contactIds.Contains(x.Id));
+                facility.Contacts = contacts.ToList();
 
                 var multiProviders = await context.ProviderFacilities.Get(x => x.FacilityId == id);
                 var providerIds = multiProviders.Select(x => x.ProviderId);
-                facility.Providers = (await context.GetProvidersLookup()).Where(x => providerIds.Contains(x.Id)).ToList();
+                var providers = await context.Providers.Get(x => providerIds.Contains(x.Id));
+                facility.Providers = providers.ToList();
 
                 var reports = await context.Reports.Get(x => x.FacilityId == id);
                 facility.Reports = reports.ToList();
