@@ -120,27 +120,16 @@ namespace Zeus.Controllers
 
             try
             {
+                await context.FamilyRelations.Delete(x => x.PersonId == person.Id);
+
                 var relatives = person.Relatives
                                       .Select(s => new FamilyRelation() {
                                         PersonId = person.Id,
-                                        RelativeId = s.Id,
+                                        RelativeId = s.RelativeId,
                                         Relationship = s.Relationship
                                       }).ToList();
 
-                if (relatives.Count() > 0) {
-                    
-                }
-                await context.FamilyRelations.Delete(x => x.PersonId == person.Id);
-                var relationships = person.Relatives
-                                          .Select(x =>
-                                              new FamilyRelation()
-                                              {
-                                                  PersonId = person.Id,
-                                                  RelativeId = x.Id,
-                                                  Relationship = x.Relationship
-                                           }).ToList();
-
-                await context.FamilyRelations.BulkInsert(relationships);
+                await context.FamilyRelations.BulkInsert(relatives);
 
                 var result = await context.Persons.Update(person);
 
