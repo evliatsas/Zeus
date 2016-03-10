@@ -41,6 +41,13 @@ angular
         }
 
         $scope.addRelative = function () {
+
+            $scope.relatives = [];
+
+            $scope.data.Relatives.forEach(function (element, index, array) {
+                $scope.relatives.push(element.RelativeId);
+            });
+
             var picker = $uibModal.open({
                 animation: true,
                 size: 'md',
@@ -51,14 +58,18 @@ angular
                     modaldata: function () {
                         return {
                             type: 'Person',
-                            selected: $scope.data.Relatives
+                            selected: $scope.relatives,
+                            ignoreTag: true
                         };
                     }
                 }
             });
 
             picker.result.then(function (data) {
-                $scope.data.Relatives = data.selected;
+                $scope.relatives = data.selected;
+                for (var r in $scope.data.Relatives) {
+                    $scope.data.Relatives[r].Relationship = data.selected[r].Tag;
+                }
             }, function () {
                 //modal dismissed
             });

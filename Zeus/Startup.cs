@@ -16,15 +16,16 @@ namespace Zeus
         {
             //init DB Contexts
             var context = new Zeus.Entities.Repositories.Context();
-
-            //Configure Auth
-            ConfigureAuth(app);
-
+            
             //Configure Log
             ConfigureLog(context.Database);
 
             //Configure CORS
             app.UseCors(CorsOptions.AllowAll);
+            
+            //Configure Auth
+            ConfigureAuth(app);
+
 
             //Configure OWIN
             app.Map("/api", api =>
@@ -41,7 +42,8 @@ namespace Zeus
                 config.MapHttpAttributeRoutes();
                 // require authentication for all controllers
                 //config.Filters.Add(new AuthorizeAttribute());
-                api.UseWebApi(config);
+                
+                api.UseWebApi(config);                
             });
         }
 

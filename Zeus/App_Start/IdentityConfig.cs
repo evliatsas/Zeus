@@ -36,7 +36,7 @@ namespace Zeus.Models
                 RequireNonLetterOrDigit = true,
                 RequireDigit = true,
                 RequireLowercase = true,
-                RequireUppercase = true,
+                RequireUppercase = false,
             };
             // Configure user lockout defaults
             manager.UserLockoutEnabledByDefault = true;

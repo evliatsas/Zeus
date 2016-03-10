@@ -48,12 +48,12 @@
         </span>
     </div>
     <div class="form-inline col-xs-12 col-sm-12 col-md-12 col-lg-12" ng-repeat="relative in data.Relatives">
-        <select class="form-control" ng-model="relative.Relationship">
+        <select class="form-control" ng-model="relative.Relationship" required>
             <option ng-repeat="relationship in lookup.relationships" value="{{relationship.Id}}">
                 {{relationship.Description}}
             </option>
         </select>
-        <input type="text" class="form-control" ng-model="relative.Name" readonly="true" style="margin-left: 20px; font-weight: bold">
+        <input type="text" class="form-control" ng-model="relative.Relative.Name" readonly="true" style="margin-left: 20px; font-weight: bold">
         <a href="javascript:void(0)" class="btn btn-info" style="padding: 0px; left: -25px; top: 5px" ng-click="data.Relatives.splice($index, 1)"><i class="material-icons">clear</i></a>
     </div>
 </div>

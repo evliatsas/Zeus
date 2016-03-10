@@ -5,7 +5,7 @@
         .module('zeusclientApp')
         .factory('authService', authService);
 
-    function authService($http, $q, $location, localStorageService, baseUrl, messageService) {
+    function authService($http, $q, $location, $sanitize, localStorageService, baseUrl, messageService) {
 
         var service = {
             login: login,
@@ -44,7 +44,7 @@
                         str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
                     return str.join("&");
                 },
-                data: { username: loginData.userName, password: loginData.password, grant_type: "password", client_id: "099153c2625149bc8ecb3e85e03f0022" }
+                data: { username: loginData.userName, password: $sanitize(loginData.password), grant_type: "password", client_id: "099153c2625149bc8ecb3e85e03f0022" }
             }).then(function (response) {
                 localStorageService.set('authorizationData', response.data);
                 service.authentication.isAuth = true;
@@ -109,7 +109,7 @@
         };
 
         function changePassword(userId, oldPassword, newPassword) {
-            var value = { userId: userId, oldPassword: oldPassword, newPassword: newPassword };
+            var value = { userId: userId, oldPassword: $sanitize(oldPassword), newPassword: $sanitize(newPassword) };
             return $http(
                 {
                     method: 'POST',
