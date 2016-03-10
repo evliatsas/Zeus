@@ -9,7 +9,8 @@ angular
         vm.lookup = lookupService;
         vm.housing = modaldata.housing;
 
-        vm.ok = function () {            
+        vm.ok = function () {
+            vm.housing.Utilization = Math.round((vm.housing.Attendance / (vm.housing.Capacity * vm.housing.Count))*100);
             var result = {
                 housing: vm.housing
             };

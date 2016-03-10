@@ -11,7 +11,7 @@ angular
             { Caption: 'Χωρητικότητα', Field: 'Capacity', Tooltip: 'Χωρητικότητα' },
             { Caption: 'Παρευρισκόμενοι', Field: 'Attendance', Tooltip: 'Παρευρισκόμενοι' },
             { Caption: 'Πλήθος', Field: 'Count', Tooltip: 'Πλήθος' },
-            { Caption: 'Ποσοστό', Field: 'Utilization', Tooltip: 'Ποσοστό' },
+            { Caption: 'Πληρότητα', Field: 'Utilization', Type: 'Percentage', Tooltip: 'Ποσοστό' },
             { Caption: 'Κατάσταση', Field: 'Status', Values: lookupService.statuses, Tooltip: 'Κατάσταση' }
         ];
 

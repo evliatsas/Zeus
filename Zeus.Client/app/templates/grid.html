@@ -70,8 +70,11 @@
                     <div ng-if="column.Type == 'Html'" ng-bind-html="$eval('item.'+ column.Field)" ng-click="gridRowClick(item)"></div>
                     <div ng-if="column.Type == 'LookupHtml'" ng-click="gridRowClick(item)" ng-bind-html="(column.Values | filter: {Id: $eval('item.' + column.Field)})[0]['Description']"></div>
                     <div ng-if="column.Type == 'Boolean'" style="text-align:center;" ng-click="gridRowClick(item)"><div class="checkbox"><label><input type="checkbox" ng-checked="$eval('item.'+ column.Field)" disabled></label></div></div>
-                    <div ng-if="column.Type == 'Percentage'" class="progress progress-striped" ng-click="gridRowClick(item)">
-                        <div class="progress-bar progress-bar-info" ng-style="{width: $eval('item.'+ column.Field) + '%'}">{{$eval('item.'+ column.Field) + '%'}}</div>
+                    <div ng-if="column.Type == 'Percentage'" class="progress progress-striped" ng-click="gridRowClick(item)">                        
+                        <span class="progress-bar" 
+                             ng-class="{'progress-bar-primary': $eval('item.'+ column.Field) < 76, 'progress-bar-warning': $eval('item.'+ column.Field) > 75 && $eval('item.'+ column.Field) < 101, 'progress-bar-danger': $eval('item.'+ column.Field) > 100}" 
+                             ng-style="{width: $eval('item.'+ column.Field) + '%'}" title="{{$eval('item.'+ column.Field) + '%'}}">                           
+                        </span>
                     </div>
                     <div ng-if="column.Type == 'CustomAction'" ng-click="customAction(item)" ng-bind-html="(column.Values | filter: {Id: $eval('item.' + column.Field)})[0]['Description']"></div>
                 </td>
