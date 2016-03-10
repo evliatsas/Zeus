@@ -45,7 +45,7 @@ angular
             $scope.relatives = [];
 
             $scope.data.Relatives.forEach(function (element, index, array) {
-                $scope.relatives.push(element.RelativeId);
+                $scope.relatives.push({ Id: element.RelativeId });
             });
 
             var picker = $uibModal.open({
@@ -58,8 +58,7 @@ angular
                     modaldata: function () {
                         return {
                             type: 'Person',
-                            selected: $scope.relatives,
-                            ignoreTag: true
+                            selected: $scope.relatives
                         };
                     }
                 }
@@ -67,9 +66,7 @@ angular
 
             picker.result.then(function (data) {
                 $scope.relatives = data.selected;
-                for (var r in $scope.data.Relatives) {
-                    $scope.data.Relatives[r].Relationship = data.selected[r].Tag;
-                }
+
             }, function () {
                 //modal dismissed
             });
