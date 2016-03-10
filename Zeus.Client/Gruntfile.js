@@ -404,6 +404,7 @@ module.exports = function (grunt) {
     },
 
     exec: {
+      build_api: 'start /d "C:\Program Files (x86)\Microsoft Visual Studio 14.0\Common7\IDE\" devenv.exe "C:\\Users\\akatarachias\\Source\\repositories\\zeus\\Zeus.sln" /build Debug /project "C:\\Users\\akatarachias\\Source\\repositories\\zeus\\Zeus\\Zeus.csproj" /projectconfig Debug /out "devenv.build.log"',
       api: 'start ../Zeus/bin/Debug/Zeus.exe'
     },
 
@@ -437,6 +438,7 @@ module.exports = function (grunt) {
     }
 
     grunt.task.run([
+      //'exec:build_api',
       'exec:api',
       'clean:server',
       'wiredep',
