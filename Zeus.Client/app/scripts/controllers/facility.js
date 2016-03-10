@@ -82,6 +82,11 @@ angular
                 }
                 else {
                     selectedHousing = data.housing;
+
+                    if (selectedHousing.Tag && selectedHousing.Tag == 'remove') {
+                        var index = $scope.data.Housings.indexOf(selectedHousing);
+                        $scope.data.Housings.splice(index, 1);
+                    }
                 }
             }, function () {
                 //modal dismissed

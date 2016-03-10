@@ -42,7 +42,7 @@ function grid($http, $filter, moment, commonUtilities) {
             scope.allowGroupRowClick = attrs['groupClickFn'] != undefined;
             scope.hasEqualOverride = attrs['overrideEqualFn'] != undefined;
 
-            scope.gridFilter = '';
+            scope.gridFilter = {filter:''};
             scope.items = [];
             scope.pageSize = 15; //scope.pageSize == null ? 15 : scope.pageSize;
             scope.page = 0;
@@ -222,11 +222,11 @@ function grid($http, $filter, moment, commonUtilities) {
             };
 
             scope.filtering = function () {
-                if (scope.gridFilter === '') {
+                if (scope.gridFilter.filter === '') {
                     scope.items = scope.gridItems;
                 }
                 else {
-                    var tmp = $filter('filter')(scope.gridItems, { $: scope.gridFilter });
+                    var tmp = $filter('filter')(scope.gridItems, { $: scope.gridFilter.filter });
                     scope.items = tmp;
                 }
                 scope.pagination();
