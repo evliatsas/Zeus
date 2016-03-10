@@ -2,7 +2,7 @@
 
 angular
     .module('zeusclientApp')
-    .controller('UserCtrl', function ($scope, $http, $routeParams, $location, baseUrl, messageService) {
+    .controller('UserCtrl', function ($scope, $http, $routeParams, $location, baseUrl, messageService, authService) {
 
         $scope.isInsert = $routeParams.id == 'new';
 
@@ -62,5 +62,7 @@ angular
             });
         }
 
-
+        $scope.changePassword = function () {
+            authService.changePassword($scope.user.Id, "", $scope.user.Password);
+        }
     });

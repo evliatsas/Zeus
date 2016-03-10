@@ -34,4 +34,21 @@
             <input type="password" class="form-control" id="passwordConfirm" data-match="#password" data-error="Ο κωδικός δεν ταιριάζει" required ng-model="user.PasswordConfirm">
         </div>
     </div>
+    <div class="pull-right">
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#simple-dialog">Αλλαγή Κωδικού<div class="ripple-container"></div></button>
+    </div>
+</div>
+
+<div id="simple-dialog" class="modal fade" tabindex="-1" style="display: none;">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="form-group label-static ng-is-empty">
+                    <label for="Password" class="control-label">Νέος Κωδικός Πρόσβασης</label>
+                    <input type="password" class="form-control" id="Password" required ng-model="user.Password">
+                </div>
+                <button type="button" ng-click="changePassword()" class="btn btn-primary" data-toggle="modal" data-target="#simple-dialog">Αλλαγή Κωδικού<div class="ripple-container"></div></button>
+            </div>
+        </div>
+    </div>
 </div>
