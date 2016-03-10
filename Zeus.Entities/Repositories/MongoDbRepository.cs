@@ -109,5 +109,11 @@ namespace Zeus.Entities.Repositories
 
             return result;
         }
+
+        public async Task<int> Count(Expression<Func<T, bool>> predicate)
+        {
+            var count = await this.collection.CountAsync(predicate);
+            return (int)count;
+        }
     }
 }
