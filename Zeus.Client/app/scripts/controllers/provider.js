@@ -2,16 +2,87 @@
 
 angular
     .module('zeusclientApp')
-    .controller('ProviderCtrl', function ($scope, $http, $routeParams, $location, lookupService, messageService, baseUrl) {
+    .controller('ProviderCtrl', function ($scope, $http, $routeParams, $uibModal, $location, lookupService, messageService, baseUrl) {
 
         var isInsert = $routeParams.id == 'new';
-
         $scope.lookup = lookupService;
-        $scope.provider = {};
+        //$scope.provider = {};
 
-        $scope.lookupColumns = [
-            { Caption: 'Όνομα', Field: 'Description' }
+        $scope.facilityColumns = [
+             { Caption: 'Τύπος', Field: 'Type', Tooltip: 'Τύπος Εγκατάστασης' },
+             { Caption: 'Όνομα', Field: 'Name', Tooltip: 'Όνομα Εγκατάστασης' },
+             { Caption: 'Περιγραφή', Field: 'Description', Tooltip: 'Περιγραφή Εγκατάστασης' },
+             { Caption: 'Χωρητικότητα', Field: 'Capacity', Tooltip: 'Τρέχουσα Χωρητικότητα' },
+             { Caption: 'Διαχείριση', Field: 'Administration', Tooltip: 'Διοικητική Υπαγωγή' },
+             { Caption: 'Φιλοξενούμενοι', Field: 'Attendance', Tooltip: 'Πλήθος Φιλοξενούμενων' },
+             { Caption: 'Πληρότητα', Field: 'Utilization', Type: 'Percentage', Tooltip: 'Ποσοστό Πληρότητας' },
         ];
+
+        $scope.addFacility = function () {
+            var picker = $uibModal.open({
+                animation: true,
+                size: 'md',
+                templateUrl: '/templates/lookup-modal.html',
+                controller: 'lookupCtrl',
+                controllerAs: 'lookupCtrl',
+                resolve: {
+                    modaldata: function () {
+                        return {
+                            type: 'Facility',
+                            selected: $scope.provider.Facilities
+                        };
+                    }
+                }
+            });
+
+            picker.result.then(function (data) {
+                $scope.provider.Facilities = data.selected;
+            }, function () {
+                //modal dismissed
+            });
+        }
+        
+        $scope.showFacility = function (facility) {
+            var location = '/facilities/' + facility.Id;
+            $location.url(location);
+        }
+
+        $scope.contactColumns = [
+           { Caption: 'Τύπος', Field: 'Type' },
+           { Caption: 'Όνομα', Field: 'Name' },
+           { Caption: 'Τίτλος', Field: 'Title' },
+           { Caption: 'Οργανισμός', Field: 'Company' },
+           { Caption: 'Διαχείριση', Field: 'Administration' }
+        ];
+
+        $scope.addContact=function(){
+            var picker = $uibModal.open({
+                animation: true,
+                size: 'md',
+                templateUrl: '/templates/lookup-modal.html',
+                controller: 'lookupCtrl',
+                controllerAs: 'lookupCtrl',
+                resolve: {
+                    modaldata: function () {
+                        return {
+                            type: 'Contact',
+                            selected: $scope.provider.Contacts
+                        };
+                    }
+                }
+            });
+
+            picker.result.then(function (data) {
+                $scope.provider.Contacts = data.selected;
+            }, function () {
+                //modal dismissed
+            });
+        }
+
+        $scope.showContact = function (contact) {
+            var location = '/providers/' + contact.Id;
+            $location.url(location);
+        }
 
         if (!isInsert) {
             $http({
@@ -28,7 +99,6 @@ angular
             $scope.provider.Items = [];
         }
 
-        var i = 1;
         $scope.addItem = function () {
            $scope.provider.Items.push({"Id":"", "Description":""});
         }
