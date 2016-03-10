@@ -12,6 +12,7 @@
                 var dt = 'dt' + uniqueId++;
                 element.find('input').parent().attr('id', dt);
                 $('#' + dt).datetimepicker({
+                    locale: 'el',
                     format:'dddd DD/MM/YYYY HH:mm'
                 });
             }

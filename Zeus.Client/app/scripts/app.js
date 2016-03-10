@@ -22,8 +22,8 @@ angular
     'LocalStorageModule'
   ])
   .config(function ($routeProvider) {
-      $.material.init();
       moment.locale('el');
+      $.material.init();
 
       $routeProvider
         .when('/', {
