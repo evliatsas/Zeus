@@ -150,29 +150,35 @@ namespace Zeus.Controllers
             {
                 //update contacts
                 await context.FacilityContacts.Delete(x => x.FacilityId == facility.Id);
-                var contacts = facility.Contacts.Select(x =>
+                var contacts = facility.Contacts
+                                       .Select(x =>
+                                        new FacilityContact() {
+                                            ContactId = x.Id,
+                                            FacilityId = facility.Id
+                                        })
+                                       .ToList();
+
+                if (contacts.Count() > 0)
                 {
-                    var record = new FacilityContact()
-                    {
-                        ContactId = x.Id,
-                        FacilityId = facility.Id
-                    };
-                    return record;
-                });
-                await context.FacilityContacts.BulkInsert(contacts);
+                    await context.FacilityContacts.BulkInsert(contacts);
+                }
+                
                 //update providers
                 await context.ProviderFacilities.Delete(x => x.FacilityId == facility.Id);
-                var providers = facility.Providers.Select(x =>
-                {
-                    var record = new ProviderFacility()
-                    {
-                        ProviderId = x.Id,
-                        FacilityId = facility.Id
-                    };
-                    return record;
-                });
-                await context.ProviderFacilities.BulkInsert(providers);
+                var providers = facility.Providers
+                                        .Select(x =>
+                                        new ProviderFacility()
+                                        {
+                                            ProviderId = x.Id,
+                                            FacilityId = facility.Id
+                                        })
+                                        .ToList();
 
+                if (providers.Count() > 0)
+                {
+                    await context.ProviderFacilities.BulkInsert(providers);
+                }
+                
                 var result = await context.Facilities.Update(facility);
 
                 Log.Information("Facility({Facility.Id}) updated By {user}", result.Id, user);
