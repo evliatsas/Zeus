@@ -17,7 +17,7 @@
         </ul>
     </div>
     <div ng-if="!hidePagingDropdown" class="input-group pull-right" style="max-width:200px; margin-top:-15px; margin-bottom:-15px;">
-        <input type="text" placeholder="Αναζήτηση" class="form-control" ng-model="gridFilter" ng-change="filtering()">
+        <input type="text" placeholder="Αναζήτηση" class="form-control" ng-model="gridFilter.filter" ng-change="filtering()">
         <span class="input-group-btn">
             <i class="text-primary material-icons md-24" style="padding-top:15px; margin-left:-15px;">search</i>
         </span>
