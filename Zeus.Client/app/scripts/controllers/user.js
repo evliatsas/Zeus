@@ -26,10 +26,6 @@ angular
             });
         }
 
-        $scope.addUser = function () {
-            
-        }
-
         // SAVE - DELETE
         $scope.save = function () {
             if (isInsert) {
@@ -65,7 +61,5 @@ angular
             });
         }
 
-        $scope.delete = function () {
-            messageService.askDeleteConfirmation(deleteItem);
-        }
+
     });

@@ -56,7 +56,7 @@
             </tr>
             <tr ng-repeat="item in group.items" ng-style="rowCursor()" ng-class="{'warning': isSelected(item)}">
                 <td ng-if="showCheckBoxes">
-                    <div class="checkbox">
+                    <div class="checkbox" style="padding: 0px; margin: 0px">
                         <label>
                             <input type="checkbox" ng-checked="isSelected(item)" ng-click="toggleSelect(item)">
                         </label>
@@ -77,7 +77,7 @@
                     <div ng-if="column.Type == 'DateTime'" ng-click="gridRowClick(item)">{{formatDateTime($eval('item.'+ column.Field), column.format)}}</div>
                     <div ng-if="column.Type == 'Html'" ng-bind-html="$eval('item.'+ column.Field)" ng-click="gridRowClick(item)"></div>
                     <div ng-if="column.Type == 'LookupHtml'" ng-click="gridRowClick(item)" ng-bind-html="(column.Values | filter: {Id: $eval('item.' + column.Field)})[0]['Description']"></div>
-                    <div ng-if="column.Type == 'Boolean'" style="text-align:center;" ng-click="gridRowClick(item)"><div class="checkbox"><label><input type="checkbox" ng-checked="$eval('item.'+ column.Field)" disabled></label></div></div>
+                    <div ng-if="column.Type == 'Boolean'" ng-click="gridRowClick(item)"><div class="checkbox" style="padding: 0px; margin: 0px"><label><input type="checkbox" ng-checked="$eval('item.'+ column.Field)" disabled></label></div></div>
                     <div ng-if="column.Type == 'Percentage'" class="progress progress-striped" ng-click="gridRowClick(item)">                        
                         <span class="progress-bar" 
                              ng-class="{'progress-bar-primary': $eval('item.'+ column.Field) < 76, 'progress-bar-warning': $eval('item.'+ column.Field) > 75 && $eval('item.'+ column.Field) < 101, 'progress-bar-danger': $eval('item.'+ column.Field) > 100}" 
