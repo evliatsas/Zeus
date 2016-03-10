@@ -79,6 +79,7 @@
     <Content Include="app\scripts\controllers\facilities.js" />
     <Content Include="app\scripts\controllers\charts.js" />
     <Content Include="app\scripts\controllers\facility.js" />
+    <Content Include="app\scripts\controllers\housing.js" />
     <Content Include="app\scripts\controllers\login.js" />
     <Content Include="app\scripts\controllers\lookup-modal.js" />
     <Content Include="app\scripts\controllers\main.js" />
@@ -125,6 +126,7 @@
     <Content Include="app\views\charts.html" />
     <Content Include="app\views\facilities.html" />
     <Content Include="app\views\facility.html" />
+    <Content Include="app\views\housing.html" />
     <Content Include="app\views\login.html" />
     <Content Include="app\views\main.html" />
     <Content Include="app\views\map.html" />
