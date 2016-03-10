@@ -79,11 +79,13 @@ angular
         }
 
         $scope.showContact = function (contact) {
-            var location = '/providers/' + contact.Id;
+            var location = '/contacts/' + contact.Id;
             $location.url(location);
         }
 
-        if (!isInsert) {
+        if (isInsert) {
+            $scope.contact = {};
+        } else {
             $http({
                 method: 'GET',
                 url: baseUrl + '/providers/' + $routeParams.id //the unique id of the provider
@@ -93,19 +95,8 @@ angular
                 messageService.showError();
             });
         }
-        else {
-            $scope.provider = {};
-            $scope.provider.Items = [];
-        }
 
-        $scope.addItem = function () {
-           $scope.provider.Items.push({"Id":"", "Description":""});
-        }
-
-        $scope.removeItem = function (index) {
-            $scope.provider.Items.splice(index, 1);
-        }
-
+        // SAVE - DELETE
         $scope.save = function () {
             if (isInsert) {
                 // Create provider
