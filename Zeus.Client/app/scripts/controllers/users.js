@@ -6,6 +6,8 @@ angular
         
         var isInsert = $routeParams.id == 'new';
 
+       // $scope.showPassword = true;
+
         $scope.usercolumns = [
            { Caption: 'Όνοματεπώνυμο', Field: 'FullName' },
            { Caption: 'Αναγνωριστικό', Field: 'UserName' },
@@ -13,7 +15,7 @@ angular
            { Caption: 'Τηλέφωνο', Field: 'PhoneNumber' },
         ];
 
-        $scope.contact = {};
+        $scope.user = {};
 
         $scope.addUser = function () {
             $location.url("/users/new");

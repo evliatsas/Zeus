@@ -44,7 +44,7 @@ angular
             $http({
                 method: method,
                 data: $scope.user,
-                url: baseUrl + '/contacts'
+                url: baseUrl + '/users'
             }).then(function successCallback(response) {
                 messageService.saveSuccess();
                 $scope.user = response.data;
