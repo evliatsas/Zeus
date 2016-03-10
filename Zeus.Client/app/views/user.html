@@ -34,7 +34,7 @@
             <input type="password" class="form-control" id="passwordConfirm" data-match="#password" data-error="Ο κωδικός δεν ταιριάζει" required ng-model="user.PasswordConfirm">
         </div>
     </div>
-    <div class="pull-right">
+    <div class="pull-right" ng-show="!isInsert">
         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#simple-dialog">Αλλαγή Κωδικού<div class="ripple-container"></div></button>
     </div>
 </div>

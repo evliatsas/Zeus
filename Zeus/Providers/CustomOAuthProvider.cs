@@ -40,10 +40,11 @@ namespace Zeus.Providers
             return Task.FromResult<object>(null);
         }
 
-        public async override Task GrantResourceOwnerCredentials(OAuthGrantResourceOwnerCredentialsContext context)
+        public override Task GrantResourceOwnerCredentials(OAuthGrantResourceOwnerCredentialsContext context)
         {
             var userManager = context.OwinContext.GetUserManager<ApplicationUserManager>();
-            ApplicationUser user = await userManager.FindByNameAsync(context.UserName);
+            ApplicationUser user = userManager.FindByName(context.UserName);
+            var psw = System.Net.WebUtility.HtmlDecode(context.Password);
 
             if (user == null)
             {
@@ -52,16 +53,16 @@ namespace Zeus.Providers
                 //user.Email = string.Format("{0}@local.lc",context.UserName);
                 //var result = await userManager.CreateAsync(user, context.Password);
                 context.SetError("invalid_grant", "The user name is incorrect");
-                return;
+                return Task.FromResult<object>(null);
             }
 
-            if (await userManager.IsLockedOutAsync(user.Id))
+            if (userManager.IsLockedOut(user.Id))
             {
                 context.SetError("invalid_grant", "The user is LockedOut");
-                return;
+                return Task.FromResult<object>(null);
             }
 
-            if (await userManager.CheckPasswordAsync(user, context.Password))
+            if (userManager.CheckPassword(user, psw))
             {
                 var identity = new ClaimsIdentity("JWT");
 
@@ -79,16 +80,18 @@ namespace Zeus.Providers
 
                 var ticket = new AuthenticationTicket(identity, props);
                 context.Validated(ticket);
-                return;
+                return Task.FromResult<object>(null);
             }
             else
             {
-                await userManager.AccessFailedAsync(user.Id);
-                if (await userManager.IsLockedOutAsync(user.Id))
+                userManager.AccessFailed(user.Id);
+                if (userManager.IsLockedOut(user.Id))
                 {
                     context.SetError("invalid_grant", "The user is LockedOut");
-                    return;
+                    return Task.FromResult<object>(null);
                 }
+                context.SetError("invalid_grant", "The password is incorrect");
+                return Task.FromResult<object>(null);
             }
         }
     }
