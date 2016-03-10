@@ -2,7 +2,7 @@
 
 angular
     .module('zeusclientApp')
-    .controller('ReportCtrl', function ($scope, $http, $routeParams, lookupService, messageService, baseUrl) {
+    .controller('ReportCtrl', function ($scope, $http, $routeParams, $location, lookupService, messageService, baseUrl) {
 
         $scope.lookup = lookupService;
         $scope.facilities = [];
@@ -101,7 +101,7 @@ angular
                 url: baseUrl + '/reports'
             }).then(function successCallback(response) {
                 messageService.saveSuccess();
-                isInsert = false;
+                $location.url('/reports/' + $scope.report.Type + '/' + $scope.report.FacilityId + '/' + $scope.report.Id);
             }, function errorCallback(response) {
                 messageService.showError();
             });
@@ -113,6 +113,7 @@ angular
                 url: baseUrl + '/reports/' + $scope.report.Id
             }).then(function successCallback(response) {
                 messageService.deleteSuccess();
+                $location.url('/facilities/' + $scope.report.FacilityId);
             }, function errorCallback(response) {
                 messageService.showError();
             });
@@ -122,6 +123,15 @@ angular
             messageService.askDeleteConfirmation(deleteReport);
         }
 
-
+        $scope.archive = function () {
+            $http({
+                method: 'GET',
+                url: baseUrl + '/reports/archive/' + $scope.report.Id //archive report
+            }).then(function successCallback(response) {
+                $scope.report.IsArchived = response.data;
+            }, function errorCallback(response) {
+                messageService.getFailed(response.error);
+            });
+        }
 
     });

@@ -173,7 +173,7 @@ namespace Zeus.Controllers
             }
         }
 
-        [Route("/archive/{id}")]
+        [Route("archive/{id}")]
         [ResponseType(typeof(bool))]
         [HttpGet]
         public async Task<IHttpActionResult> ArchiveReport(string id)
@@ -193,7 +193,6 @@ namespace Zeus.Controllers
             {
                 return this.BadRequest("Δεν υπάρχει η Αναφορά που ζητήσατε.");
             }
-           
         }
     }
 }
