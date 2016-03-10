@@ -6,7 +6,7 @@ angular
 
         var isInsert = $routeParams.id == 'new';
         $scope.lookup = lookupService;
-        
+
         $scope.reportcolumns = [
             { Caption: 'Όνομα', Field: 'Name' },
             { Caption: 'Εθνικότητα', Field: 'Nationality' },
@@ -51,8 +51,7 @@ angular
                     modaldata: function () {
                         return {
                             type: 'Person',
-                            selected: $scope.data.Relatives,
-                            ignoreTag: true
+                            selected: $scope.data.Relatives
                         };
                     }
                 }
