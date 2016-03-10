@@ -4,7 +4,7 @@ angular
     .module('zeusclientApp')
     .controller('UserCtrl', function ($scope, $http, $routeParams, $location, baseUrl, messageService) {
 
-        var isInsert = $routeParams.id == 'new';
+        $scope.isInsert = $routeParams.id == 'new';
 
         $scope.usercolumns = [
           { Caption: 'Όνοματεπώνυμο', Field: 'FullName' },
@@ -13,7 +13,7 @@ angular
           { Caption: 'Τηλέφωνο', Field: 'PhoneNumber' }
         ];
 
-        if (isInsert) {
+        if ($scope.isInsert) {
             $scope.data = {};
         } else {
             $http({
@@ -28,7 +28,7 @@ angular
 
         // SAVE - DELETE
         $scope.save = function () {
-            if (isInsert) {
+            if ($scope.isInsert) {
                 // Create user
                 var method = 'POST';
             }
@@ -44,8 +44,9 @@ angular
             }).then(function successCallback(response) {
                 messageService.saveSuccess();
                 $scope.user = response.data;
+                $location.url('/users');
             }, function errorCallback(response) {
-                messageService.showError();
+                messageService.showError(response.data.Message);
             });
         }
 
