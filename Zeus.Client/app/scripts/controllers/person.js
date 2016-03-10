@@ -51,7 +51,8 @@ angular
                     modaldata: function () {
                         return {
                             type: 'Person',
-                            selected: $scope.data.Relatives
+                            selected: $scope.data.Relatives,
+                            ignoreTag: true
                         };
                     }
                 }
@@ -59,6 +60,9 @@ angular
 
             picker.result.then(function (data) {
                 $scope.data.Relatives = data.selected;
+                for (var r in $scope.data.Relatives) {
+                    $scope.data.Relatives[r].Relationship = data.selected[r].Tag;
+                }
             }, function () {
                 //modal dismissed
             });
