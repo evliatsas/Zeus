@@ -101,7 +101,7 @@ angular
                 url: baseUrl + '/reports'
             }).then(function successCallback(response) {
                 messageService.saveSuccess();
-                $location.url('/reports/' + $scope.report.Type + '/' + $scope.report.FacilityId + '/' + $scope.report.Id);
+                $location.url('/reports/' + response.data.Type + '/' + response.data.FacilityId + '/' + response.data.Id);
             }, function errorCallback(response) {
                 messageService.showError();
             });
