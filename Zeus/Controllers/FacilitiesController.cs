@@ -75,6 +75,29 @@ namespace Zeus.Controllers
 
             try
             {
+                //insert contacts
+                var contacts = facility.Contacts.Select(x =>
+                {
+                    var record = new FacilityContact()
+                    {
+                        ContactId = x.Id,
+                        FacilityId = facility.Id
+                    };
+                    return record;
+                });
+                await context.FacilityContacts.BulkInsert(contacts);
+                //insert providers
+                var providers = facility.Providers.Select(x =>
+                {
+                    var record = new ProviderFacility()
+                    {
+                        ProviderId = x.Id,
+                        FacilityId = facility.Id
+                    };
+                    return record;
+                });
+                await context.ProviderFacilities.BulkInsert(providers);
+
                 var data = await context.Facilities.Insert(facility);
 
                 Log.Information("Facility({Facility.Id}) created By {user}", data.Id, user);
@@ -125,6 +148,30 @@ namespace Zeus.Controllers
 
             try
             {
+                //update contacts
+                await context.FacilityContacts.Delete(x => x.FacilityId == facility.Id);
+                var contacts = facility.Contacts.Select(x =>
+                {
+                    var record = new FacilityContact()
+                    {
+                        ContactId = x.Id,
+                        FacilityId = facility.Id
+                    };
+                    return record;
+                });
+                await context.FacilityContacts.BulkInsert(contacts);
+                //update providers
+                await context.ProviderFacilities.Delete(x => x.FacilityId == facility.Id);
+                var providers = facility.Providers.Select(x =>
+                {
+                    var record = new ProviderFacility()
+                    {
+                        ProviderId = x.Id,
+                        FacilityId = facility.Id
+                    };
+                    return record;
+                });
+                await context.ProviderFacilities.BulkInsert(providers);
 
                 var result = await context.Facilities.Update(facility);
 
