@@ -69,25 +69,30 @@ namespace Zeus.Controllers
 
             try
             {
+                //insert contacts
+                var contacts = provider.Contacts.Select(x =>
+                {
+                    var record = new ProviderContact()
+                    {
+                        ContactId = x.Id,
+                        ProviderId = provider.Id
+                    };
+                    return record;
+                });
+                await context.ProviderContacts.BulkInsert(contacts);
+                //insert facilities
+                var facilities = provider.Facilities.Select(x =>
+                {
+                    var record = new ProviderFacility()
+                    {
+                        ProviderId = provider.Id,
+                        FacilityId = x.Id
+                    };
+                    return record;
+                });
+                await context.ProviderFacilities.BulkInsert(facilities);
+
                 var data = await context.Providers.Insert(provider);
-                foreach (var facility in provider.Facilities)
-                {
-                    var providerFacility = new ProviderFacility()
-                    {
-                        FacilityId = facility.Id,
-                        ProviderId = data.Id
-                    };
-                    await context.ProviderFacilities.Insert(providerFacility);
-                }
-                foreach(var contact in provider.Contacts)
-                {
-                    var providerContact = new ProviderContact()
-                    {
-                        ContactId = contact.Id,
-                        ProviderId = data.Id
-                    };
-                    await context.ProviderContacts.Insert(providerContact);
-                }
 
                 Log.Information("Provider({Provider.Id}) created By {user}", data.Id, user);
                 return this.Ok(data);
@@ -132,6 +137,31 @@ namespace Zeus.Controllers
 
             try
             {
+                //update contacts
+                await context.ProviderContacts.Delete(x => x.ProviderId == provider.Id);
+                var contacts = provider.Contacts.Select(x =>
+                {
+                    var record = new ProviderContact()
+                    {
+                        ContactId = x.Id,
+                        ProviderId = provider.Id
+                    };
+                    return record;
+                });
+                await context.ProviderContacts.BulkInsert(contacts);
+                //update facilities
+                await context.ProviderFacilities.Delete(x => x.ProviderId == provider.Id);
+                var facilities = provider.Facilities.Select(x =>
+                {
+                    var record = new ProviderFacility()
+                    {
+                        ProviderId = provider.Id,
+                        FacilityId = x.Id
+                    };
+                    return record;
+                });
+                await context.ProviderFacilities.BulkInsert(facilities);
+
                 var result = await context.Providers.Update(provider);
 
                 Log.Information("Provider({Provider.Id}) updated By {user}", result.Id, user);
