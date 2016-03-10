@@ -45,31 +45,31 @@
 
 <div class="col-md-8" style="padding-top:20px;">
     <div class="shadow-box btn-group-sm">
-        <span class="btn btn-info btn-fab fab pull-right" ng-click="addContact()">
-            <i class="material-icons" title="Προσθήκη Επαφής">add</i>
-        </span>
-        <i>Επαφές</i>
-        <cinnamon-grid grid-columns="lookupColumns"
-                       hide-paging-dropdown ="true"
-                       page-size="0"
-                       grid-items="provider.Contacts"
-                       show-grid-buttons="false"
-                       hide-item-buttons="true"
-                       row-click-fn="showContact(item)">
-        </cinnamon-grid>
-    </div>
-    <div class="shadow-box btn-group-sm">
         <span class="btn btn-info btn-fab fab pull-right" ng-click="addFacility()">
-            <i class="material-icons" title="Προσθήκη Δ.Φ.">add</i>
+            <i class="material-icons" title="Προσθήκη Δομής Φιλοξενίας">add</i>
         </span>
-        <i>Δομές Φιλοξ. που Εξυπηρετεί</i>
-        <cinnamon-grid grid-columns="lookupColumns"
+        <i>Δομές Φιλοξενίας</i>
+        <cinnamon-grid grid-columns="facilityColumns"
                        hide-paging-dropdown ="true"
                        page-size="0"
-                       grid-items="provider.Facilities"
+                       grid-items="contact.Facilities"
                        show-grid-buttons="false"
                        hide-item-buttons="true"
                        row-click-fn="showFacility(item)">
+        </cinnamon-grid>
+    </div>
+    <div class="shadow-box btn-group-sm">
+        <span class="btn btn-info btn-fab fab pull-right" ng-click="addProvider()">
+            <i class="material-icons" title="Προσθήκη Υποστήριξης">add</i>
+        </span>
+        <i>Υποστήριξη</i>
+        <cinnamon-grid grid-columns="providerColumns"
+                       hide-paging-dropdown ="true"
+                       page-size="0"
+                       grid-items="contact.Providers"
+                       show-grid-buttons="false"
+                       hide-item-buttons="true"
+                       row-click-fn="showProvider(item)">
         </cinnamon-grid>
     </div>
 </div>

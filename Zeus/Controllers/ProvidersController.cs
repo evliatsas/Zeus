@@ -45,11 +45,13 @@ namespace Zeus.Controllers
                 {
                     var multiContacts = await context.ProviderContacts.Get(x => x.ProviderId == id);
                     var contactIds = multiContacts.Select(x => x.ContactId);
-                    provider.Contacts = context.GetContactsLookup().Where(x => contactIds.Contains(x.Id)).ToList();
+                    var contacts = await context.Contacts.Get(x => contactIds.Contains(x.Id));
+                    provider.Contacts = contacts.ToList();
 
                     var multiFacilities = await context.ProviderFacilities.Get(x => x.ProviderId == id);
                     var facilityIds = multiFacilities.Select(x => x.FacilityId);
-                    provider.Facilities = context.GetFacilitiesLookup().Where(x => facilityIds.Contains(x.Id)).ToList();
+                    var facilities = await context.Facilities.Get(x => facilityIds.Contains(x.Id));
+                    provider.Facilities = facilities.ToList();
                 }
 
                 return provider == null ? (IHttpActionResult)this.NotFound() : this.Ok(provider);
