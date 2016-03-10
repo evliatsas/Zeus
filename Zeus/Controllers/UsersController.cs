@@ -24,11 +24,15 @@ namespace Zeus.Controllers
             context = Entities.Repositories.Context.Instance;
         }
 
+        private ApplicationUserManager userManager;
         public ApplicationUserManager UserManager
         {
             get
             {
-                return Request.GetOwinContext().GetUserManager<ApplicationUserManager>();
+                if(userManager == null)
+                    userManager = Request.GetOwinContext().GetUserManager<ApplicationUserManager>();
+
+                return userManager;
             }
         }
 
@@ -131,19 +135,45 @@ namespace Zeus.Controllers
 
         [Route("password")]
         [HttpPost]
-        public async Task<IHttpActionResult> ChangePassword([FromBody] string oldPassword, string newPassword)
+        public async Task<IHttpActionResult> ChangePassword(dynamic obj)
         {
-            var userManager = this.Request.GetOwinContext().GetUserManager<ApplicationUserManager>();
+            IdentityResult result;
+            string userId = obj.userId;
+            string oldPassword = obj.oldPassword;
+            string newPassword = obj.newPassword;
 
-            var result = await userManager.ChangePasswordAsync(User.Identity.GetUserId(), oldPassword, newPassword);
+            if (string.IsNullOrWhiteSpace(userId))
+            {
+                userId = User.Identity.GetUserId();
+                result = await change(userId, oldPassword, newPassword);
+            }
+            else
+            {
+                result = reset(userId, newPassword);
+            }
+            
             if (result.Succeeded)
             {
                 return Ok();                
             }
             else
             {
-                return BadRequest();
+                return BadRequest(result.Errors.FirstOrDefault());
             }
+        }
+
+        private async Task<IdentityResult> change(string userId, string oldPassword, string newPassword)
+        {
+            return await UserManager.ChangePasswordAsync(userId, oldPassword, newPassword);
+        }
+
+        private IdentityResult reset(string userId, string newPassword)
+        {
+            var result  = UserManager.RemovePassword(userId);
+            if (result.Succeeded)
+                result = UserManager.AddPassword(userId, newPassword);
+                        
+            return result;
         }
     }
 }
