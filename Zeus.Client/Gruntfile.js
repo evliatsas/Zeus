@@ -438,7 +438,7 @@ module.exports = function (grunt) {
     }
 
     grunt.task.run([
-      'exec:build_api',
+      //'exec:build_api',
       'exec:api',
       'clean:server',
       'wiredep',
