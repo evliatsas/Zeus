@@ -13,7 +13,7 @@ namespace Zeus
         {
             using (WebApp.Start<Startup>(url: Properties.Settings.Default.ApiUrl))
             {
-                Console.WriteLine("DDR API Server Started on {0}...", Properties.Settings.Default.ApiUrl);
+                Console.WriteLine("ZEUS API Server Started on {0}...", Properties.Settings.Default.ApiUrl);
                 Console.WriteLine("\n\nPress ESC to shutdown");
                 ConsoleKeyInfo key;
                 do

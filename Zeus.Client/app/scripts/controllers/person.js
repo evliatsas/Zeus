@@ -6,7 +6,7 @@ angular
 
         var isInsert = $routeParams.id == 'new';
         $scope.lookup = lookupService;
-        
+
         $scope.reportcolumns = [
             { Caption: 'Όνομα', Field: 'Name' },
             { Caption: 'Εθνικότητα', Field: 'Nationality' },
@@ -60,6 +60,9 @@ angular
 
             picker.result.then(function (data) {
                 $scope.data.Relatives = data.selected;
+                for (var r in $scope.data.Relatives) {
+                    $scope.data.Relatives[r].Relationship = data.selected[r].Tag;
+                }
             }, function () {
                 //modal dismissed
             });

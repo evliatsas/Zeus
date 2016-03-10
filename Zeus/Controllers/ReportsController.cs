@@ -45,8 +45,16 @@ namespace Zeus.Controllers
         public async Task<IHttpActionResult> GetReport(string id)
         {
             var report = await context.Reports.GetById(id);
+
             var facility = await context.Facilities.GetById(report.FacilityId);
             report.Facility = facility;
+
+            if(!report.IsAcknoledged)
+            {
+                report.IsAcknoledged = true;
+                await context.Reports.Update(report);
+            }
+
             return report == null ? (IHttpActionResult)this.NotFound() : this.Ok(report);
         }
 
@@ -162,6 +170,28 @@ namespace Zeus.Controllers
             {
                 Log.Error("Error {Exception} updating Report By {user}", exc, user);
                 return this.BadRequest("Σφάλμα Ενημέρωσης Αναφοράς");
+            }
+        }
+
+        [Route("archive/{id}")]
+        [ResponseType(typeof(bool))]
+        [HttpGet]
+        public async Task<IHttpActionResult> ArchiveReport(string id)
+        {
+            var user = await Helper.GetUserByRequest(User as ClaimsPrincipal);
+
+            var report = await context.Reports.GetById(id);
+            if (report != null)
+            {
+                report.IsArchived = !report.IsArchived;
+                await context.Reports.Update(report);
+
+                Log.Information("Report({Report.Id}) updated By {user}", id, user);
+                return this.Ok(report.IsArchived);
+            }
+            else
+            {
+                return this.BadRequest("Δεν υπάρχει η Αναφορά που ζητήσατε.");
             }
         }
     }
