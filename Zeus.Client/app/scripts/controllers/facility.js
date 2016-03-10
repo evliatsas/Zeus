@@ -95,6 +95,11 @@ angular
 
         //*************
 
+        $scope.showReport = function (report) {
+            var location = '/reports/' + report.Type + '/' + $scope.data.Id + '/' + report.Id;
+            $location.url(location);
+        }
+
         $scope.addContact = function () {
             var picker = $uibModal.open({
                 animation: true,
