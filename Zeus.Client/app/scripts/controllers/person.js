@@ -2,10 +2,11 @@
 
 angular
     .module('zeusclientApp')
-    .controller('PersonCtrl', function ($scope, $http, $routeParams, $location, baseUrl, lookupService, messageService) {
+    .controller('PersonCtrl', function ($scope, $http, $routeParams, $location, $uibModal, baseUrl, lookupService, messageService) {
 
         var isInsert = $routeParams.id == 'new';
-
+        $scope.lookup = lookupService;
+        
         $scope.reportcolumns = [
             { Caption: 'Όνομα', Field: 'Name' },
             { Caption: 'Εθνικότητα', Field: 'Nationality' },
@@ -40,7 +41,28 @@ angular
         }
 
         $scope.addRelative = function () {
-            alert('add relative');
+            var picker = $uibModal.open({
+                animation: true,
+                size: 'md',
+                templateUrl: '/templates/lookup-modal.html',
+                controller: 'lookupCtrl',
+                controllerAs: 'lookupCtrl',
+                resolve: {
+                    modaldata: function () {
+                        return {
+                            type: 'Person',
+                            selected: $scope.data.Relatives,
+                            ignoreTag: true
+                        };
+                    }
+                }
+            });
+
+            picker.result.then(function (data) {
+                $scope.data.Relatives = data.selected;
+            }, function () {
+                //modal dismissed
+            });
         }
 
         // SAVE - DELETE

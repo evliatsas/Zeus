@@ -57,9 +57,9 @@
                 type: "warning",
                 showCancelButton: true,
                 confirmButtonClass: "btn btn-raised btn-danger",
-                confirmButtonText: "Διαγραφη",
+                confirmButtonText: "ΔΙΑΓΡΑΦΗ",
                 cancelButtonClass: "btn btn-raised btn-default",
-                cancelButtonText: "Ακύρωση",
+                cancelButtonText: "ΑΚΥΡΩΣΗ",
                 closeOnConfirm: true
             },
                 function (isConfirm) {

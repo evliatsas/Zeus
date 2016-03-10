@@ -2,13 +2,20 @@
 
 angular
     .module('zeusclientApp')
-    .controller('lookupCtrl', function ( $http, $uibModalInstance, modaldata, baseUrl, lookupService) {
+    .controller('lookupCtrl', function($http, $uibModalInstance, modaldata, baseUrl, lookupService) {
         var vm = this;
 
-        vm.lookupColumns = [
-                    { Caption: 'Τύπος', Field: 'Tag' },
-                    { Caption: 'Όνομα', Field: 'Description' }
-        ];
+        if (modaldata.ignoreTag == true) {
+            vm.lookupColumns = [
+                { Caption: 'Όνομα', Field: 'Description' }
+            ];
+        } else {
+            vm.lookupColumns = [
+                { Caption: 'Τύπος', Field: 'Tag' },
+                { Caption: 'Όνομα', Field: 'Description' }
+            ];
+        }
+
 
         vm.selectedItems = [];
 
@@ -18,46 +25,47 @@ angular
             httpUrl += '/common/contacts';
             findUrl += '/contacts/';
             vm.title = 'Επιλογή Επαφών';
-        }
-        else if (modaldata.type == 'Facility') {
+        } else if (modaldata.type == 'Facility') {
             httpUrl += '/common/facilities';
             findUrl += '/facilities/';
             vm.title = 'Επιλογή Δομών Φιλοξενίας';
-        }
-        else if (modaldata.type == 'Provider') {
+        } else if (modaldata.type == 'Provider') {
             httpUrl += '/common/providers';
             findUrl += '/providers/';
             vm.lookupColumns[0] = { Caption: 'Τύπος', Field: 'Tag', Type: 'Lookup', Values: lookupService.providerTypes };
             vm.title = 'Επιλογή Προμηθευτή';
-        }           
+        } else if (modaldata.type == 'Person') {
+            httpUrl += '/common/persons';
+            findUrl += '/persons/';
+            vm.title = 'Επιλογή Ατόμου';
+        }
 
         $http({
             method: 'GET',
             url: httpUrl
         }).then(function successCallback(response) {
             vm.list = response.data;
-            vm.list.forEach(function (element, index, array) {
+            vm.list.forEach(function(element, index, array) {
                 for (var item in modaldata.selected) {
                     if (element.Id == modaldata.selected[item].Id)
                         vm.selectedItems.push(element);
                 }
             })
-            
+
         }, function errorCallback(response) {
             vm.list = [];
         });
 
-        vm.selectItem = function (item) {
+        vm.selectItem = function(item) {
             var index = vm.selectedItems.indexOf(item);
             if (index > -1) {
                 vm.selectedItems.splice(index, 1);
-            }
-            else {
+            } else {
                 vm.selectedItems.push(item);
             }
         }
 
-        vm.ok = function () {
+        vm.ok = function() {
             var fullData = [];
             for (var index in vm.selectedItems) {
                 $http({
@@ -75,7 +83,7 @@ angular
             $uibModalInstance.close(result);
         };
 
-        vm.cancel = function () {
+        vm.cancel = function() {
             $uibModalInstance.dismiss('cancel');
         }
     });
