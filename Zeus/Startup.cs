@@ -17,6 +17,9 @@ namespace Zeus
             //init DB Contexts
             var context = new Zeus.Entities.Repositories.Context();
 
+            //Configure Auth
+            ConfigureAuth(app);
+
             //Configure Log
             ConfigureLog(context.Database);
 
@@ -40,9 +43,6 @@ namespace Zeus
                 //config.Filters.Add(new AuthorizeAttribute());
                 api.UseWebApi(config);
             });
-
-            //Configure Auth
-            ConfigureAuth(app);
         }
 
         private void ConfigureLog(IMongoDatabase db)

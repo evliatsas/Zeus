@@ -24,6 +24,15 @@ namespace Zeus.Controllers
             context = Entities.Repositories.Context.Instance;
         }
 
+        public ApplicationUserManager UserManager
+        {
+            get
+            {
+                return Request.GetOwinContext().GetUserManager<ApplicationUserManager>();
+            }
+        }
+
+
         [AllowAnonymous]
         [Route("")]
         [ResponseType(typeof(IEnumerable<User>))]
@@ -55,11 +64,9 @@ namespace Zeus.Controllers
             var currentuser = await Helper.GetUserByRequest(User as ClaimsPrincipal);
 
             try
-            {
-                var userManager = this.Request.GetOwinContext().GetUserManager<ApplicationUserManager>();
-
+            {                
                 var appuser = new ApplicationUser { FullName = user.FullName, PhoneNumber = user.PhoneNumber, UserName = user.UserName, Email = user.Email };
-                var result = await userManager.CreateAsync(appuser, user.Password);
+                var result = await UserManager.CreateAsync(appuser, user.Password);
                 if (result.Succeeded)
                 {
                     Log.Information("User({User.Id}) created By {currentuser}", appuser.Id, currentuser);
@@ -68,7 +75,7 @@ namespace Zeus.Controllers
                 else
                 {
                     Log.Error("Error {Exception} creating User By {currentuser}", result.Errors, currentuser);
-                    return BadRequest("Σφάλμα Δημιουργίας δεδομένων Ατόμου");
+                    return BadRequest(result.Errors.FirstOrDefault());
                 }
             }
             catch (Exception exc)
