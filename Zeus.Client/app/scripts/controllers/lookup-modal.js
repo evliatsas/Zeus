@@ -2,7 +2,7 @@
 
 angular
     .module('zeusclientApp')
-    .controller('lookupCtrl', function ( $http, $uibModalInstance, modaldata, baseUrl) {
+    .controller('lookupCtrl', function ( $http, $uibModalInstance, modaldata, baseUrl, lookupService) {
         var vm = this;
 
         vm.lookupColumns = [
@@ -27,6 +27,7 @@ angular
         else if (modaldata.type == 'Provider') {
             httpUrl += '/common/providers';
             findUrl += '/providers/';
+            vm.lookupColumns[0] = { Caption: 'Τύπος', Field: 'Tag', Type: 'Lookup', Values: lookupService.providerTypes };
             vm.title = 'Επιλογή Προμηθευτή';
         }           
 

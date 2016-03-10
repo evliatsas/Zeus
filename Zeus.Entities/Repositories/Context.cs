@@ -128,7 +128,7 @@ namespace Zeus.Entities.Repositories
                         {
                             Id = c.Id,
                             Description = c.Name,
-                            Tag = c.Type.ToString()
+                            Tag = ((int)c.Type).ToString()
                         });
 
             return list;
