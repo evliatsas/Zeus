@@ -125,6 +125,30 @@ namespace Zeus.Controllers
 
             try
             {
+                //update contacts
+                await context.FacilityContacts.Delete(x => x.FacilityId == facility.Id);
+                var contacts = facility.Contacts.Select(x =>
+                {
+                    var record = new FacilityContact()
+                    {
+                        ContactId = x.Id,
+                        FacilityId = facility.Id
+                    };
+                    return record;
+                });
+                await context.FacilityContacts.BulkInsert(contacts);
+                //update providers
+                await context.ProviderFacilities.Delete(x => x.FacilityId == facility.Id);
+                var providers = facility.Providers.Select(x =>
+                {
+                    var record = new ProviderFacility()
+                    {
+                        ProviderId = x.Id,
+                        FacilityId = facility.Id
+                    };
+                    return record;
+                });
+                await context.ProviderFacilities.BulkInsert(providers);
 
                 var result = await context.Facilities.Update(facility);
 
