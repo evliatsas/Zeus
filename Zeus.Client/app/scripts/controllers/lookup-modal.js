@@ -47,8 +47,12 @@ angular
             vm.list = response.data;
             vm.list.forEach(function(element, index, array) {
                 for (var item in modaldata.selected) {
-                    if (element.Id == modaldata.selected[item].Id)
+                    if (element.Id == modaldata.selected[item].Id){
+                        if (modaldata.ignoreTag == true){
+                            element.Tag = item.Relationship;
+                        }
                         vm.selectedItems.push(element);
+                    }
                 }
             })
 

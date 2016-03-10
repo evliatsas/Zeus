@@ -40,13 +40,28 @@ namespace Zeus.Controllers
         public async Task<IHttpActionResult> GetPerson(string id)
         {
             var person = await context.Persons.GetById(id);
-            if(person != null)
+            if (person != null)
             {
                 if(!string.IsNullOrEmpty(person.FacilityId))
                 {
                     var facility = await context.Facilities.GetById(person.FacilityId);
                     person.Facility = facility;
                 }
+            }
+
+            var relatives = await context.FamilyRelations.Get(x => x.PersonId == id || x.RelativeId == id);
+
+            if (relatives.Count() > 0)
+            {
+                person.Relatives = relatives.Select(async relationship =>
+                                            {
+                                                relationship.Person = await context.Persons.GetById(relationship.PersonId);
+                                                relationship.Relative = await context.Persons.GetById(relationship.RelativeId);
+
+                                                return relationship;
+                                            })
+                                            .Select(task => task.Result)
+                                            .ToList();
             }
 
             return person == null ? (IHttpActionResult)this.NotFound() : this.Ok(person);
@@ -105,6 +120,28 @@ namespace Zeus.Controllers
 
             try
             {
+                var relatives = person.Relatives
+                                      .Select(s => new FamilyRelation() {
+                                        PersonId = person.Id,
+                                        RelativeId = s.Id,
+                                        Relationship = s.Relationship
+                                      }).ToList();
+
+                if (relatives.Count() > 0) {
+                    
+                }
+                await context.FamilyRelations.Delete(x => x.PersonId == person.Id);
+                var relationships = person.Relatives
+                                          .Select(x =>
+                                              new FamilyRelation()
+                                              {
+                                                  PersonId = person.Id,
+                                                  RelativeId = x.Id,
+                                                  Relationship = x.Relationship
+                                           }).ToList();
+
+                await context.FamilyRelations.BulkInsert(relationships);
+
                 var result = await context.Persons.Update(person);
 
                 Log.Information("Person({Person.Id}) updated By {user}", result.Id, user);

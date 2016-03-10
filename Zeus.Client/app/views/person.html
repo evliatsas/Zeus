@@ -48,7 +48,7 @@
         </span>
     </div>
     <div class="form-inline col-xs-12 col-sm-12 col-md-12 col-lg-12" ng-repeat="relative in data.Relatives">
-        <select class="form-control" ng-model="relative.Relationship">
+        <select class="form-control" ng-model="relative.Relationship" required>
             <option ng-repeat="relationship in lookup.relationships" value="{{relationship.Id}}">
                 {{relationship.Description}}
             </option>
