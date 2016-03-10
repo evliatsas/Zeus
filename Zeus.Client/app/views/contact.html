@@ -45,32 +45,28 @@
 </div>
 
 <div class="col-md-8" style="padding-top:20px;">
-    <div class="shadow-box btn-group-sm">
-        <span class="btn btn-info btn-fab fab pull-right" ng-click="addFacility()">
-            <i class="material-icons" title="Προσθήκη Δομής Φιλοξενίας">add</i>
-        </span>
+    <div class="shadow-box btn-group-sm">       
         <i>Δομές Φιλοξενίας</i>
         <cinnamon-grid grid-columns="facilityColumns"
                        hide-paging-dropdown ="true"
                        page-size="0"
                        grid-items="contact.Facilities"
-                       show-grid-buttons="false"
+                       show-grid-buttons="true"
                        hide-item-buttons="true"
-                       row-click-fn="showFacility(item)">
+                       row-click-fn="showFacility(item)"
+                       grid-create-fn="addFacility()">
         </cinnamon-grid>
     </div>
     <div class="shadow-box btn-group-sm">
-        <span class="btn btn-info btn-fab fab pull-right" ng-click="addProvider()">
-            <i class="material-icons" title="Προσθήκη Υποστήριξης">add</i>
-        </span>
         <i>Υποστήριξη</i>
         <cinnamon-grid grid-columns="providerColumns"
                        hide-paging-dropdown ="true"
                        page-size="0"
                        grid-items="contact.Providers"
-                       show-grid-buttons="false"
+                       show-grid-buttons="true"
                        hide-item-buttons="true"
-                       row-click-fn="showProvider(item)">
+                       row-click-fn="showProvider(item)"
+                       grid-create-fn="addProvider()">
         </cinnamon-grid>
     </div>
 </div>
