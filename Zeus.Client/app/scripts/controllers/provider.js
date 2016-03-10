@@ -6,7 +6,6 @@ angular
 
         var isInsert = $routeParams.id == 'new';
         $scope.lookup = lookupService;
-        //$scope.provider = {};
 
         $scope.facilityColumns = [
              { Caption: 'Τύπος', Field: 'Type', Tooltip: 'Τύπος Εγκατάστασης' },
@@ -143,37 +142,4 @@ angular
         $scope.delete = function () {
             messageService.askDeleteConfirmation(deleteProvider);
         }
-
-        $scope.deleteContact = function () {
-            messageService.askDeleteConfirmation(removeContact);
-        }
-
-        $scope.deleteFacility = function () {
-            messageService.askDeleteConfirmation(removeFacility);
-        }
-
-        var removeContact = function (index, contactId) {
-            $http({
-                method: 'DELETE',
-                url: baseUrl + '/providers/contacts/' + contactId
-            }).then(function successCallback(response) {
-                messageService.deleteSuccess();
-                provider.Contacts.splice(index, 1);
-            }, function errorCallback(response) {
-                messageService.showError();
-            });
-        }
-
-        var removeFacility = function (index, facilityId) {
-            $http({
-                method: 'DELETE',
-                url: baseUrl + '/providers/facilities/' + facilityId
-            }).then(function successCallback(response) {
-                messageService.deleteSuccess();
-                provider.Facilities.splice(index, 1);
-            }, function errorCallback(response) {
-                messageService.showError();
-            });
-        }
-
     });
