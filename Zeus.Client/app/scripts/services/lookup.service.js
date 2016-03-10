@@ -17,8 +17,7 @@
             prioritiesTitles: [
                 { Id: 0, Description: 'Χαμηλή' },
                 { Id: 1, Description: 'Κανονική' },
-                { Id: 2, Description: 'Επείγον' },
-                { Id: 3, Description: 'Άμεσο' },
+                 { Id: 3, Description: 'Άμεσο' },
                 { Id: 4, Description: 'Αστραπιαίο' },
             ],
             classifications: [

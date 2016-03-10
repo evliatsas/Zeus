@@ -11,7 +11,7 @@
 
     <div class="form-group label-static ng-is-empty">
         <label for="i10" class="control-label">Προτεραιότητα</label>
-        <select id="i10" class="form-control" ng-model="report.Priority">
+        <select id="i10" class="form-control" ng-model="report.Priority" convert-to-number>
             <option ng-repeat="priority in lookup.prioritiesTitles" value="{{priority.Id}}">
                 {{priority.Description}}
             </option>
