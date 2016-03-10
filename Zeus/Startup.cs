@@ -29,7 +29,7 @@ namespace Zeus
                 var config = new HttpConfiguration();
 
                 var jsonSettings = config.Formatters.JsonFormatter.SerializerSettings;
-                jsonSettings.TypeNameHandling = TypeNameHandling.All;
+                jsonSettings.TypeNameHandling = TypeNameHandling.Auto;
 
                 // Adding JSON Formatter & custom Message Handlers
                 //config.Formatters.JsonFormatter.SupportedMediaTypes.Add(new MediaTypeHeaderValue("text/html"));
