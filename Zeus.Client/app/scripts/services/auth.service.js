@@ -5,7 +5,7 @@
         .module('zeusclientApp')
         .factory('authService', authService);
 
-    function authService($http, $q, $location, localStorageService, baseUrl) {
+    function authService($http, $q, $location, localStorageService, baseUrl, messageService) {
 
         var service = {
             login: login,
@@ -108,13 +108,19 @@
             }
         };
 
-        function changePassword(value) {
-            return $http({ method: 'POST', url: baseUrl + '/users/password', data: value }).
+        function changePassword(userId, oldPassword, newPassword) {
+            var value = { userId: userId, oldPassword: oldPassword, newPassword: newPassword };
+            return $http(
+                {
+                    method: 'POST',
+                    url: baseUrl + '/users/password',
+                    data: value
+                }).
                 success(function (data, status, headers, config) {
                     return data;
                 }).
                 error(function (data, status, headers, config) {
-                    return status;
+                    messageService.showError(data.Message);
                 });
         }
 

@@ -10,6 +10,15 @@ namespace Zeus.Models {
     public class ApplicationUser : IdentityUser
     {
         public string FullName { get; set; }
+        /// <summary>
+        /// Data Placeholder
+        /// </summary>
+        public virtual object Tag { get; set; }
+
+        /// <summary>
+        /// Remarks for the specified Instance
+        /// </summary>
+        public virtual string Notes { get; set; }
 
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
         {
