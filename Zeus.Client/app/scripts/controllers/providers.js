@@ -8,11 +8,11 @@ angular
         $scope.providers = [];
 
         $scope.providercolumns = [
-             { Caption: 'Τύπος', Field: 'Type', Values: lookupService.providerTypes, Tooltip: 'Τύπος Προμηθευτή' },
+             { Caption: 'Τύπος', Field: 'Type', Type:'Lookup', Values: lookupService.providerTypes, Tooltip: 'Τύπος Προμηθευτή' },
              { Caption: 'Όνομα', Field: 'Name', Tooltip: 'Όνομα Προμηθευτή' },
              { Caption: 'Περιγραφή', Field: 'Description', Tooltip: 'Περιγραφή Προμηθευτή' },
              { Caption: 'Προσωπικό', Field: 'PersonnelCount', Tooltip: 'Πλήθος Προσωπικού' },
-             { Caption: 'Υπαγωγή', Field: 'Administration', Values: lookupService.administrations, Tooltip: 'Διοικητική Υπαγωγή' }
+             { Caption: 'Υπαγωγή', Field: 'Administration', Tooltip: 'Διοικητική Υπαγωγή' }
         ];
 
         $scope.addItem = function () {

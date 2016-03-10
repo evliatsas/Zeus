@@ -4,7 +4,7 @@ angular
     .module('zeusclientApp')
     .controller('ProviderCtrl', function ($scope, $http, $routeParams, $location, lookupService, messageService, baseUrl) {
 
-        var isInsert = $routeParams.pid == 'new';
+        var isInsert = $routeParams.id == 'new';
 
         $scope.lookup = lookupService;
         $scope.provider = {};
@@ -16,7 +16,7 @@ angular
         if (!isInsert) {
             $http({
                 method: 'GET',
-                url: baseUrl + '/providers/' + $routeParams.pid //the unique id of the provider
+                url: baseUrl + '/providers/' + $routeParams.id //the unique id of the provider
             }).then(function successCallback(response) {
                 $scope.provider = response.data;
             }, function errorCallback(response) {

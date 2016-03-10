@@ -17,24 +17,14 @@ angular
              { Caption: 'Email', Field: 'Email', Tooltip: 'Email Επαφής' } 
         ];
 
-        $http({
-            method: 'GET',
-            url: baseUrl + '/common/contacts'
-        }).then(function successCallback(response) {
-            $scope.contacts = response.data;
-        }, function errorCallback(response) {
-            messageService.getFailed(response.error);
-        });
-
-
         if (isInsert) {
-            //$scope.data = {};
+            $scope.contact = {};
         } else {
             $http({
                 method: 'GET',
                 url: baseUrl + '/contacts/' + $routeParams.id
             }).then(function successCallback(response) {
-                $scope.data = response.data;
+                $scope.contact = response.data;
             }, function errorCallback(response) {
                 messageService.showError();
             });
@@ -53,11 +43,11 @@ angular
 
             $http({
                 method: method,
-                data: $scope.data,
+                data: $scope.contact,
                 url: baseUrl + '/contacts'
             }).then(function successCallback(response) {
                 messageService.saveSuccess();
-                $scope.data = response.data;
+                $scope.contact = response.data;
             }, function errorCallback(response) {
                 messageService.showError();
             });
@@ -66,10 +56,10 @@ angular
         var deleteItem = function () {
             $http({
                 method: 'DELETE',
-                url: baseUrl + '/contacts/' + $scope.data.Id
+                url: baseUrl + '/contacts/' + $scope.contact.Id
             }).then(function successCallback(response) {
                 messageService.deleteSuccess();
-                $location.url('/persons');
+                $location.url('/contacts');
             }, function errorCallback(response) {
                 messageService.showError();
             });

@@ -4,7 +4,7 @@ angular
     .module('zeusclientApp')
     .controller('ContactsCtrl', function ($scope, $http, $routeParams, $location, lookupService, messageService, baseUrl)  {
 
-        var isInsert = $routeParams.pid == 'new';
+        var isInsert = $routeParams.id == 'new';
 
         $scope.contactcolumns = [
             { Caption: 'Τίτλος', Field: 'Title', Tooltip: 'Τίτλος Προμηθευτή' },
@@ -24,36 +24,21 @@ angular
             $location.url("/contacts/new");
         }
 
-        //if (!isInsert) {
-        //    $http({
-        //        method: 'GET',
-        //        url: baseUrl + '/contacts/' + $routeParams.pid //the unique id of the provider
-        //    }).then(function successCallback(response) {
-        //        $scope.provider = response.data;
-        //    }, function errorCallback(response) {
-        //        messageService.showError();
-        //    });
-        //}
-        //else {
-        //    $scope.contact = {};
-        //    $scope.contacts.Items = [];
-        //}
+        $scope.openItem = function (contact) {
+            if (!isInsert) {
+                $location.url('/contacts/' + contact.Id);
+            } else {
+                $location.url('/contacts/new');
+            }
+        }
 
-        //$scope.addItem = function () {
-        //    $location.url('/contacts/new');
-        //}
-
-        //$scope.openItem = function (contact) {
-        //    $location.url('/contacts/' + contact.Id);
-        //}
-
-        //$http({
-        //    method: 'GET',
-        //    url: baseUrl + '/contacts'
-        //}).then(function successCallback(response) {
-        //    $scope.contacts = response.data;
-        //}, function errorCallback(response) {
-        //    messageService.getFailed(response.error);
-        //});
+        $http({
+            method: 'GET',
+            url: baseUrl + '/contacts'
+        }).then(function successCallback(response) {
+            $scope.contacts = response.data;
+        }, function errorCallback(response) {
+            messageService.getFailed(response.error);
+        });
 
     });
