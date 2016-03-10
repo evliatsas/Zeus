@@ -52,7 +52,7 @@ namespace Zeus.Controllers
             if(!report.IsAcknoledged)
             {
                 report.IsAcknoledged = true;
-                await context.Reports.Update(report);
+                report = await context.Reports.Update(report);
             }
 
             return report == null ? (IHttpActionResult)this.NotFound() : this.Ok(report);
@@ -64,21 +64,6 @@ namespace Zeus.Controllers
         public async Task<IHttpActionResult> GetFacilityReports(string id)
         {
             var reports = await context.Reports.Get(x=>!x.IsArchived && x.FacilityId == id);
-            var facility = await context.Facilities.GetById(id);
-            reports = reports.Select(s =>
-            {
-                s.Facility = facility;
-                return s;
-            });
-            return reports == null ? (IHttpActionResult)this.NotFound() : this.Ok(reports);
-        }
-
-        [Route(Routes.Facilities + "/archive/{id}")]
-        [ResponseType(typeof(IEnumerable<Report>))]
-        [HttpGet]
-        public async Task<IHttpActionResult> GetFacilityArchiveReports(string id)
-        {
-            var reports = await context.Reports.Get(x => x.IsArchived && x.FacilityId == id);
             var facility = await context.Facilities.GetById(id);
             reports = reports.Select(s =>
             {
@@ -184,7 +169,7 @@ namespace Zeus.Controllers
             if (report != null)
             {
                 report.IsArchived = !report.IsArchived;
-                await context.Reports.Update(report);
+                report = await context.Reports.Update(report);
 
                 Log.Information("Report({Report.Id}) updated By {user}", id, user);
                 return this.Ok(report.IsArchived);
@@ -193,6 +178,25 @@ namespace Zeus.Controllers
             {
                 return this.BadRequest("Δεν υπάρχει η Αναφορά που ζητήσατε.");
             }
+        }
+
+        [Route("archive")]
+        [ResponseType(typeof(IEnumerable<Report>))]
+        [HttpPost]
+        public async Task<IHttpActionResult> GetArchivedReports(dynamic dates)
+        {
+            DateTime from = Convert.ToDateTime(dates.from);
+            DateTime to = Convert.ToDateTime(dates.to);
+            var reports = await context.Reports.Get(x => x.IsArchived && x.DateTime > from && x.DateTime < to);
+            var fIds = reports.Select(x => x.FacilityId);
+            var facilities = await context.Facilities.Get(x => fIds.Contains(x.Id));
+            reports = reports.Select(s =>
+            {
+                var temp = facilities.First(f => f.Id == s.FacilityId);
+                s.Facility = new Facility() { Id = temp.Id, Name = temp.Name };
+                return s;
+            });
+            return reports == null ? (IHttpActionResult)this.NotFound() : this.Ok(reports);
         }
     }
 }
