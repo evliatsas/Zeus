@@ -6,11 +6,11 @@
 <div class="modal-body">
     <div class="form-group label-static ng-is-empty">
         <label for="i1" class="control-label">Κατηγορία</label>
-        <input type="text" class="form-control" id="i1" ng-model="housingCtrl.housing.Type" uib-typeahead="cat for cat in lookup.housingCategories | filter:$viewValue">
+        <input type="text" class="form-control" id="i1" ng-model="housingCtrl.housing.Type" uib-typeahead="cat for cat in housingCtrl.lookup.housingCategories | filter:$viewValue">
     </div>
     <div class="form-group label-static ng-is-empty">
         <label for="i2" class="control-label">Κατάσταση</label>
-        <input type="text" class="form-control" id="i2" ng-model="housingCtrl.housing.Status" uib-typeahead="state for state in lookup.statuses | filter:$viewValue">       
+        <input type="text" class="form-control" id="i2" ng-model="housingCtrl.housing.Status" uib-typeahead="state for state in housingCtrl.lookup.statuses | filter:$viewValue">       
     </div>
     <div class="form-group label-static ng-is-empty">
         <label for="i3" class="control-label">Χωρητικότητα Μονάδας</label>
@@ -22,7 +22,7 @@
     </div>
     <div class="form-group label-static ng-is-empty">
         <label for="i5" class="control-label">Φιλοξενούμενοι</label>
-        <input type="number" id="i5" class="form-control" ng-model="housingCtrl.housing.Attedance" />
+        <input type="number" id="i5" class="form-control" ng-model="housingCtrl.housing.Attendance" />
     </div>
 </div>
 <div class="modal-footer">

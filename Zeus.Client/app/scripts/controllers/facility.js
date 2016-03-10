@@ -8,7 +8,7 @@ angular
 
         $scope.housingcolumns = [
             { Caption: 'Τύπος', Field: 'Type', Values: lookupService.housingCategories, Tooltip: 'Τύπος Εγκατάστασης' },
-            { Caption: 'Χωρητικότητα', Field: 'Capacity', Type: 'LookupHtml', Tooltip: 'Χωρητικότητα' },
+            { Caption: 'Χωρητικότητα', Field: 'Capacity', Tooltip: 'Χωρητικότητα' },
             { Caption: 'Παρευρισκόμενοι', Field: 'Attendance', Tooltip: 'Παρευρισκόμενοι' },
             { Caption: 'Πλήθος', Field: 'Count', Tooltip: 'Πλήθος' },
             { Caption: 'Ποσοστό', Field: 'Utilization', Tooltip: 'Ποσοστό' },
@@ -66,7 +66,7 @@ angular
                 size: 'md',
                 templateUrl: '/views/housing.html',
                 controller: 'HousingCtrl',
-                controllerAs: 'hookupCtrl',
+                controllerAs: 'housingCtrl',
                 resolve: {
                     modaldata: function () {
                         return {

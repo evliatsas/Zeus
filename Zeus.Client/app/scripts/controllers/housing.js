@@ -6,6 +6,7 @@ angular
 
         var vm = this;
 
+        vm.lookup = lookupService;
         vm.housing = modaldata.housing;
 
         vm.ok = function () {            
