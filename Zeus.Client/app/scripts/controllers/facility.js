@@ -46,10 +46,49 @@ angular
                 }, 0);
         }
 
+        // HOUSING
+        var selectedHousing = {};
+
         $scope.addHousing = function () {
-            $scope.data.Housings.push({});
-            scrollToEnd();
+            var housing = {};
+            selectedHousing = null;
+            editHousing(housing);
         }
+        
+        $scope.editHousing = function (housing) {
+            selectedHousing = housing;
+            editHousing(housing);
+        }
+
+        var editHousing = function (housing) {
+            var picker = $uibModal.open({
+                animation: true,
+                size: 'md',
+                templateUrl: '/views/housing.html',
+                controller: 'HousingCtrl',
+                controllerAs: 'hookupCtrl',
+                resolve: {
+                    modaldata: function () {
+                        return {
+                            housing: housing
+                        };
+                    }
+                }
+            });
+
+            picker.result.then(function (data) {
+                if (selectedHousing == null) {
+                    $scope.data.Housings.push(data.housing);
+                }
+                else {
+                    selectedHousing = data.housing;
+                }
+            }, function () {
+                //modal dismissed
+            });
+        }
+
+        //*************
 
         $scope.addContact = function () {
             var picker = $uibModal.open({

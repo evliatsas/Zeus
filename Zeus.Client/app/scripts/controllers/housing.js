@@ -2,21 +2,21 @@
 
 angular
     .module('zeusclientApp')
-    .controller('HousingCtrl', function ($scope, $window, $timeout, $http, $routeParams, $location, $uibModal, lookupService, messageService, baseUrl) {
+    .controller('HousingCtrl', function ($uibModalInstance, modaldata, lookupService) {
 
-        var isInsert = $routeParams.pid == 'new';
+        var vm = this;
 
-        $scope.housingcolumns = [
-          { Caption: 'Κατηγορία', Field: 'Type', Values: lookupService.housingCategories, Tooltip: 'Κατηγορία Εγκατάστασης' },
-          { Caption: 'Χωρητικότητα', Field: 'Capacity', Type: 'LookupHtml', Tooltip: 'Χωρητικότητα' },
-          { Caption: 'Φιλοξενούμενοι', Field: 'Attendance', Tooltip: 'Φιλοξενούμενοι' },
-          { Caption: 'Πλήθος', Field: 'Count', Tooltip: 'Πλήθος' },
-          { Caption: 'Κατάσταση', Field: 'Status', Values: lookupService.statuses, Tooltip: 'Κατάσταση' }
-        ];
+        vm.housing = modaldata.housing;
 
-        $scope.lookupColumns = [
-                    { Caption: 'Τύπος', Field: 'Tag' },
-                    { Caption: 'Όνομα', Field: 'Description' }
-        ];
+        vm.ok = function () {            
+            var result = {
+                housing: vm.housing
+            };
+            $uibModalInstance.close(result);
+        };
+
+        vm.cancel = function () {
+            $uibModalInstance.dismiss('cancel');
+        }
 
     });

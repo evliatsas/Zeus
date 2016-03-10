@@ -1,31 +1,31 @@
-﻿<div class="pull-right">
-    <span class="btn btn-danger btn-fab fab" ng-click="delete()">
-        <i class="material-icons" title="Διαγραφή Προμηθευτή">delete</i>
-    </span>
-    <span class="btn btn-success btn-fab fab" ng-click="save()">
-        <i class="material-icons" title="Αποθήκευση Προμηθευτή">save</i>
-    </span>
+﻿<div class="modal-header">
+    <h3 class="modal-title">
+        Επεξεργασία Εγκ. Στέγασης
+    </h3>
 </div>
-<h2>Εγκατάσταση</h2>
-<div class="col-md-4">
+<div class="modal-body">
     <div class="form-group label-static ng-is-empty">
-        <label for="{{index + 1}}" class="control-label">Κατηγορία</label>
-        <input type="text" class="form-control" id="{{$index + 1}}" ng-model="housing.Type" uib-typeahead="state for state in lookup.housingCategories | filter:$viewValue">
+        <label for="i1" class="control-label">Κατηγορία</label>
+        <input type="text" class="form-control" id="i1" ng-model="housingCtrl.housing.Type" uib-typeahead="cat for cat in lookup.housingCategories | filter:$viewValue">
     </div>
     <div class="form-group label-static ng-is-empty">
-        <label for="i3" class="control-label">Κατάσταση</label>
-        <textarea class="form-control" id="i2" ng-model="housing.Status" />
+        <label for="i2" class="control-label">Κατάσταση</label>
+        <input type="text" class="form-control" id="i2" ng-model="housingCtrl.housing.Status" uib-typeahead="state for state in lookup.statuses | filter:$viewValue">       
     </div>
     <div class="form-group label-static ng-is-empty">
-        <label for="Administration" class="control-label">Χωρητικότητα</label>
-        <input type="text" class="form-control" ng-model="housing.Capacity" />
+        <label for="i3" class="control-label">Χωρητικότητα Μονάδας</label>
+        <input type="number" id="i3" class="form-control" ng-model="housingCtrl.housing.Capacity" />
     </div>
     <div class="form-group label-static ng-is-empty">
-        <label for="i2" class="control-label">Πλήθος</label>
-        <textarea class="form-control" id="i2" ng-model="housing.Count" />
+        <label for="i4" class="control-label">Πλήθος Μονάδων</label>
+        <input type="number" class="form-control" id="i4" ng-model="housingCtrl.housing.Count" />
     </div>
     <div class="form-group label-static ng-is-empty">
-        <label for="i4" class="control-label">Φιλοξενούμενοι</label>
-        <input type="text" class="form-control" ng-model="housing.Attedance" />
+        <label for="i5" class="control-label">Φιλοξενούμενοι</label>
+        <input type="number" id="i5" class="form-control" ng-model="housingCtrl.housing.Attedance" />
     </div>
+</div>
+<div class="modal-footer">
+    <button class="btn btn-raised btn-success" type="button" ng-click="housingCtrl.ok()">ΕΠΙΛΟΓΗ</button>
+    <button class="btn btn-raised btn-warning" type="button" ng-click="housingCtrl.cancel()">ΑΚΥΡΩΣΗ</button>
 </div>
