@@ -15,19 +15,39 @@
         };
 
         function saveSuccess() {
-            swal("Αποθήκευση Δεδομένων", "Οι μεταβολές στα δεδομένα αποθηκεύτηκαν με επιτυχία", "success");
+            swal({
+                title: "Αποθήκευση Δεδομένων",
+                text: "Οι μεταβολές στα δεδομένα αποθηκεύτηκαν με επιτυχία",
+                type: "success",
+                confirmButtonClass: "btn btn-raised btn-success"
+            });
         }
 
         function getFailed(message) {
-            swal("Σφάλμα", message ? message : "Παρουσιάστηκε πρόβλημα κατά την προσπάθεια ανάκτησης των δεδομένων. Ελέξτε τη σύνδεσή σας με το διακομιστή.", "error");
+            swal({
+                title: "Σφάλμα",
+                text: message ? message : "Παρουσιάστηκε πρόβλημα κατά την προσπάθεια ανάκτησης των δεδομένων. Ελέξτε τη σύνδεσή σας με το διακομιστή.",
+                type: "error",
+                confirmButtonClass: "btn btn-raised btn-warning"
+            });
         }
 
         function showError(message) {
-            swal("Σφάλμα", message ? message : "Παρουσιάστηκε πρόβλημα κατα την αποθήκευση των μεταβολών", "error");
+            swal({
+                title: "Σφάλμα",
+                text: message ? message : "Παρουσιάστηκε πρόβλημα κατα την αποθήκευση των μεταβολών",
+                type: "error",
+                confirmButtonClass: "btn btn-raised btn-warning"
+            });
         }
 
         function deleteSuccess() {
-            swal("Διαγραφή", "Η εγγραφή διαγράφηκε με επιτυχία", "success");
+            swal({
+                title: "Διαγραφή",
+                text: "Η εγγραφή διαγράφηκε με επιτυχία",
+                type: "success",
+                confirmButtonClass: "btn btn-raised btn-success"
+            });
         }
 
         function askDeleteConfirmation(executionMethod) {
@@ -36,8 +56,9 @@
                 text: "Είστε σίγουρος ότι επιθυμείτε την διαγραφή της προβαλλόμενης εγγραφής ?",
                 type: "warning",
                 showCancelButton: true,
-                confirmButtonClass: "btn-danger",
+                confirmButtonClass: "btn btn-raised btn-danger",
                 confirmButtonText: "Διαγραφη",
+                cancelButtonClass: "btn btn-raised btn-default",
                 cancelButtonText: "Ακύρωση",
                 closeOnConfirm: true
             },
