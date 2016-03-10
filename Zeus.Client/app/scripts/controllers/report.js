@@ -42,7 +42,7 @@ angular
             });
         }
         else {
-            $scope.report = { $type: 'Zeus.Entities.' + getReportType() + ' ,Zeus.Entities' };
+            //$scope.report = { $type: 'Zeus.Entities.' + getReportType() + ' ,Zeus.Entities' };
         }
 
         $http({
@@ -89,12 +89,19 @@ angular
                 var method = 'PUT';
             }
 
+            var obj = { "$type": 'Zeus.Entities.' + getReportType() + ', Zeus.Entities' };
+
+            for (var prop in $scope.report) {
+                obj[prop] = $scope.report[prop];
+            }
+                        
             $http({
                 method: method,
-                data: $scope.report,
+                data: obj,
                 url: baseUrl + '/reports'
             }).then(function successCallback(response) {
                 messageService.saveSuccess();
+                isInsert = false;
             }, function errorCallback(response) {
                 messageService.showError();
             });
