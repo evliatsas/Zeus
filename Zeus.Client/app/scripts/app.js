@@ -117,9 +117,9 @@ angular
             controllerAs: 'usersCtrl'
         })
         .when('/users/:id', {
-            templateUrl: 'views/users.html',
-            controller: 'UsersCtrl',
-            controllerAs: 'usersCtrl'
+            templateUrl: 'views/user.html',
+            controller: 'UserCtrl',
+            controllerAs: 'userCtrl'
         })
         .otherwise({
             redirectTo: '/'

@@ -2,7 +2,7 @@
 
 angular
     .module('zeusclientApp')
-    .controller('UserCtrl', function ($scope, $http, $routeParams, $location, baseUrl, lookupService, messageService) {
+    .controller('UserCtrl', function ($scope, $http, $routeParams, $location, baseUrl, messageService) {
 
         var isInsert = $routeParams.id == 'new';
 
@@ -13,24 +13,14 @@ angular
           { Caption: 'Τηλέφωνο', Field: 'PhoneNumber' }
         ];
 
-        $http({
-            method: 'GET',
-            url: baseUrl + '/users'
-        }).then(function successCallback(response) {
-            $scope.facilities = response.data;
-        }, function errorCallback(response) {
-            messageService.getFailed(response.error);
-        });
-
-
         if (isInsert) {
-            //$scope.data = {};
+            $scope.data = {};
         } else {
             $http({
                 method: 'GET',
                 url: baseUrl + '/users/' + $routeParams.id
             }).then(function successCallback(response) {
-                $scope.data = response.data;
+                $scope.user = response.data;
             }, function errorCallback(response) {
                 messageService.showError();
             });
@@ -53,11 +43,11 @@ angular
 
             $http({
                 method: method,
-                data: $scope.data,
-                url: baseUrl + '/users'
+                data: $scope.user,
+                url: baseUrl + '/contacts'
             }).then(function successCallback(response) {
                 messageService.saveSuccess();
-                $scope.data = response.data;
+                $scope.user = response.data;
             }, function errorCallback(response) {
                 messageService.showError();
             });
@@ -66,7 +56,7 @@ angular
         var deleteItem = function () {
             $http({
                 method: 'DELETE',
-                url: baseUrl + '/users/' + $scope.data.Id
+                url: baseUrl + '/users/' + $scope.user.Id
             }).then(function successCallback(response) {
                 messageService.deleteSuccess();
                 $location.url('/users');

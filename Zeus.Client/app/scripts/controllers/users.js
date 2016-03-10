@@ -4,7 +4,7 @@ angular
     .module('zeusclientApp')
     .controller('UsersCtrl', function ($scope, $http, $routeParams, $location, lookupService, messageService, baseUrl) {
         
-        //$scope.users = [];
+        var isInsert = $routeParams.id == 'new';
 
         $scope.usercolumns = [
            { Caption: 'Όνοματεπώνυμο', Field: 'FullName' },
@@ -13,21 +13,27 @@ angular
            { Caption: 'Τηλέφωνο', Field: 'PhoneNumber' },
         ];
 
+        $scope.contact = {};
+
+        $scope.addUser = function () {
+            $location.url("/users/new");
+        }
+
+        $scope.openUser = function (user) {
+            if (!isInsert) {
+                $location.url('/users/' + user.Id);
+            } else {
+                $location.url('/users/new');
+            }
+        }
+
         $http({
             method: 'GET',
             url: baseUrl + '/users'
         }).then(function successCallback(response) {
-            $scope.data = response.data;
+            $scope.users = response.data;
         }, function errorCallback(response) {
             messageService.getFailed(response.error);
         });
-
-        $scope.addItem = function () {
-            $location.url("/users/new");
-        }
-
-        $scope.openItem = function (user) {
-            $location.url("/users/" + user.Id);
-        }
 
     });
