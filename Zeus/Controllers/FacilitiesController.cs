@@ -157,12 +157,8 @@ namespace Zeus.Controllers
                                             FacilityId = facility.Id
                                         })
                                        .ToList();
+                await context.FacilityContacts.BulkInsert(contacts);
 
-                if (contacts.Count() > 0)
-                {
-                    await context.FacilityContacts.BulkInsert(contacts);
-                }
-                
                 //update providers
                 await context.ProviderFacilities.Delete(x => x.FacilityId == facility.Id);
                 var providers = facility.Providers
@@ -173,12 +169,8 @@ namespace Zeus.Controllers
                                             FacilityId = facility.Id
                                         })
                                         .ToList();
+                await context.ProviderFacilities.BulkInsert(providers);
 
-                if (providers.Count() > 0)
-                {
-                    await context.ProviderFacilities.BulkInsert(providers);
-                }
-                
                 var result = await context.Facilities.Update(facility);
 
                 Log.Information("Facility({Facility.Id}) updated By {user}", result.Id, user);

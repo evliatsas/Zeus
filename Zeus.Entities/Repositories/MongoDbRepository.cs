@@ -50,9 +50,13 @@ namespace Zeus.Entities.Repositories
 
         public virtual async Task<IEnumerable<T>> BulkInsert(IEnumerable<T> entities)
         {
-            await collection.InsertManyAsync(entities);
-
-            return entities;
+            if (entities == null || entities.Count() == 0)
+                return new List<T>().AsEnumerable();
+            else
+            {
+                await collection.InsertManyAsync(entities);
+                return entities;
+            }
         }
 
         public virtual async Task<bool> Delete(string id)

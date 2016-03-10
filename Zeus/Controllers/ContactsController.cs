@@ -39,21 +39,57 @@ namespace Zeus.Controllers
         [HttpGet]
         public async Task<IHttpActionResult> GetContact(string id)
         {
-            var Contact = await context.Contacts.GetById(id);
+            var contact = await context.Contacts.GetById(id);
+
+            if (contact != null)
+            {
+                var multiFacilities = await context.FacilityContacts.Get(x => x.ContactId == id);
+                var facilityIds = multiFacilities.Select(x => x.FacilityId);
+                var facilities = await context.Facilities.Get(x => facilityIds.Contains(x.Id));
+                contact.Facilities = facilities.ToList();
+
+                var multiProviders = await context.ProviderContacts.Get(x => x.ContactId == id);
+                var providerIds = multiProviders.Select(x => x.ProviderId);
+                var providers = await context.Providers.Get(x => providerIds.Contains(x.Id));
+                contact.Providers = providers.ToList();
+            }
                         
-            return Contact == null ? (IHttpActionResult)this.NotFound() : this.Ok(Contact);
+            return contact == null ? (IHttpActionResult)this.NotFound() : this.Ok(contact);
         }       
 
         [Route("")]
         [ResponseType(typeof(Contact))]
         [HttpPost]
-        public async Task<IHttpActionResult> CreateContact(Contact Contact)
+        public async Task<IHttpActionResult> CreateContact(Contact contact)
         {
             var user = await Helper.GetUserByRequest(User as ClaimsPrincipal);
 
             try
             {
-                var data = await context.Contacts.Insert(Contact);
+                //insert contacts
+                var facilities = contact.Facilities.Select(x =>
+                {
+                    var record = new FacilityContact()
+                    {
+                        ContactId = contact.Id,
+                        FacilityId = x.Id
+                    };
+                    return record;
+                });
+                await context.FacilityContacts.BulkInsert(facilities);
+                //insert providers
+                var providers = contact.Providers.Select(x =>
+                {
+                    var record = new ProviderContact()
+                    {
+                        ProviderId = x.Id,
+                        ContactId = contact.Id
+                    };
+                    return record;
+                });
+                await context.ProviderContacts.BulkInsert(providers);
+
+                var data = await context.Contacts.Insert(contact);
 
                 Log.Information("Contact({Contact.Id}) created By {user}", data.Id, user);
                 return this.Ok(data);
@@ -91,13 +127,38 @@ namespace Zeus.Controllers
         [Route("")]
         [ResponseType(typeof(Contact))]
         [HttpPut]
-        public async Task<IHttpActionResult> UpdateContact(Contact Contact)
+        public async Task<IHttpActionResult> UpdateContact(Contact contact)
         {
             var user = await Helper.GetUserByRequest(User as ClaimsPrincipal);
 
             try
             {
-                var result = await context.Contacts.Update(Contact);
+                //update contacts
+                await context.FacilityContacts.Delete(x => x.ContactId == contact.Id);
+                var facilities = contact.Facilities.Select(x =>
+                {
+                    var record = new FacilityContact()
+                    {
+                        ContactId = contact.Id,
+                        FacilityId = x.Id
+                    };
+                    return record;
+                });
+                await context.FacilityContacts.BulkInsert(facilities);
+                //update providers
+                await context.ProviderContacts.Delete(x => x.ContactId == contact.Id);
+                var providers = contact.Providers.Select(x =>
+                {
+                    var record = new ProviderContact()
+                    {
+                        ProviderId = x.Id,
+                        ContactId = contact.Id
+                    };
+                    return record;
+                });
+                await context.ProviderContacts.BulkInsert(providers);
+
+                var result = await context.Contacts.Update(contact);
 
                 Log.Information("Contact({Contact.Id}) updated By {user}", result.Id, user);
 

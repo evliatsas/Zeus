@@ -124,6 +124,11 @@ angular
             });
         }
 
+        $scope.showContact = function (contact) {
+            var location = '/contacts/' + contact.Id;
+            $location.url(location);
+        }
+
         $scope.addProvider = function () {
             var picker = $uibModal.open({
                 animation: true,
@@ -146,6 +151,11 @@ angular
             }, function () {
                 //modal dismissed
             });
+        }
+
+        $scope.showProvider = function (provider) {
+            var location = '/providers/' + provider.Id;
+            $location.url(location);
         }
 
         if (isInsert) {

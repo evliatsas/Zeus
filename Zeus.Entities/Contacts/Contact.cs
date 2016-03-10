@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MongoDB.Bson.Serialization.Attributes;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -16,10 +17,16 @@ namespace Zeus.Entities
         public IList<Phone> Phones{ get; set; }
         public string Email { get; set; }
         public string Type { get; set; }
+        [BsonIgnore]
+        public IList<Facility> Facilities { get; set; }
+        [BsonIgnore]
+        public IList<Provider> Providers { get; set; }
 
         public Contact()
         {
             this.Phones = new List<Phone>();
+            this.Facilities = new List<Facility>();
+            this.Providers = new List<Provider>();
         }
     }
 }

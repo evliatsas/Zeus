@@ -2,20 +2,86 @@
 
 angular
     .module('zeusclientApp')
-    .controller('ContactCtrl', function ($scope, $http, $routeParams, $location, baseUrl, lookupService, messageService) {
+    .controller('ContactCtrl', function ($scope, $http, $routeParams, $uibModal, $location, baseUrl, lookupService, messageService) {
 
         var isInsert = $routeParams.id == 'new';
+        $scope.lookup = lookupService;
 
-        $scope.reportcolumns = [
-             { Caption: 'Τίτλος', Field: 'Title', Tooltip: 'Τίτλος Προμηθευτή' },
-             { Caption: 'Όνοματεπώνυμο', Field: 'Name', Tooltip: 'Όνομα Επαφής' },
-             { Caption: 'Εταιρία', Field: 'Company', Tooltip: 'Εταιρία' },
-             { Caption: 'Διαχειριστής', Field: 'Administration', Values: lookupService.administrations, Tooltip: 'Διοικητική Υπαγωγή' },
-             { Caption: 'Κατηγορία', Field: 'Type', Values: lookupService.contactTypes, Tooltip: 'Τύπος Επαφής' },
-             { Caption: 'Διεύθυνση', Field: 'Address', Tooltip: 'Διεύθυνση' },
-             { Caption: 'Τηλέφωνα', Field: 'Phones', Tooltip: 'Διοικητική Υπαγωγή' },
-             { Caption: 'Email', Field: 'Email', Tooltip: 'Email Επαφής' } 
+        $scope.facilityColumns = [
+             { Caption: 'Τύπος', Field: 'Type', Tooltip: 'Τύπος Εγκατάστασης' },
+             { Caption: 'Όνομα', Field: 'Name', Tooltip: 'Όνομα Εγκατάστασης' },
+             { Caption: 'Περιγραφή', Field: 'Description', Tooltip: 'Περιγραφή Εγκατάστασης' },
+             { Caption: 'Χωρητικότητα', Field: 'Capacity', Tooltip: 'Τρέχουσα Χωρητικότητα' },
+             { Caption: 'Διαχείριση', Field: 'Administration', Tooltip: 'Διοικητική Υπαγωγή' },
+             { Caption: 'Φιλοξενούμενοι', Field: 'Attendance', Tooltip: 'Πλήθος Φιλοξενούμενων' },
+             { Caption: 'Πληρότητα', Field: 'Utilization', Type: 'Percentage', Tooltip: 'Ποσοστό Πληρότητας' },
         ];
+
+        $scope.addFacility = function () {
+            var picker = $uibModal.open({
+                animation: true,
+                size: 'md',
+                templateUrl: '/templates/lookup-modal.html',
+                controller: 'lookupCtrl',
+                controllerAs: 'lookupCtrl',
+                resolve: {
+                    modaldata: function () {
+                        return {
+                            type: 'Facility',
+                            selected: $scope.contact.Facilities
+                        };
+                    }
+                }
+            });
+
+            picker.result.then(function (data) {
+                $scope.contact.Facilities = data.selected;
+            }, function () {
+                //modal dismissed
+            });
+        }
+
+        $scope.showFacility = function (facility) {
+            var location = '/facilities/' + facility.Id;
+            $location.url(location);
+        }
+
+        $scope.providerColumns = [
+              { Caption: 'Τύπος', Field: 'Type', Type: 'Lookup', Values: lookupService.providerTypes, Tooltip: 'Τύπος Υποστήριξης' },
+              { Caption: 'Όνομα', Field: 'Name' },
+              { Caption: 'Περιγραφή', Field: 'Description' },
+              { Caption: 'Πλ. Πρσ.', Field: 'PersonnelCount', Tooltip: 'Πλήθος Προσωπικού' },
+              { Caption: 'Διαχείριση', Field: 'Administration' }
+        ];
+
+        $scope.addProvider = function () {
+            var picker = $uibModal.open({
+                animation: true,
+                size: 'md',
+                templateUrl: '/templates/lookup-modal.html',
+                controller: 'lookupCtrl',
+                controllerAs: 'lookupCtrl',
+                resolve: {
+                    modaldata: function () {
+                        return {
+                            type: 'Provider',
+                            selected: $scope.contact.Providers
+                        };
+                    }
+                }
+            });
+
+            picker.result.then(function (data) {
+                $scope.contact.Providers = data.selected;
+            }, function () {
+                //modal dismissed
+            });
+        }
+
+        $scope.showProvider = function (provider) {
+            var location = '/providers/' + provider.Id;
+            $location.url(location);
+        }
 
         if (isInsert) {
             $scope.contact = {};
