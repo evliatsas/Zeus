@@ -1,7 +1,11 @@
 ﻿<div class="modal-header">
-    <h3 class="modal-title">
-        <i class="text-primary material-icons md-48 pull-left" title="Επεξεργασία Εγκατάστασης">local_hotel </i><span class="report-header"> Επεξεργασία Εγκατάστασης</span>
-    </h3>
+    <div class="modal-title btn-group-sm">
+        <i class="text-primary material-icons md-36 pull-left" title="Επεξεργασία Εγκατάστασης">local_hotel</i>
+        <span> Επεξεργασία Εγκατάστασης</span>
+        <span class="btn btn-danger btn-fab fab pull-right" ng-click="housingCtrl.delete()">
+            <i class="material-icons" title="Διαγραφή Εγκατάστασης">delete</i>
+        </span>
+    </div>
 </div>
 <div class="modal-body">
     <div class="form-group label-static ng-is-empty">

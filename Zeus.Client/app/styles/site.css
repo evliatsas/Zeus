@@ -212,3 +212,8 @@
   height: 100%;
   border-radius: 5px;
 }
+
+.modal-header .modal-title span{
+    font-size:20pt; 
+    padding-left:10px;
+}
