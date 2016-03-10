@@ -66,7 +66,7 @@ angular
             controller: 'PersonCtrl',
             controllerAs: 'person'
         })
-        .when('/reports/:type/:fid/:rid', {
+        .when('/reports/:type/:fid/:id', {
             templateUrl: function (params) {
                 var type = params.type;
                 var tempUrl = 'views/reports/';
@@ -86,7 +86,7 @@ angular
             controller: 'ReportCtrl',
             controllerAs: 'reportCtrl'
         })
-        .when('/providers/:pid', {
+        .when('/providers/:id', {
             templateUrl: 'views/provider.html',
             controller: 'ProviderCtrl',
             controllerAs: 'providerCtrl'
@@ -96,7 +96,7 @@ angular
             controller: 'ProvidersCtrl',
             controllerAs: 'providersCtrl'
         })
-        .when('/contacts/:cid', {
+        .when('/contacts/:id', {
             templateUrl: 'views/contact.html',
             controller: 'ContactCtrl',
             controllerAs: 'contactCtrl'
@@ -116,7 +116,7 @@ angular
             controller: 'UsersCtrl',
             controllerAs: 'usersCtrl'
         })
-        .when('/users/:uid', {
+        .when('/users/:id', {
             templateUrl: 'views/users.html',
             controller: 'UsersCtrl',
             controllerAs: 'usersCtrl'

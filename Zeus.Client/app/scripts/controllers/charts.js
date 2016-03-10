@@ -2,7 +2,9 @@
 
 angular
     .module('zeusclientApp')
-    .controller('ChartsCtrl', function ($http, baseUrl) {
+    .controller('ChartsCtrl', function ($scope, $http, baseUrl) {
+
+        $scope.facilities = [];
 
         var data = {
             labels: [],
@@ -42,11 +44,20 @@ angular
         function addDataPoints(element, index, array) {
             data.labels.push(format(element.DateTime));
             data.datasets[0].data.push(element.PersonCount);
+            checkAndAdd(element.Facility);
         }
 
         function format (dt) {
             var format = "D-M-YY HH:mm";
             return moment(dt).isValid() ? moment(dt).format(format, 'el') : "";
+        }
+
+        function checkAndAdd(facility) {
+            var id = $scope.facilities.length + 1;
+            var found = $scope.facilities.some(function (el) {
+                return el.Name === facility.Name;
+            });
+            if (!found) { $scope.facilities.push(facility); }
         }
 
     });

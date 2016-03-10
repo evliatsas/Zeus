@@ -10,7 +10,7 @@ angular
         $scope.report = {};
         $scope.reportType = $routeParams.type;
 
-        var isInsert = $routeParams.rid == 'new';
+        var isInsert = $routeParams.id == 'new';
 
         var getReportType = function () {
             switch ($scope.reportType) {
@@ -34,7 +34,7 @@ angular
         if (!isInsert) {
             $http({
                 method: 'GET',
-                url: baseUrl + '/reports/' + $routeParams.rid //the unique id of the report
+                url: baseUrl + '/reports/' + $routeParams.id //the unique id of the report
             }).then(function successCallback(response) {
                 $scope.report = response.data;
             }, function errorCallback(response) {
