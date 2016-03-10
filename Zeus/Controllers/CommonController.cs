@@ -83,6 +83,18 @@ namespace Zeus.Controllers
             var result = await context.GetProvidersLookup();
 
             return result == null ? this.Ok(new List<Lookup>().AsEnumerable()) : this.Ok(result.OrderByDescending(o => o.Description).AsEnumerable());
-        }        
+        }
+
+        [Route(Routes.Persons)]
+        [ResponseType(typeof(IEnumerable<Lookup>))]
+        [HttpGet]
+        public async Task<IHttpActionResult> GetPersonsAsLookup()
+        {
+            var user = await Helper.GetUserByRequest(User as ClaimsPrincipal);
+
+            var result = context.GetPersonsLookup();
+
+            return result == null ? this.Ok(new List<Lookup>().AsEnumerable()) : this.Ok(result.OrderByDescending(o => o.Description).AsEnumerable());
+        }
     }
 }

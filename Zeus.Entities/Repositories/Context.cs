@@ -134,6 +134,19 @@ namespace Zeus.Entities.Repositories
             return list;
         }
 
+        public IEnumerable<Lookup> GetPersonsLookup()
+        {
+            var persons = this.Database.GetCollection<Person>("Persons");
+            var query = from c in persons.AsQueryable<Person>()
+                        select new Lookup()
+                        {
+                            Id = c.Id,
+                            Description = c.Name
+                        };
+
+            return query.AsEnumerable();
+        }
+
         #endregion
     }
 }
