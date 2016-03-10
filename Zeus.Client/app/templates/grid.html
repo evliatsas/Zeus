@@ -28,7 +28,11 @@
         <thead>
             <tr>
                 <th ng-if="showCheckBoxes">
-                    <input type="checkbox" ng-checked="allSelected()" ng-click="toggleSelectAll()">
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" ng-checked="allSelected()" ng-click="toggleSelectAll()">
+                        </label>
+                    </div>
                 </th>
                 <th ng-repeat="column in gridColumns" title="{{column.Tooltip}}">
                     <span class="btn-link" ng-click="sortBy(column.Field)" title="Ταξινόμηση">
@@ -52,7 +56,11 @@
             </tr>
             <tr ng-repeat="item in group.items" ng-style="rowCursor()" ng-class="{'warning': isSelected(item)}">
                 <td ng-if="showCheckBoxes">
-                    <input type="checkbox" ng-checked="isSelected(item)" ng-click="toggleSelect(item)">
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" ng-checked="isSelected(item)" ng-click="toggleSelect(item)">
+                        </label>
+                    </div>
                 </td>
                 <td ng-repeat="column in gridColumns" ng-class="{ 'danger': $eval(highlight)}" ng-style="{'font-weight': $eval(highlight) ? 'bold' : 'normal'}">
                     <!--
