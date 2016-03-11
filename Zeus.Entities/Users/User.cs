@@ -11,6 +11,9 @@ namespace Zeus.Entities
         public string PhoneNumber { get; set; }
         [BsonIgnore]
         public string Password { get; set; }
+        [BsonIgnore]
+        public string NewPassword { get; set; }
+        [BsonIgnore]
         public string PasswordConfirm { get; set; }
     }
 }
