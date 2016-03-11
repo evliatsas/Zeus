@@ -20,6 +20,7 @@ angular
     'ui.bootstrap',
     'angular-loading-bar',
     'ui.bootstrap.datetimepicker',
+    'ui.dateTimeInput',
     'LocalStorageModule',
     'pascalprecht.translate'
   ])
