@@ -91,6 +91,11 @@ angular
             controller: 'ArchiveCtrl',
             controllerAs: 'archiveCtrl'
         })
+        .when('/reports/message', {
+            templateUrl: 'views/message.html',
+            controller: 'ArchiveCtrl',
+            controllerAs: 'archiveCtrl'
+          })
         .when('/providers/:id', {
             templateUrl: 'views/provider.html',
             controller: 'ProviderCtrl',

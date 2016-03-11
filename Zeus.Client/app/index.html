@@ -73,7 +73,7 @@
                             <ul class="dropdown-menu">
                                 <li ng-if="!menu.isAuth()"><a href="#/login">Σύνδεση</a></li>
                                 <li><a href="">Αλλαγή Κωδικού</a></li>
-                                <li><a href="">Μηνύματα</a></li>
+                                <li ng-class="menu.getClass('/reports/message')"><a ng-href="#/reports/message">Μηνύματα</a></li>
                                 <li ng-if="menu.isAuth()" role="separator" class="divider"></li>
                                 <li ng-if="menu.isAuth()"><a href="" ng-click="menu.logOut()">Αποσύνδεση</a></li>
                             </ul>
@@ -158,6 +158,7 @@
     <script src="scripts/controllers/user.js"></script>
     <script src="scripts/controllers/housing.js"></script>
     <script src="scripts/controllers/archive.js"></script>
+    <script src="scripts/controllers/message.js"></script>
     <script src="scripts/directives/facility-details.js"></script>
     <script src="scripts/directives/on-finish-render.js"></script>
     <script src="scripts/directives/phone-list.js"></script>
