@@ -20,7 +20,6 @@ angular
         $scope.getMessage = function () {
             $http({
                 method: 'POST',
-                data: dates,
                 url: baseUrl + '/reports/message'
             }).then(function successCallback(response) {
                 $scope.reports = response.data;

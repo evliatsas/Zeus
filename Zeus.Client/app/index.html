@@ -57,7 +57,7 @@
                         <li ng-class="menu.getClass('/map')"><a ng-href="#/map">{{ 'MENU.MAP' | translate }}</a></li>
                         <li ng-class="menu.getClass('/charts')"><a ng-href="#/charts">{{ 'MENU.CHARTS' | translate }}</a></li>
                         <li ng-class="menu.getClass('/users')"><a ng-href="#/users">{{ 'MENU.USERS' | translate }}</a></li>
-                        <li ng-class="menu.getClass('/archives')"><a ng-href="#/archives">{{ 'MENU.ARCHIVES' | translate }}</a></li>
+                        <li ng-class="menu.getClass('/reports/archive')"><a ng-href="#/reports/archive">{{ 'MENU.ARCHIVES' | translate }}</a></li>
                     </ul>
 
                     <ul class="nav navbar-nav navbar-right">
@@ -73,7 +73,7 @@
                             <ul class="dropdown-menu">
                                 <li ng-if="!menu.isAuth()"><a href="#/login">{{ 'MENU.USER.SIGN_IN' | translate }}</a></li>
                                 <li><a href="">{{ 'MENU.USER.CHANGE_PASSWORD' | translate }}</a></li>
-                                <li><a href="">{{ 'MENU.USER.MESSAGES' | translate }}</a></li>
+                                <li ng-class="menu.getClass('/reports/message')"><a ng-href="#/reports/message">{{ 'MENU.USER.MESSAGES' | translate }}</a></li>
                                 <li ng-if="menu.isAuth()" role="separator" class="divider"></li>
                                 <li ng-if="menu.isAuth()"><a href="" ng-click="menu.logOut()">{{ 'MENU.USER.SIGN_OUT' | translate }}</a></li>
                             </ul>
