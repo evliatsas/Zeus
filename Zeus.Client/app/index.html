@@ -50,7 +50,6 @@
 
                     <ul class="nav navbar-nav">
                         <!--<li ng-class="menu.getClass('/')"><a href="#/">Αρχική</a></li>-->
-<<<<<<< HEAD
                         <li ng-class="menu.getClass('/facilities')"><a ng-href="#/facilities">{{ 'MENU.FACILITIES' | translate }}</a></li>
                         <li ng-class="menu.getClass('/contacts')"><a ng-href="#/contacts">{{ 'MENU.CONTACTS' | translate }}</a></li>
                         <li ng-class="menu.getClass('/providers')"><a ng-href="#/providers">{{ 'MENU.PROVIDERS' | translate }}</a></li>
@@ -59,16 +58,6 @@
                         <li ng-class="menu.getClass('/charts')"><a ng-href="#/charts">{{ 'MENU.CHARTS' | translate }}</a></li>
                         <li ng-class="menu.getClass('/users')"><a ng-href="#/users">{{ 'MENU.USERS' | translate }}</a></li>
                         <li ng-class="menu.getClass('/archives')"><a ng-href="#/archives">{{ 'MENU.ARCHIVES' | translate }}</a></li>
-=======
-                        <li ng-class="menu.getClass('/facilities')"><a ng-href="#/facilities">Δομές Φιλοξενίας</a></li>
-                        <li ng-class="menu.getClass('/contacts')"><a ng-href="#/contacts">Επαφές</a></li>
-                        <li ng-class="menu.getClass('/providers')"><a ng-href="#/providers">Υποστηρίξη</a></li>
-                        <li ng-class="menu.getClass('/persons')"><a ng-href="#/persons">Ταυτοποιήσεις</a></li>
-                        <li ng-class="menu.getClass('/map')"><a ng-href="#/map">Χάρτης</a></li>
-                        <li ng-class="menu.getClass('/charts')"><a ng-href="#/charts">Στατιστικά</a></li>
-                        <li ng-class="menu.getClass('/users')"><a ng-href="#/users">Χρήστες</a></li>
-                        <li ng-class="menu.getClass('/reports/archive')"><a ng-href="#/reports/archive">Αρχείο</a></li>
->>>>>>> d9b8e9358a8a1fbc7e0a9a381ef348f5421905a7
                     </ul>
 
                     <ul class="nav navbar-nav navbar-right">
@@ -82,15 +71,9 @@
                         <li class="dropdown">
                             <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="material-icons md-18">person</i> <span class="caret"></span></a>
                             <ul class="dropdown-menu">
-<<<<<<< HEAD
                                 <li ng-if="!menu.isAuth()"><a href="#/login">{{ 'MENU.USER.SIGN_IN' | translate }}</a></li>
                                 <li><a href="">{{ 'MENU.USER.CHANGE_PASSWORD' | translate }}</a></li>
                                 <li><a href="">{{ 'MENU.USER.MESSAGES' | translate }}</a></li>
-=======
-                                <li ng-if="!menu.isAuth()"><a href="#/login">Σύνδεση</a></li>
-                                <li><a href="">Αλλαγή Κωδικού</a></li>
-                                <li ng-class="menu.getClass('/reports/message')"><a ng-href="#/reports/message">Μηνύματα</a></li>
->>>>>>> d9b8e9358a8a1fbc7e0a9a381ef348f5421905a7
                                 <li ng-if="menu.isAuth()" role="separator" class="divider"></li>
                                 <li ng-if="menu.isAuth()"><a href="" ng-click="menu.logOut()">{{ 'MENU.USER.SIGN_OUT' | translate }}</a></li>
                             </ul>
