@@ -27,7 +27,20 @@ angular
 	    		}
 	    	},
 	    	FACILITY: {
-	    		DELETE: 'Διαγραφή Προμηθευτή'
+	    	    DELETE: 'Διαγραφή Προμηθευτή',
+	    	    SAVE: 'Αποθήκευση Προμηθευτή'
+	    	},
+	    	FACILITYDETAILS: {
+	    	    NAME: 'Δομή Φιλοξενίας :',
+	    	    DESCRIPTION:'Περιγραφή',
+	    	    TYPE: 'Κατηγορία',
+	    	    CAPACITY: 'Χωρητικότητα',
+	    	    ATTENDANCE: 'Φιλοξενούμενοι :',
+	    	    ISSECURE: 'Φυλασσόμενος Χώρος',
+	    	    HASHEALTHCARE: 'Υγεινομική Υποστήριξη',
+	    	    STATUS: 'Κατάσταση',
+	    	    ADMINISTRATION: 'Διαχειριστής',
+	    	    NOTES: 'Σημειώσεις'
 	    	}
 	    };
 
