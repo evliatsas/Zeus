@@ -2,10 +2,9 @@
 
 angular
     .module('zeusclientApp')
-    .controller('MessageCtrl', function ($scope, $http, $routeParams, $uibModal, $location, baseUrl, lookupService, messageService) {
+    .controller('MessageCtrl', function ($scope, $http, $location, baseUrl, lookupService, messageService) {
 
         $scope.lookup = lookupService;
-        $scope.reports = [];
 
         $scope.reportcolumns = [
             { Caption: 'Π', Field: 'Priority', Type: 'LookupHtml', Values: lookupService.priorities, Tooltip: 'Προτεραιότητα Αναφοράς' },
@@ -17,7 +16,7 @@ angular
 
         $scope.getMessage = function () {
             $http({
-                method: 'POST',
+                method: 'GET',
                 url: baseUrl + '/reports/message'
             }).then(function successCallback(response) {
                 $scope.reports = response.data;

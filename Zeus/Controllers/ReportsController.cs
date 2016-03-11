@@ -200,18 +200,18 @@ namespace Zeus.Controllers
         }
         [Route("message")]
         [ResponseType(typeof(IEnumerable<Report>))]
-        [HttpPost]
+        [HttpGet]
         public async Task<IHttpActionResult> GetMessageReports()
         {
-            var reports = await context.Reports.Get(x => x.Type==ReportType.Message);
-            var fIds = reports.Select(x => x.FacilityId);
-            var facilities = await context.Facilities.Get(x => fIds.Contains(x.Id));
+            var reports = await context.Reports.Get(x => x.Type == ReportType.Message);
+            var facilities = await context.Facilities.GetAll();
+
             reports = reports.Select(s =>
             {
-                var temp = facilities.First(f => f.Id == s.FacilityId);
-                s.Facility = new Facility() { Id = temp.Id, Name = temp.Name };
+                s.Facility = facilities.FirstOrDefault(t => t.Id == s.FacilityId);
                 return s;
             });
+
             return reports == null ? (IHttpActionResult)this.NotFound() : this.Ok(reports);
         }
     }
