@@ -66,6 +66,10 @@ angular
 	    	LOOKUPMODAL: {
 	    	    CANCEL: 'ΑΚΥΡΩΣΗ: ',
 	    	    SELECT: 'ΕΠΙΛΟΓΗ'
+	    	},
+	    	PHONELIST: {
+	    	    PHONES: 'Τηλέφωνα Επικοινωνίας: ',
+	    	    NUMBER: 'Αριθμός'
 	    	}
 	    };
 
