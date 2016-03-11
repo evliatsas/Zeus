@@ -14,14 +14,12 @@ angular
             { Caption: 'Ημερομηνία', Field: 'DateTime', Type: 'DateTime' }
         ];
 
-        $scope.getMessage = function () {
-            $http({
-                method: 'GET',
-                url: baseUrl + '/reports/message'
-            }).then(function successCallback(response) {
-                $scope.reports = response.data;
-            }, function errorCallback(response) {
-                messageService.showError();
-            });
-        }
+        $http({
+            method: 'GET',
+            url: baseUrl + '/reports/message'
+        }).then(function successCallback(response) {
+            $scope.reports = response.data;
+        }, function errorCallback(response) {
+            messageService.showError();
+        });
     });
