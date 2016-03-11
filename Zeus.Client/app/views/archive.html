@@ -1,15 +1,35 @@
 ﻿<form>
-    <div class="form-group">
+    <div class="form-group label-static">
         <div class="col-sm-4">
-            <input class="form-control" type="text" placeholder="Από" ng-model="from">
+            <label for="i11" class="control-label">Από</label>
+            <div class="dropdown">
+                <div class="dropdown-toggle" id="dropdown1" role="button" data-toggle="dropdown" data-target="#">
+                    <div class="input-group">
+                        <input type="text" class="form-control" data-ng-model="from" data-date-time-input="dddd DD/MM/YYYY HH:mm"><span class="input-group-addon"><i class="material-icons md-24">date_range</i></span>
+                    </div>
+                </div>
+                <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                    <datetimepicker data-ng-model="from" data-datetimepicker-config="{ dropdownSelector: '#dropdown1' }" />
+                </ul>
+            </div>
         </div>
         <div class="col-sm-4">
-            <input class="form-control" type="text" placeholder="Εώς" ng-model="to">
+            <label for="i11" class="control-label">Εώς</label>
+            <div class="dropdown">
+                <div class="dropdown-toggle" id="dropdown2" role="button" data-toggle="dropdown" data-target="#">
+                    <div class="input-group">
+                        <input type="text" class="form-control" data-ng-model="to" data-date-time-input="dddd DD/MM/YYYY HH:mm"><span class="input-group-addon"><i class="material-icons md-24">date_range</i></span>
+                    </div>
+                </div>
+                <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                    <datetimepicker data-ng-model="to" data-datetimepicker-config="{ dropdownSelector: '#dropdown2' }" />
+                </ul>
+            </div>
         </div>
         <div class="col-sm-4">
             <button class="btn btn-raised btn-info" type="button" ng-click="getArchived()">
                 Εμφάνιση Αρχείου
-                <i class="fa fa-book" style="padding-left:5px;"></i>
+                <i class="material-icons md-24">book</i>
             </button>
         </div>
     </div>

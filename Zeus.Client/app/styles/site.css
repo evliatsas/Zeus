@@ -1,4 +1,7 @@
-﻿
+﻿[ng\:cloak], [ng-cloak], .ng-cloak {
+  display: none !important;
+}
+
 .map-container {
     box-shadow: 0 0 2px rgba(0,0,0,.12),0 2px 4px rgba(0,0,0,.24);
 }
