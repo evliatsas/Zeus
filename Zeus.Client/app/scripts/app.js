@@ -94,8 +94,8 @@ angular
         })
         .when('/reports/message', {
             templateUrl: 'views/message.html',
-            controller: 'ArchiveCtrl',
-            controllerAs: 'archiveCtrl'
+            controller: 'MessageCtrl',
+            controllerAs: 'messageCtrl'
           })
         .when('/providers/:id', {
             templateUrl: 'views/provider.html',

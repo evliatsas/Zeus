@@ -6,8 +6,6 @@ angular
 
         $scope.lookup = lookupService;
         $scope.reports = [];
-        $scope.from = new Date();
-        $scope.to = new Date();
 
         $scope.reportcolumns = [
             { Caption: 'Π', Field: 'Priority', Type: 'LookupHtml', Values: lookupService.priorities, Tooltip: 'Προτεραιότητα Αναφοράς' },
