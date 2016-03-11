@@ -34,7 +34,10 @@ namespace Zeus.Controllers
                 var result = await context.Facilities.GetAll();
 
                 foreach (var facility in result)
-                    facility.Tag = await context.Reports.Count(x => x.FacilityId == facility.Id);
+                {
+                    facility.ReportsCount = await context.Reports.Count(x => x.FacilityId == facility.Id);
+                    facility.PersonsCount = await context.Persons.Count(x => x.FacilityId == facility.Id);
+                }
 
                 return result == null ? this.Ok(new List<Facility>().AsEnumerable()) : this.Ok(result.OrderByDescending(o => o.Name).AsEnumerable());
             }

@@ -7,13 +7,16 @@
         </h4>
     </div>
     <div class="panel-body" style="height: 100px">
-        <p style="height: 50px; overflow: hidden; text-overflow: ellipsis">{{card.Description}}</p>
+        <p style="height: 30px; overflow: hidden; text-overflow: ellipsis">{{card.Description}}</p>
 
-        <p class="text-primary pull-left">
-            Φιλοξενούμενοι: <span class="badge">{{card.Attendance}} / {{card.Capacity}}</span> 
+        <p class="text-primary pull-left">      
+            <br />      
+            Φιλοξενούμενοι: <span class="badge">{{card.Attendance}} / {{card.Capacity}}</span>
         </p>
         <p class="text-primary pull-right">
-            Αναφορές: <span class="badge">{{card.Tag}}</span>
+            <a href="" ng-click="goto('/facilities/' + card.Id + '?tab=3')">Αναφορές: <span class="badge pull-right">{{card.ReportsCount}}</span></a>            
+            <br />
+            <a href="" ng-click="goto('/facilities/' + card.Id + '?tab=4')">Ταυτοποιημένοι: <span class="badge pull-right">{{card.PersonsCount}}</span></a>
         </p>
     </div>
     <div class="panel-footer">

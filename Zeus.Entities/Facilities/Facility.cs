@@ -35,7 +35,11 @@ namespace Zeus.Entities
         [BsonIgnore]
         public IList<Provider> Providers { get; set; }
         [BsonIgnore]
+        public int ReportsCount { get; set; }
+        [BsonIgnore]
         public IList<Report> Reports { get; set; }
+        [BsonIgnore]
+        public int PersonsCount { get; set; }
         [BsonIgnore]
         public IList<Person> Persons { get; set; }
 

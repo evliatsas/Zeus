@@ -12,7 +12,7 @@
 </div>
 
 <div class="col-md-8" style="padding-top:20px;">
-    <uib-tabset justified="true" active="active">
+    <uib-tabset justified="true" active="activeTab">
         <uib-tab index="0" heading="Στέγαση">
             <div class="shadow-box btn-group-sm">
                 <cinnamon-grid grid-columns="housingcolumns"
@@ -24,7 +24,7 @@
                 </cinnamon-grid>
             </div>
         </uib-tab>
-        <uib-tab index="2" heading="Επαφές">
+        <uib-tab index="1" heading="Επαφές">
             <div class="shadow-box btn-group-sm">
                 <cinnamon-grid grid-columns="contactColumns"
                                grid-items="data.Contacts"
@@ -35,7 +35,7 @@
                 </cinnamon-grid>
             </div>
         </uib-tab>
-        <uib-tab index="3" heading="Υποστήριξη">
+        <uib-tab index="2" heading="Υποστήριξη">
             <div class="shadow-box btn-group-sm">
                 <cinnamon-grid grid-columns="providerColumns"
                                grid-items="data.Providers"
@@ -46,8 +46,7 @@
                 </cinnamon-grid>
             </div>
         </uib-tab>
-        <uib-tab index="4" heading="Αναφορές">
-            <!--<span><i class="material-icons">chrome_reader_mode</i></span>-->
+        <uib-tab index="3" heading="Αναφορές">
             <div class="shadow-box btn-group-sm">
                 <cinnamon-grid grid-columns="reportcolumns"
                                grid-items="data.Reports"

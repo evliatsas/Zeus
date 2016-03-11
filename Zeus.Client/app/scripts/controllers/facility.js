@@ -5,6 +5,7 @@ angular
     .controller('FacilityCtrl', function ($scope, $window, $timeout, $http, $routeParams, $location, $uibModal, lookupService, messageService, baseUrl) {
 
         var isInsert = $routeParams.id == 'new';
+        $scope.activeTab = $routeParams.tab ? parseInt($routeParams.tab) : 0;
 
         $scope.housingcolumns = [
             { Caption: 'Τύπος', Field: 'Type', Values: lookupService.housingCategories, Tooltip: 'Τύπος Εγκατάστασης' },
