@@ -58,7 +58,7 @@ namespace Zeus.Controllers
             return report == null ? (IHttpActionResult)this.NotFound() : this.Ok(report);
         }
 
-        [Route("facilities/{id}")]
+        [Route(Routes.Facilities + "/{id}")]
         [ResponseType(typeof(IEnumerable<Report>))]
         [HttpGet]
         public async Task<IHttpActionResult> GetFacilityReports(string id)
