@@ -23,7 +23,7 @@ angular
     'pascalprecht.translate'
   ])
   .config(function ($routeProvider) {
-      moment.locale('el');
+
       $.material.init();
 
       $routeProvider
