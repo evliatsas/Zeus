@@ -41,7 +41,7 @@
             var deferred = $q.defer();
 
             $http({
-                url: 'http://localhost:8080/api/oauth2/token',
+                url: 'http://localhost:8080/oauth2/token',
                 headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
                 method: 'POST',
                 transformRequest: function (obj) {
@@ -61,7 +61,7 @@
             }, function (error) {
                 messageService.showError();
                 logout();
-                deferred.reject(err);
+                deferred.reject(error);
             });
 
             return deferred.promise;
