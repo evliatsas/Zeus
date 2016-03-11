@@ -1,53 +1,60 @@
 ﻿<div class="pull-right">
     <span class="btn btn-danger btn-fab fab" ng-click="delete()">
-        <i class="material-icons" title="{{ 'USER.DELETE' | translate }}">delete</i>
+        <i class="material-icons" title="Διαγραφή Προμηθευτή">delete</i>
     </span>
     <span class="btn btn-success btn-fab fab" ng-click="save()">
-        <i class="material-icons" title="{{ 'USER.SAVE' | translate }}">save</i>
+        <i class="material-icons" title="Αποθήκευση Προμηθευτή">save</i>
     </span>
 </div>
 <h2>Χρήστης</h2>
 <div class="col-md-6">
     <div class="form-group label-static ng-is-empty">
-        <label for="FullName" class="control-label">{{ 'USER.FULLNAME' | translate }}</label>
+        <label for="FullName" class="control-label">Όνοματεπώνυμο</label>
         <input type="text" class="form-control" id="FullName" ng-model="user.FullName">
     </div>
     <div class="form-group label-static ng-is-empty">
-        <label for="UserName" class="control-label">{{ 'USER.USERNAME' | translate }}</label>
+        <label for="UserName" class="control-label">Αναγνωρισρτικό</label>
         <input type="text" class="form-control" id="UserName" ng-model="user.UserName">
     </div>
     <div class="form-group label-static ng-is-empty">
         <label for="Nationality" class="control-label">Email</label>
-        <input type="email" class="form-control" id="Email" data-error="{{ 'USER.EMAIL_ERROR' | translate }}" required ng-model="user.Email">
+        <input type="email" class="form-control" id="Email" data-error="To Email δεν είναι σωστό" required ng-model="user.Email">
     </div>
     <div class="form-group label-static ng-is-empty">
-        <label for="PhoneNumber" class="control-label">{{ 'USER.PHONENUMBER' | translate }}</label>
+        <label for="PhoneNumber" class="control-label">Τηλέφωνο</label>
         <input type="text" class="form-control" id="PhoneNumber" ng-model="user.PhoneNumber">
     </div>
     <div ng-show="isInsert">
         <div class="form-group label-static ng-is-empty">
-            <label for="Nationality" class="control-label">{{ 'USER.PASSWORD' | translate }}</label>
+            <label for="Nationality" class="control-label">Κωδικός Πρόσβασης</label>
             <input type="password" class="form-control" id="inputPassword" required ng-model="user.Password">
         </div>
         <div class="form-group label-static ng-is-empty">
-            <label for="password" class="control-label">{{ 'USER.CONFIRM_PASSWORD' | translate }}</label>
+            <label for="password" class="control-label">Επιβεβαίωση Κωδικού</label>
             <input type="password" class="form-control" id="passwordConfirm" data-match="#password" data-error="Ο κωδικός δεν ταιριάζει" required ng-model="user.PasswordConfirm">
         </div>
     </div>
     <div class="pull-right" ng-show="!isInsert">
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#simple-dialog">{{ 'USER.CHANGE_PASSWORD' | translate }}ΑΛΛΑΓΗ ΚΩΔΙΚΟΥ<div class="ripple-container"></div></button>
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#simple-dialog">Αλλαγή Κωδικού
+            <div class="ripple-container"></div>
+        </button>
     </div>
 </div>
-
 <div id="simple-dialog" class="modal fade" tabindex="-1" style="display: none;">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-body">
                 <div class="form-group label-static ng-is-empty">
-                    <label for="Password" class="control-label">{{ 'USER.NEW_PASSWORD' | translate }}Νέος Κωδικός Πρόσβασης</label>
-                    <input type="password" class="form-control" id="Password" required ng-model="user.Password">
+                    <label for="Password" class="control-label">Νέος Κωδικός Πρόσβασης</label>
+                    <input type="password" class="form-control" id="Password" required ng-model="user.NewPassword">
                 </div>
-                <button type="button" ng-click="changePassword()" class="btn btn-primary" data-toggle="modal" data-target="#simple-dialog">{{ 'USER.CHANGE_PASSWORD' | translate }}<div class="ripple-container"></div></button>
+                <div class="form-group label-static ng-is-empty">
+                    <label for="Password" class="control-label">Επαλήθευση Κωδικού Πρόσβασης</label>
+                    <input type="password" class="form-control" id="Password" required ng-model="user.PasswordConfirm">
+                </div>
+                <button type="button" ng-click="changePassword()" class="btn btn-primary" data-toggle="modal" data-target="#simple-dialog">Αλλαγή Κωδικού
+                    <div class="ripple-container"></div>
+                </button>
             </div>
         </div>
     </div>
