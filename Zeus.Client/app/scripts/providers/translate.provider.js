@@ -169,7 +169,7 @@ angular
 	    	LOGIN: {
 	    	    USERNAME: 'Όνομα Χρήστη',
 	    	    PASSWORD: 'Κωδικός Πρόσβασης',
-	    	    SIGNIN: 'ΕΙΣΟΔΟΣ'
+	    	    SIGN_IN: 'ΕΙΣΟΔΟΣ'
 	    	},
 	    	USER: {
 	    	    DELETE: 'Διαγραφή Χρήστη',
