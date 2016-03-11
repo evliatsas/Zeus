@@ -2,7 +2,7 @@
 
 angular
     .module('zeusclientApp')
-    .controller('lookupCtrl', function($http, $uibModalInstance, modaldata, baseUrl, lookupService) {
+    .controller('lookupCtrl', function($http, $q, $uibModalInstance, modaldata, baseUrl, lookupService) {
         var vm = this;
 
         if (modaldata.ignoreTag == true) {
@@ -47,10 +47,8 @@ angular
             vm.list = response.data;
             vm.list.forEach(function(element, index, array) {
                 for (var item in modaldata.selected) {
-                    if (element.Id == modaldata.selected[item].Id){
-                        if (modaldata.ignoreTag == true){
-                            element.Tag = item.Relationship;
-                        }
+                    if (element.Id == modaldata.selected[item].Id) {
+
                         vm.selectedItems.push(element);
                     }
                 }
@@ -70,21 +68,26 @@ angular
         }
 
         vm.ok = function() {
+            var promises = [];
             var fullData = [];
-            for (var index in vm.selectedItems) {
-                $http({
-                    method: 'GET',
-                    url: findUrl + vm.selectedItems[index].Id
-                }).then(function successCallback(response) {
-                    fullData.push(response.data);
-                }, function errorCallback(response) {
-                    //on error do nothing
-                });
-            }
-            var result = {
-                selected: fullData
-            };
-            $uibModalInstance.close(result);
+
+            vm.selectedItems.forEach(function (obj, index) {
+                promises.push($http({
+                        method: 'GET',
+                        url: findUrl + vm.selectedItems[index].Id
+                    }).then(function successCallback(response) {
+                        fullData.push(response.data);
+                    }, function errorCallback(response) {
+                        //on error do nothing
+                    }));
+            });
+            $q.all(promises).then(function () {
+                var result = {
+                    selected: fullData
+                };
+                $uibModalInstance.close(result);
+            });
+
         };
 
         vm.cancel = function() {

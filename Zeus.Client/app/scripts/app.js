@@ -86,6 +86,11 @@ angular
             controller: 'ReportCtrl',
             controllerAs: 'reportCtrl'
         })
+        .when('/reports/archive', {
+            templateUrl: 'views/archive.html',
+            controller: 'ArchiveCtrl',
+            controllerAs: 'archiveCtrl'
+        })
         .when('/providers/:id', {
             templateUrl: 'views/provider.html',
             controller: 'ProviderCtrl',

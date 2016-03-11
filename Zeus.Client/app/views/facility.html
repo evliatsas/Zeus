@@ -14,40 +14,49 @@
 <div class="col-md-8" style="padding-top:20px;">
     <uib-tabset justified="true" active="active">
         <uib-tab index="0" heading="Στέγαση">
-            <cinnamon-grid grid-columns="housingcolumns"
-                           grid-items="data.Housings"
-                           show-grid-buttons="true"
-                           hide-item-buttons="true"
-                           row-click-fn="editHousing(item)"
-                           grid-create-fn="addHousing()">
-            </cinnamon-grid>
+            <div class="shadow-box btn-group-sm">
+                <cinnamon-grid grid-columns="housingcolumns"
+                               grid-items="data.Housings"
+                               show-grid-buttons="true"
+                               hide-item-buttons="true"
+                               row-click-fn="editHousing(item)"
+                               grid-create-fn="addHousing()">
+                </cinnamon-grid>
+            </div>
         </uib-tab>
         <uib-tab index="2" heading="Επαφές">
-            <cinnamon-grid grid-columns="contactColumns"
-                           grid-items="data.Contacts"
-                           show-grid-buttons="true"
-                           hide-item-buttons="true"
-                           row-click-fn="showContact(item)"
-                           grid-create-fn="addContact()">
-            </cinnamon-grid>
+            <div class="shadow-box btn-group-sm">
+                <cinnamon-grid grid-columns="contactColumns"
+                               grid-items="data.Contacts"
+                               show-grid-buttons="true"
+                               hide-item-buttons="true"
+                               row-click-fn="showContact(item)"
+                               grid-create-fn="addContact()">
+                </cinnamon-grid>
+            </div>
         </uib-tab>
         <uib-tab index="3" heading="Υποστήριξη">
-            <cinnamon-grid grid-columns="providerColumns"
-                           grid-items="data.Providers"
-                           show-grid-buttons="true"
-                           hide-item-buttons="true"
-                           row-click-fn="showProvider(item)"
-                           grid-create-fn="addProvider()">
-            </cinnamon-grid>
+            <div class="shadow-box btn-group-sm">
+                <cinnamon-grid grid-columns="providerColumns"
+                               grid-items="data.Providers"
+                               show-grid-buttons="true"
+                               hide-item-buttons="true"
+                               row-click-fn="showProvider(item)"
+                               grid-create-fn="addProvider()">
+                </cinnamon-grid>
+            </div>
         </uib-tab>
         <uib-tab index="4" heading="Αναφορές">
-            <cinnamon-grid grid-columns="reportcolumns"
-                           grid-items="data.Reports"
-                           show-grid-buttons="false"
-                           hide-item-buttons="true"
-                           highlight="!item.IsAcknowledged"
-                           row-click-fn="showReport(item)">
-            </cinnamon-grid>
+            <!--<span><i class="material-icons">chrome_reader_mode</i></span>-->
+            <div class="shadow-box btn-group-sm">
+                <cinnamon-grid grid-columns="reportcolumns"
+                               grid-items="data.Reports"
+                               show-grid-buttons="false"
+                               hide-item-buttons="true"
+                               highlight="!item.IsAcknowledged"
+                               row-click-fn="showReport(item)">
+                </cinnamon-grid>
+            </div>
         </uib-tab>
     </uib-tabset>
 </div>

@@ -76,6 +76,7 @@
     <Content Include="app\robots.txt" />
     <Content Include="app\scripts\app.js" />
     <Content Include="app\scripts\controllers\about.js" />
+    <Content Include="app\scripts\controllers\archive.js" />
     <Content Include="app\scripts\controllers\facilities.js" />
     <Content Include="app\scripts\controllers\charts.js" />
     <Content Include="app\scripts\controllers\facility.js" />
@@ -123,6 +124,7 @@
     <Content Include="app\templates\phone-list.html" />
     <Content Include="app\templates\save-alert.html" />
     <Content Include="app\views\about.html" />
+    <Content Include="app\views\archive.html" />
     <Content Include="app\views\charts.html" />
     <Content Include="app\views\facilities.html" />
     <Content Include="app\views\facility.html" />
