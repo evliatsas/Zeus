@@ -48,7 +48,7 @@
 
                 <div class="collapse navbar-collapse" id="js-navbar-collapse">
 
-                    <ul class="nav navbar-nav">
+                    <ul class="nav navbar-nav" ng-show="menu.isAuth()">
                         <!--<li ng-class="menu.getClass('/')"><a href="#/">Αρχική</a></li>-->
                         <li ng-class="menu.getClass('/facilities')"><a ng-href="#/facilities">{{ 'MENU.FACILITIES' | translate }}</a></li>
                         <li ng-class="menu.getClass('/contacts')"><a ng-href="#/contacts">{{ 'MENU.CONTACTS' | translate }}</a></li>
@@ -72,8 +72,8 @@
                             <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="material-icons md-18">person</i> <span class="caret"></span></a>
                             <ul class="dropdown-menu">
                                 <li ng-if="!menu.isAuth()"><a href="#/login">{{ 'MENU.USER.SIGN_IN' | translate }}</a></li>
-                                <li><a href="">{{ 'MENU.USER.CHANGE_PASSWORD' | translate }}</a></li>
-                                <li ng-class="menu.getClass('/reports/message')"><a ng-href="#/reports/message">{{ 'MENU.USER.MESSAGES' | translate }}</a></li>
+                                <li ng-if="menu.isAuth()"><a href="">{{ 'MENU.USER.CHANGE_PASSWORD' | translate }}</a></li>
+                                <li ng-if="menu.isAuth()" ng-class="menu.getClass('/reports/message')"><a ng-href="#/reports/message">{{ 'MENU.USER.MESSAGES' | translate }}</a></li>
                                 <li ng-if="menu.isAuth()" role="separator" class="divider"></li>
                                 <li ng-if="menu.isAuth()"><a href="" ng-click="menu.logOut()">{{ 'MENU.USER.SIGN_OUT' | translate }}</a></li>
                             </ul>

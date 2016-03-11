@@ -11,7 +11,6 @@ using Zeus.Entities;
 namespace Zeus.Controllers
 {
     [Authorize]
-    [ActionFilters.GzipCompressed]
     [RoutePrefix(Zeus.Routes.Contacts)]
     public class ContactsController : ApiController
     {
@@ -91,7 +90,7 @@ namespace Zeus.Controllers
 
                 var data = await context.Contacts.Insert(contact);
 
-                Log.Information("Contact({Contact.Id}) created By {user}", data.Id, user);
+                Log.Information("Contact({Id}) created By {user}", data.Id, user);
                 return this.Ok(data);
             }
             catch (Exception exc)
@@ -160,7 +159,7 @@ namespace Zeus.Controllers
 
                 var result = await context.Contacts.Update(contact);
 
-                Log.Information("Contact({Contact.Id}) updated By {user}", result.Id, user);
+                Log.Information("Contact({Id}) updated By {user}", result.Id, user);
 
                 return this.Ok(result);
             }

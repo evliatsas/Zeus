@@ -1,12 +1,11 @@
 ﻿<div class="jumbotron col-md-offset-4 col-md-4">
-    <!--<img class="logo" src="images/logo.jpg" height="130" style="padding-bottom: 10px">-->
     <form class="form-signin">
         <h2 class="form-signin-heading">Please sign in</h2>
-        <label for="username" class="sr-only">Username</label>
-        <input type="text" id="inputEmail" class="form-control" placeholder="Username" required autofocus ng-model="username">
+        <label for="username" class="sr-only">{{ 'HOUSING.USERNAME' | translate }}</label>
+        <input type="text" id="inputEmail" class="form-control" placeholder="{{ 'HOUSING.USERNAME' | translate }}" required autofocus ng-model="username">
         <label for="password" class="sr-only">Password</label>
-        <input type="password" id="password" class="form-control" placeholder="Password" required ng-model="password">
-        <button class="btn btn-lg btn-primary btn-block" ng-click="login()">Sign in</button>
+        <input type="password" id="password" class="form-control" placeholder="{{ 'HOUSING.PASSWORD' | translate }}" required ng-model="password">
+        <button class="btn btn-lg btn-primary btn-block" ng-click="login()">{{ 'HOUSING.SIGNIN' | translate }}</button>
     </form>
 </div>
 

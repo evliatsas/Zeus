@@ -11,7 +11,6 @@ using Zeus.Entities;
 namespace Zeus.Controllers
 {
     [Authorize]
-    [ActionFilters.GzipCompressed]
     [RoutePrefix(Zeus.Routes.Reports)]
     public class ReportsController : ApiController
     {
@@ -105,7 +104,7 @@ namespace Zeus.Controllers
 
                 var data = await context.Reports.Insert(report);
 
-                Log.Information("Report({Report.Id}) created By {user}", data.Id, user);
+                Log.Information("Report({Id}) created By {user}", data.Id, user);
                 return this.Ok(data);
             }
             catch (Exception exc)
@@ -148,7 +147,7 @@ namespace Zeus.Controllers
             {
                 var result = await context.Reports.Update(report);
 
-                Log.Information("Report({Report.Id}) updated By {user}", result.Id, user);
+                Log.Information("Report({Id}) updated By {user}", result.Id, user);
 
                 return this.Ok(result);
             }
@@ -172,7 +171,7 @@ namespace Zeus.Controllers
                 report.IsArchived = !report.IsArchived;
                 report = await context.Reports.Update(report);
 
-                Log.Information("Report({Report.Id}) updated By {user}", id, user);
+                Log.Information("Report({Id}) {action} archive By {user}", id, report.IsArchived ? "added to":"removed from", user);
                 return this.Ok(report.IsArchived);
             }
             else

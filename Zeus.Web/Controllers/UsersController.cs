@@ -74,18 +74,18 @@ namespace Zeus.Controllers
                 var result = await UserManager.CreateAsync(appuser, user.Password);
                 if (result.Succeeded)
                 {
-                    Log.Information("User({User.Id}) created By {currentuser}", appuser.Id, currentuser);
+                    Log.Information("User({Id}) created By {user}", appuser.Id, currentuser);
                     return this.Ok(appuser);
                 }
                 else
                 {
-                    Log.Error("Error {Exception} creating User By {currentuser}", result.Errors, currentuser);
+                    Log.Error("Error {Exception} creating User By {user}", result.Errors, currentuser);
                     return BadRequest(result.Errors.FirstOrDefault());
                 }
             }
             catch (Exception exc)
             {
-                Log.Error("Error {Exception} creating User By {currentuser}", exc, currentuser);
+                Log.Error("Error {Exception} creating User By {user}", exc, currentuser);
                 return this.BadRequest("Σφάλμα Δημιουργίας δεδομένων Ατόμου");
             }
         }
@@ -123,13 +123,13 @@ namespace Zeus.Controllers
             {
                 var result = await context.Users.Update(user);
 
-                Log.Information("User({User.Id}) updated By {currentuser}", result.Id, currentuser);
+                Log.Information("User({Id}) updated By {user}", result.Id, currentuser);
 
                 return this.Ok(result);
             }
             catch (Exception exc)
             {
-                Log.Error("Error {Exception} updating User By {currentuser}", exc, currentuser);
+                Log.Error("Error {Exception} updating User By {user}", exc, currentuser);
                 return this.BadRequest("Σφάλμα Ενημέρωσης δεδομένων Ατόμου");
             }
         }
