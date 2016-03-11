@@ -3,7 +3,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
-using System.Text;
 using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Description;
@@ -12,7 +11,6 @@ using Zeus.Entities;
 namespace Zeus.Controllers
 {
     [Authorize]
-    [ActionFilters.GzipCompressed]
     [RoutePrefix(Zeus.Routes.Persons)]
     public class PersonsController : ApiController
     {
@@ -79,7 +77,7 @@ namespace Zeus.Controllers
             {
                 var data = await context.Persons.Insert(person);
 
-                Log.Information("Person({Person.Id}) created By {user}", data.Id, user);
+                Log.Information("Person({Id}) created By {user}", data.Id, user);
                 return this.Ok(data);
             }
             catch (Exception exc)
@@ -134,7 +132,7 @@ namespace Zeus.Controllers
 
                 var result = await context.Persons.Update(person);
 
-                Log.Information("Person({Person.Id}) updated By {user}", result.Id, user);
+                Log.Information("Person({Id}) updated By {user}", result.Id, user);
 
                 return this.Ok(result);
             }

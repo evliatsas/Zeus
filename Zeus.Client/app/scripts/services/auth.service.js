@@ -14,6 +14,7 @@
             fillUserInfo: fillUserInfo,
             changePassword: changePassword,
             isInRole: isInRole,
+            isAuth: isAuth,
             authentication: {
                 isAuth: false,
                 userName: "",
@@ -30,12 +31,17 @@
 
         return service;
 
+        function isAuth(){
+            var token = localStorageService.get('authorizationData');
+            return token!=null;
+        };
+
         function login (loginData) {
 
             var deferred = $q.defer();
 
             $http({
-                url: 'http://localhost:8080/oauth2/token',
+                url: 'https://localhost:44300/api/oauth2/token',
                 headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
                 method: 'POST',
                 transformRequest: function (obj) {
