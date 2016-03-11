@@ -8,14 +8,14 @@ namespace Zeus
 {
     public static class Routes
     {
-        public const string Common = "common";
-        public const string Facilities = "facilities";
-        public const string Providers = "providers";
-        public const string Reports = "reports";
-        public const string Persons = "persons";
+        public const string Common = "api/common";
+        public const string Facilities = "api/facilities";
+        public const string Providers = "api/providers";
+        public const string Reports = "api/reports";
+        public const string Persons = "api/persons";
 
-        public const string FamilyRelations = "family";
-        public const string Contacts = "contacts";
-        public const string Users = "users";
+        public const string FamilyRelations = "api/family";
+        public const string Contacts = "api/contacts";
+        public const string Users = "api/users";
     }
 }

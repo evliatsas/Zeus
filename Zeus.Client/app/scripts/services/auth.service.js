@@ -114,8 +114,8 @@
             }
         };
 
-        function changePassword(userId, oldPassword, newPassword) {
-            var value = { userId: userId, oldPassword: $sanitize(oldPassword), newPassword: $sanitize(newPassword) };
+        function changePassword(userId, oldPassword, newPassword, passwordConfirm) {
+            var value = { userId: userId, oldPassword: $sanitize(oldPassword), newPassword: $sanitize(newPassword), passwordConfirm: $sanitize(passwordConfirm) };
             return $http(
                 {
                     method: 'POST',
