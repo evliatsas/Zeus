@@ -39,6 +39,14 @@ angular
             { Caption: 'Συντάκτης', Field: 'User.Title' },
             { Caption: 'Ημερομηνία', Field: 'DateTime', Type: 'DateTime' }
         ];
+
+        $scope.personcolumns = [
+           { Caption: 'Εθνικότητα', Field: 'Nationality' },
+           { Caption: 'Όνομα', Field: 'Name' },
+           { Caption: 'Ηλικία', Field: 'Age', Type: 'Number' },
+           { Caption: 'Ευπαθής', Field: 'IsSensitive', Type: 'Boolean' },
+           { Caption: 'Ευπάθεια', Field: 'Sensitivity' }
+        ];
        
         var scrollToEnd = function () {
             $timeout(
@@ -96,6 +104,66 @@ angular
 
         //*************
 
+
+        //CONTACT
+        $scope.showContact = function (contact) {
+            var location = '/contacts/' + contact.Id;
+            $location.url(location);
+        }
+
+        $scope.addProvider = function () {
+            var picker = $uibModal.open({
+                animation: true,
+                size: 'md',
+                templateUrl: '/templates/lookup-modal.html',
+                controller: 'lookupCtrl',
+                controllerAs: 'lookupCtrl',
+                resolve: {
+                    modaldata: function () {
+                        return {
+                            type: 'Provider',
+                            selected: $scope.data.Providers
+                        };
+                    }
+                }
+            });
+
+            picker.result.then(function (data) {
+                $scope.data.Providers = data.selected;
+            }, function () {
+                //modal dismissed
+            });
+        }
+        //*************
+
+        //PROVIDER
+        $scope.showProvider = function (provider) {
+            var location = '/providers/' + provider.Id;
+            $location.url(location);
+        }
+
+        if (isInsert) {
+            $scope.data = {
+                Location: {
+                    Type: 'Point',
+                    Coordinates: [38.5306122, 25.4556341]
+                }
+            };
+        } else {
+            $http({
+                method: 'GET',
+                url: baseUrl + '/facilities/' + $routeParams.id
+            }).then(function successCallback(response) {
+                $scope.data = response.data;
+            }, function errorCallback(response) {
+                messageService.showError();
+            });
+        }
+
+        //*************
+
+
+        //REPORT
         $scope.showReport = function (report) {
             var location = '/reports/' + report.Type + '/' + $scope.data.Id + '/' + report.Id;
             $location.url(location);
@@ -125,57 +193,25 @@ angular
             });
         }
 
-        $scope.showContact = function (contact) {
-            var location = '/contacts/' + contact.Id;
+        //*************
+
+
+        //PERSON
+        $scope.showPerson = function (person) {
+            var location = '/persons/' + person.Id;
             $location.url(location);
         }
 
-        $scope.addProvider = function () {
-            var picker = $uibModal.open({
-                animation: true,
-                size: 'md',
-                templateUrl: '/templates/lookup-modal.html',
-                controller: 'lookupCtrl',
-                controllerAs: 'lookupCtrl',
-                resolve: {
-                    modaldata: function () {
-                        return {
-                            type: 'Provider',
-                            selected: $scope.data.Providers
-                        };
-                    }
-                }
-            });
+        $http({
+            method: 'GET',
+            url: baseUrl + '/persons'
+        }).then(function successCallback(response) {
+            $scope.data = response.data;
+        }, function errorCallback(response) {
+            messageService.getFailed(response.error);
+        });       
+        //*************
 
-            picker.result.then(function (data) {
-                $scope.data.Providers = data.selected;
-            }, function () {
-                //modal dismissed
-            });
-        }
-
-        $scope.showProvider = function (provider) {
-            var location = '/providers/' + provider.Id;
-            $location.url(location);
-        }
-
-        if (isInsert) {
-            $scope.data = {
-                Location: {
-                    Type: 'Point',
-                    Coordinates: [38.5306122, 25.4556341]
-                }
-            };
-        } else {
-            $http({
-                method: 'GET',
-                url: baseUrl + '/facilities/' + $routeParams.id
-            }).then(function successCallback(response) {
-                $scope.data = response.data;
-            }, function errorCallback(response) {
-                messageService.showError();
-            });
-        }
 
         // SAVE - DELETE
         $scope.save = function () {
