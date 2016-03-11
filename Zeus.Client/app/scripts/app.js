@@ -19,7 +19,8 @@ angular
     'ngTouch',
     'ui.bootstrap',
     'angular-loading-bar',
-    'LocalStorageModule'
+    'LocalStorageModule',
+    'pascalprecht.translate'
   ])
   .config(function ($routeProvider) {
       moment.locale('el');
@@ -143,10 +144,10 @@ angular
 
       $httpProvider.interceptors.push('authInterceptorService');
   })
-  .constant("moment", moment)
   .constant("baseUrl", "http://localhost:8080/api")
+  .constant("moment", moment)
   .constant('toastr', toastr)
-.directive('convertToNumber', function () {
+  .directive('convertToNumber', function () {
     return {
         require: 'ngModel',
         link: function (scope, element, attrs, ngModel) {
