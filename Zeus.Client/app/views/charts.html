@@ -1,11 +1,18 @@
-﻿<div class="row-fluid">
-    <div class="col-md-2">
-        <div ng-repeat="facility in facilities">
-            <div class="checkbox"><label><input type="checkbox"> {{facility.Name}}</label></div>
+﻿<div class="col-md-12" ng-repeat="type in types" on-finish-render="ngRepeatFinished">
+
+    <h3>{{category.Name}}</h3>
+
+    <div class="col-md-3 container-fluid shadow-box" style="margin-right: 20px">
+        <div ng-repeat="facility in facilities | filter: {Type: category.Id} | orderBy: 'Facility.Name'">
+            <input type="checkbox" ng-model="facility.Checked" ng-change="update(type, facility)"> {{facility.Name}}
         </div>
     </div>
-    <div class="col-md-8">
-        <canvas id="myChart"></canvas>
-        <div id="myLegend" class="doughnut-legend"></div>
+
+    <div class="col-md-8 container-fluid shadow-box">
+        <div>
+            <canvas id="{{'chart' + type}}"></canvas>
+            <div id="{{'legend' + type}}" class="doughnut-legend"></div>
+        </div>
     </div>
+
 </div>
