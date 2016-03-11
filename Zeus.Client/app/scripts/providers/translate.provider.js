@@ -40,7 +40,7 @@ angular
 	    	    HASHEALTHCARE: 'Υγεινομική Υποστήριξη',
 	    	    STATUS: 'Κατάσταση',
 	    	    ADMINISTRATION: 'Διαχειριστής',
-	    	    NOTES: 'Σημειώσεις'
+	    	    NOTES: 'Κείμενο'
 	    	}
 	    };
 
