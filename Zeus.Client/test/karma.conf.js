@@ -40,8 +40,6 @@ module.exports = function(config) {
       'bower_components/moment/moment.js',
       'bower_components/angular-loading-bar/build/loading-bar.js',
       'bower_components/angular-local-storage/dist/angular-local-storage.js',
-      'bower_components/moment-timezone/builds/moment-timezone-with-data-2010-2020.js',
-      'bower_components/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js',
       'bower_components/Chart.js/Chart.js',
       'bower_components/angular-translate/angular-translate.js',
       'bower_components/angular-mocks/angular-mocks.js',
