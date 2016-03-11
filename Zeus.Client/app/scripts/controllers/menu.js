@@ -17,5 +17,10 @@ angular
 
         this.logOut = function () {
             authService.logout();
+            $location.url("/login");
+        }
+
+        this.changePassword = function (password,newPassword,passwordConfirm) {
+            authService.changePassword("", password, newPassword, passwordConfirm);
         }
     });
