@@ -2,7 +2,6 @@
 using Microsoft.Owin.Security.OAuth;
 using Owin;
 using System;
-using Zeus.Formats;
 using Zeus.Models;
 using Zeus.Providers;
 
@@ -23,12 +22,12 @@ namespace Zeus
                 AllowInsecureHttp = true,
                 TokenEndpointPath = new PathString("/oauth2/token"),
                 AccessTokenExpireTimeSpan = TimeSpan.FromMinutes(30),
-                Provider = new CustomOAuthProvider(),
-                AccessTokenFormat = new CustomJwtFormat("http://jwtauthzsrv.azurewebsites.net")
+                Provider = new CustomOAuthProvider()
             };
 
             // OAuth 2.0 Bearer Access Token Generation
             app.UseOAuthAuthorizationServer(OAuthServerOptions);
+            app.UseOAuthBearerTokens(OAuthServerOptions);
         }
     }
 }

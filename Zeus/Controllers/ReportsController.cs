@@ -10,6 +10,7 @@ using Zeus.Entities;
 
 namespace Zeus.Controllers
 {
+    [Authorize]
     [ActionFilters.GzipCompressed]
     [RoutePrefix(Zeus.Routes.Reports)]
     public class ReportsController : ApiController

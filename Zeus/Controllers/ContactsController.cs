@@ -3,7 +3,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
-using System.Text;
 using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Description;
@@ -11,6 +10,7 @@ using Zeus.Entities;
 
 namespace Zeus.Controllers
 {
+    [Authorize]
     [ActionFilters.GzipCompressed]
     [RoutePrefix(Zeus.Routes.Contacts)]
     public class ContactsController : ApiController

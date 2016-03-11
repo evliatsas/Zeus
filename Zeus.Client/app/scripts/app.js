@@ -146,7 +146,7 @@ angular
 
       $httpProvider.interceptors.push('authInterceptorService');
   })
-  .constant("baseUrl", "http://localhost:8080/api")
+  .constant("baseUrl", "https://localhost:44300/api")
   .constant("moment", moment)
   .constant('toastr', toastr)
   .directive('convertToNumber', function () {
@@ -161,4 +161,12 @@ angular
             });
         }
     };
-});
+})
+.run(['$rootScope', '$location', 'authService', function ($rootScope, $location, authService) {
+    $rootScope.$on('$routeChangeStart', function (event) {
+        if (!authService.isAuth() && $location.path() != "/login") {
+            event.preventDefault();
+            $location.path('/login');
+        }
+    });
+}]);

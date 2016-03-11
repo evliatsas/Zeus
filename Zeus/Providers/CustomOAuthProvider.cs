@@ -48,10 +48,15 @@ namespace Zeus.Providers
 
             if (user == null)
             {
-                //user = new ApplicationUser();
-                //user.UserName = context.UserName;
-                //user.Email = string.Format("{0}@local.lc",context.UserName);
-                //var result = await userManager.CreateAsync(user, context.Password);
+                if (user.UserName == "admin")
+                {
+                    user = new ApplicationUser();
+                    user.FullName = "Διαχειριστής";
+                    user.UserName = context.UserName;
+                    user.Email = string.Format("{0}@local.lc", context.UserName);
+                    var result = userManager.Create(user, context.Password);
+                }
+
                 context.SetError("invalid_grant", "The user name is incorrect");
                 return Task.FromResult<object>(null);
             }

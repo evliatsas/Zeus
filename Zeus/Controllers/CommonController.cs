@@ -12,6 +12,7 @@ using Zeus.Entities;
 
 namespace Zeus.Controllers
 {
+    [Authorize]
     [RoutePrefix(Zeus.Routes.Common)]
     public class CommonController : ApiController
     {

@@ -23,13 +23,13 @@ namespace Zeus
             //Configure CORS
             app.UseCors(CorsOptions.AllowAll);
             
-            //Configure Auth
-            ConfigureAuth(app);
-
-
             //Configure OWIN
             app.Map("/api", api =>
             {
+
+                //Configure Auth
+                ConfigureAuth(api);
+
                 var config = new HttpConfiguration();
 
                 var jsonSettings = config.Formatters.JsonFormatter.SerializerSettings;

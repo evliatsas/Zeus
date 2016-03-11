@@ -12,10 +12,10 @@ angular
         }
 
         this.isAuth = function () {
-            return authService.authentication.isAuth;
+            return authService.isAuth();
         }
 
         this.logOut = function () {
-            authService.logOut();
+            authService.logout();
         }
     });

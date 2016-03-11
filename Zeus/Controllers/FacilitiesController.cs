@@ -11,6 +11,7 @@ using Zeus.Entities;
 
 namespace Zeus.Controllers
 {
+    [Authorize]
     //[ActionFilters.GzipCompressed]
     [RoutePrefix(Zeus.Routes.Facilities)]
     public class FacilitiesController : ApiController

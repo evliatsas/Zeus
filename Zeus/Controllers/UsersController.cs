@@ -14,6 +14,7 @@ using Zeus.Models;
 
 namespace Zeus.Controllers
 {
+    [Authorize]
     [RoutePrefix(Zeus.Routes.Users)]
     public class UsersController : ApiController
     {

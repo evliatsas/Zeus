@@ -143,10 +143,6 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
-    <Reference Include="Thinktecture.IdentityModel.Core, Version=1.2.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Thinktecture.IdentityModel.Core.1.4.0\lib\net45\Thinktecture.IdentityModel.Core.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ActionFilters\GzipCompressedAttribute.cs" />
@@ -161,7 +157,6 @@
     <Compile Include="Controllers\PersonsController.cs" />
     <Compile Include="Controllers\ProvidersController.cs" />
     <Compile Include="Controllers\ReportsController.cs" />
-    <Compile Include="Formats\CustomJwtFormat.cs" />
     <Compile Include="Models\ClientStore.cs" />
     <Compile Include="Models\Client.cs" />
     <Compile Include="Models\Helpers.cs" />
