@@ -26,6 +26,15 @@
                 { Id: 2, Description: '<i class="fa fa-square text-warning" title="Εμπιστευτικό (ΕΠ)">' },
                 { Id: 3, Description: '<i class="fa fa-square text-danger" title="Απόρρητο (ΑΠ)">' }
             ],
+            reports: [
+                { Id: 0, Description: 'Αναφορά Σίτισης' },
+                { Id: 1, Description: 'Αναφορά Στέγασης' },
+                { Id: 2, Description: 'Αναφορά Μετακίνησης' },
+                { Id: 3, Description: 'Αναφορά Προβλήματος' },
+                { Id: 4, Description: 'Αναφορά Αίτησης' },
+                { Id: 5, Description: 'Αναφορά Κατάστασης' },
+                { Id: 6, Description: 'Μήνυμα' }
+            ],
             reportTitles: [
                 { Id: 0, Description: '<i class="text-primary material-icons md-48 pull-left" title="Αναφορά Σίτισης">restaurant_menu </i><div class="report-header">Αναφορά Σίτισης</div>' },
                 { Id: 1, Description: '<i class="text-primary material-icons md-48 pull-left" title="Αναφορά Στέγασης">local_hotel </i><div class="report-header">Αναφορά Στέγασης</div>' },

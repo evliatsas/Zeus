@@ -1,11 +1,25 @@
-﻿<div class="row-fluid">
-    <div class="col-md-2">
-        <div ng-repeat="facility in facilities">
-            <div class="checkbox"><label><input type="checkbox"> {{facility.Name}}</label></div>
+﻿<div class="col-md-12" ng-repeat="category in reports">
+    <h3>{{category.Name}}</h3>
+    <div class="col-md-3 container-fluid shadow-box" style="margin-right: 20px">
+        <div ng-repeat="facility in category.Facilities">
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" value="{{facility.Checked}}"> {{facility.Name}}
+                </label>
+            </div>
+            <div ng-repeat="report in facility.Reports" style="margin-left: 20px">
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" value="{{report.Checked}}"> {{report.DateTime}}
+                    </label>
+                </div>
+            </div>
         </div>
     </div>
-    <div class="col-md-8">
-        <canvas id="myChart"></canvas>
-        <div id="myLegend" class="doughnut-legend"></div>
+    <div class="col-md-8 container-fluid shadow-box">
+        <div>
+            <canvas id="reportChart"></canvas>
+            <div id="reportLegend" class="doughnut-legend"></div>
+        </div>
     </div>
 </div>
