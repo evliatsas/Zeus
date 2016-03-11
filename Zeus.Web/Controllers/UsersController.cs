@@ -142,6 +142,12 @@ namespace Zeus.Controllers
             string userId = obj.userId;
             string oldPassword = obj.oldPassword;
             string newPassword = obj.newPassword;
+            string passwordConfirm = obj.passwordConfirm;
+
+            if(newPassword != passwordConfirm)
+            {
+                return BadRequest("Wrong password confirmation.");
+            }
 
             if (string.IsNullOrWhiteSpace(userId))
             {

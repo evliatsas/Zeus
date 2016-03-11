@@ -146,7 +146,7 @@ angular
 
       $httpProvider.interceptors.push('authInterceptorService');
   })
-  .constant("baseUrl", "https://localhost:44300/api")
+  .constant("baseUrl", "http://localhost:8080/api")
   .constant("moment", moment)
   .constant('toastr', toastr)
   .directive('convertToNumber', function () {

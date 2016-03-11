@@ -41,7 +41,7 @@
             var deferred = $q.defer();
 
             $http({
-                url: 'https://localhost:44300/api/oauth2/token',
+                url: 'http://localhost:8080/api/oauth2/token',
                 headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
                 method: 'POST',
                 transformRequest: function (obj) {
