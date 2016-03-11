@@ -20,7 +20,6 @@
     "moment": "^2.11.2",
     "angular-loading-bar": "^0.8.0",
     "angular-local-storage": "^0.2.5",
-    "eonasdan-bootstrap-datetimepicker": "^4.17.37",
     "Chart.js": "^1.0.2",
     "angular-translate": "^2.10.0"
   },
