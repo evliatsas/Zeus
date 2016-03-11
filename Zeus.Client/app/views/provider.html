@@ -1,23 +1,23 @@
 ﻿<div class="pull-right">
     <span class="btn btn-danger btn-fab fab" ng-click="delete()">
-        <i class="material-icons" title="Διαγραφή Προμηθευτή">delete</i>
+        <i class="material-icons" title="{{ 'PROVIDER.DELETE' | translate }}">delete</i>
     </span>
     <span class="btn btn-success btn-fab fab" ng-click="save()">
-        <i class="material-icons" title="Αποθήκευση Προμηθευτή">save</i>
+        <i class="material-icons" title="{{ 'PROVIDER.SAVE' | translate }}">save</i>
     </span>
 </div>
-<h2>Φoρέας Υποστήριξης</h2>
+<h2>{{ 'PROVIDER.TITLE' | translate }}Φoρέας Υποστήριξης</h2>
 <div class="col-md-4">
     <div class="form-group label-static ng-is-empty">
-        <label for="i1" class="control-label">Ονομασία</label>
+        <label for="i1" class="control-label">{{ 'PROVIDER.NAME' | translate }}</label>
         <input type="text" class="form-control" id="i1" ng-model="provider.Name">
     </div>
     <div class="form-group label-static ng-is-empty">
-        <label for="i2" class="control-label">Περιγραφή</label>
+        <label for="i2" class="control-label">{{ 'PROVIDER.DESCRIPTION' | translate }}</label>
         <textarea class="form-control" id="i2" ng-model="provider.Description" />
     </div>
     <div class="form-group label-static ng-is-empty">
-        <label for="i3" class="control-label">Κατηγορία</label>
+        <label for="i3" class="control-label">{{ 'PROVIDER.TYPE' | translate }}</label>
         <select class="form-control" ng-model="provider.Type" required convert-to-number>
             <option ng-repeat="type in lookup.providerTypes" value="{{type.Id}}">
                 {{type.Description}}
@@ -25,35 +25,35 @@
         </select>
     </div>
     <div class="form-group label-static ng-is-empty">
-        <label for="i4" class="control-label">Πλήθος Προσωπικού</label>
+        <label for="i4" class="control-label">{{ 'PROVIDER.PERSONEL_COUNT' | translate }}</label>
         <input type="number" class="form-control" id="i4" ng-model="provider.PersonnelCount">
         <span class="material-input"></span>
     </div>
     <div class="form-group label-static ng-is-empty">
-        <label for="Administration" class="control-label">Υπαγωγή</label>
+        <label for="Administration" class="control-label">{{ 'PROVIDER.ADMINISTRATION' | translate }}</label>
         <input type="text" class="form-control" id="Administration" ng-model="provider.Administration" uib-typeahead="state for state in lookup.administrations | filter:$viewValue">
     </div>
     <div>
-        <label class="control-label">Προσφερόμενες Υπηρεσίες</label>
+        <label class="control-label">{{ 'PROVIDER.SERVICES' | translate }}</label>
         <span class="btn-group-sm pull-right">
             <a href="javascript:void(0)" class="btn btn-info" ng-click="addItem()"><i class="material-icons">add</i></a>
         </span>
         <div ng-repeat="item in provider.Items">
             <div class="form-inline" >
-                <input type="text" class="form-control" placeholder="Υπηρεσία" ng-model="item.Id">
+                <input type="text" class="form-control" placeholder="{{ 'PROVIDER.SERVICE' | translate }}" ng-model="item.Id">
                 <a href="javascript:void(0)" class="btn btn-info" style="padding: 0px; left: -25px; top: 5px" ng-click="removeItem($index)"><i class="material-icons">clear</i></a>
             </div>
         </div>        
     </div>
     <div class="form-group label-static ng-is-empty">
-        <label for="i5" class="control-label">Σημειώσεις</label>
+        <label for="i5" class="control-label">{{ 'PROVIDER.NOTES' | translate }}Σημειώσεις</label>
         <textarea class="form-control" id="i5" ng-model="provider.Notes" />
     </div>
 </div>
 
 <div class="col-md-8" style="padding-top:20px;">
     <div class="shadow-box btn-group-sm">
-        <i>Δομές Φιλοξενίας</i>
+        <i>{{ 'PROVIDER.FACILITIES' | translate }}Δομές Φιλοξενίας</i>
         <cinnamon-grid grid-columns="facilityColumns"
                        hide-paging-dropdown="true"
                        page-size="0"
@@ -65,7 +65,7 @@
         </cinnamon-grid>
     </div>
     <div class="shadow-box btn-group-sm">
-        <i>Επαφές</i>
+        <i>{{ 'PROVIDER.CONTACTS' | translate }}Επαφές</i>
         <cinnamon-grid grid-columns="contactColumns"
                        hide-paging-dropdown ="true"
                        page-size="0"

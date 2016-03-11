@@ -1,6 +1,6 @@
 ﻿
 <div>
-    <label class="control-label">{{ 'PHONELIST.PHONES' | translate }}</label>
+    <label class="control-label">{{ 'PHONE_LIST.PHONES' | translate }}</label>
     <span class="btn-group-sm pull-right">
         <a href="javascript:void(0)" class="btn btn-info" ng-click="addPhone()"><i class="material-icons">add</i></a>
     </span>
@@ -10,7 +10,7 @@
                 {{phoneType}}
             </option>
         </select>
-        <input type="text" class="form-control" placeholder="{{ 'PHONELIST.NUMBER' | translate }}" ng-model="phone.Number">
+        <input type="text" class="form-control" placeholder="{{ 'PHONE_LIST.NUMBER' | translate }}" ng-model="phone.Number">
         <a href="javascript:void(0)" class="btn btn-info" style="padding: 0px; left: -25px; top: 5px" ng-click="phones.splice($index, 1)"><i class="material-icons">clear</i></a>
     </div>
 </div>
