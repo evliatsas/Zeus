@@ -58,7 +58,7 @@ angular
 	    	FACILITYMAP: {
 	    	    GUESTS: 'Φιλοξενούμενοι: ',
 	    	    CAPACITY: 'Χωρητικότητα',
-	    	    UTILIZATION: 'Πληρότητα: ',
+	    	    UTILIZATION: 'Πληρότητα',
 	    	    TRANSITION: 'Μετάβαση',
 	    	    SAVE: 'Αποθήκευση: ',
 	    	    MOVE: 'Μετακίνηση'
@@ -68,8 +68,64 @@ angular
 	    	    SELECT: 'ΕΠΙΛΟΓΗ'
 	    	},
 	    	PHONELIST: {
-	    	    PHONES: 'Τηλέφωνα Επικοινωνίας: ',
+	    	    PHONES: 'Τηλέφωνα Επικοινωνίας ',
 	    	    NUMBER: 'Αριθμός'
+	    	},
+	    	FEEDINGREPORT: {
+	    	    DELETE: 'Διαγραφή Αναφοράς',
+	    	    SAVE: 'Αποθήκευση Αναφοράς',
+	    	    PRIORITY: 'Προτεραιότητα ',
+	    	    SUBJECT: 'Θέμα',
+	    	    FACILITY: 'Δομή Φιλοξενίας: ',
+	    	    PROVIDER: 'Προμηθευτής',
+	    	    MEAL: 'Γεύμα',
+	    	    RATIONS: 'Μερίδες',
+	    	    NOTES: 'Κείμενο'
+	    	},
+	    	HOUSINGREPORT: {
+	    	    DELETE: 'Διαγραφή Αναφοράς',
+	    	    SAVE: 'Αποθήκευση Αναφοράς',
+	    	    PRIORITY: 'Προτεραιότητα ',
+	    	    SUBJECT: 'Θέμα',
+	    	    FACILITY: 'Δομή Φιλοξενίας: ',
+	    	    TYPE: 'Είδος Στέγασης',
+	    	    HOUSECOUNT: 'Πλήθος Ατόμων',
+	    	    NOTES: 'Κείμενο'
+	    	},
+	    	REPORT: {
+	    	    DELETE: 'Διαγραφή Αναφοράς',
+	    	    SAVE: 'Αποθήκευση Αναφοράς',
+	    	    NOTARCHIVED: 'Αρχειοθέτηση Αναφοράς: ',
+	    	    ARCHIVED: 'Εξαγωγή Αναφοράς από Αρχείο',
+	    	    PRIORITY: 'Προτεραιότητα ',
+	    	    FACILITY: 'Δομή Φιλοξενίας: ',
+	    	    SUBJECT: 'Θέμα'
+	    	},
+	    	SITUATIONREPORT: {
+	    	    DELETE: 'Διαγραφή Αναφοράς',
+	    	    SAVE: 'Αποθήκευση Αναφοράς',
+	    	    PRIORITY: 'Προτεραιότητα: ',
+	    	    CHILDREN: 'Πλήθος Παιδιών ',
+	    	    SUBJECT: 'Θέμα',
+	    	    PERSONCOUNT: 'Πλήθος Ατόμων',
+	    	    SENSITIVECOUNT: 'Άτομα Ευαίσθητης Ομάδας ',
+	    	    NOTES: 'Κείμενο'
+	    	},
+	    	TRANSPORTREPORT: {
+	    	    DELETE: 'Διαγραφή Αναφοράς',
+	    	    SAVE: 'Αποθήκευση Αναφοράς',
+	    	    PRIORITY: 'Προτεραιότητα: ',
+	    	    SUBJECT: 'Θέμα',
+	    	    STARTINGPOINT: 'Από (Δομή Φιλοξενίας)',
+	    	    DESTINATION: 'Πρός',
+	    	    MOVEMENTTYPE: 'Είδος Μετακίνησης',
+	    	    PERSONCOUNT: 'Πλήθος Ατόμων',
+	    	    DEPARTURE: 'Ημ. Αναχώρησης',
+	    	    ETA: 'Εκτιμώμενη Ημ. Άφιξης',
+	    	    TRANSPORTTYPE: 'Μέσο Μεταφοράς',
+	    	    TRANSPORTUID: 'Μοναδικό Αναγνωριστικό',
+	    	    ISHIRED: 'Είναι Ναυλωμένο',
+	    	    NOTES: 'Κείμενο'
 	    	}
 	    };
 
