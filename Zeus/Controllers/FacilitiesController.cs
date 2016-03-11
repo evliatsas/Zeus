@@ -65,6 +65,9 @@ namespace Zeus.Controllers
                 var providers = await context.Providers.Get(x => providerIds.Contains(x.Id));
                 facility.Providers = providers.ToList();
 
+                var persons = await context.Persons.Get(x => x.FacilityId == id);
+                facility.Persons = persons.ToList();
+
                 var reports = await context.Reports.Get(x => x.FacilityId == id);
                 facility.Reports = reports.ToList();
             }
