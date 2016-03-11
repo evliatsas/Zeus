@@ -33,4 +33,9 @@ angular
                 messageService.showError();
             });
         }
+
+        $scope.showReport = function (report) {
+            var location = '/reports/' + report.Type + '/' + report.FacilityId + '/' + report.Id;
+            $location.url(location);
+        }
     });

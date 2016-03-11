@@ -13,7 +13,7 @@
 
 <div class="col-md-8" style="padding-top:20px;">
     <uib-tabset justified="true" active="activeTab">
-        <uib-tab index="0" heading="Στέγαση">
+        <uib-tab index="0" heading="{{ 'FACILITY.HOUSING' | translate }}">
             <div class="shadow-box btn-group-sm">
                 <cinnamon-grid grid-columns="housingcolumns"
                                grid-items="data.Housings"
@@ -24,7 +24,7 @@
                 </cinnamon-grid>
             </div>
         </uib-tab>
-        <uib-tab index="1" heading="Επαφές">
+        <uib-tab index="1" heading="{{ 'FACILITY.CONTACTS' | translate }}">
             <div class="shadow-box btn-group-sm">
                 <cinnamon-grid grid-columns="contactColumns"
                                grid-items="data.Contacts"
@@ -35,7 +35,7 @@
                 </cinnamon-grid>
             </div>
         </uib-tab>
-        <uib-tab index="2" heading="Υποστήριξη">
+        <uib-tab index="2" heading="{{ 'FACILITY.PROVIDERS' | translate }}">
             <div class="shadow-box btn-group-sm">
                 <cinnamon-grid grid-columns="providerColumns"
                                grid-items="data.Providers"
@@ -46,7 +46,7 @@
                 </cinnamon-grid>
             </div>
         </uib-tab>
-        <uib-tab index="3" heading="Αναφορές">
+        <uib-tab index="3" heading="{{ 'FACILITY.REPORTS' | translate }}">
             <div class="shadow-box btn-group-sm">
                 <cinnamon-grid grid-columns="reportcolumns"
                                grid-items="data.Reports"
@@ -57,7 +57,7 @@
                 </cinnamon-grid>
             </div>
         </uib-tab>
-        <uib-tab index="4" heading="Ταυτοποιημένοι">
+        <uib-tab index="4" heading="{{ 'FACILITY.PERSONS' | translate }}">
             <div class="shadow-box btn-group-sm">
                 <cinnamon-grid grid-columns="personcolumns"
                                grid-items="data.Persons"

@@ -1,7 +1,7 @@
 ﻿<form>
     <div class="form-group label-static">
         <div class="col-sm-4">
-            <label for="i11" class="control-label">Από</label>
+            <label for="i11" class="control-label">{{ 'ARCHIVE.FROM' | translate }}</label>
             <div class="dropdown">
                 <div class="dropdown-toggle" id="dropdown1" role="button" data-toggle="dropdown" data-target="#">
                     <div class="input-group">
@@ -14,7 +14,7 @@
             </div>
         </div>
         <div class="col-sm-4">
-            <label for="i11" class="control-label">Εώς</label>
+            <label for="i11" class="control-label">{{ 'ARCHIVE.UNTIL' | translate }}</label>
             <div class="dropdown">
                 <div class="dropdown-toggle" id="dropdown2" role="button" data-toggle="dropdown" data-target="#">
                     <div class="input-group">
@@ -28,7 +28,7 @@
         </div>
         <div class="col-sm-4">
             <button class="btn btn-raised btn-primary" style="margin-top:-2px;" type="button" ng-click="getArchived()">
-                Εμφάνιση Αρχείου
+                {{ 'ARCHIVE.SHOWFILE' | translate }}
                 <i class="material-icons md-24">book</i>
             </button>
         </div>
@@ -40,5 +40,5 @@
                show-grid-buttons="false"
                hide-item-buttons="true"
                highlight="false"
-               row-click-fn="showReport(report)">
+               row-click-fn="showReport(item)">
 </cinnamon-grid>
