@@ -1,0 +1,24 @@
+﻿<form>
+    <div class="form-group">
+        <div class="col-sm-4">
+            <input class="form-control" type="text" placeholder="Από" ng-model="from">
+        </div>
+        <div class="col-sm-4">
+            <input class="form-control" type="text" placeholder="Εώς" ng-model="to">
+        </div>
+        <div class="col-sm-4">
+            <button class="btn btn-raised btn-info" type="button" ng-click="getArchived()">
+                Εμφάνιση Αρχείου
+                <i class="fa fa-book" style="padding-left:5px;"></i>
+            </button>
+        </div>
+    </div>
+</form>
+<hr />
+<cinnamon-grid grid-columns="reportcolumns"
+               grid-items="reports"
+               show-grid-buttons="false"
+               hide-item-buttons="true"
+               highlight="false"
+               row-click-fn="openItem(item)">
+</cinnamon-grid>
