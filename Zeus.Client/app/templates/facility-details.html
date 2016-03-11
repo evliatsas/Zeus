@@ -1,26 +1,26 @@
-﻿<h2>Δομή Φιλοξενίας : <span style="color:#009688; font-weight:300">{{facility.Name}}</span></h2>
+﻿<h2>{{ 'FACILITYDETAILS.NAME' | translate }}<span style="color:#009688; font-weight:300">{{facility.Name}}</span></h2>
 <div class="form-group label-static ng-is-empty">
     <label for="i1" class="control-label">Ονομασία</label>
     <input type="text" class="form-control" id="i1" ng-model="facility.Name">
 </div>
 <div class="form-group label-static ng-is-empty">
-    <label for="i2" class="control-label">Περιγραφή</label>
+    <label for="i2" class="control-label">{{ 'FACILITYDETAILS.DESCRIPTION' | translate }}</label>
     <input type="text" class="form-control" id="i2" ng-model="facility.Description">
 </div>
 <div class="form-group label-static ng-is-empty">
-    <label for="i3" class="control-label">Κατηγορία</label>
+    <label for="i3" class="control-label">{{ 'FACILITYDETAILS.TYPE' | translate }}</label>
     <input type="text" class="form-control" id="i3" ng-model="facility.Type" uib-typeahead="state for state in lookup.facilityCategories | filter:$viewValue">
 </div>
 <div class="row">
     <div class="col-md-6">
         <div class="form-group label-static ng-is-empty">
-            <label for="Capacity" class="control-label">Χωρητικότητα</label>
+            <label for="Capacity" class="control-label">{{ 'FACILITYDETAILS.CAPACITY' | translate }}</label>
             <input type="number" class="form-control" id="Capacity" ng-model="facility.Capacity">
         </div>
     </div>
     <div class="col-md-6">
         <div class="form-group label-static ng-is-empty">
-            <label for="Attendance" class="control-label">Φιλοξενούμενοι</label>
+            <label for="Attendance" class="control-label">{{ 'FACILITYDETAILS.ATTENDANCE' | translate }}</label>
             <input type="number" class="form-control" id="Attendance" ng-model="facility.Attendance">
         </div>
     </div>
@@ -30,8 +30,7 @@
         <div class="form-group">
             <div class="checkbox">
                 <label>
-                    <input type="checkbox" ng-model="facility.IsSecure" disabled> Φυλασσόμενος Χώρος
-                </label>
+                    <input type="checkbox" ng-model="facility.IsSecure" disabled>{{ 'FACILITYDETAILS.ISSECURE' | translate }}</label>
             </div>
         </div>
     </div>
@@ -39,27 +38,49 @@
         <div class="form-group">
             <div class="checkbox">
                 <label>
-                    <input type="checkbox" ng-model="facility.HasHealthcare" disabled> Υγεινομική Υποστήριξη
-                </label>
+                    <input type="checkbox" ng-model="facility.HasHealthcare" disabled>{{ 'FACILITYDETAILS.HASHEALTHCARE' | translate }}</label>
             </div>
 
         </div>
     </div>
 </div>
 <div class="form-group label-static ng-is-empty">
-    <label for="Status" class="control-label">Κατάσταση</label>
+    <label for="Status" class="control-label">{{ 'FACILITYDETAILS.STATUS' | translate }}</label>
     <input type="text" class="form-control" id="Status" ng-model="facility.Status" uib-typeahead="state for state in lookup.statuses | filter:$viewValue">
 </div>
-
-<date-time-picker id = "StatusDateTime" label="Ημερομηνία Κατάστασης" date="facility.StatusDateTime"></date-time-picker>
-<date-time-picker id = "StatusECT" label="Ημερομηνία Αποκατάστασης"  date="facility.StatusECT"></date-time-picker>
+<div class="form-group label-static ng-is-empty">
+    <label for="i11" class="control-label">{{ 'FACILITYDETAILS.STATUSDATETIME' | translate }}</label>
+    <div class="dropdown">
+        <div class="dropdown-toggle" id="dropdown1" role="button" data-toggle="dropdown" data-target="#">
+            <div class="input-group">
+                <input type="text" class="form-control" data-ng-model="facility.StatusDateTime" data-date-time-input="dddd DD/MM/YYYY HH:mm"><span class="input-group-addon"><i class="material-icons md-24">date_range</i></span>
+            </div>
+        </div>
+        <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+            <datetimepicker data-ng-model="facility.StatusDateTime" data-datetimepicker-config="{ dropdownSelector: '#dropdown1' }" />
+        </ul>
+    </div>
+</div>
+<div class="form-group label-static ng-is-empty">
+    <label for="i12" class="control-label">{{ 'FACILITYDETAILS.STATUSECT' | translate }}</label>
+    <div class="dropdown">
+        <div class="dropdown-toggle" id="dropdown2" role="button" data-toggle="dropdown" data-target="#">
+            <div class="input-group">
+                <input type="text" class="form-control" data-ng-model="facility.StatusECT" data-date-time-input="dddd DD/MM/YYYY HH:mm"><span class="input-group-addon"><i class="material-icons md-24">date_range</i></span>
+            </div>
+        </div>
+        <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+            <datetimepicker data-ng-model="facility.StatusECT" data-datetimepicker-config="{ dropdownSelector: '#dropdown2' }" />
+        </ul>
+    </div>
+</div>
 
 <div class="form-group label-static ng-is-empty">
-    <label for="Administration" class="control-label">Διαχειριστής</label>
+    <label for="Administration" class="control-label">{{ 'FACILITYDETAILS.ADMINISTRATION' | translate }}</label>
     <input type="text" class="form-control" id="Administration" ng-model="facility.Administration" uib-typeahead="state for state in lookup.administrations | filter:$viewValue">
 </div>
 
 <div class="form-group label-static ng-is-empty">
-    <label for="i5" class="control-label">Σημειώσεις</label>
+    <label for="i5" class="control-label">{{ 'FACILITYDETAILS.NOTES' | translate }}</label>
     <textarea class="form-control" id="i5" ng-model="facility.Notes" />
 </div>

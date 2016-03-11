@@ -19,11 +19,13 @@ angular
     'ngTouch',
     'ui.bootstrap',
     'angular-loading-bar',
+    'ui.bootstrap.datetimepicker',
+    'ui.dateTimeInput',
     'LocalStorageModule',
     'pascalprecht.translate'
   ])
   .config(function ($routeProvider) {
-      moment.locale('el');
+
       $.material.init();
 
       $routeProvider
@@ -94,8 +96,8 @@ angular
         })
         .when('/reports/message', {
             templateUrl: 'views/message.html',
-            controller: 'ArchiveCtrl',
-            controllerAs: 'archiveCtrl'
+            controller: 'MessageCtrl',
+            controllerAs: 'messageCtrl'
           })
         .when('/providers/:id', {
             templateUrl: 'views/provider.html',

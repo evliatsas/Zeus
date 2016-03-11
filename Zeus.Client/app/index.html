@@ -15,7 +15,6 @@
     <link rel="stylesheet" href="bower_components/bootstrap-sweetalert/lib/sweet-alert.css" />
     <link rel="stylesheet" href="bower_components/toastr/toastr.css" />
     <link rel="stylesheet" href="bower_components/angular-loading-bar/build/loading-bar.css" />
-    <link rel="stylesheet" href="bower_components/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css" />
     <!-- endbower -->
     <!-- endbuild -->
     <!-- build:css(.tmp) styles/main.css -->
@@ -23,6 +22,7 @@
     <link rel="stylesheet" href="styles/site.css">
     <link rel="stylesheet" href="styles/material.css">
     <link rel="stylesheet" href="styles/typeahead.css">
+    <link rel="stylesheet" href="angular-bootstrap-datetimepicker/css/datetimepicker.css"/>
     <!-- endbuild -->
 </head>
 
@@ -32,7 +32,7 @@
     <![endif]-->
     <!-- Add your site or application content here -->
     <div class="header" ng-controller="MenuCtrl as menu">
-        <div class="navbar navbar-default" role="navigation">
+        <div class="navbar navbar-default" role="navigation" ng-cloak>
             <div class="container-fluid">
                 <div class="navbar-header">
 
@@ -57,7 +57,7 @@
                         <li ng-class="menu.getClass('/map')"><a ng-href="#/map">{{ 'MENU.MAP' | translate }}</a></li>
                         <li ng-class="menu.getClass('/charts')"><a ng-href="#/charts">{{ 'MENU.CHARTS' | translate }}</a></li>
                         <li ng-class="menu.getClass('/users')"><a ng-href="#/users">{{ 'MENU.USERS' | translate }}</a></li>
-                        <li ng-class="menu.getClass('/archives')"><a ng-href="#/archives">{{ 'MENU.ARCHIVES' | translate }}</a></li>
+                        <li ng-class="menu.getClass('/reports/archive')"><a ng-href="#/reports/archive">{{ 'MENU.ARCHIVES' | translate }}</a></li>
                     </ul>
 
                     <ul class="nav navbar-nav navbar-right">
@@ -73,7 +73,7 @@
                             <ul class="dropdown-menu">
                                 <li ng-if="!menu.isAuth()"><a href="#/login">{{ 'MENU.USER.SIGN_IN' | translate }}</a></li>
                                 <li><a href="">{{ 'MENU.USER.CHANGE_PASSWORD' | translate }}</a></li>
-                                <li><a href="">{{ 'MENU.USER.MESSAGES' | translate }}</a></li>
+                                <li ng-class="menu.getClass('/reports/message')"><a ng-href="#/reports/message">{{ 'MENU.USER.MESSAGES' | translate }}</a></li>
                                 <li ng-if="menu.isAuth()" role="separator" class="divider"></li>
                                 <li ng-if="menu.isAuth()"><a href="" ng-click="menu.logOut()">{{ 'MENU.USER.SIGN_OUT' | translate }}</a></li>
                             </ul>
@@ -130,14 +130,15 @@
     <script src="bower_components/moment/moment.js"></script>
     <script src="bower_components/angular-loading-bar/build/loading-bar.js"></script>
     <script src="bower_components/angular-local-storage/dist/angular-local-storage.js"></script>
-    <script src="bower_components/moment-timezone/builds/moment-timezone-with-data-2010-2020.js"></script>
-    <script src="bower_components/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js"></script>
     <script src="bower_components/Chart.js/Chart.js"></script>
     <script src="bower_components/angular-translate/angular-translate.js"></script>
     <!-- endbower -->
     <script src="bower_components/moment/locale/el.js"></script>
     <!-- endbuild -->
     <!-- build:js({.tmp,app}) scripts/scripts.js -->
+    <script src="angular-bootstrap-datetimepicker/js/datetimepicker.js"></script>
+    <script src="angular-bootstrap-datetimepicker/js/datetimepicker.templates.js"></script>
+    <script src="bower_components/angular-date-time-input/src/dateTimeInput.js"></script>
     <script src="scripts/app.js"></script>
     <script src="scripts/providers/translate.provider.js"></script>
     <script src="scripts/services/utilities.js"></script>
@@ -169,7 +170,6 @@
     <script src="scripts/directives/facility-details.js"></script>
     <script src="scripts/directives/on-finish-render.js"></script>
     <script src="scripts/directives/phone-list.js"></script>
-    <script src="scripts/directives/date-time-picker.js"></script>
     <script src="scripts/directives/card-list.js"></script>
     <script src="scripts/directives/grid.js"></script>
     <!-- endbuild -->

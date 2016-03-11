@@ -198,5 +198,21 @@ namespace Zeus.Controllers
             });
             return reports == null ? (IHttpActionResult)this.NotFound() : this.Ok(reports);
         }
+        [Route("message")]
+        [ResponseType(typeof(IEnumerable<Report>))]
+        [HttpGet]
+        public async Task<IHttpActionResult> GetMessageReports()
+        {
+            var reports = await context.Reports.Get(x => x.Type == ReportType.Message);
+            var facilities = await context.Facilities.GetAll();
+
+            reports = reports.Select(s =>
+            {
+                s.Facility = facilities.FirstOrDefault(t => t.Id == s.FacilityId);
+                return s;
+            });
+
+            return reports == null ? (IHttpActionResult)this.NotFound() : this.Ok(reports);
+        }
     }
 }
