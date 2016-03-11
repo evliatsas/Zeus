@@ -102,6 +102,7 @@
     <Content Include="app\scripts\directives\grid.js" />
     <Content Include="app\scripts\directives\on-finish-render.js" />
     <Content Include="app\scripts\directives\phone-list.js" />
+    <Content Include="app\scripts\providers\translate.provider.js" />
     <Content Include="app\scripts\services\auth.interceptor.service.js" />
     <Content Include="app\scripts\services\auth.service.js" />
     <Content Include="app\scripts\services\lookup.service.js" />
