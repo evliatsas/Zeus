@@ -77,7 +77,7 @@ namespace Zeus.Controllers
             {
                 var data = await context.Persons.Insert(person);
 
-                Log.Information("Person({Person.Id}) created By {user}", data.Id, user);
+                Log.Information("Person({Id}) created By {user}", data.Id, user);
                 return this.Ok(data);
             }
             catch (Exception exc)
@@ -132,7 +132,7 @@ namespace Zeus.Controllers
 
                 var result = await context.Persons.Update(person);
 
-                Log.Information("Person({Person.Id}) updated By {user}", result.Id, user);
+                Log.Information("Person({Id}) updated By {user}", result.Id, user);
 
                 return this.Ok(result);
             }
