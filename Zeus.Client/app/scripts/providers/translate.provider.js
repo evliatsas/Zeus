@@ -27,8 +27,13 @@ angular
 	    		}
 	    	},
 	    	FACILITY: {
-	    	    DELETE: 'Διαγραφή Προμηθευτή',
-	    	    SAVE: 'Αποθήκευση Προμηθευτή'
+	    	    DELETE: 'Διαγραφή Δομής Φιλοξενίας',
+	    	    SAVE: 'Αποθήκευση Δομής Φιλοξενίας',
+	    	    HOUSING: 'Στέγαση',
+	    	    CONTACTS: 'Επαφές',
+	    	    PROVIDERS: 'Υποστήριξη',
+	    	    REPORTS: 'Αναφορές',
+	    	    PERSONS: 'Ταυτοποιημένοι'
 	    	},
 	    	FACILITYDETAILS: {
 	    	    NAME: 'Δομή Φιλοξενίας: ',
@@ -126,7 +131,45 @@ angular
 	    	    TRANSPORTUID: 'Μοναδικό Αναγνωριστικό',
 	    	    ISHIRED: 'Είναι Ναυλωμένο',
 	    	    NOTES: 'Κείμενο'
-	    	}
+	    	},
+	    	ARCHIVE: {
+	    	    DELETE: 'Διαγραφή Αναφοράς',
+	    	    SAVE: 'Αποθήκευση Αναφοράς',
+	    	    FROM: 'Ημ. Από',
+	    	    UNTIL: 'Ημ. Έως',
+	    	    SHOWFILE: 'Εμφάνιση Αρχείου'
+	    	},
+	    	CONTACT: {
+	    	    DELETE: 'Διαγραφή Επαφής',
+	    	    SAVE: 'Αποθήκευση Επαφής',
+	    	    TITLE: 'Τίτλος',
+	    	    NAME: 'Όνοματεπώνυμο',
+	    	    COMPANY: 'Οργανισμός',
+	    	    ADMINISTRATION: 'Διαχείριση',
+	    	    TYPE: 'Κατηγορία',
+	    	    ADDRESS: 'Διεύθυνση',
+	    	    EMAIL: 'Email',
+	    	    NOTES: 'Σημειώσεις',
+	    	    FACILITIES: 'Δομές Φιλοξενίας',
+	    	    PROVIDERS: 'Υποστήριξη'
+	    	},
+	    	HOUSING: {
+	    	    DELETE: 'Διαγραφή Αναφοράς',
+	    	    SAVE: 'Αποθήκευση Αναφοράς',
+	    	    EDITHOUSING: 'Επεξεργασία Εγκατάστασης ',
+	    	    TYPE: 'Κατηγορία',
+	    	    STATUS: 'Κατάσταση: ',
+	    	    CAPACITY: 'Χωρητικότητα Μονάδας',
+	    	    HOUSINGCOUNT: 'Πλήθος Μονάδων',
+	    	    ATTENDANCE: 'Φιλοξενούμενοι',
+	    	    CANCEL: 'ΑΚΥΡΩΣΗ: ',
+	    	    SELECT: 'ΕΠΙΛΟΓΗ'
+	    	},
+	    	LOGIN: {
+	    	    USERNAME: 'Όνομα Χρήστη',
+	    	    PASSWORD: 'Κωδικός Πρόσβασης',
+	    	    SIGNIN: 'ΕΙΣΟΔΟΣ'
+	    	},
 	    };
 
 	    var enUS = {};
