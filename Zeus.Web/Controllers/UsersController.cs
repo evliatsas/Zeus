@@ -182,5 +182,40 @@ namespace Zeus.Controllers
                         
             return result;
         }
+
+        [Route("role")]
+        [HttpPost]
+        public async Task<IHttpActionResult> AddRole(dynamic obj)
+        {
+            IdentityResult result;
+            string userId = obj.userId;
+            string oldPassword = obj.oldPassword;
+            string newPassword = obj.newPassword;
+            string passwordConfirm = obj.passwordConfirm;
+
+            if (newPassword != passwordConfirm)
+            {
+                return BadRequest("Wrong password confirmation.");
+            }
+
+            if (string.IsNullOrWhiteSpace(userId))
+            {
+                userId = User.Identity.GetUserId();
+                result = await change(userId, oldPassword, newPassword);
+            }
+            else
+            {
+                result = reset(userId, newPassword);
+            }
+
+            if (result.Succeeded)
+            {
+                return Ok();
+            }
+            else
+            {
+                return BadRequest(result.Errors.FirstOrDefault());
+            }
+        }
     }
 }
