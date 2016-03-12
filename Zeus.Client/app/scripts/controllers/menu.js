@@ -9,6 +9,10 @@ angular
             return authService.isAuth();
         }
 
+        $scope.isAdmin = function() {
+            return authService.isAdmin();
+        }
+
         $scope.getClass = function(path) {
             if ($location.path() === path) {
                 return 'active';

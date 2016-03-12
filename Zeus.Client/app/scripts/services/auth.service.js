@@ -1,4 +1,4 @@
-﻿(function () {
+﻿(function() {
     'use strict';
 
     angular
@@ -24,19 +24,23 @@
                 title: "",
                 email: "",
                 claims: [],
-                roles: [],
-                expiresAt: {}
+                roles: []
             }
         };
 
         return service;
 
-        function isAuth(){
+        function isAuth() {
             var token = localStorageService.get('authorizationData');
-            return token!=null;
+            return token != null;
         };
 
-        function login (loginData) {
+        function isAdmin() {
+            fillUserInfo();
+            return $.inArray('Administrator', service.info.roles) > -1;
+        };
+
+        function login(loginData) {
 
             var deferred = $q.defer();
 
@@ -44,21 +48,36 @@
                 url: 'http://localhost:8080/oauth2/token',
                 headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
                 method: 'POST',
-                transformRequest: function (obj) {
+                transformRequest: function(obj) {
                     var str = [];
                     for (var p in obj)
                         str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
                     return str.join("&");
                 },
                 data: { username: loginData.userName, password: $sanitize(loginData.password), grant_type: "password", client_id: "099153c2625149bc8ecb3e85e03f0022" }
-            }).then(function (response) {
+            }).then(function(response) {
                 localStorageService.set('authorizationData', response.data);
                 service.authentication.isAuth = true;
                 service.authentication.userName = loginData.userName;
                 service.authentication.token = response.data.access_token;
+
+                $http({
+                    method: 'GET',
+                    url: baseUrl + '/users/self'
+                }).then(function successCallback(response) {
+                    var info = response.data;
+                    service.info.title = info.FullName;
+                    service.info.email = info.Email;
+                    service.info.roles = info.Roles;
+                    service.info.claims = info.Claims;
+                    localStorageService.set('userInfo', service.info);
+                }, function errorCallback(response) {
+                    messageService.showError();
+                });
+
                 $location.path("/");
                 deferred.resolve(response);
-            }, function (error) {
+            }, function(error) {
                 messageService.showError();
                 logout();
                 deferred.reject(error);
@@ -82,7 +101,7 @@
             return roles;
         }
 
-        function logout () {
+        function logout() {
             localStorageService.remove('authorizationData');
 
             service.authentication.isAuth = false;
@@ -116,18 +135,17 @@
 
         function changePassword(userId, oldPassword, newPassword, passwordConfirm) {
             var value = { userId: userId, oldPassword: $sanitize(oldPassword), newPassword: $sanitize(newPassword), passwordConfirm: $sanitize(passwordConfirm) };
-            return $http(
-                {
-                    method: 'POST',
-                    url: baseUrl + '/users/password',
-                    data: value
-                }).
-                success(function (data, status, headers, config) {
-                    return data;
-                }).
-                error(function (data, status, headers, config) {
-                    messageService.showError(data.Message);
-                });
+            return $http({
+                method: 'POST',
+                url: baseUrl + '/users/password',
+                data: value
+            }).
+            success(function(data, status, headers, config) {
+                return data;
+            }).
+            error(function(data, status, headers, config) {
+                messageService.showError(data.Message);
+            });
         }
 
         function isInRole(role) {
@@ -143,8 +161,7 @@
         function getRoleValue(role) {
             if (isInRole(role)) {
                 return role.Value;
-            }
-            else {
+            } else {
                 return null;
             }
         }

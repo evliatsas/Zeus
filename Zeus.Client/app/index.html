@@ -53,8 +53,8 @@
                         <li ng-class="getClass('/map')"><a href="#/map">{{ 'MENU.MAP' | translate }}</a></li>
                         <li ng-class="getClass('/charts')"><a href="#/charts">{{ 'MENU.CHARTS' | translate }}</a></li>
                         <li ng-class="getClass('/reports/archive')"><a href="#/reports/archive">{{ 'MENU.ARCHIVES' | translate }}</a></li>
-                        <li ng-class="getClass('/users')"><a href="#/users">{{ 'MENU.USERS' | translate }}</a></li>
-                        <li ng-class="getClass('/log')"><a href="#/log">{{ 'MENU.LOG' | translate }}</a></li>                        
+                        <li ng-show="isAuth()" ng-class="getClass('/users')"><a href="#/users">{{ 'MENU.USERS' | translate }}</a></li>
+                        <li ng-show="isAuth()" ng-class="getClass('/log')"><a href="#/log">{{ 'MENU.LOG' | translate }}</a></li>                        
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
                         <li><a href="" ng-click="changeLanguage()" title="{{ languageTitle }}">{{language}}</a></li>

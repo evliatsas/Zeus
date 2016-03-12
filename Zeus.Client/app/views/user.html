@@ -35,7 +35,7 @@
         </div>
     </div>
     <div class="pull-right" ng-show="!isInsert">
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#simple-dialog">{{ 'USER.CHANGE_PASSWORD' | translate }}
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#simple-dialog1">{{ 'USER.CHANGE_PASSWORD' | translate }}
             <div class="ripple-container"></div>
         </button>
     </div>
@@ -70,7 +70,7 @@
         </div>
     </div>
 </div>
-<div id="simple-dialog" class="modal fade" tabindex="-1" style="display: none;">
+<div id="simple-dialog1" class="modal fade" tabindex="-1" style="display: none;">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-body">
@@ -82,7 +82,7 @@
                     <label for="Password" class="control-label">{{ 'USER.CONFIRM_PASSWORD' | translate }}</label>
                     <input type="password" class="form-control" id="Password" required ng-model="user.PasswordConfirm">
                 </div>
-                <button type="button" ng-click="changePassword()" class="btn btn-primary" data-toggle="modal" data-target="#simple-dialog">{{ 'USER.CHANGE_PASSWORD' | translate }}
+                <button type="button" ng-click="changePassword()" class="btn btn-primary" data-toggle="modal" data-target="#simple-dialog1">{{ 'USER.CHANGE_PASSWORD' | translate }}
                     <div class="ripple-container"></div>
                 </button>
             </div>

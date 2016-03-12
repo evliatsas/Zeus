@@ -30,13 +30,13 @@ namespace Zeus.Controllers
         {
             get
             {
-                if(userManager == null)
+                if (userManager == null)
                     userManager = Request.GetOwinContext().GetUserManager<ApplicationUserManager>();
 
                 return userManager;
             }
         }
-        
+
         [Route("")]
         [ResponseType(typeof(IEnumerable<User>))]
         [HttpGet]
@@ -54,8 +54,15 @@ namespace Zeus.Controllers
         [HttpGet]
         public async Task<IHttpActionResult> GetUser(string id)
         {
+            if (id == "self")
+            {
+                var claimsIdentity = User.Identity as ClaimsIdentity;
+                var userIdClaim = claimsIdentity.Claims.FirstOrDefault(x => x.Type == ClaimTypes.NameIdentifier);
+                id = userIdClaim.Value;
+            }
+
             var user = await context.Users.GetById(id);
-            
+
             return user == null ? (IHttpActionResult)this.NotFound() : this.Ok(user);
         }
 
@@ -67,7 +74,7 @@ namespace Zeus.Controllers
             var currentuser = await Helper.GetUserByRequest(User as ClaimsPrincipal);
 
             try
-            {                
+            {
                 var appuser = new ApplicationUser { FullName = user.FullName, PhoneNumber = user.PhoneNumber, UserName = user.UserName, Email = user.Email };
                 var result = await UserManager.CreateAsync(appuser, user.Password);
                 if (result.Succeeded)
@@ -142,7 +149,7 @@ namespace Zeus.Controllers
             string newPassword = obj.newPassword;
             string passwordConfirm = obj.passwordConfirm;
 
-            if(newPassword != passwordConfirm)
+            if (newPassword != passwordConfirm)
             {
                 return BadRequest("Wrong password confirmation.");
             }
@@ -159,17 +166,17 @@ namespace Zeus.Controllers
                     return BadRequest();
 
                 userId = userIdClaim.Value;
-                
+
                 result = await change(userId, oldPassword, newPassword);
             }
             else
             {
                 result = reset(userId, newPassword);
             }
-            
+
             if (result.Succeeded)
             {
-                return Ok();                
+                return Ok();
             }
             else
             {
@@ -184,10 +191,10 @@ namespace Zeus.Controllers
 
         private IdentityResult reset(string userId, string newPassword)
         {
-            var result  = UserManager.RemovePassword(userId);
+            var result = UserManager.RemovePassword(userId);
             if (result.Succeeded)
                 result = UserManager.AddPassword(userId, newPassword);
-                        
+
             return result;
         }
     }
