@@ -31,7 +31,7 @@
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
     <!-- Add your site or application content here -->
-    <div class="header" ng-controller="MenuCtrl as menu">
+    <div class="header" ng-controller="MenuCtrl">
         <div class="navbar navbar-default" role="navigation" ng-cloak>
             <div class="container-fluid">
                 <div class="navbar-header">
@@ -41,20 +41,20 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a ng-class="menu.getClass('/')" href="#/" class="navbar-brand" style="font-family: serif;">{{ 'MENU.BRAND' | translate }}</a>
+                    <a ng-class="getClass('/')" href="#/" class="navbar-brand" style="font-family: serif;">{{ 'MENU.BRAND' | translate }}</a>
                 </div>
                 <div class="collapse navbar-collapse" id="js-navbar-collapse">
-                    <ul class="nav navbar-nav" ng-show="menu.isAuth()">
+                    <ul class="nav navbar-nav" ng-show="isAuth()">
                         <!--<li ng-class="menu.getClass('/')"><a href="#/">Αρχική</a></li>-->
-                        <li ng-class="menu.getClass('/facilities')"><a ng-href="#/facilities">{{ 'MENU.FACILITIES' | translate }}</a></li>
-                        <li ng-class="menu.getClass('/contacts')"><a ng-href="#/contacts">{{ 'MENU.CONTACTS' | translate }}</a></li>
-                        <li ng-class="menu.getClass('/providers')"><a ng-href="#/providers">{{ 'MENU.PROVIDERS' | translate }}</a></li>
-                        <li ng-class="menu.getClass('/persons')"><a ng-href="#/persons">{{ 'MENU.PERSONS' | translate }}</a></li>
-                        <li ng-class="menu.getClass('/map')"><a ng-href="#/map">{{ 'MENU.MAP' | translate }}</a></li>
-                        <li ng-class="menu.getClass('/charts')"><a ng-href="#/charts">{{ 'MENU.CHARTS' | translate }}</a></li>
-                        <li ng-class="menu.getClass('/reports/archive')"><a ng-href="#/reports/archive">{{ 'MENU.ARCHIVES' | translate }}</a></li>
-                        <li ng-class="menu.getClass('/users')"><a ng-href="#/users">{{ 'MENU.USERS' | translate }}</a></li>
-                        <li ng-class="menu.getClass('/log')"><a ng-href="#/log">{{ 'MENU.LOG' | translate }}</a></li>
+                        <li ng-class="getClass('/facilities')"><a href="#/facilities">{{ 'MENU.FACILITIES' | translate }}</a></li>
+                        <li ng-class="getClass('/contacts')"><a href="#/contacts">{{ 'MENU.CONTACTS' | translate }}</a></li>
+                        <li ng-class="getClass('/providers')"><a href="#/providers">{{ 'MENU.PROVIDERS' | translate }}</a></li>
+                        <li ng-class="getClass('/persons')"><a href="#/persons">{{ 'MENU.PERSONS' | translate }}</a></li>
+                        <li ng-class="getClass('/map')"><a href="#/map">{{ 'MENU.MAP' | translate }}</a></li>
+                        <li ng-class="getClass('/charts')"><a href="#/charts">{{ 'MENU.CHARTS' | translate }}</a></li>
+                        <li ng-class="getClass('/reports/archive')"><a href="#/reports/archive">{{ 'MENU.ARCHIVES' | translate }}</a></li>
+                        <li ng-class="getClass('/users')"><a href="#/users">{{ 'MENU.USERS' | translate }}</a></li>
+                        <li ng-class="getClass('/log')"><a href="#/log">{{ 'MENU.LOG' | translate }}</a></li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
                         <li class="dropdown">
@@ -67,11 +67,11 @@
                         <li class="dropdown">
                             <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="material-icons md-18">person</i> <span class="caret"></span></a>
                             <ul class="dropdown-menu">
-                                <li ng-if="!menu.isAuth()"><a href="#/login">{{ 'MENU.USER_MENU.SIGN_IN' | translate }}</a></li>
-                                <li ng-if="menu.isAuth()"><a href="" data-toggle="modal" data-target="#simple-dialog">{{ 'MENU.USER_MENU.CHANGE_PASSWORD' | translate }}</a></li>
-                                <li ng-if="menu.isAuth()" ng-class="menu.getClass('/reports/message')"><a ng-href="#/reports/message">{{ 'MENU.USER_MENU.MESSAGES' | translate }}</a></li>
-                                <li ng-if="menu.isAuth()" role="separator" class="divider"></li>
-                                <li ng-if="menu.isAuth()"><a href="" ng-click="menu.logOut()">{{ 'MENU.USER_MENU.SIGN_OUT' | translate }}</a></li>
+                                <li ng-hide="isAuth()"><a href="#/login">{{ 'MENU.USER_MENU.SIGN_IN' | translate }}</a></li>
+                                <li ng-show="isAuth()"><a href="" data-toggle="modal" data-target="#simple-dialog">{{ 'MENU.USER_MENU.CHANGE_PASSWORD' | translate }}</a></li>
+                                <li ng-show="isAuth()" ng-class="menu.getClass('/reports/message')"><a ng-href="#/reports/message">{{ 'MENU.USER_MENU.MESSAGES' | translate }}</a></li>
+                                <li ng-show="isAuth()" role="separator" class="divider"></li>
+                                <li ng-show="isAuth()"><a href="" ng-click="menu.logOut()">{{ 'MENU.USER_MENU.SIGN_OUT' | translate }}</a></li>
                             </ul>
                         </li>
                     </ul>
@@ -98,9 +98,9 @@
                         <label for="Password" class="control-label">Επαλήθευση Κωδικού Πρόσβασης</label>
                         <input type="password" class="form-control" id="Password" required ng-model="passwordConfirm">
                     </div>
-                    <button type="button" ng-click="menu.changePassword(password,newPassword,passwordConfirm)" class="btn btn-primary" data-toggle="modal" data-target="#simple-dialog">Αλλαγη Κωδικου
+                    <!-- <button type="button" ng-click="menu.changePassword(password,newPassword,passwordConfirm)" class="btn btn-primary" data-toggle="modal" data-target="#simple-dialog">Αλλαγη Κωδικου
                         <div class="ripple-container"></div>
-                    </button>
+                    </button> -->
                 </div>
             </div>
         </div>

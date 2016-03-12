@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNet.Identity;
+﻿using AspNet.Identity.MongoDB;
+using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using Microsoft.Owin.Security.OAuth;
@@ -50,10 +51,15 @@ namespace Zeus.Providers
             {
                 if (user.UserName == "admin")
                 {
+                    var roleManager = context.OwinContext.GetUserManager<ApplicationRoleManager>();
+                    IdentityRole role = new IdentityRole();
+                    role.Name = "Administrator";
+                    roleManager.Create(role);
                     user = new ApplicationUser();
                     user.FullName = "Διαχειριστής";
                     user.UserName = context.UserName;
                     user.Email = string.Format("{0}@local.lc", context.UserName);
+                    user.AddRole("Administrator");
                     var result = userManager.Create(user, context.Password);
                 }
 
