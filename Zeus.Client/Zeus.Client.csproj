@@ -89,7 +89,7 @@
     <Content Include="app\scripts\controllers\map.js" />
     <Content Include="app\scripts\controllers\menu.js" />
     <Content Include="app\scripts\controllers\contact.js" />
-    <Content Include="app\scripts\controllers\message.js" />
+    <Content Include="app\scripts\controllers\messages.js" />
     <Content Include="app\scripts\controllers\user.js" />
     <Content Include="app\scripts\controllers\person.js" />
     <Content Include="app\scripts\controllers\persons.js" />
@@ -138,7 +138,7 @@
     <Content Include="app\views\main.html" />
     <Content Include="app\views\map.html" />
     <Content Include="app\views\contact.html" />
-    <Content Include="app\views\message.html" />
+    <Content Include="app\views\messages.html" />
     <Content Include="app\views\user.html" />
     <Content Include="app\views\provider.html" />
     <Content Include="app\views\contacts.html" />
