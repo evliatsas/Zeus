@@ -110,7 +110,8 @@ angular
 	    	    ARCHIVED: 'Εξαγωγή Αναφοράς από Αρχείο',
 	    	    PRIORITY: 'Προτεραιότητα ',
 	    	    FACILITY: 'Δομή Φιλοξενίας: ',
-	    	    SUBJECT: 'Θέμα'
+	    	    SUBJECT: 'Θέμα',
+                NOTES:'Κείμενο'
 	    	},
 	    	SITUATION_REPORT: {
 	    	    DELETE: 'Διαγραφή Αναφοράς',
@@ -212,7 +213,8 @@ angular
 	    	    PERSONEL_COUNT: 'Πλήθος Προσωπικού',
 	    	    ADMINISTRATION: 'Διαχείριση',
 	    	    SERVICES: 'Προσφερόμενες Υπηρεσίες',
-	    	    SERVICE: 'Υπηρεσία'
+	    	    SERVICE: 'Υπηρεσία',
+                NOTES:'Σημειώσεις'
 	    	},
 	    	PERSON: {
 	    	    DELETE: 'Διαγραφή Ταυτοποιημένου',
@@ -334,7 +336,8 @@ angular
 	            ARCHIVED: 'Export Report from Archive',
 	            PRIORITY: 'Priority',
 	            FACILITY: 'Facility: ',
-	            SUBJECT: 'Subject'
+	            SUBJECT: 'Subject',
+	            NOTES: 'Notes'
 	        },
 	        SITUATION_REPORT: {
 	            DELETE: 'Delete Report',
@@ -436,7 +439,8 @@ angular
 	            PERSONEL_COUNT: 'Number of Personnel',
 	            ADMINISTRATION: 'Administration',
 	            SERVICES: 'Offering Services',
-	            SERVICE: 'Service'
+	            SERVICE: 'Service',
+	            NOTES: 'Σημειώσεις'
 	        },
 	        PERSON: {
 	            DELETE: 'Delete Identified Person',

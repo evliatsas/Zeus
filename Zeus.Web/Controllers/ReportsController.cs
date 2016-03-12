@@ -282,23 +282,6 @@ namespace Zeus.Controllers
             return reports == null ? (IHttpActionResult)this.NotFound() : this.Ok(reports);
         }
 
-        //[Route(Routes.Message + "/{id}")]
-        //[ResponseType(typeof(Report))]
-        //[HttpGet]
-        //public async Task<IHttpActionResult> GetMessageId(string id)
-        //{
-        //    var report = await context.Reports.GetById(id);
-        //    var user = await Helper.GetUserByRequest(User as ClaimsPrincipal);
-        //    if (!user.Roles.Any(x => x == Roles.Administrator || x == Roles.Viewer))
-        //    {
-        //        return this.Ok(report);
-        //    }
-        //    else
-        //    {
-        //        return this.BadRequest("Δεν υπάρχει το μήνυμα που ζητήσατε.");
-        //    }
-        //}
-
         [Route(Routes.Message + "/unread")]
         [ResponseType(typeof(int))]
         [HttpGet]

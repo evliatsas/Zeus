@@ -23,7 +23,7 @@ angular
 
         $scope.openUser = function (user) {
             if (!isInsert) {
-                $location.url('/users/' + user.Id);
+                $location.url('/users/' + user.UserName);
             } else {
                 $location.url('/users/new');
             }
