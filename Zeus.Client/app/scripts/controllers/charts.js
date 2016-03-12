@@ -131,16 +131,6 @@ angular
             return generateReportStats(reports, labelsFn, seriesFn, dataFn);
         }
 
-        function generateDataForSitReps_(reports, dateFormat) {
-            if (reports == null) { return; }
-
-            var labelsFn = function(report) { return format(report.DateTime, dateFormat); }
-            var seriesFn = function(report) { return report.Facility.Name; }
-            var dataFn = function(report) { return report.PersonCount; }
-
-            return generateReportStats(reports, labelsFn, seriesFn, dataFn);
-        }
-
         $scope.$on('ngRepeatFinished', function(ngRepeatFinishedEvent) {
             notReady = false;
             generateDataForSitReps($scope.reports, "DD-MM");
