@@ -1,8 +1,8 @@
-'use strict';
+﻿'use strict';
 
 angular
     .module('zeusclientApp')
-    .controller('MenuCtrl', function($scope, $location, $http, baseUrl, authService) {
+    .controller('MenuCtrl', function ($scope, $location, $http, $translate, baseUrl, authService) {
 
         $scope.isAuth = authService.isAuth();
 
@@ -21,6 +21,22 @@ angular
 
         $scope.changePassword = function(password, newPassword, passwordConfirm) {
             authService.changePassword("", password, newPassword, passwordConfirm);
+        }
+
+        $scope.language = "EN";
+        $scope.languageTitle = "Switch to English";
+        $scope.changeLanguage = function () {
+            if ($scope.language == "EN") {
+                $translate.use('en');
+                $scope.language = "ΕΛ";
+                $scope.languageTitle = "Αλλαγή σε Ελληνικά";
+            }
+            else {
+                $translate.use('el');
+                $scope.language = "EN";
+                $scope.languageTitle = "Switch to English";
+            }
+
         }
 
         $http({

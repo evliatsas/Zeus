@@ -168,7 +168,6 @@ namespace Zeus.Controllers
                 Log.Error("Error {Exception} updating Contact By {user}", exc, user);
                 return this.BadRequest("Σφάλμα Ενημέρωσης δεδομένων Ατόμου");
             }
-        }
-        
+        }        
     }
 }
