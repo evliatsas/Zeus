@@ -54,9 +54,10 @@
                         <li ng-class="getClass('/charts')"><a href="#/charts">{{ 'MENU.CHARTS' | translate }}</a></li>
                         <li ng-class="getClass('/reports/archive')"><a href="#/reports/archive">{{ 'MENU.ARCHIVES' | translate }}</a></li>
                         <li ng-class="getClass('/users')"><a href="#/users">{{ 'MENU.USERS' | translate }}</a></li>
-                        <li ng-class="getClass('/log')"><a href="#/log">{{ 'MENU.LOG' | translate }}</a></li>
+                        <li ng-class="getClass('/log')"><a href="#/log">{{ 'MENU.LOG' | translate }}</a></li>                        
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
+                        <li><a href="" ng-click="changeLanguage()" title="{{ languageTitle }}">{{language}}</a></li>
                         <li class="dropdown">
                             <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="material-icons md-18">help</i> <span class="caret"></span></a>
                             <ul class="dropdown-menu">
