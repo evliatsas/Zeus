@@ -205,7 +205,8 @@ namespace Zeus.Controllers
         public async Task<IHttpActionResult> GetMessageReports()
         {
             var reports = await context.Reports.Get(x => x.Type == ReportType.Message);
-            var facilities = await context.Facilities.GetAll();
+            var facilityIds = reports.Select(x => x.FacilityId);
+            var facilities = await context.Facilities.Get(x=>facilityIds.Contains(x.Id));
 
             reports = reports.Select(s =>
             {
@@ -214,6 +215,18 @@ namespace Zeus.Controllers
             });
 
             return reports == null ? (IHttpActionResult)this.NotFound() : this.Ok(reports);
+        }
+
+        [Route(Routes.Message + "/unread")]
+        [ResponseType(typeof(int))]
+        [HttpGet]
+        public async Task<IHttpActionResult> GetUnreadMessages()
+        {
+            var user = await Helper.GetUserByRequest(User as ClaimsPrincipal);
+
+            var count = await context.Reports.Count(x => x.Type == ReportType.Message && !x.IsAcknoledged);
+
+            return this.Ok(count);
         }
     }
 }

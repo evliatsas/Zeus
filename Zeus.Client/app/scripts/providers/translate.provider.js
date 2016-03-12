@@ -45,7 +45,7 @@ angular
 	    	    ISSECURE: 'Φυλασσόμενος Χώρος',
 	    	    HAS_HEALTHCARE: 'Υγεινομική Υποστήριξη',
 	    	    STATUS: 'Κατάσταση',
-	    	    ADMINISTRATION: 'Διαχειριστής',
+	    	    ADMINISTRATION: 'Διαχείριση',
 	    	    NOTES: 'Κείμενο',
 	    	    STATUS_DATETIME: 'Ημερομηνία Κατάστασης',
 	    	    STATUS_ECT: 'Εκτιμώμενη Ημερομηνία Αποκατάστασης'
@@ -66,7 +66,7 @@ angular
 	    	    CAPACITY: 'Χωρητικότητα',
 	    	    UTILIZATION: 'Πληρότητα',
 	    	    TRANSITION: 'Μετάβαση',
-	    	    SAVE: 'Αποθήκευση: ',
+	    	    SAVE: 'Αποθήκευση',
 	    	    MOVE: 'Μετακίνηση'
 	    	},
 	    	LOOKUP_MODAL: {
@@ -138,17 +138,17 @@ angular
 	    	    SAVE: 'Αποθήκευση Αναφοράς',
 	    	    FROM: 'Ημ. Από',
 	    	    UNTIL: 'Ημ. Έως',
-	    	    SHOW_FILE: 'Εμφάνιση Αρχείου'
+	    	    SHOW_FILE: 'ΕΜΦΑΝΙΣΗ ΑΡΧΕΙΟΥ'
 	    	},
 	    	LOG: {
 	    	    FROM: 'Ημ. Από',
 	    	    UNTIL: 'Ημ. Έως',
-	    	    SHOW_FILE: 'Εμφάνιση Εγγραφών'
+	    	    SHOW_FILE: 'ΕΜΦΑΝΙΣΗ ΕΓΓΡΑΦΩΝ'
 	    	},
 	    	CONTACT: {
 	    	    DELETE: 'Διαγραφή Επαφής',
 	    	    SAVE: 'Αποθήκευση Επαφής',
-	    	    CON:'Επαφή',
+	    	    CON:'Επαφή: ',
 	    	    TITLE: 'Τίτλος',
 	    	    NAME: 'Όνοματεπώνυμο',
 	    	    COMPANY: 'Οργανισμός',
@@ -180,24 +180,27 @@ angular
 	    	USER: {
 	    	    DELETE: 'Διαγραφή Χρήστη',
 	    	    SAVE: 'Αποθήκευση Χρήστη',
+                TITLE:'Χρήστης: ',
 	    	    FULLNAME: 'Όνοματεπώνυμο',
 	    	    USERNAME: 'Όνομα Χρήστη',
-	    	    EMAIL_ERROR: 'To Email δεν είναι έγκυρο',
+	    	    EMAIL: 'Email',
+	    	    EMAIL_ERROR: 'To Email δεν είναι έγκυρο',             
 	    	    PHONENUMBER: 'Τηλέφωνο',
 	    	    PASSWORD: 'Κωδικός Πρόσβασης',
 	    	    CONFIRM_PASSWORD: 'Επιβεβαίωση Κωδικού',
-	    	    CHANGE_PASSWORD: 'ΑΛΛΑΓΗ ΚΩΔΙΚΟΥ: ',
+	    	    CONFIRM_PASSWORD_ERROR:'Ο κωδικός δεν ταιριάζει',
+	    	    CHANGE_PASSWORD: 'ΑΛΛΑΓΗ ΚΩΔΙΚΟΥ',
 	    	    NEW_PASSWORD: 'Νέος Κωδικός Πρόσβασης'
 	    	},
 	    	PROVIDER: {
 	    	    DELETE: 'Διαγραφή Προμηθευτή',
 	    	    SAVE: 'Αποθήκευση Προμηθευτή',
-	    	    TITLE: 'Φoρέας Υποστήριξης',
+	    	    TITLE: 'Φoρέας Υποστήριξης: ',
 	    	    NAME: 'Όνομασία',
 	    	    DESCRIPTION: 'Περιγραφή',
 	    	    TYPE: 'Κατηγορία',
 	    	    PERSONEL_COUNT: 'Πλήθος Προσωπικού',
-	    	    ADMINISTRATION: 'Διαχειριστής',
+	    	    ADMINISTRATION: 'Διαχείριση',
 	    	    SERVICES: 'Προσφερόμενες Υπηρεσίες',
 	    	    SERVICE: 'Υπηρεσία'
 	    	},
@@ -361,7 +364,7 @@ angular
 	            DELETE: 'Delete Contact',
 	            SAVE: 'Save Contact',
 	            TITLE: 'Τίτλος',
-	            CON: 'Contact',
+	            CON: 'Contact: ',
 	            NAME: 'Full Name',
 	            COMPANY: 'Organisation',
 	            ADMINISTRATION: 'Administration',
@@ -392,12 +395,15 @@ angular
 	        USER: {
 	            DELETE: 'Delete User',
 	            SAVE: 'Save User',
+	            TITLE: 'User: ',
 	            FULLNAME: 'Full Name',
 	            USERNAME: 'Username',
 	            EMAIL_ERROR: 'The Email is not valid',
+                EMAIL:'Email',
 	            PHONENUMBER: 'Phone Number',
 	            PASSWORD: 'Password',
 	            CONFIRM_PASSWORD: 'Confirm Password',
+	            CONFIRM_PASSWORD_ERROR: 'Password does not match',
 	            CHANGE_PASSWORD: 'CHANGE PASSWORD: ',
 	            NEW_PASSWORD: 'New Password'
 	        },

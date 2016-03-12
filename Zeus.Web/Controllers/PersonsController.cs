@@ -50,18 +50,18 @@ namespace Zeus.Controllers
 
             var relatives = await context.FamilyRelations.Get(x => x.PersonId == id || x.RelativeId == id);
 
-            if (relatives.Count() > 0)
-            {
-                person.Relatives = relatives.Select(async relationship =>
-                                            {
-                                                relationship.Person = await context.Persons.GetById(relationship.PersonId);
-                                                relationship.Relative = await context.Persons.GetById(relationship.RelativeId);
+            var personIds = relatives.Select(x => x.PersonId).ToList();
+            var relativeIds = relatives.Select(x => x.RelativeId);
+            personIds.AddRange(relativeIds);
+            var overall = personIds.Distinct<string>();
+            var persons = await context.Persons.Get(x => overall.Contains(x.Id));
 
-                                                return relationship;
-                                            })
-                                            .Select(task => task.Result)
-                                            .ToList();
-            }
+            person.Relatives = relatives.Select(x =>
+            {
+                x.Person = persons.FirstOrDefault(p => p.Id == x.PersonId);
+                x.Relative = persons.FirstOrDefault(r => r.Id == x.RelativeId);
+                return x;
+            }).ToList();
 
             return person == null ? (IHttpActionResult)this.NotFound() : this.Ok(person);
         }       
