@@ -19,24 +19,15 @@ namespace Zeus
         /// </summary>
         /// <param name="principal">The Claim Principal of the Request</param>
         /// <returns>The referebced Employee or null if none</returns>
-        public static async Task<string> GetUserByRequest(ClaimsPrincipal principal)
+        public static async Task<User> GetUserByRequest(ClaimsPrincipal principal)
         {
             try
             {
-                var userName = principal.Identity.Name;
-                return userName;
-                //var idClaim = principal.Claims.FirstOrDefault(x => x.Type == Mis.Auth.Claim.EmployeeIdClaim);
-                //if (idClaim == null)
-                //    throw new Exception("No Employee Id Claim present in Request Identity...");
+                var claimsIdentity = principal.Identity as ClaimsIdentity;
+                var userIdClaim = claimsIdentity.Claims.FirstOrDefault(x => x.Type == ClaimTypes.NameIdentifier);
+                var userId = userIdClaim.Value;
 
-                //var catClaim = principal.Claims.FirstOrDefault(x => x.Type == Mis.Auth.Claim.EmployeeCategoryClaim);
-                //if (catClaim == null)
-                //    throw new Exception("No Employee Category Claim present in Request Identity...");
-
-                //var employee = await GetEmployeeById(idClaim.Value, catClaim.Value);
-
-                //return employee;
-
+                return await Entities.Repositories.Context.Instance.Users.GetById(userId);
             }
             catch (Exception exc)
             {
