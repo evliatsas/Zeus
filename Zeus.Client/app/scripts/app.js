@@ -94,6 +94,11 @@ angular
             controller: 'ArchiveCtrl',
             controllerAs: 'archiveCtrl'
         })
+        .when('/log', {
+            templateUrl: 'views/log.html',
+            controller: 'LogCtrl',
+            controllerAs: 'logCtrl'
+        })
         .when('/reports/message', {
             templateUrl: 'views/message.html',
             controller: 'MessageCtrl',

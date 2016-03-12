@@ -138,7 +138,7 @@ namespace Zeus.Controllers
                 var definition = Builders<Person>.Update.Set("FacilityId", string.Empty);
                 await context.Persons.UpdateMany(filter, definition);
 
-                Log.Information("Facility({Facility}) deleted By {user}", data, user);
+                Log.Warning("Facility({@Facility}) deleted By {user}", data, user);
 
                 return this.Ok();
             }

@@ -112,7 +112,7 @@ namespace Zeus.Controllers
                 
                 await context.Contacts.Delete(id);
                 
-                Log.Information("Contact({Contact}) deleted By {user}", data, user);
+                Log.Warning("Contact({@Contact}) deleted By {user}", data, user);
 
                 return this.Ok();
             }

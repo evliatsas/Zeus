@@ -119,7 +119,7 @@ namespace Zeus.Controllers
                 await context.ProviderFacilities.Delete(x => x.ProviderId == id);
                 await context.Providers.Delete(id);
 
-                Log.Information("Provider({Provider}) deleted By {user}", data, user);
+                Log.Warning("Provider({@Provider}) deleted By {user}", data, user);
 
                 return this.Ok();
             }

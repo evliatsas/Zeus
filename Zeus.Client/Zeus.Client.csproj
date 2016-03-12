@@ -72,6 +72,7 @@
     <Content Include="app\images\gr_parliament.png" />
     <Content Include="app\images\logo.jpg" />
     <Content Include="app\images\running.png" />
+    <Content Include="app\images\xenia_favicon.png" />
     <Content Include="app\index.html" />
     <Content Include="app\robots.txt" />
     <Content Include="app\scripts\app.js" />
@@ -81,6 +82,7 @@
     <Content Include="app\scripts\controllers\charts.js" />
     <Content Include="app\scripts\controllers\facility.js" />
     <Content Include="app\scripts\controllers\housing.js" />
+    <Content Include="app\scripts\controllers\log.js" />
     <Content Include="app\scripts\controllers\login.js" />
     <Content Include="app\scripts\controllers\lookup-modal.js" />
     <Content Include="app\scripts\controllers\main.js" />
@@ -126,6 +128,7 @@
     <Content Include="app\templates\phone-list.html" />
     <Content Include="app\templates\save-alert.html" />
     <Content Include="app\views\about.html" />
+    <Content Include="app\views\log.html" />
     <Content Include="app\views\archive.html" />
     <Content Include="app\views\charts.html" />
     <Content Include="app\views\facilities.html" />

@@ -99,7 +99,7 @@ namespace Zeus.Controllers
                 await context.FamilyRelations.Delete(x => x.PersonId == id || x.RelativeId == id);
                 await context.Persons.Delete(id);
                 
-                Log.Information("Person({Person}) deleted By {user}", data, user);
+                Log.Warning("Person({@Person}) deleted By {user}", data, user);
 
                 return this.Ok();
             }

@@ -101,7 +101,7 @@ namespace Zeus.Controllers
                 var data = await context.Users.GetById(id);
                 await context.Users.Delete(id);
 
-                Log.Information("User({User}) deleted By {user}", data, user);
+                Log.Warning("User({@User}) deleted By {user}", data, user);
 
                 return this.Ok();
             }

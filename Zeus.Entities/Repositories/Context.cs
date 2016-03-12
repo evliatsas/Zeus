@@ -148,5 +148,25 @@ namespace Zeus.Entities.Repositories
         }
 
         #endregion
+
+        #region Log Entries
+
+        public async Task<IEnumerable<LogEntry>> GetLogEntries(DateTime from, DateTime to)
+        {
+            try
+            {
+                var collection = this.Database.GetCollection<LogEntry>("log");
+                var entries = await collection.FindAsync(x => true);// (x => x.Timestamp > from && x.Timestamp < to);
+                var result = await entries.ToListAsync();
+
+                return result.OrderBy(o => o.Timestamp);
+            }
+            catch(Exception exc)
+            {
+                return null;
+            }
+        }
+
+        #endregion
     }
 }

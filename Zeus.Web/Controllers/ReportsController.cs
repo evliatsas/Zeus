@@ -125,7 +125,7 @@ namespace Zeus.Controllers
                 var data = await context.Reports.GetById(id);
                 await context.Reports.Delete(id);
 
-                Log.Information("Report({Report}) deleted By {user}", data, user);
+                Log.Warning("Report({@Report}) deleted By {user}", data, user);
 
                 return this.Ok();
             }
@@ -158,7 +158,7 @@ namespace Zeus.Controllers
             }
         }
 
-        [Route("archive/{id}")]
+        [Route(Routes.Archive + "/{id}")]
         [ResponseType(typeof(bool))]
         [HttpGet]
         public async Task<IHttpActionResult> ArchiveReport(string id)
@@ -180,7 +180,7 @@ namespace Zeus.Controllers
             }
         }
 
-        [Route("archive")]
+        [Route(Routes.Archive)]
         [ResponseType(typeof(IEnumerable<Report>))]
         [HttpPost]
         public async Task<IHttpActionResult> GetArchivedReports(dynamic dates)
@@ -198,7 +198,8 @@ namespace Zeus.Controllers
             });
             return reports == null ? (IHttpActionResult)this.NotFound() : this.Ok(reports);
         }
-        [Route("message")]
+
+        [Route(Routes.Message)]
         [ResponseType(typeof(IEnumerable<Report>))]
         [HttpGet]
         public async Task<IHttpActionResult> GetMessageReports()

@@ -10,11 +10,12 @@ angular
 	    		FACILITIES: 'Δομές Φιλοξενίας',
 	    		CONTACTS: 'Επαφές',
 	    		PROVIDERS: 'Υποστήριξη',
-	    		PERSONS: 'Ταυτοποιημένοι',
+	    		PERSONS: 'Ταυτοποιήσεις',
 	    		MAP: 'Χάρτης',
 	    		CHARTS: 'Στατιστικά',
 	    		USERS: 'Χρήστες',
 	    		ARCHIVES: 'Αρχείο',
+	    		LOG: 'Ενέργειες Χρηστών',
 	    		SUPPORT: {
 	    			HELP: 'Βοήθεια',
 	    			ABOUT: 'Για την Εφαρμογή'
@@ -139,6 +140,11 @@ angular
 	    	    UNTIL: 'Ημ. Έως',
 	    	    SHOW_FILE: 'Εμφάνιση Αρχείου'
 	    	},
+	    	LOG: {
+	    	    FROM: 'Ημ. Από',
+	    	    UNTIL: 'Ημ. Έως',
+	    	    SHOW_FILE: 'Εμφάνιση Εγγραφών'
+	    	},
 	    	CONTACT: {
 	    	    DELETE: 'Διαγραφή Επαφής',
 	    	    SAVE: 'Αποθήκευση Επαφής',
@@ -216,11 +222,12 @@ angular
 	            FACILITIES: 'Facilities',
 	            CONTACTS: 'Contacts',
 	            PROVIDERS: 'Providers',
-	            PERSONS: 'Identified',
+	            PERSONS: 'Identifications',
 	            MAP: 'Map',
 	            CHARTS: 'Statistics',
 	            USERS: 'Users',
 	            ARCHIVES: 'Archive',
+                LOG: 'Log Entries',
 	            SUPPORT: {
 	                HELP: 'Help',
 	                ABOUT: 'About'
@@ -344,6 +351,11 @@ angular
 	            FROM: 'From Date',
 	            UNTIL: 'To Date',
 	            SHOW_FILE: 'Show File'
+	        },
+	        LOG: {
+	            FROM: 'From Date',
+	            UNTIL: 'To Date',
+	            SHOW_FILE: 'Show Records'
 	        },
 	        CONTACT: {
 	            DELETE: 'Delete Contact',

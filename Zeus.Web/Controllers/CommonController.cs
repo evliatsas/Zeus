@@ -97,5 +97,24 @@ namespace Zeus.Controllers
 
             return result == null ? this.Ok(new List<Lookup>().AsEnumerable()) : this.Ok(result.OrderByDescending(o => o.Description).AsEnumerable());
         }
+
+        [Route("log")]
+        [ResponseType(typeof(IEnumerable<LogEntry>))]
+        [HttpPost]
+        public async Task<IHttpActionResult> GetLogEntries(dynamic dates)
+        {
+            try
+            {
+                DateTime from = Convert.ToDateTime(dates.from);
+                DateTime to = Convert.ToDateTime(dates.to);
+                var entries = await context.GetLogEntries(from, to);
+
+                return entries == null ? (IHttpActionResult)this.NotFound() : this.Ok(entries);
+            }
+            catch(Exception exc)
+            {
+                return null;
+            }
+        }
     }
 }
