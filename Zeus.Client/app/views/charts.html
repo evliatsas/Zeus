@@ -1,6 +1,6 @@
 ﻿<div class="col-md-12" ng-repeat="type in types" on-finish-render="ngRepeatFinished">
 
-    <h3>{{category.Name}}</h3>
+    <h3>{{ getType(type) }}</h3>
 
     <div class="col-md-3 container-fluid shadow-box" style="margin-right: 20px">
         <div ng-repeat="facility in facilities | filter: {Type: category.Id} | orderBy: 'Facility.Name'">
@@ -9,10 +9,15 @@
     </div>
 
     <div class="col-md-8 container-fluid shadow-box">
-        <div>
-            <canvas id="{{'chart' + type}}"></canvas>
-            <div id="{{'legend' + type}}" class="doughnut-legend"></div>
-        </div>
+
+        <canvas id="{{'chart' + type}}"
+                class="chart chart-line" 
+                chart-data="charts[type].data" 
+                chart-labels="charts[type].labels" 
+                chart-legend="true" 
+                chart-series="charts[type].series" 
+                chart-click="charts[type].onClick" >
+        </canvas> 
     </div>
 
 </div>
