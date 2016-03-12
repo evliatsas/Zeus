@@ -80,6 +80,7 @@ namespace Zeus.Controllers
         [Route("")]
         [ResponseType(typeof(Contact))]
         [HttpPost]
+        [Authorize(Roles = Roles.Administrator +"," + Roles.User)]
         public async Task<IHttpActionResult> CreateContact(Contact contact)
         {
             var user = await Helper.GetUserByRequest(User as ClaimsPrincipal);
@@ -116,13 +117,14 @@ namespace Zeus.Controllers
             }
             catch (Exception exc)
             {
-                Log.Error("Error {Exception} creating Contact By {user}", exc, user);
+                Log.Error("Error {Exception} creating Contact By {user}", exc, user.UserName);
                 return this.BadRequest("Σφάλμα Δημιουργίας δεδομένων Ατόμου");
             }
         }
 
         [Route("{id}")]
         [HttpDelete]
+        [Authorize(Roles = Roles.Administrator + "," + Roles.User)]
         public async Task<IHttpActionResult> DeleteContact(string id)
         {
             var user = await Helper.GetUserByRequest(User as ClaimsPrincipal);
@@ -139,7 +141,7 @@ namespace Zeus.Controllers
             }
             catch (Exception exc)
             {
-                Log.Error("Error {Exception} deleting Contact By {user}", exc, user);
+                Log.Error("Error {Exception} deleting Contact By {user}", exc, user.UserName);
                 return this.BadRequest("Σφάλμα Διαγραφής δεδομένων Ατόμου");
             }
         }
@@ -147,6 +149,7 @@ namespace Zeus.Controllers
         [Route("")]
         [ResponseType(typeof(Contact))]
         [HttpPut]
+        [Authorize(Roles = Roles.Administrator + "," + Roles.User)]
         public async Task<IHttpActionResult> UpdateContact(Contact contact)
         {
             var user = await Helper.GetUserByRequest(User as ClaimsPrincipal);
@@ -180,13 +183,13 @@ namespace Zeus.Controllers
 
                 var result = await context.Contacts.Update(contact);
 
-                Log.Information("Contact({Id}) updated By {user}", result.Id, user);
+                Log.Information("Contact({Id}) updated By {user}", result.Id, user.UserName);
 
                 return this.Ok(result);
             }
             catch (Exception exc)
             {
-                Log.Error("Error {Exception} updating Contact By {user}", exc, user);
+                Log.Error("Error {Exception} updating Contact By {user}", exc, user.UserName);
                 return this.BadRequest("Σφάλμα Ενημέρωσης δεδομένων Ατόμου");
             }
         }        

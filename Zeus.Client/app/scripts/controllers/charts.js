@@ -11,42 +11,12 @@ angular
         $scope.reports = [];
         $scope.charts = [];
 
-        var templates = [
-            {
-                label: "",
-                fillColor: "rgba(151,187,205,0.2)",
-                strokeColor: "rgba(151,187,205,1)",
-                pointColor: "rgba(151,187,205,1)",
-                pointStrokeColor: "#fff",
-                pointHighlightFill: "#fff",
-                pointHighlightStroke: "rgba(151,187,205,1)",
-                data: []
-            },
-            {
-                label: "",
-                fillColor: "rgba(151,187,205,0.2)",
-                strokeColor: "rgba(151,187,205,1)",
-                pointColor: "rgba(151,187,205,1)",
-                pointStrokeColor: "#fff",
-                pointHighlightFill: "#fff",
-                pointHighlightStroke: "rgba(151,187,205,1)",
-                data: []
-            }
-        ];
-
-        var options = {
-            responsive: true,
-            animation: true,
-            animationSteps: 60,
-            legendTemplate: "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<datasets.length; i++){%><li><span style=\"background-color:<%=datasets[i].strokeColor%>\"></span><%if(datasets[i].label){%><%=datasets[i].label%><%}%></li><%}%></ul>"
-        };
-
         $http({
             method: 'GET',
             url: baseUrl + '/reports/facilities/stats'
         }).then(function successCallback(response) {
             $scope.reports = response.data;
-            $scope.reports.forEach(function (item, index) {
+            $scope.reports.forEach(function(item, index) {
                 item.Checked = false;
 
                 var type = $filter('filter')($scope.types, function(c) { return c == item.Type; })[0];
@@ -54,92 +24,90 @@ angular
 
                 var facility = $filter('filter')($scope.facilities, function(f) { return f.Id == item.Facility.Id; })[0];
                 if (facility == null) { $scope.facilities.push(item.Facility); }
+
+                generateDataForSitReps($scope.reports);
             });
 
-            //response.data.forEach(addDataPoints);
-            //var ctx = document.getElementById("chart").getContext("2d");
-            //var myLineChart = new Chart(ctx).Line(data, options);
-            //document.getElementById('legend').innerHTML = myLineChart.generateLegend();
         }, function errorCallback(response) {
             messageService.getFailed(response.error);
         });
 
-        function format(dt) {
-            var format = "D-M-YY HH:mm";
+        $scope.getType = function(type) {
+            return $filter('filter')($scope.lookup.reports, function(r) { return r.Id == type; })[0].Description;
+        }
+
+        function format(dt, format) {
+            var format = format || "D-M";
             return moment(dt).isValid() ? moment(dt).format(format, 'el') : "";
         }
 
-        function createChart(type) {
-            var cn = 'chart' + type;
-            var ln = 'legend' + type;
-            var element = document.getElementById(cn);
-            var context = element.getContext("2d");
-            var chart = new Chart(context).Line(templates[0], options);
-            document.getElementById(ln).innerHTML = chart.generateLegend();
-            return chart;
-        }
+        function groupByDate(items, dateField, dateFormat) {
+            var groups = [];
+            if (items == null) { return groups; }
 
-        function getChart(type) {
-            var chart = $filter('filter')($scope.charts, function (c) { return c.Id == type; })[0];
+            items.forEach(function (item, index) {
+                var key = format(item[dateField], dateFormat);
 
-            if (chart == null) {
-                chart = createChart(type);
-                $scope.charts.push(chart);
-            }
-            return chart;
-        }
+                var group = $filter('filter')(groups, function (g) { return g.key == key; })[0];
 
-        function populateDataSet(reports, pointsField, labelsField) {
-            if (reports == null || reports.length == 0) { return; }
-            //var chart = getChart(reports[0]);
-
-            var ds = angular.copy(templates[0]);
-
-            ds.label = "Φιλοξενούμενοι";
-            reports.forEach(function (report, index) {
-                ds.labels.push(report[labelsField]);
-                ds.data.push(report[pointsField]);
+                if (group == null) {
+                    group = {
+                        key: key,
+                        items: []
+                    };
+                    groups.push(group);
+                }
+                group.items.push(item);
             });
 
-            return ds;
+            groups.sort();
+
+            return groups;
         }
 
-        $scope.update = function (type, facility) {
-            var reports = $filter('filter')($scope.reports, function (r) { return r.Type == type && r.Facility.Id == facility.Id; });
+        function generateReportStats(reports, seriesField, dataField) {
+            if (reports == null) { return; }
 
-            if (reports != null) {
-                var dsr = [];
-                reports.forEach(function (report, index) {
-                    report.Checked = !report.Checked;
-                    if (report.Checked == true) {
-                        dsr.push(report);
+            var chart = {
+                labels: [],
+                series: [],
+                data: [],
+                onClick: function(points, evt) { console.log(points, evt); }
+            };
+
+        }
+
+        function generateDataForSitReps(reports, dateFormat) {
+            if (reports == null) { return; }
+            var chart = {
+                labels: [],
+                series: [],
+                data: [],
+                onClick: function(points, evt) { console.log(points, evt); }
+            };
+
+            var groups = groupByDate(reports, "DateTime");
+
+            groups.forEach(function (group, index) {
+                chart.labels.push(group.key);
+
+                group.items.forEach(function (report, index) {
+                    var fi = chart.series.indexOf(report.Facility.Name);
+                    if (fi < 0) {
+                        chart.series.push(report.Facility.Name);
+                        chart.data.push([]);
+                        fi = chart.series.indexOf(report.Facility.Name);
                     }
+                    chart.data[fi].push(report.PersonCount);
                 });
+            });
 
-                var chart = getChart(type);
-                var ds = populateDataSet(dsr);
+            $scope.charts[reports[0].Type] = chart;
 
-                //chart.datasets.push(dsr);
-                //chart.update();
-            }
-
+            return chart;
         }
 
-        $scope.$on('ngRepeatFinished', function(ngRepeatFinishedEvent) {
-            $scope.charts = [];
-        });
-
-        // function addDataPoints(element, index, array) {
-        //     data.labels.push(format(element.DateTime));
-        //     data.datasets[0].data.push(element.PersonCount);
-        //     checkAndAdd(element.Facility);
-        // }
-
-        // function checkAndAdd(facility) {
-        //     var id = $scope.facilities.length + 1;
-        //     var found = $scope.facilities.some(function(el) {
-        //         return el.Name === facility.Name;
-        //     });
-        //     if (!found) { $scope.facilities.push(facility); }
-        // }
+        // $scope.$on('ngRepeatFinished', function(ngRepeatFinishedEvent) {
+        //     $scope.charts = [];
+        // });
     });
