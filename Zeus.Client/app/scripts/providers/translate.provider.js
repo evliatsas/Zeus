@@ -180,13 +180,16 @@ angular
 	    	USER: {
 	    	    DELETE: 'Διαγραφή Χρήστη',
 	    	    SAVE: 'Αποθήκευση Χρήστη',
+                TITLE:'Χρήστης: ',
 	    	    FULLNAME: 'Όνοματεπώνυμο',
 	    	    USERNAME: 'Όνομα Χρήστη',
-	    	    EMAIL_ERROR: 'To Email δεν είναι έγκυρο',
+	    	    EMAIL: 'Email',
+	    	    EMAIL_ERROR: 'To Email δεν είναι έγκυρο',             
 	    	    PHONENUMBER: 'Τηλέφωνο',
 	    	    PASSWORD: 'Κωδικός Πρόσβασης',
 	    	    CONFIRM_PASSWORD: 'Επιβεβαίωση Κωδικού',
-	    	    CHANGE_PASSWORD: 'ΑΛΛΑΓΗ ΚΩΔΙΚΟΥ: ',
+	    	    CONFIRM_PASSWORD_ERROR:'Ο κωδικός δεν ταιριάζει',
+	    	    CHANGE_PASSWORD: 'ΑΛΛΑΓΗ ΚΩΔΙΚΟΥ',
 	    	    NEW_PASSWORD: 'Νέος Κωδικός Πρόσβασης'
 	    	},
 	    	PROVIDER: {
@@ -392,12 +395,15 @@ angular
 	        USER: {
 	            DELETE: 'Delete User',
 	            SAVE: 'Save User',
+	            TITLE: 'User: ',
 	            FULLNAME: 'Full Name',
 	            USERNAME: 'Username',
 	            EMAIL_ERROR: 'The Email is not valid',
+                EMAIL:'Email',
 	            PHONENUMBER: 'Phone Number',
 	            PASSWORD: 'Password',
 	            CONFIRM_PASSWORD: 'Confirm Password',
+	            CONFIRM_PASSWORD_ERROR: 'Password does not match',
 	            CHANGE_PASSWORD: 'CHANGE PASSWORD: ',
 	            NEW_PASSWORD: 'New Password'
 	        },
