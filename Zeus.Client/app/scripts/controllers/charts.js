@@ -41,12 +41,13 @@ angular
             return moment(dt).isValid() ? moment(dt).format(format, 'el') : "";
         }
 
-        function groupByDate(items, dateField, dateFormat) {
+        function groupBy(items, groupBy) {
             var groups = [];
             if (items == null) { return groups; }
 
             items.forEach(function (item, index) {
-                var key = format(item[dateField], dateFormat);
+
+                var key = typeof groupBy === "function" ? groupBy(item) : item[groupBy];
 
                 var group = $filter('filter')(groups, function (g) { return g.key == key; })[0];
 
@@ -65,46 +66,51 @@ angular
             return groups;
         }
 
-        function generateReportStats(reports, seriesField, dataField) {
+        function generateReportStats(reports, labelsFn, seriesFn, dataFn) {
             if (reports == null) { return; }
 
             var chart = {
                 labels: [],
                 series: [],
-                data: [],
-                onClick: function(points, evt) { console.log(points, evt); }
+                data: []
             };
 
-        }
+            var labels = groupBy(reports, labelsFn);
+            var empty = labels.map(function (l) { return 0; });
 
-        function generateDataForSitReps(reports, dateFormat) {
-            if (reports == null) { return; }
-            var chart = {
-                labels: [],
-                series: [],
-                data: [],
-                onClick: function(points, evt) { console.log(points, evt); }
-            };
+            var series = groupBy(reports, seriesFn);
 
-            var groups = groupByDate(reports, "DateTime");
+                series.forEach(function (serie, index) {
+                    chart.series.push(serie.key);
+                    var row = empty.slice();
+                    chart.data.push(row);
+                });
 
-            groups.forEach(function (group, index) {
-                chart.labels.push(group.key);
+            labels.forEach(function (label, index) {
+                chart.labels.push(label.key);
 
-                group.items.forEach(function (report, index) {
-                    var fi = chart.series.indexOf(report.Facility.Name);
-                    if (fi < 0) {
-                        chart.series.push(report.Facility.Name);
-                        chart.data.push([]);
-                        fi = chart.series.indexOf(report.Facility.Name);
-                    }
-                    chart.data[fi].push(report.PersonCount);
+
+
+                label.items.forEach(function (report, index) {
+                    var s = chart.series.indexOf(seriesFn(report));
+                    var l = chart.labels.indexOf(labelsFn(report));
+                    chart.data[s][l] = dataFn(report);
                 });
             });
 
             $scope.charts[reports[0].Type] = chart;
 
             return chart;
+        }
+
+        function generateDataForSitReps(reports, dateFormat) {
+            if (reports == null) { return; }
+
+            var labelsFn = function (report) { return format(report.DateTime, dateFormat); }
+            var seriesFn = function (report) { return report.Facility.Name; }
+            var dataFn = function (report) { return report.PersonCount; }
+
+            return generateReportStats(reports, labelsFn, seriesFn, dataFn);
         }
 
         // $scope.$on('ngRepeatFinished', function(ngRepeatFinishedEvent) {
