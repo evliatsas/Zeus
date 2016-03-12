@@ -87,6 +87,7 @@
     <Compile Include="Repositories\Context.cs" />
     <Compile Include="Repositories\MongoDbRepository.cs" />
     <Compile Include="Facilities\Transportation.cs" />
+    <Compile Include="Users\Definitions.cs" />
     <Compile Include="Users\User.cs" />
   </ItemGroup>
   <ItemGroup>
