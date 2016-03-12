@@ -173,6 +173,7 @@ angular
 	    	    SELECT: 'ΕΠΙΛΟΓΗ'
 	    	},
 	    	LOGIN: {
+                TITLE:'Παρακαλώ Συνδεθείτε',
 	    	    USERNAME: 'Όνομα Χρήστη',
 	    	    PASSWORD: 'Κωδικός Πρόσβασης',
 	    	    SIGN_IN: 'ΕΙΣΟΔΟΣ'
@@ -388,6 +389,7 @@ angular
 	            SELECT: 'SELECT'
 	        },
 	        LOGIN: {
+	            TITLE: 'Please sign in',
 	            USERNAME: 'Username',
 	            PASSWORD: 'Password',
 	            SIGNIN: 'SIGN IN'
