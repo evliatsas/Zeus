@@ -89,18 +89,18 @@
                 <h2 style="padding:24px 0px 0px 24px">{{ 'MENU.TITLE' | translate }}</h2>
                 <div class="modal-body">
                     <div class="form-group label-static ng-is-empty">
-                        <label for="Password" class="control-label">Παλιός Κωδικός Πρόσβασης</label>
+                        <label for="Password" class="control-label">{{ 'MENU.USER_MENU.OLD_PASSWORD' | translate }}</label>
                         <input type="password" class="form-control" id="Password" required ng-model="password">
                     </div>
                     <div class="form-group label-static ng-is-empty">
-                        <label for="Password" class="control-label">Νέος Κωδικός Πρόσβασης</label>
+                        <label for="Password" class="control-label">{{ 'MENU.USER_MENU.NEW_PASSWORD' | translate }}</label>
                         <input type="password" class="form-control" id="Password" required ng-model="newPassword">
                     </div>
                     <div class="form-group label-static ng-is-empty">
-                        <label for="Password" class="control-label">Επαλήθευση Κωδικού Πρόσβασης</label>
+                        <label for="Password" class="control-label">{{ 'MENU.USER_MENU.CONFIRM_NEW_PASSWORD' | translate }}Επαλήθευση Κωδικού Πρόσβασης</label>
                         <input type="password" class="form-control" id="Password" required ng-model="passwordConfirm">
                     </div>
-                    <button type="button" ng-click="changePassword(password,newPassword,passwordConfirm)" class="btn btn-primary" data-toggle="modal" data-target="#simple-dialog">Αλλαγη Κωδικου
+                    <button type="button" ng-click="changePassword(password,newPassword,passwordConfirm)" class="btn btn-primary" data-toggle="modal" data-target="#simple-dialog">{{ 'MENU.USER_MENU.CHANGE_PASSWORD' | translate }}
                         <div class="ripple-container"></div>
                     </button>
                 </div>
