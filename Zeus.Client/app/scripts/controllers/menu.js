@@ -5,7 +5,9 @@ angular
     .controller('MenuCtrl', function($scope, $location, $http, $translate, baseUrl, authService) {
 
         $scope.unread = 0;
-        $scope.isAuth = authService.isAuth();
+        $scope.isAuth = function() {
+            return authService.isAuth();
+        }
 
         $scope.getClass = function(path) {
             if ($location.path() === path) {
@@ -39,7 +41,7 @@ angular
 
         }
 
-        if ($scope.isAuth) {
+        if ($scope.isAuth()) {
             $http({
                 method: 'GET',
                 url: baseUrl + '/reports/message/unread'
