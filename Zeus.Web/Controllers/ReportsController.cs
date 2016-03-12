@@ -7,13 +7,13 @@ using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Description;
 using Zeus.Entities;
-using Zeus.Entities.Users;
+using Zeus.Models;
 
 namespace Zeus.Controllers
 {
     [Authorize]
     [RoutePrefix(Zeus.Routes.Reports)]
-    public class ReportsController : ApiController
+    public class ReportsController : BaseController
     {
         private Entities.Repositories.Context context;
 
@@ -29,12 +29,12 @@ namespace Zeus.Controllers
         {
             IEnumerable<Report> result;
 
-            var user = await Helper.GetUserByRequest(User as ClaimsPrincipal);
-            if (user.Roles.Any(x => x == Roles.Administrator || x == Roles.Viewer))
+            var user = await Helper.GetUserByRequest(User as ClaimsPrincipal, UserManager);
+            if (user.Roles.Any(x => x == ApplicationRoles.Administrator || x == ApplicationRoles.Viewer))
                 result = await context.Reports.GetAll();
             else
             {
-                var facilityClaims = user.Claims.Where(x => x.Type == Claims.FacilityClaim).Select(s => s.Value);
+                var facilityClaims = user.Claims.Where(x => x.Type == ApplicationClaims.FacilityClaim).Select(s => s.Value);
                 result = await context.Reports.Get(x => facilityClaims.Contains(x.FacilityId));
             }
 
@@ -56,10 +56,10 @@ namespace Zeus.Controllers
         {
             var report = await context.Reports.GetById(id);
 
-            var user = await Helper.GetUserByRequest(User as ClaimsPrincipal);
-            if (!user.Roles.Any(x => x == Roles.Administrator || x == Roles.Viewer))
+            var user = await Helper.GetUserByRequest(User as ClaimsPrincipal, UserManager);
+            if (!user.Roles.Any(x => x == ApplicationRoles.Administrator || x == ApplicationRoles.Viewer))
             {
-                var facilityClaims = user.Claims.Where(x => x.Type == Claims.FacilityClaim).Select(s => s.Value);
+                var facilityClaims = user.Claims.Where(x => x.Type == ApplicationClaims.FacilityClaim).Select(s => s.Value);
                 if (!facilityClaims.Contains(report.FacilityId))
                 {
                     Log.Fatal("Security violation. User {user} requested Report Info {report} with insufficient rights", user.UserName, id);
@@ -84,10 +84,10 @@ namespace Zeus.Controllers
         [HttpGet]
         public async Task<IHttpActionResult> GetFacilityReports(string id)
         {
-            var user = await Helper.GetUserByRequest(User as ClaimsPrincipal);
-            if (!user.Roles.Any(x => x == Roles.Administrator || x == Roles.Viewer))
+            var user = await Helper.GetUserByRequest(User as ClaimsPrincipal, UserManager);
+            if (!user.Roles.Any(x => x == ApplicationRoles.Administrator || x == ApplicationRoles.Viewer))
             {
-                var facilityClaims = user.Claims.Where(x => x.Type == Claims.FacilityClaim).Select(s => s.Value);
+                var facilityClaims = user.Claims.Where(x => x.Type == ApplicationClaims.FacilityClaim).Select(s => s.Value);
                 if (!facilityClaims.Contains(id))
                 {
                     Log.Fatal("Security violation. User {user} requested Report Info {report} with insufficient rights", user.UserName, id);
@@ -113,12 +113,12 @@ namespace Zeus.Controllers
 
             IEnumerable<Report> result;
 
-            var user = await Helper.GetUserByRequest(User as ClaimsPrincipal);
-            if (user.Roles.Any(x => x == Roles.Administrator || x == Roles.Viewer))
+            var user = await Helper.GetUserByRequest(User as ClaimsPrincipal, UserManager);
+            if (user.Roles.Any(x => x == ApplicationRoles.Administrator || x == ApplicationRoles.Viewer))
                 result = await context.Reports.Get(x => x.Type == ReportType.SituationReport);
             else
             {
-                var facilityClaims = user.Claims.Where(x => x.Type == Claims.FacilityClaim).Select(s => s.Value);
+                var facilityClaims = user.Claims.Where(x => x.Type == ApplicationClaims.FacilityClaim).Select(s => s.Value);
                 result = await context.Reports.Get(x => facilityClaims.Contains(x.FacilityId) && x.Type == ReportType.SituationReport);
             }
 
@@ -136,10 +136,10 @@ namespace Zeus.Controllers
         [Route("")]
         [ResponseType(typeof(Report))]
         [HttpPost]
-        [Authorize(Roles = Roles.Administrator + "," + Roles.User)]
+        [Authorize(Roles = ApplicationRoles.Administrator + "," + ApplicationRoles.User)]
         public async Task<IHttpActionResult> CreateReport(Report report)
         {
-            var user = await Helper.GetUserByRequest(User as ClaimsPrincipal);
+            var user = await Helper.GetUserByRequest(User as ClaimsPrincipal, UserManager);
 
             try
             {
@@ -160,10 +160,10 @@ namespace Zeus.Controllers
 
         [Route("{id}")]
         [HttpDelete]
-        [Authorize(Roles = Roles.Administrator + "," + Roles.User)]
+        [Authorize(Roles = ApplicationRoles.Administrator + "," + ApplicationRoles.User)]
         public async Task<IHttpActionResult> DeleteReport(string id)
         {
-            var user = await Helper.GetUserByRequest(User as ClaimsPrincipal);
+            var user = await Helper.GetUserByRequest(User as ClaimsPrincipal, UserManager);
 
             try
             {
@@ -184,10 +184,10 @@ namespace Zeus.Controllers
         [Route("")]
         [ResponseType(typeof(Report))]
         [HttpPut]
-        [Authorize(Roles = Roles.Administrator + "," + Roles.User)]
+        [Authorize(Roles = ApplicationRoles.Administrator + "," + ApplicationRoles.User)]
         public async Task<IHttpActionResult> UpdateReport(Report report)
         {
-            var user = await Helper.GetUserByRequest(User as ClaimsPrincipal);
+            var user = await Helper.GetUserByRequest(User as ClaimsPrincipal, UserManager);
 
             try
             {
@@ -207,10 +207,10 @@ namespace Zeus.Controllers
         [Route(Routes.Archive + "/{id}")]
         [ResponseType(typeof(bool))]
         [HttpGet]
-        [Authorize(Roles = Roles.Administrator + "," + Roles.User)]
+        [Authorize(Roles = ApplicationRoles.Administrator + "," + ApplicationRoles.User)]
         public async Task<IHttpActionResult> ArchiveReport(string id)
         {
-            var user = await Helper.GetUserByRequest(User as ClaimsPrincipal);
+            var user = await Helper.GetUserByRequest(User as ClaimsPrincipal, UserManager);
 
             var report = await context.Reports.GetById(id);
             if (report != null)
@@ -237,10 +237,10 @@ namespace Zeus.Controllers
             var reports = await context.Reports.Get(x => x.IsArchived && x.DateTime > from && x.DateTime < to);
 
             IEnumerable<Report> result;           
-            var user = await Helper.GetUserByRequest(User as ClaimsPrincipal);
-            if (!user.Roles.Any(x => x == Roles.Administrator || x == Roles.Viewer))
+            var user = await Helper.GetUserByRequest(User as ClaimsPrincipal, UserManager);
+            if (!user.Roles.Any(x => x == ApplicationRoles.Administrator || x == ApplicationRoles.Viewer))
             {
-                var facilityClaims = user.Claims.Where(x => x.Type == Claims.FacilityClaim).Select(s => s.Value);
+                var facilityClaims = user.Claims.Where(x => x.Type == ApplicationClaims.FacilityClaim).Select(s => s.Value);
                 result = reports.Where(x=> facilityClaims.Contains(x.FacilityId));
             }
            
@@ -261,10 +261,10 @@ namespace Zeus.Controllers
         public async Task<IHttpActionResult> GetMessageReports()
         {
             IEnumerable<Report> reports;
-            var user = await Helper.GetUserByRequest(User as ClaimsPrincipal);
-            if (!user.Roles.Any(x => x == Roles.Administrator || x == Roles.Viewer))
+            var user = await Helper.GetUserByRequest(User as ClaimsPrincipal, UserManager);
+            if (!user.Roles.Any(x => x == ApplicationRoles.Administrator || x == ApplicationRoles.Viewer))
             {
-                var facilityClaims = user.Claims.Where(x => x.Type == Claims.FacilityClaim).Select(s => s.Value);
+                var facilityClaims = user.Claims.Where(x => x.Type == ApplicationClaims.FacilityClaim).Select(s => s.Value);
                 reports = await context.Reports.Get(x => x.Type == ReportType.Message && facilityClaims.Contains(x.Id));
             }
             else
@@ -288,10 +288,10 @@ namespace Zeus.Controllers
         public async Task<IHttpActionResult> GetUnreadMessages()
         {
             int count = 0;
-            var user = await Helper.GetUserByRequest(User as ClaimsPrincipal);
-            if (!user.Roles.Any(x => x == Roles.Administrator || x == Roles.Viewer))
+            var user = await Helper.GetUserByRequest(User as ClaimsPrincipal, UserManager);
+            if (!user.Roles.Any(x => x == ApplicationRoles.Administrator || x == ApplicationRoles.Viewer))
             {
-                var facilityClaims = user.Claims.Where(x => x.Type == Claims.FacilityClaim).Select(s => s.Value);
+                var facilityClaims = user.Claims.Where(x => x.Type == ApplicationClaims.FacilityClaim).Select(s => s.Value);
                 count = await context.Reports.Count(x => x.Type == ReportType.Message && !x.IsAcknoledged && facilityClaims.Contains(x.Id));
             }
             else

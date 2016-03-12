@@ -7,13 +7,13 @@ using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Description;
 using Zeus.Entities;
-using Zeus.Entities.Users;
+using Zeus.Models;
 
 namespace Zeus.Controllers
 {
     [Authorize]
     [RoutePrefix(Zeus.Routes.Providers)]
-    public class ProvidersController : ApiController
+    public class ProvidersController : BaseController
     {
         private Entities.Repositories.Context context;
 
@@ -29,12 +29,12 @@ namespace Zeus.Controllers
         {
             IEnumerable<Provider> result;
 
-            var user = await Helper.GetUserByRequest(User as ClaimsPrincipal);
-            if (user.Roles.Any(x => x == Roles.Administrator || x == Roles.Viewer))
+            var user = await Helper.GetUserByRequest(User as ClaimsPrincipal, UserManager);
+            if (user.Roles.Any(x => x == ApplicationRoles.Administrator || x == ApplicationRoles.Viewer))
                 result = await context.Providers.GetAll();
             else
             {
-                var facilityClaims = user.Claims.Where(x => x.Type == Claims.FacilityClaim).Select(s => s.Value);
+                var facilityClaims = user.Claims.Where(x => x.Type == ApplicationClaims.FacilityClaim).Select(s => s.Value);
                 var facilityProviders = (await context.ProviderFacilities.Get(x => facilityClaims.Contains(x.FacilityId))).Select(s => s.ProviderId);
                 result = await context.Providers.Get(x => facilityProviders.Contains(x.Id));
             }
@@ -49,10 +49,10 @@ namespace Zeus.Controllers
         {
             try
             {
-                var user = await Helper.GetUserByRequest(User as ClaimsPrincipal);
-                if (!user.Roles.Any(x => x == Roles.Administrator || x == Roles.Viewer))
+                var user = await Helper.GetUserByRequest(User as ClaimsPrincipal, UserManager);
+                if (!user.Roles.Any(x => x == ApplicationRoles.Administrator || x == ApplicationRoles.Viewer))
                 {
-                    var facilityClaims = user.Claims.Where(x => x.Type == Claims.FacilityClaim).Select(s => s.Value);
+                    var facilityClaims = user.Claims.Where(x => x.Type == ApplicationClaims.FacilityClaim).Select(s => s.Value);
                     var facilityProviders = (await context.ProviderFacilities.Get(x => facilityClaims.Contains(x.FacilityId))).Select(s => s.ProviderId);
                     if (!facilityProviders.Contains(id))
                     {
@@ -86,10 +86,10 @@ namespace Zeus.Controllers
         [Route("")]
         [ResponseType(typeof(Provider))]
         [HttpPost]
-        [Authorize(Roles = Roles.Administrator + "," + Roles.User)]
+        [Authorize(Roles = ApplicationRoles.Administrator + "," + ApplicationRoles.User)]
         public async Task<IHttpActionResult> CreateProvider(Provider provider)
         {
-            var user = await Helper.GetUserByRequest(User as ClaimsPrincipal);
+            var user = await Helper.GetUserByRequest(User as ClaimsPrincipal, UserManager);
 
             try
             {
@@ -130,10 +130,10 @@ namespace Zeus.Controllers
 
         [Route("{id}")]
         [HttpDelete]
-        [Authorize(Roles = Roles.Administrator + "," + Roles.User)]
+        [Authorize(Roles = ApplicationRoles.Administrator + "," + ApplicationRoles.User)]
         public async Task<IHttpActionResult> DeleteProvider(string id)
         {
-            var user = await Helper.GetUserByRequest(User as ClaimsPrincipal);
+            var user = await Helper.GetUserByRequest(User as ClaimsPrincipal, UserManager);
 
             try
             {
@@ -156,10 +156,10 @@ namespace Zeus.Controllers
         [Route("")]
         [ResponseType(typeof(Provider))]
         [HttpPut]
-        [Authorize(Roles = Roles.Administrator + "," + Roles.User)]
+        [Authorize(Roles = ApplicationRoles.Administrator + "," + ApplicationRoles.User)]
         public async Task<IHttpActionResult> UpdateProvider(Provider provider)
         {
-            var user = await Helper.GetUserByRequest(User as ClaimsPrincipal);
+            var user = await Helper.GetUserByRequest(User as ClaimsPrincipal, UserManager);
 
             try
             {
