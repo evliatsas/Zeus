@@ -69,7 +69,10 @@
                             <ul class="dropdown-menu">
                                 <li ng-if="!menu.isAuth()"><a href="#/login">{{ 'MENU.USER_MENU.SIGN_IN' | translate }}</a></li>
                                 <li ng-if="menu.isAuth()"><a href="" data-toggle="modal" data-target="#simple-dialog">{{ 'MENU.USER_MENU.CHANGE_PASSWORD' | translate }}</a></li>
-                                <li ng-if="menu.isAuth()" ng-class="menu.getClass('/reports/message')"><a ng-href="#/reports/message">{{ 'MENU.USER_MENU.MESSAGES' | translate }}</a></li>
+                                <li ng-if="menu.isAuth()"><a href="#/reports/message">{{ 'MENU.USER_MENU.MESSAGES' | translate }}
+                                       <span>{{menu.unread}}</span>
+                                    </a>
+                                </li>
                                 <li ng-if="menu.isAuth()" role="separator" class="divider"></li>
                                 <li ng-if="menu.isAuth()"><a href="" ng-click="menu.logOut()">{{ 'MENU.USER_MENU.SIGN_OUT' | translate }}</a></li>
                             </ul>
@@ -98,9 +101,9 @@
                         <label for="Password" class="control-label">Επαλήθευση Κωδικού Πρόσβασης</label>
                         <input type="password" class="form-control" id="Password" required ng-model="passwordConfirm">
                     </div>
-                    <button type="button" ng-click="menu.changePassword(password,newPassword,passwordConfirm)" class="btn btn-primary" data-toggle="modal" data-target="#simple-dialog">Αλλαγη Κωδικου
+                    <!--<button type="button" ng-click="menu.changePassword(password,newPassword,passwordConfirm)" class="btn btn-primary" data-toggle="modal" data-target="#simple-dialog">Αλλαγη Κωδικου
                         <div class="ripple-container"></div>
-                    </button>
+                    </button>-->
                 </div>
             </div>
         </div>
