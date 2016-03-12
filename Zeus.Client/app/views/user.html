@@ -36,11 +36,39 @@
     </div>
     <div class="pull-right" ng-show="!isInsert">
         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#simple-dialog">{{ 'USER.CHANGE_PASSWORD' | translate }}
-                    <div class="ripple-container"></div>
+            <div class="ripple-container"></div>
         </button>
     </div>
 </div>
 <div class="col-md-6">
+    <div class="shadow-box btn-group-sm" style="margin-top: 20px;">
+        <label class="control-label">{{ 'USER.ROLES' | translate }}</label>
+        <span class="btn-group-sm pull-right">
+        <a href="javascript:void(0)" class="btn btn-info" ng-click="addRole()"><i class="material-icons">add</i></a>
+    </span>
+        <div class="form-inline" ng-repeat="role in user.Roles track by $index">
+            <div class="form-group label-static ng-is-empty">
+                <label class="control-label">{{ 'USER.ROLE' | translate }}</label>
+                <input type="text" class="form-control" ng-model="user.Roles[$index]">
+            </div>
+            <a href="javascript:void(0)" class="btn btn-info" style="padding: 0px; left: -25px; top: 5px" ng-click="user.Roles.splice($index, 1)"><i class="material-icons">clear</i></a>
+        </div>
+    </div>
+    <div class="shadow-box btn-group-sm" style="margin-top: 20px;">
+        <label class="control-label">{{ 'USER.CLAIMS' | translate }}</label>
+        <span class="btn-group-sm pull-right">
+        <a href="javascript:void(0)" class="btn btn-info" ng-click="addClaim()"><i class="material-icons">add</i></a>
+    </span>
+        <div class="form-inline" ng-repeat="claim in user.Claims">
+            <select class="form-control" ng-model="claim.type">
+                <option ng-repeat="phoneType in phoneTypes" value="{{phoneType}}">
+                    {{phoneType}}
+                </option>
+            </select>
+            <input type="text" class="form-control" placeholder="{{ 'USER.CLAIM' | translate }}" ng-model="claim.value">
+            <a href="javascript:void(0)" class="btn btn-info" style="padding: 0px; left: -25px; top: 5px" ng-click="user.Claims.splice($index, 1)"><i class="material-icons">clear</i></a>
+        </div>
+    </div>
 </div>
 <div id="simple-dialog" class="modal fade" tabindex="-1" style="display: none;">
     <div class="modal-dialog">

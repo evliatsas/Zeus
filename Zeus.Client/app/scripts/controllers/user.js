@@ -65,4 +65,8 @@ angular
         $scope.changePassword = function () {
             authService.changePassword($scope.user.Id, $scope.user.NewPassword, $scope.user.PasswordConfirm);
         }
+
+        $scope.addRole = function(role) {
+            $scope.user.Roles.push(role);
+        }
     });
