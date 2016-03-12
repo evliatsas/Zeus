@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Description;
 using Zeus.Entities;
+using Zeus.Entities.Users;
 
 namespace Zeus.Controllers
 {
@@ -26,9 +27,16 @@ namespace Zeus.Controllers
         [HttpGet]
         public async Task<IHttpActionResult> GetPersons()
         {
-            var user = await Helper.GetUserByRequest(User as ClaimsPrincipal);
+            IEnumerable<Person> result;
 
-            var result = await context.Persons.GetAll();
+            var user = await Helper.GetUserByRequest(User as ClaimsPrincipal);
+            if (user.Roles.Any(x => x == Roles.Administrator || x == Roles.Viewer))
+                result = await context.Persons.GetAll();
+            else
+            {
+                var facilityClaims = user.Claims.Where(x => x.Type == Claims.FacilityClaim).Select(s => s.Value);
+                result = await context.Persons.Get(x => facilityClaims.Contains(x.FacilityId));
+            }
 
             return result == null ? this.Ok(new List<Person>().AsEnumerable()) : this.Ok(result.OrderByDescending(o => o.Name).AsEnumerable());
         }
@@ -39,6 +47,18 @@ namespace Zeus.Controllers
         public async Task<IHttpActionResult> GetPerson(string id)
         {
             var person = await context.Persons.GetById(id);
+
+            var user = await Helper.GetUserByRequest(User as ClaimsPrincipal);
+            if (!user.Roles.Any(x => x == Roles.Administrator || x == Roles.Viewer))
+            {
+                var facilityClaims = user.Claims.Where(x => x.Type == Claims.FacilityClaim).Select(s => s.Value);
+                if (!facilityClaims.Contains(person.FacilityId))
+                {
+                    Log.Fatal("Security violation. User {user} requested Person Info {person} with insufficient rights", user.UserName, id);
+                    return this.BadRequest("Δεν έχεται το δικαίωμα να δείτε την εγγραφή που ζητήσατε.");
+                }
+            }
+            
             if (person != null)
             {
                 if(!string.IsNullOrEmpty(person.FacilityId))
@@ -69,6 +89,7 @@ namespace Zeus.Controllers
         [Route("")]
         [ResponseType(typeof(Person))]
         [HttpPost]
+        [Authorize(Roles = Roles.Administrator + "," + Roles.User)]
         public async Task<IHttpActionResult> CreatePerson(Person person)
         {
             var user = await Helper.GetUserByRequest(User as ClaimsPrincipal);
@@ -77,18 +98,19 @@ namespace Zeus.Controllers
             {
                 var data = await context.Persons.Insert(person);
 
-                Log.Information("Person({Id}) created By {user}", data.Id, user);
+                Log.Information("Person({Id}) created By {user}", data.Id, user.UserName);
                 return this.Ok(data);
             }
             catch (Exception exc)
             {
-                Log.Error("Error {Exception} creating Person By {user}", exc, user);
+                Log.Error("Error {Exception} creating Person By {user}", exc, user.UserName);
                 return this.BadRequest("Σφάλμα Δημιουργίας δεδομένων Ατόμου");
             }
         }
 
         [Route("{id}")]
         [HttpDelete]
+        [Authorize(Roles = Roles.Administrator + "," + Roles.User)]
         public async Task<IHttpActionResult> DeletePerson(string id)
         {
             var user = await Helper.GetUserByRequest(User as ClaimsPrincipal);
@@ -99,13 +121,13 @@ namespace Zeus.Controllers
                 await context.FamilyRelations.Delete(x => x.PersonId == id || x.RelativeId == id);
                 await context.Persons.Delete(id);
                 
-                Log.Warning("Person({@Person}) deleted By {user}", data, user);
+                Log.Warning("Person({@Person}) deleted By {user}", data, user.UserName);
 
                 return this.Ok();
             }
             catch (Exception exc)
             {
-                Log.Error("Error {Exception} deleting Person By {user}", exc, user);
+                Log.Error("Error {Exception} deleting Person By {user}", exc, user.UserName);
                 return this.BadRequest("Σφάλμα Διαγραφής δεδομένων Ατόμου");
             }
         }
@@ -113,6 +135,7 @@ namespace Zeus.Controllers
         [Route("")]
         [ResponseType(typeof(Person))]
         [HttpPut]
+        [Authorize(Roles = Roles.Administrator + "," + Roles.User)]
         public async Task<IHttpActionResult> UpdatePerson(Person person)
         {
             var user = await Helper.GetUserByRequest(User as ClaimsPrincipal);
@@ -132,13 +155,13 @@ namespace Zeus.Controllers
 
                 var result = await context.Persons.Update(person);
 
-                Log.Information("Person({Id}) updated By {user}", result.Id, user);
+                Log.Information("Person({Id}) updated By {user}", result.Id, user.UserName);
 
                 return this.Ok(result);
             }
             catch (Exception exc)
             {
-                Log.Error("Error {Exception} updating Person By {user}", exc, user);
+                Log.Error("Error {Exception} updating Person By {user}", exc, user.UserName);
                 return this.BadRequest("Σφάλμα Ενημέρωσης δεδομένων Ατόμου");
             }
         }

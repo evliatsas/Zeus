@@ -16,6 +16,7 @@ angular
 	    		USERS: 'Χρήστες',
 	    		ARCHIVES: 'Αρχείο',
 	    		LOG: 'Ενέργειες Χρηστών',
+                TITLE:'Αλλαγή Κωδικού Πρόσβασης',
 	    		SUPPORT: {
 	    			HELP: 'Εγχειρίδιο Χρήσης',
 	    			ABOUT: 'Σχετικά'
@@ -23,6 +24,10 @@ angular
 	    		USER_MENU: {
 	    			SIGN_IN: 'Είσοδος',
 	    			CHANGE_PASSWORD: 'Αλλαγή Κωδικού',
+	    			OLD_PASSWORD: 'Παλιός Κωδικός Πρόσβασης',
+	    			NEW_PASSWORD: 'Νέος Κωδικός Πρόσβασης',
+	    			CONFIRM_NEW_PASSWORD: 'Επαλήθευση Κωδικού Πρόσβασης',
+	    			CHANGE_PASSWORD_BTN: 'ΑΛΛΑΓΗ ΚΩΔΙΚΟΥ',
 	    			MESSAGES: 'Μηνύματα',
 	    			SIGN_OUT: 'Αποσύνδεση'
 	    		}
@@ -235,7 +240,8 @@ angular
 	            CHARTS: 'Statistics',
 	            USERS: 'Users',
 	            ARCHIVES: 'Archive',
-                LOG: 'Log Entries',
+	            LOG: 'Log Entries',
+	            TITLE: 'Change Password',
 	            SUPPORT: {
 	                HELP: 'Manual',
 	                ABOUT: 'About'
@@ -243,6 +249,9 @@ angular
 	            USER_MENU: {
 	                SIGN_IN: 'Sign In',
 	                CHANGE_PASSWORD: 'Change Password',
+	                OLD_PASSWORD: 'Old Password',
+	                NEW_PASSWORD: 'New Password',
+	                CONFIRM_NEW_PASSWORD: 'Confirm New Password',
 	                MESSAGES: 'Messages',
 	                SIGN_OUT: 'Sign Out'
 	            }
