@@ -37,10 +37,6 @@ angular
             return $filter('filter')($scope.lookup.reports, function (r) { return r.Id == type; })[0].Description;
         }
 
-        $scope.$watch('reports', function (newValue, oldValue) {
-
-        });
-
         var notReady = true;
         var filtered = [];
 
