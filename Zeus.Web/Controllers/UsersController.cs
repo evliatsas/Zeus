@@ -36,9 +36,7 @@ namespace Zeus.Controllers
                 return userManager;
             }
         }
-
-
-        [AllowAnonymous]
+        
         [Route("")]
         [ResponseType(typeof(IEnumerable<User>))]
         [HttpGet]
@@ -151,7 +149,17 @@ namespace Zeus.Controllers
 
             if (string.IsNullOrWhiteSpace(userId))
             {
-                userId = User.Identity.GetUserId();
+                var claimsIdentity = User.Identity as ClaimsIdentity;
+
+                if (claimsIdentity == null)
+                    return BadRequest();
+
+                var userIdClaim = claimsIdentity.Claims.FirstOrDefault(x => x.Type == ClaimTypes.NameIdentifier);
+                if (userIdClaim == null)
+                    return BadRequest();
+
+                userId = userIdClaim.Value;
+                
                 result = await change(userId, oldPassword, newPassword);
             }
             else
@@ -181,41 +189,6 @@ namespace Zeus.Controllers
                 result = UserManager.AddPassword(userId, newPassword);
                         
             return result;
-        }
-
-        [Route("role")]
-        [HttpPost]
-        public async Task<IHttpActionResult> AddRole(dynamic obj)
-        {
-            IdentityResult result;
-            string userId = obj.userId;
-            string oldPassword = obj.oldPassword;
-            string newPassword = obj.newPassword;
-            string passwordConfirm = obj.passwordConfirm;
-
-            if (newPassword != passwordConfirm)
-            {
-                return BadRequest("Wrong password confirmation.");
-            }
-
-            if (string.IsNullOrWhiteSpace(userId))
-            {
-                userId = User.Identity.GetUserId();
-                result = await change(userId, oldPassword, newPassword);
-            }
-            else
-            {
-                result = reset(userId, newPassword);
-            }
-
-            if (result.Succeeded)
-            {
-                return Ok();
-            }
-            else
-            {
-                return BadRequest(result.Errors.FirstOrDefault());
-            }
         }
     }
 }

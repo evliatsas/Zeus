@@ -49,7 +49,7 @@ namespace Zeus.Providers
 
             if (user == null)
             {
-                if (user.UserName == "admin")
+                if (context.UserName == "admin")
                 {
                     var roleManager = context.OwinContext.GetUserManager<ApplicationRoleManager>();
                     IdentityRole role = new IdentityRole();
@@ -61,6 +61,7 @@ namespace Zeus.Providers
                     user.Email = string.Format("{0}@local.lc", context.UserName);
                     user.AddRole("Administrator");
                     var result = userManager.Create(user, context.Password);
+                    return Task.FromResult<object>(null);
                 }
 
                 context.SetError("invalid_grant", "The user name is incorrect");
@@ -76,7 +77,7 @@ namespace Zeus.Providers
             if (userManager.CheckPassword(user, psw))
             {
                 var identity = new ClaimsIdentity("JWT");
-
+                identity.AddClaim(new Claim(ClaimTypes.NameIdentifier, user.Id));
                 identity.AddClaim(new Claim(ClaimTypes.Name, context.UserName));
                 identity.AddClaim(new Claim("sub", context.UserName));
                 identity.AddClaim(new Claim(ClaimTypes.Role, "Manager"));

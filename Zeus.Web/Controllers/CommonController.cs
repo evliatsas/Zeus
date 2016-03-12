@@ -111,7 +111,7 @@ namespace Zeus.Controllers
 
                 return entries == null ? (IHttpActionResult)this.NotFound() : this.Ok(entries);
             }
-            catch(Exception exc)
+            catch
             {
                 return null;
             }

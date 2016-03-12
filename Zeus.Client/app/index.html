@@ -80,11 +80,7 @@
                 </div>
             </div>
         </div>
-    </div>
-    <div class="container-fluid">
-        <div ng-view=""></div>
-    </div>
-    <div id="simple-dialog" class="modal fade" tabindex="-1" style="display: none;">
+        <div id="simple-dialog" class="modal fade" tabindex="-1" style="display: none;">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-body">
@@ -100,13 +96,17 @@
                         <label for="Password" class="control-label">Επαλήθευση Κωδικού Πρόσβασης</label>
                         <input type="password" class="form-control" id="Password" required ng-model="passwordConfirm">
                     </div>
-                    <!-- <button type="button" ng-click="menu.changePassword(password,newPassword,passwordConfirm)" class="btn btn-primary" data-toggle="modal" data-target="#simple-dialog">Αλλαγη Κωδικου
+                    <button type="button" ng-click="changePassword(password,newPassword,passwordConfirm)" class="btn btn-primary" data-toggle="modal" data-target="#simple-dialog">Αλλαγη Κωδικου
                         <div class="ripple-container"></div>
-                    </button> -->
+                    </button>
                 </div>
             </div>
         </div>
     </div>
+    </div>
+    <div class="container-fluid">
+        <div ng-view=""></div>
+    </div>    
     <!--<div class="footer">
         <div class="container-fluid">
             <div><i class="material-icons md-18">copyright</i> from the Cinnamon team</div>

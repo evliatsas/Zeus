@@ -161,7 +161,7 @@ namespace Zeus.Entities.Repositories
 
                 return result.OrderBy(o => o.Timestamp);
             }
-            catch(Exception exc)
+            catch
             {
                 return null;
             }
