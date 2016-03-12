@@ -1,20 +1,17 @@
 ﻿using AspNet.Identity.MongoDB;
 using Microsoft.AspNet.Identity;
-using System;
 using System.Collections.Generic;
 using System.Security.Claims;
 using System.Threading.Tasks;
-using Zeus.Entities;
 
-namespace Zeus.Models {
+namespace Zeus.Models
+{
     // You can add profile data for the user by adding more properties to your ApplicationUser class, please visit http://go.microsoft.com/fwlink/?LinkID=317594 to learn more.
     public class ApplicationUser : IdentityUser
     {
         public string FullName { get; set; }
-        /// <summary>
-        /// Remarks for the specified Instance
-        /// </summary>
-        public virtual string Notes { get; set; }
+        public string Tag { get; set; }
+        public string Notes { get; set; }        
 
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
         {
@@ -31,14 +28,14 @@ namespace Zeus.Models {
         }
     }
 
-    public static class Claims
+    public static class ApplicationClaims
     {
         public const string FacilityClaim = "Facility";
         public const string ContactClaim = "Contact";
         public const string ProviderClaim = "Provider";
     }
 
-    public static class Roles
+    public static class ApplicationRoles
     {
         public const string Administrator = "Administrator";
         public const string User = "User";

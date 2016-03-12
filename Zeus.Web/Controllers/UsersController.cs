@@ -1,61 +1,29 @@
 ﻿using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.Owin;
 using Serilog;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net.Http;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Description;
-using Zeus.Entities;
 using Zeus.Models;
 
 namespace Zeus.Controllers
 {
     [Authorize]
     [RoutePrefix(Zeus.Routes.Users)]
-    public class UsersController : ApiController
+    public class UsersController : BaseController
     {
-        private ApplicationIdentityContext context;
-        public ApplicationIdentityContext Context
-        {
-            get
-            {
-                if (userManager == null)
-                    userManager = Request.GetOwinContext().GetUserManager<ApplicationUserManager>();
-
-                return userManager;
-            }
-        }
-
-        public UsersController()
-        {
-            context = ApplicationIdentityContext.Create();
-        }
-
-        private ApplicationUserManager userManager;
-        public ApplicationUserManager UserManager
-        {
-            get
-            {
-                if (userManager == null)
-                    userManager = Request.GetOwinContext().GetUserManager<ApplicationUserManager>();
-
-                return userManager;
-            }
-        }
-
         [Route("")]
         [ResponseType(typeof(IEnumerable<ApplicationUser>))]
         [HttpGet]
         public async Task<IHttpActionResult> GetUsers()
         {
-            var user = await Helper.GetUserByRequest(User as ClaimsPrincipal);
+            var user = await Helper.GetUserByRequest(User as ClaimsPrincipal, UserManager);
 
 
-            var result = await context.AllUsersAsync();
+            var result = await IdentityContext.AllUsersAsync();
 
             return result == null ? this.Ok(new List<ApplicationUser>().AsEnumerable()) : this.Ok(result.OrderByDescending(o => o.FullName).AsEnumerable());
         }
@@ -80,9 +48,9 @@ namespace Zeus.Controllers
         [Route("")]
         [ResponseType(typeof(ApplicationUser))]
         [HttpPost]
-        public async Task<IHttpActionResult> CreateUser(ApplicationUser user)
+        public async Task<IHttpActionResult> CreateUser(RegisterUser user)
         {
-            var currentuser = await Helper.GetUserByRequest(User as ClaimsPrincipal);
+            var currentuser = await Helper.GetUserByRequest(User as ClaimsPrincipal, UserManager);
 
             try
             {
@@ -110,16 +78,21 @@ namespace Zeus.Controllers
         [HttpDelete]
         public async Task<IHttpActionResult> DeleteUser(string id)
         {
-            var user = await Helper.GetUserByRequest(User as ClaimsPrincipal);
+            var user = await Helper.GetUserByRequest(User as ClaimsPrincipal, UserManager);
 
             try
             {
-                var data = await context.Users.GetById(id);
-                await context.Users.Delete(id);
-
-                Log.Warning("User({@User}) deleted By {user}", data, user);
-
-                return this.Ok();
+                var data = await UserManager.FindByIdAsync(id);
+                var result = await UserManager.DeleteAsync(data);
+                if (result.Succeeded)
+                {
+                    Log.Warning("User({@User}) deleted By {user}", data, user);
+                    return this.Ok();
+                }
+                else
+                {
+                    throw new Exception( result.Errors.FirstOrDefault());
+                }
             }
             catch (Exception exc)
             {
@@ -133,20 +106,20 @@ namespace Zeus.Controllers
         [HttpPut]
         public async Task<IHttpActionResult> UpdateUser(ApplicationUser user)
         {
-            var currentuser = await Helper.GetUserByRequest(User as ClaimsPrincipal);
+            var currentuser = await Helper.GetUserByRequest(User as ClaimsPrincipal, UserManager);
 
             try
             {
-                var oldUser = await context.Users.GetById(user.Id);
+                var oldUser = await UserManager.FindByIdAsync(user.Id);
                 oldUser.FullName = user.FullName;
                 oldUser.UserName = user.UserName;
                 oldUser.Email = user.Email;
                 oldUser.PhoneNumber = user.PhoneNumber;
                 oldUser.Roles = user.Roles;
                 oldUser.Claims = user.Claims;
-                var result = await context.Users.Update(oldUser);
+                var result = await UserManager.UpdateAsync(oldUser);
 
-                Log.Information("User({Id}) updated By {user}", result.Id, currentuser);
+                Log.Information("User({Id}) updated By {user}", user.Id, currentuser);
 
                 return this.Ok(result);
             }
