@@ -105,11 +105,6 @@ angular
             controller: 'MessagesCtrl',
             controllerAs: 'messagesCtrl'
         })
-        .when('/reports/messages/:id', {
-            templateUrl: 'views/reports/report.html',
-            controller: 'ReportCtrl',
-            controllerAs: 'reportCtrl'
-          })
         .when('/providers/:id', {
             templateUrl: 'views/provider.html',
             controller: 'ProviderCtrl',
