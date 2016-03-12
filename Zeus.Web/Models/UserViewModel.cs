@@ -14,6 +14,7 @@ namespace Zeus.Models
             Roles = new List<string>();
             Claims = new List<IdentityUserClaim>();
         }
+        
         public string FullName { get; set; }
         public string UserName { get; set; }
         public string Email { get; set; }
@@ -26,9 +27,8 @@ namespace Zeus.Models
         public string NewPassword { get; set; }
         public string PasswordConfirm { get; set; }
 
-        public static ApplicationUser Map(UserViewModel userFrom)
+        public static ApplicationUser Map(ApplicationUser userTo, UserViewModel userFrom)
         {
-            ApplicationUser userTo = new ApplicationUser();
             userTo.FullName = userFrom.FullName;
             userTo.UserName = userFrom.UserName;
             userTo.Email = userFrom.Email;
@@ -43,14 +43,14 @@ namespace Zeus.Models
         public static UserViewModel Map(ApplicationUser userFrom)
         {
             UserViewModel userTo = new UserViewModel();
-            userFrom.FullName = userTo.FullName;
-            userFrom.UserName = userTo.UserName;
-            userFrom.Email = userTo.Email;
-            userFrom.PhoneNumber = userTo.PhoneNumber;
-            userFrom.Roles = userTo.Roles;
-            userFrom.Claims = userTo.Claims;
-            userFrom.Tag = userTo.Tag;
-            userFrom.Notes = userTo.Notes;
+            userTo.FullName = userFrom.FullName;
+            userTo.UserName = userFrom.UserName;
+            userTo.Email = userFrom.Email;
+            userTo.PhoneNumber = userFrom.PhoneNumber;
+            userTo.Roles = userFrom.Roles;
+            userTo.Claims = userFrom.Claims;
+            userTo.Tag = userFrom.Tag;
+            userTo.Notes = userFrom.Notes;
             return userTo;
         }
     }

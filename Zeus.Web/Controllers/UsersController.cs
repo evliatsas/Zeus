@@ -33,15 +33,22 @@ namespace Zeus.Controllers
         [HttpGet]
         public async Task<IHttpActionResult> GetUser(string id)
         {
+            ApplicationUser app;
+            UserViewModel user;
+
             if (id == "self")
             {
                 var claimsIdentity = User.Identity as ClaimsIdentity;
                 var userIdClaim = claimsIdentity.Claims.FirstOrDefault(x => x.Type == ClaimTypes.NameIdentifier);
                 id = userIdClaim.Value;
+                app = await UserManager.FindByIdAsync(id);
+                user = UserViewModel.Map(app);
             }
-
-            var app = await UserManager.FindByNameAsync(id);
-            var user = UserViewModel.Map(app);
+            else
+            {
+                app = await UserManager.FindByNameAsync(id);
+                user = UserViewModel.Map(app);
+            }
 
             return user == null ? (IHttpActionResult)this.NotFound() : this.Ok(user);
         }
@@ -55,7 +62,7 @@ namespace Zeus.Controllers
 
             try
             {
-                var appuser = UserViewModel.Map(user);
+                var appuser = UserViewModel.Map(new ApplicationUser(), user);
                 var result = await UserManager.CreateAsync(appuser, user.Password);
                 if (result.Succeeded)
                 {
@@ -112,12 +119,12 @@ namespace Zeus.Controllers
             try
             {
                 var oldUser = await UserManager.FindByNameAsync(user.UserName);
-                oldUser = UserViewModel.Map(user);
+                oldUser = UserViewModel.Map(oldUser, user);
                 var result = await UserManager.UpdateAsync(oldUser);
 
                 Log.Information("User({UserName}) updated By {user}", user.UserName, currentuser);
 
-                return this.Ok(result);
+                return this.Ok(user);
             }
             catch (Exception exc)
             {
