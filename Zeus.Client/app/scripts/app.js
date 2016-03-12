@@ -22,7 +22,8 @@ angular
     'ui.bootstrap.datetimepicker',
     'ui.dateTimeInput',
     'LocalStorageModule',
-    'pascalprecht.translate'
+    'pascalprecht.translate',
+    'chart.js'
   ])
   .config(function ($routeProvider) {
 

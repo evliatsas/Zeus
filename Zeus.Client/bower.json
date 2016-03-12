@@ -22,7 +22,8 @@
     "angular-local-storage": "^0.2.5",
     "Chart.js": "^1.0.2",
     "angular-translate": "^2.10.0",
-    "angular-date-time-input": "^1.1.0"
+    "angular-date-time-input": "^1.1.0",
+    "angular-chart.js": "^0.8.9"
   },
   "devDependencies": {
     "angular-mocks": "^1.4.0"
