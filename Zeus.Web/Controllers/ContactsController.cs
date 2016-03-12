@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Description;
 using Zeus.Entities;
+using Zeus.Entities.Users;
 
 namespace Zeus.Controllers
 {
@@ -26,10 +27,18 @@ namespace Zeus.Controllers
         [HttpGet]
         public async Task<IHttpActionResult> GetContacts()
         {
+            IEnumerable<Contact> result;
+
             var user = await Helper.GetUserByRequest(User as ClaimsPrincipal);
-
-            var result = await context.Contacts.GetAll();
-
+            if(user.Roles.Any(x=>x == Roles.Administrator || x == Roles.Viewer))
+                result = await context.Contacts.GetAll();
+            else
+            {
+                var facilityClaims = user.Claims.Where(x => x.Type == Claims.FacilityClaim).Select(s=>s.Value);
+                var facilityContacts = (await context.FacilityContacts.Get(x => facilityClaims.Contains(x.FacilityId))).Select(s=>s.ContactId);
+                result = await context.Contacts.Get(x => facilityContacts.Contains(x.Id));
+            }
+            
             return result == null ? this.Ok(new List<Contact>().AsEnumerable()) : this.Ok(result.OrderByDescending(o => o.Name).AsEnumerable());
         }
 
@@ -38,6 +47,18 @@ namespace Zeus.Controllers
         [HttpGet]
         public async Task<IHttpActionResult> GetContact(string id)
         {
+            var user = await Helper.GetUserByRequest(User as ClaimsPrincipal);
+            if (!user.Roles.Any(x => x == Roles.Administrator || x == Roles.Viewer))
+            {
+                var facilityClaims = user.Claims.Where(x => x.Type == Claims.FacilityClaim).Select(s => s.Value);
+                var facilityContacts = (await context.FacilityContacts.Get(x => facilityClaims.Contains(x.FacilityId))).Select(s => s.ContactId);
+                if(!facilityContacts.Contains(id))
+                {
+                    Log.Fatal("Security violation. User {user} requested Contact Info {contact} with insufficient rights", user.UserName, id);
+                    return this.BadRequest("Δεν έχεται το δικαίωμα να δείτε την εγγραφή που ζητήσατε.");
+                }
+            }
+
             var contact = await context.Contacts.GetById(id);
 
             if (contact != null)
@@ -59,6 +80,7 @@ namespace Zeus.Controllers
         [Route("")]
         [ResponseType(typeof(Contact))]
         [HttpPost]
+        [Authorize(Roles = Roles.Administrator +"," + Roles.User)]
         public async Task<IHttpActionResult> CreateContact(Contact contact)
         {
             var user = await Helper.GetUserByRequest(User as ClaimsPrincipal);
@@ -90,18 +112,19 @@ namespace Zeus.Controllers
 
                 var data = await context.Contacts.Insert(contact);
 
-                Log.Information("Contact({Id}) created By {user}", data.Id, user);
+                Log.Information("Contact({Id}) created By {user}", data.Id, user.UserName);
                 return this.Ok(data);
             }
             catch (Exception exc)
             {
-                Log.Error("Error {Exception} creating Contact By {user}", exc, user);
+                Log.Error("Error {Exception} creating Contact By {user}", exc, user.UserName);
                 return this.BadRequest("Σφάλμα Δημιουργίας δεδομένων Ατόμου");
             }
         }
 
         [Route("{id}")]
         [HttpDelete]
+        [Authorize(Roles = Roles.Administrator + "," + Roles.User)]
         public async Task<IHttpActionResult> DeleteContact(string id)
         {
             var user = await Helper.GetUserByRequest(User as ClaimsPrincipal);
@@ -118,7 +141,7 @@ namespace Zeus.Controllers
             }
             catch (Exception exc)
             {
-                Log.Error("Error {Exception} deleting Contact By {user}", exc, user);
+                Log.Error("Error {Exception} deleting Contact By {user}", exc, user.UserName);
                 return this.BadRequest("Σφάλμα Διαγραφής δεδομένων Ατόμου");
             }
         }
@@ -126,6 +149,7 @@ namespace Zeus.Controllers
         [Route("")]
         [ResponseType(typeof(Contact))]
         [HttpPut]
+        [Authorize(Roles = Roles.Administrator + "," + Roles.User)]
         public async Task<IHttpActionResult> UpdateContact(Contact contact)
         {
             var user = await Helper.GetUserByRequest(User as ClaimsPrincipal);
@@ -159,13 +183,13 @@ namespace Zeus.Controllers
 
                 var result = await context.Contacts.Update(contact);
 
-                Log.Information("Contact({Id}) updated By {user}", result.Id, user);
+                Log.Information("Contact({Id}) updated By {user}", result.Id, user.UserName);
 
                 return this.Ok(result);
             }
             catch (Exception exc)
             {
-                Log.Error("Error {Exception} updating Contact By {user}", exc, user);
+                Log.Error("Error {Exception} updating Contact By {user}", exc, user.UserName);
                 return this.BadRequest("Σφάλμα Ενημέρωσης δεδομένων Ατόμου");
             }
         }        

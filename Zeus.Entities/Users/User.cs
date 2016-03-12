@@ -1,5 +1,6 @@
 ﻿using MongoDB.Bson.Serialization.Attributes;
 using System.Collections.Generic;
+using System.Security.Claims;
 
 namespace Zeus.Entities
 {
@@ -9,7 +10,7 @@ namespace Zeus.Entities
         public User()
         {
             this.Roles = new List<string>();
-            this.Claims = new List<string>();
+            this.Claims = new List<Claim>();
         }
         public string FullName { get; set; }
         public string UserName { get; set; }
@@ -22,6 +23,6 @@ namespace Zeus.Entities
         [BsonIgnore]
         public string PasswordConfirm { get; set; }
         public List<string> Roles { get; set; }
-        public List<string> Claims { get; set; }
+        public List<Claim> Claims { get; set; }
     }
 }
