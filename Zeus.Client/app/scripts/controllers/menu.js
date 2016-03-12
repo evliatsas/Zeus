@@ -2,8 +2,9 @@
 
 angular
     .module('zeusclientApp')
-    .controller('MenuCtrl', function ($scope, $location, $http, $translate, baseUrl, authService) {
+    .controller('MenuCtrl', function($scope, $location, $http, $translate, baseUrl, authService) {
 
+        $scope.unread = 0;
         $scope.isAuth = authService.isAuth();
 
         $scope.getClass = function(path) {
@@ -25,13 +26,12 @@ angular
 
         $scope.language = "EN";
         $scope.languageTitle = "Switch to English";
-        $scope.changeLanguage = function () {
+        $scope.changeLanguage = function() {
             if ($scope.language == "EN") {
                 $translate.use('en');
                 $scope.language = "ΕΛ";
                 $scope.languageTitle = "Αλλαγή σε Ελληνικά";
-            }
-            else {
+            } else {
                 $translate.use('el');
                 $scope.language = "EN";
                 $scope.languageTitle = "Switch to English";
@@ -39,12 +39,14 @@ angular
 
         }
 
-        $http({
-            method: 'GET',
-            url: baseUrl + '/reports/message/unread'
-        }).then(function successCallback(response) {
-            $scope.unread = response.data;
-        }, function errorCallback(response) {
-            $scope.unread = 0;
-        });
+        if ($scope.isAuth) {
+            $http({
+                method: 'GET',
+                url: baseUrl + '/reports/message/unread'
+            }).then(function successCallback(response) {
+                $scope.unread = response.data;
+            }, function errorCallback(response) {
+                $scope.unread = 0;
+            });
+        }
     });
