@@ -60,12 +60,12 @@
         <a href="javascript:void(0)" class="btn btn-info" ng-click="addClaim()"><i class="material-icons">add</i></a>
     </span>
         <div class="form-inline" ng-repeat="claim in user.Claims">
-            <select class="form-control" ng-model="claim.type">
-                <option ng-repeat="phoneType in phoneTypes" value="{{phoneType}}">
-                    {{phoneType}}
+            <select class="form-control" ng-model="claim.Value">
+                <option ng-repeat="facility in facilities" value="{{facility.Id}}">
+                    {{facility.Description}}
                 </option>
             </select>
-            <input type="text" class="form-control" placeholder="{{ 'USER.CLAIM' | translate }}" ng-model="claim.value">
+            <input type="text" class="form-control" placeholder="{{ 'USER.CLAIM' | translate }}" ng-model="claim.Type">
             <a href="javascript:void(0)" class="btn btn-info" style="padding: 0px; left: -25px; top: 5px" ng-click="user.Claims.splice($index, 1)"><i class="material-icons">clear</i></a>
         </div>
     </div>

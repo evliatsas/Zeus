@@ -1,6 +1,7 @@
 ﻿using AspNet.Identity.MongoDB;
 using Microsoft.AspNet.Identity;
 using System;
+using System.Collections.Generic;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using Zeus.Entities;
@@ -10,11 +11,6 @@ namespace Zeus.Models {
     public class ApplicationUser : IdentityUser
     {
         public string FullName { get; set; }
-        /// <summary>
-        /// Data Placeholder
-        /// </summary>
-        public virtual object Tag { get; set; }
-
         /// <summary>
         /// Remarks for the specified Instance
         /// </summary>
@@ -27,5 +23,25 @@ namespace Zeus.Models {
             // Add custom user claims here
             return userIdentity;
         }
+
+        public ApplicationUser()
+        {
+            this.Claims = new List<IdentityUserClaim>();
+            this.Roles = new List<string>();
+        }
+    }
+
+    public static class Claims
+    {
+        public const string FacilityClaim = "Facility";
+        public const string ContactClaim = "Contact";
+        public const string ProviderClaim = "Provider";
+    }
+
+    public static class Roles
+    {
+        public const string Administrator = "Administrator";
+        public const string User = "User";
+        public const string Viewer = "Viewer";
     }
 }
