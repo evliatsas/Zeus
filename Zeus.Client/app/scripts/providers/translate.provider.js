@@ -17,8 +17,8 @@ angular
 	    		ARCHIVES: 'Αρχείο',
 	    		LOG: 'Ενέργειες Χρηστών',
 	    		SUPPORT: {
-	    			HELP: 'Βοήθεια',
-	    			ABOUT: 'Για την Εφαρμογή'
+	    			HELP: 'Εγχειρίδιο Χρήσης',
+	    			ABOUT: 'Σχετικά'
 	    		},
 	    		USER_MENU: {
 	    			SIGN_IN: 'Είσοδος',
@@ -233,7 +233,7 @@ angular
 	            ARCHIVES: 'Archive',
                 LOG: 'Log Entries',
 	            SUPPORT: {
-	                HELP: 'Help',
+	                HELP: 'Manual',
 	                ABOUT: 'About'
 	            },
 	            USER_MENU: {
