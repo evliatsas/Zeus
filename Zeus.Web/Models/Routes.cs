@@ -13,9 +13,8 @@ namespace Zeus
         public const string Providers = "providers";
         public const string Reports = "reports";
         public const string Archive = "archive";
-        public const string Message = "message";
+        public const string Message = "messages";
         public const string Persons = "persons";
-
         public const string FamilyRelations = "family";
         public const string Contacts = "contacts";
         public const string Users = "users";

@@ -34,7 +34,12 @@ namespace Zeus
 			return Roles.Find(r => true).ToListAsync();
 		}
 
-		public void Dispose()
+        public Task<List<ApplicationUser>> AllUsersAsync()
+        {
+            return Users.Find(r => true).ToListAsync();
+        }
+
+        public void Dispose()
 		{
 		}
 	}
