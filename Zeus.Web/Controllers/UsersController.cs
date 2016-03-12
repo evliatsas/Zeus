@@ -18,11 +18,21 @@ namespace Zeus.Controllers
     [RoutePrefix(Zeus.Routes.Users)]
     public class UsersController : ApiController
     {
-        private Entities.Repositories.Context context;
+        private ApplicationIdentityContext context;
+        public ApplicationIdentityContext Context
+        {
+            get
+            {
+                if (userManager == null)
+                    userManager = Request.GetOwinContext().GetUserManager<ApplicationUserManager>();
+
+                return userManager;
+            }
+        }
 
         public UsersController()
         {
-            context = Entities.Repositories.Context.Instance;
+            context = ApplicationIdentityContext.Create();
         }
 
         private ApplicationUserManager userManager;
@@ -38,19 +48,20 @@ namespace Zeus.Controllers
         }
 
         [Route("")]
-        [ResponseType(typeof(IEnumerable<User>))]
+        [ResponseType(typeof(IEnumerable<ApplicationUser>))]
         [HttpGet]
         public async Task<IHttpActionResult> GetUsers()
         {
             var user = await Helper.GetUserByRequest(User as ClaimsPrincipal);
 
-            var result = await context.Users.GetAll();
 
-            return result == null ? this.Ok(new List<User>().AsEnumerable()) : this.Ok(result.OrderByDescending(o => o.FullName).AsEnumerable());
+            var result = await context.AllUsersAsync();
+
+            return result == null ? this.Ok(new List<ApplicationUser>().AsEnumerable()) : this.Ok(result.OrderByDescending(o => o.FullName).AsEnumerable());
         }
 
         [Route("{id}")]
-        [ResponseType(typeof(User))]
+        [ResponseType(typeof(ApplicationUser))]
         [HttpGet]
         public async Task<IHttpActionResult> GetUser(string id)
         {
@@ -61,15 +72,15 @@ namespace Zeus.Controllers
                 id = userIdClaim.Value;
             }
 
-            var user = await context.Users.GetById(id);
+            var user = await UserManager.FindByIdAsync(id);
 
             return user == null ? (IHttpActionResult)this.NotFound() : this.Ok(user);
         }
 
         [Route("")]
-        [ResponseType(typeof(User))]
+        [ResponseType(typeof(ApplicationUser))]
         [HttpPost]
-        public async Task<IHttpActionResult> CreateUser(User user)
+        public async Task<IHttpActionResult> CreateUser(ApplicationUser user)
         {
             var currentuser = await Helper.GetUserByRequest(User as ClaimsPrincipal);
 
@@ -118,9 +129,9 @@ namespace Zeus.Controllers
         }
 
         [Route("")]
-        [ResponseType(typeof(User))]
+        [ResponseType(typeof(ApplicationUser))]
         [HttpPut]
-        public async Task<IHttpActionResult> UpdateUser(User user)
+        public async Task<IHttpActionResult> UpdateUser(ApplicationUser user)
         {
             var currentuser = await Helper.GetUserByRequest(User as ClaimsPrincipal);
 

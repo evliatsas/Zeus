@@ -13,8 +13,17 @@ angular
           { Caption: 'Τηλέφωνο', Field: 'PhoneNumber' }
         ];
 
+        $http({
+            method: 'GET',
+            url: baseUrl + '/common/facilities'
+        }).then(function successCallback(response) {
+            $scope.facilities = response.data;
+        }, function errorCallback(response) {
+            $scope.facilities = [];
+        });
+
         if ($scope.isInsert) {
-            $scope.data = {};
+            $scope.user = {};
         } else {
             $http({
                 method: 'GET',
@@ -44,7 +53,7 @@ angular
             }).then(function successCallback(response) {
                 messageService.saveSuccess();
                 $scope.user = response.data;
-                $location.url('/users');
+                $location.url('/users/' + response.data.Id);
             }, function errorCallback(response) {
                 messageService.showError(response.data.Message);
             });
@@ -68,5 +77,13 @@ angular
 
         $scope.addRole = function(role) {
             $scope.user.Roles.push(role);
+        }
+
+        $scope.addClaim = function () {
+            var claim = {
+                Type: 'Facility',
+                Value: ''
+            };
+            $scope.user.Claims.push(claim);
         }
     });
