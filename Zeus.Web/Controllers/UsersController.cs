@@ -126,7 +126,14 @@ namespace Zeus.Controllers
 
             try
             {
-                var result = await context.Users.Update(user);
+                var oldUser = await context.Users.GetById(user.Id);
+                oldUser.FullName = user.FullName;
+                oldUser.UserName = user.UserName;
+                oldUser.Email = user.Email;
+                oldUser.PhoneNumber = user.PhoneNumber;
+                oldUser.Roles = user.Roles;
+                oldUser.Claims = user.Claims;
+                var result = await context.Users.Update(oldUser);
 
                 Log.Information("User({Id}) updated By {user}", result.Id, currentuser);
 

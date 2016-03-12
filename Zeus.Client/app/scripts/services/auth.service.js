@@ -15,6 +15,7 @@
             changePassword: changePassword,
             isInRole: isInRole,
             isAuth: isAuth,
+            isAdmin: isAdmin,
             authentication: {
                 isAuth: false,
                 userName: "",

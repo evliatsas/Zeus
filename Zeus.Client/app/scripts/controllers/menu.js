@@ -46,6 +46,8 @@ angular
         }
 
         if ($scope.isAuth()) {
+            authService.fillUserInfo();
+            $scope.fullName = authService.info.title;
             $http({
                 method: 'GET',
                 url: baseUrl + '/reports/message/unread'

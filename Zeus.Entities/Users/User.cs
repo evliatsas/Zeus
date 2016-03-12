@@ -1,4 +1,5 @@
 ﻿using MongoDB.Bson.Serialization.Attributes;
+using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.Security.Claims;
 
@@ -24,5 +25,7 @@ namespace Zeus.Entities
         public string PasswordConfirm { get; set; }
         public List<string> Roles { get; set; }
         public List<Claim> Claims { get; set; }
+        [JsonIgnore]
+        public string PasswordHash { get; set; }
     }
 }
