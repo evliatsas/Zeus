@@ -1,6 +1,5 @@
 ﻿using AspNet.Identity.MongoDB;
 using Microsoft.AspNet.Identity;
-using System.Collections.Generic;
 using System.Security.Claims;
 using System.Threading.Tasks;
 
@@ -19,13 +18,7 @@ namespace Zeus.Models
             var userIdentity = await manager.CreateIdentityAsync(this, DefaultAuthenticationTypes.ApplicationCookie);
             // Add custom user claims here
             return userIdentity;
-        }
-
-        public ApplicationUser()
-        {
-            this.Claims = new List<IdentityUserClaim>();
-            this.Roles = new List<string>();
-        }
+        }        
     }
 
     public static class ApplicationClaims
