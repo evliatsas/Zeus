@@ -6,13 +6,6 @@ angular
 
         $scope.isInsert = $routeParams.id == 'new';
 
-        $scope.usercolumns = [
-          { Caption: 'Όνοματεπώνυμο', Field: 'FullName' },
-          { Caption: 'Αναγνωριστικό', Field: 'UserName' },
-          { Caption: 'Email', Field: 'Email' },
-          { Caption: 'Τηλέφωνο', Field: 'PhoneNumber' }
-        ];
-
         $http({
             method: 'GET',
             url: baseUrl + '/common/facilities'
@@ -53,7 +46,7 @@ angular
             }).then(function successCallback(response) {
                 messageService.saveSuccess();
                 $scope.user = response.data;
-                $location.url('/users/' + response.data.Id);
+                $location.url('/users/' + response.data.UserName);
             }, function errorCallback(response) {
                 messageService.showError(response.data.Message);
             });
@@ -62,7 +55,7 @@ angular
         var deleteItem = function () {
             $http({
                 method: 'DELETE',
-                url: baseUrl + '/users/' + $scope.user.Id
+                url: baseUrl + '/users/' + $scope.user.UserName
             }).then(function successCallback(response) {
                 messageService.deleteSuccess();
                 $location.url('/users');
@@ -72,7 +65,7 @@ angular
         }
 
         $scope.changePassword = function () {
-            authService.changePassword($scope.user.Id, "", $scope.user.NewPassword, $scope.user.PasswordConfirm);
+            authService.changePassword($scope.user.UserName, "", $scope.user.NewPassword, $scope.user.PasswordConfirm);
         }
 
         $scope.addRole = function(role) {

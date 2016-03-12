@@ -16,20 +16,20 @@ namespace Zeus.Controllers
     public class UsersController : BaseController
     {
         [Route("")]
-        [ResponseType(typeof(IEnumerable<ApplicationUser>))]
+        [ResponseType(typeof(IEnumerable<UserViewModel>))]
         [HttpGet]
         public async Task<IHttpActionResult> GetUsers()
         {
             var user = await Helper.GetUserByRequest(User as ClaimsPrincipal, UserManager);
 
+            var list = await IdentityContext.AllUsersAsync();
+            var result = list.Select(t => UserViewModel.Map(t));
 
-            var result = await IdentityContext.AllUsersAsync();
-
-            return result == null ? this.Ok(new List<ApplicationUser>().AsEnumerable()) : this.Ok(result.OrderByDescending(o => o.FullName).AsEnumerable());
+            return result == null ? this.Ok(new List<UserViewModel>().AsEnumerable()) : this.Ok(result.OrderByDescending(o => o.FullName).AsEnumerable());
         }
 
         [Route("{id}")]
-        [ResponseType(typeof(ApplicationUser))]
+        [ResponseType(typeof(UserViewModel))]
         [HttpGet]
         public async Task<IHttpActionResult> GetUser(string id)
         {
@@ -40,21 +40,22 @@ namespace Zeus.Controllers
                 id = userIdClaim.Value;
             }
 
-            var user = await UserManager.FindByIdAsync(id);
+            var app = await UserManager.FindByNameAsync(id);
+            var user = UserViewModel.Map(app);
 
             return user == null ? (IHttpActionResult)this.NotFound() : this.Ok(user);
         }
 
         [Route("")]
-        [ResponseType(typeof(ApplicationUser))]
+        [ResponseType(typeof(UserViewModel))]
         [HttpPost]
-        public async Task<IHttpActionResult> CreateUser(RegisterUser user)
+        public async Task<IHttpActionResult> CreateUser(UserViewModel user)
         {
             var currentuser = await Helper.GetUserByRequest(User as ClaimsPrincipal, UserManager);
 
             try
             {
-                var appuser = new ApplicationUser { FullName = user.FullName, PhoneNumber = user.PhoneNumber, UserName = user.UserName, Email = user.Email };
+                var appuser = UserViewModel.Map(user);
                 var result = await UserManager.CreateAsync(appuser, user.Password);
                 if (result.Succeeded)
                 {
@@ -82,7 +83,7 @@ namespace Zeus.Controllers
 
             try
             {
-                var data = await UserManager.FindByIdAsync(id);
+                var data = await UserManager.FindByNameAsync(id);
                 var result = await UserManager.DeleteAsync(data);
                 if (result.Succeeded)
                 {
@@ -102,24 +103,19 @@ namespace Zeus.Controllers
         }
 
         [Route("")]
-        [ResponseType(typeof(ApplicationUser))]
+        [ResponseType(typeof(UserViewModel))]
         [HttpPut]
-        public async Task<IHttpActionResult> UpdateUser(ApplicationUser user)
+        public async Task<IHttpActionResult> UpdateUser(UserViewModel user)
         {
             var currentuser = await Helper.GetUserByRequest(User as ClaimsPrincipal, UserManager);
 
             try
             {
-                var oldUser = await UserManager.FindByIdAsync(user.Id);
-                oldUser.FullName = user.FullName;
-                oldUser.UserName = user.UserName;
-                oldUser.Email = user.Email;
-                oldUser.PhoneNumber = user.PhoneNumber;
-                oldUser.Roles = user.Roles;
-                oldUser.Claims = user.Claims;
+                var oldUser = await UserManager.FindByNameAsync(user.UserName);
+                oldUser = UserViewModel.Map(user);
                 var result = await UserManager.UpdateAsync(oldUser);
 
-                Log.Information("User({Id}) updated By {user}", user.Id, currentuser);
+                Log.Information("User({UserName}) updated By {user}", user.UserName, currentuser);
 
                 return this.Ok(result);
             }
@@ -132,20 +128,16 @@ namespace Zeus.Controllers
 
         [Route("password")]
         [HttpPost]
-        public async Task<IHttpActionResult> ChangePassword(dynamic obj)
+        public async Task<IHttpActionResult> ChangePassword(UserViewModel user)
         {
             IdentityResult result;
-            string userId = obj.userId;
-            string oldPassword = obj.oldPassword;
-            string newPassword = obj.newPassword;
-            string passwordConfirm = obj.passwordConfirm;
-
-            if (newPassword != passwordConfirm)
+           
+            if (user.NewPassword != user.PasswordConfirm)
             {
                 return BadRequest("Wrong password confirmation.");
             }
 
-            if (string.IsNullOrWhiteSpace(userId))
+            if (string.IsNullOrWhiteSpace(user.UserName))
             {
                 var claimsIdentity = User.Identity as ClaimsIdentity;
 
@@ -156,13 +148,14 @@ namespace Zeus.Controllers
                 if (userIdClaim == null)
                     return BadRequest();
 
-                userId = userIdClaim.Value;
+                var userId = userIdClaim.Value;
 
-                result = await change(userId, oldPassword, newPassword);
+                result = await change(userId, user.Password, user.NewPassword);
             }
             else
             {
-                result = reset(userId, newPassword);
+                var app = await UserManager.FindByNameAsync(user.UserName);
+                result = reset(app.Id, user.NewPassword);
             }
 
             if (result.Succeeded)
