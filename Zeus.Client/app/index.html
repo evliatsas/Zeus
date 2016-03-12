@@ -71,7 +71,7 @@
                             <ul class="dropdown-menu">
                                 <li ng-hide="isAuth()"><a href="#/login">{{ 'MENU.USER_MENU.SIGN_IN' | translate }}</a></li>
                                 <li ng-show="isAuth()"><a href="" data-toggle="modal" data-target="#simple-dialog">{{ 'MENU.USER_MENU.CHANGE_PASSWORD' | translate }}</a></li>
-                                <li ng-show="isAuth()"><a ng-href="#/reports/message">{{ 'MENU.USER_MENU.MESSAGES' | translate }}
+                                <li ng-show="isAuth()"><a ng-href="#/reports/messages">{{ 'MENU.USER_MENU.MESSAGES' | translate }}
                                 <span class="badge">{{unread}}</span>
                                 </a></li>
                                 <li ng-show="isAuth()" role="separator" class="divider"></li>
@@ -189,7 +189,7 @@
     <script src="scripts/controllers/housing.js"></script>
     <script src="scripts/controllers/archive.js"></script>
     <script src="scripts/controllers/log.js"></script>
-    <script src="scripts/controllers/message.js"></script>
+    <script src="scripts/controllers/messages.js"></script>
     <script src="scripts/directives/facility-details.js"></script>
     <script src="scripts/directives/on-finish-render.js"></script>
     <script src="scripts/directives/phone-list.js"></script>

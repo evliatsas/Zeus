@@ -100,10 +100,15 @@ angular
             controller: 'LogCtrl',
             controllerAs: 'logCtrl'
         })
-        .when('/reports/message', {
-            templateUrl: 'views/message.html',
-            controller: 'MessageCtrl',
-            controllerAs: 'messageCtrl'
+        .when('/reports/messages', {
+            templateUrl: 'views/messages.html',
+            controller: 'MessagesCtrl',
+            controllerAs: 'messagesCtrl'
+        })
+        .when('/reports/messages/:id', {
+            templateUrl: 'views/reports/report.html',
+            controller: 'ReportCtrl',
+            controllerAs: 'reportCtrl'
           })
         .when('/providers/:id', {
             templateUrl: 'views/provider.html',
