@@ -191,7 +191,11 @@ angular
 	    	    CONFIRM_PASSWORD: 'Επιβεβαίωση Κωδικού',
 	    	    CONFIRM_PASSWORD_ERROR:'Ο κωδικός δεν ταιριάζει',
 	    	    CHANGE_PASSWORD: 'ΑΛΛΑΓΗ ΚΩΔΙΚΟΥ',
-	    	    NEW_PASSWORD: 'Νέος Κωδικός Πρόσβασης'
+	    	    NEW_PASSWORD: 'Νέος Κωδικός Πρόσβασης',
+	    	    ROLES: 'Ρόλοι',
+	    	    CLAIMS: 'Δικαιώματα',
+	    	    ROLE: 'Ρόλος',
+	    	    CLAIM: 'Δικαίωμα'
 	    	},
 	    	PROVIDER: {
 	    	    DELETE: 'Διαγραφή Προμηθευτή',
@@ -407,7 +411,11 @@ angular
 	            CONFIRM_PASSWORD: 'Confirm Password',
 	            CONFIRM_PASSWORD_ERROR: 'Password does not match',
 	            CHANGE_PASSWORD: 'CHANGE PASSWORD: ',
-	            NEW_PASSWORD: 'New Password'
+	            NEW_PASSWORD: 'New Password',
+	    	    ROLES: 'Roles',
+	    	    CLAIMS: 'Claims',
+	    	    ROLE: 'Role',
+	    	    CLAIM: 'Claim'
 	        },
 	        PROVIDER: {
 	            DELETE: 'Delete Provider',
