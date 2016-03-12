@@ -88,7 +88,10 @@ angular
         }
 
         function generateReportStats(reports, labelsFn, seriesFn, dataFn) {
-            if (reports == null) { return; }
+            if (reports == null || reports.length == 0) {
+                $scope.charts = [];
+                return;
+            }
 
             var chart = {
                 labels: [],
