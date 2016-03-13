@@ -65,6 +65,10 @@
     <Compile Include="Contacts\PhoneNo.cs" />
     <Compile Include="LogEntry.cs" />
     <Compile Include="Lookup.cs" />
+    <Compile Include="Operations\Definitions.cs" />
+    <Compile Include="Operations\Operation.cs" />
+    <Compile Include="Operations\OperationProvider.cs" />
+    <Compile Include="Operations\Preparation.cs" />
     <Compile Include="Persons\FamilyRelation.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
