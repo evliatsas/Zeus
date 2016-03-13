@@ -210,12 +210,17 @@ angular
 	    	    TITLE: 'Φoρέας Υποστήριξης: ',
 	    	    NAME: 'Όνομασία',
 	    	    DESCRIPTION: 'Περιγραφή',
-	    	    TYPE: 'Κατηγορία',
+	    	    TYPE: 'Είδος',
+	    	    PERSONNEL:'Προσωπικό',
 	    	    PERSONEL_COUNT: 'Πλήθος Προσωπικού',
+	    	    PERSONNEL_TYPE: 'Κατηγορία Προσωπικού',
 	    	    ADMINISTRATION: 'Διαχείριση',
 	    	    SERVICES: 'Προσφερόμενες Υπηρεσίες',
 	    	    SERVICE: 'Υπηρεσία',
-                NOTES:'Σημειώσεις'
+	    	    INSTRUCTIONS: 'Οδηγίες',
+	    	    NOTES: 'Σημειώσεις',
+	    	    FACILITIES: 'Δομές Φιλοξενίας',
+                CONTACTS:'Επαφές'
 	    	},
 	    	PERSON: {
 	    	    DELETE: 'Διαγραφή Ταυτοποιημένου',
@@ -437,12 +442,17 @@ angular
 	            TITLE: 'Facility',
 	            NAME: 'Name',
 	            DESCRIPTION: 'Description',
-	            TYPE: 'Category',
+	            TYPE: 'Type',
+	            EMPLOYEE_TYPE: 'Category',
+	            PERSONNEL: 'Personnel',
 	            PERSONEL_COUNT: 'Number of Personnel',
 	            ADMINISTRATION: 'Administration',
 	            SERVICES: 'Offering Services',
 	            SERVICE: 'Service',
-	            NOTES: 'Σημειώσεις'
+	            INSTRUCTIONS:'Instuctions',
+	            NOTES: 'Σημειώσεις',
+	            FACILITIES: 'Δομές Φιλοξενίας',
+	            CONTACTS: 'Επαφές'
 	        },
 	        PERSON: {
 	            DELETE: 'Delete Identified Person',

@@ -71,6 +71,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
+    <Compile Include="Providers\Employee.cs" />
     <Compile Include="Providers\ProviderFacility.cs" />
     <Compile Include="Reports\FeedingReport.cs" />
     <Compile Include="Reports\HousingReport.cs" />
