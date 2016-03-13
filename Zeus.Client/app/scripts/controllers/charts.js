@@ -14,6 +14,16 @@ angular
         $scope.from = moment().subtract(7, 'days');
         $scope.to = moment();
 
+        Chart.defaults.global.colours = [
+            '#97BBCD', // blue
+            '#DCDCDC', // light grey
+            '#F7464A', // red
+            '#46BFBD', // green
+            '#FDB45C', // yellow
+            '#949FB1', // grey
+            '#4D5360'  // dark grey
+        ];
+
         $scope.getStats = function (type, from, to) {
             var query = {
                 types: [5], //only getting SituationReports for now
