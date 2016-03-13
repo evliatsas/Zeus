@@ -15,7 +15,11 @@ namespace Zeus.Entities
         public DateTime ETA { get; set; }
         public Nullable<DateTime> End { get; set; }
         public string StartingPoint { get; set; }
+        [BsonIgnore]
+        public Facility StartFacility { get; set; }
         public string Destination { get; set; }
+        [BsonIgnore]
+        public Facility DestinationFacility { get; set; }
         public int PersonCount { get; set; }
         public IList<Preparation> Preparations { get; set; }
         public IList<Transportation> Transports { get; set; }  

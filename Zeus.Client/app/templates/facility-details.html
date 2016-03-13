@@ -1,7 +1,7 @@
 ﻿<h2>{{ 'FACILITY_DETAILS.NAME' | translate }}<span style="color:#009688; font-weight:300">{{facility.Name}}</span></h2>
 <div class="form-group label-static ng-is-empty">
     <label for="i1" class="control-label">Ονομασία</label>
-    <input type="text" class="form-control" id="i1" ng-model="facility.Name">
+    <input type="text" class="form-control" id="i1"  data-error="{{ 'FACILITY_DETAILS.NAME_ERROR' | translate }}" required ng-model="facility.Name">
 </div>
 <div class="form-group label-static ng-is-empty">
     <label for="i2" class="control-label">{{ 'FACILITY_DETAILS.DESCRIPTION' | translate }}</label>
@@ -17,10 +17,10 @@
 </div>
 <div class="row">
     <div class="row" style="padding-left:15px">
-        <div class="col-md-9" >
+        <div class="col-md-offset-3 col-md-3" >
             <span style="font-weight:300">{{ 'FACILITY_DETAILS.TITLE_CAPACITY' | translate }}</span>
         </div>
-        <div class="col-md-3">
+        <div class="col-md-offset-3 col-md-3" style="padding-left:0px">
             <span style="font-weight:300">{{ 'FACILITY_DETAILS.ATTENDANCE' | translate }}</span>
         </div>
     </div>
