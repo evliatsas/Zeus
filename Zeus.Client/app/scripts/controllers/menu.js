@@ -50,7 +50,7 @@ angular
             $scope.fullName = authService.info.title;
             $http({
                 method: 'GET',
-                url: baseUrl + '/reports/message/unread'
+                url: baseUrl + '/reports/messages/unread'
             }).then(function successCallback(response) {
                 $scope.unread = response.data;
             }, function errorCallback(response) {

@@ -70,7 +70,7 @@ namespace Zeus.Controllers
             var facility = await context.Facilities.GetById(report.FacilityId);
             report.Facility = facility;
 
-            if(!report.IsAcknoledged)
+            if(!report.IsAcknoledged && user.UserName != report.User)
             {
                 report.IsAcknoledged = true;
                 report = await context.Reports.Update(report);
@@ -143,9 +143,9 @@ namespace Zeus.Controllers
 
             try
             {
-                //report.User = user;
+                report.User = user.UserName;
                 report.DateTime = DateTime.Now;
-
+                report.IsAcknoledged = false;
                 var data = await context.Reports.Insert(report);
 
                 Log.Information("Report({Id}) created By {user}", data.Id, user.UserName);
