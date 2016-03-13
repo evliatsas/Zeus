@@ -80,7 +80,7 @@
     </div>
     <div class="form-group label-static ng-is-empty">
         <label for="i17" class="control-label">{{ 'OPERATION.PERSON_COUNT' | translate }}</label>
-        <input type="number" class="form-control" id="i17" ng-model="operation.PersonCount" readonly>
+        <input type="number" class="form-control" id="i17" ng-model="operation.PersonCount">
     </div>
     <div class="form-group label-static ng-is-empty">
         <label for="i18" class="control-label">{{ 'OPERATION.PROBLEMS' | translate }}</label>
@@ -131,7 +131,7 @@
         <div class="form" ng-repeat="prov in operation.Providers track by $index">
             <div class="form-group label-static col-md-2">
                 <label class="control-label">{{ 'OPERATION.CARRIER' | translate }}</label>
-                <select class="form-control" ng-model="prov.ProviderId" convert-to-number>
+                <select class="form-control" ng-model="prov.ProviderId">
                     <option ng-repeat="provider in providers" value="{{provider.Id}}">
                         {{provider.Description}}
                     </option>
@@ -144,6 +144,9 @@
             <div class="form-group label-static col-md-4">
                 <label class="control-label">{{ 'OPERATION.PROBLEMS' | translate }}</label>
                 <input type="text" class="form-control" ng-model="prov.Problems">
+            </div>
+            <div class="col-md-1">
+                <a href="javascript:void(0)" ng-click="openProvider(prov.ProviderId)" class="btn btn-info"><i class="material-icons">perm_contact_calendar</i></a>
             </div>
             <div class="col-md-1">
                 <a href="javascript:void(0)" class="btn btn-info" ng-click="operation.Preparations.splice($index, 1)"><i class="material-icons">clear</i></a>

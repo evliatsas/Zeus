@@ -25,7 +25,7 @@ namespace Zeus.Entities.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("mongodb://192.168.1.250")]
+        [global::System.Configuration.DefaultSettingValueAttribute("mongodb://localhost")]
         public string ConnectionString {
             get {
                 return ((string)(this["ConnectionString"]));

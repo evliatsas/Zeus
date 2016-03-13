@@ -28,37 +28,45 @@ namespace Zeus.Controllers
         [ResponseType(typeof(IEnumerable<Operation>))]
         [HttpGet]
         public async Task<IHttpActionResult> GetOperations()
-        {
+        {           
             IEnumerable<Operation> result;
-
             var user = await Helper.GetUserByRequest(User as ClaimsPrincipal, UserManager);
-            if (user.Roles.Any(x => x == ApplicationRoles.Administrator || x == ApplicationRoles.Viewer))
-                result = await context.Operations.GetAll();
-            else
+
+            try
             {
-                var facilityClaims = user.Claims.Where(x => x.Type == ApplicationClaims.FacilityClaim).Select(s => s.Value);
-                var f = await context.Facilities.Get(x => facilityClaims.Contains(x.Id));
-                var names = f.Select(x => x.Name);
-                result = await context.Operations.Get(x => names.Contains(x.StartingPoint) || names.Contains(x.Destination));
+                if (user.Roles.Any(x => x == ApplicationRoles.Administrator || x == ApplicationRoles.Viewer))
+                    result = await context.Operations.GetAll();
+                else
+                {
+                    var facilityClaims = user.Claims.Where(x => x.Type == ApplicationClaims.FacilityClaim).Select(s => s.Value);
+                    var f = await context.Facilities.Get(x => facilityClaims.Contains(x.Id));
+                    var names = f.Select(x => x.Name);
+                    result = await context.Operations.Get(x => names.Contains(x.StartingPoint) || names.Contains(x.Destination));
+                }
+
+                var startIds = result.Select(x => x.StartingPoint);
+                var destIds = result.Select(x => x.Destination);
+                var facilityIds = startIds.Union(destIds).Distinct<string>().ToList();
+                var facilities = await context.Facilities.Get(x => facilityIds.Contains(x.Name));
+                result = result.Select(x =>
+                {
+                    x.StartFacility = facilities.FirstOrDefault(f => f.Name == x.StartingPoint);
+                    if (x.StartFacility == null)
+                        x.StartFacility = new Facility() { Name = x.StartingPoint };
+                    x.DestinationFacility = facilities.FirstOrDefault(f => f.Name == x.Destination);
+                    if (x.DestinationFacility == null)
+                        x.DestinationFacility = new Facility() { Name = x.Destination };
+
+                    return x;
+                });
+
+                return result == null ? this.Ok(new List<Operation>().AsEnumerable()) : this.Ok(result.OrderByDescending(o => o.Start).AsEnumerable());
             }
-
-            var startIds = result.Select(x => x.StartingPoint);
-            var destIds = result.Select(x => x.Destination);
-            var facilityIds = startIds.Union(destIds).Distinct<string>();
-            var facilities = await context.Facilities.Get(x => facilityIds.Contains(x.Id));
-            result = result.Select(x =>
+            catch(Exception exc)
             {
-                x.StartFacility = facilities.FirstOrDefault(f => f.Name == x.StartingPoint);
-                if (x.StartFacility == null)
-                    x.StartFacility = new Facility() { Name = x.StartingPoint };
-                x.DestinationFacility = facilities.FirstOrDefault(f => f.Name == x.Destination);
-                if (x.DestinationFacility == null)
-                    x.DestinationFacility = new Facility() { Name = x.Destination };
-
-                return x;
-            });
-
-            return result == null ? this.Ok(new List<Operation>().AsEnumerable()) : this.Ok(result.OrderByDescending(o => o.Start).AsEnumerable());
+                Log.Error("Error {Exception} fetching Operations By {user}", exc, user.UserName);
+                return this.BadRequest("Σφάλμα Ανάκτησης δεδομένων Επιχείρησης");
+            }
         }
 
         [Route("{id}")]

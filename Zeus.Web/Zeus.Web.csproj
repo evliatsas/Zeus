@@ -198,7 +198,6 @@
     <Compile Include="Models\Helpers.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\PdfReport.cs" />
-    <Compile Include="Models\PdfReportsProvider.cs" />
     <Compile Include="Models\UserViewModel.cs" />
     <Compile Include="Models\Routes.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

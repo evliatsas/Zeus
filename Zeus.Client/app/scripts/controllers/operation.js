@@ -118,6 +118,11 @@ angular
             $scope.operation.Providers.push(newProv);
         }
 
+        $scope.openProvider = function (id) {
+            if (id)
+                $location.url("/providers/" + id);
+        }
+
         $scope.openContact = function () {
             if ($scope.operation.DestinationContactId)
                 $location.url("/contacts/" + $scope.operation.DestinationContactId);
