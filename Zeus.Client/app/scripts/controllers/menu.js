@@ -14,10 +14,11 @@ angular
         }
 
         $scope.getClass = function(path) {
-            if ($location.path() === path) {
-                return 'active';
-            } else {
+            var i = path.indexOf($location.path());
+            if (i == -1) {
                 return '';
+            } else {
+                return 'active';
             }
         }
 
