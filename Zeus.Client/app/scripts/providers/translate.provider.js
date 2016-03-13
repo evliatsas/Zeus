@@ -47,7 +47,10 @@ angular
 	    	    DESCRIPTION: 'Περιγραφή',
 	    	    CATEGORY:'Κατηγορία',
 	    	    TYPE: 'Τύπος',
-	    	    CAPACITY: 'Χωρητικότητα',
+	    	    TITLE_CAPACITY: 'Χωρητικότητα',
+	    	    CAPACITY: 'Ελάχιστη',
+	    	    MAXCAPACITY: 'Μέγιστη',
+	    	    REPORT_CAPACITY: 'Αναφοράς',
 	    	    ATTENDANCE: 'Φιλοξενούμενοι: ',
 	    	    ISSECURE: 'Φυλασσόμενος Χώρος',
 	    	    HAS_HEALTHCARE: 'Υγεινομική Υποστήριξη',
@@ -76,6 +79,11 @@ angular
 	    	    TRANSITION: 'Μετάβαση',
 	    	    SAVE: 'Αποθήκευση',
 	    	    MOVE: 'Μετακίνηση'
+	    	},
+	    	CHARTS: {
+	    		FROM: 'Από',
+	    		UNTIL: 'Εώς',
+	    		SHOW: 'ΕΜΦΑΝΙΣΗ'
 	    	},
 	    	LOOKUP_MODAL: {
 	    	    CANCEL: 'ΑΚΥΡΩΣΗ',
@@ -282,7 +290,10 @@ angular
 	            DESCRIPTION: 'Description',
 	            CATEGORY: 'Category',
 	            TYPE: 'Type',
-	            CAPACITY: 'Capacity',
+	            TITLE_CAPACITY: 'Capacity',
+	            CAPACITY: 'Minimum',
+	            MAXCAPACITY: 'Maximum',
+	            REPORT_CAPACITY:'Report',
 	            ATTENDANCE: 'Attendance',
 	            ISSECURE: 'Security',
 	            HAS_HEALTHCARE: 'Healthcare',
@@ -311,6 +322,11 @@ angular
 	            SAVE: 'Save',
 	            MOVE: 'Move'
 	        },
+	        CHARTS: {
+	    		FROM: 'From',
+	    		UNTIL: 'Until',
+	    		SHOW: 'Show'
+	    	},
 	        LOOKUP_MODAL: {
 	            CANCEL: 'CANCEL',
 	            SELECT: 'SELECT'

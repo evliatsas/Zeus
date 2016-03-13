@@ -16,16 +16,36 @@
     <input type="text" class="form-control" id="i3" ng-model="facility.Type" uib-typeahead="state for state in lookup.facilityTypes | filter:$viewValue">
 </div>
 <div class="row">
-    <div class="col-md-6">
-        <div class="form-group label-static ng-is-empty">
-            <label for="Capacity" class="control-label">{{ 'FACILITY_DETAILS.CAPACITY' | translate }}</label>
-            <input type="number" class="form-control" id="Capacity" ng-model="facility.Capacity">
+    <div class="row" style="padding-left:15px">
+        <div class="col-md-9" >
+            <span style="font-weight:300">{{ 'FACILITY_DETAILS.TITLE_CAPACITY' | translate }}</span>
+        </div>
+        <div class="col-md-3">
+            <span style="font-weight:300">{{ 'FACILITY_DETAILS.ATTENDANCE' | translate }}</span>
         </div>
     </div>
-    <div class="col-md-6">
-        <div class="form-group label-static ng-is-empty">
-            <label for="Attendance" class="control-label">{{ 'FACILITY_DETAILS.ATTENDANCE' | translate }}</label>
-            <input type="number" class="form-control" id="Attendance" ng-model="facility.Attendance">
+        
+        <div class="col-md-3">
+            <div class="form-group label-static ng-is-empty">
+                <label for="Capacity" class="control-label">{{ 'FACILITY_DETAILS.CAPACITY' | translate }}</label>
+                <input type="number" class="form-control" id="Capacity" ng-model="facility.Capacity">
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="form-group label-static ng-is-empty">
+                <label for="Capacity" class="control-label">{{ 'FACILITY_DETAILS.MAXCAPACITY' | translate }}</label>
+                <input type="number" class="form-control" id="Capacity" ng-model="facility.MaxCapacity">
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="form-group label-static ng-is-empty">
+                <label for="Capacity" class="control-label">{{ 'FACILITY_DETAILS.REPORT_CAPACITY' | translate }}</label>
+                <input type="number" class="form-control" id="Capacity" ng-model="facility.ReportCapacity">
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="form-group label-static ng-is-empty">
+                <input type="number" class="form-control" id="Attendance" ng-model="facility.Attendance" ng-disabled="true">
         </div>
     </div>
 </div>
