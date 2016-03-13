@@ -24,7 +24,7 @@ namespace Zeus.Entities
         [BsonIgnore]
         public Facility Facility { get; set; }
         public DateTime DateTime { get; set; }
-        public ReportPriority Priority { get; set; }
+        public Priority Priority { get; set; }
         public string Subject { get; set; }
         public ReportType Type { get; set; }
         public bool IsAcknoledged { get; set; }
@@ -42,7 +42,7 @@ namespace Zeus.Entities
         Message
     }
 
-    public enum ReportPriority
+    public enum Priority
     {
         [Description("ΚΟΙΝΟ")]
         Routine,

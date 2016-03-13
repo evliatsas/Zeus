@@ -37,7 +37,9 @@ namespace Zeus.Controllers
             else
             {
                 var facilityClaims = user.Claims.Where(x => x.Type == ApplicationClaims.FacilityClaim).Select(s => s.Value);
-                result = await context.Operations.Get(x => facilityClaims.Contains(x.StartingPoint) || facilityClaims.Contains(x.Destination));
+                var f = await context.Facilities.Get(x => facilityClaims.Contains(x.Id));
+                var names = f.Select(x => x.Name);
+                result = await context.Operations.Get(x => names.Contains(x.StartingPoint) || names.Contains(x.Destination));
             }
 
             var startIds = result.Select(x => x.StartingPoint);
@@ -46,10 +48,10 @@ namespace Zeus.Controllers
             var facilities = await context.Facilities.Get(x => facilityIds.Contains(x.Id));
             result = result.Select(x =>
             {
-                x.StartFacility = facilities.FirstOrDefault(f => f.Id == x.StartingPoint);
+                x.StartFacility = facilities.FirstOrDefault(f => f.Name == x.StartingPoint);
                 if (x.StartFacility == null)
                     x.StartFacility = new Facility() { Name = x.StartingPoint };
-                x.DestinationFacility = facilities.FirstOrDefault(f => f.Id == x.Destination);
+                x.DestinationFacility = facilities.FirstOrDefault(f => f.Name == x.Destination);
                 if (x.DestinationFacility == null)
                     x.DestinationFacility = new Facility() { Name = x.Destination };
 
@@ -72,7 +74,9 @@ namespace Zeus.Controllers
                 if (!user.Roles.Any(x => x == ApplicationRoles.Administrator || x == ApplicationRoles.Viewer))
                 {
                     var facilityClaims = user.Claims.Where(x => x.Type == ApplicationClaims.FacilityClaim).Select(s => s.Value);
-                    if (!facilityClaims.Contains(operation.StartingPoint) && !facilityClaims.Contains(operation.Destination))
+                    var f = await context.Facilities.Get(x => facilityClaims.Contains(x.Id));
+                    var names = f.Select(x => x.Name);
+                    if (!names.Contains(operation.StartingPoint) && !names.Contains(operation.Destination))
                     {
                         Log.Fatal("Security violation. User {user} requested Operation Info {operation} with insufficient rights", user.UserName, id);
                         return this.BadRequest("Δεν έχεται το δικαίωμα να δείτε την εγγραφή που ζητήσατε.");
@@ -82,13 +86,13 @@ namespace Zeus.Controllers
                 if(!string.IsNullOrEmpty(operation.DestinationContactId))
                     operation.DestinationContact = await context.Contacts.GetById(operation.DestinationContactId);
 
-                var sFacility = await context.Facilities.GetById(operation.StartingPoint);
+                var sFacility = (await context.Facilities.Get(x=>x.Name == operation.StartingPoint)).FirstOrDefault();
                 if (sFacility == null)
                     operation.StartFacility = new Facility() { Name = operation.StartingPoint };
                 else
                     operation.StartFacility = sFacility;
 
-                var dFacility = await context.Facilities.GetById(operation.Destination);
+                var dFacility = (await context.Facilities.Get(x => x.Name == operation.Destination)).FirstOrDefault();
                 if (dFacility == null)
                     operation.DestinationFacility = new Facility() { Name = operation.Destination };
                 else

@@ -10,6 +10,7 @@ angular
         $scope.operationcolumns = [
              { Caption: 'Τύπος', Field: 'Type', Type: 'Lookup', Values: lookupService.operationTypes, Tooltip: 'Τύπος Επιχείρησης' },
              { Caption: 'Π', Field: 'Priority', Type: 'LookupHtml', Values: lookupService.priorities, Tooltip: 'Προτεραιότητα Αναφοράς' },
+             { Caption: 'Όνομα', Field: 'Name' },
              { Caption: 'Έναρξη', Field: 'Start', Type: 'DateTime', Tooltip: 'Ημερομηνία Έναρξης' },
              { Caption: 'Εκτιμ. Πέρας', Field: 'ETA', Type: 'DateTime', Tooltip: 'Εκτιμώμενη Ημερομηνία Πέρατος' },
              { Caption: 'Πέρας', Field: 'End', Type: 'DateTime', Tooltip: 'Ημερομηνία Πέρατος' },
