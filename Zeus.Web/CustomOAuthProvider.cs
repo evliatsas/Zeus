@@ -79,9 +79,16 @@ namespace Zeus.Providers
                 var identity = new ClaimsIdentity("JWT");
                 identity.AddClaim(new Claim(ClaimTypes.NameIdentifier, user.Id));
                 identity.AddClaim(new Claim(ClaimTypes.Name, context.UserName));
-                identity.AddClaim(new Claim("sub", context.UserName));
-                identity.AddClaim(new Claim(ClaimTypes.Role, "Manager"));
-                identity.AddClaim(new Claim(ClaimTypes.Role, "Supervisor"));
+                
+                foreach(var role in user.Roles)
+                {
+                    identity.AddClaim(new Claim(ClaimTypes.Role, role));
+                }
+
+                foreach (var claim in user.Claims)
+                {
+                    identity.AddClaim(new Claim(claim.Type, claim.Value));
+                }
 
                 var props = new AuthenticationProperties(new Dictionary<string, string>
                 {

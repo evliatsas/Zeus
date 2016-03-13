@@ -177,7 +177,7 @@ angular
 	    	    HOUSING_COUNT: 'Πλήθος Μονάδων',
 	    	    ATTENDANCE: 'Φιλοξενούμενοι',
 	    	    CANCEL: 'ΑΚΥΡΩΣΗ',
-	    	    SELECT: 'ΕΠΙΛΟΓΗ'
+	    	    SAVE: 'ΑΠΟΘΗΚΕΥΣΗ'
 	    	},
 	    	LOGIN: {
                 TITLE:'Παρακαλώ Συνδεθείτε',
@@ -404,7 +404,7 @@ angular
 	            HOUSING_COUNT: 'Units',
 	            ATTENDANCE: 'Attendance',
 	            CANCEL: 'CANCEL',
-	            SELECT: 'SELECT'
+	            SAVE: 'SAVE'
 	        },
 	        LOGIN: {
 	            TITLE: 'Please sign in',
