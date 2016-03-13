@@ -4,6 +4,17 @@
             <i class="material-icons" title="Προσθήκη νέου">border_color</i>
         </span>  
     </div>
+    <div ng-if="customActionItems" class="dropdown pull-right">
+        <button class="btn btn-primary btn-raised dropdown-toggle" type="button" id="customActionDropdownMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+            ΝΕΑ
+            <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="customActionDropdownMenu">
+            <li ng-repeat="actionItem in customActionItems">
+                <a href="" ng-click="customAction(actionItem.Id)">{{actionItem.Description}}</a>
+            </li>
+        </ul>
+    </div>
     <div class="btn-group" ng-if="!hidePagingDropdown" style="padding-right: 20px; max-width:250px;">
         <a class="btn btn-primary btn-raised">{{ pageSize }} εγγρ.</a>
         <a class="btn btn-primary btn-raised dropdown-toggle" data-target="#" data-toggle="dropdown"><span class="caret"></span></a>
@@ -83,8 +94,7 @@
                              ng-class="{'progress-bar-primary': $eval('item.'+ column.Field) < 76, 'progress-bar-warning': $eval('item.'+ column.Field) > 75 && $eval('item.'+ column.Field) < 101, 'progress-bar-danger': $eval('item.'+ column.Field) > 100}" 
                              ng-style="{width: $eval('item.'+ column.Field) + '%'}" title="{{$eval('item.'+ column.Field) + '%'}}">                           
                         </span>
-                    </div>
-                    <div ng-if="column.Type == 'CustomAction'" ng-click="customAction(item)" ng-bind-html="(column.Values | filter: {Id: $eval('item.' + column.Field)})[0]['Description']"></div>
+                    </div>                    
                 </td>
                 <td ng-if="!hideItemButtons" style="width: 100px">
                     <div class="btn-group">
