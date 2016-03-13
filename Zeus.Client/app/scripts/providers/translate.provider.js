@@ -17,6 +17,7 @@ angular
 	    		ARCHIVES: 'Αρχείο',
 	    		LOG: 'Ενέργειες Χρηστών',
                 TITLE:'Αλλαγή Κωδικού Πρόσβασης',
+                ADMIN: 'Διαχείρηση',
 	    		SUPPORT: {
 	    			HELP: 'Εγχειρίδιο Χρήσης',
 	    			ABOUT: 'Σχετικά'
@@ -249,6 +250,7 @@ angular
 	            USERS: 'Users',
 	            ARCHIVES: 'Archive',
 	            LOG: 'Log Entries',
+	            ADMIN: 'Administration',
 	            TITLE: 'Change Password',
 	            SUPPORT: {
 	                HELP: 'Manual',

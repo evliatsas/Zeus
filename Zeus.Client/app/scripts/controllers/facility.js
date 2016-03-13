@@ -40,6 +40,8 @@ angular
             { Caption: 'Ημερομηνία', Field: 'DateTime', Type: 'DateTime' }
         ];
 
+        $scope.reportactions = lookupService.reports;
+
         $scope.personcolumns = [
            { Caption: 'Εθνικότητα', Field: 'Nationality' },
            { Caption: 'Όνομα', Field: 'Name' },
@@ -166,6 +168,11 @@ angular
         //REPORT
         $scope.showReport = function (report) {
             var location = '/reports/' + report.Type + '/' + $scope.data.Id + '/' + report.Id;
+            $location.url(location);
+        }
+
+        $scope.createReport = function (type) {
+            var location = '/reports/' + type + '/' + $scope.data.Id + '/new';
             $location.url(location);
         }
 

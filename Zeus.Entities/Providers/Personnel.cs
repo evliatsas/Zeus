@@ -9,6 +9,6 @@ namespace Zeus.Entities
     public class Personnel
     {
         public string Type { get; set; }
-        public int EmployeeCount { get; set; }
+        public int PersonnelCount { get; set; }
     }
 }
