@@ -136,6 +136,7 @@ angular
 	    	    ETA: 'Εκτιμώμενη Ημ. Άφιξης',
 	    	    TRANSPORT_TYPE: 'Μέσο Μεταφοράς',
 	    	    TRANSPORT_UID: 'Μοναδικό Αναγνωριστικό',
+                OWNER:'Ιδιοκτησία',
 	    	    ISHIRED: 'Είναι Ναυλωμένο',
 	    	    NOTES: 'Κείμενο'
 	    	},
@@ -362,6 +363,7 @@ angular
 	            ETA: 'Estimated Time of Arrival',
 	            TRANSPORT_TYPE: 'Vehicle',
 	            TRANSPORT_UID: 'Unique Identifier',
+	            OWNER: 'Ownership',
 	            ISHIRED: 'Hired',
 	            NOTES: 'Notes'
 	        },

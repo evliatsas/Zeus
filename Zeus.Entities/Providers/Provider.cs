@@ -13,6 +13,7 @@ namespace Zeus.Entities
         public string Description { get; set; }      
         public int PersonnelCount { get; set; }
         public string Administration { get; set; }
+        public string Instructions { get; set; }
         public IList<Lookup> Items { get; set; }
         [BsonIgnore]
         public IList<Contact> Contacts { get; set; }
