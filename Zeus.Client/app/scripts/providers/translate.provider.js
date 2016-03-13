@@ -215,7 +215,10 @@ angular
 	    	    ADMINISTRATION: 'Διαχείριση',
 	    	    SERVICES: 'Προσφερόμενες Υπηρεσίες',
 	    	    SERVICE: 'Υπηρεσία',
-                NOTES:'Σημειώσεις'
+	    	    INSTRUCTIONS: 'Οδηγίες',
+	    	    NOTES: 'Σημειώσεις',
+	    	    FACILITIES: 'Δομές Φιλοξενίας',
+                CONTACTS:'Επαφές'
 	    	},
 	    	PERSON: {
 	    	    DELETE: 'Διαγραφή Ταυτοποιημένου',
@@ -442,7 +445,10 @@ angular
 	            ADMINISTRATION: 'Administration',
 	            SERVICES: 'Offering Services',
 	            SERVICE: 'Service',
-	            NOTES: 'Σημειώσεις'
+	            INSTRUCTIONS:'Instuctions',
+	            NOTES: 'Σημειώσεις',
+	            FACILITIES: 'Δομές Φιλοξενίας',
+	            CONTACTS: 'Επαφές'
 	        },
 	        PERSON: {
 	            DELETE: 'Delete Identified Person',
