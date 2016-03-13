@@ -40,6 +40,22 @@ namespace Zeus.Controllers
                 result = await context.Operations.Get(x => facilityClaims.Contains(x.StartingPoint) || facilityClaims.Contains(x.Destination));
             }
 
+            var startIds = result.Select(x => x.StartingPoint);
+            var destIds = result.Select(x => x.Destination);
+            var facilityIds = startIds.Union(destIds).Distinct<string>();
+            var facilities = await context.Facilities.Get(x => facilityIds.Contains(x.Id));
+            result = result.Select(x =>
+            {
+                x.StartFacility = facilities.FirstOrDefault(f => f.Id == x.StartingPoint);
+                if (x.StartFacility == null)
+                    x.StartFacility = new Facility() { Name = x.StartingPoint };
+                x.DestinationFacility = facilities.FirstOrDefault(f => f.Id == x.Destination);
+                if (x.DestinationFacility == null)
+                    x.DestinationFacility = new Facility() { Name = x.Destination };
+
+                return x;
+            });
+
             return result == null ? this.Ok(new List<Operation>().AsEnumerable()) : this.Ok(result.OrderByDescending(o => o.Start).AsEnumerable());
         }
 
@@ -65,6 +81,19 @@ namespace Zeus.Controllers
 
                 if(!string.IsNullOrEmpty(operation.DestinationContactId))
                     operation.DestinationContact = await context.Contacts.GetById(operation.DestinationContactId);
+
+                var sFacility = await context.Facilities.GetById(operation.StartingPoint);
+                if (sFacility == null)
+                    operation.StartFacility = new Facility() { Name = operation.StartingPoint };
+                else
+                    operation.StartFacility = sFacility;
+
+                var dFacility = await context.Facilities.GetById(operation.Destination);
+                if (dFacility == null)
+                    operation.DestinationFacility = new Facility() { Name = operation.Destination };
+                else
+                    operation.DestinationFacility = dFacility;
+
                 foreach (var provider in operation.Providers)
                     provider.Provider = await context.Providers.GetById(provider.ProviderId);
             }

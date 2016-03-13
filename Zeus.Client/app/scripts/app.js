@@ -115,6 +115,16 @@ angular
             controller: 'ProvidersCtrl',
             controllerAs: 'providersCtrl'
         })
+        .when('/operations/:id', {
+              templateUrl: 'views/operation.html',
+              controller: 'OperationCtrl',
+              controllerAs: 'operationCtrl'
+          })
+        .when('/operations', {
+            templateUrl: 'views/operations.html',
+            controller: 'OperationsCtrl',
+            controllerAs: 'operationsCtrl'
+        })
         .when('/contacts/:id', {
             templateUrl: 'views/contact.html',
             controller: 'ContactCtrl',
