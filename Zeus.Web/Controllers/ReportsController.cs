@@ -177,13 +177,23 @@ namespace Zeus.Controllers
                 report.IsAcknoledged = false;
                 var data = await context.Reports.Insert(report);
 
+                if (report.Type == ReportType.SituationReport)
+                {
+                    var facility = await context.Facilities.GetById(report.FacilityId);
+                    if (facility != null)
+                    {
+                        facility.Attendance = (report as SituationReport).PersonCount;
+                        await context.Facilities.Update(facility);
+                    }
+                }
+
                 Log.Information("Report({Id}) created By {user}", data.Id, user.UserName);
-                return this.Ok(data);
+                return Ok(data);
             }
-            catch (Exception exc)
+            catch (Exception exception)
             {
-                Log.Error("Error {Exception} creating Report By {user}", exc, user.UserName);
-                return this.BadRequest("Σφάλμα Δημιουργίας Αναφοράς");
+                Log.Error("Error {Exception} creating Report By {user}", exception, user.UserName);
+                return BadRequest("Σφάλμα Δημιουργίας Αναφοράς");
             }
         }
 
@@ -221,6 +231,16 @@ namespace Zeus.Controllers
             try
             {
                 var result = await context.Reports.Update(report);
+
+                if (report.Type == ReportType.SituationReport)
+                {
+                    var facility = await context.Facilities.GetById(report.FacilityId);
+                    if (facility != null)
+                    {
+                        facility.Attendance = (report as SituationReport).PersonCount;
+                        await context.Facilities.Update(facility);
+                    }
+                }
 
                 Log.Information("Report({Id}) updated By {user}", result.Id, user.UserName);
 
