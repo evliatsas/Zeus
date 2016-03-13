@@ -110,8 +110,12 @@ function grid($http, $filter, moment, commonUtilities) {
             function dynamicSort(property) {
                 var sortOrder = scope.reverse ? -1 : 1;
                 return function (a, b) {
-                    var result = commonUtilities.naturalSort(scope.getValue(a, property), scope.getValue(b, property));
-                    return result * sortOrder;
+                    if (typeof scope.getValue(a, property) === 'number')
+                        return sortOrder == 1 ? scope.getValue(a, property) > scope.getValue(b, property) : scope.getValue(a, property) < scope.getValue(b, property);
+                    else {
+                        var result = commonUtilities.naturalSort(scope.getValue(a, property), scope.getValue(b, property));
+                        return result * sortOrder;
+                    }
                 }
             }
 
