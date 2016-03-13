@@ -13,6 +13,8 @@ namespace Zeus.Entities
         public string Description { get; set; }      
         public int PersonnelCount { get; set; }
         public string Administration { get; set; }
+        public string Instructions { get; set; }
+        public IList<Employee> Personnel { get; set; }
         public IList<Lookup> Items { get; set; }
         [BsonIgnore]
         public IList<Contact> Contacts { get; set; }
@@ -25,6 +27,7 @@ namespace Zeus.Entities
             this.Contacts = new List<Contact>();
             this.Facilities = new List<Facility>();
             this.Items = new List<Lookup>();
+            this.Personnel = new List<Employee>();
         }
     }
 

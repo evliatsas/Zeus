@@ -46,6 +46,10 @@
         </div>        
     </div>
     <div class="form-group label-static ng-is-empty">
+        <label for="i5" class="control-label">{{ 'PROVIDER.INSTRUCTIONS' | translate }}</label>
+        <textarea class="form-control" id="i5" ng-model="provider.Instuctions" />
+    </div>
+    <div class="form-group label-static ng-is-empty">
         <label for="i5" class="control-label">{{ 'PROVIDER.NOTES' | translate }}</label>
         <textarea class="form-control" id="i5" ng-model="provider.Notes" />
     </div>
@@ -53,7 +57,7 @@
 
 <div class="col-md-8" style="padding-top:20px;">
     <div class="shadow-box btn-group-sm">
-        <i>{{ 'PROVIDER.FACILITIES' | translate }}Δομές Φιλοξενίας</i>
+        <i>{{ 'PROVIDER.FACILITIES' | translate }}</i>
         <cinnamon-grid grid-columns="facilityColumns"
                        hide-paging-dropdown="true"
                        page-size="0"
@@ -65,7 +69,7 @@
         </cinnamon-grid>
     </div>
     <div class="shadow-box btn-group-sm">
-        <i>{{ 'PROVIDER.CONTACTS' | translate }}Επαφές</i>
+        <i>{{ 'PROVIDER.CONTACTS' | translate }}</i>
         <cinnamon-grid grid-columns="contactColumns"
                        hide-paging-dropdown ="true"
                        page-size="0"

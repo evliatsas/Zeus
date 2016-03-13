@@ -136,6 +136,7 @@ angular
 	    	    ETA: 'Εκτιμώμενη Ημ. Άφιξης',
 	    	    TRANSPORT_TYPE: 'Μέσο Μεταφοράς',
 	    	    TRANSPORT_UID: 'Μοναδικό Αναγνωριστικό',
+                OWNER:'Ιδιοκτησία',
 	    	    ISHIRED: 'Είναι Ναυλωμένο',
 	    	    NOTES: 'Κείμενο'
 	    	},
@@ -214,7 +215,10 @@ angular
 	    	    ADMINISTRATION: 'Διαχείριση',
 	    	    SERVICES: 'Προσφερόμενες Υπηρεσίες',
 	    	    SERVICE: 'Υπηρεσία',
-                NOTES:'Σημειώσεις'
+	    	    INSTRUCTIONS: 'Οδηγίες',
+	    	    NOTES: 'Σημειώσεις',
+	    	    FACILITIES: 'Δομές Φιλοξενίας',
+                CONTACTS:'Επαφές'
 	    	},
 	    	PERSON: {
 	    	    DELETE: 'Διαγραφή Ταυτοποιημένου',
@@ -362,6 +366,7 @@ angular
 	            ETA: 'Estimated Time of Arrival',
 	            TRANSPORT_TYPE: 'Vehicle',
 	            TRANSPORT_UID: 'Unique Identifier',
+	            OWNER: 'Ownership',
 	            ISHIRED: 'Hired',
 	            NOTES: 'Notes'
 	        },
@@ -440,7 +445,10 @@ angular
 	            ADMINISTRATION: 'Administration',
 	            SERVICES: 'Offering Services',
 	            SERVICE: 'Service',
-	            NOTES: 'Σημειώσεις'
+	            INSTRUCTIONS:'Instuctions',
+	            NOTES: 'Σημειώσεις',
+	            FACILITIES: 'Δομές Φιλοξενίας',
+	            CONTACTS: 'Επαφές'
 	        },
 	        PERSON: {
 	            DELETE: 'Delete Identified Person',
