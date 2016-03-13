@@ -18,14 +18,14 @@ angular
         ];
 
         $scope.addPersonnel = function () {
-            $scope.personnels.push({
+            $scope.provider.Personnel.push({
                 "Type": "",
                 "PersonnelCount": ""
             });
         }
 
         $scope.addService = function () {
-            $scope.personnels.push({
+            $scope.provider.Personnel.push({
                 "Type": "",
                 "PersonnelCount": ""
             });

@@ -59,8 +59,13 @@
                         <li ng-class="getClass('/map')"><a href="#/map">{{ 'MENU.MAP' | translate }}</a></li>
                         <li ng-class="getClass('/charts')"><a href="#/charts">{{ 'MENU.CHARTS' | translate }}</a></li>
                         <li ng-class="getClass('/reports/archive')"><a href="#/reports/archive">{{ 'MENU.ARCHIVES' | translate }}</a></li>
-                        <li ng-show="isAdmin()" ng-class="getClass('/users')"><a href="#/users">{{ 'MENU.USERS' | translate }}</a></li>
-                        <li ng-show="isAdmin()" ng-class="getClass('/log')"><a href="#/log">{{ 'MENU.LOG' | translate }}</a></li>                        
+                        <li class="dropdown" ng-show="isAdmin()">
+                            <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{ 'MENU.ADMIN' | translate }} <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li ng-show="isAdmin()" ng-class="getClass('/users')"><a href="#/users">{{ 'MENU.USERS' | translate }}</a></li>
+                                <li ng-show="isAdmin()" ng-class="getClass('/log')"><a href="#/log">{{ 'MENU.LOG' | translate }}</a></li>
+                            </ul>
+                        </li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
                         <li><a href="" ng-click="changeLanguage()" title="{{ languageTitle }}">{{language}}</a></li>
@@ -87,35 +92,34 @@
                 </div>
             </div>
         </div>
-
         <div id="simple-dialog" class="modal fade" tabindex="-1" style="display: none;">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <h2 style="padding:24px 0px 0px 24px">{{ 'MENU.TITLE' | translate }}</h2>
-                <div class="modal-body">
-                    <div class="form-group label-static ng-is-empty">
-                        <label for="Password" class="control-label">{{ 'MENU.USER_MENU.OLD_PASSWORD' | translate }}</label>
-                        <input type="password" class="form-control" id="Password" required ng-model="user.Password">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <h2 style="padding:24px 0px 0px 24px">{{ 'MENU.TITLE' | translate }}</h2>
+                    <div class="modal-body">
+                        <div class="form-group label-static ng-is-empty">
+                            <label for="Password" class="control-label">{{ 'MENU.USER_MENU.OLD_PASSWORD' | translate }}</label>
+                            <input type="password" class="form-control" id="Password" required ng-model="user.Password">
+                        </div>
+                        <div class="form-group label-static ng-is-empty">
+                            <label for="Password" class="control-label">{{ 'MENU.USER_MENU.NEW_PASSWORD' | translate }}</label>
+                            <input type="password" class="form-control" id="Password" required ng-model="user.NewPassword">
+                        </div>
+                        <div class="form-group label-static ng-is-empty">
+                            <label for="Password" class="control-label">{{ 'MENU.USER_MENU.CONFIRM_NEW_PASSWORD' | translate }}Επαλήθευση Κωδικού Πρόσβασης</label>
+                            <input type="password" class="form-control" id="Password" required ng-model="user.PasswordConfirm">
+                        </div>
+                        <button type="button" ng-click="changePassword()" class="btn btn-primary" data-toggle="modal" data-target="#simple-dialog">{{ 'MENU.USER_MENU.CHANGE_PASSWORD' | translate }}
+                            <div class="ripple-container"></div>
+                        </button>
                     </div>
-                    <div class="form-group label-static ng-is-empty">
-                        <label for="Password" class="control-label">{{ 'MENU.USER_MENU.NEW_PASSWORD' | translate }}</label>
-                        <input type="password" class="form-control" id="Password" required ng-model="user.NewPassword">
-                    </div>
-                    <div class="form-group label-static ng-is-empty">
-                        <label for="Password" class="control-label">{{ 'MENU.USER_MENU.CONFIRM_NEW_PASSWORD' | translate }}Επαλήθευση Κωδικού Πρόσβασης</label>
-                        <input type="password" class="form-control" id="Password" required ng-model="user.PasswordConfirm">
-                    </div>
-                    <button type="button" ng-click="changePassword()" class="btn btn-primary" data-toggle="modal" data-target="#simple-dialog">{{ 'MENU.USER_MENU.CHANGE_PASSWORD' | translate }}
-                        <div class="ripple-container"></div>
-                    </button>
                 </div>
             </div>
         </div>
     </div>
-    </div>
     <div class="container-fluid">
         <div ng-view=""></div>
-    </div>    
+    </div>
     <!--<div class="footer">
         <div class="container-fluid">
             <div><i class="material-icons md-18">copyright</i> from the Cinnamon team</div>
