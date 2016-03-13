@@ -44,8 +44,9 @@ angular
 	    	},
 	    	FACILITY_DETAILS: {
 	    	    NAME: 'Δομή Φιλοξενίας: ',
-	    	    DESCRIPTION:'Περιγραφή',
-	    	    TYPE: 'Κατηγορία',
+	    	    DESCRIPTION: 'Περιγραφή',
+	    	    CATEGORY:'Κατηγορία',
+	    	    TYPE: 'Τύπος',
 	    	    CAPACITY: 'Χωρητικότητα',
 	    	    ATTENDANCE: 'Φιλοξενούμενοι: ',
 	    	    ISSECURE: 'Φυλασσόμενος Χώρος',
@@ -70,6 +71,7 @@ angular
 	    	FACILITY_MAP: {
 	    	    GUESTS: 'Φιλοξενούμενοι: ',
 	    	    CAPACITY: 'Χωρητικότητα',
+                REPORTS:'Αναφορές: ',
 	    	    UTILIZATION: 'Πληρότητα',
 	    	    TRANSITION: 'Μετάβαση',
 	    	    SAVE: 'Αποθήκευση',
@@ -80,7 +82,7 @@ angular
 	    	    SELECT: 'ΕΠΙΛΟΓΗ'
 	    	},
 	    	PHONE_LIST: {
-	    	    PHONES: 'Τηλέφωνα Επικοινωνίας ',
+	    	    PHONES: 'Τηλέφωνα Επικοινωνίας',
 	    	    NUMBER: 'Αριθμός'
 	    	},
 	    	FEEDING_REPORT: {
@@ -97,7 +99,7 @@ angular
 	    	HOUSING_REPORT: {
 	    	    DELETE: 'Διαγραφή Αναφοράς',
 	    	    SAVE: 'Αποθήκευση Αναφοράς',
-	    	    PRIORITY: 'Προτεραιότητα ',
+	    	    PRIORITY: 'Προτεραιότητα',
 	    	    SUBJECT: 'Θέμα',
 	    	    FACILITY: 'Δομή Φιλοξενίας: ',
 	    	    TYPE: 'Είδος Στέγασης',
@@ -107,9 +109,9 @@ angular
 	    	REPORT: {
 	    	    DELETE: 'Διαγραφή Αναφοράς',
 	    	    SAVE: 'Αποθήκευση Αναφοράς',
-	    	    NOT_ARCHIVED: 'Αρχειοθέτηση Αναφοράς: ',
+	    	    NOT_ARCHIVED: 'Αρχειοθέτηση Αναφοράς',
 	    	    ARCHIVED: 'Εξαγωγή Αναφοράς από Αρχείο',
-	    	    PRIORITY: 'Προτεραιότητα ',
+	    	    PRIORITY: 'Προτεραιότητα',
 	    	    FACILITY: 'Δομή Φιλοξενίας: ',
 	    	    SUBJECT: 'Θέμα',
                 NOTES:'Κείμενο'
@@ -117,17 +119,17 @@ angular
 	    	SITUATION_REPORT: {
 	    	    DELETE: 'Διαγραφή Αναφοράς',
 	    	    SAVE: 'Αποθήκευση Αναφοράς',
-	    	    PRIORITY: 'Προτεραιότητα: ',
+	    	    PRIORITY: 'Προτεραιότητα',
 	    	    CHILDREN: 'Πλήθος Παιδιών ',
 	    	    SUBJECT: 'Θέμα',
 	    	    PERSON_COUNT: 'Πλήθος Ατόμων',
-	    	    SENSITIVE_COUNT: 'Άτομα Ευαίσθητης Ομάδας ',
+	    	    SENSITIVE_COUNT: 'Άτομα Ευαίσθητης Ομάδας',
 	    	    NOTES: 'Κείμενο'
 	    	},
 	    	TRANSPORT_REPORT: {
 	    	    DELETE: 'Διαγραφή Αναφοράς',
 	    	    SAVE: 'Αποθήκευση Αναφοράς',
-	    	    PRIORITY: 'Προτεραιότητα: ',
+	    	    PRIORITY: 'Προτεραιότητα',
 	    	    SUBJECT: 'Θέμα',
 	    	    STARTING_POINT: 'Από (Δομή Φιλοξενίας)',
 	    	    DESTINATION: 'Πρός',
@@ -144,13 +146,13 @@ angular
 	    	ARCHIVE: {
 	    	    DELETE: 'Διαγραφή Αναφοράς',
 	    	    SAVE: 'Αποθήκευση Αναφοράς',
-	    	    FROM: 'Ημ. Από',
-	    	    UNTIL: 'Ημ. Έως',
+	    	    FROM: 'Ημερομηνία. Από',
+	    	    UNTIL: 'Ημερομηνία. Έως',
 	    	    SHOW_FILE: 'ΕΜΦΑΝΙΣΗ ΑΡΧΕΙΟΥ'
 	    	},
 	    	LOG: {
-	    	    FROM: 'Ημ. Από',
-	    	    UNTIL: 'Ημ. Έως',
+	    	    FROM: 'Ημερομηνία. Από',
+	    	    UNTIL: 'Ημερομηνία. Έως',
 	    	    SHOW_FILE: 'ΕΜΦΑΝΙΣΗ ΕΓΓΡΑΦΩΝ'
 	    	},
 	    	CONTACT: {
@@ -213,8 +215,8 @@ angular
 	    	    DESCRIPTION: 'Περιγραφή',
 	    	    TYPE: 'Είδος',
 	    	    PERSONNEL:'Προσωπικό',
-	    	    PERSONEL_COUNT: 'Πλήθος Προσωπικού',
-	    	    PERSONNEL_TYPE: 'Κατηγορία Προσωπικού',
+	    	    PERSONNEL_COUNT: 'Πλήθος',
+	    	    PERSONNEL_TYPE: 'Κατηγορία',
 	    	    ADMINISTRATION: 'Διαχείριση',
 	    	    SERVICES: 'Προσφερόμενες Υπηρεσίες',
 	    	    SERVICE: 'Υπηρεσία',
@@ -278,9 +280,10 @@ angular
 	        FACILITY_DETAILS: {
 	            NAME: 'Facility: ',
 	            DESCRIPTION: 'Description',
-	            TYPE: 'Category',
+	            CATEGORY: 'Category',
+	            TYPE: 'Type',
 	            CAPACITY: 'Capacity',
-	            ATTENDANCE: 'Attendance: ',
+	            ATTENDANCE: 'Attendance',
 	            ISSECURE: 'Security',
 	            HAS_HEALTHCARE: 'Healthcare',
 	            STATUS: 'Status',
@@ -294,7 +297,7 @@ angular
 	            REPORTS: 'Reports: ',
 	            IDENTIFIED: 'Identified: ',
 	            APPLICATION: 'Application',
-	            HOUSING: 'Housing: ',
+	            HOUSING: 'Housing',
 	            TRANSPORT: 'Transport',
 	            SITUATION: 'Situation',
 	            PROBLEM: 'Problem',
@@ -305,7 +308,7 @@ angular
 	            CAPACITY: 'Capacity',
 	            UTILIZATION: 'Utilization',
 	            TRANSITION: 'Transition',
-	            SAVE: 'Save: ',
+	            SAVE: 'Save',
 	            MOVE: 'Move'
 	        },
 	        LOOKUP_MODAL: {
@@ -343,7 +346,7 @@ angular
 	            NOT_ARCHIVED: 'Archive Report',
 	            ARCHIVED: 'Export Report from Archive',
 	            PRIORITY: 'Priority',
-	            FACILITY: 'Facility: ',
+	            FACILITY: 'Facility',
 	            SUBJECT: 'Subject',
 	            NOTES: 'Notes'
 	        },
@@ -360,7 +363,7 @@ angular
 	        TRANSPORT_REPORT: {
 	            DELETE: 'Delete Report',
 	            SAVE: 'Save Report',
-	            PRIORITY: 'Priority: ',
+	            PRIORITY: 'Priority',
 	            SUBJECT: 'Subject',
 	            STARTING_POINT: 'From (Facility)',
 	            DESTINATION: 'To (Facility)',
@@ -447,7 +450,7 @@ angular
 	            TYPE: 'Type',
 	            EMPLOYEE_TYPE: 'Category',
 	            PERSONNEL: 'Personnel',
-	            PERSONEL_COUNT: 'Number of Personnel',
+	            PERSONEL_COUNT: 'Number',
 	            ADMINISTRATION: 'Administration',
 	            SERVICES: 'Offering Services',
 	            SERVICE: 'Service',

@@ -24,10 +24,8 @@ angular
             });
         }
 
-        $scope.addService = function () {
-            $scope.provider.Personnel.push({
-                "Type": "",
-                "PersonnelCount": ""
+        $scope.addItem = function () {
+            $scope.provider.Items.push({              
             });
         }
 

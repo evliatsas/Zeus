@@ -28,6 +28,7 @@ namespace Zeus.Entities
             this.Facilities = new List<Facility>();
             this.Items = new List<Lookup>();
             this.Personnel = new List<Personnel>();
+            //this.PersonnelCount+=Per
         }
     }
 
