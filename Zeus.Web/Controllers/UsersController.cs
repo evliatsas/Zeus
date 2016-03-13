@@ -99,7 +99,7 @@ namespace Zeus.Controllers
                 }
                 else
                 {
-                    throw new Exception( result.Errors.FirstOrDefault());
+                    throw new Exception(result.Errors.FirstOrDefault());
                 }
             }
             catch (Exception exc)
@@ -133,60 +133,50 @@ namespace Zeus.Controllers
             }
         }
 
-        [Route("password")]
+        [Route("changepassword")]
         [HttpPost]
         public async Task<IHttpActionResult> ChangePassword(UserViewModel user)
-        {
-            IdentityResult result;
-           
+        {   
             if (user.NewPassword != user.PasswordConfirm)
-            {
                 return BadRequest("Wrong password confirmation.");
-            }
 
-            if (string.IsNullOrWhiteSpace(user.UserName))
-            {
-                var claimsIdentity = User.Identity as ClaimsIdentity;
+            var claimsIdentity = User.Identity as ClaimsIdentity;
+            if (claimsIdentity == null)
+                return BadRequest();
 
-                if (claimsIdentity == null)
-                    return BadRequest();
+            var userIdClaim = claimsIdentity.Claims.FirstOrDefault(x => x.Type == ClaimTypes.NameIdentifier);
+            if (userIdClaim == null)
+                return BadRequest();
 
-                var userIdClaim = claimsIdentity.Claims.FirstOrDefault(x => x.Type == ClaimTypes.NameIdentifier);
-                if (userIdClaim == null)
-                    return BadRequest();
-
-                var userId = userIdClaim.Value;
-
-                result = await change(userId, user.Password, user.NewPassword);
-            }
-            else
-            {
-                var app = await UserManager.FindByNameAsync(user.UserName);
-                result = reset(app.Id, user.NewPassword);
-            }
-
-            if (result.Succeeded)
-            {
-                return Ok();
-            }
-            else
-            {
+            var userId = userIdClaim.Value;
+            var result = await UserManager.ChangePasswordAsync(userId, user.Password, user.NewPassword);
+            if (!result.Succeeded)
                 return BadRequest(result.Errors.FirstOrDefault());
-            }
+
+            return Ok();
         }
 
-        private async Task<IdentityResult> change(string userId, string oldPassword, string newPassword)
-        {
-            return await UserManager.ChangePasswordAsync(userId, oldPassword, newPassword);
-        }
 
-        private IdentityResult reset(string userId, string newPassword)
+        [Route("resetpassword")]
+        [HttpPost]
+        public async Task<IHttpActionResult> ResetPassword(UserViewModel user)
         {
-            var result = UserManager.RemovePassword(userId);
-            if (result.Succeeded)
-                result = UserManager.AddPassword(userId, newPassword);
+            if (user.NewPassword != user.PasswordConfirm)
+                return BadRequest("Wrong password confirmation.");
 
-            return result;
+            var app = await UserManager.FindByNameAsync(user.UserName);
+            if (app == null)
+                return BadRequest("user not found.");
+
+            var result = UserManager.RemovePassword(app.Id);
+            if (!result.Succeeded)
+                return BadRequest(result.Errors.FirstOrDefault());
+
+            result = UserManager.AddPassword(app.Id, user.NewPassword);
+            if (!result.Succeeded)
+                return BadRequest(result.Errors.FirstOrDefault());
+
+            return Ok();
         }
     }
 }

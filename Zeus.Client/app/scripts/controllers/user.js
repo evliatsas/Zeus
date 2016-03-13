@@ -65,7 +65,7 @@ angular
         }
 
         $scope.changePassword = function () {
-            authService.changePassword($scope.user.UserName, "", $scope.user.NewPassword, $scope.user.PasswordConfirm);
+            authService.changePassword($scope.user,"reset");
         }
 
         $scope.addRole = function(role) {

@@ -26,8 +26,8 @@ angular
             $location.url("/login");
         }
 
-        $scope.changePassword = function(password, newPassword, passwordConfirm) {
-            authService.changePassword("", password, newPassword, passwordConfirm);
+        $scope.changePassword = function() {
+            authService.changePassword($scope.user,"change");
         }
 
         $scope.language = "EN";

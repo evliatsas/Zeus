@@ -134,20 +134,27 @@
             }
         };
 
-        function changePassword(userId, oldPassword, newPassword, passwordConfirm) {
-            var value = { userId: userId, oldPassword: $sanitize(oldPassword), newPassword: $sanitize(newPassword), passwordConfirm: $sanitize(passwordConfirm) };
+        function changePassword(user, action) {
+            var url = baseUrl + '/users/changepassword';
+            
+            if(action=="reset")
+                url = baseUrl + '/users/resetpassword';                            
+
+            user.Password = $sanitize(user.Password), 
+            user.NewPassword = $sanitize(user.NewPassword);
+            user.PasswordConfirm = $sanitize(user.PasswordConfirm);
             return $http({
                 method: 'POST',
-                url: baseUrl + '/users/password',
-                data: value
+                url: url,
+                data: user
             }).
             success(function(data, status, headers, config) {
-                return data;
+                messageService.saveSuccess();
             }).
             error(function(data, status, headers, config) {
                 messageService.showError(data.Message);
             });
-        }
+        }      
 
         function isInRole(role) {
             var r = service.info.roles;
