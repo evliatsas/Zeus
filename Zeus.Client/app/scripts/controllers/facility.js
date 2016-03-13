@@ -208,15 +208,6 @@ angular
             var location = '/persons/' + person.Id;
             $location.url(location);
         }
-
-        $http({
-            method: 'GET',
-            url: baseUrl + '/persons'
-        }).then(function successCallback(response) {
-            $scope.data = response.data;
-        }, function errorCallback(response) {
-            messageService.getFailed(response.error);
-        });       
         //*************
 
 
@@ -237,7 +228,10 @@ angular
                 url: baseUrl + '/facilities'
             }).then(function successCallback(response) {
                 messageService.saveSuccess();
-                $scope.data = response.data;
+                if (isInsert)
+                    $location.url('/facilities/' + response.data.Id);
+                else
+                    $scope.data = response.data;
             }, function errorCallback(response) {
                 messageService.showError();
             });
