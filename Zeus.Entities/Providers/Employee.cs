@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Zeus.Entities
 {
-    public class Employee
+    public class Personnel
     {
         public string Type { get; set; }
         public int EmployeeCount { get; set; }
