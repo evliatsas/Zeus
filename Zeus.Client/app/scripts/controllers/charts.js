@@ -11,27 +11,34 @@ angular
         $scope.reports = [];
         $scope.charts = [];
 
-        $http({
-            method: 'GET',
-            url: baseUrl + '/reports/facilities/stats'
-        }).then(function successCallback (response) {
-            $scope.reports = response.data;
-            $scope.reports.forEach(function (item, index) {
-                item.Checked = false;
+        $scope.getStats = function (type, from, to) {
+            var query = {
+                types: [5], //only getting SituationReports for now
+                from: $scope.from,
+                to: $scope.to
+            };
+            $http({
+                method: 'POST',
+                data: query,
+                url: baseUrl + '/reports/facilities/stats'
+            }).then(function successCallback(response) {
+                $scope.reports = response.data;
+                $scope.reports.forEach(function (item, index) {
+                    item.Checked = false;
 
-                var type = $filter('filter')($scope.types, function (c) { return c == item.Type; })[0];
-                if (type == null) { $scope.types.push(item.Type); }
+                    var type = $filter('filter')($scope.types, function (c) { return c == item.Type; })[0];
+                    if (type == null) { $scope.types.push(item.Type); }
 
-                var facility = $filter('filter')($scope.facilities, function (f) { return f.Id == item.Facility.Id; })[0];
-                if (facility == null) {
-                    $scope.facilities.push(item.Facility);
-                    $scope.facilities[$scope.facilities.length - 1].Checked = true;
-                }
+                    var facility = $filter('filter')($scope.facilities, function (f) { return f.Id == item.Facility.Id; })[0];
+                    if (facility == null) {
+                        $scope.facilities.push(item.Facility);
+                        $scope.facilities[$scope.facilities.length - 1].Checked = true;
+                    }
+                });
+            }, function errorCallback(response) {
+                messageService.showError();
             });
-
-        }, function errorCallback (response) {
-            messageService.getFailed(response.error);
-        });
+        }
 
         $scope.getType = function (type) {
             return $filter('filter')($scope.lookup.reports, function (r) { return r.Id == type; })[0].Description;

@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using System.Web.Http;
@@ -107,30 +108,58 @@ namespace Zeus.Controllers
 
         [Route(Routes.Facilities + "/stats")]
         [ResponseType(typeof(IEnumerable<Report>))]
-        [HttpGet]
-        public async Task<IHttpActionResult> GetStatReports()
+        [HttpPost]
+        public async Task<IHttpActionResult> GetStatReports(dynamic query)
         {
-
-            IEnumerable<Report> result;
-
             var user = await Helper.GetUserByRequest(User as ClaimsPrincipal, UserManager);
-            if (user.Roles.Any(x => x == ApplicationRoles.Administrator || x == ApplicationRoles.Viewer))
-                result = await context.Reports.Get(x => x.Type == ReportType.SituationReport);
-            else
+
+            try
             {
-                var facilityClaims = user.Claims.Where(x => x.Type == ApplicationClaims.FacilityClaim).Select(s => s.Value);
-                result = await context.Reports.Get(x => facilityClaims.Contains(x.FacilityId) && x.Type == ReportType.SituationReport);
+                var types = new List<ReportType>();
+                foreach(var t in query.types)
+                {
+                    types.Add((ReportType)t);
+                }
+                DateTime from = Convert.ToDateTime(query.from);
+                DateTime to = Convert.ToDateTime(query.to);
+
+                IEnumerable<Report> result;
+
+                if (user.Roles.Any(x => x == ApplicationRoles.Administrator || x == ApplicationRoles.Viewer))
+                    result = await context.Reports
+                                          .Get(x => types.Contains(x.Type) &&
+                                                    x.DateTime >= from &&
+                                                    x.DateTime <= to);
+                else
+                {
+                    var facilityClaims = user.Claims
+                                             .Where(x => x.Type == ApplicationClaims.FacilityClaim)
+                                             .Select(s => s.Value);
+
+                    result = await context.Reports
+                                          .Get(x => facilityClaims.Contains(x.FacilityId) &&
+                                                    types.Contains(x.Type) &&
+                                                    x.DateTime >= from &&
+                                                    x.DateTime <= to);
+                }
+
+                var facilityIds = result.Select(x => x.FacilityId).Distinct<string>();
+                var facilities = await context.Facilities.Get(x => facilityIds.Contains(x.Id));
+
+                result = result.Select(s =>
+                {
+                    s.Facility = facilities.FirstOrDefault(t => t.Id == s.FacilityId);
+                    return s;
+                });
+
+                return result == null ? (IHttpActionResult)NotFound() : Ok(result);
+            }
+            catch (Exception exception)
+            {
+                Log.Error("Error {Exception} requesting Report Stats By {user}", exception, user.UserName);
+                return BadRequest("Παρουσιάστηκε σφάλμα κατά την προσπάθεια ανάκτησης των αναφορών");
             }
 
-            var facilityIds = result.Select(x => x.FacilityId).Distinct<string>();
-            var facilities = await context.Facilities.Get(x => facilityIds.Contains(x.Id));
-            result = result.Select(s =>
-            {
-                s.Facility = facilities.FirstOrDefault(t => t.Id == s.FacilityId);
-                return s;
-            });
-            
-            return result == null ? (IHttpActionResult)this.NotFound() : this.Ok(result);
         }
 
         [Route("")]

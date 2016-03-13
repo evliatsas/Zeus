@@ -1,12 +1,51 @@
-﻿<div class="col-md-12" ng-repeat="type in types" on-finish-render="ngRepeatFinished">
+﻿<div class="col-md-12 container-fluid">
 
-    <div class="col-md-3 container-fluid shadow-box" style="margin-right: 20px">
+        <div class="form-group label-static">
+            <div class="col-xs-6 col-sm-4 col-md-4 col-lg-4">
+                <label for="i11" class="control-label">{{ 'CHARTS.FROM' | translate }}</label>
+                <div class="dropdown">
+                    <div class="dropdown-toggle" id="dropdown1" role="button" data-toggle="dropdown" data-target="#">
+                        <div class="input-group">
+                            <input type="text" class="form-control" data-ng-model="from" data-date-time-input="dddd DD/MM/YYYY HH:mm"><span class="input-group-addon"><i class="material-icons md-24">date_range</i></span>
+                        </div>
+                    </div>
+                    <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                        <datetimepicker data-ng-model="from" data-datetimepicker-config="{ dropdownSelector: '#dropdown1' }" />
+                    </ul>
+                </div>
+            </div>
+            <div class="col-xs-6 col-sm-4 col-md-4 col-lg-4">
+                <label for="i11" class="control-label">{{ 'CHARTS.UNTIL' | translate }}</label>
+                <div class="dropdown">
+                    <div class="dropdown-toggle" id="dropdown2" role="button" data-toggle="dropdown" data-target="#">
+                        <div class="input-group">
+                            <input type="text" class="form-control" data-ng-model="to" data-date-time-input="dddd DD/MM/YYYY HH:mm"><span class="input-group-addon"><i class="material-icons md-24">date_range</i></span>
+                        </div>
+                    </div>
+                    <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                        <datetimepicker data-ng-model="to" data-datetimepicker-config="{ dropdownSelector: '#dropdown2' }" />
+                    </ul>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-4 col-md-3 col-md-offset-1 col-lg-3 col-lg-offset-1" style="padding-right: 0px">
+                <button class="btn btn-raised btn-primary pull-right" style="margin-top:-2px;" type="button" ng-click="getStats()">
+                    {{ 'CHARTS.SHOW' | translate }}
+                    <i class="material-icons md-24">insert_chart</i>
+                </button>
+            </div>
+        </div>
+
+</div>
+
+<div class="col-md-12" ng-repeat="type in types" on-finish-render="ngRepeatFinished" style="margin-top: 20px">
+
+    <div class="col-md-3 container-fluid shadow-box">
         <div ng-repeat="facility in facilities | filter: {Type: category.Id} | orderBy: 'Facility.Name'">
             <input type="checkbox" ng-model="facility.Checked" ng-change="update(type, facility)"> {{facility.Name}}
         </div>
     </div>
 
-    <div class="col-md-8 container-fluid shadow-box">
+    <div class="col-md-8 col-md-offset-1 container-fluid shadow-box">
 
         <div class="lead"><i>{{ getType(type) }}</i></div>
 

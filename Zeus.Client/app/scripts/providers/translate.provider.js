@@ -77,6 +77,11 @@ angular
 	    	    SAVE: 'Αποθήκευση',
 	    	    MOVE: 'Μετακίνηση'
 	    	},
+	    	CHARTS: {
+	    		FROM: 'Από',
+	    		UNTIL: 'Εώς',
+	    		SHOW: 'ΕΜΦΑΝΙΣΗ'
+	    	},
 	    	LOOKUP_MODAL: {
 	    	    CANCEL: 'ΑΚΥΡΩΣΗ',
 	    	    SELECT: 'ΕΠΙΛΟΓΗ'
@@ -311,6 +316,11 @@ angular
 	            SAVE: 'Save',
 	            MOVE: 'Move'
 	        },
+	        CHARTS: {
+	    		FROM: 'From',
+	    		UNTIL: 'Until',
+	    		SHOW: 'Show'
+	    	},
 	        LOOKUP_MODAL: {
 	            CANCEL: 'CANCEL',
 	            SELECT: 'SELECT'
