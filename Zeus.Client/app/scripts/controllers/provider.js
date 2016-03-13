@@ -17,6 +17,18 @@ angular
              { Caption: 'Πληρότητα', Field: 'Utilization', Type: 'Percentage', Tooltip: 'Ποσοστό Πληρότητας' },
         ];
 
+        $scope.addPersonnel = function () {
+            $scope.provider.Personnel.push({
+                "Type": "",
+                "PersonnelCount": ""
+            });
+        }
+
+        $scope.addItem = function () {
+            $scope.provider.Items.push({              
+            });
+        }
+
         $scope.addFacility = function () {
             var picker = $uibModal.open({
                 animation: true,
