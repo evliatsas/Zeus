@@ -1,54 +1,54 @@
 ﻿<div class="pull-right">
     <span class="btn btn-danger btn-fab fab" ng-click="delete()">
-        <i class="material-icons" title="{{ 'CONTACT.DELETE' | translate }}">delete</i>
+        <i class="material-icons" title="{{ 'OPERATION.DELETE' | translate }}">delete</i>
     </span>
     <span class="btn btn-success btn-fab fab" ng-click="save()">
-        <i class="material-icons" title="{{ 'CONTACT.DELETE' | translate }}">save</i>
+        <i class="material-icons" title="{{ 'OPERATION.DELETE' | translate }}">save</i>
     </span>
 </div>
-<h2>{{ 'CONTACT.CON' | translate }}<span style="color:#009688; font-weight:300">{{contact.Name}}</span></h2>
+<h2>{{ 'OPERATION.CON' | translate }}<span style="color:#009688; font-weight:300">{{contact.Name}}</span></h2>
 <div class="col-md-4">
     <div class="form-group label-static ng-is-empty">
-        <label for="i1" class="control-label">{{ 'CONTACT.TITLE' | translate }}</label>
+        <label for="i1" class="control-label">{{ 'OPERATION.TITLE' | translate }}</label>
         <input type="text" class="form-control" id="i1" ng-model="contact.Title">
     </div>
     <div class="form-group label-static ng-is-empty">
-        <label for="i2" class="control-label">{{ 'CONTACT.NAME' | translate }}</label>
+        <label for="i2" class="control-label">{{ 'OPERATION.NAME' | translate }}</label>
         <input type="text" class="form-control" id="i2" ng-model="contact.Name" />
     </div>
     <div class="form-group label-static ng-is-empty">
-        <label for="i3" class="control-label">{{ 'CONTACT.COMPANY' | translate }}</label>
+        <label for="i3" class="control-label">{{ 'OPERATION.COMPANY' | translate }}</label>
         <textarea class="form-control" id="i2" ng-model="contact.Company" />
     </div>
     <div class="form-group label-static ng-is-empty">
-        <label for="Administration" class="control-label">{{ 'CONTACT.ADMINISTRATION' | translate }}</label>
+        <label for="Administration" class="control-label">{{ 'OPERATION.ADMINISTRATION' | translate }}</label>
         <input type="text" class="form-control" id="Administration" ng-model="contact.Administration" uib-typeahead="state for state in lookup.administrations | filter:$viewValue">
     </div>
     <div class="form-group label-static ng-is-empty">
-        <label for="i4" class="control-label">{{ 'CONTACT.TYPE' | translate }}</label>
+        <label for="i4" class="control-label">{{ 'OPERATION.TYPE' | translate }}</label>
         <input type="text" class="form-control" id="Type" ng-model="contact.Type" uib-typeahead="ct for ct in lookup.contactTypes | filter:$viewValue">
     </div>
     <div class="form-group label-static ng-is-empty">
-        <label for="i4" class="control-label">{{ 'CONTACT.ADDRESS' | translate }}</label>
+        <label for="i4" class="control-label">{{ 'OPERATION.ADDRESS' | translate }}</label>
         <input type="text" class="form-control" id="i4" ng-model="contact.Address">
     </div>
 
     <phone-list phones="contact.Phones"></phone-list>
 
     <div class="form-group label-static ng-is-empty">
-        <label for="i4" class="control-label">{{ 'CONTACT.EMAIL' | translate }}</label>
+        <label for="i4" class="control-label">{{ 'OPERATION.EMAIL' | translate }}</label>
         <input type="text" class="form-control" id="i4" ng-model="contact.Email">
         <span class="material-input"></span>
     </div>
     <div class="form-group label-static ng-is-empty">
-        <label for="i5" class="control-label">{{ 'CONTACT.NOTES' | translate }}</label>
+        <label for="i5" class="control-label">{{ 'OPERATION.NOTES' | translate }}</label>
         <textarea class="form-control" id="i5" ng-model="contact.Notes" />
     </div>
 </div>
 
 <div class="col-md-8" style="padding-top:20px;">
     <div class="shadow-box btn-group-sm">       
-        <i>{{ 'CONTACT.FACILITIES' | translate }}</i>
+        <i>{{ 'OPERATION.FACILITIES' | translate }}</i>
         <cinnamon-grid grid-columns="facilityColumns"
                        hide-paging-dropdown ="true"
                        page-size="0"
@@ -60,7 +60,7 @@
         </cinnamon-grid>
     </div>
     <div class="shadow-box btn-group-sm">
-        <i>{{ 'CONTACT.PROVIDERS' | translate }}</i>
+        <i>{{ 'OPERATION.PROVIDERS' | translate }}</i>
         <cinnamon-grid grid-columns="providerColumns"
                        hide-paging-dropdown ="true"
                        page-size="0"
