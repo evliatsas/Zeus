@@ -22,6 +22,12 @@ angular
                 messageService.getFailed(response.error);
             });
         }
+        else {
+            $scope.operation.Type = 0;
+            $scope.operation.Preparations = [];
+            $scope.operation.Transports = [];
+            $scope.operation.Providers = [];
+        }
 
         // Get Lookup Values
 
@@ -29,7 +35,8 @@ angular
             method: 'GET',
             url: baseUrl + '/common/facilities' //lookup facilities
         }).then(function successCallback(response) {
-            $scope.facilities = response.data;
+            for (var i in response.data)
+                $scope.facilities.push(response.data[i].Description);
         }, function errorCallback(response) {
             $scope.facilities = [];
             messageService.getFailed(response.error);
@@ -96,5 +103,23 @@ angular
 
         $scope.delete = function () {
             messageService.askDeleteConfirmation(deleteOperation);
+        }
+
+        $scope.addPreparation = function () {
+            var newPrep = {
+                Completion: 0
+            };
+            $scope.operation.Preparations.push(newPrep);
+        }
+
+        $scope.addProvider = function () {
+            var newProv = {
+            };
+            $scope.operation.Providers.push(newProv);
+        }
+
+        $scope.openContact = function () {
+            if ($scope.operation.DestinationContactId)
+                $location.url("/contacts/" + $scope.operation.DestinationContactId);
         }
     });

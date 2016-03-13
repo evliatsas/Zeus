@@ -180,6 +180,8 @@ angular
 	    	    PROVIDERS: 'Υποστήριξη'
 	    	},
 	    	OPERATION: {
+	    	    OPS: 'ΕΠΙΧΕΙΡΗΣΗ: ',
+                NAME: 'Όνομα',
 	    	    DELETE: 'Διαγραφή Επιχείρησης',
 	    	    SAVE: 'Αποθήκευση Επιχείρησης',
 	    	    PRIORITY: 'Προτεραιότητα: ',
@@ -193,11 +195,14 @@ angular
 	    	    PREPERATIONS: 'Προετοιμασία',
 	    	    TRANSPORTS: 'Μέσα Μετακίνησης',
 	    	    PROVIDERS: 'Υποστήριξη',
-	    	    CONTACT: 'Υπεύθυνος Προορισμού',
+	    	    CONTACT: 'Επαφή Προορισμού',
 	    	    CANCEL: 'Ακύρωση Επιχείρησης',
                 INSTRUCTIONS: 'Οδηγίες',
 	    	    PROBLEMS: 'Προβλήματα',
 	    	    NOTES: 'Σημειώσεις',
+	    	    CARRIER: 'Φορέας',
+	    	    PROGRESS: 'Πρόοδος',
+	    	    SUPERVISOR: 'Υπεύθυνος'
 	    	},
 	    	HOUSING: {
 	    	    DELETE: 'Διαγραφή Εγκατάστασης',
@@ -443,6 +448,8 @@ angular
 	            PROVIDERS: 'Providers'
 	        },
 	        OPERATION: {
+                OPS: 'OPERATION: ',
+                NAME: 'Name',
 	            DELETE: 'Delete Operation',
 	            SAVE: 'Save Operation',
 	            PRIORITY: 'Priority: ',
@@ -461,6 +468,9 @@ angular
 	            INSTRUCTIONS: 'Instructions',
 	            PROBLEMS: 'Problems',
 	            NOTES: 'Notes',
+	            CARRIER: 'Carrier',
+	            PROGRESS: 'Progress',
+                SUPERVISOR: 'Supervisor'
 	        },
 	        HOUSING: {
 	            DELETE: 'Delete Housing',

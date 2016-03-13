@@ -9,8 +9,9 @@ namespace Zeus.Entities
 {
     public class Operation : Entity
     {
-        public ReportPriority Priority { get; set; }
+        public Priority Priority { get; set; }
         public OperationType Type { get; set; }
+        public string Name { get; set; }
         public DateTime Start { get; set; }
         public DateTime ETA { get; set; }
         public Nullable<DateTime> End { get; set; }
@@ -55,7 +56,7 @@ namespace Zeus.Entities
 
         public Operation()
         {
-            this.Priority = ReportPriority.Routine;
+            this.Priority = Priority.Routine;
             this.Type = OperationType.Transport;
             this.Start = DateTime.Now;
             this.ETA = DateTime.Now.AddHours(12);

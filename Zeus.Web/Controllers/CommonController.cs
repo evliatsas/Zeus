@@ -59,7 +59,7 @@ namespace Zeus.Controllers
 
             var result = context.GetFacilitiesLookup();
 
-            return result == null ? this.Ok(new List<Lookup>().AsEnumerable()) : this.Ok(result.OrderByDescending(o => o.Description).AsEnumerable());
+            return result == null ? this.Ok(new List<Lookup>().AsEnumerable()) : this.Ok(result.OrderBy(o => o.Description).AsEnumerable());
         }
 
         [Route(Routes.Contacts)]
@@ -71,7 +71,7 @@ namespace Zeus.Controllers
 
             var result = context.GetContactsLookup();
 
-            return result == null ? this.Ok(new List<Lookup>().AsEnumerable()) : this.Ok(result.OrderByDescending(o => o.Description).AsEnumerable());
+            return result == null ? this.Ok(new List<Lookup>().AsEnumerable()) : this.Ok(result.OrderBy(o => o.Description).AsEnumerable());
         }
 
         [Route(Routes.Providers)]
@@ -83,7 +83,7 @@ namespace Zeus.Controllers
 
             var result = await context.GetProvidersLookup();
 
-            return result == null ? this.Ok(new List<Lookup>().AsEnumerable()) : this.Ok(result.OrderByDescending(o => o.Description).AsEnumerable());
+            return result == null ? this.Ok(new List<Lookup>().AsEnumerable()) : this.Ok(result.OrderBy(o => o.Description).AsEnumerable());
         }
 
         [Route(Routes.Persons)]
@@ -95,7 +95,7 @@ namespace Zeus.Controllers
 
             var result = context.GetPersonsLookup();
 
-            return result == null ? this.Ok(new List<Lookup>().AsEnumerable()) : this.Ok(result.OrderByDescending(o => o.Description).AsEnumerable());
+            return result == null ? this.Ok(new List<Lookup>().AsEnumerable()) : this.Ok(result.OrderBy(o => o.Description).AsEnumerable());
         }
 
         [Route("log")]

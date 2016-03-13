@@ -104,6 +104,14 @@ namespace Zeus.Controllers
 
             try
             {
+                //check for Name unique
+                var exists = await context.Facilities.Count(x => x.Name == facility.Name);
+                if(exists > 0)
+                {
+                    Log.Error("Integrity violation. User {user} requested Facility Name {facility} that already exists", user.UserName, facility.Name);
+                    return this.BadRequest("Το όνομα που επιλέξατε υπάρχει ήδη σε άλλη Δομή Φιλοξενίας.");
+                }
+
                 //insert contacts
                 var contacts = facility.Contacts.Select(x =>
                 {
