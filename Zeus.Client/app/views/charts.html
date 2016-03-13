@@ -34,18 +34,43 @@
                 </button>
             </div>
         </div>
+</div>
 
+<div class="col-md-12 container-fluid" ng-repeat="type in types" style="margin-top: 20px">
+<div class="lead"><i>{{ getType(type) }}</i></div>
+    <div class="col-md-6">
+
+        <canvas id="{{'chart' + type}}"
+                class="chart chart-line" 
+                chart-data="charts[type].data" 
+                chart-labels="charts[type].labels" 
+                chart-legend="true" 
+                chart-series="charts[type].series">
+        </canvas> 
+    </div>
+    <div class="col-md-6">
+
+        <!-- <div class="lead"><i>{{ getType(type) }}</i></div> -->
+
+        <canvas id="{{'chart' + type}}"
+                class="chart chart-bar" 
+                chart-data="charts[type].data" 
+                chart-labels="charts[type].labels" 
+                chart-legend="true" 
+                chart-series="charts[type].series">
+        </canvas> 
+    </div>
 </div>
 
 <div class="col-md-12" ng-repeat="type in types" on-finish-render="ngRepeatFinished" style="margin-top: 20px">
 
-    <div class="col-md-3 container-fluid shadow-box">
+    <div class="col-md-2 container-fluid">
         <div ng-repeat="facility in facilities | filter: {Type: category.Id} | orderBy: 'Facility.Name'">
             <input type="checkbox" ng-model="facility.Checked" ng-change="update(type, facility)"> {{facility.Name}}
         </div>
     </div>
 
-    <div class="col-md-8 col-md-offset-1 container-fluid shadow-box">
+    <div class="col-md-9 col-md-offset-1 container-fluid">
 
         <div class="lead"><i>{{ getType(type) }}</i></div>
 
@@ -59,3 +84,18 @@
     </div>
 
 </div>
+
+<!-- <div class="col-md-12" style="margin-top: 20px">
+    <div class="col-md-6" ng-repeat="facility in facilities">
+
+        <div class="lead"><i>{{ getType(type) }}</i></div>
+
+        <canvas id="{{'chart' + type}}"
+                class="chart chart-line" 
+                chart-data="charts[type].data" 
+                chart-labels="charts[type].labels" 
+                chart-legend="true" 
+                chart-series="charts[type].series">
+        </canvas> 
+    </div>
+</div> -->

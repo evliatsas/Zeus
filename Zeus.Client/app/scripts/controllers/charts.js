@@ -11,6 +11,9 @@ angular
         $scope.reports = [];
         $scope.charts = [];
 
+        $scope.from = moment().subtract(7, 'days');
+        $scope.to = moment();
+
         $scope.getStats = function (type, from, to) {
             var query = {
                 types: [5], //only getting SituationReports for now
@@ -109,9 +112,13 @@ angular
 
             series.forEach(function(serie, index) {
                 chart.series.push(serie.key);
-                var row = empty.slice();
-                chart.data.push(row);
+                chart.data.push(empty.slice());
             });
+
+            //add total series
+            chart.series.push("Σύνολο");
+            var zeroes = labels.map(function(l) { return 0; });
+            chart.data.push(zeroes);
 
             labels.forEach(function(label, index) {
                 chart.labels.push(label.key);
@@ -119,7 +126,10 @@ angular
                 label.items.forEach(function(report, index) {
                     var s = chart.series.indexOf(seriesFn(report));
                     var l = chart.labels.indexOf(labelsFn(report));
-                    chart.data[s][l] = dataFn(report);
+                    chart.data[s][l] = dataFn(report); // TODO: check logic error (only gets last number) //////////
+
+                    //add total data
+                    chart.data[chart.series.length-1][l] += chart.data[s][l];
                 });
             });
 
