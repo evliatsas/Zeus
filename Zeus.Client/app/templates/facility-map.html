@@ -5,24 +5,27 @@
             <tr>
                 <td style="padding-right: 8px">{{ 'FACILITY_MAP.GUESTS' | translate }}</td>
                 <td style="padding-right: 8px">:</td>
-                <td><strong>{{facility.Attendance}}</strong></td>
+                <td><strong>{{facility.Attendance}}/{{facility.Capacity}}</strong></td>
             </tr>
-            <tr>
-                <td>{{ 'FACILITY_MAP.CAPACITY' | translate }}:</td>
-                <td>:</td>
-                <td><strong>{{facility.Capacity}}</strong></td>
-            </tr>
+
             <tr>
                 <td style="padding-top: 5px">{{ 'FACILITY_MAP.UTILIZATION' | translate }}</td>
                 <td style="padding-top: 5px">:</td>
                 <td style="padding-top: 5px" ng-class="{ 'text-warning': facility.Utilization > 74, 'text-danger': facility.Utilization > 100 }"><strong>{{facility.Utilization}}%</strong></td>
             </tr>
+
+            <tr>
+                <td style="padding-top: 10px"><a href="#/facilities/{{facility.Id}}?tab=3">{{ 'FACILITY_MAP.REPORTS' | translate }}</a></td>
+                <td style="padding-top: 10px">:</td>
+                <td style="padding-top: 10px"><strong>{{facility.ReportsCount}}</strong></td>
+            </tr>
         </table>
     </div>
 
     <div class="btn-group">
-        <a href="#/facilities/{{facility.Id}}" class="btn btn-info pull-left" title="{{ 'FACILITY_MAP.TRANSITION' | translate }}" style="padding: 0px; margin-right: 50px"><i class="material-icons md-24">open_in_browser</i></a>
-
+        <a href="#/facilities/{{facility.Id}}" class="btn btn-info pull-left" title="{{ 'FACILITY_MAP.TRANSITION' | translate }}" style="padding: 0px"><i class="material-icons md-24">open_in_browser</i></a>
+    </div>
+    <div class="btn-group pull-right">
         <a ng-click="saveMarker(facility,marker)" class="btn btn-xs btn-info pull-right" title="{{ 'FACILITY_MAP.SAVE' | translate }}" style="padding: 0px; margin-left: 5px"><i class="material-icons md-24">save</i></a>
         <a ng-click="moveMarker(facility,marker)" class="btn btn-xs btn-info pull-right" title="{{ 'FACILITY_MAP.MOVE' | translate }}" style="padding: 0px"><i class="material-icons md-24">open_with</i></a>
     </div>
