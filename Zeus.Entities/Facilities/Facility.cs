@@ -14,6 +14,7 @@ namespace Zeus.Entities
         public Location Location { get; set; }
         public IList<Housing> Housings { get; set; }
         public int MaxCapacity { get; set; }
+        public int ReportCapacity { get; set; }
         public int Capacity { get; set; }
         public int Attendance { get; set; }
         public int Children { get; set; }
