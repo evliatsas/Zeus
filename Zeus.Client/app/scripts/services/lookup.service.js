@@ -65,6 +65,11 @@
                 { Id: 2, Description: '<i class="text-muted material-icons md-18" title="Κατεστραμένο">fiber_manual_record</i>' },
                 { Id: 2, Description: '<i class="text-danger material-icons md-18" title="Ανενεργό">fiber_manual_record</i>' }
             ],
+            operationTypes: [
+                { Id: 0, Description: 'Μεταφορά' },
+                { Id: 1, Description: 'Επανατοποθέτηση' },
+                { Id: 2, Description: 'Έξοδος' }
+            ],
             statuses: [
                 'Σε Λειτουργία',
                 'Υπο Επισκευή',
