@@ -32,7 +32,8 @@ function grid($http, $filter, moment, commonUtilities) {
             toolbar: '@',
             toolbarFn: '&toolbarFn',
             overrideEqualFn: '&overrideEqualFn',
-            customActionFn: '&customActionFn'
+            customActionFn: '&customActionFn',
+            customActionItems: '=?'
         },
         templateUrl: '/templates/grid.html',
         restrict: 'E',
