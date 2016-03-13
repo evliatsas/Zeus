@@ -19,7 +19,7 @@ namespace Zeus
         /// </summary>
         /// <param name="principal">The Claim Principal of the Request</param>
         /// <returns>The referebced Employee or null if none</returns>
-        public static async Task<User> GetUserByRequest(ClaimsPrincipal principal)
+        public static async Task<ApplicationUser> GetUserByRequest(ClaimsPrincipal principal, ApplicationUserManager userManager)
         {
             try
             {
@@ -27,7 +27,7 @@ namespace Zeus
                 var userIdClaim = claimsIdentity.Claims.FirstOrDefault(x => x.Type == ClaimTypes.NameIdentifier);
                 var userId = userIdClaim.Value;
 
-                return await Entities.Repositories.Context.Instance.Users.GetById(userId);
+                return await userManager.FindByIdAsync(userId);
             }
             catch (Exception exc)
             {

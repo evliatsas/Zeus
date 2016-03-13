@@ -110,7 +110,8 @@ angular
 	    	    ARCHIVED: 'Εξαγωγή Αναφοράς από Αρχείο',
 	    	    PRIORITY: 'Προτεραιότητα ',
 	    	    FACILITY: 'Δομή Φιλοξενίας: ',
-	    	    SUBJECT: 'Θέμα'
+	    	    SUBJECT: 'Θέμα',
+                NOTES:'Κείμενο'
 	    	},
 	    	SITUATION_REPORT: {
 	    	    DELETE: 'Διαγραφή Αναφοράς',
@@ -135,6 +136,7 @@ angular
 	    	    ETA: 'Εκτιμώμενη Ημ. Άφιξης',
 	    	    TRANSPORT_TYPE: 'Μέσο Μεταφοράς',
 	    	    TRANSPORT_UID: 'Μοναδικό Αναγνωριστικό',
+                OWNER:'Ιδιοκτησία',
 	    	    ISHIRED: 'Είναι Ναυλωμένο',
 	    	    NOTES: 'Κείμενο'
 	    	},
@@ -175,7 +177,7 @@ angular
 	    	    HOUSING_COUNT: 'Πλήθος Μονάδων',
 	    	    ATTENDANCE: 'Φιλοξενούμενοι',
 	    	    CANCEL: 'ΑΚΥΡΩΣΗ',
-	    	    SELECT: 'ΕΠΙΛΟΓΗ'
+	    	    SAVE: 'ΑΠΟΘΗΚΕΥΣΗ'
 	    	},
 	    	LOGIN: {
                 TITLE:'Παρακαλώ Συνδεθείτε',
@@ -212,7 +214,8 @@ angular
 	    	    PERSONEL_COUNT: 'Πλήθος Προσωπικού',
 	    	    ADMINISTRATION: 'Διαχείριση',
 	    	    SERVICES: 'Προσφερόμενες Υπηρεσίες',
-	    	    SERVICE: 'Υπηρεσία'
+	    	    SERVICE: 'Υπηρεσία',
+                NOTES:'Σημειώσεις'
 	    	},
 	    	PERSON: {
 	    	    DELETE: 'Διαγραφή Ταυτοποιημένου',
@@ -334,7 +337,8 @@ angular
 	            ARCHIVED: 'Export Report from Archive',
 	            PRIORITY: 'Priority',
 	            FACILITY: 'Facility: ',
-	            SUBJECT: 'Subject'
+	            SUBJECT: 'Subject',
+	            NOTES: 'Notes'
 	        },
 	        SITUATION_REPORT: {
 	            DELETE: 'Delete Report',
@@ -359,6 +363,7 @@ angular
 	            ETA: 'Estimated Time of Arrival',
 	            TRANSPORT_TYPE: 'Vehicle',
 	            TRANSPORT_UID: 'Unique Identifier',
+	            OWNER: 'Ownership',
 	            ISHIRED: 'Hired',
 	            NOTES: 'Notes'
 	        },
@@ -399,7 +404,7 @@ angular
 	            HOUSING_COUNT: 'Units',
 	            ATTENDANCE: 'Attendance',
 	            CANCEL: 'CANCEL',
-	            SELECT: 'SELECT'
+	            SAVE: 'SAVE'
 	        },
 	        LOGIN: {
 	            TITLE: 'Please sign in',
@@ -436,7 +441,8 @@ angular
 	            PERSONEL_COUNT: 'Number of Personnel',
 	            ADMINISTRATION: 'Administration',
 	            SERVICES: 'Offering Services',
-	            SERVICE: 'Service'
+	            SERVICE: 'Service',
+	            NOTES: 'Σημειώσεις'
 	        },
 	        PERSON: {
 	            DELETE: 'Delete Identified Person',

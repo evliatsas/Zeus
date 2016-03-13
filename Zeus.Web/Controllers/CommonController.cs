@@ -14,7 +14,7 @@ namespace Zeus.Controllers
 {
     [Authorize]
     [RoutePrefix(Zeus.Routes.Common)]
-    public class CommonController : ApiController
+    public class CommonController : BaseController
     {
         private Entities.Repositories.Context context;
 
@@ -31,7 +31,7 @@ namespace Zeus.Controllers
         {
             try
             {
-                var user = await Helper.GetUserByRequest(User as ClaimsPrincipal);
+                var user = await Helper.GetUserByRequest(User as ClaimsPrincipal, UserManager);
                 var report = new Models.PdfReport();
                 var pdf = await report.PrintPdfReport("56daea1fb51eb41e38277437");
 
@@ -55,7 +55,7 @@ namespace Zeus.Controllers
         [HttpGet]
         public async Task<IHttpActionResult> GetFacilitiesAsLookup()
         {
-            var user = await Helper.GetUserByRequest(User as ClaimsPrincipal);
+            var user = await Helper.GetUserByRequest(User as ClaimsPrincipal, UserManager);
 
             var result = context.GetFacilitiesLookup();
 
@@ -67,7 +67,7 @@ namespace Zeus.Controllers
         [HttpGet]
         public async Task<IHttpActionResult> GetContactsAsLookup()
         {
-            var user = await Helper.GetUserByRequest(User as ClaimsPrincipal);
+            var user = await Helper.GetUserByRequest(User as ClaimsPrincipal, UserManager);
 
             var result = context.GetContactsLookup();
 
@@ -79,7 +79,7 @@ namespace Zeus.Controllers
         [HttpGet]
         public async Task<IHttpActionResult> GetProvidersAsLookup()
         {
-            var user = await Helper.GetUserByRequest(User as ClaimsPrincipal);
+            var user = await Helper.GetUserByRequest(User as ClaimsPrincipal, UserManager);
 
             var result = await context.GetProvidersLookup();
 
@@ -91,7 +91,7 @@ namespace Zeus.Controllers
         [HttpGet]
         public async Task<IHttpActionResult> GetPersonsAsLookup()
         {
-            var user = await Helper.GetUserByRequest(User as ClaimsPrincipal);
+            var user = await Helper.GetUserByRequest(User as ClaimsPrincipal, UserManager);
 
             var result = context.GetPersonsLookup();
 

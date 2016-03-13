@@ -26,8 +26,8 @@ angular
             $location.url("/login");
         }
 
-        $scope.changePassword = function(password, newPassword, passwordConfirm) {
-            authService.changePassword("", password, newPassword, passwordConfirm);
+        $scope.changePassword = function() {
+            authService.changePassword($scope.user,"change");
         }
 
         $scope.language = "EN";
@@ -50,7 +50,7 @@ angular
             $scope.fullName = authService.info.title;
             $http({
                 method: 'GET',
-                url: baseUrl + '/reports/message/unread'
+                url: baseUrl + '/reports/messages/unread'
             }).then(function successCallback(response) {
                 $scope.unread = response.data;
             }, function errorCallback(response) {

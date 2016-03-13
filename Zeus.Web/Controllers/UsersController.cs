@@ -1,92 +1,68 @@
 ﻿using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.Owin;
 using Serilog;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net.Http;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Description;
-using Zeus.Entities;
 using Zeus.Models;
 
 namespace Zeus.Controllers
 {
     [Authorize]
     [RoutePrefix(Zeus.Routes.Users)]
-    public class UsersController : ApiController
+    public class UsersController : BaseController
     {
-        private ApplicationIdentityContext context;
-        public ApplicationIdentityContext Context
-        {
-            get
-            {
-                if (userManager == null)
-                    userManager = Request.GetOwinContext().GetUserManager<ApplicationUserManager>();
-
-                return userManager;
-            }
-        }
-
-        public UsersController()
-        {
-            context = ApplicationIdentityContext.Create();
-        }
-
-        private ApplicationUserManager userManager;
-        public ApplicationUserManager UserManager
-        {
-            get
-            {
-                if (userManager == null)
-                    userManager = Request.GetOwinContext().GetUserManager<ApplicationUserManager>();
-
-                return userManager;
-            }
-        }
-
         [Route("")]
-        [ResponseType(typeof(IEnumerable<ApplicationUser>))]
+        [ResponseType(typeof(IEnumerable<UserViewModel>))]
         [HttpGet]
         public async Task<IHttpActionResult> GetUsers()
         {
-            var user = await Helper.GetUserByRequest(User as ClaimsPrincipal);
+            var user = await Helper.GetUserByRequest(User as ClaimsPrincipal, UserManager);
 
+            var list = await IdentityContext.AllUsersAsync();
+            var result = list.Select(t => UserViewModel.Map(t));
 
-            var result = await context.AllUsersAsync();
-
-            return result == null ? this.Ok(new List<ApplicationUser>().AsEnumerable()) : this.Ok(result.OrderByDescending(o => o.FullName).AsEnumerable());
+            return result == null ? this.Ok(new List<UserViewModel>().AsEnumerable()) : this.Ok(result.OrderByDescending(o => o.FullName).AsEnumerable());
         }
 
         [Route("{id}")]
-        [ResponseType(typeof(ApplicationUser))]
+        [ResponseType(typeof(UserViewModel))]
         [HttpGet]
         public async Task<IHttpActionResult> GetUser(string id)
         {
+            ApplicationUser app;
+            UserViewModel user;
+
             if (id == "self")
             {
                 var claimsIdentity = User.Identity as ClaimsIdentity;
                 var userIdClaim = claimsIdentity.Claims.FirstOrDefault(x => x.Type == ClaimTypes.NameIdentifier);
                 id = userIdClaim.Value;
+                app = await UserManager.FindByIdAsync(id);
+                user = UserViewModel.Map(app);
             }
-
-            var user = await UserManager.FindByIdAsync(id);
+            else
+            {
+                app = await UserManager.FindByNameAsync(id);
+                user = UserViewModel.Map(app);
+            }
 
             return user == null ? (IHttpActionResult)this.NotFound() : this.Ok(user);
         }
 
         [Route("")]
-        [ResponseType(typeof(ApplicationUser))]
+        [ResponseType(typeof(UserViewModel))]
         [HttpPost]
-        public async Task<IHttpActionResult> CreateUser(ApplicationUser user)
+        public async Task<IHttpActionResult> CreateUser(UserViewModel user)
         {
-            var currentuser = await Helper.GetUserByRequest(User as ClaimsPrincipal);
+            var currentuser = await Helper.GetUserByRequest(User as ClaimsPrincipal, UserManager);
 
             try
             {
-                var appuser = new ApplicationUser { FullName = user.FullName, PhoneNumber = user.PhoneNumber, UserName = user.UserName, Email = user.Email };
+                var appuser = UserViewModel.Map(new ApplicationUser(), user);
                 var result = await UserManager.CreateAsync(appuser, user.Password);
                 if (result.Succeeded)
                 {
@@ -110,16 +86,21 @@ namespace Zeus.Controllers
         [HttpDelete]
         public async Task<IHttpActionResult> DeleteUser(string id)
         {
-            var user = await Helper.GetUserByRequest(User as ClaimsPrincipal);
+            var user = await Helper.GetUserByRequest(User as ClaimsPrincipal, UserManager);
 
             try
             {
-                var data = await context.Users.GetById(id);
-                await context.Users.Delete(id);
-
-                Log.Warning("User({@User}) deleted By {user}", data, user);
-
-                return this.Ok();
+                var data = await UserManager.FindByNameAsync(id);
+                var result = await UserManager.DeleteAsync(data);
+                if (result.Succeeded)
+                {
+                    Log.Warning("User({@User}) deleted By {user}", data, user);
+                    return this.Ok();
+                }
+                else
+                {
+                    throw new Exception(result.Errors.FirstOrDefault());
+                }
             }
             catch (Exception exc)
             {
@@ -129,26 +110,21 @@ namespace Zeus.Controllers
         }
 
         [Route("")]
-        [ResponseType(typeof(ApplicationUser))]
+        [ResponseType(typeof(UserViewModel))]
         [HttpPut]
-        public async Task<IHttpActionResult> UpdateUser(ApplicationUser user)
+        public async Task<IHttpActionResult> UpdateUser(UserViewModel user)
         {
-            var currentuser = await Helper.GetUserByRequest(User as ClaimsPrincipal);
+            var currentuser = await Helper.GetUserByRequest(User as ClaimsPrincipal, UserManager);
 
             try
             {
-                var oldUser = await context.Users.GetById(user.Id);
-                oldUser.FullName = user.FullName;
-                oldUser.UserName = user.UserName;
-                oldUser.Email = user.Email;
-                oldUser.PhoneNumber = user.PhoneNumber;
-                oldUser.Roles = user.Roles;
-                oldUser.Claims = user.Claims;
-                var result = await context.Users.Update(oldUser);
+                var oldUser = await UserManager.FindByNameAsync(user.UserName);
+                oldUser = UserViewModel.Map(oldUser, user);
+                var result = await UserManager.UpdateAsync(oldUser);
 
-                Log.Information("User({Id}) updated By {user}", result.Id, currentuser);
+                Log.Information("User({UserName}) updated By {user}", user.UserName, currentuser);
 
-                return this.Ok(result);
+                return this.Ok(user);
             }
             catch (Exception exc)
             {
@@ -157,63 +133,50 @@ namespace Zeus.Controllers
             }
         }
 
-        [Route("password")]
+        [Route("changepassword")]
         [HttpPost]
-        public async Task<IHttpActionResult> ChangePassword(dynamic obj)
-        {
-            IdentityResult result;
-            string userId = obj.userId;
-            string oldPassword = obj.oldPassword;
-            string newPassword = obj.newPassword;
-            string passwordConfirm = obj.passwordConfirm;
-
-            if (newPassword != passwordConfirm)
-            {
+        public async Task<IHttpActionResult> ChangePassword(UserViewModel user)
+        {   
+            if (user.NewPassword != user.PasswordConfirm)
                 return BadRequest("Wrong password confirmation.");
-            }
 
-            if (string.IsNullOrWhiteSpace(userId))
-            {
-                var claimsIdentity = User.Identity as ClaimsIdentity;
+            var claimsIdentity = User.Identity as ClaimsIdentity;
+            if (claimsIdentity == null)
+                return BadRequest();
 
-                if (claimsIdentity == null)
-                    return BadRequest();
+            var userIdClaim = claimsIdentity.Claims.FirstOrDefault(x => x.Type == ClaimTypes.NameIdentifier);
+            if (userIdClaim == null)
+                return BadRequest();
 
-                var userIdClaim = claimsIdentity.Claims.FirstOrDefault(x => x.Type == ClaimTypes.NameIdentifier);
-                if (userIdClaim == null)
-                    return BadRequest();
-
-                userId = userIdClaim.Value;
-
-                result = await change(userId, oldPassword, newPassword);
-            }
-            else
-            {
-                result = reset(userId, newPassword);
-            }
-
-            if (result.Succeeded)
-            {
-                return Ok();
-            }
-            else
-            {
+            var userId = userIdClaim.Value;
+            var result = await UserManager.ChangePasswordAsync(userId, user.Password, user.NewPassword);
+            if (!result.Succeeded)
                 return BadRequest(result.Errors.FirstOrDefault());
-            }
+
+            return Ok();
         }
 
-        private async Task<IdentityResult> change(string userId, string oldPassword, string newPassword)
-        {
-            return await UserManager.ChangePasswordAsync(userId, oldPassword, newPassword);
-        }
 
-        private IdentityResult reset(string userId, string newPassword)
+        [Route("resetpassword")]
+        [HttpPost]
+        public async Task<IHttpActionResult> ResetPassword(UserViewModel user)
         {
-            var result = UserManager.RemovePassword(userId);
-            if (result.Succeeded)
-                result = UserManager.AddPassword(userId, newPassword);
+            if (user.NewPassword != user.PasswordConfirm)
+                return BadRequest("Wrong password confirmation.");
 
-            return result;
+            var app = await UserManager.FindByNameAsync(user.UserName);
+            if (app == null)
+                return BadRequest("user not found.");
+
+            var result = UserManager.RemovePassword(app.Id);
+            if (!result.Succeeded)
+                return BadRequest(result.Errors.FirstOrDefault());
+
+            result = UserManager.AddPassword(app.Id, user.NewPassword);
+            if (!result.Succeeded)
+                return BadRequest(result.Errors.FirstOrDefault());
+
+            return Ok();
         }
     }
 }

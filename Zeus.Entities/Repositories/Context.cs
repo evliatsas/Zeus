@@ -154,7 +154,7 @@ namespace Zeus.Entities.Repositories
             try
             {
                 var collection = this.Database.GetCollection<LogEntry>("log");
-                var entries = await collection.FindAsync(x => true);// (x => x.Timestamp > from && x.Timestamp < to);
+                var entries = await collection.FindAsync(x => x.Timestamp > from && x.Timestamp < to);
                 var result = await entries.ToListAsync();
 
                 return result.OrderBy(o => o.Timestamp);
