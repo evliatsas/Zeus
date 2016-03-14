@@ -73,13 +73,13 @@
                     service.info.claims = info.Claims;
                     localStorageService.set('userInfo', service.info);
                 }, function errorCallback(response) {
-                    messageService.showError();
+                    messageService.showError(response.data.error_description);
                 });
 
                 $location.path("/");
                 deferred.resolve(response);
             }, function(error) {
-                messageService.showError();
+                messageService.showError(error.data.error_description);
                 logout();
                 deferred.reject(error);
             });

@@ -4,6 +4,7 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using Microsoft.Owin.Security.OAuth;
 using System.Collections.Generic;
+using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using Zeus.Models;
@@ -58,14 +59,18 @@ namespace Zeus.Providers
                     user = new ApplicationUser();
                     user.FullName = "Διαχειριστής";
                     user.UserName = context.UserName;
-                    user.Email = string.Format("{0}@local.lc", context.UserName);
+                    user.Email = string.Format("{0}@localhost.local", context.UserName);
                     user.AddRole("Administrator");
+
                     var result = userManager.Create(user, context.Password);
+                    if (!result.Succeeded)
+                        context.SetError("invalid_grant", result.Errors.FirstOrDefault());
+                }
+                else
+                {
+                    context.SetError("invalid_grant", "The user name is incorrect");
                     return Task.FromResult<object>(null);
                 }
-
-                context.SetError("invalid_grant", "The user name is incorrect");
-                return Task.FromResult<object>(null);
             }
 
             if (userManager.IsLockedOut(user.Id))
@@ -79,8 +84,8 @@ namespace Zeus.Providers
                 var identity = new ClaimsIdentity("JWT");
                 identity.AddClaim(new Claim(ClaimTypes.NameIdentifier, user.Id));
                 identity.AddClaim(new Claim(ClaimTypes.Name, context.UserName));
-                
-                foreach(var role in user.Roles)
+
+                foreach (var role in user.Roles)
                 {
                     identity.AddClaim(new Claim(ClaimTypes.Role, role));
                 }
