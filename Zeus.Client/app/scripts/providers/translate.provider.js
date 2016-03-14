@@ -273,6 +273,28 @@ angular
 	    	    FACILITY: 'Δομή Φιλοξενείας',
 	    	    RELATIVES: 'Συγγενείς',
 	    	    ADD_RELATIVE: 'ΠΡΟΣΘΗΚΗ ΣΥΓΓΕΝΗ'
+	    	},
+	    	GRID: {
+	    	    TYPE: 'Τύπος',
+	    	    CAPACITY: 'Χωρητικότητα',
+	    	    ATTENDANCE: 'Φιλοξενούμενοι',
+	    	    COUNT: 'Πλήθος',
+	    	    UTILIZATION: 'Πληρότητα',
+	    	    STATUS: 'Κατάσταση',
+	    	    NAME: 'Όνομα',
+	    	    TITLE: 'Τίτλος',
+	    	    COMPANY: 'Οργανισμός',
+	    	    ADMINISTRATION: 'Διαχείριση',
+	    	    DESCRIPTION: 'Περιγραφή',
+	    	    PERSONNEL: 'Προσωπικό',
+	    	    PRIORITY: 'Προτ.',
+	    	    SUBJECT: 'Θέμα',
+	    	    AUTHOR: 'Συντάκτης',
+	    	    DATETIME: 'Ημερομηνία',
+	    	    NATIONALITY: 'Εθνικότητα',
+	    	    AGE: 'Ηλικία',
+	    	    SENSITIVE: 'Ευπάθεια',
+                SENSITIVITY:'Είδος Ευπαθ.'
 	    	}
 	    };
 
@@ -543,6 +565,28 @@ angular
 	            FACILITY: 'Facility',
 	            RELATIVES: 'Relatives',
 	            ADD_RELATIVE: 'ADD RELATIVE'
+	        },
+	        GRID: {
+	            TYPE: 'Type',
+	            CAPACITY: 'Capacity',
+	            ATTENDANCE: 'Guests',
+	            COUNT: 'Count',
+	            UTILIZATION: 'Utilization',
+	            STATUS: 'Status',
+	            NAME: 'Name',
+	            TITLE: 'Title',
+	            COMPANY: 'Organization',
+	            ADMINISTRATION: 'Administration',
+	            DESCRIPTION: 'Description',
+	            PERSONNEL: 'Personnel',
+	            PRIORITY: 'Prior.',
+	            SUBJECT: 'Subject',
+	            AUTHOR: 'Author',
+	            DATETIME: 'Date Time',
+	            NATIONALITY: 'Nanionality',
+	            AGE: 'Age',
+	            SENSITIVE: 'Sensitive',
+	            SENSITIVITY: 'Sensitivity'
 	        }
 	    };
 

@@ -2,52 +2,52 @@
 
 angular
     .module('zeusclientApp')
-    .controller('FacilityCtrl', function ($scope, $window, $timeout, $http, $routeParams, $location, $uibModal, lookupService, messageService, baseUrl) {
+    .controller('FacilityCtrl', function ($scope, $window, $timeout, $http, $routeParams, $filter, $location, $uibModal, lookupService, messageService, baseUrl) {
 
         var isInsert = $routeParams.id == 'new';
         $scope.activeTab = $routeParams.tab ? parseInt($routeParams.tab) : 0;
 
         $scope.housingcolumns = [
-            { Caption: 'Τύπος', Field: 'Type', Values: lookupService.housingCategories, Tooltip: 'Τύπος Εγκατάστασης' },
-            { Caption: 'Χωρητικότητα', Field: 'Capacity', Tooltip: 'Χωρητικότητα' },
-            { Caption: 'Παρευρισκόμενοι', Field: 'Attendance', Tooltip: 'Παρευρισκόμενοι' },
-            { Caption: 'Πλήθος', Field: 'Count', Tooltip: 'Πλήθος' },
-            { Caption: 'Πληρότητα', Field: 'Utilization', Type: 'Percentage', Tooltip: 'Ποσοστό' },
-            { Caption: 'Κατάσταση', Field: 'Status', Values: lookupService.statuses, Tooltip: 'Κατάσταση' }
+            { Caption: 'GRID.TYPE', Field: 'Type', Values: lookupService.housingCategories, Tooltip: 'Τύπος Εγκατάστασης' },
+            { Caption: 'GRID.CAPACITY', Field: 'Capacity', Tooltip: 'Χωρητικότητα' },
+            { Caption: 'GRID.ATTENDANCE', Field: 'Attendance', Tooltip: 'Παρευρισκόμενοι' },
+            { Caption: 'GRID.COUNT', Field: 'Count', Tooltip: 'Πλήθος' },
+            { Caption: 'GRID.UTILIZATION', Field: 'Utilization', Type: 'Percentage', Tooltip: 'Ποσοστό' },
+            { Caption: 'GRID.STATUS', Field: 'Status', Values: lookupService.statuses, Tooltip: 'Κατάσταση' }
         ];
 
         $scope.contactColumns = [
-            { Caption: 'Τύπος', Field: 'Type' },
-            { Caption: 'Όνομα', Field: 'Name' },
-            { Caption: 'Τίτλος', Field: 'Title' },
-            { Caption: 'Οργανισμός', Field: 'Company' },
-            { Caption: 'Διαχείριση', Field: 'Administration' }
+            { Caption: 'GRID.TYPE', Field: 'Type' },
+            { Caption: 'GRID.NAME', Field: 'Name' },
+            { Caption: 'GRID.TITLE', Field: 'Title' },
+            { Caption: 'GRID.COMPANY', Field: 'Company' },
+            { Caption: 'GRID.ADMINISTRATION', Field: 'Administration' }
         ];
 
         $scope.providerColumns = [
-           { Caption: 'Τύπος', Field: 'Type', Type: 'Lookup', Values: lookupService.providerTypes, Tooltip: 'Τύπος Υποστήριξης' },
-           { Caption: 'Όνομα', Field: 'Name' },
-           { Caption: 'Περιγραφή', Field: 'Description' },
-           { Caption: 'Πλ. Πρσ.', Field: 'PersonnelCount', Tooltip: 'Πλήθος Προσωπικού' },
-           { Caption: 'Διαχείριση', Field: 'Administration' }
+           { Caption: 'GRID.TYPE', Field: 'Type', Type: 'Lookup', Values: lookupService.providerTypes, Tooltip: 'Τύπος Υποστήριξης' },
+           { Caption: 'GRID.NAME', Field: 'Name' },
+           { Caption: 'GRID.DESCRIPTION', Field: 'Description' },
+           { Caption: 'GRID.PERSONNEL', Field: 'PersonnelCount', Tooltip: 'Πλήθος Προσωπικού' },
+           { Caption: 'GRID.ADMINISTRATION', Field: 'Administration' }
         ];
 
         $scope.reportcolumns = [
-            { Caption: 'Τ', Field: 'Type', Type: 'LookupHtml', Values: lookupService.reportTypesHtml, Tooltip: 'Τύπος Αναφοράς' },
-            { Caption: 'Π', Field: 'Priority', Type: 'LookupHtml', Values: lookupService.priorities, Tooltip: 'Προτεραιότητα Αναφοράς' },
-            { Caption: 'Θέμα', Field: 'Subject' },
-            { Caption: 'Συντάκτης', Field: 'User.Title' },
-            { Caption: 'Ημερομηνία', Field: 'DateTime', Type: 'DateTime' }
+            { Caption: 'GRID.TYPE', Field: 'Type', Type: 'LookupHtml', Values: lookupService.reportTypesHtml, Tooltip: 'Τύπος Αναφοράς' },
+            { Caption: 'GRID.PRIORITY', Field: 'Priority', Type: 'LookupHtml', Values: lookupService.priorities, Tooltip: 'Προτεραιότητα Αναφοράς' },
+            { Caption: 'GRID.SUBJECT', Field: 'Subject' },
+            { Caption: 'GRID.AUTHOR', Field: 'User.Title' },
+            { Caption: 'GRID.DATETIME', Field: 'DateTime', Type: 'DateTime' }
         ];
 
         $scope.reportactions = lookupService.reports;
 
         $scope.personcolumns = [
-           { Caption: 'Εθνικότητα', Field: 'Nationality' },
-           { Caption: 'Όνομα', Field: 'Name' },
-           { Caption: 'Ηλικία', Field: 'Age', Type: 'Number' },
-           { Caption: 'Ευπαθής', Field: 'IsSensitive', Type: 'Boolean' },
-           { Caption: 'Ευπάθεια', Field: 'Sensitivity' }
+           { Caption: 'GRID.NATIONALITY', Field: 'Nationality' },
+           { Caption: 'GRID.NAME', Field: 'Name' },
+           { Caption: 'GRID.AGE', Field: 'Age', Type: 'Number' },
+           { Caption: 'GRID.SENSITIVE', Field: 'IsSensitive', Type: 'Boolean' },
+           { Caption: 'GRID.SENSITIVITY', Field: 'Sensitivity' }
         ];
        
         var scrollToEnd = function () {

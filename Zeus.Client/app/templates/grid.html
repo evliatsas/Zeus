@@ -47,7 +47,7 @@
                 </th>
                 <th ng-repeat="column in gridColumns" title="{{column.Tooltip}}">
                     <span class="btn-link" ng-click="sortBy(column.Field)" title="Ταξινόμηση">
-                        <strong>{{column.Caption}}</strong>
+                        <strong>{{column.Caption | translate}}</strong>
                         <i ng-if="column.Field == sortingOrder && reverse == false" class="material-icons md-18" style="vertical-align:middle">keyboard_arrow_up</i>
                         <i ng-if="column.Field == sortingOrder && reverse == true" class="material-icons md-18" style="vertical-align:middle">keyboard_arrow_down</i>
                     </span>
