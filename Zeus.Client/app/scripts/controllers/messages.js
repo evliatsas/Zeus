@@ -7,11 +7,11 @@ angular
         $scope.lookup = lookupService;
 
         $scope.reportcolumns = [
-            { Caption: 'Π', Field: 'Priority', Type: 'LookupHtml', Values: lookupService.priorities, Tooltip: 'Προτεραιότητα Αναφοράς' },
-            { Caption: 'Δομή Φιλοξενίας', Field: 'Facility.Name' },
-            { Caption: 'Θέμα', Field: 'Subject' },
-            { Caption: 'Συντάκτης', Field: 'User.Title' },
-            { Caption: 'Ημερομηνία', Field: 'DateTime', Type: 'DateTime' }
+            { Caption: 'GRID.PRIORITY', Field: 'Priority', Type: 'LookupHtml', Values: lookupService.priorities, Tooltip: 'Προτεραιότητα Αναφοράς' },
+            { Caption: 'GRID.FACILITY', Field: 'Facility.Name' },
+            { Caption: 'GRID.SUBJECT', Field: 'Subject' },
+            { Caption: 'GRID.AUTHOR', Field: 'User.Title' },
+            { Caption: 'GRID.DATETIME', Field: 'DateTime', Type: 'DateTime' }
         ];
 
         $scope.showReport = function (report) {

@@ -8,17 +8,17 @@ angular
         $scope.operations = [];
 
         $scope.operationcolumns = [
-             { Caption: 'Τύπος', Field: 'Type', Type: 'Lookup', Values: lookupService.operationTypes, Tooltip: 'Τύπος Επιχείρησης' },
-             { Caption: 'Π', Field: 'Priority', Type: 'LookupHtml', Values: lookupService.priorities, Tooltip: 'Προτεραιότητα Αναφοράς' },
-             { Caption: 'Όνομα', Field: 'Name' },
-             { Caption: 'Έναρξη', Field: 'Start', Type: 'DateTime', Tooltip: 'Ημερομηνία Έναρξης' },
-             { Caption: 'Εκτιμ. Πέρας', Field: 'ETA', Type: 'DateTime', Tooltip: 'Εκτιμώμενη Ημερομηνία Πέρατος' },
-             { Caption: 'Πέρας', Field: 'End', Type: 'DateTime', Tooltip: 'Ημερομηνία Πέρατος' },
-             { Caption: 'Σημείο Αναχώρησης', Field: 'StartFacility.Name', Tooltip: 'Σημείο Αναχώρησης' },
-             { Caption: 'Προορισμός', Field: 'DestinationFacility.Name', Tooltip: 'Σημείο Προορισμού' },
-             { Caption: 'Πλήθος Ατ.', Field: 'PersonCount', Tooltip: 'Πλήθος Ατόμων' },
-             { Caption: 'Προετοιμασία', Field: 'IsPreparationCompleted', Type: 'Boolean', Tooltip: 'Έχει Ολοκληρωθεί η Προετοιμασία' },
-             { Caption: 'Άκύρωση', Field: 'IsCancelled', Type: 'Boolean', Tooltip: 'Έχει Ακυρωθεί' }
+             { Caption: 'GRID.TYPE', Field: 'Type', Type: 'Lookup', Values: lookupService.operationTypes, Tooltip: 'Τύπος Επιχείρησης' },
+             { Caption: 'GRID.PRIORITY', Field: 'Priority', Type: 'LookupHtml', Values: lookupService.priorities, Tooltip: 'Προτεραιότητα Αναφοράς' },
+             { Caption: 'GRID.NAME', Field: 'Name' },
+             { Caption: 'GRID.START', Field: 'Start', Type: 'DateTime', Tooltip: 'Ημερομηνία Έναρξης' },
+             { Caption: 'GRID.ETA', Field: 'ETA', Type: 'DateTime', Tooltip: 'Εκτιμώμενη Ημερομηνία Πέρατος' },
+             { Caption: 'GRID.END', Field: 'End', Type: 'DateTime', Tooltip: 'Ημερομηνία Πέρατος' },
+             { Caption: 'OPERATION.STARTFACILITY', Field: 'StartFacility.Name', Tooltip: 'Σημείο Αναχώρησης' },
+             { Caption: 'OPERATION.DESTFACILITY', Field: 'DestinationFacility.Name', Tooltip: 'Σημείο Προορισμού' },
+             { Caption: 'OPERATION.PERSON_COUNT', Field: 'PersonCount', Tooltip: 'Πλήθος Ατόμων' },
+             { Caption: 'OPERATION.PREPERATIONS', Field: 'IsPreparationCompleted', Type: 'Boolean', Tooltip: 'Έχει Ολοκληρωθεί η Προετοιμασία' },
+             { Caption: 'GRID.CANCEL', Field: 'IsCancelled', Type: 'Boolean', Tooltip: 'Έχει Ακυρωθεί' }
         ];
 
         $scope.addItem = function () {

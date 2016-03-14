@@ -267,6 +267,7 @@ angular
 	    	    TITLE: 'Ταυτοποιημένος: ',
 	    	    NAME: 'Όνομα',
 	    	    PASSPORT: 'Διαβατήριο',
+                AGE: 'Ηλικία',
 	    	    NATIONALITY: 'Εθνικότητα',
 	    	    IS_SENSITIVE: 'Ευπαθής',
 	    	    SENSITIVITY: 'Ευπάθεια',
@@ -294,7 +295,13 @@ angular
 	    	    NATIONALITY: 'Εθνικότητα',
 	    	    AGE: 'Ηλικία',
 	    	    SENSITIVE: 'Ευπάθεια',
-                SENSITIVITY:'Είδος Ευπαθ.'
+	    	    SENSITIVITY: 'Είδος Ευπαθ.',
+	    	    FACILITY: 'Δομή Φιλοξενίας',
+	    	    ADDRESS: 'Διεύθυνση',
+	    	    START: 'Έναρξη',
+	    	    ETA: 'Εκτιμ. Πέρας',
+	    	    END: 'Πέρας',
+	    	    CANCEL: 'Έχει Ακυρωθεί'
 	    	}
 	    };
 
@@ -559,6 +566,7 @@ angular
 	            TITLE: 'Identified Person',
 	            NAME: 'Full Name',
 	            PASSPORT: 'Password',
+                AGE: 'Age',
 	            NATIONALITY: 'Nationality',
 	            IS_SENSITIVE: 'Sensitive',
 	            SENSITIVITY: 'Sensitivity',
@@ -586,7 +594,13 @@ angular
 	            NATIONALITY: 'Nanionality',
 	            AGE: 'Age',
 	            SENSITIVE: 'Sensitive',
-	            SENSITIVITY: 'Sensitivity'
+	            SENSITIVITY: 'Sensitivity',
+	            FACILITY: 'Facility',
+	            ADDRESS: 'Address',
+	            START: 'Start',
+	            ETA: 'ETA',
+	            END: 'Arrival',
+                CANCEL:'Cancelled'
 	        }
 	    };
 

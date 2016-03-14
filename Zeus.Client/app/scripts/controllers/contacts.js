@@ -7,13 +7,12 @@ angular
         var isInsert = $routeParams.id == 'new';
 
         $scope.contactcolumns = [
-            { Caption: 'Τίτλος', Field: 'Title', Tooltip: 'Τίτλος Προμηθευτή' },
-            { Caption: 'Όνομα', Field: 'Name', Tooltip: 'Όνομα Επαφής' },
-            { Caption: 'Εταιρία', Field: 'Company', Tooltip: 'Εταιρία' },
-            { Caption: 'Υπαγωγή', Field: 'Administration', Values: lookupService.administrations, Tooltip: 'Διοικητική Υπαγωγή' },
-            { Caption: 'Τύπος', Field: 'Type', Values: lookupService.contactTypes, Tooltip: 'Τύπος Επαφής' },
+            { Caption: 'GRID.TITLE', Field: 'Title', Tooltip: 'Τίτλος Προμηθευτή' },
+            { Caption: 'GRID.NAME', Field: 'Name', Tooltip: 'Όνομα Επαφής' },
+            { Caption: 'GRID.COMPANY', Field: 'Company', Tooltip: 'Εταιρία' },
+            { Caption: 'GRID.ADMINISTRATION', Field: 'Administration', Values: lookupService.administrations, Tooltip: 'Διοικητική Υπαγωγή' },
+            { Caption: 'GRID.TYPE', Field: 'Type', Values: lookupService.contactTypes, Tooltip: 'Τύπος Επαφής' },
             { Caption: 'Διεύθυνση', Field: 'Address', Tooltip: 'Διεύθυνση' },
-            { Caption: 'Τηλέφωνα', Field: 'Administration', Tooltip: 'Τηλέφωνα' },
             { Caption: 'Email', Field: 'Email', Tooltip: 'Email Επαφής' }
         ];
 

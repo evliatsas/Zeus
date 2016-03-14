@@ -20,6 +20,11 @@
         <label for="Nationality" class="control-label">{{ 'PERSON.NATIONALITY' | translate }}</label>
         <input type="text" class="form-control" id="Nationality" ng-model="data.Nationality">
     </div>
+    <div class="form-group label-static ng-is-empty">
+        <label for="Age" class="control-label">{{ 'PERSON.AGE' | translate }}</label>
+        <input type="number" class="form-control" id="Age" ng-model="data.Age">
+        <span class="material-input"></span>
+    </div>
     <div class="form-group">
         <div class="checkbox">
             <label>

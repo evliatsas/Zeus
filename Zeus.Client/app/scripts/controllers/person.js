@@ -8,9 +8,9 @@ angular
         $scope.lookup = lookupService;
 
         $scope.reportcolumns = [
-            { Caption: 'Όνομα', Field: 'Name' },
-            { Caption: 'Εθνικότητα', Field: 'Nationality' },
-            { Caption: 'Διαβατήριο', Field: 'Passport' },
+            { Caption: 'GRID.NAME', Field: 'Name' },
+            { Caption: 'GRID.NATIONALITY', Field: 'Nationality' },
+            { Caption: 'PERSON.PASSPORT', Field: 'Passport' },
             { Caption: 'Ηλικία', Field: 'Age', Type: 'Number' },
             { Caption: 'Ευπαθής', Field: 'IsSensitive', Type: 'Boolean' },
             { Caption: 'Ευπάθεια', Field: 'Sensitivity' },
@@ -28,7 +28,8 @@ angular
 
 
         if (isInsert) {
-            //$scope.data = {};
+            $scope.data = {};
+            $scope.data.Relatives = [];
         } else {
             $http({
                 method: 'GET',

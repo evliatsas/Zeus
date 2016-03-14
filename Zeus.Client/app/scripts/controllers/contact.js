@@ -8,13 +8,13 @@ angular
         $scope.lookup = lookupService;
 
         $scope.facilityColumns = [
-             { Caption: 'Τύπος', Field: 'Type', Tooltip: 'Τύπος Εγκατάστασης' },
-             { Caption: 'Όνομα', Field: 'Name', Tooltip: 'Όνομα Εγκατάστασης' },
-             { Caption: 'Περιγραφή', Field: 'Description', Tooltip: 'Περιγραφή Εγκατάστασης' },
-             { Caption: 'Χωρητικότητα', Field: 'Capacity', Tooltip: 'Τρέχουσα Χωρητικότητα' },
-             { Caption: 'Διαχείριση', Field: 'Administration', Tooltip: 'Διοικητική Υπαγωγή' },
-             { Caption: 'Φιλοξενούμενοι', Field: 'Attendance', Tooltip: 'Πλήθος Φιλοξενούμενων' },
-             { Caption: 'Πληρότητα', Field: 'Utilization', Type: 'Percentage', Tooltip: 'Ποσοστό Πληρότητας' },
+             { Caption: 'GRID.TYPE', Field: 'Type', Tooltip: 'Τύπος Εγκατάστασης' },
+             { Caption: 'GRID.NAME', Field: 'Name', Tooltip: 'Όνομα Εγκατάστασης' },
+             { Caption: 'GRID.DESCRIPTION', Field: 'Description', Tooltip: 'Περιγραφή Εγκατάστασης' },
+             { Caption: 'GRID.CAPACITY', Field: 'Capacity', Tooltip: 'Τρέχουσα Χωρητικότητα' },
+             { Caption: 'GRID.ADMINISTRATION', Field: 'Administration', Tooltip: 'Διοικητική Υπαγωγή' },
+             { Caption: 'GRID.ATTENDANCE', Field: 'Attendance', Tooltip: 'Πλήθος Φιλοξενούμενων' },
+             { Caption: 'GRID.UTILIZATION', Field: 'Utilization', Type: 'Percentage', Tooltip: 'Ποσοστό Πληρότητας' },
         ];
 
         $scope.addFacility = function () {
@@ -47,11 +47,11 @@ angular
         }
 
         $scope.providerColumns = [
-              { Caption: 'Τύπος', Field: 'Type', Type: 'Lookup', Values: lookupService.providerTypes, Tooltip: 'Τύπος Υποστήριξης' },
-              { Caption: 'Όνομα', Field: 'Name' },
-              { Caption: 'Περιγραφή', Field: 'Description' },
-              { Caption: 'Πλ. Πρσ.', Field: 'PersonnelCount', Tooltip: 'Πλήθος Προσωπικού' },
-              { Caption: 'Διαχείριση', Field: 'Administration' }
+              { Caption: 'GRID.TYPE', Field: 'Type', Type: 'Lookup', Values: lookupService.providerTypes, Tooltip: 'Τύπος Υποστήριξης' },
+              { Caption: 'GRID.NAME', Field: 'Name' },
+              { Caption: 'GRID.DESCRIPTION', Field: 'Description' },
+              { Caption: 'GRID.PERSONNEL', Field: 'PersonnelCount', Tooltip: 'Πλήθος Προσωπικού' },
+              { Caption: 'GRID.ADMINISTRATION', Field: 'Administration' }
         ];
 
         $scope.addProvider = function () {
