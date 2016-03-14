@@ -70,7 +70,8 @@ angular
 	    	    TRANSPORT: 'Μετακίνηση',
 	    	    SITUATION: 'Κατάσταση',
 	    	    PROBLEM: 'Πρόβλημα',
-	    	    MESSAGE: 'Μήνυμα'
+	    	    MESSAGE: 'Μήνυμα',
+	    	    FEEDING: 'Σίτηση'
 	    	},
 	    	FACILITY_MAP: {
 	    	    GUESTS: 'Φιλοξενούμενοι: ',
@@ -257,7 +258,8 @@ angular
 	    	    INSTRUCTIONS: 'Οδηγίες',
 	    	    NOTES: 'Σημειώσεις',
 	    	    FACILITIES: 'Δομές Φιλοξενίας',
-                CONTACTS:'Επαφές'
+	    	    CONTACTS: 'Επαφές',
+                TOTAL: 'Σύνολο'
 	    	},
 	    	PERSON: {
 	    	    DELETE: 'Διαγραφή Ταυτοποιημένου',
@@ -339,7 +341,8 @@ angular
 	            TRANSPORT: 'Transport',
 	            SITUATION: 'Situation',
 	            PROBLEM: 'Problem',
-	            MESSAGE: 'Message'
+	            MESSAGE: 'Message',
+	            FEEDING: 'Feeding'
 	        },
 	        FACILITY_MAP: {
 	            GUESTS: 'Guests: ',
@@ -523,9 +526,10 @@ angular
 	            SERVICES: 'Offering Services',
 	            SERVICE: 'Service',
 	            INSTRUCTIONS:'Instuctions',
-	            NOTES: 'Σημειώσεις',
-	            FACILITIES: 'Δομές Φιλοξενίας',
-	            CONTACTS: 'Επαφές'
+	            NOTES: 'Notes',
+	            FACILITIES: 'Facilities',
+	            CONTACTS: 'Contacts',
+	            TOTAL: 'Total'
 	        },
 	        PERSON: {
 	            DELETE: 'Delete Identified Person',
