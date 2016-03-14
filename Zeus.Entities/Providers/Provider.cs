@@ -15,6 +15,8 @@ namespace Zeus.Entities
         public string Administration { get; set; }
         public string Instructions { get; set; }
         public IList<Personnel> Personnel { get; set; }
+        [BsonIgnore]
+        public int TotalPersonnel { get { return this.Personnel.Sum(x => x.PersonnelCount); } }
         public IList<Lookup> Items { get; set; }
         [BsonIgnore]
         public IList<Contact> Contacts { get; set; }
