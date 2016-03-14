@@ -62,9 +62,10 @@
             <div class="shadow-box btn-group-sm">
                 <cinnamon-grid grid-columns="personcolumns"
                                grid-items="data.Persons"
-                               show-grid-buttons="false"
+                               show-grid-buttons="true"
                                hide-item-buttons="true"
-                               row-click-fn="showPerson(item)">
+                               row-click-fn="showPerson(item)"
+                               grid-create-fn="addPerson()">
                 </cinnamon-grid>
             </div>
         </uib-tab>

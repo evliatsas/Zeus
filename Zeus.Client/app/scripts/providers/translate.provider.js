@@ -276,6 +276,12 @@ angular
 	    	    ADD_RELATIVE: 'ΠΡΟΣΘΗΚΗ ΣΥΓΓΕΝΗ'
 	    	},
 	    	GRID: {
+	    	    SEARCH: 'Αναζήτηση',
+	    	    FIRST: 'Πρώτη',
+	    	    LAST: 'Τελευταία',
+	    	    PREVIOUS: 'Προηγούμενη',
+	    	    NEXT: 'Επόμενη',
+	    	    RECORDS: 'εγγρ.',
 	    	    TYPE: 'Τύπος',
 	    	    CAPACITY: 'Χωρητικότητα',
 	    	    ATTENDANCE: 'Φιλοξενούμενοι',
@@ -302,6 +308,12 @@ angular
 	    	    ETA: 'Εκτιμ. Πέρας',
 	    	    END: 'Πέρας',
 	    	    CANCEL: 'Έχει Ακυρωθεί'
+	    	},
+	    	MODAL: {
+	    	    CONTACTS: 'Επιλογή Επαφών',
+	    	    PROVIDERS: 'Επιλογή Προμηθευτών',
+	    	    PEOPLE: 'Επιλογή Ατόμων',
+	    	    FACILITY: 'Επιλογή Δομών Φιλοξενίας'
 	    	}
 	    };
 
@@ -575,6 +587,12 @@ angular
 	            ADD_RELATIVE: 'ADD RELATIVE'
 	        },
 	        GRID: {
+	            SEARCH: 'Search',
+	            FIRST: 'First',
+	            LAST: 'Last',
+	            PREVIOUS: 'Previous',
+	            NEXT: 'Next',
+                RECORDS: 'rec',
 	            TYPE: 'Type',
 	            CAPACITY: 'Capacity',
 	            ATTENDANCE: 'Guests',
@@ -601,6 +619,12 @@ angular
 	            ETA: 'ETA',
 	            END: 'Arrival',
                 CANCEL:'Cancelled'
+	        },
+	        MODAL: {
+	            CONTACTS: 'Select Contacts',
+	            PROVIDERS: 'Select Providers',
+	            PEOPLE: 'Select Person',
+	            FACILITY: 'Select Facilities'
 	        }
 	    };
 

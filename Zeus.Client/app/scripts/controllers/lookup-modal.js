@@ -7,12 +7,12 @@ angular
 
         if (modaldata.ignoreTag == true) {
             vm.lookupColumns = [
-                { Caption: 'Όνομα', Field: 'Description' }
+                { Caption: 'GRID.NAME', Field: 'Description' }
             ];
         } else {
             vm.lookupColumns = [
-                { Caption: 'Τύπος', Field: 'Tag' },
-                { Caption: 'Όνομα', Field: 'Description' }
+                { Caption: 'GRID.TYPE', Field: 'Tag' },
+                { Caption: 'GRID.NAME', Field: 'Description' }
             ];
         }
 
@@ -24,20 +24,20 @@ angular
         if (modaldata.type == 'Contact') {
             httpUrl += '/common/contacts';
             findUrl += '/contacts/';
-            vm.title = 'Επιλογή Επαφών';
+            vm.title = 'MODAL.CONTACTS';
         } else if (modaldata.type == 'Facility') {
             httpUrl += '/common/facilities';
             findUrl += '/facilities/';
-            vm.title = 'Επιλογή Δομών Φιλοξενίας';
+            vm.title = 'MODAL.FACILITY';
         } else if (modaldata.type == 'Provider') {
             httpUrl += '/common/providers';
             findUrl += '/providers/';
-            vm.lookupColumns[0] = { Caption: 'Τύπος', Field: 'Tag', Type: 'Lookup', Values: lookupService.providerTypes };
-            vm.title = 'Επιλογή Προμηθευτή';
+            vm.lookupColumns[0] = { Caption: 'GRID.TYPE', Field: 'Tag', Type: 'Lookup', Values: lookupService.providerTypes };
+            vm.title = 'MODAL.PROVIDERS';
         } else if (modaldata.type == 'Person') {
             httpUrl += '/common/persons';
             findUrl += '/persons/';
-            vm.title = 'Επιλογή Ατόμου';
+            vm.title = 'MODAL.PEOPLE';
         }
 
         $http({

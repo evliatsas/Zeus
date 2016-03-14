@@ -16,7 +16,7 @@
         </ul>
     </div>
     <div class="btn-group" ng-if="!hidePagingDropdown" style="padding-right: 20px; max-width:250px;">
-        <a class="btn btn-primary btn-raised">{{ pageSize }} εγγρ.</a>
+        <a class="btn btn-primary btn-raised">{{ pageSize }} {{ 'GRID.RECORDS' | translate }}</a>
         <a class="btn btn-primary btn-raised dropdown-toggle" data-target="#" data-toggle="dropdown"><span class="caret"></span></a>
         <ul class="dropdown-menu">
             <li><a href="" ng-click="setPageSize(10)">10</a></li>
@@ -28,7 +28,7 @@
         </ul>
     </div>
     <div ng-if="!hidePagingDropdown" class="input-group pull-right" style="max-width:200px; margin-top:-15px; margin-bottom:-15px;">
-        <input type="text" placeholder="Αναζήτηση" class="form-control" ng-model="gridFilter.filter" ng-change="filtering()">
+        <input type="text" placeholder="{{ 'GRID.SEARCH' | translate }}" class="form-control" ng-model="gridFilter.filter" ng-change="filtering()">
         <span class="input-group-btn">
             <i class="text-primary material-icons md-24" style="padding-top:15px; margin-left:-15px;">search</i>
         </span>
@@ -122,10 +122,10 @@
     <span ng-if="items.length == 0"><strong>0 / 0 εγγρ.</strong></span>
 
     <ul ng-if="pageSize > 0" class="pagination pagination-inverse pagination-sm pull-right" style="margin:0px">
-        <li ng-class="{disabled: page == 0}"><a ng-click="firstPage()"><i class="fa fa-fast-backward" /> Πρώτη</a>
-        <li ng-class="{disabled: page == 0}"><a ng-click="previousPage()"><i class="fa fa-step-backward" /> Προηγούμενη</a></li>
-        <li ng-class="{disabled: page == pages.length - 1}"><a ng-click="nextPage()">Επόμενη <i class="fa fa-step-forward" /></a></li>
-        <li ng-class="{disabled: page == pages.length - 1}"><a ng-click="lastPage()">Τελευταία <i class="fa fa-fast-forward" /></a></li>
+        <li ng-class="{disabled: page == 0}"><a ng-click="firstPage()"><i class="material-icons">first_page</i> {{ 'GRID.FIRST' | translate }}</a>
+        <li ng-class="{disabled: page == 0}"><a ng-click="previousPage()"><i class="material-icons">fast_rewind</i> {{ 'GRID.PREVIOUS' | translate }}</a></li>
+        <li ng-class="{disabled: page == pages.length - 1}"><a ng-click="nextPage()">{{ 'GRID.NEXT' | translate }} <i class="material-icons">fast_forward</i></a></li>
+        <li ng-class="{disabled: page == pages.length - 1}"><a ng-click="lastPage()">{{ 'GRID.LAST' | translate }} <i class="material-icons">last_page</i></a></li>
     </ul>
 
 </div>
