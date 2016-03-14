@@ -8,13 +8,13 @@ angular
         $scope.lookup = lookupService;
 
         $scope.facilityColumns = [
-             { Caption: 'Τύπος', Field: 'Type', Tooltip: 'Τύπος Εγκατάστασης' },
-             { Caption: 'Όνομα', Field: 'Name', Tooltip: 'Όνομα Εγκατάστασης' },
-             { Caption: 'Περιγραφή', Field: 'Description', Tooltip: 'Περιγραφή Εγκατάστασης' },
-             { Caption: 'Χωρητικότητα', Field: 'Capacity', Tooltip: 'Τρέχουσα Χωρητικότητα' },
-             { Caption: 'Διαχείριση', Field: 'Administration', Tooltip: 'Διοικητική Υπαγωγή' },
-             { Caption: 'Φιλοξενούμενοι', Field: 'Attendance', Tooltip: 'Πλήθος Φιλοξενούμενων' },
-             { Caption: 'Πληρότητα', Field: 'Utilization', Type: 'Percentage', Tooltip: 'Ποσοστό Πληρότητας' },
+             { Caption: 'GRID.TYPE', Field: 'Type', Tooltip: 'Τύπος Εγκατάστασης' },
+             { Caption: 'GRID.NAME', Field: 'Name', Tooltip: 'Όνομα Εγκατάστασης' },
+             { Caption: 'GRID.DESCRIPTION', Field: 'Description', Tooltip: 'Περιγραφή Εγκατάστασης' },
+             { Caption: 'GRID.CAPACITY', Field: 'Capacity', Tooltip: 'Τρέχουσα Χωρητικότητα' },
+             { Caption: 'GRID.ADMINISTRATION', Field: 'Administration', Tooltip: 'Διοικητική Υπαγωγή' },
+             { Caption: 'GRID.ATTENDANCE', Field: 'Attendance', Tooltip: 'Πλήθος Φιλοξενούμενων' },
+             { Caption: 'GRID.UTILIZATION', Field: 'Utilization', Type: 'Percentage', Tooltip: 'Ποσοστό Πληρότητας' },
         ];
 
         $scope.addPersonnel = function () {
@@ -59,11 +59,11 @@ angular
         }
 
         $scope.contactColumns = [
-           { Caption: 'Τύπος', Field: 'Type' },
-           { Caption: 'Όνομα', Field: 'Name' },
-           { Caption: 'Τίτλος', Field: 'Title' },
-           { Caption: 'Οργανισμός', Field: 'Company' },
-           { Caption: 'Διαχείριση', Field: 'Administration' }
+           { Caption: 'GRID.TYPE', Field: 'Type' },
+           { Caption: 'GRID.NAME', Field: 'Name' },
+           { Caption: 'GRID.TITLE', Field: 'Title' },
+           { Caption: 'GRID.COMPANY', Field: 'Company' },
+           { Caption: 'GRID.ADMINISTRATION', Field: 'Administration' }
         ];
 
         $scope.addContact=function(){

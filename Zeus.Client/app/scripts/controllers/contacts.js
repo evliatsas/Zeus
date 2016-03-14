@@ -12,7 +12,7 @@ angular
             { Caption: 'GRID.COMPANY', Field: 'Company', Tooltip: 'Εταιρία' },
             { Caption: 'GRID.ADMINISTRATION', Field: 'Administration', Values: lookupService.administrations, Tooltip: 'Διοικητική Υπαγωγή' },
             { Caption: 'GRID.TYPE', Field: 'Type', Values: lookupService.contactTypes, Tooltip: 'Τύπος Επαφής' },
-            { Caption: 'Διεύθυνση', Field: 'Address', Tooltip: 'Διεύθυνση' },
+            { Caption: 'GRID.ADDRESS', Field: 'Address', Tooltip: 'Διεύθυνση' },
             { Caption: 'Email', Field: 'Email', Tooltip: 'Email Επαφής' }
         ];
 

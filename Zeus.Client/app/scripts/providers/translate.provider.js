@@ -276,6 +276,7 @@ angular
 	    	    ADD_RELATIVE: 'ΠΡΟΣΘΗΚΗ ΣΥΓΓΕΝΗ'
 	    	},
 	    	GRID: {
+	    	    ADD: 'Προσθήκη νέου',
 	    	    SEARCH: 'Αναζήτηση',
 	    	    FIRST: 'Πρώτη',
 	    	    LAST: 'Τελευταία',
@@ -479,7 +480,7 @@ angular
 	        CONTACT: {
 	            DELETE: 'Delete Contact',
 	            SAVE: 'Save Contact',
-	            TITLE: 'Τίτλος',
+	            TITLE: 'Title',
 	            CON: 'Contact: ',
 	            NAME: 'Full Name',
 	            COMPANY: 'Organisation',
@@ -522,7 +523,7 @@ angular
 	            EDIT_HOUSING: 'Edit Housing ',
 	            TYPE: 'Category',
 	            STATUS: 'Status',
-	            CAPACITY: 'CApacity',
+	            CAPACITY: 'Unit Capacity',
 	            HOUSING_COUNT: 'Units',
 	            ATTENDANCE: 'Attendance',
 	            CANCEL: 'CANCEL',
@@ -587,6 +588,7 @@ angular
 	            ADD_RELATIVE: 'ADD RELATIVE'
 	        },
 	        GRID: {
+	            ADD: 'Add New',
 	            SEARCH: 'Search',
 	            FIRST: 'First',
 	            LAST: 'Last',

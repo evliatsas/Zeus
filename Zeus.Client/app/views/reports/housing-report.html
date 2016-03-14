@@ -17,7 +17,7 @@
 
     <div class="form-group label-static ng-is-empty">
         <label for="i10" class="control-label">{{ 'HOUSING_REPORT.PRIORITY' | translate }}</label>
-        <select id="i10" class="form-control" ng-model="report.Priority" convert-to-number>
+        <select id="i10" class="form-control" ng-model="report.Priority" convert-to-number required>
             <option ng-repeat="priority in lookup.prioritiesTitles" value="{{priority.Id}}">
                 {{priority.Description}}
             </option>
@@ -33,7 +33,7 @@
     </div>
     <div class="form-group label-static ng-is-empty">
         <label for="i3" class="control-label">{{ 'HOUSING_REPORT.TYPE' | translate }}</label>
-        <input type="text" class="form-control" id="i3" ng-model="report.Housing.Type" uib-typeahead="cat for cat in lookup.housingCategories | filter:$viewValue">
+        <input type="text" class="form-control" id="i3" ng-model="report.Housing.Type" uib-typeahead="cat for cat in lookup.housingCategories | filter:$viewValue" required>
     </div>
     <div class="form-group label-static ng-is-empty">
         <label for="i4" class="control-label">{{ 'HOUSING_REPORT.HOUSE_COUNT' | translate }}</label>

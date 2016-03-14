@@ -230,6 +230,10 @@ namespace Zeus.Controllers
 
             try
             {
+                report.User = user.UserName;
+                report.DateTime = DateTime.Now;
+                report.IsAcknoledged = false;
+
                 var result = await context.Reports.Update(report);
 
                 if (report.Type == ReportType.SituationReport)
