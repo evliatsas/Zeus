@@ -152,6 +152,11 @@
                 'Ι.Χ.',
                 'Πλοίο',
                 'Αεροπλάνο'
+            ],
+            roles: [
+                "Administrator",
+                "User",
+                "Viewer"
             ]
         };
     }

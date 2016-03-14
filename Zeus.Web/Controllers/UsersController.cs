@@ -78,7 +78,7 @@ namespace Zeus.Controllers
             catch (Exception exc)
             {
                 Log.Error("Error {Exception} creating User By {user}", exc, currentuser);
-                return this.BadRequest("Σφάλμα Δημιουργίας δεδομένων Ατόμου");
+                return this.BadRequest(exc.Message);
             }
         }
 

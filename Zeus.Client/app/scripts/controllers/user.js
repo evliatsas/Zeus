@@ -2,9 +2,10 @@
 
 angular
     .module('zeusclientApp')
-    .controller('UserCtrl', function ($scope, $http, $routeParams, $location, baseUrl, messageService, authService) {
+    .controller('UserCtrl', function ($scope, $http, $routeParams, $location, baseUrl, messageService, authService, lookupService) {
 
         $scope.isInsert = $routeParams.id == 'new';
+        $scope.lookup = lookupService;
 
         $http({
             method: 'GET',
@@ -16,7 +17,7 @@ angular
         });
 
         if ($scope.isInsert) {
-            $scope.user = {};
+            $scope.user = { Roles: ['Viewer'], Claims: [] };
         } else {
             $http({
                 method: 'GET',
