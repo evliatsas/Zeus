@@ -100,7 +100,7 @@ angular
             $scope.charts.special = newChart(null, ['Παιδιά', 'Ευαίσθητες Ομάδες']);
 
             var byFacility = groupBy(reports, function (report) { return report.Facility.Name; });
-            byFacility.forEach(function (facilityGroup, index) {
+            byFacility.forEach(function (facilityGroup, facilityIndex) {
                 var facility = facilityGroup.items[0].Facility;
                 $scope.facilities.push(facility);
 
@@ -114,21 +114,25 @@ angular
                     var inTotal = $filter('filter')($scope.charts.total.labels, function (l) { return l == dateGroup.key; }).length > 0;
                     if (!inTotal) {
                         $scope.charts.total.labels.push(dateGroup.key);
+                        $scope.charts.total.data[0].push(0);
                     }
 
                     var inSpecial = $filter('filter')($scope.charts.special.labels, function (l) { return l == dateGroup.key; }).length > 0;
                     if (!inSpecial) {
                         $scope.charts.special.labels.push(dateGroup.key);
+                        $scope.charts.special.data[0].push(0);
+                        $scope.charts.special.data[1].push(0);
                     }
                     
                     var desc = dateGroup.items.sort(function (a,b) { return a.DateTime - b.DateTime; });
-                    chart.data[2].push(desc[0].PersonCount);
-                    chart.data[1].push(facility.Capacity);
                     chart.data[0].push(facility.MaxCapacity);
+                    chart.data[1].push(facility.Capacity);
+                    chart.data[2].push(desc[0].PersonCount);
 
-                    $scope.charts.total.data[0][index] = Number($scope.charts.total.data[0][index] || 0) + desc[0].PersonCount;
-                    $scope.charts.special.data[0][index] = Number($scope.charts.special.data[0][index] || 0) + desc[0].Children;
-                    $scope.charts.special.data[1][index] = Number($scope.charts.special.data[1][index] || 0) + desc[0].SensitiveCount;
+                    var labelIndex = $scope.charts.total.labels.indexOf(dateGroup.key);
+                    $scope.charts.total.data[0][labelIndex] += desc[0].PersonCount;
+                    $scope.charts.special.data[0][labelIndex] += desc[0].Children;
+                    $scope.charts.special.data[1][labelIndex] += desc[0].SensitiveCount;
                 });
             });
         }
