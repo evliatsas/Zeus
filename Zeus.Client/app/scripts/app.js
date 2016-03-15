@@ -155,6 +155,11 @@ angular
             controller: 'DailyReportCtrl',
             controllerAs: 'dailyReportCtrl'
         })
+        .when('/dailyreport/stats', {
+            templateUrl: 'views/dailyreport_charts.html',
+            controller: 'DailyReportChartsCtrl',
+            controllerAs: 'dailyReportChartsCtrl'
+        })
         .when('/calendar/:id', {
             templateUrl: 'views/calendarEntry.html',
             controller: 'CalendarEntryCtrl',
@@ -200,4 +205,15 @@ angular
             $location.path('/login');
         }
     });
+
+    // define default chart colours
+    Chart.defaults.global.colours = [
+            '#97BBCD', // blue
+            '#949FB1', // grey
+            '#F7464A', // red
+            '#46BFBD', // green
+            '#FDB45C', // yellow
+            '#DCDCDC', // light grey
+            '#4D5360'  // dark grey
+        ];
 }]);

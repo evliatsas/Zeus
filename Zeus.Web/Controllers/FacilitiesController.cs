@@ -367,5 +367,36 @@ namespace Zeus.Controllers
                 return BadRequest(exc.ToString());
             }
         }
+
+        [AllowAnonymous]
+        [Route("getreport/view")]
+        [ResponseType(typeof(IEnumerable<DailyReport>))]
+        [HttpPost]
+        public async Task<IHttpActionResult> GetViewReports(dynamic dates)
+        {
+            try
+            {
+                DateTime from = Convert.ToDateTime(dates.from);
+                DateTime to = Convert.ToDateTime(dates.to);
+
+                var facilities = await context.Facilities.GetAll();
+                var reports = (await context.DailyReports.Get(x => x.ReportDate >= from && x.ReportDate <= to));
+                if (reports == null || reports.Count() == 0)
+                {
+                    return BadRequest("Report not exist for date.");
+                }
+
+                reports = reports.Select(x => {
+                    x.Facility = facilities.FirstOrDefault(t => t.Id == x.FacilityId);
+                    return x;
+                });
+
+                return Ok(reports);
+            }
+            catch (Exception exc)
+            {
+                return BadRequest(exc.ToString());
+            }
+        }
     }
 }
