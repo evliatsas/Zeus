@@ -150,6 +150,11 @@ angular
             controller: 'UserCtrl',
             controllerAs: 'userCtrl'
         })
+        .when('/dailyreport', {
+            templateUrl: 'views/dailyreport.html',
+            controller: 'DailyReportCtrl',
+            controllerAs: 'dailyReportCtrl'
+        })
         .otherwise({
             redirectTo: '/'
         });

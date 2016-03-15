@@ -10,6 +10,8 @@ angular
         $scope.report = {};
         $scope.reportType = $routeParams.type;
 
+        $scope.report.RationsRequired = true;
+
         var isInsert = $routeParams.id == 'new';
 
         var getReportType = function () {
@@ -41,10 +43,11 @@ angular
                 messageService.getFailed(response.error);
             });
         }
-        else {
-            //$scope.report = { $type: 'Zeus.Entities.' + getReportType() + ' ,Zeus.Entities' };
-        }
+        else
+        {
 
+        }
+        
         $http({
             method: 'GET',
             url: baseUrl + '/facilities/' + $routeParams.fid //the unique id of the facility
@@ -52,9 +55,9 @@ angular
                 $scope.report.Facility = response.data;
                 $scope.report.FacilityId = response.data.Id;
                 if ($scope.reportType == "0") {
-                    for (var index in response.data.Facility.Providers) {
-                        if (response.data.Facility.Providers[index].Type == reportType)
-                            $scope.providers.push(response.data.Facility.Providers[index]);
+                    for (var index in response.data.Providers) {
+                        if (response.data.Providers[index].Type == $scope.reportType)
+                            $scope.providers.push(response.data.Providers[index]);
                     }
                 }
                 else if ($scope.reportType == "2") {

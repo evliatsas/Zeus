@@ -51,7 +51,7 @@
                 </div>
                 <div class="collapse navbar-collapse" id="js-navbar-collapse">
                     <ul class="nav navbar-nav" ng-show="isAuth()">
-                        <!--<li ng-class="menu.getClass(['/'])"><a href="#/">Αρχική</a></li>-->
+                        <li ng-class="getClass(['/dailyreport'])"><a href="#/dailyreport">Ημερήσια Αναφορά</a></li>
                         <li ng-class="getClass(['/facilities'])"><a href="#/facilities">{{ 'MENU.FACILITIES' | translate }}</a></li>
                         <li ng-class="getClass(['/contacts'])"><a href="#/contacts">{{ 'MENU.CONTACTS' | translate }}</a></li>
                         <li ng-class="getClass(['/providers'])"><a href="#/providers">{{ 'MENU.PROVIDERS' | translate }}</a></li>
@@ -200,6 +200,7 @@
     <script src="scripts/controllers/operations.js"></script>
     <script src="scripts/controllers/log.js"></script>
     <script src="scripts/controllers/messages.js"></script>
+    <script src="scripts/controllers/dailyreport.js"></script>
     <script src="scripts/directives/facility-details.js"></script>
     <script src="scripts/directives/on-finish-render.js"></script>
     <script src="scripts/directives/phone-list.js"></script>

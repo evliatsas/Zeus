@@ -21,6 +21,7 @@ namespace Zeus.Entities.Repositories
         public MongoDbRepository<Report> Reports { get; private set; }
         public MongoDbRepository<Operation> Operations { get; private set; }
         public MongoDbRepository<FamilyRelation> FamilyRelations { get; private set; }
+        public MongoDbRepository<DailyReport> DailyReports { get; private set; }
 
         #region Static
 
@@ -83,6 +84,7 @@ namespace Zeus.Entities.Repositories
                 Reports = new MongoDbRepository<Report>(this.Database, "Reports");
                 Operations = new MongoDbRepository<Operation>(this.Database, "Operations");
                 FamilyRelations = new MongoDbRepository<FamilyRelation>(this.Database, "FamilyRelations");
+                DailyReports = new MongoDbRepository<DailyReport>(this.Database, "DailyReports");
                 //set the static instance property
                 _instance = this;
             }

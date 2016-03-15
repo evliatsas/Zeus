@@ -3,6 +3,9 @@ using Serilog;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
+using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using System.Web.Http;
@@ -147,6 +150,62 @@ namespace Zeus.Controllers
             }
         }
 
+        [Route("")]
+        [ResponseType(typeof(Facility))]
+        [HttpPut]
+        [Authorize(Roles = ApplicationRoles.Administrator + "," + ApplicationRoles.User)]
+        public async Task<IHttpActionResult> UpdateFacility(Facility facility)
+        {
+            var user = await Helper.GetUserByRequest(User as ClaimsPrincipal, UserManager);
+            if (!user.Roles.Any(x => x == ApplicationRoles.Administrator))
+            {
+                var facilityClaims = user.Claims.Where(x => x.Type == ApplicationClaims.FacilityClaim).Select(s => s.Value);
+                if (!facilityClaims.Contains(facility.Id))
+                {
+                    Log.Fatal("Security violation. User {user} requested to Update Facility Info {facility} with insufficient rights", user.UserName, facility.Id);
+                    return this.BadRequest("Δεν έχεται το δικαίωμα να ενημερώσεται την εγγραφή.");
+                }
+            }
+
+            try
+            {
+                //update contacts
+                await context.FacilityContacts.Delete(x => x.FacilityId == facility.Id);
+                var contacts = facility.Contacts
+                                       .Select(x =>
+                                        new FacilityContact()
+                                        {
+                                            ContactId = x.Id,
+                                            FacilityId = facility.Id
+                                        })
+                                       .ToList();
+                await context.FacilityContacts.BulkInsert(contacts);
+
+                //update providers
+                await context.ProviderFacilities.Delete(x => x.FacilityId == facility.Id);
+                var providers = facility.Providers
+                                        .Select(x =>
+                                        new ProviderFacility()
+                                        {
+                                            ProviderId = x.Id,
+                                            FacilityId = facility.Id
+                                        })
+                                        .ToList();
+                await context.ProviderFacilities.BulkInsert(providers);
+
+                var result = await context.Facilities.Update(facility);
+
+                Log.Information("Facility({Facility.Id}) updated By {user}", result.Id, user.UserName);
+
+                return this.Ok(result);
+            }
+            catch (Exception exc)
+            {
+                Log.Error("Error {Exception} updating Facility By {user}", exc, user.UserName);
+                return this.BadRequest("Σφάλμα Ενημέρωσης Δομής Φιλοξενίας");
+            }
+        }
+
         [Route("{id}")]
         [HttpDelete]
         [Authorize(Roles = ApplicationRoles.Administrator)]
@@ -177,58 +236,110 @@ namespace Zeus.Controllers
             }
         }
 
-        [Route("")]
-        [ResponseType(typeof(Facility))]
-        [HttpPut]
-        [Authorize(Roles = ApplicationRoles.Administrator + "," + ApplicationRoles.User)]
-        public async Task<IHttpActionResult> UpdateFacility(Facility facility)
+        [Route("makereport/{id}")]
+        [ResponseType(typeof(IEnumerable<Facility>))]
+        [HttpGet]
+        public async Task<IHttpActionResult> MakeReport(string id)
         {
-            var user = await Helper.GetUserByRequest(User as ClaimsPrincipal, UserManager);
-            if (!user.Roles.Any(x => x == ApplicationRoles.Administrator))
-            {
-                var facilityClaims = user.Claims.Where(x => x.Type == ApplicationClaims.FacilityClaim).Select(s => s.Value);
-                if (!facilityClaims.Contains(facility.Id))
-                {
-                    Log.Fatal("Security violation. User {user} requested to Update Facility Info {facility} with insufficient rights", user.UserName, facility.Id);
-                    return this.BadRequest("Δεν έχεται το δικαίωμα να ενημερώσεται την εγγραφή.");
-                }
-            }
-
             try
             {
-                //update contacts
-                await context.FacilityContacts.Delete(x => x.FacilityId == facility.Id);
-                var contacts = facility.Contacts
-                                       .Select(x =>
-                                        new FacilityContact() {
-                                            ContactId = x.Id,
-                                            FacilityId = facility.Id
-                                        })
-                                       .ToList();
-                await context.FacilityContacts.BulkInsert(contacts);
+                bool isNew = false;
+                DailyReport report;
+                DailyReport previousReport;
+                Facility facility;
+                DateTime date = DateTime.Now.Date;
+                DateTime previousDate = date.AddDays(-1);
+                
+                var user = await Helper.GetUserByRequest(User as ClaimsPrincipal, UserManager);
+                if (user.Roles.Any(x => x != ApplicationRoles.Administrator))
+                {
+                    var facilityClaims = user.Claims.Where(x => x.Type == ApplicationClaims.FacilityClaim).Select(s => s.Value);
+                    if(!facilityClaims.Contains(id))
+                    {
+                        return this.BadRequest("Δεν έχετε δικαίωμα στη συγκεκριμένη δομή.");
+                    }
+                }
+                
+                facility = await context.Facilities.GetById(id);
+                previousReport = (await context.DailyReports.Get(x => x.FacilityId == id && x.ReportDate == previousDate)).FirstOrDefault();
+                report = (await context.DailyReports.Get(x => x.FacilityId == id && x.ReportDate == date)).FirstOrDefault();
 
-                //update providers
-                await context.ProviderFacilities.Delete(x => x.FacilityId == facility.Id);
-                var providers = facility.Providers
-                                        .Select(x =>
-                                        new ProviderFacility()
-                                        {
-                                            ProviderId = x.Id,
-                                            FacilityId = facility.Id
-                                        })
-                                        .ToList();
-                await context.ProviderFacilities.BulkInsert(providers);
+                if(report == null)
+                {
+                    report = new DailyReport();
+                    isNew = true;
+                }
+                else
+                {
+                    isNew = false;
+                }
+                
+                report.FacilityId = facility.Id;
+                report.ReportDateTime = DateTime.Now;
+                report.Arrivals = previousReport == null ? 0 : facility.Attendance - previousReport.Attendance;
+                report.Attendance = facility.Attendance;
+                report.Capacity = facility.Capacity;
+                report.ReportDate = date;
+                report.ReportCapacity = facility.ReportCapacity;
 
-                var result = await context.Facilities.Update(facility);
+                if (isNew)
+                {
+                    await context.DailyReports.Insert(report);
+                }
+                else
+                {
+                    await context.DailyReports.Update(report);
+                }
 
-                Log.Information("Facility({Facility.Id}) updated By {user}", result.Id, user.UserName);
+                Log.Information("DailyReport({Facility.Id}) created By {user}", facility.Id, user.UserName);
 
-                return this.Ok(result);
+                return Ok();
             }
-            catch(Exception exc)
+            catch (Exception exc)
             {
-                Log.Error("Error {Exception} updating Facility By {user}", exc, user.UserName);
-                return this.BadRequest("Σφάλμα Ενημέρωσης Δομής Φιλοξενίας");
+                return this.BadRequest(exc.ToString());
+            }
+        }
+
+        [AllowAnonymous]
+        [Route("getreport/{year}/{month}/{day}")]
+        [ResponseType(typeof(IEnumerable<Facility>))]
+        [HttpGet]
+        public async Task<HttpResponseMessage> GetReport(int year, int month, int day)
+        {
+            try
+            {
+                var date = new DateTime(year, month, day);
+                var facilities = await context.Facilities.GetAll();
+                var reports = (await context.DailyReports.Get(x => x.ReportDate == date));
+                if(reports == null || reports.Count() == 0)
+                {
+                    var errorResult = Request.CreateResponse(HttpStatusCode.BadRequest);
+                    errorResult.Content = new StringContent("Report not exist for date.");
+                    return errorResult;
+                }
+
+                reports = reports.Select(x => {
+                    x.Facility = facilities.FirstOrDefault(t => t.Id == x.FacilityId);
+                    return x;
+                });
+                
+                var pdfReport = new PdfReport();
+                var pdf = pdfReport.PrintPdfReport(reports);
+                var result = Request.CreateResponse(HttpStatusCode.OK);
+                result.Content = new ByteArrayContent(pdf);
+                result.Content.Headers.ContentType = new MediaTypeHeaderValue("application/pdf");
+                //result.Content.Headers.Add("x-filename", "test.pdf");
+                //result.Content.Headers.ContentDisposition = new System.Net.Http.Headers.ContentDispositionHeaderValue("attachment");
+                //result.Content.Headers.ContentDisposition.FileName = "test.pdf";
+
+                return result;
+            }
+            catch (Exception exc)
+            {
+                var errorResult = Request.CreateResponse(HttpStatusCode.BadRequest);
+                errorResult.Content = new StringContent(exc.ToString());
+                return errorResult;
             }
         }
     }

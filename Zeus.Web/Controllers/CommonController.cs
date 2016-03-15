@@ -22,34 +22,7 @@ namespace Zeus.Controllers
         {
             context = Entities.Repositories.Context.Instance;
         }
-
-        [AllowAnonymous]
-        [Route("")]
-        [ResponseType(typeof(byte[]))]
-        [HttpGet]
-        public async Task<HttpResponseMessage> GetFile()
-        {
-            try
-            {
-                var user = await Helper.GetUserByRequest(User as ClaimsPrincipal, UserManager);
-                var report = new Models.PdfReport();
-                var pdf = await report.PrintPdfReport("56daea1fb51eb41e38277437");
-
-                var result = Request.CreateResponse(HttpStatusCode.OK);
-                result.Content = new ByteArrayContent(pdf);
-                result.Content.Headers.ContentType = new MediaTypeHeaderValue("application/octet-stream");
-                result.Content.Headers.Add("x-filename", "test.pdf");
-                result.Content.Headers.ContentDisposition = new System.Net.Http.Headers.ContentDispositionHeaderValue("attachment");
-                result.Content.Headers.ContentDisposition.FileName = "test.pdf";
-
-                return result;
-            }
-            catch
-            {
-                return null;
-            }
-        }
-
+        
         [Route(Routes.Facilities)]
         [ResponseType(typeof(IEnumerable<Lookup>))]
         [HttpGet]
