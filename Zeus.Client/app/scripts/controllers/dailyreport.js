@@ -6,10 +6,10 @@ angular
 
         $scope.reportcolumns = [
             { Caption: 'Δομή Φιλοξενίας', Field: 'Facility.Name' },
-            { Caption: 'GRID.NAME', Field: 'Attendance' },
-            { Caption: 'GRID.COMPANY', Field: 'Capacity' },
-            { Caption: 'GRID.ADMINISTRATION', Field: 'ReportCapacity' },
-            { Caption: 'GRID.TYPE', Field: 'Arrivals' }
+            { Caption: 'Παραμένουν', Field: 'Attendance' },
+            { Caption: 'Χωρητικότητα Από', Field: 'Capacity' },
+            { Caption: 'Χωρητικότητα Εώς', Field: 'ReportCapacity' },
+            { Caption: 'Αφίξεις - Αναχωρήσεις', Field: 'Arrivals' }
         ];
 
         var year = new Date().getFullYear();

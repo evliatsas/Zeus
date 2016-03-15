@@ -187,6 +187,8 @@ namespace Zeus.Controllers
                     }
                 }
 
+                await AddToCalendar(data, user);
+
                 Log.Information("Report({Id}) created By {user}", data.Id, user.UserName);
                 return Ok(data);
             }
@@ -246,8 +248,9 @@ namespace Zeus.Controllers
                     }
                 }
 
-                Log.Information("Report({Id}) updated By {user}", result.Id, user.UserName);
+                await UpdateCalendar(result, user);
 
+                Log.Information("Report({Id}) updated By {user}", result.Id, user.UserName);
                 return this.Ok(result);
             }
             catch (Exception exc)
@@ -351,6 +354,50 @@ namespace Zeus.Controllers
                 count = await context.Reports.Count(x => x.Type == ReportType.Message && !x.IsAcknoledged);
 
             return this.Ok(count);
+        }
+
+        private async Task AddToCalendar(Report report, ApplicationUser user)
+        {
+            try
+            {
+                if (report.Type == ReportType.ProblemReport
+                    || report.Type == ReportType.RequestReport
+                    || report.Type == ReportType.Message)
+                {
+                    var entry = new CalendarEntry(report, user.Administration);
+                    await context.Calendar.Insert(entry);
+                }
+            }
+            catch(Exception exc)
+            {
+                Log.Error("Error {Exception} inserting Calendar Entry for Report {@report}", exc, report);
+            }
+        }
+
+        private async Task UpdateCalendar(Report report, ApplicationUser user)
+        {
+            try
+            {
+                if (report.Type == ReportType.ProblemReport
+                       || report.Type == ReportType.RequestReport
+                       || report.Type == ReportType.Message)
+                {
+                    var query = await context.Calendar.Get(x => x.SourceId == report.Id);
+                    var entry = query.FirstOrDefault();
+                    if (entry != null)
+                    {
+                        entry.DateTime = report.DateTime;
+                        entry.Author = user.Administration;
+                        entry.Description = String.Format("{0}\n{1}\n{2}", report.Facility.Name, report.Subject, report.Notes);
+                        await context.Calendar.Update(entry);
+                    }
+                }
+
+            }
+            catch (Exception exc)
+            {
+                Log.Error("Error {Exception} inserting Calendar Entry for Report {@report}", exc, report);
+            }
         }
     }
 }
