@@ -17,7 +17,8 @@ angular
 	    		USERS: 'Χρήστες',
 	    		ARCHIVES: 'Αρχείο',
                 OPERATIONS: 'Επιχειρήσεις',
-	    		LOG: 'Ενέργειες Χρηστών',
+                LOG: 'Ενέργειες Χρηστών',
+                CALENDAR:'Ημερολόγιο',
                 TITLE:'Αλλαγή Κωδικού Πρόσβασης',
                 ADMIN: 'Διαχείριση',
 	    		SUPPORT: {
@@ -334,6 +335,7 @@ angular
 	            MAP: 'Map',
 	            CHARTS: 'Statistics',
 	            USERS: 'Users',
+	            CALENDAR: 'Calendar',
 	            ARCHIVES: 'Archive',
 	            OPERATIONS: 'Operations',
 	            LOG: 'Log Entries',
