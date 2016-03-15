@@ -246,7 +246,8 @@ angular
 	    	    ROLES: 'Ρόλοι',
 	    	    CLAIMS: 'Δικαιώματα',
 	    	    ROLE: 'Ρόλος',
-	    	    CLAIM: 'Δικαίωμα'
+	    	    CLAIM: 'Δικαίωμα',
+	    	    ADMINISTRATION: 'Υπαγωγή'
 	    	},
 	    	PROVIDER: {
 	    	    DELETE: 'Διαγραφή Προμηθευτή',
@@ -564,7 +565,8 @@ angular
 	    	    ROLES: 'Roles',
 	    	    CLAIMS: 'Claims',
 	    	    ROLE: 'Role',
-	    	    CLAIM: 'Claim'
+	    	    CLAIM: 'Claim',
+	    	    ADMINISTRATION: 'Administration'
 	        },
 	        PROVIDER: {
 	            DELETE: 'Delete Provider',
