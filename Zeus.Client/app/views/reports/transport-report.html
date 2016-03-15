@@ -1,108 +1,108 @@
-﻿<div class="jumbotron col-md-offset-3 col-md-6">
-    <div class="pull-right">
-        <span ng-if="!report.IsArchived" class="btn btn-info btn-fab fab" ng-click="archive()">
-            <i class="material-icons" title="{{ 'REPORT.NOT_ARCHIVED' | translate }}">archive</i>
-        </span>
-        <span ng-if="report.IsArchived" class="btn btn-info btn-fab fab" ng-click="archive()">
-            <i class="material-icons" title="{{ 'REPORT.ARCHIVED' | translate }}">unarchive</i>
-        </span>
-        <span class="btn btn-danger btn-fab fab" ng-click="delete()">
-            <i class="material-icons" title="{{ 'TRANSPORT_REPORT.DELETE' | translate }}">delete</i>
-        </span>
-        <span class="btn btn-success btn-fab fab" ng-click="save()">
-            <i class="material-icons" title="{{ 'TRANSPORT_REPORT.SAVE' | translate }}">save</i>
-        </span>
-    </div>
-    <div ng-bind-html="lookup.reportTitles[reportType].Description" />
-    <div class="form-group label-static ng-is-empty">
-        <label for="i1" class="control-label">{{ 'TRANSPORT_REPORT.PRIORITY' | translate }}</label>
-        <select id="i1" class="form-control" ng-model="report.Priority" convert-to-number>
-            <option ng-repeat="priority in lookup.prioritiesTitles" value="{{priority.Id}}">
-                {{priority.Description}}
-            </option>
-        </select>
-    </div>
-    <div class="form-group label-static ng-is-empty">
-        <label for="i2" class="control-label">{{ 'TRANSPORT_REPORT.SUBJECT' | translate }}</label>
-        <input type="text" class="form-control" id="i2" ng-model="report.Subject">
-    </div>
-    <div class="form-group label-static ng-is-empty">
-        <label for="i3" class="control-label">{{ 'TRANSPORT_REPORT.STARTING_POINT' | translate }}</label>
-        <select id="i3" class="form-control" ng-model="report.StartingPoint">
-            <option ng-repeat="facility in facilities" value="{{facility.Id}}">
-                {{facility.Description}}
-            </option>
-        </select>
-        <!--<input type="text" class="form-control" id="i2" ng-model="report.StartingPoint.Name" uib-typeahead="dest for dest in facilities | filter:$viewValue">-->
-    </div>
-    <div class="form-group label-static ng-is-empty">
-        <label for="i4" class="control-label">{{ 'TRANSPORT_REPORT.DESTINATION' | translate }}</label>
-        <select id="i4" class="form-control" ng-model="report.Destination">
-            <option ng-repeat="facility in facilities" value="{{facility.Id}}">
-                {{facility.Description}}
-            </option>
-        </select>
-        <!--<input type="text" class="form-control" id="i4" ng-model="report.Destination.Name" uib-typeahead="dest for dest in facilities | filter:$viewValue">-->
-    </div>
-    <div class="form-group label-static ng-is-empty">
-        <label for="i5" class="control-label">{{ 'TRANSPORT_REPORT.MOVEMENT_TYPE' | translate }}</label>
-        <input type="text" class="form-control" id="i5" ng-model="report.MovementType" uib-typeahead="type for type in lookup.movementTypes | filter:$viewValue">
-    </div>
-    <div class="form-group label-static ng-is-empty">
-        <label for="i6" class="control-label">{{ 'TRANSPORT_REPORT.PERSON_COUNT' | translate }}</label>
-        <input type="number" class="form-control" id="i6" ng-model="report.PersonCount">
-        <span class="material-input"></span>
-    </div>
-    <div class="form-group label-static ng-is-empty">
-        <date-time-picker label="{{ 'TRANSPORT_REPORT.DEPARTURE' | translate }}" format="dd/MM/yy" date="report.Departure"></date-time-picker>
-    </div>
-    <div class="form-group label-static ng-is-empty">
-        <label for="i11" class="control-label">{{ 'TRANSPORT_REPORT.DEPARTURE' | translate }}</label>
-        <div class="dropdown">
-            <div class="dropdown-toggle" id="dropdown1" role="button" data-toggle="dropdown" data-target="#">
-                <div class="input-group">
-                    <input type="text" class="form-control" data-ng-model="report.Departure" data-date-time-input="dddd DD/MM/YYYY HH:mm"><span class="input-group-addon"><i class="material-icons md-24">date_range</i></span>
+﻿<form name="form">
+    <div class="jumbotron col-md-offset-3 col-md-6">
+        <div class="pull-right">
+            <button ng-if="!report.IsArchived" class="btn btn-info btn-fab fab" ng-click="archive()">
+                <i class="material-icons" title="{{ 'REPORT.NOT_ARCHIVED' | translate }}">archive</i>
+            </button>
+            <button ng-if="report.IsArchived" class="btn btn-info btn-fab fab" ng-click="archive()">
+                <i class="material-icons" title="{{ 'REPORT.ARCHIVED' | translate }}">unarchive</i>
+            </button>
+            <button class="btn btn-danger btn-fab fab" ng-click="delete()">
+                <i class="material-icons" title="{{ 'TRANSPORT_REPORT.DELETE' | translate }}">delete</i>
+            </button>
+            <button class="btn btn-success btn-fab fab" ng-click="save()" ng-disabled="form.$invalid">
+                <i class="material-icons" title="{{ 'TRANSPORT_REPORT.SAVE' | translate }}">save</i>
+            </button>
+        </div>
+        <div ng-bind-html="lookup.reportTitles[reportType].Description" />
+        <div class="form-group label-static ng-is-empty" ng-class="{ 'has-error': form.Priority.$invalid }">
+            <label for="i1" class="control-label">{{ 'TRANSPORT_REPORT.PRIORITY' | translate }}</label>
+            <select id="i1" class="form-control" name="Priority" ng-model="report.Priority" convert-to-number required>
+                <option ng-repeat="priority in lookup.prioritiesTitles" value="{{priority.Id}}">
+                    {{priority.Description}}
+                </option>
+            </select>
+        </div>
+        <div class="form-group label-static ng-is-empty">
+            <label for="i2" class="control-label">{{ 'TRANSPORT_REPORT.SUBJECT' | translate }}</label>
+            <input type="text" class="form-control" id="i2" ng-model="report.Subject">
+        </div>
+        <div class="form-group label-static ng-is-empty">
+            <label for="i3" class="control-label">{{ 'TRANSPORT_REPORT.STARTING_POINT' | translate }}</label>
+            <select id="i3" class="form-control" ng-model="report.StartingPoint">
+                <option ng-repeat="facility in facilities" value="{{facility.Id}}">
+                    {{facility.Description}}
+                </option>
+            </select>
+        </div>
+        <div class="form-group label-static ng-is-empty">
+            <label for="i4" class="control-label">{{ 'TRANSPORT_REPORT.DESTINATION' | translate }}</label>
+            <select id="i4" class="form-control" ng-model="report.Destination">
+                <option ng-repeat="facility in facilities" value="{{facility.Id}}">
+                    {{facility.Description}}
+                </option>
+            </select>
+        </div>
+        <div class="form-group label-static ng-is-empty">
+            <label for="i5" class="control-label">{{ 'TRANSPORT_REPORT.MOVEMENT_TYPE' | translate }}</label>
+            <input type="text" class="form-control" id="i5" ng-model="report.MovementType" uib-typeahead="type for type in lookup.movementTypes | filter:$viewValue">
+        </div>
+        <div class="form-group label-static ng-is-empty" ng-class="{ 'has-error': form.PersonCount.$invalid }">
+            <label for="i6" class="control-label">{{ 'TRANSPORT_REPORT.PERSON_COUNT' | translate }}</label>
+            <input type="number" class="form-control" name="PersonCount" id="i6" ng-model="report.PersonCount" required>
+            <span class="material-input"></span>
+        </div>
+        <div class="form-group label-static ng-is-empty">
+            <date-time-picker label="{{ 'TRANSPORT_REPORT.DEPARTURE' | translate }}" format="dd/MM/yy" date="report.Departure"></date-time-picker>
+        </div>
+        <div class="form-group label-static ng-is-empty">
+            <label for="i11" class="control-label">{{ 'TRANSPORT_REPORT.DEPARTURE' | translate }}</label>
+            <div class="dropdown">
+                <div class="dropdown-toggle" id="dropdown1" role="button" data-toggle="dropdown" data-target="#">
+                    <div class="input-group">
+                        <input type="text" class="form-control" data-ng-model="report.Departure" data-date-time-input="dddd DD/MM/YYYY HH:mm"><span class="input-group-addon"><i class="material-icons md-24">date_range</i></span>
+                    </div>
                 </div>
+                <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                    <datetimepicker data-ng-model="report.Departure" data-datetimepicker-config="{ dropdownSelector: '#dropdown1' }" />
+                </ul>
             </div>
-            <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-                <datetimepicker data-ng-model="report.Departure" data-datetimepicker-config="{ dropdownSelector: '#dropdown1' }" />
-            </ul>
         </div>
-    </div>
-    <div class="form-group label-static ng-is-empty">
-        <label for="i12" class="control-label">{{ 'TRANSPORT_REPORT.ETA' | translate }}</label>
-        <div class="dropdown">
-            <div class="dropdown-toggle" id="dropdown2" role="button" data-toggle="dropdown" data-target="#">
-                <div class="input-group">
-                    <input type="text" class="form-control" data-ng-model="report.ETA" data-date-time-input="dddd DD/MM/YYYY HH:mm"><span class="input-group-addon"><i class="material-icons md-24">date_range</i></span>
+        <div class="form-group label-static ng-is-empty">
+            <label for="i12" class="control-label">{{ 'TRANSPORT_REPORT.ETA' | translate }}</label>
+            <div class="dropdown">
+                <div class="dropdown-toggle" id="dropdown2" role="button" data-toggle="dropdown" data-target="#">
+                    <div class="input-group">
+                        <input type="text" class="form-control" data-ng-model="report.ETA" data-date-time-input="dddd DD/MM/YYYY HH:mm"><span class="input-group-addon"><i class="material-icons md-24">date_range</i></span>
+                    </div>
                 </div>
+                <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                    <datetimepicker data-ng-model="report.ETA" data-datetimepicker-config="{ dropdownSelector: '#dropdown2' }" />
+                </ul>
             </div>
-            <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-                <datetimepicker data-ng-model="report.ETA" data-datetimepicker-config="{ dropdownSelector: '#dropdown2' }" />
-            </ul>
+        </div>
+        <div class="form-group label-static ng-is-empty">
+            <label for="i7" class="control-label">{{ 'TRANSPORT_REPORT.TRANSPORT_TYPE' | translate }}</label>
+            <input type="text" class="form-control" id="i7" ng-model="report.Transportation.Type" uib-typeahead="trans for trans in lookup.transportation | filter:$viewValue" required>
+        </div>
+        <div class="form-group label-static ng-is-empty">
+            <label for="i8" class="control-label">{{ 'TRANSPORT_REPORT.TRANSPORT_UID' | translate }}</label>
+            <input type="text" class="form-control" id="i8" ng-model="report.Transportation.UniqueId">
+        </div>
+        <div class="form-group label-static ng-is-empty">
+            <label for="i9" class="control-label">{{ 'TRANSPORT_REPORT.OWNER' | translate }}</label>
+            <input type="text" class="form-control" id="i9" ng-model="report.Transportation.Owner">
+        </div>
+        <div class="form-group">
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" ng-model="report.IsTransportHired">{{ 'TRANSPORT_REPORT.ISHIRED' | translate }}
+                </label>
+            </div>
+        </div>
+        <div class="form-group label-static ng-is-empty">
+            <label for="i10" class="control-label">{{ 'TRANSPORT_REPORT.NOTES' | translate }}</label>
+            <textarea class="form-control" id="i10" ng-model="report.Notes" />
         </div>
     </div>
-    <div class="form-group label-static ng-is-empty">
-        <label for="i7" class="control-label">{{ 'TRANSPORT_REPORT.TRANSPORT_TYPE' | translate }}</label>
-        <input type="text" class="form-control" id="i7" ng-model="report.Transportation.Type" uib-typeahead="trans for trans in lookup.transportation | filter:$viewValue" required>
-    </div>
-    <div class="form-group label-static ng-is-empty">
-        <label for="i8" class="control-label">{{ 'TRANSPORT_REPORT.TRANSPORT_UID' | translate }}</label>
-        <input type="text" class="form-control" id="i8" ng-model="report.Transportation.UniqueId">
-    </div>
-    <div class="form-group label-static ng-is-empty">
-        <label for="i9" class="control-label">{{ 'TRANSPORT_REPORT.OWNER' | translate }}</label>
-        <input type="text" class="form-control" id="i9" ng-model="report.Transportation.Owner">
-    </div>
-    <div class="form-group">
-        <div class="checkbox">
-            <label>
-                <input type="checkbox" ng-model="report.IsTransportHired">{{ 'TRANSPORT_REPORT.ISHIRED' | translate }}
-            </label>
-        </div>
-    </div>
-    <div class="form-group label-static ng-is-empty">
-        <label for="i10" class="control-label">{{ 'TRANSPORT_REPORT.NOTES' | translate }}</label>
-        <textarea class="form-control" id="i10" ng-model="report.Notes" />
-    </div>
-</div>
+</form>
