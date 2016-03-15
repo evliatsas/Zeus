@@ -37,7 +37,7 @@ angular
             }).then(function successCallback(response) {
                 $scope.data = response.data;
             }, function errorCallback(response) {
-                messageService.showError();
+                messageService.showError(response.data);
             });
         }
 
@@ -107,7 +107,7 @@ angular
                 messageService.saveSuccess();
                 $scope.data = response.data;
             }, function errorCallback(response) {
-                messageService.showError();
+                messageService.showError(response.data);
             });
         }
 
@@ -119,7 +119,7 @@ angular
                 messageService.deleteSuccess();
                 $location.url('/persons');
             }, function errorCallback(response) {
-                messageService.showError();
+                messageService.showError(response.data);
             });
         }
 

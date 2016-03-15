@@ -25,7 +25,7 @@ angular
             }).then(function successCallback(response) {
                 $scope.user = response.data;
             }, function errorCallback(response) {
-                messageService.showError();
+                messageService.showError(response.data);
             });
         }
 
@@ -61,7 +61,7 @@ angular
                 messageService.deleteSuccess();
                 $location.url('/users');
             }, function errorCallback(response) {
-                messageService.showError();
+                messageService.showError(response.data);
             });
         }
 

@@ -10,9 +10,11 @@ namespace Zeus.Entities
     public class FamilyRelation : Entity
     {
         public Relationship Relationship { get; set; }
+        [BsonRequired]
         public string PersonId { get; set; }
         [BsonIgnore]
         public Person Person { get; set; }
+        [BsonRequired]
         public string RelativeId { get; set; }
         [BsonIgnore]
         public Person Relative { get; set; }

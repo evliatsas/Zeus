@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MongoDB.Bson.Serialization.Attributes;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,6 +10,7 @@ namespace Zeus.Entities
     public class HousingReport : Report
     {
         public int HousedCount { get; set; }
+        [BsonRequired]
         public Housing Housing { get; set; }
 
         public HousingReport()

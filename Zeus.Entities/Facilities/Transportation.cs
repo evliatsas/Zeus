@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MongoDB.Bson.Serialization.Attributes;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,6 +9,8 @@ namespace Zeus.Entities
 {
     public class Transportation
     {
+        [BsonRequired]
+        [BsonDefaultValue("Λεωφορείο")]
         public string Type { get; set; }
         public string UniqueId { get; set; }
         public string Owner { get; set; }
