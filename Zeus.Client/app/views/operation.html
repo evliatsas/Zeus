@@ -1,175 +1,178 @@
-﻿<div class="pull-right">
-    <span class="btn btn-danger btn-fab fab" ng-click="cancel()" style="margin-right:20px;">
-        <i class="material-icons" title="{{ 'OPERATION.CANCEL' | translate }}">cancel</i>
-    </span>
-    <span class="btn btn-danger btn-fab fab" ng-click="delete()">
-        <i class="material-icons" title="{{ 'OPERATION.DELETE' | translate }}">delete</i>
-    </span>
-    <span class="btn btn-success btn-fab fab" ng-click="save()">
-        <i class="material-icons" title="{{ 'OPERATION.SAVE' | translate }}">save</i>
-    </span>
-</div>
-<h2>{{ 'OPERATION.OPS' | translate }}<span style="color:#009688; font-weight:300">{{operation.Name}}</span></h2>
-<div class="col-md-4">
-    <div class="form-group label-static ng-is-empty">
-        <label for="i1" class="control-label">{{ 'OPERATION.NAME' | translate }}</label>
-        <input type="text" class="form-control" id="i1" ng-model="operation.Name" />
+﻿<form name="form">
+    <div class="pull-right">
+        <button class="btn btn-danger btn-fab fab" ng-click="cancel()" style="margin-right:20px;">
+            <i class="material-icons" title="{{ 'OPERATION.CANCEL' | translate }}">cancel</i>
+        </button>
+        <button class="btn btn-danger btn-fab fab" ng-click="delete()">
+            <i class="material-icons" title="{{ 'OPERATION.DELETE' | translate }}">delete</i>
+        </button>
+        <button class="btn btn-success btn-fab fab" ng-click="save()" ng-disabled="form.$invalid">
+            <i class="material-icons" title="{{ 'OPERATION.SAVE' | translate }}">save</i>
+        </button>
     </div>
-    <div class="form-group label-static ng-is-empty">
-        <label for="i10" class="control-label">{{ 'OPERATION.PRIORITY' | translate }}</label>
-        <select id="i10" class="form-control" ng-model="operation.Priority" convert-to-number>
-            <option ng-repeat="priority in lookup.prioritiesTitles" value="{{priority.Id}}">
-                {{priority.Description}}
-            </option>
-        </select>
-    </div>
-    <div class="form-group label-static ng-is-empty">
-        <label for="i11" class="control-label">{{ 'OPERATION.TYPE' | translate }}</label>
-        <select id="i11" class="form-control" ng-model="operation.Type" convert-to-number>
-            <option ng-repeat="type in lookup.operationTypes" value="{{type.Id}}">
-                {{type.Description}}
-            </option>
-        </select>
-    </div>
-    <div class="form-group label-static ng-is-empty">
-        <label for="i12" class="control-label">{{ 'OPERATION.START' | translate }}</label>
-        <div class="dropdown">
-            <div class="dropdown-toggle" id="dropdown1" role="button" data-toggle="dropdown" data-target="#">
-                <div class="input-group">
-                    <input type="text" class="form-control" data-ng-model="operation.Start" data-date-time-input="dddd DD/MM/YYYY HH:mm"><span class="input-group-addon"><i class="material-icons md-24">date_range</i></span>
+    <h2>{{ 'OPERATION.OPS' | translate }}<span class="text-primary" style="font-weight:300">{{operation.Name}}</span></h2>
+    <div class="col-md-4">
+        <div class="form-group label-static ng-is-empty" ng-class="{ 'has-error': form.Name.$invalid }">
+            <label for="i1" class="control-label">{{ 'OPERATION.NAME' | translate }}</label>
+            <input type="text" class="form-control" name="Name" id="i1" ng-model="operation.Name" required/>
+            <span class="material-input"></span>
+        </div>
+        <div class="form-group label-static ng-is-empty" ng-class="{ 'has-error': form.Priority.$invalid }">
+            <label for="i10" class="control-label">{{ 'OPERATION.PRIORITY' | translate }}</label>
+            <select id="i10" class="form-control" name="Priority" ng-model="operation.Priority" convert-to-number required>
+                <option ng-repeat="priority in lookup.prioritiesTitles" value="{{priority.Id}}">
+                    {{priority.Description}}
+                </option>
+            </select>
+        </div>
+        <div class="form-group label-static ng-is-empty">
+            <label for="i11" class="control-label">{{ 'OPERATION.TYPE' | translate }}</label>
+            <select id="i11" class="form-control" ng-model="operation.Type" convert-to-number required>
+                <option ng-repeat="type in lookup.operationTypes" value="{{type.Id}}">
+                    {{type.Description}}
+                </option>
+            </select>
+        </div>
+        <div class="form-group label-static ng-is-empty">
+            <label for="i12" class="control-label">{{ 'OPERATION.START' | translate }}</label>
+            <div class="dropdown">
+                <div class="dropdown-toggle" id="dropdown1" role="button" data-toggle="dropdown" data-target="#">
+                    <div class="input-group">
+                        <input type="text" class="form-control" data-ng-model="operation.Start" data-date-time-input="dddd DD/MM/YYYY HH:mm"><span class="input-group-addon"><i class="material-icons md-24">date_range</i></span>
+                    </div>
                 </div>
+                <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                    <datetimepicker data-ng-model="operation.Start" data-datetimepicker-config="{ dropdownSelector: '#dropdown1' }" />
+                </ul>
             </div>
-            <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-                <datetimepicker data-ng-model="operation.Start" data-datetimepicker-config="{ dropdownSelector: '#dropdown1' }" />
-            </ul>
+        </div>
+        <div class="form-group label-static ng-is-empty">
+            <label for="i13" class="control-label">{{ 'OPERATION.ETA' | translate }}</label>
+            <div class="dropdown">
+                <div class="dropdown-toggle" id="dropdown2" role="button" data-toggle="dropdown" data-target="#">
+                    <div class="input-group">
+                        <input type="text" class="form-control" data-ng-model="operation.ETA" data-date-time-input="dddd DD/MM/YYYY HH:mm"><span class="input-group-addon"><i class="material-icons md-24">date_range</i></span>
+                    </div>
+                </div>
+                <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                    <datetimepicker data-ng-model="operation.ETA" data-datetimepicker-config="{ dropdownSelector: '#dropdown2' }" />
+                </ul>
+            </div>
+        </div>
+        <div class="form-group label-static ng-is-empty">
+            <label for="i14" class="control-label">{{ 'OPERATION.END' | translate }}</label>
+            <div class="dropdown">
+                <div class="dropdown-toggle" id="dropdown3" role="button" data-toggle="dropdown" data-target="#">
+                    <div class="input-group">
+                        <input type="text" class="form-control" data-ng-model="operation.End" data-date-time-input="dddd DD/MM/YYYY HH:mm"><span class="input-group-addon"><i class="material-icons md-24">date_range</i></span>
+                    </div>
+                </div>
+                <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                    <datetimepicker data-ng-model="operation.End" data-datetimepicker-config="{ dropdownSelector: '#dropdown3' }" />
+                </ul>
+            </div>
+        </div>
+        <div class="form-group label-static ng-is-empty">
+            <label for="i15" class="control-label">{{ 'OPERATION.STARTFACILITY' | translate }}</label>
+            <input type="text" class="form-control" id="i15" ng-model="operation.StartingPoint" uib-typeahead="f for f in facilities | filter:$viewValue">
+        </div>
+        <div class="form-group label-static ng-is-empty">
+            <label for="i16" class="control-label">{{ 'OPERATION.DESTFACILITY' | translate }}</label>
+            <input type="text" class="form-control" id="i15" ng-model="operation.Destination" uib-typeahead="f for f in facilities | filter:$viewValue">
+        </div>
+        <div class="form-group label-static ng-is-empty">
+            <label for="i17" class="control-label">{{ 'OPERATION.PERSON_COUNT' | translate }}</label>
+            <input type="number" class="form-control" id="i17" ng-model="operation.PersonCount">
+        </div>
+        <div class="form-group label-static ng-is-empty">
+            <label for="i18" class="control-label">{{ 'OPERATION.PROBLEMS' | translate }}</label>
+            <textarea class="form-control" id="i18" ng-model="operation.ReportedProblems" readonly />
+        </div>
+        <div class="form-group label-static ng-is-empty">
+            <label for="i19" class="control-label">{{ 'OPERATION.NOTES' | translate }}</label>
+            <textarea class="form-control" id="i19" ng-model="operation.Notes" />
         </div>
     </div>
-    <div class="form-group label-static ng-is-empty">
-        <label for="i13" class="control-label">{{ 'OPERATION.ETA' | translate }}</label>
-        <div class="dropdown">
-            <div class="dropdown-toggle" id="dropdown2" role="button" data-toggle="dropdown" data-target="#">
-                <div class="input-group">
-                    <input type="text" class="form-control" data-ng-model="operation.ETA" data-date-time-input="dddd DD/MM/YYYY HH:mm"><span class="input-group-addon"><i class="material-icons md-24">date_range</i></span>
-                </div>
-            </div>
-            <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-                <datetimepicker data-ng-model="operation.ETA" data-datetimepicker-config="{ dropdownSelector: '#dropdown2' }" />
-            </ul>
-        </div>
-    </div>
-    <div class="form-group label-static ng-is-empty">
-        <label for="i14" class="control-label">{{ 'OPERATION.END' | translate }}</label>
-        <div class="dropdown">
-            <div class="dropdown-toggle" id="dropdown3" role="button" data-toggle="dropdown" data-target="#">
-                <div class="input-group">
-                    <input type="text" class="form-control" data-ng-model="operation.End" data-date-time-input="dddd DD/MM/YYYY HH:mm"><span class="input-group-addon"><i class="material-icons md-24">date_range</i></span>
-                </div>
-            </div>
-            <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-                <datetimepicker data-ng-model="operation.End" data-datetimepicker-config="{ dropdownSelector: '#dropdown3' }" />
-            </ul>
-        </div>
-    </div>
-    <div class="form-group label-static ng-is-empty">
-        <label for="i15" class="control-label">{{ 'OPERATION.STARTFACILITY' | translate }}</label>
-        <input type="text" class="form-control" id="i15" ng-model="operation.StartingPoint" uib-typeahead="f for f in facilities | filter:$viewValue">
-    </div>
-    <div class="form-group label-static ng-is-empty">
-        <label for="i16" class="control-label">{{ 'OPERATION.DESTFACILITY' | translate }}</label>
-        <input type="text" class="form-control" id="i15" ng-model="operation.Destination" uib-typeahead="f for f in facilities | filter:$viewValue">
-    </div>
-    <div class="form-group label-static ng-is-empty">
-        <label for="i17" class="control-label">{{ 'OPERATION.PERSON_COUNT' | translate }}</label>
-        <input type="number" class="form-control" id="i17" ng-model="operation.PersonCount">
-    </div>
-    <div class="form-group label-static ng-is-empty">
-        <label for="i18" class="control-label">{{ 'OPERATION.PROBLEMS' | translate }}</label>
-        <textarea class="form-control" id="i18" ng-model="operation.ReportedProblems" readonly/>
-    </div>
-    <div class="form-group label-static ng-is-empty">
-        <label for="i19" class="control-label">{{ 'OPERATION.NOTES' | translate }}</label>
-        <textarea class="form-control" id="i19" ng-model="operation.Notes" />
-    </div>
-</div>
 
-<div class="col-md-8" style="padding-top:20px;">
-    <div class="container-fluid shadow-box">       
-        <i>{{ 'OPERATION.PREPERATIONS' | translate }}</i>
-        <span class="btn-group-sm pull-right">
-            <a href="javascript:void(0)" class="btn btn-info btn-fab" ng-click="addPreparation()"><i class="material-icons">add</i></a>
-        </span>
-        <div class="form" ng-repeat="prep in operation.Preparations track by $index">
-            <div class="form-group label-static col-md-2">
-                <label class="control-label">{{ 'OPERATION.CARRIER' | translate }}</label>
-                <input type="text" class="form-control" ng-model="prep.Carrier" uib-typeahead="c for c in lookup.operationCarriers | filter:$viewValue">
-            </div>
-            <div class="form-group label-static col-md-4">
-                <label class="control-label">{{ 'OPERATION.INSTRUCTIONS' | translate }}</label>
-                <input type="text" class="form-control" ng-model="prep.Instructions">
-            </div>
-            <div class="form-group label-static col-md-4">
-                <label class="control-label">{{ 'OPERATION.PROBLEMS' | translate }}</label>
-                <input type="text" class="form-control" ng-model="prep.Problems">
-            </div>
-            <div class="form-group label-static col-md-1">
-                <label class="control-label">{{ 'OPERATION.PROGRESS' | translate }}</label>
-                <div class="input-group">
-                    <input type="number" class="form-control" ng-model="prep.Completion" style="min-width:42px;">
-                    <div class="input-group-addon">%</div>
+    <div class="col-md-8" style="padding-top:20px;">
+        <div class="container-fluid shadow-box">
+            <i>{{ 'OPERATION.PREPERATIONS' | translate }}</i>
+            <span class="btn-group-sm pull-right">
+                <a href="javascript:void(0)" class="btn btn-info btn-fab" ng-click="addPreparation()"><i class="material-icons">add</i></a>
+            </span>
+            <div class="form" ng-repeat="prep in operation.Preparations track by $index">
+                <div class="form-group label-static col-md-2">
+                    <label class="control-label">{{ 'OPERATION.CARRIER' | translate }}</label>
+                    <input type="text" class="form-control" ng-model="prep.Carrier" uib-typeahead="c for c in lookup.operationCarriers | filter:$viewValue">
+                </div>
+                <div class="form-group label-static col-md-4">
+                    <label class="control-label">{{ 'OPERATION.INSTRUCTIONS' | translate }}</label>
+                    <input type="text" class="form-control" ng-model="prep.Instructions">
+                </div>
+                <div class="form-group label-static col-md-4">
+                    <label class="control-label">{{ 'OPERATION.PROBLEMS' | translate }}</label>
+                    <input type="text" class="form-control" ng-model="prep.Problems">
+                </div>
+                <div class="form-group label-static col-md-1">
+                    <label class="control-label">{{ 'OPERATION.PROGRESS' | translate }}</label>
+                    <div class="input-group">
+                        <input type="number" class="form-control" ng-model="prep.Completion" style="min-width:42px;">
+                        <div class="input-group-addon">%</div>
+                    </div>
+                </div>
+                <div class="col-md-1">
+                    <a href="javascript:void(0)" class="btn btn-info" ng-click="operation.Preparations.splice($index, 1)"><i class="material-icons">clear</i></a>
                 </div>
             </div>
-            <div class="col-md-1">
-                <a href="javascript:void(0)" class="btn btn-info" ng-click="operation.Preparations.splice($index, 1)"><i class="material-icons">clear</i></a>
-            </div>            
         </div>
-    </div>
-    <div class="container-fluid shadow-box">
-        <i>{{ 'OPERATION.PROVIDERS' | translate }}</i>
-        <span class="btn-group-sm pull-right">
-            <a href="javascript:void(0)" class="btn btn-info btn-fab" ng-click="addProvider()"><i class="material-icons">add</i></a>
-        </span>
-        <div class="form" ng-repeat="prov in operation.Providers track by $index">
-            <div class="form-group label-static col-md-2">
-                <label class="control-label">{{ 'OPERATION.CARRIER' | translate }}</label>
-                <select class="form-control" ng-model="prov.ProviderId">
-                    <option ng-repeat="provider in providers" value="{{provider.Id}}">
-                        {{provider.Description}}
-                    </option>
-                </select>
-            </div>
-            <div class="form-group label-static col-md-4">
-                <label class="control-label">{{ 'OPERATION.INSTRUCTIONS' | translate }}</label>
-                <input type="text" class="form-control" ng-model="prov.Instructions">
-            </div>
-            <div class="form-group label-static col-md-4">
-                <label class="control-label">{{ 'OPERATION.PROBLEMS' | translate }}</label>
-                <input type="text" class="form-control" ng-model="prov.Problems">
-            </div>
-            <div class="col-md-1">
-                <a href="javascript:void(0)" ng-click="openProvider(prov.ProviderId)" class="btn btn-info"><i class="material-icons">perm_contact_calendar</i></a>
-            </div>
-            <div class="col-md-1">
-                <a href="javascript:void(0)" class="btn btn-info" ng-click="operation.Providers.splice($index, 1)"><i class="material-icons">clear</i></a>
+        <div class="container-fluid shadow-box">
+            <i>{{ 'OPERATION.PROVIDERS' | translate }}</i>
+            <span class="btn-group-sm pull-right">
+                <a href="javascript:void(0)" class="btn btn-info btn-fab" ng-click="addProvider()"><i class="material-icons">add</i></a>
+            </span>
+            <div class="form" ng-repeat="prov in operation.Providers track by $index">
+                <div class="form-group label-static col-md-2">
+                    <label class="control-label">{{ 'OPERATION.CARRIER' | translate }}</label>
+                    <select class="form-control" ng-model="prov.ProviderId">
+                        <option ng-repeat="provider in providers" value="{{provider.Id}}">
+                            {{provider.Description}}
+                        </option>
+                    </select>
+                </div>
+                <div class="form-group label-static col-md-4">
+                    <label class="control-label">{{ 'OPERATION.INSTRUCTIONS' | translate }}</label>
+                    <input type="text" class="form-control" ng-model="prov.Instructions">
+                </div>
+                <div class="form-group label-static col-md-4">
+                    <label class="control-label">{{ 'OPERATION.PROBLEMS' | translate }}</label>
+                    <input type="text" class="form-control" ng-model="prov.Problems">
+                </div>
+                <div class="col-md-1">
+                    <a href="javascript:void(0)" ng-click="openProvider(prov.ProviderId)" class="btn btn-info"><i class="material-icons">perm_contact_calendar</i></a>
+                </div>
+                <div class="col-md-1">
+                    <a href="javascript:void(0)" class="btn btn-info" ng-click="operation.Providers.splice($index, 1)"><i class="material-icons">clear</i></a>
+                </div>
             </div>
         </div>
-    </div>
-    <div class="container-fluid shadow-box">
-        <i>{{ 'OPERATION.CONTACT' | translate }}</i>
-        <div class="form">
-            <div class="form-group label-static col-md-10">
-                <label class="control-label">{{ 'OPERATION.SUPERVISOR' | translate }}</label>
-                <select class="form-control" ng-model="operation.DestinationContactId">
-                    <option ng-repeat="contact in contacts" value="{{contact.Id}}">
-                       {{contact.Description}}  ({{contact.Tag}})
-                    </option>
-                </select>
-            </div>
-            <div class="col-md-1">
-                <a href="javascript:void(0)" ng-click="openContact()" class="btn btn-info"><i class="material-icons">perm_contact_calendar</i></a>
-            </div>
-            <div class="col-md-1">
-                <a href="javascript:void(0)" class="btn btn-info" ng-click="operation.DestinationContactId = ''"><i class="material-icons">clear</i></a>
+        <div class="container-fluid shadow-box">
+            <i>{{ 'OPERATION.CONTACT' | translate }}</i>
+            <div class="form">
+                <div class="form-group label-static col-md-10">
+                    <label class="control-label">{{ 'OPERATION.SUPERVISOR' | translate }}</label>
+                    <select class="form-control" ng-model="operation.DestinationContactId">
+                        <option ng-repeat="contact in contacts" value="{{contact.Id}}">
+                            {{contact.Description}}  ({{contact.Tag}})
+                        </option>
+                    </select>
+                </div>
+                <div class="col-md-1">
+                    <a href="javascript:void(0)" ng-click="openContact()" class="btn btn-info"><i class="material-icons">perm_contact_calendar</i></a>
+                </div>
+                <div class="col-md-1">
+                    <a href="javascript:void(0)" class="btn btn-info" ng-click="operation.DestinationContactId = ''"><i class="material-icons">clear</i></a>
+                </div>
             </div>
         </div>
     </div>
-</div>
+</form>

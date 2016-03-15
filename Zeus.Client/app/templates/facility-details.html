@@ -1,7 +1,8 @@
-﻿<h2>{{ 'FACILITY_DETAILS.NAME' | translate }}<span style="color:#009688; font-weight:300">{{facility.Name}}</span></h2>
-<div class="form-group label-static ng-is-empty">
+﻿<h2>{{ 'FACILITY_DETAILS.NAME' | translate }}<span class="text-primary" style="font-weight:300">{{facility.Name}}</span></h2>
+<div class="form-group label-static ng-is-empty" ng-class="{ 'has-error': form.Name.$invalid }">
     <label for="i1" class="control-label">Ονομασία</label>
-    <input type="text" class="form-control" id="i1"  data-error="{{ 'FACILITY_DETAILS.NAME_ERROR' | translate }}" ng-model="facility.Name" required>
+    <input type="text" class="form-control" id="i1" name="Name"  data-error="{{ 'FACILITY_DETAILS.NAME_ERROR' | translate }}" ng-model="facility.Name" required>
+    <span class="material-input"></span>
 </div>
 <div class="form-group label-static ng-is-empty">
     <label for="i2" class="control-label">{{ 'FACILITY_DETAILS.DESCRIPTION' | translate }}</label>
