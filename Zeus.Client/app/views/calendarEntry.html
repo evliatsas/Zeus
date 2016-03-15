@@ -25,20 +25,15 @@
             </div>
             <div class="form-group label-static ng-is-empty" ng-class="{ 'has-error': form.Author.$invalid }">
                 <label for="Administration" class="control-label">{{ 'CALENDAR.AUTHOR' | translate }}</label>
-                <input type="text" class="form-control" name="Administration" id="Administration" ng-model="entry.Author" uib-typeahead="state for state in lookup.administrations | filter:$viewValue" required>
+                <input type="text" class="form-control" name="Author" id="Administration" ng-model="entry.Author" uib-typeahead="state for state in lookup.administrations | filter:$viewValue" required>
             </div>
-            <!--<div class="form-group label-static ng-is-empty" ng-class="{ 'has-error': form.Author.$invalid }">
-                <label for="i2" class="control-label">{{ 'CALENDAR.AUTHOR' | translate }}</label>
-                <input type="text" class="form-control" name="Author" id="i2" ng-model="entry.Author" required />
-                <span class="material-input"></span>
-            </div>-->
             <div class="form-group label-static ng-is-empty" ng-class="{ 'has-error': form.Description.$invalid }">
                 <label for="i3" class="control-label">{{ 'CALENDAR.DESCRIPTION' | translate }}</label>
-                <textarea class="form-control" name="Description" id="i3" ng-model="entry.Description" required />
+                <textarea class="form-control"  rows="6" name="Description" id="i3" ng-model="entry.Description" required />
             </div>
             <div class="form-group label-static ng-is-empty">
                 <label for="i5" class="control-label">{{ 'CALENDAR.ACTIONS' | translate }}</label>
-                <textarea class="form-control" id="i4" ng-model="entry.Actions" />
+                <textarea class="form-control" rows="6" id="i4" ng-model="entry.Actions" />
             </div>
         </div>
     </form>
