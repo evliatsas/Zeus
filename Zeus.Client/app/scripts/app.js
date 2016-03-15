@@ -155,6 +155,16 @@ angular
             controller: 'DailyReportCtrl',
             controllerAs: 'dailyReportCtrl'
         })
+        .when('/calendar/:id', {
+            templateUrl: 'views/calendarEntry.html',
+            controller: 'CalendarEntryCtrl',
+            controllerAs: 'calendarEntryCtrl'
+        })
+        .when('/calendar', {
+            templateUrl: 'views/calendar.html',
+            controller: 'CalendarCtrl',
+            controllerAs: 'calendarCtrl'
+        })
         .otherwise({
             redirectTo: '/'
         });

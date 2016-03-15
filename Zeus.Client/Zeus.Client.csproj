@@ -76,6 +76,8 @@
     <Content Include="app\scripts\app.js" />
     <Content Include="app\scripts\controllers\about.js" />
     <Content Include="app\scripts\controllers\archive.js" />
+    <Content Include="app\scripts\controllers\calendar.js" />
+    <Content Include="app\scripts\controllers\calendarEntry.js" />
     <Content Include="app\scripts\controllers\dailyreport.js" />
     <Content Include="app\scripts\controllers\facilities.js" />
     <Content Include="app\scripts\controllers\charts.js" />
@@ -129,6 +131,8 @@
     <Content Include="app\templates\phone-list.html" />
     <Content Include="app\templates\save-alert.html" />
     <Content Include="app\views\about.html" />
+    <Content Include="app\views\calendar.html" />
+    <Content Include="app\views\calendarEntry.html" />
     <Content Include="app\views\dailyreport.html" />
     <Content Include="app\views\operation.html" />
     <Content Include="app\views\log.html" />
