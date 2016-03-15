@@ -23,7 +23,7 @@ namespace Zeus.Models
 
         public byte[] PrintPdfReport(IEnumerable<DailyReport> reports)
         {
-            this.reports = reports.ToList();
+            this.reports = reports.OrderBy(t=>t.Facility.Category).ThenBy(t=>t.Facility.Name).ToList();            
             var fontType = "Tahoma";
             FontFactory.RegisterDirectory(Environment.GetFolderPath(Environment.SpecialFolder.Fonts));
             titleFont = FontFactory.GetFont(fontType, BaseFont.IDENTITY_H, BaseFont.EMBEDDED, 14, Font.BOLD);
@@ -31,7 +31,7 @@ namespace Zeus.Models
             normalFont = FontFactory.GetFont(fontType, BaseFont.IDENTITY_H, BaseFont.NOT_EMBEDDED, 10, Font.NORMAL);
             boldFont = FontFactory.GetFont(fontType, BaseFont.IDENTITY_H, BaseFont.NOT_EMBEDDED, 10, Font.BOLD);
 
-            Document doc = new Document(PageSize.A4, 12, 12, 12, 12);
+            Document doc = new Document(PageSize.A4, 25, 25, 25, 25);
             MemoryStream stream = new MemoryStream();
             PdfWriter writer = PdfWriter.GetInstance(doc, stream);
             doc.SetPageSize(PageSize.A4);
@@ -53,10 +53,11 @@ namespace Zeus.Models
             PdfPTable table = new PdfPTable(5);
             table.HorizontalAlignment = Element.ALIGN_CENTER;
             table.WidthPercentage = 100;
+            table.SetWidths( new float[] { 40, 15, 15, 15, 15 });
             table.DefaultCell.Border = Rectangle.BOX;
 
             {
-                string s = string.Format("ΣΥΝΟΠΤΙΚΗ ΚΑΤΑΣΤΑΣΗ ΠΡΟΣΦΥΓΙΚΏΝ ΡΟΩΝ ΤΗΣ {0:dd/MM/yyyy} - ΩΡΑ {1:HH:mm}", reports.Max(t=>t.ReportDate), reports.Max(t=>t.ReportDateTime));
+                string s = string.Format("ΣΥΝΟΠΤΙΚΗ ΚΑΤΑΣΤΑΣΗ ΠΡΟΣΦΥΓΙΚΏΝ ΡΟΩΝ ΤΗΣ {0:dd/MM/yyyy} \n ΩΡΑ {1:HH:mm}", reports.Max(t=>t.ReportDate), reports.Max(t=>t.ReportDateTime));
                 PdfPCell cell = new PdfPCell(new Phrase(s, titleFont));
                 cell.HorizontalAlignment = Element.ALIGN_CENTER;
                 cell.Colspan = 5;
@@ -92,7 +93,7 @@ namespace Zeus.Models
             }
 
             {
-                string s = "ΑΦΙΞΕΙΣ - ΑΝΑΧΩΡΗΣΕΙΣ";
+                string s = "ΑΦΙΞΕΙΣ   ΑΝΑΧΩΡΗΣΕΙΣ";
                 PdfPCell cell = new PdfPCell(new Phrase(s, boldFont));
                 cell.HorizontalAlignment = Element.ALIGN_CENTER;
                 cell.Rowspan = 2;
@@ -124,48 +125,150 @@ namespace Zeus.Models
             PdfPTable table = new PdfPTable(5);
             table.HorizontalAlignment = Element.ALIGN_CENTER;
             table.WidthPercentage = 100;
-            table.SpacingBefore = 7;
+            table.SetWidths(new float[] { 40, 15, 15, 15, 15 });
 
-            foreach(var report in reports)
+            var categories = reports.Select(t => t.Facility.Category).Distinct();
+
+            foreach (var category in categories)
             {
+                var rows = reports.Where(t => t.Facility.Category == category);
+
+                PdfPCell cell = new PdfPCell(new Phrase(category, subTitleFont));
+                cell.HorizontalAlignment = Element.ALIGN_LEFT;
+                cell.Colspan = 5;
+                cell.Border = Rectangle.BOX;
+                table.AddCell(cell);
+
+                foreach (var row in rows)
                 {
-                    string s = report.Facility.Name;
-                    PdfPCell cell = new PdfPCell(new Phrase(s, normalFont));
-                    cell.HorizontalAlignment = Element.ALIGN_CENTER;
-                    cell.Border = Rectangle.BOX;
-                    table.AddCell(cell);
+                    addRow(table, row);
                 }
-                {
-                    string s = string.Format("{0}", report.Attendance);
-                    PdfPCell cell = new PdfPCell(new Phrase(s, normalFont));
-                    cell.HorizontalAlignment = Element.ALIGN_CENTER;
-                    cell.Border = Rectangle.BOX;
-                    table.AddCell(cell);
-                }
-                {
-                    string s = string.Format("{0}", report.Capacity);
-                    PdfPCell cell = new PdfPCell(new Phrase(s, normalFont));
-                    cell.HorizontalAlignment = Element.ALIGN_CENTER;
-                    cell.Border = Rectangle.BOX;
-                    table.AddCell(cell);
-                }
-                {
-                    string s = string.Format("{0}", report.ReportCapacity);
-                    PdfPCell cell = new PdfPCell(new Phrase(s, normalFont));
-                    cell.HorizontalAlignment = Element.ALIGN_CENTER;
-                    cell.Border = Rectangle.BOX;
-                    table.AddCell(cell);
-                }
-                {
-                    string s = string.Format("{0}", report.Arrivals);
-                    PdfPCell cell = new PdfPCell(new Phrase(s, normalFont));
-                    cell.HorizontalAlignment = Element.ALIGN_CENTER;
-                    cell.Border = Rectangle.BOX;
-                    table.AddCell(cell);
-                }
-            }            
+
+                addSubTotal(table, category);
+            }
+
+            addTotal(table);
 
             return table;
+        }
+
+        private void addRow(PdfPTable table, DailyReport report)
+        {
+            {
+                string s = report.Facility.Name;
+                PdfPCell cell = new PdfPCell(new Phrase(s, normalFont));
+                cell.HorizontalAlignment = Element.ALIGN_LEFT;
+                cell.Border = Rectangle.BOX;
+                table.AddCell(cell);
+            }
+            {
+                string s = string.Format("{0:#,###}", report.Attendance);
+                PdfPCell cell = new PdfPCell(new Phrase(s, normalFont));
+                cell.HorizontalAlignment = Element.ALIGN_RIGHT;
+                cell.Border = Rectangle.BOX;
+                table.AddCell(cell);
+            }
+            {
+                string s = string.Format("{0:#,###}", report.Capacity);
+                PdfPCell cell = new PdfPCell(new Phrase(s, normalFont));
+                cell.HorizontalAlignment = Element.ALIGN_RIGHT;
+                cell.Border = Rectangle.BOX;
+                table.AddCell(cell);
+            }
+            {
+                string s = string.Format("{0:#,###}", report.ReportCapacity);
+                PdfPCell cell = new PdfPCell(new Phrase(s, normalFont));
+                cell.HorizontalAlignment = Element.ALIGN_RIGHT;
+                cell.Border = Rectangle.BOX;
+                table.AddCell(cell);
+            }
+            {
+                string s = string.Format("{0:#,###}", report.Arrivals);
+                PdfPCell cell = new PdfPCell(new Phrase(s, normalFont));
+                cell.HorizontalAlignment = Element.ALIGN_RIGHT;
+                cell.Border = Rectangle.BOX;
+                table.AddCell(cell);
+            }
+        }
+
+        private void addSubTotal(PdfPTable table, string category)
+        {
+            var tmp = reports.Where(t => t.Facility.Category == category);
+            
+            {
+                string s = string.Format("Σύνολα {0}" , category);
+                PdfPCell cell = new PdfPCell(new Phrase(s, boldFont));
+                cell.HorizontalAlignment = Element.ALIGN_LEFT;
+                cell.Border = Rectangle.BOX;
+                table.AddCell(cell);
+            }
+            {
+                string s = string.Format("{0:#,###}", tmp.Sum(t=>t.Attendance));
+                PdfPCell cell = new PdfPCell(new Phrase(s, boldFont));
+                cell.HorizontalAlignment = Element.ALIGN_RIGHT;
+                cell.Border = Rectangle.BOX;
+                table.AddCell(cell);
+            }
+            {
+                string s = string.Format("{0:#,###}", tmp.Sum(t => t.Capacity));
+                PdfPCell cell = new PdfPCell(new Phrase(s, boldFont));
+                cell.HorizontalAlignment = Element.ALIGN_RIGHT;
+                cell.Border = Rectangle.BOX;
+                table.AddCell(cell);
+            }
+            {
+                string s = string.Format("{0:#,###}", tmp.Sum(t => t.ReportCapacity));
+                PdfPCell cell = new PdfPCell(new Phrase(s, boldFont));
+                cell.HorizontalAlignment = Element.ALIGN_RIGHT;
+                cell.Border = Rectangle.BOX;
+                table.AddCell(cell);
+            }
+            {
+                string s = string.Format("{0:#,###}", tmp.Sum(t => t.Arrivals));
+                PdfPCell cell = new PdfPCell(new Phrase(s, boldFont));
+                cell.HorizontalAlignment = Element.ALIGN_RIGHT;
+                cell.Border = Rectangle.BOX;
+                table.AddCell(cell);
+            }
+        }
+
+        private void addTotal(PdfPTable table)
+        {
+            {
+                string s = "Γενικά Σύνολα";
+                PdfPCell cell = new PdfPCell(new Phrase(s, subTitleFont));
+                cell.HorizontalAlignment = Element.ALIGN_LEFT;
+                cell.Border = Rectangle.BOX;
+                table.AddCell(cell);
+            }
+            {
+                string s = string.Format("{0:#,###}", reports.Sum(t => t.Attendance));
+                PdfPCell cell = new PdfPCell(new Phrase(s, subTitleFont));
+                cell.HorizontalAlignment = Element.ALIGN_RIGHT;
+                cell.Border = Rectangle.BOX;
+                table.AddCell(cell);
+            }
+            {
+                string s = string.Format("{0:#,###}", reports.Sum(t => t.Capacity));
+                PdfPCell cell = new PdfPCell(new Phrase(s, subTitleFont));
+                cell.HorizontalAlignment = Element.ALIGN_RIGHT;
+                cell.Border = Rectangle.BOX;
+                table.AddCell(cell);
+            }
+            {
+                string s = string.Format("{0:#,###}", reports.Sum(t => t.ReportCapacity));
+                PdfPCell cell = new PdfPCell(new Phrase(s, subTitleFont));
+                cell.HorizontalAlignment = Element.ALIGN_RIGHT;
+                cell.Border = Rectangle.BOX;
+                table.AddCell(cell);
+            }
+            {
+                string s = string.Format("{0:#,###}", reports.Sum(t => t.Arrivals));
+                PdfPCell cell = new PdfPCell(new Phrase(s, subTitleFont));
+                cell.HorizontalAlignment = Element.ALIGN_RIGHT;
+                cell.Border = Rectangle.BOX;
+                table.AddCell(cell);
+            }
         }
     }
 }

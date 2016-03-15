@@ -6,7 +6,8 @@ angular
 
     	var elGR = {
 	    	MENU: {
-	    		BRAND: 'ξ ε ν ί α',
+	    	    BRAND: 'ξ ε ν ί α',
+                REPORTS:"Δελτίο Τύπου",
 	    		FACILITIES: 'Δομές Φιλοξενίας',
 	    		CONTACTS: 'Επαφές',
 	    		PROVIDERS: 'Υποστήριξη',
@@ -16,7 +17,8 @@ angular
 	    		USERS: 'Χρήστες',
 	    		ARCHIVES: 'Αρχείο',
                 OPERATIONS: 'Επιχειρήσεις',
-	    		LOG: 'Ενέργειες Χρηστών',
+                LOG: 'Ενέργειες Χρηστών',
+                CALENDAR:'Ημερολόγιο',
                 TITLE:'Αλλαγή Κωδικού Πρόσβασης',
                 ADMIN: 'Διαχείριση',
 	    		SUPPORT: {
@@ -158,6 +160,10 @@ angular
 	    	    SAVE: 'Αποθήκευση Αναφοράς',
 	    	    FROM: 'Ημερομηνία. Από',
 	    	    UNTIL: 'Ημερομηνία. Έως',
+	    	    SHOW_FILE: 'ΕΜΦΑΝΙΣΗ ΑΡΧΕΙΟΥ'
+	    	},
+	    	CALENDAR: {
+	    	    DATE: 'Ημερομηνία',
 	    	    SHOW_FILE: 'ΕΜΦΑΝΙΣΗ ΑΡΧΕΙΟΥ'
 	    	},
 	    	LOG: {
@@ -321,6 +327,7 @@ angular
 	    var enUS = {
 	        MENU: {
 	            BRAND: 'ξ ε ν ί α',
+	            REPORTS: "Daily Report",
 	            FACILITIES: 'Facilities',
 	            CONTACTS: 'Contacts',
 	            PROVIDERS: 'Providers',
@@ -328,6 +335,7 @@ angular
 	            MAP: 'Map',
 	            CHARTS: 'Statistics',
 	            USERS: 'Users',
+	            CALENDAR: 'Calendar',
 	            ARCHIVES: 'Archive',
 	            OPERATIONS: 'Operations',
 	            LOG: 'Log Entries',
@@ -470,6 +478,10 @@ angular
 	            SAVE: 'Save Report',
 	            FROM: 'From Date',
 	            UNTIL: 'To Date',
+	            SHOW_FILE: 'Show File'
+	        },
+	        CALENDAR: {
+	            DATE: 'DATE',
 	            SHOW_FILE: 'Show File'
 	        },
 	        LOG: {

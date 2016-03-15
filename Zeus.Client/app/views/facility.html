@@ -10,69 +10,67 @@
             <i class="material-icons" title="{{ 'FACILITY.SAVE' | translate }}">save</i>
         </button>
     </div>
-
-    <div class="col-md-4">
-        <facility-details facility="data"></facility-details>
-    </div>
-
-    <div class="col-md-8" style="padding-top:20px;">
-        <uib-tabset justified="true" active="activeTab">
-            <uib-tab index="0" heading="{{ 'FACILITY.HOUSING' | translate }}">
-                <div class="shadow-box btn-group-sm">
-                    <cinnamon-grid grid-columns="housingcolumns"
-                                   grid-items="data.Housings"
-                                   show-grid-buttons="true"
-                                   hide-item-buttons="true"
-                                   row-click-fn="editHousing(item)"
-                                   grid-create-fn="addHousing()">
-                    </cinnamon-grid>
-                </div>
-            </uib-tab>
-            <uib-tab index="1" heading="{{ 'FACILITY.CONTACTS' | translate }}">
-                <div class="shadow-box btn-group-sm">
-                    <cinnamon-grid grid-columns="contactColumns"
-                                   grid-items="data.Contacts"
-                                   show-grid-buttons="true"
-                                   hide-item-buttons="true"
-                                   row-click-fn="showContact(item)"
-                                   grid-create-fn="addContact()">
-                    </cinnamon-grid>
-                </div>
-            </uib-tab>
-            <uib-tab index="2" heading="{{ 'FACILITY.PROVIDERS' | translate }}">
-                <div class="shadow-box btn-group-sm">
-                    <cinnamon-grid grid-columns="providerColumns"
-                                   grid-items="data.Providers"
-                                   show-grid-buttons="true"
-                                   hide-item-buttons="true"
-                                   row-click-fn="showProvider(item)"
-                                   grid-create-fn="addProvider()">
-                    </cinnamon-grid>
-                </div>
-            </uib-tab>
-            <uib-tab index="3" heading="{{ 'FACILITY.REPORTS' | translate }}">
-                <div class="shadow-box btn-group-sm">
-                    <cinnamon-grid grid-columns="reportcolumns"
-                                   grid-items="data.Reports"
-                                   show-grid-buttons="false"
-                                   hide-item-buttons="true"
-                                   row-click-fn="showReport(item)"
-                                   custom-action-fn="createReport(item)"
-                                   custom-action-items="reportactions">
-                    </cinnamon-grid>
-                </div>
-            </uib-tab>
-            <uib-tab index="4" heading="{{ 'FACILITY.PERSONS' | translate }}">
-                <div class="shadow-box btn-group-sm">
-                    <cinnamon-grid grid-columns="personcolumns"
-                                   grid-items="data.Persons"
-                                   show-grid-buttons="true"
-                                   hide-item-buttons="true"
-                                   row-click-fn="showPerson(item)"
-                                   grid-create-fn="addPerson()">
-                    </cinnamon-grid>
-                </div>
-            </uib-tab>
-        </uib-tabset>
-    </div>
-</form>
+        <div class="col-md-4">
+            <facility-details facility="data"></facility-details>
+        </div>
+        <div class="col-md-8" style="padding-top:20px;">
+            <uib-tabset justified="true" active="activeTab">
+                <uib-tab index="0" heading="{{ 'FACILITY.HOUSING' | translate }}">
+                    <div class="shadow-box btn-group-sm">
+                        <cinnamon-grid grid-columns="housingcolumns"
+                                       grid-items="data.Housings"
+                                       show-grid-buttons="true"
+                                       hide-item-buttons="true"
+                                       row-click-fn="editHousing(item)"
+                                       grid-create-fn="addHousing()">
+                        </cinnamon-grid>
+                    </div>
+                </uib-tab>
+                <uib-tab index="1" heading="{{ 'FACILITY.CONTACTS' | translate }}">
+                    <div class="shadow-box btn-group-sm">
+                        <cinnamon-grid grid-columns="contactColumns"
+                                       grid-items="data.Contacts"
+                                       show-grid-buttons="true"
+                                       hide-item-buttons="true"
+                                       row-click-fn="showContact(item)"
+                                       grid-create-fn="addContact()">
+                        </cinnamon-grid>
+                    </div>
+                </uib-tab>
+                <uib-tab index="2" heading="{{ 'FACILITY.PROVIDERS' | translate }}">
+                    <div class="shadow-box btn-group-sm">
+                        <cinnamon-grid grid-columns="providerColumns"
+                                       grid-items="data.Providers"
+                                       show-grid-buttons="true"
+                                       hide-item-buttons="true"
+                                       row-click-fn="showProvider(item)"
+                                       grid-create-fn="addProvider()">
+                        </cinnamon-grid>
+                    </div>
+                </uib-tab>
+                <uib-tab index="3" heading="{{ 'FACILITY.REPORTS' | translate }}">
+                    <div class="shadow-box btn-group-sm">
+                        <cinnamon-grid grid-columns="reportcolumns"
+                                       grid-items="data.Reports"
+                                       show-grid-buttons="false"
+                                       hide-item-buttons="true"
+                                       row-click-fn="showReport(item)"
+                                       custom-action-fn="createReport(item)"
+                                       custom-action-items="reportactions">
+                        </cinnamon-grid>
+                    </div>
+                </uib-tab>
+                <uib-tab index="4" heading="{{ 'FACILITY.PERSONS' | translate }}">
+                    <div class="shadow-box btn-group-sm">
+                        <cinnamon-grid grid-columns="personcolumns"
+                                       grid-items="data.Persons"
+                                       show-grid-buttons="true"
+                                       hide-item-buttons="true"
+                                       row-click-fn="showPerson(item)"
+                                       grid-create-fn="addPerson()">
+                        </cinnamon-grid>
+                    </div>
+                </uib-tab>
+            </uib-tabset>
+        </div>
+    </form>
