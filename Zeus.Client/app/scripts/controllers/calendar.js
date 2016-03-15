@@ -8,11 +8,11 @@ angular
         $scope.calendar = [];
 
         $scope.calendarcolumns = [
-             { Caption: 'GRID.START', Field: 'Start', Type: 'DateTime', Tooltip: 'Ώρα' },
-             { Caption: 'GRID.TYPE', Field: 'Type', Type: 'Lookup', Values: lookupService.administrations, Tooltip: 'Φορέας' },
-             { Caption: 'GRID.PRIORITY', Field: 'Priority', Type: 'LookupHtml', Values: lookupService.priorities, Tooltip: 'Προτεραιότητα Αναφοράς' },
-             { Caption: 'GRID.SUBJECT', Field: 'Περιγραφή Αναφοράς' },
-             { Caption: 'GRID.ACTIONS', Field: 'Actions', Tooltip: 'Πλήθος Ατόμων' },
-             { Caption: 'GRID.ISARCHIVE', Field: 'IsArchive', Type: 'Boolean', Tooltip: 'Έχει Ολοκληρωθεί η Προετοιμασία' },
+             { Caption: 'CALENDAR.TIME', Field: 'Start', Type: 'DateTime', Tooltip: 'Ώρα' },
+             { Caption: 'CALENDAR.TYPE', Field: 'Type', Type: 'Lookup', Values: lookupService.administrations, Tooltip: 'Φορέας' },
+             { Caption: 'CALENDAR.PRIORITY', Field: 'Priority', Type: 'LookupHtml', Values: lookupService.priorities, Tooltip: 'Προτεραιότητα Αναφοράς' },
+             { Caption: 'CALENDAR.SUBJECT', Field: 'Περιγραφή Αναφοράς' },
+             { Caption: 'CALENDAR.ACTIONS', Field: 'Actions', Tooltip: 'Πλήθος Ατόμων' },
+             { Caption: 'CALENDAR.ISARCHIVE', Field: 'IsArchive', Type: 'Boolean', Tooltip: 'Έχει Ολοκληρωθεί η Προετοιμασία' },
         ];
     });
