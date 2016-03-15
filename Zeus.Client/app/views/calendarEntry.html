@@ -1,1 +1,40 @@
-﻿
+﻿<div class="jumbotron col-md-offset-3 col-md-6">
+    <form name="form">
+        <div class="pull-right">
+            <button class="btn btn-danger btn-fab fab" ng-click="delete()">
+                <i class="material-icons" title="{{ 'CALENDAR.DELETE' | translate }}">delete</i>
+            </button>
+            <button class="btn btn-success btn-fab fab" ng-click="save()" ng-disabled="form.$invalid">
+                <i class="material-icons" title="{{ 'CALENDAR.SAVE' | translate }}">save</i>
+            </button>
+        </div>
+        <h2>{{'CALENDAR.ENTRY_TITLE' | translate }}</h2>
+        <div>
+            <div class="form-group label-static ng-is-empty" ng-class="{ 'has-error': form.DateTime.$invalid }">
+                <label for="i11" class="control-label">{{ 'GRID.DATETIME' | translate }}</label>
+                <div class="dropdown">
+                    <div class="dropdown-toggle" id="dropdown1" role="button" data-toggle="dropdown" data-target="#">
+                        <div class="input-group">
+                            <input type="text" name="DateTime" class="form-control" data-ng-model="entry.DateTime" data-date-time-input="dddd DD/MM/YYYY HH:mm" required><span class="input-group-addon"><i class="material-icons md-24">date_range</i></span>
+                        </div>
+                    </div>
+                    <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                        <datetimepicker data-ng-model="entry.DateTime" data-datetimepicker-config="{ dropdownSelector: '#dropdown1' }" />
+                    </ul>
+                </div>
+            </div>
+            <div class="form-group label-static ng-is-empty" ng-class="{ 'has-error': form.Author.$invalid }">
+                <label for="Administration" class="control-label">{{ 'CALENDAR.AUTHOR' | translate }}</label>
+                <input type="text" class="form-control" name="Author" id="Administration" ng-model="entry.Author" uib-typeahead="state for state in lookup.administrations | filter:$viewValue" required>
+            </div>
+            <div class="form-group label-static ng-is-empty" ng-class="{ 'has-error': form.Description.$invalid }">
+                <label for="i3" class="control-label">{{ 'CALENDAR.DESCRIPTION' | translate }}</label>
+                <textarea class="form-control"  rows="6" name="Description" id="i3" ng-model="entry.Description" required />
+            </div>
+            <div class="form-group label-static ng-is-empty">
+                <label for="i5" class="control-label">{{ 'CALENDAR.ACTIONS' | translate }}</label>
+                <textarea class="form-control" rows="6" id="i4" ng-model="entry.Actions" />
+            </div>
+        </div>
+    </form>
+</div>

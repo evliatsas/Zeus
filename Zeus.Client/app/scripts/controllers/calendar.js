@@ -8,11 +8,26 @@ angular
         $scope.calendar = [];
 
         $scope.calendarcolumns = [
-             { Caption: 'CALENDAR.TIME', Field: 'Start', Type: 'DateTime', Tooltip: 'Ώρα' },
-             { Caption: 'CALENDAR.TYPE', Field: 'Type', Type: 'Lookup', Values: lookupService.administrations, Tooltip: 'Φορέας' },
-             { Caption: 'CALENDAR.PRIORITY', Field: 'Priority', Type: 'LookupHtml', Values: lookupService.priorities, Tooltip: 'Προτεραιότητα Αναφοράς' },
-             { Caption: 'CALENDAR.SUBJECT', Field: 'Περιγραφή Αναφοράς' },
-             { Caption: 'CALENDAR.ACTIONS', Field: 'Actions', Tooltip: 'Πλήθος Ατόμων' },
-             { Caption: 'CALENDAR.ISARCHIVE', Field: 'IsArchive', Type: 'Boolean', Tooltip: 'Έχει Ολοκληρωθεί η Προετοιμασία' },
+             { Caption: 'GRID.DATETIME', Field: 'DateTime', Type: 'DateTime', Tooltip: 'Ώρα' },
+             { Caption: 'CALENDAR.AUTHOR', Field: 'Author', Tooltip: 'Ώρα' },
+             { Caption: 'CALENDAR.DESCRIPTION', Field: 'Description', Tooltip: 'Περιγραφή Αναφοράς' },
+             { Caption: 'CALENDAR.ACTIONS', Field: 'Actions', Tooltip: 'Ενέργειες' }
         ];
+
+        $scope.addItem = function () {
+            $location.url('/calendar/new');
+        }
+
+        $scope.openItem = function (entry) {
+            $location.url('/calendar/' + entry.Id);
+        }
+
+        $http({
+            method: 'GET',
+            url: baseUrl + '/calendar'
+        }).then(function successCallback(response) {
+            $scope.calendar = response.data;
+        }, function errorCallback(response) {
+            messageService.getFailed(response.error);
+        });
     });
