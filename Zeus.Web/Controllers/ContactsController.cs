@@ -39,7 +39,7 @@ namespace Zeus.Controllers
                 result = await context.Contacts.Get(x => facilityContacts.Contains(x.Id));
             }
             
-            return result == null ? this.Ok(new List<Contact>().AsEnumerable()) : this.Ok(result.OrderByDescending(o => o.Name).AsEnumerable());
+            return result == null ? this.Ok(new List<Contact>().AsEnumerable()) : this.Ok(result.OrderBy(o => o.Name).AsEnumerable());
         }
 
         [Route("{id}")]

@@ -182,6 +182,7 @@
   <ItemGroup>
     <Compile Include="ApplicationIdentityContext.cs" />
     <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Controllers\CalendarController.cs" />
     <Compile Include="Controllers\CommonController.cs" />
     <Compile Include="Controllers\ContactsController.cs" />
     <Compile Include="Controllers\FacilitiesController.cs" />

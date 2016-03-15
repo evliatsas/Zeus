@@ -9,10 +9,11 @@ angular
        // $scope.showPassword = true;
 
         $scope.usercolumns = [
-           { Caption: 'Όνοματεπώνυμο', Field: 'FullName' },
-           { Caption: 'Αναγνωριστικό', Field: 'UserName' },
+           { Caption: 'USER.FULLNAME', Field: 'FullName' },
+           { Caption: 'USER.ADMINISTRATION', Field: 'Administration' },
+           { Caption: 'USER.USERNAME', Field: 'UserName' },
            { Caption: 'Email', Field: 'Email' },
-           { Caption: 'Τηλέφωνο', Field: 'PhoneNumber' },
+           { Caption: 'USER.PHONENUMBER', Field: 'PhoneNumber' },
         ];
 
         $scope.user = {};

@@ -10,7 +10,8 @@ namespace Zeus.Models
     {
         public string FullName { get; set; }
         public string Tag { get; set; }
-        public string Notes { get; set; }        
+        public string Notes { get; set; }      
+        public string Administration { get; set; }  
 
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
         {

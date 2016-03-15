@@ -123,6 +123,8 @@ namespace Zeus.Controllers
             {
                 var data = await context.Operations.Insert(operation);
 
+                await AddToCalendar(data);
+
                 Log.Information("Operation({Id}) created By {user}", data.Id, user.UserName);
                 return this.Ok(data);
             }
@@ -169,6 +171,8 @@ namespace Zeus.Controllers
             {
                 var result = await context.Operations.Update(operation);
 
+                await UpdateCalendar(result);
+
                 Log.Information("Operation({Id}) updated By {user}", result.Id, user.UserName);
 
                 return this.Ok(result);
@@ -177,6 +181,38 @@ namespace Zeus.Controllers
             {
                 Log.Error("Error {Exception} updating Operation By {user}", exc, user.UserName);
                 return this.BadRequest("Σφάλμα Ενημέρωσης δεδομένων Επιχείρησης");
+            }
+        }
+
+        private async Task AddToCalendar(Operation operation)
+        {
+            try
+            {
+                var entry = new CalendarEntry(operation);
+                await context.Calendar.Insert(entry);
+            }
+            catch (Exception exc)
+            {
+                Log.Error("Error {Exception} inserting Calendar Entry for Operation {@operation}", exc, operation);
+            }
+        }
+
+        private async Task UpdateCalendar(Operation operation)
+        {
+            try
+            {
+                var query = await context.Calendar.Get(x => x.SourceId == operation.Id);
+                var entry = query.FirstOrDefault();
+                if (entry != null)
+                {
+                    entry.DateTime = DateTime.Now;
+                    entry.Description = String.Format("{0}\n{1}", operation.Name, operation.ReportedProblems);
+                    await context.Calendar.Update(entry);
+                }
+            }
+            catch (Exception exc)
+            {
+                Log.Error("Error {Exception} inserting Calendar Entry for Operation {@operation}", exc, operation);
             }
         }
     }

@@ -186,6 +186,16 @@ angular
 	    	    FACILITIES: 'Δομές Φιλοξενίας',
 	    	    PROVIDERS: 'Υποστήριξη'
 	    	},
+	    	CALENDAR: {
+	    	    ENTRY_TITLE:'Καταχώρηση Ημερολογίου',
+	    	    TITLE: 'Ημερολόγιο Συντονισμού',
+	    	    DESCRIPTION: 'Περιγραφή Αναφορας',
+	    	    ADMINISTRATION: 'Από',
+	    	    AUTHOR: 'Από',
+	    	    ACTIONS: 'Ενέργειες',
+	    	    SAVE: 'Αποθήκευση Αναφοράς',
+	    	    DELETE: 'Διαγραφή Αναφοράς'
+	    	},
 	    	OPERATION: {
 	    	    OPS: 'ΕΠΙΧΕΙΡΗΣΗ: ',
                 NAME: 'Όνομα',
@@ -246,7 +256,8 @@ angular
 	    	    ROLES: 'Ρόλοι',
 	    	    CLAIMS: 'Δικαιώματα',
 	    	    ROLE: 'Ρόλος',
-	    	    CLAIM: 'Δικαίωμα'
+	    	    CLAIM: 'Δικαίωμα',
+	    	    ADMINISTRATION: 'Υπαγωγή'
 	    	},
 	    	PROVIDER: {
 	    	    DELETE: 'Διαγραφή Προμηθευτή',
@@ -482,7 +493,15 @@ angular
 	        },
 	        CALENDAR: {
 	            DATE: 'DATE',
-	            SHOW_FILE: 'Show File'
+	            SHOW_FILE: 'Show File',
+	            ENTRY_TITLE:'Enter Report',
+	            TITLE: 'Calendar',
+	            DESCRIPTION: 'Report Description',
+	            ADMINISTRATION: 'Administration',
+	            AUTHOR: 'From',
+	            ACTIONS: 'Actions',
+	            SAVE: 'Save Report',
+                DELETE:'Delete Report'
 	        },
 	        LOG: {
 	            FROM: 'From Date',
@@ -564,7 +583,8 @@ angular
 	    	    ROLES: 'Roles',
 	    	    CLAIMS: 'Claims',
 	    	    ROLE: 'Role',
-	    	    CLAIM: 'Claim'
+	    	    CLAIM: 'Claim',
+	    	    ADMINISTRATION: 'Administration'
 	        },
 	        PROVIDER: {
 	            DELETE: 'Delete Provider',

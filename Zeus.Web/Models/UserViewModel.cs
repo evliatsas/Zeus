@@ -26,6 +26,7 @@ namespace Zeus.Models
         public string Password { get; set; }
         public string NewPassword { get; set; }
         public string PasswordConfirm { get; set; }
+        public string Administration { get; set; }
 
         public static ApplicationUser Map(ApplicationUser userTo, UserViewModel userFrom)
         {
@@ -37,6 +38,7 @@ namespace Zeus.Models
             userTo.Claims = userFrom.Claims;
             userTo.Tag = userFrom.Tag;
             userTo.Notes = userFrom.Notes;
+            userTo.Administration = userFrom.Administration;
             return userTo;
         }
 
@@ -51,6 +53,7 @@ namespace Zeus.Models
             userTo.Claims = userFrom.Claims;
             userTo.Tag = userFrom.Tag;
             userTo.Notes = userFrom.Notes;
+            userTo.Administration = userFrom.Administration;
             return userTo;
         }
     }
