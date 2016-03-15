@@ -68,7 +68,7 @@ angular
                 group.items.push(item);
             });
 
-            groups.sort(function (a, b) { return commonUtilities.naturalSort(a.key, b.key); });
+            groups.sort(function (a, b) { return a < b; });
 
             return groups;
         }
@@ -126,9 +126,9 @@ angular
                     chart.data[1].push(facility.Capacity);
                     chart.data[0].push(facility.MaxCapacity);
 
-                    $scope.charts.total.data[0] += desc[0].PersonCount;
-                    $scope.charts.special.data[0] += desc[0].Children;
-                    $scope.charts.special.data[1] += desc[0].SensitiveCount;
+                    $scope.charts.total.data[0][index] = Number($scope.charts.total.data[0][index] || 0) + desc[0].PersonCount;
+                    $scope.charts.special.data[0][index] = Number($scope.charts.special.data[0][index] || 0) + desc[0].Children;
+                    $scope.charts.special.data[1][index] = Number($scope.charts.special.data[1][index] || 0) + desc[0].SensitiveCount;
                 });
             });
         }
