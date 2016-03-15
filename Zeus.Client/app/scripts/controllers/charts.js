@@ -2,12 +2,12 @@
 
 angular
     .module('zeusclientApp')
-    .controller('ChartsCtrl', function ($scope, $http, $filter, baseUrl, messageService, lookupService) {
+    .controller('ChartsCtrl', function ($scope, $http, $filter, baseUrl, messageService, lookupService, commonUtilities) {
 
         $scope.lookup = lookupService;
 
         $scope.facilities = [];
-        $scope.charts = {};
+        $scope.charts =null;
 
         $scope.from = moment().subtract(7, 'days');
         $scope.to = moment();
@@ -33,7 +33,7 @@ angular
                 data: query,
                 url: baseUrl + '/reports/facilities/stats'
             }).then(function successCallback(response) {
-                populateCharts(response.data);
+                populateCharts(response.data, 'DD-MM');
             }, function errorCallback(response) {
                 messageService.showError(response.message);
             });
@@ -56,8 +56,7 @@ angular
 
                 var key = typeof groupBy === "function" ? groupBy(item) : item[groupBy];
 
-                var group = $filter('filter')(groups, function(g) {
-                    return g.key == key; })[0];
+                var group = groups.length === 0 ? null : $filter('filter')(groups, function(g) { return g.key == key; })[0];
 
                 if (group == null) {
                     group = {
@@ -69,16 +68,22 @@ angular
                 group.items.push(item);
             });
 
-            groups.sort();
+            groups.sort(function (a, b) { return commonUtilities.naturalSort(a.key, b.key); });
 
             return groups;
         }
 
-        function newChart() {
+        function newChart(labels, series, data) {
+            if (series != null && data == null) {
+                data = [];
+                series.forEach(function (serie, index) {
+                    data.push([]);
+                });
+            }
             var chart = {
-                labels: [],
-                series: [],
-                data: []
+                labels: labels || [],
+                series: series || [],
+                data: data || []
             };
             return chart;
         }
@@ -91,15 +96,39 @@ angular
                 return;
             }
 
+            $scope.charts.total = newChart(null, ['Φιλοξενούμενοι']);
+            $scope.charts.special = newChart(null, ['Παιδιά', 'Ευαίσθητες Ομάδες']);
+
             var byFacility = groupBy(reports, function (report) { return report.Facility.Name; });
             byFacility.forEach(function (facilityGroup, index) {
-                $scope.facilities.push(facility.key);
+                var facility = facilityGroup.items[0].Facility;
+                $scope.facilities.push(facility);
 
-                var chart = new Chart();
+                var chart = newChart(null, ['Χωρητικότητα', 'Μέγιστη Χωρητικότητα', 'Φιλοξενούμενοι']);
+                $scope.charts[facility.Id] = chart;
 
                 var byDate = groupBy(facilityGroup.items, function(report) { return format(report.DateTime, dateFormat); });
                 byDate.forEach(function (dateGroup, index) {
+                    chart.labels.push(dateGroup.key);
+
+                    var inTotal = $filter('filter')($scope.charts.total.labels, function (l) { return l == dateGroup.key; }).length > 0;
+                    if (!inTotal) {
+                        $scope.charts.total.labels.push(dateGroup.key);
+                    }
+
+                    var inSpecial = $filter('filter')($scope.charts.special.labels, function (l) { return l == dateGroup.key; }).length > 0;
+                    if (!inSpecial) {
+                        $scope.charts.special.labels.push(dateGroup.key);
+                    }
                     
+                    var desc = dateGroup.items.sort(function (a,b) { return a.DateTime - b.DateTime; });
+                    chart.data[2].push(desc[0].PersonCount);
+                    chart.data[1].push(facility.Capacity);
+                    chart.data[0].push(facility.MaxCapacity);
+
+                    $scope.charts.total.data[0] += desc[0].PersonCount;
+                    $scope.charts.special.data[0] += desc[0].Children;
+                    $scope.charts.special.data[1] += desc[0].SensitiveCount;
                 });
             });
         }
