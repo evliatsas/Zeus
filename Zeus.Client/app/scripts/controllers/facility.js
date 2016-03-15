@@ -158,7 +158,7 @@ angular
             }).then(function successCallback(response) {
                 $scope.data = response.data;
             }, function errorCallback(response) {
-                messageService.showError();
+                messageService.showError(response.data);
             });
         }
 
@@ -257,7 +257,7 @@ angular
                 else
                     $scope.data = response.data;
             }, function errorCallback(response) {
-                messageService.showError();
+                messageService.showError(response.data);
             });
         }
 

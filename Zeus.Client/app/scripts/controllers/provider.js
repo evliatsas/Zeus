@@ -104,7 +104,7 @@ angular
             }).then(function successCallback(response) {
                 $scope.provider = response.data;
             }, function errorCallback(response) {
-                messageService.showError();
+                messageService.showError(response.data);
             });
         }
 

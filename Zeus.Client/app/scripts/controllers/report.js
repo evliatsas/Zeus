@@ -103,7 +103,7 @@ angular
                 messageService.saveSuccess();
                 $location.url('/reports/' + response.data.Type + '/' + response.data.FacilityId + '/' + response.data.Id);
             }, function errorCallback(response) {
-                messageService.showError();
+                messageService.showError(response.data);
             });
         }
 
@@ -115,7 +115,7 @@ angular
                 messageService.deleteSuccess();
                 $location.url('/facilities/' + $scope.report.FacilityId);
             }, function errorCallback(response) {
-                messageService.showError();
+                messageService.showError(response.data);
             });
         }
 

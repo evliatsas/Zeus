@@ -93,7 +93,7 @@ angular
               marker.setDraggable(false);
               infowindow.close();
           }, function errorCallback(response) {
-              messageService.showError();
+              messageService.showError(response.data);
           });
       }
   });

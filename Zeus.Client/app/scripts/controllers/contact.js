@@ -92,7 +92,7 @@ angular
             }).then(function successCallback(response) {
                 $scope.contact = response.data;
             }, function errorCallback(response) {
-                messageService.showError();
+                messageService.showError(response.data);
             });
         }
 
@@ -115,7 +115,7 @@ angular
                 messageService.saveSuccess();
                 $scope.contact = response.data;
             }, function errorCallback(response) {
-                messageService.showError();
+                messageService.showError(response.data);
             });
         }
 
@@ -127,7 +127,7 @@ angular
                 messageService.deleteSuccess();
                 $location.url('/contacts');
             }, function errorCallback(response) {
-                messageService.showError();
+                messageService.showError(response.data);
             });
         }
 
