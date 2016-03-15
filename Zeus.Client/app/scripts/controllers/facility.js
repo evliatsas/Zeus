@@ -278,6 +278,23 @@ angular
         }
 
         // REPORTS
+        // SAVE - DELETE
+        $scope.makeReport = function () {
+            if (isInsert) {
+                messageService.showError("Η δομή δεν έχει καταχωρηθεί.");
+                return;
+            }
+            
+            $http({
+                method: "GET",
+                data: $scope.data,
+                url: baseUrl + '/facilities/makereport/' + $scope.data.Id
+            }).then(function successCallback(response) {
+                messageService.saveSuccess();
+            }, function errorCallback(response) {
+                messageService.showError(response.data);
+            });
+        }
 
         // issue a message to a contact
         $scope.sendMessage = function (fid, rid) {

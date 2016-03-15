@@ -1,14 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using MongoDB.Bson.Serialization.Attributes;
+using System;
 
 namespace Zeus.Entities
 {
     public class FeedingReport : Report
     {
+        [BsonIgnore]
         public Provider FeedingProvider { get; set; }
+        public string FeedingProviderId { get; set; }
         public int Rations { get; set; }
         public string Meal { get; set; }
 
