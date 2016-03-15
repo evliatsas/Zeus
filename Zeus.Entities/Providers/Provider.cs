@@ -9,6 +9,8 @@ namespace Zeus.Entities
 {
     public class Provider : Entity
     {
+        [BsonRequired]
+        [BsonDefaultValue("Νέος Προμηθευτής")]
         public string Name { get; set; }
         public string Description { get; set; }      
         public int PersonnelCount { get; set; }
@@ -22,6 +24,8 @@ namespace Zeus.Entities
         public IList<Contact> Contacts { get; set; }
         [BsonIgnore]
         public IList<Facility> Facilities { get; set; }
+        [BsonRequired]
+        [BsonDefaultValue(ProviderType.Security)]
         public ProviderType Type { get; set; }
 
         public Provider()
@@ -30,7 +34,6 @@ namespace Zeus.Entities
             this.Facilities = new List<Facility>();
             this.Items = new List<Lookup>();
             this.Personnel = new List<Personnel>();
-            //this.PersonnelCount+=Per
         }
     }
 
@@ -39,6 +42,8 @@ namespace Zeus.Entities
         Healthcare,
         Logistics,
         Security,
-        Catering
+        Catering,
+        Interpreter,
+        Transportation
     }
 }

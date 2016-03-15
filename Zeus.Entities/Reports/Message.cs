@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MongoDB.Bson.Serialization.Attributes;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,7 +9,9 @@ namespace Zeus.Entities
 {
     public class Message : Report
     {
+        [BsonRequired]
         public string Sender { get { return this.User; } }
+        [BsonRequired]
         public string Recipient { get; set; }
         public Message()
         {

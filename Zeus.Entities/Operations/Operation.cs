@@ -11,6 +11,8 @@ namespace Zeus.Entities
     {
         public Priority Priority { get; set; }
         public OperationType Type { get; set; }
+        [BsonRequired]
+        [BsonDefaultValue("Νέα Επιχείρηση")]
         public string Name { get; set; }
         public DateTime Start { get; set; }
         public DateTime ETA { get; set; }

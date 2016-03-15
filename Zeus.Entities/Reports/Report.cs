@@ -20,11 +20,14 @@ namespace Zeus.Entities
     public abstract class Report : Entity
     {
         public string User { get; set; }
+        [BsonRequired]
         public string FacilityId { get; set; }
         [BsonIgnore]
         public Facility Facility { get; set; }
         public DateTime DateTime { get; set; }
         public Priority Priority { get; set; }
+        [BsonRequired]
+        [BsonDefaultValue("Νέα Αναφορά")]
         public string Subject { get; set; }
         public ReportType Type { get; set; }
         public bool IsAcknoledged { get; set; }

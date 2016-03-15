@@ -9,6 +9,7 @@ namespace Zeus.Entities
 {
     public class Person : Entity
     {
+        [BsonRequired]
         public string Name { get; set; }
         public string Passport { get; set; }
         public Nullable<int> Age { get; set; }

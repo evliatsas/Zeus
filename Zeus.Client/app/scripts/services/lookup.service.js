@@ -129,7 +129,9 @@
                 { Id: 0, Description: 'Υγειονομική Υποστήριξη' },
                 { Id: 1, Description: 'Εφοδιασμός' },
                 { Id: 2, Description: 'Φύλαξη' },
-                { Id: 3, Description: 'Τροφοδοσία' }
+                { Id: 3, Description: 'Τροφοδοσία' },
+                { id: 4, Description: 'Διερμηνείς' },
+                { id: 5, Description: 'Μετακίνηση Προσωπικού' }
             ],
             movementTypes: [
                 'Είσοδος',
