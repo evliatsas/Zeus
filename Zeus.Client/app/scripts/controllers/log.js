@@ -27,7 +27,7 @@ angular
             }).then(function successCallback(response) {
                 $scope.entries = response.data;
             }, function errorCallback(response) {
-                messageService.showError();
+                messageService.showError(response.data);
             });
         }
     });
