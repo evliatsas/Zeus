@@ -8,10 +8,9 @@ angular
         $scope.calendar = [];
 
         $scope.calendarcolumns = [
-             { Caption: 'GRID.DATETIME', Field: 'Start', Type: 'DateTime', Tooltip: 'Ώρα' },
-             { Caption: 'CALENDAR.AUTHOR', Field: 'Start', Type: 'DateTime', Tooltip: 'Ώρα' },
-             { Caption: 'CALENDAR.ADMINISTRATION', Field: 'Type', Type: 'Lookup', Values: lookupService.administrations, Tooltip: 'Υπαγωγή' },
-             { Caption: 'CALENDAR.DESCRIPTION', Field: 'Περιγραφή Αναφοράς' },
+             { Caption: 'GRID.DATETIME', Field: 'DateTime', Type: 'DateTime', Tooltip: 'Ώρα' },
+             { Caption: 'CALENDAR.AUTHOR', Field: 'Author', Tooltip: 'Ώρα' },
+             { Caption: 'CALENDAR.DESCRIPTION', Field: 'Description', Tooltip: 'Περιγραφή Αναφοράς' },
              { Caption: 'CALENDAR.ACTIONS', Field: 'Actions', Tooltip: 'Ενέργειες' }
         ];
 

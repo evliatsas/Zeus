@@ -187,10 +187,10 @@ angular
 	    	    PROVIDERS: 'Υποστήριξη'
 	    	},
 	    	CALENDAR: {
-	    	    ENTRY_TITLE:'Καταχώρηση Ενέργειας',
+	    	    ENTRY_TITLE:'Καταχώρηση Ημερολογίου',
 	    	    TITLE: 'Ημερολόγιο Συντονισμού',
 	    	    DESCRIPTION: 'Περιγραφή Αναφορας',
-	    	    ADMINISTRATION: 'Υπαγωγή',
+	    	    ADMINISTRATION: 'Από',
 	    	    AUTHOR: 'Από',
 	    	    ACTIONS: 'Ενέργειες',
 	    	    SAVE: 'Αποθήκευση Αναφοράς',

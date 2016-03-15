@@ -23,19 +23,15 @@
                     </ul>
                 </div>
             </div>
-            <!--<div class="form-group label-static ng-is-empty" ng-class="{ 'has-error': form.DateTime.$invalid }">
-                <label for="i1" class="control-label">{{ 'GRID.DATETIME' | translate }}</label>
-                <input type="text" class="form-control" name="DateTime" id="i1" ng-model="entry.DateTime" required>
-            </div>-->
-            <div class="form-group label-static ng-is-empty" ng-class="{ 'has-error': form.Administration.$invalid }">
-                <label for="Administration" class="control-label">{{ 'CALENDAR.ADMINISTRATION' | translate }}</label>
-                <input type="text" class="form-control" name="Administration" id="Administration" ng-model="entry.Administration" uib-typeahead="state for state in lookup.administrations | filter:$viewValue" required>
-            </div>
             <div class="form-group label-static ng-is-empty" ng-class="{ 'has-error': form.Author.$invalid }">
+                <label for="Administration" class="control-label">{{ 'CALENDAR.AUTHOR' | translate }}</label>
+                <input type="text" class="form-control" name="Administration" id="Administration" ng-model="entry.Author" uib-typeahead="state for state in lookup.administrations | filter:$viewValue" required>
+            </div>
+            <!--<div class="form-group label-static ng-is-empty" ng-class="{ 'has-error': form.Author.$invalid }">
                 <label for="i2" class="control-label">{{ 'CALENDAR.AUTHOR' | translate }}</label>
                 <input type="text" class="form-control" name="Author" id="i2" ng-model="entry.Author" required />
                 <span class="material-input"></span>
-            </div>
+            </div>-->
             <div class="form-group label-static ng-is-empty" ng-class="{ 'has-error': form.Description.$invalid }">
                 <label for="i3" class="control-label">{{ 'CALENDAR.DESCRIPTION' | translate }}</label>
                 <textarea class="form-control" name="Description" id="i3" ng-model="entry.Description" required />
