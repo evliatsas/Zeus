@@ -129,8 +129,8 @@
     <ul ng-if="pageSize > 0" class="pagination pagination-inverse pagination-sm pull-right" style="margin:0px">
         <li ng-class="{disabled: page == 0}"><a ng-click="firstPage()"><i class="material-icons">first_page</i> {{ 'GRID.FIRST' | translate }}</a>
         <li ng-class="{disabled: page == 0}"><a ng-click="previousPage()"><i class="material-icons">fast_rewind</i> {{ 'GRID.PREVIOUS' | translate }}</a></li>
-        <li ng-class="{disabled: page == pages.length - 1}"><a ng-click="nextPage()">{{ 'GRID.NEXT' | translate }} <i class="material-icons">fast_forward</i></a></li>
-        <li ng-class="{disabled: page == pages.length - 1}"><a ng-click="lastPage()">{{ 'GRID.LAST' | translate }} <i class="material-icons">last_page</i></a></li>
+        <li ng-class="{disabled: items.length < pageSize || page == pages.length - 1}"><a ng-click="nextPage()">{{ 'GRID.NEXT' | translate }} <i class="material-icons">fast_forward</i></a></li>
+        <li ng-class="{disabled: items.length < pageSize || page == pages.length - 1}"><a ng-click="lastPage()">{{ 'GRID.LAST' | translate }} <i class="material-icons">last_page</i></a></li>
     </ul>
 
 </div>

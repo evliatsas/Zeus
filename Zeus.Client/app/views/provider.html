@@ -1,97 +1,99 @@
-﻿<div class="pull-right">
-    <span class="btn btn-danger btn-fab fab" ng-click="delete()">
-        <i class="material-icons" title="{{ 'PROVIDER.DELETE' | translate }}">delete</i>
-    </span>
-    <span class="btn btn-success btn-fab fab" ng-click="save()">
-        <i class="material-icons" title="{{ 'PROVIDER.SAVE' | translate }}">save</i>
-    </span>
-</div>
-<h2>{{ 'PROVIDER.TITLE' | translate }}<span style="color:#009688; font-weight:300">{{provider.Name}}</span></h2>
-<div class="col-md-4">
-    <div class="form-group label-static ng-is-empty">
-        <label for="i1" class="control-label">{{ 'PROVIDER.NAME' | translate }}</label>
-        <input type="text" class="form-control" id="i1" ng-model="provider.Name">
+﻿<form name="form">
+    <div class="pull-right">
+        <button class="btn btn-danger btn-fab fab" ng-click="delete()">
+            <i class="material-icons" title="{{ 'PROVIDER.DELETE' | translate }}">delete</i>
+        </button>
+        <button class="btn btn-success btn-fab fab" ng-click="save()" ng-disabled="form.$invalid">
+            <i class="material-icons" title="{{ 'PROVIDER.SAVE' | translate }}">save</i>
+        </button>
     </div>
-    <div class="form-group label-static ng-is-empty">
-        <label for="i2" class="control-label">{{ 'PROVIDER.DESCRIPTION' | translate }}</label>
-        <textarea class="form-control" id="i2" ng-model="provider.Description" />
-    </div>
-    <div class="form-group label-static ng-is-empty">
-        <label for="i3" class="control-label">{{ 'PROVIDER.TYPE' | translate }}</label>
-        <select class="form-control" ng-model="provider.Type" required convert-to-number>
-            <option ng-repeat="type in lookup.providerTypes" value="{{type.Id}}">
-                {{type.Description}}
-            </option>
-        </select>
-    </div>
-    <div class="row">
-        <div class="row" style="padding-left:30px; margin-bottom:-40px">
-            <label class="control-label">{{ 'PROVIDER.PERSONNEL' | translate }} {{ 'PROVIDER.TOTAL' | translate }}: {{provider.TotalPersonnel}}</label>
+    <h2>{{ 'PROVIDER.TITLE' | translate }}<span class="text-primary" style="font-weight:300">{{provider.Name}}</span></h2>
+    <div class="col-md-4">
+        <div class="form-group label-static ng-is-empty" ng-class="{ 'has-error': form.Name.$invalid }">
+            <label for="i1" class="control-label">{{ 'PROVIDER.NAME' | translate }}</label>
+            <input type="text" class="form-control" id="i1" name="Name" ng-model="provider.Name" required>
+            <span class="material-input"></span>
+        </div>
+        <div class="form-group label-static ng-is-empty">
+            <label for="i2" class="control-label">{{ 'PROVIDER.DESCRIPTION' | translate }}</label>
+            <textarea class="form-control" id="i2" ng-model="provider.Description" />
+        </div>
+        <div class="form-group label-static ng-is-empty" ng-class="{ 'has-error': form.Type.$invalid }">
+            <label for="i3" class="control-label">{{ 'PROVIDER.TYPE' | translate }}</label>
+            <select class="form-control" name="Type" ng-model="provider.Type" required convert-to-number>
+                <option ng-repeat="type in lookup.providerTypes" value="{{type.Id}}">
+                    {{type.Description}}
+                </option>
+            </select>
+        </div>
+        <div class="row">
+            <div class="row" style="padding-left:30px; margin-bottom:-40px">
+                <label class="control-label">{{ 'PROVIDER.PERSONNEL' | translate }} {{ 'PROVIDER.TOTAL' | translate }}: {{provider.TotalPersonnel}}</label>
+                <span class="btn-group-sm pull-right">
+                    <a href="javascript:void(0)" class="btn btn-info" ng-click="addPersonnel()"><i class="material-icons">add</i></a>
+                </span>
+            </div>
+            <div class="col-md-12" ng-repeat="person in provider.Personnel">
+                <div class="form-group col-md-7">
+                    <input type="text" class="form-control" placeholder="{{ 'PROVIDER.PERSONNEL_TYPE' | translate }}" ng-model="person.Type">
+                </div>
+                <div class="form-group col-md-3">
+                    <input type="number" class="form-control" placeholder="{{ 'PROVIDER.PERSONNEL_COUNT' | translate }}" ng-model="person.PersonnelCount">
+                </div>
+                <div class="form-group col-md-2">
+                    <a href="javascript:void(0)" class="btn btn-info" style="padding: 0px; top: 5px" ng-click="provider.Personnel.splice($index, 1)"><i class="material-icons">clear</i></a>
+                </div>
+            </div>
+        </div>
+        <div class="form-group label-static ng-is-empty">
+            <label for="Administration" class="control-label">{{ 'PROVIDER.ADMINISTRATION' | translate }}</label>
+            <input type="text" class="form-control" id="Administration" ng-model="provider.Administration" uib-typeahead="state for state in lookup.administrations | filter:$viewValue">
+        </div>
+        <div>
+            <label class="control-label">{{ 'PROVIDER.SERVICES' | translate }}</label>
             <span class="btn-group-sm pull-right">
-                <a href="javascript:void(0)" class="btn btn-info" ng-click="addPersonnel()"><i class="material-icons">add</i></a>
+                <a href="javascript:void(0)" class="btn btn-info" ng-click="addItem()"><i class="material-icons">add</i></a>
             </span>
-        </div>
-        <div class="col-md-12" ng-repeat="person in provider.Personnel">
-            <div class="form-group col-md-7">
-                <input type="text" class="form-control" placeholder="{{ 'PROVIDER.PERSONNEL_TYPE' | translate }}" ng-model="person.Type">
-            </div>
-            <div class="form-group col-md-3">
-                <input type="number" class="form-control" placeholder="{{ 'PROVIDER.PERSONNEL_COUNT' | translate }}" ng-model="person.PersonnelCount">
-            </div>
-            <div class="form-group col-md-2">
-                <a href="javascript:void(0)" class="btn btn-info" style="padding: 0px; top: 5px" ng-click="provider.Personnel.splice($index, 1)"><i class="material-icons">clear</i></a>
+            <div ng-repeat="item in provider.Items">
+                <div class="form-inline">
+                    <input type="text" class="form-control" placeholder="{{ 'PROVIDER.SERVICE' | translate }}" ng-model="item.Id">
+                    <a href="javascript:void(0)" class="btn btn-info" style="padding: 0px; top: 5px" ng-click="removeItem($index)"><i class="material-icons">clear</i></a>
+                </div>
             </div>
         </div>
-    </div>
-    <div class="form-group label-static ng-is-empty">
-        <label for="Administration" class="control-label">{{ 'PROVIDER.ADMINISTRATION' | translate }}</label>
-        <input type="text" class="form-control" id="Administration" ng-model="provider.Administration" uib-typeahead="state for state in lookup.administrations | filter:$viewValue">
-    </div>
-    <div>
-        <label class="control-label">{{ 'PROVIDER.SERVICES' | translate }}</label>
-        <span class="btn-group-sm pull-right">
-            <a href="javascript:void(0)" class="btn btn-info" ng-click="addItem()"><i class="material-icons">add</i></a>
-        </span>
-        <div ng-repeat="item in provider.Items">
-            <div class="form-inline">
-                <input type="text" class="form-control" placeholder="{{ 'PROVIDER.SERVICE' | translate }}" ng-model="item.Id">
-                <a href="javascript:void(0)" class="btn btn-info" style="padding: 0px; top: 5px" ng-click="removeItem($index)"><i class="material-icons">clear</i></a>
-            </div>
+        <div class="form-group label-static ng-is-empty">
+            <label for="i5" class="control-label">{{ 'PROVIDER.INSTRUCTIONS' | translate }}</label>
+            <textarea class="form-control" id="i5" ng-model="provider.Instuctions" />
+        </div>
+        <div class="form-group label-static ng-is-empty">
+            <label for="i5" class="control-label">{{ 'PROVIDER.NOTES' | translate }}</label>
+            <textarea class="form-control" id="i5" ng-model="provider.Notes" />
         </div>
     </div>
-    <div class="form-group label-static ng-is-empty">
-        <label for="i5" class="control-label">{{ 'PROVIDER.INSTRUCTIONS' | translate }}</label>
-        <textarea class="form-control" id="i5" ng-model="provider.Instuctions" />
+    <div class="col-md-8" style="padding-top:20px;">
+        <div class="shadow-box btn-group-sm">
+            <i>{{ 'PROVIDER.FACILITIES' | translate }}</i>
+            <cinnamon-grid grid-columns="facilityColumns"
+                           hide-paging-dropdown="true"
+                           page-size="0"
+                           grid-items="provider.Facilities"
+                           show-grid-buttons="true"
+                           hide-item-buttons="true"
+                           row-click-fn="showFacility(item)"
+                           grid-create-fn="addFacility()">
+            </cinnamon-grid>
+        </div>
+        <div class="shadow-box btn-group-sm">
+            <i>{{ 'PROVIDER.CONTACTS' | translate }}</i>
+            <cinnamon-grid grid-columns="contactColumns"
+                           hide-paging-dropdown="true"
+                           page-size="0"
+                           grid-items="provider.Contacts"
+                           show-grid-buttons="true"
+                           hide-item-buttons="true"
+                           row-click-fn="showContact(item)"
+                           grid-create-fn="addContact()">
+            </cinnamon-grid>
+        </div>
     </div>
-    <div class="form-group label-static ng-is-empty">
-        <label for="i5" class="control-label">{{ 'PROVIDER.NOTES' | translate }}</label>
-        <textarea class="form-control" id="i5" ng-model="provider.Notes" />
-    </div>
-</div>
-
-<div class="col-md-8" style="padding-top:20px;">
-    <div class="shadow-box btn-group-sm">
-        <i>{{ 'PROVIDER.FACILITIES' | translate }}</i>
-        <cinnamon-grid grid-columns="facilityColumns"
-                       hide-paging-dropdown="true"
-                       page-size="0"
-                       grid-items="provider.Facilities"
-                       show-grid-buttons="true"
-                       hide-item-buttons="true"
-                       row-click-fn="showFacility(item)"
-                       grid-create-fn="addFacility()">
-        </cinnamon-grid>
-    </div>
-    <div class="shadow-box btn-group-sm">
-        <i>{{ 'PROVIDER.CONTACTS' | translate }}</i>
-        <cinnamon-grid grid-columns="contactColumns"
-                       hide-paging-dropdown="true"
-                       page-size="0"
-                       grid-items="provider.Contacts"
-                       show-grid-buttons="true"
-                       hide-item-buttons="true"
-                       row-click-fn="showContact(item)"
-                       grid-create-fn="addContact()">
-        </cinnamon-grid>
-    </div>
-</div>
+</form>
