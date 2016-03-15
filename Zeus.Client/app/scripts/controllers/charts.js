@@ -6,23 +6,21 @@ angular
 
         $scope.lookup = lookupService;
 
-        $scope.types = [];
         $scope.facilities = [];
-        $scope.reports = [];
-        $scope.charts = [];
+        $scope.charts = {};
 
         $scope.from = moment().subtract(7, 'days');
         $scope.to = moment();
 
-        Chart.defaults.global.colours = [
-            '#97BBCD', // blue
-            '#DCDCDC', // light grey
-            '#F7464A', // red
-            '#46BFBD', // green
-            '#FDB45C', // yellow
-            '#949FB1', // grey
-            '#4D5360'  // dark grey
-        ];
+        // Chart.defaults.global.colours = [
+        //     '#97BBCD', // blue
+        //     '#DCDCDC', // light grey
+        //     '#F7464A', // red
+        //     '#46BFBD', // green
+        //     '#FDB45C', // yellow
+        //     '#949FB1', // grey
+        //     '#4D5360'  // dark grey
+        // ];
 
         $scope.getStats = function (type, from, to) {
             var query = {
@@ -35,41 +33,14 @@ angular
                 data: query,
                 url: baseUrl + '/reports/facilities/stats'
             }).then(function successCallback(response) {
-                $scope.reports = response.data;
-                $scope.reports.forEach(function (item, index) {
-                    item.Checked = false;
-
-                    var type = $filter('filter')($scope.types, function (c) { return c == item.Type; })[0];
-                    if (type == null) { $scope.types.push(item.Type); }
-
-                    var facility = $filter('filter')($scope.facilities, function (f) { return f.Id == item.Facility.Id; })[0];
-                    if (facility == null) {
-                        $scope.facilities.push(item.Facility);
-                        $scope.facilities[$scope.facilities.length - 1].Checked = true;
-                    }
-                });
+                populateCharts(response.data);
             }, function errorCallback(response) {
-                messageService.showError();
+                messageService.showError(response.message);
             });
         }
 
         $scope.getType = function (type) {
             return $filter('filter')($scope.lookup.reports, function (r) { return r.Id == type; })[0].Description;
-        }
-
-        var notReady = true;
-        var filtered = [];
-
-        $scope.update = function (type, facility) {
-            if (notReady == true) { return; }
-            filtered = [];
-            $scope.reports.forEach(function (report, index) {
-                var facility = $filter('filter')($scope.facilities, function (f) { return f.Name == report.Facility.Name; })[0];
-                if (facility != null && facility.Checked == true) {
-                    filtered.push(report);
-                }
-            });
-            generateDataForSitReps(filtered, "DD-MM");
         }
 
         function format(dt, format) {
@@ -103,6 +74,37 @@ angular
             return groups;
         }
 
+        function newChart() {
+            var chart = {
+                labels: [],
+                series: [],
+                data: []
+            };
+            return chart;
+        }
+
+        function populateCharts(reports, dateFormat) {
+            $scope.facilities = [];
+            $scope.charts = {};
+
+            if (reports == null || reports.length == 0) {
+                return;
+            }
+
+            var byFacility = groupBy(reports, function (report) { return report.Facility.Name; });
+            byFacility.forEach(function (facilityGroup, index) {
+                $scope.facilities.push(facility.key);
+
+                var chart = new Chart();
+
+                var byDate = groupBy(facilityGroup.items, function(report) { return format(report.DateTime, dateFormat); });
+                byDate.forEach(function (dateGroup, index) {
+                    
+                });
+            });
+        }
+
+        // old, more generic code (DONT DELETE IT)
         function generateReportStats(reports, labelsFn, seriesFn, dataFn) {
             if (reports == null || reports.length == 0) {
                 $scope.charts = [];
@@ -125,22 +127,27 @@ angular
                 chart.data.push(empty.slice());
             });
 
-            //add total series
-            chart.series.push("Σύνολο");
-            var zeroes = labels.map(function(l) { return 0; });
-            chart.data.push(zeroes);
-
             labels.forEach(function(label, index) {
                 chart.labels.push(label.key);
 
                 label.items.forEach(function(report, index) {
                     var s = chart.series.indexOf(seriesFn(report));
                     var l = chart.labels.indexOf(labelsFn(report));
-                    chart.data[s][l] = dataFn(report); // TODO: check logic error (only gets last number) //////////
-
-                    //add total data
-                    chart.data[chart.series.length-1][l] += chart.data[s][l];
+                    chart.data[s][l] = dataFn(report);
                 });
+            });
+
+            //add total series
+            chart.series.push("Σύνολο");
+            var zeroes = labels.map(function(l) { return 0; });
+            chart.data.push(zeroes);
+
+            chart.labels.forEach(function (label, index) {
+                var total = 0;
+                for (var i = 0; i < chart.series.length; i++) {
+                    total += chart.data[i][index];
+                }
+                chart.data[chart.series.length-1][index] = total;
             });
 
             $scope.charts[reports[0].Type] = chart;
@@ -148,6 +155,7 @@ angular
             return chart;
         }
 
+        // old, more generic code (DONT DELETE IT)
         function generateDataForSitReps(reports, dateFormat) {
             if (reports == null) { return; }
 
@@ -157,9 +165,4 @@ angular
 
             return generateReportStats(reports, labelsFn, seriesFn, dataFn);
         }
-
-        $scope.$on('ngRepeatFinished', function(ngRepeatFinishedEvent) {
-            notReady = false;
-            generateDataForSitReps($scope.reports, "DD-MM");
-        });
     });
