@@ -5,11 +5,11 @@
             <div class="dropdown">
                 <div class="dropdown-toggle" id="dropdown1" role="button" data-toggle="dropdown" data-target="#">
                     <div class="input-group">
-                        <input type="text" class="form-control" data-ng-model="from" data-date-time-input="dddd DD/MM/YYYY HH:mm"><span class="input-group-addon"><i class="material-icons md-24">date_range</i></span>
+                        <input type="text" class="form-control" data-ng-model="from" data-date-time-input="dddd DD/MM/YYYY"><span class="input-group-addon"><i class="material-icons md-24">date_range</i></span>
                     </div>
                 </div>
                 <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-                    <datetimepicker data-ng-model="from" data-datetimepicker-config="{ dropdownSelector: '#dropdown1' }" />
+                    <datetimepicker data-ng-model="from" data-datetimepicker-config="{ dropdownSelector: '#dropdown1', startView:'day', minView:'day' }" />
                 </ul>
             </div>
         </div>
@@ -18,11 +18,11 @@
             <div class="dropdown">
                 <div class="dropdown-toggle" id="dropdown2" role="button" data-toggle="dropdown" data-target="#">
                     <div class="input-group">
-                        <input type="text" class="form-control" data-ng-model="to" data-date-time-input="dddd DD/MM/YYYY HH:mm"><span class="input-group-addon"><i class="material-icons md-24">date_range</i></span>
+                        <input type="text" class="form-control" data-ng-model="to" data-date-time-input="dddd DD/MM/YYYY"><span class="input-group-addon"><i class="material-icons md-24">date_range</i></span>
                     </div>
                 </div>
                 <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-                    <datetimepicker data-ng-model="to" data-datetimepicker-config="{ dropdownSelector: '#dropdown2' }" />
+                    <datetimepicker data-ng-model="to" data-datetimepicker-config="{ dropdownSelector: '#dropdown2', startView:'day', minView:'day' }" />
                 </ul>
             </div>
         </div>
