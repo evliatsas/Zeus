@@ -302,10 +302,9 @@ namespace Zeus.Controllers
         }
 
         [AllowAnonymous]
-        [Route("getreport/{year}/{month}/{day}")]
-        [ResponseType(typeof(IEnumerable<Facility>))]
+        [Route("getreport/pdf/{year}/{month}/{day}")]
         [HttpGet]
-        public async Task<HttpResponseMessage> GetReport(int year, int month, int day)
+        public async Task<HttpResponseMessage> GetPdfReport(int year, int month, int day)
         {
             try
             {
@@ -328,10 +327,7 @@ namespace Zeus.Controllers
                 var pdf = pdfReport.PrintPdfReport(reports);
                 var result = Request.CreateResponse(HttpStatusCode.OK);
                 result.Content = new ByteArrayContent(pdf);
-                result.Content.Headers.ContentType = new MediaTypeHeaderValue("application/pdf");
-                //result.Content.Headers.Add("x-filename", "test.pdf");
-                //result.Content.Headers.ContentDisposition = new System.Net.Http.Headers.ContentDispositionHeaderValue("attachment");
-                //result.Content.Headers.ContentDisposition.FileName = "test.pdf";
+                result.Content.Headers.ContentType = new MediaTypeHeaderValue("application/pdf");                
 
                 return result;
             }
@@ -340,6 +336,35 @@ namespace Zeus.Controllers
                 var errorResult = Request.CreateResponse(HttpStatusCode.BadRequest);
                 errorResult.Content = new StringContent(exc.ToString());
                 return errorResult;
+            }
+        }
+
+        [AllowAnonymous]
+        [Route("getreport/view/{year}/{month}/{day}")]
+        [ResponseType(typeof(IEnumerable<DailyReport>))]
+        [HttpGet]
+        public async Task<IHttpActionResult> GetViewReport(int year, int month, int day)
+        {
+            try
+            {
+                var date = new DateTime(year, month, day);
+                var facilities = await context.Facilities.GetAll();
+                var reports = (await context.DailyReports.Get(x => x.ReportDate == date));
+                if (reports == null || reports.Count() == 0)
+                {
+                    return BadRequest("Report not exist for date.");
+                }
+
+                reports = reports.Select(x => {
+                    x.Facility = facilities.FirstOrDefault(t => t.Id == x.FacilityId);
+                    return x;
+                });
+                                
+                return Ok(reports);
+            }
+            catch (Exception exc)
+            {
+                return BadRequest(exc.ToString());
             }
         }
     }

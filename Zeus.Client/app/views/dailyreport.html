@@ -1,4 +1,9 @@
-﻿<a class="btn btn-default btn-fab fab" href="http://localhost:8080/facilities">
-    <i class="material-icons" title="{{ 'FACILITY.DELETE' | translate }}">picture_as_pdf</i>
-</a>
-<object src="{{content}}" style="width:200px;height:200px;"></object>
+﻿
+<cinnamon-grid grid-columns="reportcolumns"
+               grid-items="reports"
+               show-grid-buttons="false"
+               show-pdf-button="true"
+               hide-item-buttons="true"
+               highlight="false"
+               show-pdf-fn="showPdf()">
+</cinnamon-grid>

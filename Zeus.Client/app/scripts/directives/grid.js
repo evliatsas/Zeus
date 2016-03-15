@@ -10,6 +10,7 @@ function grid($http, $filter, moment, commonUtilities) {
             gridItems: '=',
             selectedItems: '=?',
             showGridButtons: '=',
+            showPdfButton: '=',
             showCheckBoxes: '=',
             hidePagingDropdown: '=',
             hideItemButtons: '=',
@@ -23,6 +24,7 @@ function grid($http, $filter, moment, commonUtilities) {
             groupIcon: '@',
             groupRowClick: '&groupClickFn',
             rowClick: '&rowClickFn',
+            showPdfFn: '&showPdfFn',
             createItemFn: '&gridCreateFn',
             editItem: '&gridEditFn',
             viewItemDetails: '&gridDetailsFn',
@@ -174,6 +176,10 @@ function grid($http, $filter, moment, commonUtilities) {
 
             scope.customAction = function (_item) {
                 scope.customActionFn({ item: _item })
+            }
+
+            scope.showPdf = function () {
+                scope.showPdfFn();
             }
 
             scope.createItem = function () {

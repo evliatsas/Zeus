@@ -1,8 +1,13 @@
 ﻿<div>
+    <div class="btn-group-sm" ng-if="showPdfButton">
+        <button class="btn btn-info btn-fab fab pull-right" style="margin-left:30px" ng-click="showPdf()">
+            <i class="material-icons" title="PDF">picture_as_pdf</i>
+        </button>
+    </div>
     <div class="btn-group-sm" ng-if="showGridButtons">
-        <span class="btn btn-info btn-fab fab pull-right" style="margin-left:30px" ng-click="createItem()">
+        <button class="btn btn-info btn-fab fab pull-right" style="margin-left:30px" ng-click="createItem()">
             <i class="material-icons" title="{{ 'GRID.ADD' | translate }}">border_color</i>
-        </span>  
+        </button>  
     </div>
     <div ng-if="customActionItems" class="dropdown pull-right">
         <button class="btn btn-primary btn-raised dropdown-toggle" type="button" id="customActionDropdownMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
