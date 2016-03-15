@@ -1,1 +1,31 @@
-﻿
+﻿<form>
+    <div class="form-group label-static">
+        <div class="col-sm-4">
+            <label for="i11" class="control-label">{{ 'CALENDAR.DATE' | translate }}</label>
+            <div class="dropdown">
+                <div class="dropdown-toggle" id="dropdown1" role="button" data-toggle="dropdown" data-target="#">
+                    <div class="input-group">
+                        <input type="text" class="form-control" data-ng-model="from" data-date-time-input="dddd DD/MM/YYYY HH:mm"><span class="input-group-addon"><i class="material-icons md-24">date_range</i></span>
+                    </div>
+                </div>
+                <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                    <datetimepicker data-ng-model="from" data-datetimepicker-config="{ dropdownSelector: '#dropdown1' }" />
+                </ul>
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <button class="btn btn-raised btn-primary" style="margin-top:-2px;" type="button" ng-click="getCalendarEntry()">
+                {{ 'CALENDAR.SHOW_FILE' | translate }}
+                <i class="material-icons md-24">book</i>
+            </button>
+        </div>
+    </div>
+</form>
+<hr />
+<cinnamon-grid grid-columns="reportcolumns"
+               grid-items="reports"
+               show-grid-buttons="false"
+               hide-item-buttons="true"
+               highlight="false"
+               row-click-fn="showReport(item)">
+</cinnamon-grid>

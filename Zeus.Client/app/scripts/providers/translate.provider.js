@@ -161,6 +161,10 @@ angular
 	    	    UNTIL: 'Ημερομηνία. Έως',
 	    	    SHOW_FILE: 'ΕΜΦΑΝΙΣΗ ΑΡΧΕΙΟΥ'
 	    	},
+	    	CALENDAR: {
+	    	    DATE: 'Ημερομηνία',
+	    	    SHOW_FILE: 'ΕΜΦΑΝΙΣΗ ΑΡΧΕΙΟΥ'
+	    	},
 	    	LOG: {
 	    	    FROM: 'Ημερομηνία. Από',
 	    	    UNTIL: 'Ημερομηνία. Έως',
@@ -472,6 +476,10 @@ angular
 	            SAVE: 'Save Report',
 	            FROM: 'From Date',
 	            UNTIL: 'To Date',
+	            SHOW_FILE: 'Show File'
+	        },
+	        CALENDAR: {
+	            DATE: 'DATE',
 	            SHOW_FILE: 'Show File'
 	        },
 	        LOG: {
