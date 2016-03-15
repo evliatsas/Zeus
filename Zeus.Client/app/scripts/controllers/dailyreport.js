@@ -31,7 +31,10 @@ angular
             });
         }
 
-        $scope.showPdf = function () {
+        $scope.showPdf = function (myDate) {
+            var year = myDate.getFullYear();
+            var month = myDate.getMonth() + 1;
+            var day = myDate.getDate();
             var url = baseUrl + '/facilities/getreport/pdf/' + year + '/' + month + '/' + day;
             window.open(url);
         }
