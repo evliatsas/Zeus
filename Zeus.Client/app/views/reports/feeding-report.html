@@ -15,7 +15,6 @@
             </button>
         </div>
         <div ng-bind-html="lookup.reportTitles[reportType].Description" />
-
         <div class="form-group label-static ng-is-empty" ng-class="{ 'has-error': feedingForm.Priority.$invalid }">
             <label for="i10" class="control-label">{{ 'FEEDING_REPORT.PRIORITY' | translate }}</label>
             <select id="i10" class="form-control" name="Priority" ng-model="report.Priority" convert-to-number required>

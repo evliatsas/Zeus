@@ -37,7 +37,7 @@ function grid($http, $filter, moment, commonUtilities) {
             customActionFn: '&customActionFn',
             customActionItems: '=?'
         },
-        templateUrl: '/templates/grid.html',
+        templateUrl: 'views/templates/grid.html',
         restrict: 'E',
         link: function postLink(scope, element, attrs) {
 

@@ -52,7 +52,7 @@ angular
             var picker = $uibModal.open({
                 animation: true,
                 size: 'md',
-                templateUrl: '/templates/lookup-modal.html',
+                templateUrl: 'views/templates/lookup-modal.html',
                 controller: 'lookupCtrl',
                 controllerAs: 'lookupCtrl',
                 resolve: {

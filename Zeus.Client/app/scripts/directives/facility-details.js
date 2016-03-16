@@ -7,7 +7,7 @@ angular
             scope: {
                 facility: '='
             },
-            templateUrl: '/templates/facility-details.html',
+            templateUrl: 'views/templates/facility-details.html',
             link: function postLink(scope, element, attrs) {
                 scope.lookup = lookupService;
             }

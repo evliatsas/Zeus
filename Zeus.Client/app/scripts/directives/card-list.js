@@ -14,7 +14,7 @@ angular
                 lookup: '=?'
             },
             transclude: true,
-            templateUrl: '/templates/card-list.html',
+            templateUrl: 'views/templates/card-list.html',
             link: function postLink(scope, element, attrs) {
                 if (scope.cards == null) { scope.cards = []; }
                 scope.lookup = lookupService;
