@@ -8,6 +8,7 @@ angular
 
         vm.lookup = lookupService;
         vm.housing = modaldata.housing;
+        vm.isNew = modaldata.isNew;
 
         vm.delete = function () {
             messageService.askDeleteConfirmation(deleteHousing);

@@ -10,7 +10,8 @@
                     </div>
                 </div>
                 <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-                    <datetimepicker data-ng-model="from" data-datetimepicker-config="{ dropdownSelector: '#dropdown1' }"></datetimepicker>
+                    <datetimepicker data-ng-model="from" data-datetimepicker-config="{ dropdownSelector: '#dropdown1' }"
+                                    data-before-render="beforeRenderStartDate($view, $dates, $leftDate, $upDate, $rightDate)"></datetimepicker>
                 </ul>
             </div>
         </div>
@@ -23,7 +24,8 @@
                     </div>
                 </div>
                 <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-                    <datetimepicker data-ng-model="to" data-datetimepicker-config="{ dropdownSelector: '#dropdown2' }"></datetimepicker>
+                    <datetimepicker data-ng-model="to" data-datetimepicker-config="{ dropdownSelector: '#dropdown2' }"
+                                    data-before-render="beforeRenderEndDate($view, $dates, $leftDate, $upDate, $rightDate)"></datetimepicker>
                 </ul>
             </div>
         </div>

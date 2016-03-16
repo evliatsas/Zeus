@@ -63,15 +63,15 @@ angular
         $scope.addHousing = function () {
             var housing = {};
             selectedHousing = null;
-            editHousing(housing);
+            editHousing(housing, true);
         }
         
         $scope.editHousing = function (housing) {
             selectedHousing = housing;
-            editHousing(housing);
+            editHousing(housing, false);
         }
 
-        var editHousing = function (housing) {
+        var editHousing = function (housing, isNew) {
             var picker = $uibModal.open({
                 animation: true,
                 size: 'md',
@@ -81,7 +81,8 @@ angular
                 resolve: {
                     modaldata: function () {
                         return {
-                            housing: housing
+                            housing: housing,
+                            isNew: isNew
                         };
                     }
                 }

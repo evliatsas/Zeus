@@ -1,9 +1,10 @@
 ﻿<div class="modal-header">
     <div class="modal-title btn-group-sm">
         <i class="text-primary material-icons md-36 pull-left" title="{{ 'HOUSING.EDIT_HOUSING' | translate }}">local_hotel</i>
-        <span>{{ 'HOUSING.EDIT_HOUSING' | translate }}</span>
-        <span class="btn btn-danger btn-fab fab pull-right" ng-click="housingCtrl.delete()">
-            <i class="material-icons" title="{{ 'HOUSING.DELETE' | translate }}">delete</i>
+        <span ng-if="!housingCtrl.isNew">{{ 'HOUSING.EDIT_HOUSING' | translate }}</span>
+        <span ng-if="housingCtrl.isNew">{{ 'HOUSING.NEW_HOUSING' | translate }}</span>
+        <span class="btn btn-danger btn-fab fab pull-right" ng-click="housingCtrl.delete()" title="{{ 'HOUSING.DELETE' | translate }}">
+            <i class="material-icons">delete</i>
         </span>
     </div>
 </div>

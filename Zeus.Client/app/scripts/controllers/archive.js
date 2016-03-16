@@ -38,4 +38,24 @@ angular
             var location = '/reports/' + report.Type + '/' + report.FacilityId + '/' + report.Id;
             $location.url(location);
         }
+
+        $scope.beforeRenderStartDate = function ($view, $dates, $leftDate, $upDate, $rightDate) {
+            if ($scope.to) {
+                var activeDate = moment($scope.to);
+                for (var i = 0; i < $dates.length; i++) {
+                    if ($dates[i].localDateValue() >= activeDate.valueOf()) $dates[i].selectable = false;
+                }
+            }
+        }
+
+        $scope.beforeRenderEndDate = function ($view, $dates, $leftDate, $upDate, $rightDate) {
+            if ($scope.from) {
+                var activeDate = moment($scope.from).subtract(1, $view).add(1, 'minute');
+                for (var i = 0; i < $dates.length; i++) {
+                    if ($dates[i].localDateValue() <= activeDate.valueOf()) {
+                        $dates[i].selectable = false;
+                    }
+                }
+            }
+        }
     });
