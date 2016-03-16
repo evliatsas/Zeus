@@ -48,7 +48,7 @@
                     <a ng-class="getClass(['/'])" href="#/" class="navbar-brand" style="font-family: serif;">{{ 'MENU.BRAND' | translate }}</a>
                 </div>
                 <div class="collapse navbar-collapse" id="js-navbar-collapse">
-                    <ul class="nav navbar-nav" ng-show="isAuth()">
+                    <ul class="nav navbar-nav">
                         <li class="dropdown" ng-class="getClass(['/dailyreport', '/dailyreport/stats'])">
                             <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{ 'MENU.REPORTS' | translate }} <span class="caret"></span></a>
                             <ul class="dropdown-menu">
@@ -56,6 +56,8 @@
                                 <li ng-class="getClass(['/dailyreport/stats'])"><a href="#/dailyreport/stats">{{ 'MENU.CHARTS' | translate }}</a></li>
                             </ul>
                         </li>
+                    </ul>
+                    <ul class="nav navbar-nav" ng-show="isAuth()">
                         <li class="dropdown" ng-class="getClass(['/facilities','/contacts','/providers','/persons','/charts', '/reports/archive'])">
                             <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{ 'MENU.FACILITIES' | translate }} <span class="caret"></span></a>
                             <ul class="dropdown-menu">
