@@ -202,11 +202,11 @@ angular
 .run(['$rootScope', '$location', 'authService', function ($rootScope, $location, authService) {
     $rootScope.$on('$routeChangeStart', function (event) {
         var unAuthUrls = [
-            "",
-            "/",
+            //"",
+            //"/",
             "/login",
-            "/dailyreport",
-            "/dailyreport/stats"
+            //"/dailyreport",
+            //"/dailyreport/stats"
         ];
         if (!authService.isAuth() && unAuthUrls.indexOf($location.path()) == -1) {
             event.preventDefault();

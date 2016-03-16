@@ -114,7 +114,8 @@
             service.info.email = "";
             service.info.claims = [];
             service.info.roles = [];
-            $rootScope.userInfo.fullname = "";
+            $rootScope.userInfo = { fullname: "" };
+            $location.url("/");
         };
 
         function fillAuthData() {
