@@ -167,16 +167,16 @@ angular
 	    	    SAVE: 'Αποθήκευση Αναφοράς',
 	    	    FROM: 'Ημερομηνία. Από',
 	    	    UNTIL: 'Ημερομηνία. Έως',
-	    	    SHOW_FILE: 'ΕΜΦΑΝΙΣΗ ΑΝΑΦΟΡΑΣ'
+	    	    SHOW_FILE: 'ΕΜΦΑΝΙΣΗ'
 	    	},
 	    	CALENDAR: {
 	    	    DATE: 'Ημερομηνία',
-	    	    SHOW_FILE: 'ΕΜΦΑΝΙΣΗ ΑΡΧΕΙΟΥ'
+	    	    SHOW_FILE: 'ΕΜΦΑΝΙΣΗ'
 	    	},
 	    	LOG: {
 	    	    FROM: 'Ημερομηνία. Από',
 	    	    UNTIL: 'Ημερομηνία. Έως',
-	    	    SHOW_FILE: 'ΕΜΦΑΝΙΣΗ ΕΓΓΡΑΦΩΝ'
+	    	    SHOW_FILE: 'ΕΜΦΑΝΙΣΗ'
 	    	},
 	    	CONTACT: {
 	    	    DELETE: 'Διαγραφή Επαφής',
@@ -306,7 +306,8 @@ angular
 	    	    LAST: 'Τελευταία',
 	    	    PREVIOUS: 'Προηγούμενη',
 	    	    NEXT: 'Επόμενη',
-	    	    RECORDS: 'εγγρ.',
+	    	    RECORDS: 'ΕΓΓΡΑΦΕΣ',
+	    	    RECORDS_FOOTER: 'εγγραφές',
 	    	    TYPE: 'Τύπος',
 	    	    CAPACITY: 'Χωρητικότητα',
 	    	    ATTENDANCE: 'Φιλοξενούμενοι',
@@ -640,7 +641,8 @@ angular
 	            LAST: 'Last',
 	            PREVIOUS: 'Previous',
 	            NEXT: 'Next',
-                RECORDS: 'rec',
+                RECORDS: 'records',
+                RECORDS_FOOTER: 'records',
 	            TYPE: 'Type',
 	            CAPACITY: 'Capacity',
 	            ATTENDANCE: 'Guests',
