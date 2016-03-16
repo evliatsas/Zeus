@@ -96,7 +96,6 @@ angular
                 facilityGroup.items.forEach(function (report, index) {
                     var label = format(report.ReportDate, "DD/MM");
                     chart.labels.push(label);
-                    console.log(label);
 
                     var inTotal = $filter('filter')($scope.charts.total.labels, function (l) { return l == label; }).length > 0;
                     if (!inTotal) {
