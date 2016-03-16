@@ -22,7 +22,8 @@
                     </div>
                 </div>
                 <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-                    <datetimepicker data-ng-model="to" data-datetimepicker-config="{ dropdownSelector: '#dropdown2' }"></datetimepicker>
+                    <datetimepicker data-ng-model="to" data-datetimepicker-config="{ dropdownSelector: '#dropdown2' }"
+                                    data-before-render="beforeRenderEndDate($view, $dates, $leftDate, $upDate, $rightDate)"></datetimepicker>
                 </ul>
             </div>
         </div>
