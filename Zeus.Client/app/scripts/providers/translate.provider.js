@@ -43,7 +43,8 @@ angular
 	    	    CONTACTS: 'Επαφές',
 	    	    PROVIDERS: 'Υποστήριξη',
 	    	    REPORTS: 'Αναφορές',
-	    	    PERSONS: 'Ταυτοποιημένοι'
+	    	    PERSONS: 'Ταυτοποιημένοι',
+                REPORT: 'Ενημέρωση Δελτίου Τύπου'
 	    	},
 	    	FACILITY_DETAILS: {
 	    	    TITLE: 'Δομή Φιλοξενίας: ',
@@ -379,7 +380,8 @@ angular
 	            CONTACTS: 'Contacts',
 	            PROVIDERS: 'Providers',
 	            REPORTS: 'Reports',
-	            PERSONS: 'Identified'
+	            PERSONS: 'Identified',
+	            REPORT: 'Update Press Report'
 	        },
 	        FACILITY_DETAILS: {
 	            TITLE: 'Facility: ',

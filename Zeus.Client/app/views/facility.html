@@ -1,7 +1,7 @@
 <form name="form">
     <div class="pull-right">
         <button class="btn btn-primary btn-fab fab" ng-click="makeReport()">
-            <i class="material-icons" title="{{ 'FACILITY.DELETE' | translate }}">picture_as_pdf</i>
+            <i class="material-icons" title="{{ 'FACILITY.REPORT' | translate }}">picture_as_pdf</i>
         </button>
         <button class="btn btn-danger btn-fab fab" ng-click="delete()">
             <i class="material-icons" title="{{ 'FACILITY.DELETE' | translate }}">delete</i>
@@ -56,6 +56,7 @@
                                        hide-item-buttons="true"
                                        row-click-fn="showReport(item)"
                                        custom-action-fn="createReport(item)"
+                                       highlight="!item.IsAcknoledged"
                                        custom-action-items="reportactions">
                         </cinnamon-grid>
                     </div>
