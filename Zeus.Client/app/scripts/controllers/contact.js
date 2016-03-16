@@ -84,7 +84,7 @@ angular
         }
 
         if (isInsert) {
-            $scope.contact = {};
+            $scope.contact = { Phones:[] };
         } else {
             $http({
                 method: 'GET',
