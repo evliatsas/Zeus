@@ -60,17 +60,17 @@ angular
         function getLabel(element) {
             var label = '<div>' + element.Attendance + '/' + element.MaxCapacity + '</div>';
             
-            label += "<div><strong>";
+            label += "<div>";
             
             if(element.HasHealthcare == true)
-                label += '<span class="text-primary">Y</span>';    
+                label += '<strong><span class="text-primary">Y</span></strong>';    
             else
-                label += '<span class="text-danger">Y</span>';
+                label += '<strong><span class="text-danger">Y</span></strong>';
             
-            label += '<span>' + element.HealthcareReportsCount + '</span>';
-            label += '<span>' + element.MaxRations + '</span>';
+            label += '<span> ' + element.HealthcareReportsCount + ' </span>';
+            label += '<span> ' + element.MaxRations + ' </span>';
 
-            label += "</strong></div>";
+            label += "</div>";
             return label;
         }
 
