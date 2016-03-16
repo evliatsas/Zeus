@@ -97,7 +97,7 @@
         <div class="container-fluid shadow-box">
             <i>{{ 'OPERATION.PREPERATIONS' | translate }}</i>
             <span class="btn-group-sm pull-right">
-                <a href="javascript:void(0)" class="btn btn-info btn-fab" ng-click="addPreparation()"><i class="material-icons">add</i></a>
+                <button class="btn btn-info btn-fab" ng-click="addPreparation()"><i class="material-icons">add</i></button>
             </span>
             <div class="form" ng-repeat="prep in operation.Preparations track by $index">
                 <div class="form-group label-static col-md-2">
@@ -120,14 +120,14 @@
                     </div>
                 </div>
                 <div class="col-md-1">
-                    <a href="javascript:void(0)" class="btn btn-info" ng-click="operation.Preparations.splice($index, 1)"><i class="material-icons">clear</i></a>
+                    <button class="btn btn-info" ng-click="operation.Preparations.splice($index, 1)"><i class="material-icons">clear</i></button>
                 </div>
             </div>
         </div>
         <div class="container-fluid shadow-box">
             <i>{{ 'OPERATION.PROVIDERS' | translate }}</i>
             <span class="btn-group-sm pull-right">
-                <a href="javascript:void(0)" class="btn btn-info btn-fab" ng-click="addProvider()"><i class="material-icons">add</i></a>
+                <button class="btn btn-info btn-fab" ng-click="addProvider()"><i class="material-icons">add</i></button>
             </span>
             <div class="form" ng-repeat="prov in operation.Providers track by $index">
                 <div class="form-group label-static col-md-2">
@@ -147,10 +147,10 @@
                     <input type="text" class="form-control" ng-model="prov.Problems">
                 </div>
                 <div class="col-md-1">
-                    <a href="javascript:void(0)" ng-click="openProvider(prov.ProviderId)" class="btn btn-info"><i class="material-icons" style="padding-top:20px">perm_contact_calendar</i></a>
+                    <button ng-click="openProvider(prov.ProviderId)" class="btn btn-info"><i class="material-icons" style="padding-top:20px">perm_contact_calendar</i></button>
                 </div>
                 <div class="col-md-1">
-                    <a href="javascript:void(0)" class="btn btn-info" ng-click="operation.Providers.splice($index, 1)"><i class="material-icons">clear</i></a>
+                    <button class="btn btn-info" ng-click="operation.Providers.splice($index, 1)"><i class="material-icons">clear</i></button>
                 </div>
             </div>
         </div>
@@ -166,10 +166,10 @@
                     </select>
                 </div>
                 <div class="col-md-1">
-                    <a href="javascript:void(0)" ng-click="openContact()" class="btn btn-info"><i class="material-icons" style="padding-top:20px">perm_contact_calendar</i></a>
+                    <button ng-click="openContact()" class="btn btn-info"><i class="material-icons" style="padding-top:20px">perm_contact_calendar</i></button>
                 </div>
                 <div class="col-md-1">
-                    <a href="javascript:void(0)" class="btn btn-info" ng-click="operation.DestinationContactId = ''"><i class="material-icons">clear</i></a>
+                    <button class="btn btn-info" ng-click="operation.DestinationContactId = ''"><i class="material-icons">clear</i></button>
                 </div>
             </div>
         </div>

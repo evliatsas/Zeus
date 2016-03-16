@@ -54,7 +54,7 @@
         <div class="shadow-box" style="margin-top: 20px;">
             <label class="control-label">{{ 'USER.ROLES' | translate }}</label>
             <span class="btn-group-sm pull-right">
-                <a href="javascript:void(0)" class="btn btn-info btn-fab" ng-click="addRole()"><i class="material-icons">add</i></a>
+                <button class="btn btn-info btn-fab" ng-click="addRole()"><i class="material-icons">add</i></button>
             </span>
             <div class="form-group" ng-repeat="role in user.Roles track by $index">
                 <label class="control-label" for="addon1">{{ 'USER.ROLE' | translate }}</label>
@@ -65,7 +65,7 @@
                         </option>
                     </select>
                     <span class="input-group-btn">
-                        <a href="javascript:void(0)" class="btn btn-info" ng-click="user.Roles.splice($index, 1)"><i class="material-icons">clear</i></a>
+                        <button class="btn btn-info" ng-click="user.Roles.splice($index, 1)"><i class="material-icons">clear</i></button>
                     </span>
                 </div>
             </div>
@@ -73,7 +73,7 @@
         <div class="shadow-box btn-group-sm" style="margin-top: 20px;">
             <label class="control-label">{{ 'USER.CLAIMS' | translate }}</label>
             <span class="btn-group-sm pull-right">
-                <a href="javascript:void(0)" class="btn btn-info btn-fab" ng-click="addClaim()"><i class="material-icons">add</i></a>
+                <button class="btn btn-info btn-fab" ng-click="addClaim()"><i class="material-icons">add</i></button>
             </span>
             <div class="form-group" ng-repeat="claim in user.Claims">
                 <label class="control-label" for="addon1">{{ 'USER.CLAIM' | translate }}</label>
@@ -85,7 +85,7 @@
                     </select>
                     <input type="hidden" class="form-control" placeholder="{{ 'USER.CLAIM' | translate }}" ng-model="claim.Type">
                     <span class="input-group-btn">
-                        <a href="javascript:void(0)" class="btn btn-info" ng-click="user.Claims.splice($index, 1)"><i class="material-icons">clear</i></a>
+                        <button class="btn btn-info" ng-click="user.Claims.splice($index, 1)"><i class="material-icons">clear</i></button>
                     </span>
                 </div>
             </div>
