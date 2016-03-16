@@ -1,49 +1,49 @@
-﻿<form name="form">
+﻿<form name="userForm">
     <div class="pull-right">
         <button class="btn btn-danger btn-fab fab" ng-click="delete()">
             <i class="material-icons" title="{{ 'USER.DELETE' | translate }}">delete</i>
         </button>
-        <button class="btn btn-success btn-fab fab" ng-click="save()" ng-disabled="form.$invalid">
+        <button class="btn btn-success btn-fab fab" ng-click="save()" ng-disabled="userForm.$invalid">
             <i class="material-icons" title="{{ 'USER.SAVE' | translate }}">save</i>
         </button>
     </div>
     <h2>{{ 'USER.TITLE' | translate }}<span class="text-primary" style="font-weight:300">{{user.FullName}}</span></h2>
     <div class="col-md-6">
-        <div class="form-group label-static ng-is-empty" ng-class="{ 'has-error': form.Username.$invalid }">
+        <div class="form-group label-static ng-is-empty" ng-class="{ 'has-error': userForm.FullName.$invalid }">
             <label for="FullName" class="control-label">{{ 'USER.FULLNAME' | translate }}</label>
-            <input type="text" class="form-control" id="FullName" ng-model="user.FullName" required>
+            <input type="text" class="form-control" id="FullName" name="FullName" ng-model="user.FullName" required>
             <span class="material-input"></span>
         </div>
-        <div class="form-group label-static ng-is-empty">
-            <label for="Administration" class="control-label">{{ 'CONTACT.ADMINISTRATION' | translate }}</label>
-            <input type="text" class="form-control" id="Administration" ng-model="user.Administration" uib-typeahead="state for state in lookup.administrations | filter:$viewValue">
+        <div class="form-group label-static ng-is-empty" ng-class="{ 'has-error': userForm.Administration.$invalid }">
+            <label for="Administration" class="control-label">{{ 'USER.ADMINISTRATION' | translate }}</label>
+            <input type="text" name="Administration" class="form-control" id="Administration" ng-model="user.Administration" uib-typeahead="state for state in lookup.administrations | filter:$viewValue" required>
         </div>
-        <div class="form-group label-static ng-is-empty" ng-class="{ 'has-error': form.Username.$invalid }">
+        <div class="form-group label-static ng-is-empty" ng-class="{ 'has-error': userForm.Username.$invalid }">
             <label for="UserName" class="control-label">{{ 'USER.USERNAME' | translate }}</label>
             <input type="text" class="form-control" id="UserName" name="Username" ng-model="user.UserName" required>
             <span class="material-input"></span>
         </div>
-        <div class="form-group label-static ng-is-empty">
+        <div class="form-group label-static ng-is-empty"  ng-class="{ 'has-error': userForm.Email.$invalid }">
             <label for="Nationality" class="control-label">{{ 'USER.EMAIL' | translate }}</label>
-            <input type="email" class="form-control" id="Email" data-error="{{ 'USER.EMAIL_ERROR' | translate }}" required ng-model="user.Email">
+            <input type="email" class="form-control" id="Email" name="Email" data-error="{{ 'USER.EMAIL_ERROR' | translate }}" required ng-model="user.Email">
         </div>
         <div class="form-group label-static ng-is-empty">
             <label for="PhoneNumber" class="control-label">{{ 'USER.PHONENUMBER' | translate }}</label>
             <input type="text" class="form-control" id="PhoneNumber" ng-model="user.PhoneNumber">
         </div>
-        <div ng-show="isInsert">
-            <div class="form-group label-static ng-is-empty" ng-class="{ 'has-error': form.Password.$invalid }">
+        <div ng-if="isInsert">
+            <div class="form-group label-static ng-is-empty" ng-class="{ 'has-error': userForm.Password.$invalid }">
                 <label for="Nationality" class="control-label">{{ 'USER.PASSWORD' | translate }}</label>
                 <input type="password" class="form-control" id="inputPassword" name="Password" required ng-model="user.Password">
                 <span class="material-input"></span>
             </div>
-            <div class="form-group label-static ng-is-empty">
+            <div class="form-group label-static ng-is-empty" ng-class="{ 'has-error': userForm.PasswordConfirm.$invalid }">
                 <label for="password" class="control-label">{{ 'USER.CONFIRM_PASSWORD' | translate }}</label>
-                <input type="password" class="form-control" id="passwordConfirm" data-match="#password" data-error="{{ 'USER.CONFIRM_PASSWORD_ERROR' | translate }}" required ng-model="user.PasswordConfirm">
+                <input type="password" class="form-control" id="passwordConfirm" name="PasswordConfirm" data-match="#password" data-error="{{ 'USER.CONFIRM_PASSWORD_ERROR' | translate }}" required ng-model="user.PasswordConfirm">
                 <span class="material-input"></span>
             </div>
         </div>
-        <div class="pull-right" ng-show="!isInsert">
+        <div class="pull-right" ng-if="!isInsert">
             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#simple-dialog1">
                 {{ 'USER.CHANGE_PASSWORD' | translate }}
                 <div class="ripple-container"></div>
@@ -91,6 +91,8 @@
             </div>
         </div>
     </div>
+</form>
+
     <div id="simple-dialog1" class="modal fade" tabindex="-1" style="display: none;">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -111,4 +113,3 @@
             </div>
         </div>
     </div>
-</form>
