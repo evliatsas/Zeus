@@ -25,25 +25,40 @@
                 <span style="font-weight:300">{{ 'FACILITY_DETAILS.TITLE_CAPACITY' | translate }}</span>
             </div>
         </div>
-        <div class="col-md-3">
+        <div class="col-md-4">
             <div class="form-group label-static ng-is-empty">
                 <label for="Capacity" class="control-label">{{ 'FACILITY_DETAILS.CAPACITY' | translate }}</label>
-                <input type="number" class="form-control" id="Capacity" ng-model="facility.Capacity" title="{{'FACILITY_DETAILS.CAPACITY_TOOLTIP' | translate}}">
+                <input type="number" class="form-control" id="Capacity" ng-model="facility.Capacity" 
+                       title="{{'FACILITY_DETAILS.CAPACITY_TOOLTIP' | translate}}" min="0">
             </div>
         </div>
-        <div class="col-md-3">
+        <div class="col-md-4">
             <div class="form-group label-static ng-is-empty">
                 <label for="MaxCapacity" class="control-label">{{ 'FACILITY_DETAILS.MAXCAPACITY' | translate }}</label>
-                <input type="number" class="form-control" id="MaxCapacity" ng-model="facility.MaxCapacity" title="{{'FACILITY_DETAILS.MAXCAPACITY_TOOLTIP' | translate}}">
+                <input type="number" class="form-control" id="MaxCapacity" ng-model="facility.MaxCapacity" 
+                       title="{{'FACILITY_DETAILS.MAXCAPACITY_TOOLTIP' | translate}}" min="0">
+                <span class="material-input"></span>
             </div>
         </div>
-        <div class="col-md-3">
+        <div class="col-md-4">
             <div class="form-group label-static ng-is-empty">
                 <label for="RepCapacity" class="control-label">{{ 'FACILITY_DETAILS.REPORT_CAPACITY' | translate }}</label>
-                <input type="number" class="form-control" id="RepCapacity" ng-model="facility.ReportCapacity" title="{{'FACILITY_DETAILS.REPORT_CAPACITY_TOOLTIP' | translate}}">
+                <input type="number" class="form-control" id="RepCapacity" ng-model="facility.ReportCapacity" 
+                       title="{{'FACILITY_DETAILS.REPORT_CAPACITY_TOOLTIP' | translate}}" min="0">
+                <span class="material-input"></span>
             </div>
         </div>
-        <div class="col-md-3">
+    </div>
+    <div class="row">        
+        <div class="col-md-4">
+            <div class="form-group label-static ng-is-empty">
+                <label for="maxRations" class="control-label">{{ 'FACILITY_DETAILS.MAX_RATIONS' | translate }}</label>
+                <input type="number" class="form-control" id="maxRations" ng-model="facility.MaxRations"
+                       title="{{'FACILITY_DETAILS.MAX_RATIONS_TOOLTIP' | translate}}" min="0">
+                <span class="material-input"></span>
+            </div>
+        </div>
+        <div class="col-md-4">
             <div class="form-group label-static ng-is-empty">
                 <label for="Attendance" class="control-label">{{ 'FACILITY_DETAILS.ATTENDANCE' | translate }}</label>
                 <input type="number" class="form-control" id="Attendance" ng-model="facility.Attendance" title="{{'FACILITY_DETAILS.ATTENDANCE_TOOLTIP' | translate}}" readonly>
@@ -84,7 +99,8 @@
                 </div>
             </div>
             <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-                <datetimepicker data-ng-model="facility.StatusDateTime" data-datetimepicker-config="{ dropdownSelector: '#dropdown1' }"></datetimepicker>
+                <datetimepicker data-ng-model="facility.StatusDateTime" data-datetimepicker-config="{ dropdownSelector: '#dropdown1' }"
+                                data-before-render="beforeRenderStartDate($view, $dates, $leftDate, $upDate, $rightDate)"></datetimepicker>
             </ul>
         </div>
     </div>
@@ -97,7 +113,8 @@
                 </div>
             </div>
             <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-                <datetimepicker data-ng-model="facility.StatusECT" data-datetimepicker-config="{ dropdownSelector: '#dropdown2' }"></datetimepicker>
+                <datetimepicker data-ng-model="facility.StatusECT" data-datetimepicker-config="{ dropdownSelector: '#dropdown2' }"
+                                data-before-render="beforeRenderEndDate($view, $dates, $leftDate, $upDate, $rightDate)"></datetimepicker>
             </ul>
         </div>
     </div>

@@ -55,6 +55,7 @@ angular
 	    	    TITLE_CAPACITY: 'Χωρητικότητα',
 	    	    CAPACITY: 'Τρέχουσα',	    	   
 	    	    MAXCAPACITY: 'Μέγιστη',
+	    	    MAX_RATIONS: 'Δυνατότητα Σίτησης',
 	    	    REPORT_CAPACITY: 'Αναφοράς',
 	    	    ATTENDANCE: 'Φιλοξενούμενοι: ',
 	    	    ISSECURE: 'Φυλασσόμενος Χώρος',
@@ -68,7 +69,8 @@ angular
 	    	    CAPACITY_TOOLTIP: 'Τρέχουσα Χωρητικότητα Δ.Φ.',
 	    	    MAXCAPACITY_TOOLTIP: 'Μέγιστη Χωρητικότητα Δ.Φ.',
 	    	    REPORT_CAPACITY_TOOLTIP: 'Μέγιστη Χωρητικότητα Ημερήσιας Αναφοράς',
-	    	    ATTENDANCE_TOOLTIP: 'Τρέχων Σύνολο Φιλοξενούμενων'
+	    	    ATTENDANCE_TOOLTIP: 'Τρέχων Σύνολο Φιλοξενούμενων',
+                MAX_RATIONS_TOOLTIP: 'Μέγιστο Πλήθος Προσφερόμενων Μερίδων Σίτησης'
 	    	},
 	    	FACILITY_CARD: {
 	    	    GUESTS: 'Φιλοξενούμενοι: ',
@@ -395,6 +397,7 @@ angular
 	            TITLE_CAPACITY: 'Capacity',
 	            CAPACITY: 'Current',
 	            MAXCAPACITY: 'Maximum',
+                MAX_RATIONS: "Maximum Rations",
 	            REPORT_CAPACITY:'Report',
 	            ATTENDANCE: 'Attendance',
 	            ISSECURE: 'Security',
@@ -408,7 +411,8 @@ angular
 	            CAPACITY_TOOLTIP: 'Current Facility Capacity',
 	            MAXCAPACITY_TOOLTIP: 'Maximum Facility Capacity',
 	            REPORT_CAPACITY_TOOLTIP: 'Daily Report Maximum Facility Capacity',
-                ATTENDANCE_TOOLTIP: 'Current Guests Count'
+	            ATTENDANCE_TOOLTIP: 'Current Guests Count',
+	            MAX_RATIONS_TOOLTIP: 'Maximum Rations Capacity'
 	        },
 	        FACILITY_CARD: {
 	            GUESTS: 'Guests: ',

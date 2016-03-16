@@ -301,4 +301,5 @@ angular
         $scope.sendMessage = function (fid, rid) {
             $location.url('/reports/6/' + fid + '/new');
         }
+
     });
