@@ -6,8 +6,8 @@ angular
 
         $scope.lookup = lookupService;
         $scope.reports = [];
-        $scope.from = new Date();
-        $scope.to = new Date();
+        $scope.from = moment().subtract(7, 'days').startOf('day');
+        $scope.to = moment();
 
         $scope.reportcolumns = [
             { Caption: 'GRID.TYPE', Field: 'Type', Type: 'LookupHtml', Values: lookupService.reportTypesHtml, Tooltip: 'Τύπος Αναφοράς' },
