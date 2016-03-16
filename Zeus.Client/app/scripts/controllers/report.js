@@ -13,6 +13,7 @@ angular
         $scope.report.RationsRequired = true;
 
         var isInsert = $routeParams.id == 'new';
+        $scope.IsNew = isInsert;
 
         var getReportType = function () {
             switch ($scope.reportType) {
@@ -132,6 +133,7 @@ angular
                 url: baseUrl + '/reports/archive/' + $scope.report.Id //archive report
             }).then(function successCallback(response) {
                 $scope.report.IsArchived = response.data;
+                $location.url('/reports/archive');
             }, function errorCallback(response) {
                 messageService.getFailed(response.error);
             });

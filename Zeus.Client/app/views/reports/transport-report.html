@@ -1,17 +1,17 @@
 ﻿<form name="form">
     <div class="jumbotron col-md-offset-3 col-md-6">
         <div class="pull-right">
-            <button ng-if="!report.IsArchived" class="btn btn-info btn-fab fab" ng-click="archive()">
-                <i class="material-icons" title="{{ 'REPORT.NOT_ARCHIVED' | translate }}">archive</i>
+            <button ng-if="!report.IsArchived" class="btn btn-info btn-fab fab" ng-click="archive()" title="{{ 'REPORT.NOT_ARCHIVED' | translate }}" ng-disabled="IsNew">
+                <i class="material-icons">archive</i>
             </button>
-            <button ng-if="report.IsArchived" class="btn btn-info btn-fab fab" ng-click="archive()">
-                <i class="material-icons" title="{{ 'REPORT.ARCHIVED' | translate }}">unarchive</i>
+            <button ng-if="report.IsArchived" class="btn btn-info btn-fab fab" ng-click="archive()" title="{{ 'REPORT.ARCHIVED' | translate }}" ng-disabled="IsNew">
+                <i class="material-icons">unarchive</i>
             </button>
-            <button class="btn btn-danger btn-fab fab" ng-click="delete()">
-                <i class="material-icons" title="{{ 'TRANSPORT_REPORT.DELETE' | translate }}">delete</i>
+            <button class="btn btn-danger btn-fab fab" ng-click="delete()" title="{{ 'TRANSPORT_REPORT.DELETE' | translate }}">
+                <i class="material-icons">delete</i>
             </button>
-            <button class="btn btn-success btn-fab fab" ng-click="save()" ng-disabled="form.$invalid">
-                <i class="material-icons" title="{{ 'TRANSPORT_REPORT.SAVE' | translate }}">save</i>
+            <button class="btn btn-success btn-fab fab" ng-click="save()" ng-disabled="form.$invalid" title="{{ 'TRANSPORT_REPORT.SAVE' | translate }}">
+                <i class="material-icons">save</i>
             </button>
         </div>
         <div ng-bind-html="lookup.reportTitles[reportType].Description"></div>
