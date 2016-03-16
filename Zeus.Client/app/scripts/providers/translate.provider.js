@@ -48,11 +48,11 @@ angular
 	    	FACILITY_DETAILS: {
 	    	    TITLE: 'Δομή Φιλοξενίας: ',
 	    	    NAME: 'Όνομα',
-	    	    DESCRIPTION: 'Ονομασία',
-	    	    CATEGORY:'Γεωγραφική Περιοχή',
+	    	    DESCRIPTION: 'Περιγραφή',
+	    	    CATEGORY: 'Κατηγορία',	    	    
 	    	    TYPE: 'Τύπος',
 	    	    TITLE_CAPACITY: 'Χωρητικότητα',
-	    	    CAPACITY: 'Τρέχουσα',
+	    	    CAPACITY: 'Τρέχουσα',	    	   
 	    	    MAXCAPACITY: 'Μέγιστη',
 	    	    REPORT_CAPACITY: 'Αναφοράς',
 	    	    ATTENDANCE: 'Φιλοξενούμενοι: ',
@@ -60,9 +60,14 @@ angular
 	    	    HAS_HEALTHCARE: 'Υγεινομική Υποστήριξη',
 	    	    STATUS: 'Κατάσταση',
 	    	    ADMINISTRATION: 'Διαχείριση',
-	    	    NOTES: 'Κείμενο',
+	    	    NOTES: 'Σημειώσεις',
 	    	    STATUS_DATETIME: 'Ημερομηνία Κατάστασης',
-	    	    STATUS_ECT: 'Εκτιμώμενη Ημερομηνία Αποκατάστασης'
+	    	    STATUS_ECT: 'Εκτιμώμενη Ημερομηνία Αποκατάστασης',
+	    	    CATEGORY_TOOLTIP: 'Γεωγραφική Περιοχή',
+	    	    CAPACITY_TOOLTIP: 'Τρέχουσα Χωρητικότητα Δ.Φ.',
+	    	    MAXCAPACITY_TOOLTIP: 'Μέγιστη Χωρητικότητα Δ.Φ.',
+	    	    REPORT_CAPACITY_TOOLTIP: 'Μέγιστη Χωρητικότητα Ημερήσιας Αναφοράς',
+	    	    ATTENDANCE_TOOLTIP: 'Τρέχων Σύνολο Φιλοξενούμενων'
 	    	},
 	    	FACILITY_CARD: {
 	    	    GUESTS: 'Φιλοξενούμενοι: ',
@@ -393,7 +398,12 @@ angular
 	            ADMINISTRATION: 'Administration',
 	            NOTES: 'Notes',
 	            STATUS_DATETIME: 'Status Date',
-	            STATUS_ECT: 'Estimated Date of Complition'
+	            STATUS_ECT: 'Estimated Date of Complition',
+	            CATEGORY_TOOLTIP: 'Geographical Area',
+	            CAPACITY_TOOLTIP: 'Current Facility Capacity',
+	            MAXCAPACITY_TOOLTIP: 'Maximum Facility Capacity',
+	            REPORT_CAPACITY_TOOLTIP: 'Daily Report Maximum Facility Capacity',
+                ATTENDANCE_TOOLTIP: 'Current Guests Count'
 	        },
 	        FACILITY_CARD: {
 	            GUESTS: 'Guests: ',
