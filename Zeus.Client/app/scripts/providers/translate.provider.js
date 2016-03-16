@@ -75,7 +75,7 @@ angular
 	    	    REPORTS: 'Αναφορές: ',
 	    	    IDENTIFIED: 'Ταυτοποιημένοι: ',
 	    	    APPLICATION: 'Αίτηση',
-	    	    HOUSING: 'Στέγαση: ',
+	    	    HOUSING: 'Στέγαση',
 	    	    TRANSPORT: 'Μετακίνηση',
 	    	    SITUATION: 'Κατάσταση',
 	    	    PROBLEM: 'Πρόβλημα',
