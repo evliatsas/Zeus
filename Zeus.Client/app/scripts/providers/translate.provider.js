@@ -46,9 +46,10 @@ angular
 	    	    PERSONS: 'Ταυτοποιημένοι'
 	    	},
 	    	FACILITY_DETAILS: {
-	    	    NAME: 'Δομή Φιλοξενίας: ',
-	    	    DESCRIPTION: 'Περιγραφή',
-	    	    CATEGORY:'Κατηγορία',
+	    	    TITLE: 'Δομή Φιλοξενίας: ',
+	    	    NAME: 'Όνομα',
+	    	    DESCRIPTION: 'Ονομασία',
+	    	    CATEGORY:'Γεωγραφική Περιοχή',
 	    	    TYPE: 'Τύπος',
 	    	    TITLE_CAPACITY: 'Χωρητικότητα',
 	    	    CAPACITY: 'Τρέχουσα',
@@ -376,7 +377,8 @@ angular
 	            PERSONS: 'Identified'
 	        },
 	        FACILITY_DETAILS: {
-	            NAME: 'Facility: ',
+	            TITLE: 'Facility: ',
+	            NAME: 'Name',
 	            DESCRIPTION: 'Description',
 	            CATEGORY: 'Category',
 	            TYPE: 'Type',
