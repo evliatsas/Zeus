@@ -2,7 +2,7 @@
 
     <div class="form-group label-static ng-is-empty" ng-class="{ 'has-error': form.Name.$invalid }">
         <label for="i1" class="control-label">Ονομασία</label>
-        <input type="text" class="form-control" id="i1" name="Name" data-error="{{ 'FACILITY_DETAILS.NAME_ERROR' | translate }}" ng-model="facilityCtrl.facility.Name" required>
+        <input type="text" class="form-control" id="i1" name="Name" data-error="{{ 'FACILITY_DETAILS.NAME_ERROR' | translate }}" ng-model="facility.Name" required>
         <span class="material-input"></span>
     </div>
     <div class="form-group label-static ng-is-empty">
@@ -11,12 +11,12 @@
     </div>
     <div class="form-group label-static ng-is-empty" ng-class="{ 'has-error': form.Category.$invalid }">
         <label for="i3" class="control-label">{{ 'FACILITY_DETAILS.CATEGORY' | translate }}</label>
-        <input type="text" class="form-control" id="i3" name="Category" ng-model="facilityCtrl.facility.Category" uib-typeahead="cat for cat in lookup.facilityCategories | filter:$viewValue" required>
+        <input type="text" class="form-control" id="i3" name="Category" ng-model="facility.Category" uib-typeahead="cat for cat in lookup.facilityCategories | filter:$viewValue" required>
         <span class="material-input"></span>
     </div>
     <div class="form-group label-static ng-is-empty">
         <label for="i3" class="control-label">{{ 'FACILITY_DETAILS.TYPE' | translate }}</label>
-        <input type="text" class="form-control" id="i3" ng-model="facilityCtrl.facility.Type" uib-typeahead="state for state in lookup.facilityTypes | filter:$viewValue">
+        <input type="text" class="form-control" id="i3" ng-model="facility.Type" uib-typeahead="state for state in lookup.facilityTypes | filter:$viewValue">
     </div>
     <div class="row">
         <div class="row" style="padding-left:15px">
@@ -27,25 +27,25 @@
         <div class="col-md-3">
             <div class="form-group label-static ng-is-empty">
                 <label for="Capacity" class="control-label">{{ 'FACILITY_DETAILS.CAPACITY' | translate }}</label>
-                <input type="number" class="form-control" id="Capacity" ng-model="facilityCtrl.facility.Capacity">
+                <input type="number" class="form-control" id="Capacity" ng-model="facility.Capacity">
             </div>
         </div>
         <div class="col-md-3">
             <div class="form-group label-static ng-is-empty">
                 <label for="MaxCapacity" class="control-label">{{ 'FACILITY_DETAILS.MAXCAPACITY' | translate }}</label>
-                <input type="number" class="form-control" id="MaxCapacity" ng-model="facilityCtrl.facility.MaxCapacity">
+                <input type="number" class="form-control" id="MaxCapacity" ng-model="facility.MaxCapacity">
             </div>
         </div>
         <div class="col-md-3">
             <div class="form-group label-static ng-is-empty">
                 <label for="RepCapacity" class="control-label">{{ 'FACILITY_DETAILS.REPORT_CAPACITY' | translate }}</label>
-                <input type="number" class="form-control" id="RepCapacity" ng-model="facilityCtrl.facility.ReportCapacity">
+                <input type="number" class="form-control" id="RepCapacity" ng-model="facility.ReportCapacity">
             </div>
         </div>
         <div class="col-md-3">
             <div class="form-group label-static ng-is-empty">
                 <label for="Attendance" class="control-label">{{ 'FACILITY_DETAILS.ATTENDANCE' | translate }}</label>
-                <input type="number" class="form-control" id="Attendance" ng-model="facilityCtrl.facility.Attendance" readonly>
+                <input type="number" class="form-control" id="Attendance" ng-model="facility.Attendance" readonly>
             </div>
         </div>
     </div>
@@ -54,7 +54,7 @@
             <div class="form-group">
                 <div class="checkbox">
                     <label>
-                        <input type="checkbox" ng-model="facilityCtrl.facility.IsSecure" disabled>{{ 'FACILITY_DETAILS.ISSECURE' | translate }}
+                        <input type="checkbox" ng-model="facility.IsSecure" disabled>{{ 'FACILITY_DETAILS.ISSECURE' | translate }}
                     </label>
                 </div>
             </div>
@@ -63,7 +63,7 @@
             <div class="form-group">
                 <div class="checkbox">
                     <label>
-                        <input type="checkbox" ng-model="facilityCtrl.facility.HasHealthcare" disabled>{{ 'FACILITY_DETAILS.HAS_HEALTHCARE' | translate }}
+                        <input type="checkbox" ng-model="facility.HasHealthcare" disabled>{{ 'FACILITY_DETAILS.HAS_HEALTHCARE' | translate }}
                     </label>
                 </div>
 
@@ -72,7 +72,7 @@
     </div>
     <div class="form-group label-static ng-is-empty">
         <label for="Status" class="control-label">{{ 'FACILITY_DETAILS.STATUS' | translate }}</label>
-        <input type="text" class="form-control" id="Status" ng-model="facilityCtrl.facility.Status" uib-typeahead="state for state in lookup.statuses | filter:$viewValue">
+        <input type="text" class="form-control" id="Status" ng-model="facility.Status" uib-typeahead="state for state in lookup.statuses | filter:$viewValue">
     </div>
     <div class="form-group label-static ng-is-empty">
         <label for="i11" class="control-label">{{ 'FACILITY_DETAILS.STATUS_DATETIME' | translate }}</label>
@@ -103,11 +103,11 @@
 
     <div class="form-group label-static ng-is-empty">
         <label for="Administration" class="control-label">{{ 'FACILITY_DETAILS.ADMINISTRATION' | translate }}</label>
-        <input type="text" class="form-control" id="Administration" ng-model="facilityCtrl.facility.Administration" uib-typeahead="state for state in lookup.administrations | filter:$viewValue">
+        <input type="text" class="form-control" id="Administration" ng-model="facility.Administration" uib-typeahead="state for state in lookup.administrations | filter:$viewValue">
     </div>
 
     <div class="form-group label-static ng-is-empty">
         <label for="i5" class="control-label">{{ 'FACILITY_DETAILS.NOTES' | translate }}</label>
-        <textarea class="form-control" id="i5" ng-model="facilityCtrl.facility.Notes" />
+        <textarea class="form-control" id="i5" ng-model="facility.Notes" />
     </div>
 
