@@ -129,4 +129,9 @@ angular
             if ($scope.operation.DestinationContactId)
                 $location.url("/contacts/" + $scope.operation.DestinationContactId);
         }
+
+        $scope.cancel = function () {
+            $scope.operation.IsCancelled = true;
+            $scope.save();
+        }
     });
