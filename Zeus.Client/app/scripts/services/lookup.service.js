@@ -31,7 +31,7 @@
                 { Id: 1, Description: 'Αναφορά Στέγασης' },
                 { Id: 2, Description: 'Αναφορά Μετακίνησης' },
                 { Id: 3, Description: 'Αναφορά Προβλήματος' },
-                { Id: 4, Description: 'Αναφορά Αίτησης' },
+                { Id: 4, Description: 'Αίτηση' },
                 { Id: 5, Description: 'Αναφορά Κατάστασης' },
                 { Id: 6, Description: 'Μήνυμα' }
             ],
@@ -40,7 +40,7 @@
                 { Id: 1, Description: '<i class="text-primary material-icons md-48 pull-left" title="Αναφορά Στέγασης">local_hotel </i><div class="report-header">Αναφορά Στέγασης</div>' },
                 { Id: 2, Description: '<i class="text-primary material-icons md-48 pull-left" title="Αναφορά Μετακίνησης">airport_shuttle </i><div class="report-header">Αναφορά Μετακίνησης</div>' },
                 { Id: 3, Description: '<i class="text-danger material-icons md-48 pull-left" title="Αναφορά Προβλήματος">error </i><div class="report-header"><span>Αναφορά Προβλήματος</div>' },
-                { Id: 4, Description: '<i class="text-warning material-icons md-48 pull-left" title="Αναφορά Αίτησης">message </i><div class="report-header">Αναφορά Αίτησης</div>' },
+                { Id: 4, Description: '<i class="text-warning material-icons md-48 pull-left" title="Αίτηση">message </i><div class="report-header">Αίτηση</div>' },
                 { Id: 5, Description: '<i class="text-info material-icons md-48 pull-left" title="Αναφορά Κατάστασης">assignment </i><div class="report-header">Αναφορά Κατάστασης</div>' },
                 { Id: 6, Description: '<i class="text-primary material-icons md-48 pull-left" title="Μήνυμα">email </i><div class="report-header">Μήνυμα</div>' }
             ],
@@ -49,7 +49,7 @@
                 { Id: 1, Description: '<i class="text-primary material-icons md-18" title="Αναφορά Στέγασης">local_hotel</i>' },
                 { Id: 2, Description: '<i class="text-primary material-icons md-18" title="Αναφορά Μετακίνησης">airport_shuttle</i>' },
                 { Id: 3, Description: '<i class="text-danger material-icons md-18" title="Αναφορά Προβλήματος">error</i>' },
-                { Id: 4, Description: '<i class="text-warning material-icons md-18" title="Αναφορά Αίτησης">message</i>' },
+                { Id: 4, Description: '<i class="text-warning material-icons md-18" title="Αίτηση">message</i>' },
                 { Id: 5, Description: '<i class="text-info material-icons md-18" title="Αναφορά Κατάστασης">assignment</i>' },
                 { Id: 6, Description: '<i class="text-primary material-icons md-18" title="Μήνυμα">email</i>' }
             ],
