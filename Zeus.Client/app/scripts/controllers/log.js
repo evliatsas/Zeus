@@ -6,8 +6,8 @@ angular
 
         $scope.lookup = lookupService;
         $scope.entries = [];
-        $scope.from = new Date();
-        $scope.to = new Date();
+        $scope.from = moment().subtract(7, 'days').startOf('day');
+        $scope.to = moment();
 
         $scope.entriescolumns = [
             { Caption: 'Τ', Field: 'Level', Type: 'LookupHtml', Values: lookupService.entryLevelsHtml, Tooltip: 'Επίπεδο' },
