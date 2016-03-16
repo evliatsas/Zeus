@@ -84,6 +84,7 @@ angular
                 marker.setIcon(icon('#f44336'));
 
             $scope.markers.push(marker);
+            addLabel(element.Name,myLatLng);
         }
 
         $scope.moveMarker = function(facility, marker) {
@@ -104,4 +105,26 @@ angular
                 messageService.showError(response.data);
             });
         }
+
+        function addLabel(title, myLatLng) {
+            var myOptions = {
+                content: title,
+                boxStyle: {
+                    border: "1px solid black",
+                    textAlign: "center",
+                    fontSize: "8pt",
+                    width: "50px"
+                },
+                disableAutoPan: true,
+                pixelOffset: new google.maps.Size(-25, 0),
+                position: new google.maps.LatLng(myLatLng.lat, myLatLng.lng),
+                closeBoxURL: "",
+                isHidden: false,
+                pane: "mapPane",
+                enableEventPropagation: true
+            };
+
+            var ibLabel = new InfoBox(myOptions);
+            ibLabel.open(map);
+        };
     });
