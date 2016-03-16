@@ -7,7 +7,8 @@
     </div>
     <div class="form-group label-static ng-is-empty" ng-class="{ 'has-error': form.Category.$invalid }">
         <label for="i3" class="control-label">{{ 'FACILITY_DETAILS.CATEGORY' | translate }}</label>
-        <input type="text" class="form-control" id="i3" name="Category" ng-model="facility.Category" uib-typeahead="cat for cat in lookup.facilityCategories | filter:$viewValue" required>
+        <input type="text" class="form-control" id="i3" name="Category" ng-model="facility.Category" title="{{'FACILITY_DETAILS.CATEGORY_TOOLTIP' | translate}}"
+               uib-typeahead="cat for cat in lookup.facilityCategories | filter:$viewValue" required>
         <span class="material-input"></span>
     </div>
     <div class="form-group label-static ng-is-empty">
@@ -27,25 +28,25 @@
         <div class="col-md-3">
             <div class="form-group label-static ng-is-empty">
                 <label for="Capacity" class="control-label">{{ 'FACILITY_DETAILS.CAPACITY' | translate }}</label>
-                <input type="number" class="form-control" id="Capacity" ng-model="facility.Capacity">
+                <input type="number" class="form-control" id="Capacity" ng-model="facility.Capacity" title="{{'FACILITY_DETAILS.CAPACITY_TOOLTIP' | translate}}">
             </div>
         </div>
         <div class="col-md-3">
             <div class="form-group label-static ng-is-empty">
                 <label for="MaxCapacity" class="control-label">{{ 'FACILITY_DETAILS.MAXCAPACITY' | translate }}</label>
-                <input type="number" class="form-control" id="MaxCapacity" ng-model="facility.MaxCapacity">
+                <input type="number" class="form-control" id="MaxCapacity" ng-model="facility.MaxCapacity" title="{{'FACILITY_DETAILS.MAXCAPACITY_TOOLTIP' | translate}}">
             </div>
         </div>
         <div class="col-md-3">
             <div class="form-group label-static ng-is-empty">
                 <label for="RepCapacity" class="control-label">{{ 'FACILITY_DETAILS.REPORT_CAPACITY' | translate }}</label>
-                <input type="number" class="form-control" id="RepCapacity" ng-model="facility.ReportCapacity">
+                <input type="number" class="form-control" id="RepCapacity" ng-model="facility.ReportCapacity" title="{{'FACILITY_DETAILS.REPORT_CAPACITY_TOOLTIP' | translate}}">
             </div>
         </div>
         <div class="col-md-3">
             <div class="form-group label-static ng-is-empty">
                 <label for="Attendance" class="control-label">{{ 'FACILITY_DETAILS.ATTENDANCE' | translate }}</label>
-                <input type="number" class="form-control" id="Attendance" ng-model="facility.Attendance" readonly>
+                <input type="number" class="form-control" id="Attendance" ng-model="facility.Attendance" title="{{'FACILITY_DETAILS.ATTENDANCE_TOOLTIP' | translate}}" readonly>
             </div>
         </div>
     </div>
