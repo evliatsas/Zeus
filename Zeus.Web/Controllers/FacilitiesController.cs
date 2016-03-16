@@ -311,9 +311,9 @@ namespace Zeus.Controllers
                 var date = new DateTime(year, month, day);
                 var facilities = await context.Facilities.GetAll();
                 var reports = (await context.DailyReports.Get(x => x.ReportDate == date));
-                if(reports == null || reports.Count() == 0)
+                if (reports == null || reports.Count() == 0)
                 {
-                    var errorResult = Request.CreateResponse(HttpStatusCode.BadRequest);
+                    var errorResult = Request.CreateResponse(HttpStatusCode.OK);
                     errorResult.Content = new StringContent("Report not exist for date.");
                     return errorResult;
                 }
@@ -350,10 +350,10 @@ namespace Zeus.Controllers
                 var date = new DateTime(year, month, day);
                 var facilities = await context.Facilities.GetAll();
                 var reports = (await context.DailyReports.Get(x => x.ReportDate == date));
-                if (reports == null || reports.Count() == 0)
-                {
-                    return BadRequest("Report not exist for date.");
-                }
+                //if (reports == null || reports.Count() == 0)
+                //{
+                //    return BadRequest("Report not exist for date.");
+                //}
 
                 reports = reports.Select(x => {
                     x.Facility = facilities.FirstOrDefault(t => t.Id == x.FacilityId);
@@ -381,10 +381,10 @@ namespace Zeus.Controllers
 
                 var facilities = await context.Facilities.GetAll();
                 var reports = (await context.DailyReports.Get(x => x.ReportDate >= from && x.ReportDate <= to));
-                if (reports == null || reports.Count() == 0)
-                {
-                    return BadRequest("Report not exist for date.");
-                }
+                //if (reports == null || reports.Count() == 0)
+                //{
+                //    return BadRequest("Report not exist for date.");
+                //}
 
                 reports = reports.Select(x => {
                     x.Facility = facilities.FirstOrDefault(t => t.Id == x.FacilityId);

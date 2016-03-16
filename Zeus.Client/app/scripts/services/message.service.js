@@ -14,6 +14,15 @@
             askDeleteConfirmation: askDeleteConfirmation
         };
 
+        function showInfo(message) {
+            swal({
+                title: "Info",
+                text: message,
+                type: "info",
+                confirmButtonClass: "btn btn-raised btn-info"
+            });
+        }
+
         function saveSuccess() {
             swal({
                 title: "Αποθήκευση Δεδομένων",
