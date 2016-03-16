@@ -24,8 +24,8 @@
         var _responseError = function (rejection) {
             if (rejection.status == 401) {
                 localStorageService.remove('authorizationData');
-                $rootScope.redirectLocation = $location.path() == '/login' ? '/' : $location.path();
-                $location.path('/login');                
+                //$rootScope.redirectLocation = $location.path() == '/login' ? '/' : $location.path();
+                //$location.path('/login');                
             }
 
             return $q.reject(rejection);

@@ -202,8 +202,8 @@ angular
 .run(['$rootScope', '$location', 'authService', function ($rootScope, $location, authService) {
     $rootScope.$on('$routeChangeStart', function (event) {
         if (!authService.isAuth() && $location.path() != "/login") {
-            event.preventDefault();
-            $location.path('/login');
+            //event.preventDefault();
+            //$location.path('/login');
         }
     });
 
