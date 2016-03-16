@@ -24,7 +24,7 @@ namespace Zeus.Entities
             this.SourceId = report.Id;
             this.DateTime = report.DateTime;
             this.Author = author;
-            this.Description = String.Format("{0}\n{1}\n{2}", report.Facility.Name, report.Subject, report.Notes);
+            this.Description = String.Format("({0})\n{1}\n{2}", report.Facility.Name, report.Subject, report.Notes);
         }
 
         public CalendarEntry(Operation operation)

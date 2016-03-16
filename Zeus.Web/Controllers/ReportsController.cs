@@ -388,7 +388,7 @@ namespace Zeus.Controllers
                     {
                         entry.DateTime = report.DateTime;
                         entry.Author = user.Administration;
-                        entry.Description = String.Format("{0}\n{1}\n{2}", report.Facility.Name, report.Subject, report.Notes);
+                        entry.Description = String.Format("({0})\n{1}\n{2}", report.Facility.Name, report.Subject, report.Notes);
                         await context.Calendar.Update(entry);
                     }
                 }
