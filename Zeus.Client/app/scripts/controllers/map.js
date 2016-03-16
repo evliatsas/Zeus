@@ -57,10 +57,28 @@ angular
             };
         }
 
+        function getLabel(element) {
+            var label = '<div>' + element.Attendance + '/' + element.MaxCapacity + '</div>';
+            
+            label += "<div><strong>";
+            
+            if(element.HasHealthcare == true)
+                label += '<span class="text-primary">Y</span>';    
+            else
+                label += '<span class="text-danger">Y</span>';
+            
+            label += '<span>' + element.HealthcareReportsCount + '</span>';
+            label += '<span>' + element.MaxRations + '</span>';
+
+            label += "</strong></div>";
+            return label;
+        }
+
         function addMarker(element, index, array) {
             if (element == null || element.Location == null) {
                 return;
             }
+
             var myLatLng = { lat: element.Location.Coordinates[0], lng: element.Location.Coordinates[1] };
             var marker = new google.maps.Marker({
                 position: myLatLng,
@@ -84,7 +102,7 @@ angular
                 marker.setIcon(icon('#f44336'));
 
             $scope.markers.push(marker);
-            addLabel(element.Name,myLatLng);
+            addLabel(element,myLatLng);
         }
 
         $scope.moveMarker = function(facility, marker) {
@@ -106,17 +124,20 @@ angular
             });
         }
 
-        function addLabel(title, myLatLng) {
+        function addLabel(element, myLatLng) {
             var myOptions = {
-                content: title,
+                content: getLabel(element),
                 boxStyle: {
                     border: "1px solid black",
+                    backgroundColor: "black",
+                    color: "white",
+                    opacity: 0.6,
                     textAlign: "center",
                     fontSize: "8pt",
-                    width: "50px"
+                    width: "60px"
                 },
                 disableAutoPan: true,
-                pixelOffset: new google.maps.Size(-25, 0),
+                pixelOffset: new google.maps.Size(-30, 0),
                 position: new google.maps.LatLng(myLatLng.lat, myLatLng.lng),
                 closeBoxURL: "",
                 isHidden: false,
