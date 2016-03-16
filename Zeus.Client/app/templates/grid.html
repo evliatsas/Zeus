@@ -123,7 +123,7 @@
 </div>
 <div style="padding-top: 0px; padding-bottom: 10px; margin-top: 0px">
 
-    <span ng-if="items.length > 0"><strong><span ng-if="!hidePagingDropdown && items.length > pageSize">{{(page)*pageSize+1}}-{{page == pages.length-1 ? items.length : (page)*pageSize + pageSize}} / </span>{{items.length}} εγγρ.</strong></span>
+    <span ng-if="items.length > 0"><strong><span ng-if="!hidePagingDropdown && items.length > pageSize">{{(page)*pageSize+1}}-{{page == pages.length-1 ? items.length : (page)*pageSize + pageSize}} / </span>{{items.length}} {{ 'GRID.RECORDS_FOOTER' | translate }}</strong></span>
     <span ng-if="items.length == 0"><strong>0 / 0 εγγρ.</strong></span>
 
     <ul ng-if="pageSize > 0" class="pagination pagination-inverse pagination-sm pull-right" style="margin:0px">
