@@ -133,6 +133,11 @@ angular
             $scope.save();
         }
 
+        $scope.activate = function () {
+            $scope.operation.IsCancelled = false;
+            $scope.save();
+        }
+
         $scope.beforeRenderStartDate = function ($view, $dates, $leftDate, $upDate, $rightDate) {
             if ($scope.operation.ETA) {
                 var activeDate = moment($scope.operation.ETA);
