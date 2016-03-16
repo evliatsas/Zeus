@@ -29,7 +29,7 @@ angular
 
       function makeInfoWindow()
       {
-          $templateRequest('/templates/facility-map.html').then(function (template) {
+          $templateRequest('views/templates/facility-map.html').then(function (template) {
               var content = $compile(template)($scope);
               infowindow.setContent(content[0]);
           }, function () {

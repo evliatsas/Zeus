@@ -93,7 +93,6 @@
             <textarea class="form-control" id="i19" ng-model="operation.Notes"></textarea>
         </div>
     </div>
-
     <div class="col-md-8" style="padding-top:20px;">
         <div class="container-fluid shadow-box">
             <i>{{ 'OPERATION.PREPERATIONS' | translate }}</i>
@@ -162,7 +161,7 @@
                     <label class="control-label">{{ 'OPERATION.SUPERVISOR' | translate }}</label>
                     <select class="form-control" ng-model="operation.DestinationContactId">
                         <option ng-repeat="contact in contacts" value="{{contact.Id}}">
-                            {{contact.Description}}  ({{contact.Tag}})
+                            {{contact.Description}} ({{contact.Tag}})
                         </option>
                     </select>
                 </div>

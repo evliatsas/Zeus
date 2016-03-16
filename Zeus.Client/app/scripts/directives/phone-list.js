@@ -7,7 +7,7 @@ angular
             scope: {
                 phones: '='
             },
-            templateUrl: '/templates/phone-list.html',
+            templateUrl: 'views/templates/phone-list.html',
             link: function postLink(scope, element, attrs) {
                 scope.phoneTypes = [                
                     'Κινητό',
