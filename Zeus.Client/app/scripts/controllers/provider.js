@@ -93,7 +93,7 @@ angular
 
         if (isInsert) {
             $scope.contact = {};
-            $scope.provider = { Type : 0};
+            $scope.provider = { Type: 0, Personnel:[], Items:[]};
         } else {
             $http({
                 method: 'GET',
