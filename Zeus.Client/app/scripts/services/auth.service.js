@@ -5,7 +5,7 @@
         .module('zeusclientApp')
         .factory('authService', authService);
 
-    function authService($http, $q, $location, $sanitize, localStorageService, baseUrl, messageService) {
+    function authService($http, $q, $location, $sanitize, $rootScope, localStorageService, baseUrl, messageService) {
 
         var service = {
             login: login,
@@ -72,6 +72,7 @@
                     service.info.roles = info.Roles;
                     service.info.claims = info.Claims;
                     localStorageService.set('userInfo', service.info);
+                    $rootScope.userInfo = { fullname: info.FullName };
                 }, function errorCallback(response) {
                     messageService.showError(response.data.error_description);
                 });
@@ -113,6 +114,7 @@
             service.info.email = "";
             service.info.claims = [];
             service.info.roles = [];
+            $rootScope.userInfo.fullname = "";
         };
 
         function fillAuthData() {

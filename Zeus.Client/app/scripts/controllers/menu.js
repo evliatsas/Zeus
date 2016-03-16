@@ -5,6 +5,7 @@ angular
     .controller('MenuCtrl', function($scope, $location, $http, $translate, baseUrl, authService) {
 
         $scope.unread = 0;
+
         $scope.isAuth = function() {
             return authService.isAuth();
         }
@@ -47,8 +48,6 @@ angular
         }
 
         if ($scope.isAuth()) {
-            authService.fillUserInfo();
-            $scope.fullName = authService.info.title;
             $http({
                 method: 'GET',
                 url: baseUrl + '/reports/messages/unread'
@@ -58,4 +57,5 @@ angular
                 $scope.unread = 0;
             });
         }
+
     });
