@@ -115,7 +115,7 @@
                 <div class="form-group label-static col-md-1">
                     <label class="control-label">{{ 'OPERATION.PROGRESS' | translate }}</label>
                     <div class="input-group">
-                        <input type="number" class="form-control" ng-model="prep.Completion" style="min-width:42px;">
+                        <input type="number" class="form-control" ng-model="prep.Completion" style="min-width:42px;" min="0" max="100">
                         <div class="input-group-addon">%</div>
                     </div>
                 </div>
