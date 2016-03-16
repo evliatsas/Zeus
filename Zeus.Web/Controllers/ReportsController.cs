@@ -32,11 +32,11 @@ namespace Zeus.Controllers
 
             var user = await Helper.GetUserByRequest(User as ClaimsPrincipal, UserManager);
             if (user.Roles.Any(x => x == ApplicationRoles.Administrator || x == ApplicationRoles.Viewer))
-                result = await context.Reports.GetAll();
+                result = await context.Reports.Get(x=>!x.IsArchived);
             else
             {
                 var facilityClaims = user.Claims.Where(x => x.Type == ApplicationClaims.FacilityClaim).Select(s => s.Value);
-                result = await context.Reports.Get(x => facilityClaims.Contains(x.FacilityId));
+                result = await context.Reports.Get(x => !x.IsArchived && facilityClaims.Contains(x.FacilityId));
             }
 
             var facilityIds = result.Select(x => x.FacilityId).Distinct<string>();
