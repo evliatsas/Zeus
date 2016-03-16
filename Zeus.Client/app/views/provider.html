@@ -73,26 +73,12 @@
     <div class="col-md-8" style="padding-top:20px;">
         <div class="shadow-box btn-group-sm">
             <i>{{ 'PROVIDER.FACILITIES' | translate }}</i>
-            <cinnamon-grid grid-columns="facilityColumns"
-                           hide-paging-dropdown="true"
-                           page-size="0"
-                           grid-items="provider.Facilities"
-                           show-grid-buttons="true"
-                           hide-item-buttons="true"
-                           row-click-fn="showFacility(item)"
-                           grid-create-fn="addFacility()">
+            <cinnamon-grid grid-columns="facilityColumns" hide-paging-dropdown="true" page-size="0" grid-items="provider.Facilities" show-grid-buttons="true" hide-item-buttons="true" row-click-fn="showFacility(item)" grid-create-fn="addFacility()">
             </cinnamon-grid>
         </div>
         <div class="shadow-box btn-group-sm">
             <i>{{ 'PROVIDER.CONTACTS' | translate }}</i>
-            <cinnamon-grid grid-columns="contactColumns"
-                           hide-paging-dropdown="true"
-                           page-size="0"
-                           grid-items="provider.Contacts"
-                           show-grid-buttons="true"
-                           hide-item-buttons="true"
-                           row-click-fn="showContact(item)"
-                           grid-create-fn="addContact()">
+            <cinnamon-grid grid-columns="contactColumns" hide-paging-dropdown="true" page-size="0" grid-items="provider.Contacts" show-grid-buttons="true" hide-item-buttons="true" row-click-fn="showContact(item)" grid-create-fn="addContact()">
             </cinnamon-grid>
         </div>
     </div>
