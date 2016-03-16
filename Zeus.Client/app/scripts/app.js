@@ -201,9 +201,16 @@ angular
 })
 .run(['$rootScope', '$location', 'authService', function ($rootScope, $location, authService) {
     $rootScope.$on('$routeChangeStart', function (event) {
-        if (!authService.isAuth() && $location.path() != "/login") {
-            //event.preventDefault();
-            //$location.path('/login');
+        var unAuthUrls = [
+            "",
+            "/",
+            "/login",
+            "/dailyreport",
+            "/dailyreport/stats"
+        ];
+        if (!authService.isAuth() && unAuthUrls.indexOf($location.path()) == -1) {
+            event.preventDefault();
+            $location.path('/login');
         }
     });
 
