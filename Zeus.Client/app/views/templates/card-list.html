@@ -1,0 +1,8 @@
+﻿<div class="row">
+    <div class="col-md-12">
+        <a href="javascript:void(0)" class="btn btn-primary btn-fab pull-right" ng-click="addFacility()"><i class="material-icons">add</i></a>
+    </div>
+</div>
+<div ng-repeat="card in cards" class="{{cardClass}}" style="padding: 5px">
+    <card-list-item card-template="{{cardTemplate}}"></card-list-item>
+</div>

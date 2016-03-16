@@ -1,0 +1,14 @@
+﻿<div ng-if="hasChanges" class="hidden-xs hidden-sm alert alert-info save-alert" ng-class="{'morph': closed }" style="padding: 10px; position: fixed; bottom: 0px; width: 450px; height: 44px; z-index: 999">
+    <span class="pull-left" style="padding-top: 1px"><strong>Υπάρχουν αλλαγές που δεν έχετε αποθηκεύσει</strong></span>
+    <div class="btn-group-sm pull-right" style="padding: 0px; margin: 0px">
+        <span class="btn btn-raised" ng-click="save()" style="padding: 0px; margin-top: 0px; margin-bottom: 0px"><i class="material-icons" title="Αποθήκευση αλλαγών">save</i></span>
+        <span class="btn btn-raised btn-danger" ng-click="cancel()" style="padding: 0px; margin-top: 0px; margin-bottom: 0px"><i class="material-icons" title="Απόκρυψη μηνύματος">clear</i></span>
+    </div>
+</div>
+<div class="hidden-xs hidden-sm btn-group save-alert-fab" ng-class="{'morph': closed }" style="position: fixed; right: 19px; bottom: 10px; z-index: 998; display: none">
+    <span class="btn btn-danger btn-fab fab" ng-click="save()"><i class="material-icons" title="Υπάρχουν αλλαγές που δεν έχετε αποθηκεύσει">save</i></span>
+</div>
+
+<div ng-if="hasChanges" class="hidden-md hidden-lg btn-group-sm" style="position: fixed; right: 20px; bottom: 70px; z-index: 999">
+    <span class="btn btn-danger btn-fab fab" ng-click="save()"><i class="material-icons" title="Υπάρχουν αλλαγές που δεν έχετε αποθηκεύσει">save</i></span>
+</div>

@@ -1,0 +1,136 @@
+﻿<div>
+    <div class="btn-group-sm" ng-if="showPdfButton">
+        <button class="btn btn-info btn-fab fab pull-right" style="margin-left:30px" ng-click="showPdf()">
+            <i class="material-icons" title="PDF">picture_as_pdf</i>
+        </button>
+    </div>
+    <div class="btn-group-sm" ng-if="showGridButtons">
+        <button class="btn btn-info btn-fab fab pull-right" style="margin-left:30px" ng-click="createItem()">
+            <i class="material-icons" title="{{ 'GRID.ADD' | translate }}">border_color</i>
+        </button>  
+    </div>
+    <div ng-if="customActionItems" class="dropdown pull-right">
+        <button class="btn btn-primary btn-raised dropdown-toggle" type="button" id="customActionDropdownMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+            ΝΕΑ
+            <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="customActionDropdownMenu">
+            <li ng-repeat="actionItem in customActionItems">
+                <a href="" ng-click="customAction(actionItem.Id)">{{actionItem.Description}}</a>
+            </li>
+        </ul>
+    </div>
+    <div class="btn-group" ng-if="!hidePagingDropdown" style="padding-right: 20px; max-width:250px;">
+        <a class="btn btn-primary btn-raised">{{ pageSize }} {{ 'GRID.RECORDS' | translate }}</a>
+        <a class="btn btn-primary btn-raised dropdown-toggle" data-target="#" data-toggle="dropdown"><span class="caret"></span></a>
+        <ul class="dropdown-menu">
+            <li><a href="" ng-click="setPageSize(10)">10</a></li>
+            <li><a href="" ng-click="setPageSize(15)">15</a></li>
+            <li><a href="" ng-click="setPageSize(20)">20</a></li>
+            <li><a href="" ng-click="setPageSize(25)">25</a></li>
+            <li><a href="" ng-click="setPageSize(50)">50</a></li>
+            <li><a href="" ng-click="setPageSize(100)">100</a></li>
+        </ul>
+    </div>
+    <div ng-if="!hidePagingDropdown" class="input-group pull-right" style="max-width:200px; margin-top:-15px; margin-bottom:-15px;">
+        <input type="text" placeholder="{{ 'GRID.SEARCH' | translate }}" class="form-control" ng-model="gridFilter.filter" ng-change="filtering()">
+        <span class="input-group-btn">
+            <i class="text-primary material-icons md-24" style="padding-top:15px; margin-left:-15px;">search</i>
+        </span>
+    </div>
+</div>
+<div class="table-responsive" style="padding-top: 10px; padding-bottom: 0px; margin-top: 5px;">
+    <table class="table" ng-class="{'table-striped': striped}">
+        <thead>
+            <tr>
+                <th ng-if="showCheckBoxes">
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" ng-checked="allSelected()" ng-click="toggleSelectAll()">
+                        </label>
+                    </div>
+                </th>
+                <th ng-repeat="column in gridColumns" title="{{column.Tooltip}}">
+                    <span class="btn-link" ng-click="sortBy(column.Field)" title="Ταξινόμηση">
+                        <strong>{{column.Caption | translate}}</strong>
+                        <i ng-if="column.Field == sortingOrder && reverse == false" class="material-icons md-18" style="vertical-align:middle">keyboard_arrow_up</i>
+                        <i ng-if="column.Field == sortingOrder && reverse == true" class="material-icons md-18" style="vertical-align:middle">keyboard_arrow_down</i>
+                    </span>
+                </th>
+                <th ng-if="!hideItemButtons">Ενέργειες</th>
+            </tr>
+        </thead>
+        <tbody ng-repeat="group in pages[page]">
+            <tr ng-if="group.Id != ''" ng-click="gridGroupRowClick(group)" ng-style="groupRowCursor()" class="{{groupClass ? groupClass : 'warning'}}">
+                <td colspan="30">
+                    <strong>
+                        <i class="{{groupIcon ? groupIcon : 'fa fa-object-group'}}" style="padding-right: 10px"></i>
+                        <span>{{group.Id}}</span>
+                        <span class="pull-right">( {{(groups | filter: {'Id': group.Id} : true)[0].items.length }} )</span>
+                    </strong>
+                </td>
+            </tr>
+            <tr ng-repeat="item in group.items" ng-style="rowCursor()" ng-class="{'warning': isSelected(item)}">
+                <td ng-if="showCheckBoxes">
+                    <div class="checkbox" style="padding: 0px; margin: 0px">
+                        <label>
+                            <input type="checkbox" ng-checked="isSelected(item)" ng-click="toggleSelect(item)">
+                        </label>
+                    </div>
+                </td>
+                <td ng-repeat="column in gridColumns" ng-class="{ 'danger': $eval(highlight)}" ng-style="{'font-weight': $eval(highlight) ? 'bold' : 'normal'}">
+                    <!--
+            Column Types:
+            1.  undefined or empty  :   normal field
+            2.  Lookup              :   Lookup, values in Values[]
+            3.  DateTime            :   DateTime, format in Format (if empty it will be "dd-MM-yyy")
+            4.  Html                :   Html code
+            5.  LookupHtml          :   Lookup with html values, values in Values[]
+        -->
+
+                    <div ng-if="column.Type == '' || column.Type == undefined" ng-click="gridRowClick(item)"><div ng-if="column.Labels" ng-repeat="label in $eval(labels)"><span class="label label-primary pull-left">{{label}}</span></div>{{$eval('item.'+ column.Field)}}</div>
+                    <div ng-if="column.Type == 'Lookup'" ng-click="gridRowClick(item)">{{ (column.Values | filter: {Id: $eval('item.' + column.Field)})[0]['Description'] }}</div>
+                    <div ng-if="column.Type == 'DateTime'" ng-click="gridRowClick(item)">{{formatDateTime($eval('item.'+ column.Field), column.format)}}</div>
+                    <div ng-if="column.Type == 'Html'" ng-bind-html="$eval('item.'+ column.Field)" ng-click="gridRowClick(item)"></div>
+                    <div ng-if="column.Type == 'LookupHtml'" ng-click="gridRowClick(item)" ng-bind-html="(column.Values | filter: {Id: $eval('item.' + column.Field)})[0]['Description']"></div>
+                    <div ng-if="column.Type == 'Boolean'" ng-click="gridRowClick(item)"><div class="checkbox" style="padding: 0px; margin: 0px"><label><input type="checkbox" ng-checked="$eval('item.'+ column.Field)" disabled></label></div></div>
+                    <div ng-if="column.Type == 'Percentage'" class="progress progress-striped" ng-click="gridRowClick(item)">                        
+                        <span class="progress-bar" 
+                             ng-class="{'progress-bar-primary': $eval('item.'+ column.Field) < 76, 'progress-bar-warning': $eval('item.'+ column.Field) > 75 && $eval('item.'+ column.Field) < 101, 'progress-bar-danger': $eval('item.'+ column.Field) > 100}" 
+                             ng-style="{width: $eval('item.'+ column.Field) + '%'}" title="{{$eval('item.'+ column.Field) + '%'}}">                           
+                        </span>
+                    </div>                    
+                </td>
+                <td ng-if="!hideItemButtons" style="width: 100px">
+                    <div class="btn-group">
+                        <button ng-if="checkAction('Edit')" type="button" title="Επεξεργασία" class="btn btn-link btn-xs" data-toggle="modal" data-target="#editModal" ng-click="editGridItem(item)">
+                            <i class="fa fa-edit"></i>
+                        </button>
+                        <button ng-if="checkAction('Details')" type="button" title="Λεπτομέρειες" class="btn btn-link btn-xs" ng-click="viewGridItemDetails(item)">
+                            <i class="fa fa-reorder"></i>
+                        </button>
+                        <button ng-if="checkAction('DetailsTab')" type="button" title="Άνοιγμα σε νέο παρ." class="btn btn-link btn-xs" ng-click="viewGridItemDetailsInTab(item)">
+                            <i class="fa fa-external-link"></i>
+                        </button>
+                        <button ng-if="checkAction('Delete')" type="button" title="Διαγραφή" class="btn btn-link btn-xs" data-toggle="modal" data-target="#deleteModal" ng-click="deleteGridItem(item)">
+                            <i class="fa fa-remove"></i>
+                        </button>                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<div style="padding-top: 0px; padding-bottom: 10px; margin-top: 0px">
+
+    <span ng-if="items.length > 0"><strong><span ng-if="!hidePagingDropdown && items.length > pageSize">{{(page)*pageSize+1}}-{{page == pages.length-1 ? items.length : (page)*pageSize + pageSize}} / </span>{{items.length}} {{ 'GRID.RECORDS_FOOTER' | translate }}</strong></span>
+    <span ng-if="items.length == 0"><strong>0 / 0 εγγρ.</strong></span>
+
+    <ul ng-if="pageSize > 0" class="pagination pagination-inverse pagination-sm pull-right" style="margin:0px">
+        <li ng-class="{disabled: page == 0}"><a ng-click="firstPage()"><i class="material-icons">first_page</i> {{ 'GRID.FIRST' | translate }}</a>
+        <li ng-class="{disabled: page == 0}"><a ng-click="previousPage()"><i class="material-icons">fast_rewind</i> {{ 'GRID.PREVIOUS' | translate }}</a></li>
+        <li ng-class="{disabled: items.length < pageSize || page == pages.length - 1}"><a ng-click="nextPage()">{{ 'GRID.NEXT' | translate }} <i class="material-icons">fast_forward</i></a></li>
+        <li ng-class="{disabled: items.length < pageSize || page == pages.length - 1}"><a ng-click="lastPage()">{{ 'GRID.LAST' | translate }} <i class="material-icons">last_page</i></a></li>
+    </ul>
+
+</div>

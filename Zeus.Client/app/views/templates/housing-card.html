@@ -1,0 +1,52 @@
+﻿<div class="panel panel-primary" ng-class="{ 'panel-warning': card.Utilization > 74, 'panel-danger': card.Utilization > 100 }">
+    <div class="panel-heading">
+
+        <i class="material-icons md-36 pull-left">home</i>
+        <h4>
+            <span style="padding-left:10px">{{card.Type}}</span>
+            <span class="pull-right"><strong>{{card.Utilization}}%</strong></span>
+        </h4>
+
+    </div>
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group label-static ng-is-empty">
+                    <label for="{{index + 1}}" class="control-label">Κατηγορία</label>
+                    <input type="text" class="form-control" id="{{$index + 1}}" ng-model="card.Type" uib-typeahead="state for state in lookup.housingCategories | filter:$viewValue">
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group label-static is-empty">
+                    <label for="Count" class="control-label">Πλήθος</label>
+                    <input type="number" class="form-control" id="Count" ng-model="card.Count">
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group label-static ng-is-empty">
+            <label for="Status" class="control-label">Κατάσταση</label>
+            <input type="text" class="form-control" id="Status" ng-model="card.Status" uib-typeahead="state for state in lookup.statuses | filter:$viewValue">
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group label-static ng-is-empty">
+                    <label for="Capacity" class="control-label">Χωρητικότητα</label>
+                    <input type="number" class="form-control" id="Capacity" ng-model="card.Capacity">
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group label-static ng-is-empty">
+                    <label for="Attendance" class="control-label">Φιλοξενούμενοι</label>
+                    <input type="number" class="form-control" id="Attendance" ng-model="card.Attendance" readonly>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="panel-footer">
+        <div class="btn-group btn-group-justified">
+            <span ng-click="removeCard($index)" class="btn btn-xs" title="Διαγραφή" style="padding: 0px"><i class="material-icons md-36 text-danger">delete</i></span>
+        </div>
+    </div>
+</div>
