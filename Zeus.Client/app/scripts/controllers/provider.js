@@ -97,6 +97,7 @@ angular
 
         if (isInsert) {
             $scope.contact = {};
+            $scope.provider = { Type : 0};
         } else {
             $http({
                 method: 'GET',
