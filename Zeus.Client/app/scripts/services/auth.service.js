@@ -5,7 +5,7 @@
         .module('zeusclientApp')
         .factory('authService', authService);
 
-    function authService($http, $q, $location, $sanitize, $rootScope, localStorageService, baseUrl, messageService) {
+    function authService($http, $q, $location, $sanitize, $rootScope, localStorageService, baseUrl, authUrl, messageService) {
 
         var service = {
             login: login,
@@ -46,7 +46,7 @@
             var deferred = $q.defer();
 
             $http({
-                url: 'http://localhost:8080/oauth2/token',
+                url: authUrl,
                 headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
                 method: 'POST',
                 transformRequest: function(obj) {

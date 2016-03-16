@@ -183,6 +183,7 @@ angular
       $httpProvider.interceptors.push('authInterceptorService');
   })
   .constant("baseUrl", "http://localhost:8080")
+  .constant("authUrl", "http://localhost:8080/oauth2/token")
   .constant("moment", moment)
   .constant('toastr', toastr)
   .directive('convertToNumber', function () {
