@@ -49,6 +49,10 @@ namespace Zeus.Controllers
                     facility.ReportsCount = await context.Reports.Count(x => x.FacilityId == facility.Id);
                     facility.PersonsCount = await context.Persons.Count(x => x.FacilityId == facility.Id);
                     facility.HealthcareReportsCount = await context.Reports.Count(x => x.FacilityId == facility.Id && !x.IsArchived && x.Type == ReportType.HealthcareProblemReport);
+                    var multiProviders = await context.ProviderFacilities.Get(x => x.FacilityId == facility.Id);
+                    var providerIds = multiProviders.Select(x => x.ProviderId);
+                    var providers = await context.Providers.Get(x => providerIds.Contains(x.Id));
+                    facility.Providers = providers.ToList();
                 }
 
                 return result == null ? this.Ok(new List<Facility>().AsEnumerable()) : this.Ok(result.OrderByDescending(o => o.Name).AsEnumerable());
