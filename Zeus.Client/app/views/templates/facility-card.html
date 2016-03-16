@@ -8,15 +8,10 @@
     </div>
     <div class="panel-body" style="height: 150px">
         <p style="height: 60px; overflow: hidden; text-overflow: ellipsis">{{card.Description}}</p>
-
-        <!--<p class="text-primary pull-right">      
-            <br />      
-            
-        </p>-->
         <p class="text-primary pull-right">
-            <a href="" ></a>{{ 'FACILITY_CARD.GUESTS' | translate }}<span class="badge pull-right">{{card.Attendance}} / {{card.Capacity}}</span></a>
-            </br>
-            <a href="" ng-click="goto('/facilities/' + card.Id + '?tab=3')">{{ 'FACILITY_CARD.REPORTS' | translate }}<span class="badge pull-right">{{card.ReportsCount}}</span></a>            
+            <a href="">{{ 'FACILITY_CARD.GUESTS' | translate }}<span class="badge pull-right">{{card.Attendance}} / {{card.Capacity}}</span></a>
+            <br />
+            <a href="" ng-click="goto('/facilities/' + card.Id + '?tab=3')">{{ 'FACILITY_CARD.REPORTS' | translate }}<span class="badge pull-right">{{card.ReportsCount}}</span></a>
             <br />
             <a href="" ng-click="goto('/facilities/' + card.Id + '?tab=4')">{{ 'FACILITY_CARD.IDENTIFIED' | translate }}<span class="badge pull-right">{{card.PersonsCount}}</span></a>
         </p>

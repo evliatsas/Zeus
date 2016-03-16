@@ -14,7 +14,7 @@
                 <i class="material-icons" title="{{ 'SITUATION_REPORT.SAVE' | translate }}">save</i>
             </button>
         </div>
-        <div ng-bind-html="lookup.reportTitles[reportType].Description" />
+        <div ng-bind-html="lookup.reportTitles[reportType].Description"></div>
 
         <div class="form-group label-static ng-is-empty" ng-class="{ 'has-error': form.Priority.$invalid }">
             <label for="i10" class="control-label">{{ 'SITUATION_REPORT.PRIORITY' | translate }}</label>
@@ -45,7 +45,7 @@
         </div>
         <div class="form-group label-static ng-is-empty">
             <label for="i3" class="control-label">{{ 'SITUATION_REPORT.NOTES' | translate }}</label>
-            <textarea class="form-control" id="i3" ng-model="report.Notes" />
+            <textarea class="form-control" id="i3" ng-model="report.Notes"></textarea>
         </div>
     </div>
 </form>
