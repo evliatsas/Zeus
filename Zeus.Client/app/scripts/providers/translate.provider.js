@@ -221,6 +221,7 @@ angular
 	    	    PROVIDERS: 'Υποστήριξη',
 	    	    CONTACT: 'Επαφή Προορισμού',
 	    	    CANCEL: 'Ακύρωση Επιχείρησης',
+                ACTIVATE:'Ενεργοποίηση Επιχείρησης',
                 INSTRUCTIONS: 'Οδηγίες',
 	    	    PROBLEMS: 'Προβλήματα',
 	    	    NOTES: 'Σημειώσεις',
