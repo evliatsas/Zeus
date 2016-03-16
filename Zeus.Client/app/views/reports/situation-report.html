@@ -30,17 +30,17 @@
         </div>
         <div class="form-group label-static ng-is-empty"  ng-class="{ 'has-error': form.PersonCount.$invalid }">
             <label for="i4" class="control-label">{{ 'SITUATION_REPORT.PERSON_COUNT' | translate }}</label>
-            <input type="number" class="form-control" name="PersonCount" id="i4" ng-model="report.PersonCount" required>
+            <input type="number" class="form-control" name="PersonCount" id="i4" ng-model="report.PersonCount" required min="0">
             <span class="material-input"></span>
         </div>
         <div class="form-group label-static ng-is-empty">
             <label for="i4" class="control-label">{{ 'SITUATION_REPORT.CHILDREN' | translate }}</label>
-            <input type="number" class="form-control" id="i4" ng-model="report.Children">
+            <input type="number" class="form-control" id="i4" ng-model="report.Children" min="0" max="{{report.PersonCount}}">
             <span class="material-input"></span>
         </div>
         <div class="form-group label-static ng-is-empty">
             <label for="i4" class="control-label">{{ 'SITUATION_REPORT.SENSITIVE_COUNT' | translate }}</label>
-            <input type="number" class="form-control" id="i4" ng-model="report.SensitiveCount">
+            <input type="number" class="form-control" id="i4" ng-model="report.SensitiveCount" min="0" max="{{report.PersonCount}}">
             <span class="material-input"></span>
         </div>
         <div class="form-group label-static ng-is-empty">
