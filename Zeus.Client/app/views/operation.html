@@ -1,7 +1,10 @@
 ﻿<form name="form">
     <div class="pull-right">
-        <button class="btn btn-danger btn-fab fab" ng-click="cancel()" style="margin-right:20px;">
-            <i class="material-icons" title="{{ 'OPERATION.CANCEL' | translate }}">cancel</i>
+        <button ng-if="!operation.IsCancelled" class="btn btn-danger btn-fab fab" ng-click="cancel()" title="Ακύρωση">
+            <i class="material-icons">cancel</i>
+        </button>
+        <button ng-if="operation.IsCancelled" class="btn btn-info btn-fab fab" ng-click="activate()" title="Ενεργοποίηση">
+            <i class="material-icons">check_circle</i>
         </button>
         <button class="btn btn-danger btn-fab fab" ng-click="delete()">
             <i class="material-icons" title="{{ 'OPERATION.DELETE' | translate }}">delete</i>
