@@ -48,6 +48,7 @@ namespace Zeus.Controllers
                 {
                     facility.ReportsCount = await context.Reports.Count(x => x.FacilityId == facility.Id);
                     facility.PersonsCount = await context.Persons.Count(x => x.FacilityId == facility.Id);
+                    facility.HealthcareReportsCount = await context.Reports.Count(x => x.FacilityId == facility.Id && !x.IsArchived && x.Type == ReportType.HealthcareProblemReport);
                 }
 
                 return result == null ? this.Ok(new List<Facility>().AsEnumerable()) : this.Ok(result.OrderByDescending(o => o.Name).AsEnumerable());

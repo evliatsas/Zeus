@@ -114,6 +114,6 @@ namespace Zeus.Entities.Repositories
         {
             var count = await this.collection.CountAsync(predicate);
             return (int)count;
-        }
+        }        
     }
 }

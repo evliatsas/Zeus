@@ -41,6 +41,9 @@ namespace Zeus.Entities
         [BsonIgnore]
         public int ReportsCount { get; set; }
         [BsonIgnore]
+        public int HealthcareReportsCount { get; set; }
+        public int MaxRations { get; set; }
+        [BsonIgnore]
         public IList<Report> Reports { get; set; }
         [BsonIgnore]
         public int PersonsCount { get; set; }
