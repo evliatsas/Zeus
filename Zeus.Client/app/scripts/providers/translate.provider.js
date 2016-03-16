@@ -80,7 +80,7 @@ angular
 	    	    SITUATION: 'Κατάσταση',
 	    	    PROBLEM: 'Πρόβλημα',
 	    	    MESSAGE: 'Μήνυμα',
-	    	    FEEDING: 'Σίτηση'
+	    	    FEEDING: 'Σίτιση'
 	    	},
 	    	FACILITY_MAP: {
 	    	    GUESTS: 'Φιλοξενούμενοι: ',
@@ -93,7 +93,7 @@ angular
 	    	},
 	    	CHARTS: {
 	    		FROM: 'Από',
-	    		UNTIL: 'Εώς',
+	    		UNTIL: 'Έως',
 	    		SHOW: 'ΕΜΦΑΝΙΣΗ'
 	    	},
 	    	LOOKUP_MODAL: {
