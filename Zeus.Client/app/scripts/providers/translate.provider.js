@@ -82,7 +82,8 @@ angular
 	    	    SITUATION: 'Κατάσταση',
 	    	    PROBLEM: 'Πρόβλημα',
 	    	    MESSAGE: 'Μήνυμα',
-	    	    FEEDING: 'Σίτιση'
+	    	    FEEDING: 'Σίτιση',
+	    	    HEALTHCARE: 'Υγειονομική'
 	    	},
 	    	CARD_LIST:{
 	    	    ADD: 'Προσθήκη Δομής Φιλοξενίας'
@@ -439,7 +440,8 @@ angular
 	            SITUATION: 'Situation',
 	            PROBLEM: 'Problem',
 	            MESSAGE: 'Message',
-	            FEEDING: 'Feeding'
+	            FEEDING: 'Feeding',
+	            HEALTHCARE:'Healthcare'
 	        },
 	        FACILITY_MAP: {
 	            GUESTS: 'Guests: ',
