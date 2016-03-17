@@ -36,7 +36,7 @@
         </div>
         <div class="form-group label-static ng-is-empty">
             <label for="Sensitivity" class="control-label">{{ 'PERSON.SENSITIVITY' | translate }}</label>
-            <input type="text" class="form-control" id="Sensitivity" ng-model="data.Sensitivity">
+            <input type="text" class="form-control" id="Sensitivity" ng-model="data.Sensitivity" ng-disabled="!data.IsSensitive">
         </div>
         <div class="form-group label-static ng-is-empty is-empty">
             <label for="FacilityId" class="control-label">{{ 'PERSON.FACILITY' | translate }}</label>

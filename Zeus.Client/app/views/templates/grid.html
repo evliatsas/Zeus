@@ -10,7 +10,7 @@
         </button>  
     </div>
     <div ng-if="customActionItems" class="dropdown pull-right">
-        <button class="btn btn-primary btn-raised dropdown-toggle" type="button" id="customActionDropdownMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+        <button class="btn btn-primary btn-raised dropdown-toggle" type="button" id="customActionDropdownMenu" title="{{ 'GRID.NEW_REPORT' | translate }}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
             ΝΕΑ
             <span class="caret"></span>
         </button>
@@ -21,8 +21,8 @@
         </ul>
     </div>
     <div class="btn-group" ng-if="!hidePagingDropdown" style="padding-right: 20px; max-width:250px;">
-        <a class="btn btn-primary btn-raised">{{ pageSize }} {{ 'GRID.RECORDS' | translate }}</a>
-        <a class="btn btn-primary btn-raised dropdown-toggle" data-target="#" data-toggle="dropdown"><span class="caret"></span></a>
+        <a class="btn btn-primary btn-raised" title="{{ 'GRID.RECORDS_CHOICE' | translate }}">{{ pageSize }} {{ 'GRID.RECORDS' | translate }}</a>
+        <a class="btn btn-primary btn-raised dropdown-toggle" data-target="#" data-toggle="dropdown" title="{{ 'GRID.RECORDS_SELECT' | translate }}"><span class="caret"></span></a>
         <ul class="dropdown-menu">
             <li><a href="" ng-click="setPageSize(10)">10</a></li>
             <li><a href="" ng-click="setPageSize(15)">15</a></li>

@@ -84,6 +84,9 @@ angular
 	    	    MESSAGE: 'Μήνυμα',
 	    	    FEEDING: 'Σίτιση'
 	    	},
+	    	CARD_LIST:{
+	    	    ADD: 'Προσθήκη Δομής Φιλοξενίας'
+	    	},
 	    	FACILITY_MAP: {
 	    	    GUESTS: 'Φιλοξενούμενοι: ',
 	    	    CAPACITY: 'Χωρητικότητα',
@@ -96,7 +99,8 @@ angular
 	    	CHARTS: {
 	    		FROM: 'Από',
 	    		UNTIL: 'Έως',
-	    		SHOW: 'ΕΜΦΑΝΙΣΗ'
+	    		SHOW: 'ΕΜΦΑΝΙΣΗ',
+	    	    SHOW_DETAILS:'Εμφάνιση Στατιστικών για τις επιλεγμένες ημερομηνίες'
 	    	},
 	    	LOOKUP_MODAL: {
 	    	    CANCEL: 'ΑΚΥΡΩΣΗ',
@@ -316,6 +320,8 @@ angular
 	    	    PREVIOUS: 'Προηγούμενη',
 	    	    NEXT: 'Επόμενη',
 	    	    RECORDS: 'ΕΓΓΡΑΦΕΣ',
+	    	    RECORDS_CHOICE: 'Επιλεγμένες Εγγραφές',
+	    	    RECORDS_SELECT: 'Επιλογή',
 	    	    RECORDS_FOOTER: 'εγγραφές',
 	    	    TYPE: 'Τύπος',
 	    	    CAPACITY: 'Χωρητικότητα',
@@ -327,6 +333,7 @@ angular
 	    	    TITLE: 'Τίτλος',
 	    	    COMPANY: 'Οργανισμός',
 	    	    ADMINISTRATION: 'Διαχείριση',
+                NEW_REPORT:'Δημιουργία Νέας Αναφοράς',
 	    	    DESCRIPTION: 'Περιγραφή',
 	    	    PERSONNEL: 'Προσωπικό',
 	    	    PRIORITY: 'Προτ.',
@@ -419,6 +426,9 @@ angular
 	            ATTENDANCE_TOOLTIP: 'Current Guests Count',
 	            MAX_RATIONS_TOOLTIP: 'Maximum Rations Capacity'
 	        },
+	        CARD_LIST:{
+	            ADD: 'Add Facility'
+	        },
 	        FACILITY_CARD: {
 	            GUESTS: 'Guests: ',
 	            REPORTS: 'Reports: ',
@@ -442,7 +452,8 @@ angular
 	        CHARTS: {
 	    		FROM: 'From',
 	    		UNTIL: 'Until',
-	    		SHOW: 'Show'
+	    		SHOW: 'Show',
+	    		SHOW_DETAILS: 'Show Charts for selected dates'
 	    	},
 	        LOOKUP_MODAL: {
 	            CANCEL: 'CANCEL',
@@ -499,7 +510,7 @@ angular
 	            PRIORITY: 'Priority',
 	            SUBJECT: 'Subject',
 	            STARTING_POINT: 'From (Facility)',
-	            DESTINATION: 'To (Facility)',
+	            DESTINATION: 'To',
 	            MOVEMENT_TYPE: 'Type of Transportation',
 	            PERSON_COUNT: 'Number of Persons',
 	            DEPARTURE: 'Departure Date',
@@ -658,7 +669,9 @@ angular
 	            LAST: 'Last',
 	            PREVIOUS: 'Previous',
 	            NEXT: 'Next',
-                RECORDS: 'records',
+	            RECORDS: 'records',
+	            RECORDS_CHOICE: 'Number of Records',
+	            RECORDS_SELECT:"Select Number of Records",
                 RECORDS_FOOTER: 'records',
 	            TYPE: 'Type',
 	            CAPACITY: 'Capacity',
@@ -670,6 +683,7 @@ angular
 	            TITLE: 'Title',
 	            COMPANY: 'Organization',
 	            ADMINISTRATION: 'Administration',
+	            NEW_REPORT: 'New Report',
 	            DESCRIPTION: 'Description',
 	            PERSONNEL: 'Personnel',
 	            PRIORITY: 'Prior.',
