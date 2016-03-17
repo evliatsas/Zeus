@@ -24,17 +24,25 @@
                 </option>
             </select>
         </div>
+        <div class="form-group label-static ng-is-empty" ng-class="{ 'has-error': form.Priority.$invalid }">
+            <label for="i2" class="control-label">{{ 'REPORT.SHORTAGE_TYPE' | translate }}</label>
+            <select id="i2" class="form-control" name="Priority" ng-model="report.Category" convert-to-number required>
+                <option ng-repeat="shortage in lookup.shortageTypes" value="{{shortage.Id}}">
+                    {{shortage.Description}}
+                </option>
+            </select>
+        </div>
         <div class="form-group label-static ng-is-empty">
-            <label for="i2" class="control-label">{{ 'REPORT.SUBJECT' | translate }}</label>
-            <input type="text" class="form-control" id="i2" ng-model="report.Subject">
+            <label for="i3" class="control-label">{{ 'REPORT.SUBJECT' | translate }}</label>
+            <input type="text" class="form-control" id="i3" ng-model="report.Subject">
         </div>
         <div ng-if="reportType != 2" class="form-group label-static ng-is-empty">
-            <label for="i3" class="control-label">{{ 'REPORT.FACILITY' | translate }}</label>
-            <input type="text" class="form-control" id="i3" ng-model="report.Facility.Name" readonly>
+            <label for="i4" class="control-label">{{ 'REPORT.FACILITY' | translate }}</label>
+            <input type="text" class="form-control" id="i4" ng-model="report.Facility.Name" readonly>
         </div>
         <div class="form-group label-static ng-is-empty">
-            <label for="i4" class="control-label">{{ 'REPORT.NOTES' | translate }}</label>
-            <textarea class="form-control" id="i4" ng-model="report.Notes"></textarea>
+            <label for="i5" class="control-label">{{ 'REPORT.NOTES' | translate }}</label>
+            <textarea class="form-control" id="i5" ng-model="report.Notes"></textarea>
         </div>
     </div>
 </form>

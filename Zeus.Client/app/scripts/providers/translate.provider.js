@@ -145,6 +145,7 @@ angular
 	    	REPORT: {
 	    	    DELETE: 'Διαγραφή Αναφοράς',
 	    	    SAVE: 'Αποθήκευση Αναφοράς',
+	    	    SHORTAGE_TYPE: 'Κατηγορία',
 	    	    NOT_ARCHIVED: 'Αρχειοθέτηση Αναφοράς',
 	    	    ARCHIVED: 'Εξαγωγή Αναφοράς από Αρχείο',
 	    	    PRIORITY: 'Προτεραιότητα',
@@ -330,6 +331,7 @@ angular
 	    	    LAST: 'Τελευταία',
 	    	    PREVIOUS: 'Προηγούμενη',
 	    	    NEXT: 'Επόμενη',
+	    	    SHORTAGE_TYPE: 'Κατηγορία',
 	    	    RECORDS: 'ΕΓΓΡΑΦΕΣ',
 	    	    RECORDS_CHOICE: 'Επιλεγμένες Εγγραφές',
 	    	    RECORDS_SELECT: 'Επιλογή',
@@ -691,6 +693,7 @@ angular
 	            LAST: 'Last',
 	            PREVIOUS: 'Previous',
 	            NEXT: 'Next',
+	            SHORTAGE_TYPE: 'Category',
 	            RECORDS: 'records',
 	            RECORDS_CHOICE: 'Number of Records',
 	            RECORDS_SELECT:"Select Number of Records",
