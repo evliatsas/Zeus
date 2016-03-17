@@ -82,7 +82,18 @@ angular
 	    	    SITUATION: 'Κατάσταση',
 	    	    PROBLEM: 'Πρόβλημα',
 	    	    MESSAGE: 'Μήνυμα',
-	    	    FEEDING: 'Σίτιση'
+	    	    FEEDING: 'Σίτιση',
+	    	    HEALTHCARE: 'Υγειονομική'
+	    	},
+	    	REPORT_TITLES: {
+	    	    APPLICATION: 'Αίτηση',
+	    	    HOUSING: 'Αναφορά Στέγασης',
+	    	    TRANSPORT: 'Αναφορά Μετακίνησης',
+	    	    SITUATION: 'Αναφορά Κατάστασης',
+	    	    PROBLEM: 'Αναφορά Προβλήματος',
+	    	    MESSAGE: 'Μήνυμα',
+	    	    FEEDING: 'Αναφορά Σίτισης',
+	    	    HEALTHCARE: 'Αναφορά Υγειονομική'
 	    	},
 	    	CARD_LIST:{
 	    	    ADD: 'Προσθήκη Δομής Φιλοξενίας'
@@ -426,6 +437,16 @@ angular
 	            ATTENDANCE_TOOLTIP: 'Current Guests Count',
 	            MAX_RATIONS_TOOLTIP: 'Maximum Rations Capacity'
 	        },
+	        REPORT_TITLES: {
+	            APPLICATION: 'Application',
+	            HOUSING: 'Housing Report',
+	            TRANSPORT: 'Transportation Report',
+	            SITUATION: 'Situation Report',
+	            PROBLEM: 'Problem Report',
+	            MESSAGE: 'Message Report',
+	            FEEDING: 'Feeding Report',
+	            HEALTHCARE: 'Healthcare Report'
+	        },
 	        CARD_LIST:{
 	            ADD: 'Add Facility'
 	        },
@@ -439,7 +460,8 @@ angular
 	            SITUATION: 'Situation',
 	            PROBLEM: 'Problem',
 	            MESSAGE: 'Message',
-	            FEEDING: 'Feeding'
+	            FEEDING: 'Feeding',
+	            HEALTHCARE:'Healthcare'
 	        },
 	        FACILITY_MAP: {
 	            GUESTS: 'Guests: ',

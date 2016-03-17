@@ -105,11 +105,10 @@
 
         function logout() {
             localStorageService.remove('authorizationData');
-
+            localStorageService.remove('userInfo');
             service.authentication.isAuth = false;
             service.authentication.userName = "";
             service.authentication.token = "";
-
             service.info.title = "";
             service.info.email = "";
             service.info.claims = [];
@@ -139,12 +138,12 @@
 
         function changePassword(user, action) {
             var url = baseUrl + '/users/changepassword';
-            
-            if(action=="reset")
-                url = baseUrl + '/users/resetpassword';                            
 
-            user.Password = $sanitize(user.Password), 
-            user.NewPassword = $sanitize(user.NewPassword);
+            if (action == "reset")
+                url = baseUrl + '/users/resetpassword';
+
+            user.Password = $sanitize(user.Password),
+                user.NewPassword = $sanitize(user.NewPassword);
             user.PasswordConfirm = $sanitize(user.PasswordConfirm);
             return $http({
                 method: 'POST',
@@ -157,7 +156,7 @@
             error(function(data, status, headers, config) {
                 messageService.showError(data.Message);
             });
-        }      
+        }
 
         function isInRole(role) {
             var r = service.info.roles;
