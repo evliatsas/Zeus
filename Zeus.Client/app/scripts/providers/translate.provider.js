@@ -110,6 +110,7 @@ angular
 	    	CHARTS: {
 	    		FROM: 'Από',
 	    		UNTIL: 'Έως',
+                TO:'Πρός',
 	    		SHOW: 'ΕΜΦΑΝΙΣΗ',
 	    	    SHOW_DETAILS:'Εμφάνιση Στατιστικών για τις επιλεγμένες ημερομηνίες'
 	    	},
@@ -157,11 +158,12 @@ angular
 	    	    DELETE: 'Διαγραφή Αναφοράς',
 	    	    SAVE: 'Αποθήκευση Αναφοράς',
 	    	    PRIORITY: 'Προτεραιότητα',
-	    	    CHILDREN: 'Πλήθος Παιδιών ',
 	    	    SUBJECT: 'Θέμα',
-	    	    PERSON_COUNT: 'Πλήθος Ατόμων',
-	    	    SENSITIVE_COUNT: 'Άτομα Ευαίσθητης Ομάδας',
-	    	    NOTES: 'Κείμενο'
+	    	    COUNT: 'Σύνολο',
+	    	    SENSITIVITY: 'Ευπαθείς Ευάλωτες Ομάδες',
+	    	    SENSITIVITY_TYPE: 'Είδος',
+                PROCEDURE:'Διαδικασίες Οργανισμών',
+	    	    NOTES: 'Σημειώσεις'
 	    	},
 	    	TRANSPORT_REPORT: {
 	    	    DELETE: 'Διαγραφή Αναφοράς',
@@ -477,6 +479,7 @@ angular
 	    		FROM: 'From',
 	    		UNTIL: 'Until',
 	    		SHOW: 'Show',
+	    		TO: 'TO',
 	    		SHOW_DETAILS: 'Show Charts for selected dates'
 	    	},
 	        LOOKUP_MODAL: {
@@ -522,10 +525,10 @@ angular
 	            DELETE: 'Delete Report',
 	            SAVE: 'Save Report',
 	            PRIORITY: 'Priority',
-	            CHILDREN: 'Number of Children ',
 	            SUBJECT: 'Subject',
-	            PERSON_COUNT: 'Number of Persons',
-	            SENSITIVE_COUNT: 'Number of Sensitive Persons ',
+	            COUNT: 'Total',
+	            SENSITIVE_COUNT: 'Sensitive Group of People',
+	            PROCEDURE: 'Organization Procedures',
 	            NOTES: 'Notes'
 	        },
 	        TRANSPORT_REPORT: {
