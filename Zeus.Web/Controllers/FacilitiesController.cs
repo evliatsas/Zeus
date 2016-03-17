@@ -52,7 +52,8 @@ namespace Zeus.Controllers
                 {
                     facility.ReportsCount = await context.Reports.Count(x => x.FacilityId == facility.Id);
                     facility.PersonsCount = await context.Persons.Count(x => x.FacilityId == facility.Id);
-                    facility.HealthcareReportsCount = await context.Reports.Count(x => x.FacilityId == facility.Id && !x.IsArchived && x.Type == ReportType.HealthcareProblemReport);
+                    var problemReports = await context.Reports.Get(x => x.FacilityId == facility.Id && !x.IsArchived && x.Type == ReportType.ProblemReport);
+                    facility.HealthcareReportsCount = problemReports.Cast<ProblemReport>().Count(x => x.Category == ProblemReport.ProblemCategory.Healthcare);
                     var tmpProviderIds = multiProviders.Where(x => x.FacilityId == facility.Id).Select(p => p.ProviderId);
                     facility.Providers = providers.Where(x => tmpProviderIds.Contains(x.Id)).ToList();
                 }
@@ -400,91 +401,6 @@ namespace Zeus.Controllers
             catch (Exception exc)
             {
                 return BadRequest(exc.ToString());
-            }
-        }
-
-        [Route("getfullreport")]
-        [ResponseType(typeof(IEnumerable<Facility>))]
-        [HttpGet]
-        public async Task<IHttpActionResult> GetFullReport()
-        {
-            try
-            {
-                IEnumerable<Facility> result;
-
-                var user = await Helper.GetUserByRequest(User as ClaimsPrincipal, UserManager);
-                result = await context.Facilities.GetAll();
-
-                var facilitiesIds = result.Select(x => x.Id);
-                var multiProviders = await context.ProviderFacilities.Get(x => facilitiesIds.Contains(x.FacilityId));
-                var providerIds = multiProviders.Select(x => x.ProviderId);
-                var providers = await context.Providers.Get(x => providerIds.Contains(x.Id) && (x.Type == ProviderType.Healthcare || x.Type == ProviderType.Catering));
-                var reports = await context.Reports.Get(x => facilitiesIds.Contains(x.FacilityId) && (x.Type == ReportType.HealthcareProblemReport));
-                var dr = await context.DailyReports.Get(t => t.ReportDate == DateTime.Now.Date);
-                foreach (var facility in result)
-                {
-                    facility.Reports = reports.Where(t => t.FacilityId == facility.Id).ToList();
-                    var tmpProviderIds = multiProviders.Where(x => x.FacilityId == facility.Id).Select(p => p.ProviderId);
-                    facility.Providers = providers.Where(x => tmpProviderIds.Contains(x.Id)).ToList();
-                    var tmp = dr.FirstOrDefault(t => t.FacilityId == facility.Id);
-                    facility.Arrivals =  tmp == null?0: tmp.Arrivals;
-                }
-
-                return result == null ? this.Ok(new List<Facility>().AsEnumerable()) : this.Ok(result.OrderByDescending(o => o.Name).AsEnumerable());
-            }
-            catch (Exception exc)
-            {
-                return this.BadRequest(exc.ToString());
-            }
-        }
-
-        [AllowAnonymous]
-        [Route("getfullpdf")]
-        [HttpGet]
-        public async Task<HttpResponseMessage> GetFullPdf()
-        {
-            try
-            {
-                IEnumerable<Facility> facilities;
-
-                var user = await Helper.GetUserByRequest(User as ClaimsPrincipal, UserManager);
-                facilities = await context.Facilities.GetAll();
-
-                var facilitiesIds = facilities.Select(x => x.Id);
-                var multiProviders = await context.ProviderFacilities.Get(x => facilitiesIds.Contains(x.FacilityId));
-                var providerIds = multiProviders.Select(x => x.ProviderId);
-                var providers = await context.Providers.Get(x => providerIds.Contains(x.Id) && (x.Type == ProviderType.Healthcare || x.Type == ProviderType.Catering));
-                var reports = await context.Reports.Get(x => facilitiesIds.Contains(x.FacilityId) && (x.Type == ReportType.HealthcareProblemReport));
-                var dr = await context.DailyReports.Get(t => t.ReportDate == DateTime.Now.Date);
-                foreach (var facility in facilities)
-                {
-                    facility.Reports = reports.Where(t => t.FacilityId == facility.Id).ToList();
-                    var tmpProviderIds = multiProviders.Where(x => x.FacilityId == facility.Id).Select(p => p.ProviderId);
-                    facility.Providers = providers.Where(x => tmpProviderIds.Contains(x.Id)).ToList();
-                    var tmp = dr.FirstOrDefault(t => t.FacilityId == facility.Id);
-                    facility.Arrivals = tmp == null ? 0 : tmp.Arrivals;
-                }
-
-                if (facilities == null || facilities.Count() == 0)
-                {
-                    var errorResult = Request.CreateResponse(HttpStatusCode.OK);
-                    errorResult.Content = new StringContent("No data found.");
-                    return errorResult;
-                }
-
-                var pdfReport = new PdfReportFull();
-                var pdf = pdfReport.PrintPdfReport(facilities);
-                var result = Request.CreateResponse(HttpStatusCode.OK);
-                result.Content = new ByteArrayContent(pdf);
-                result.Content.Headers.ContentType = new MediaTypeHeaderValue("application/pdf");
-
-                return result;
-            }
-            catch (Exception exc)
-            {
-                var errorResult = Request.CreateResponse(HttpStatusCode.BadRequest);
-                errorResult.Content = new StringContent(exc.ToString());
-                return errorResult;
             }
         }
     }

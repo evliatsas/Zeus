@@ -38,8 +38,7 @@ namespace Zeus.Entities
         ProblemReport,
         RequestReport,
         SituationReport,
-        Message,
-        HealthcareProblemReport
+        Message
     }
 
     public enum Priority
