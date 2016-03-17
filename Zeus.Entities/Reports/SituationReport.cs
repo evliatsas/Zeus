@@ -8,14 +8,15 @@ namespace Zeus.Entities
 {
     public class SituationReport : Report
     {
-        public int PersonCount { get; set; }
-        public int Children { get; set; }
-        public int SensitiveCount { get; set; }
+        public IList<Identity> Identities { get; set; }
+        public IList<Sensitivity> Sensitivities { get; set; }
 
         public SituationReport()
         {
             this.DateTime = DateTime.Now;
             this.Type = ReportType.SituationReport;
+            this.Identities = new List<Identity>();
+            this.Sensitivities = new List<Sensitivity>();
         }
     }
 }

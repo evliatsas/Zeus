@@ -49,7 +49,8 @@ namespace Zeus.Entities
         public int PersonsCount { get; set; }
         [BsonIgnore]
         public IList<Person> Persons { get; set; }
-
+        public IList<Identity> Identities { get; set; }
+        public IList<Sensitivity> Sensitivities { get; set; }
 
         public Facility()
         {
@@ -58,6 +59,8 @@ namespace Zeus.Entities
             this.Reports = new List<Report>();
             this.Persons = new List<Person>();
             this.Housings = new List<Housing>();
+            this.Identities = new List<Identity>();
+            this.Sensitivities = new List<Sensitivity>();
         }
     }
 }

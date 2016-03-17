@@ -202,40 +202,7 @@ angular
         }
 
         //*************
-
-
-        //PERSON
-        $scope.showPerson = function (person) {
-            var location = '/persons/' + person.Id;
-            $location.url(location);
-        }
-
-        $scope.addPerson = function () {
-            var picker = $uibModal.open({
-                animation: true,
-                size: 'md',
-                templateUrl: 'views/templates/lookup-modal.html',
-                controller: 'lookupCtrl',
-                controllerAs: 'lookupCtrl',
-                resolve: {
-                    modaldata: function () {
-                        return {
-                            type: 'Person',
-                            selected: $scope.data.Persons
-                        };
-                    }
-                }
-            });
-
-            picker.result.then(function (data) {
-                $scope.data.Persons = data.selected;
-            }, function () {
-                //modal dismissed
-            });
-        }
-        //*************
-
-
+        
         // SAVE - DELETE
         $scope.save = function () {
             if (isInsert) {
