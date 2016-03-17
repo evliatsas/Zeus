@@ -45,6 +45,11 @@ angular
             controller: 'FacilitiesCtrl',
             controllerAs: 'facilities'
         })
+        .when('/facilities/table', {
+            templateUrl: 'views/facilities_table.html',
+            controller: 'FacilitiesCtrl',
+            controllerAs: 'facilities'
+        })
         .when('/facilities/:id', {
             templateUrl: 'views/facility.html',
             controller: 'FacilityCtrl',

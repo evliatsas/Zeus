@@ -122,6 +122,7 @@
     <Content Include="app\views\calendarEntry.html" />
     <Content Include="app\views\dailyreport.html" />
     <Content Include="app\views\dailyreport_charts.html" />
+    <Content Include="app\views\facilities_table.html" />
     <Content Include="app\views\operation.html" />
     <Content Include="app\views\log.html" />
     <Content Include="app\views\archive.html" />
