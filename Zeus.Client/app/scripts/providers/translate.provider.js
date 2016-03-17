@@ -43,7 +43,7 @@ angular
 	    	    CONTACTS: 'Επαφές',
 	    	    PROVIDERS: 'Υποστήριξη',
 	    	    REPORTS: 'Αναφορές',
-	    	    PERSONS: 'Ταυτοποιημένοι',
+	    	    PERSONS: 'Φιλοξενούμενοι',
                 REPORT: 'Ενημέρωση Δελτίου Τύπου'
 	    	},
 	    	FACILITY_DETAILS: {
@@ -412,7 +412,7 @@ angular
 	            CONTACTS: 'Contacts',
 	            PROVIDERS: 'Providers',
 	            REPORTS: 'Reports',
-	            PERSONS: 'Identified',
+	            PERSONS: 'Guests',
 	            REPORT: 'Update Press Report'
 	        },
 	        FACILITY_DETAILS: {
