@@ -28,7 +28,7 @@ namespace Zeus.Controllers
 
         [Route("")]
         [ResponseType(typeof(IEnumerable<Facility>))]
-        [HttpGet]       
+        [HttpGet]
         public async Task<IHttpActionResult> GetFacilities()
         {
             try
@@ -59,12 +59,12 @@ namespace Zeus.Controllers
 
                 return result == null ? this.Ok(new List<Facility>().AsEnumerable()) : this.Ok(result.OrderByDescending(o => o.Name).AsEnumerable());
             }
-            catch(Exception exc)
+            catch (Exception exc)
             {
                 return this.BadRequest(exc.ToString());
             }
         }
-        
+
         [Route("{id}")]
         [ResponseType(typeof(Facility))]
         [HttpGet]
@@ -116,7 +116,7 @@ namespace Zeus.Controllers
             {
                 //check for Name unique
                 var exists = await context.Facilities.Count(x => x.Name == facility.Name);
-                if(exists > 0)
+                if (exists > 0)
                 {
                     Log.Error("Integrity violation. User {user} requested Facility Name {facility} that already exists", user.UserName, facility.Name);
                     return this.BadRequest("Το όνομα που επιλέξατε υπάρχει ήδη σε άλλη Δομή Φιλοξενίας.");
@@ -150,7 +150,7 @@ namespace Zeus.Controllers
                 Log.Information("Facility({Facility.Id}) created By {user}", data.Id, user.UserName);
                 return this.Ok(data);
             }
-            catch(Exception exc)
+            catch (Exception exc)
             {
                 Log.Error("Error {Exception} creating Facility By {user}", exc, user.UserName);
                 return this.BadRequest("Σφάλμα Δημιουργίας Δομής Φιλοξενίας");
@@ -236,7 +236,7 @@ namespace Zeus.Controllers
 
                 return this.Ok();
             }
-            catch(Exception exc)
+            catch (Exception exc)
             {
                 Log.Error("Error {Exception} deleting Facility By {user}", exc, user.UserName);
                 return this.BadRequest("Σφάλμα Διαγραφής Δομής Φιλοξενίας");
@@ -256,22 +256,22 @@ namespace Zeus.Controllers
                 Facility facility;
                 DateTime date = DateTime.Now.Date;
                 DateTime previousDate = date.AddDays(-1);
-                
+
                 var user = await Helper.GetUserByRequest(User as ClaimsPrincipal, UserManager);
                 if (user.Roles.Any(x => x != ApplicationRoles.Administrator))
                 {
                     var facilityClaims = user.Claims.Where(x => x.Type == ApplicationClaims.FacilityClaim).Select(s => s.Value);
-                    if(!facilityClaims.Contains(id))
+                    if (!facilityClaims.Contains(id))
                     {
                         return this.BadRequest("Δεν έχετε δικαίωμα στη συγκεκριμένη δομή.");
                     }
                 }
-                
+
                 facility = await context.Facilities.GetById(id);
                 previousReport = (await context.DailyReports.Get(x => x.FacilityId == id && x.ReportDate == previousDate)).FirstOrDefault();
                 report = (await context.DailyReports.Get(x => x.FacilityId == id && x.ReportDate == date)).FirstOrDefault();
 
-                if(report == null)
+                if (report == null)
                 {
                     report = new DailyReport();
                     isNew = true;
@@ -280,7 +280,7 @@ namespace Zeus.Controllers
                 {
                     isNew = false;
                 }
-                
+
                 report.FacilityId = facility.Id;
                 report.ReportDateTime = DateTime.Now;
                 report.Arrivals = previousReport == null ? 0 : facility.Attendance - previousReport.Attendance;
@@ -307,7 +307,8 @@ namespace Zeus.Controllers
                 return this.BadRequest(exc.ToString());
             }
         }
-                
+
+        [AllowAnonymous]
         [Route("getreport/pdf/{year}/{month}/{day}")]
         [HttpGet]
         public async Task<HttpResponseMessage> GetPdfReport(int year, int month, int day)
@@ -324,16 +325,17 @@ namespace Zeus.Controllers
                     return errorResult;
                 }
 
-                reports = reports.Select(x => {
+                reports = reports.Select(x =>
+                {
                     x.Facility = facilities.FirstOrDefault(t => t.Id == x.FacilityId);
                     return x;
                 });
-                
+
                 var pdfReport = new PdfReport();
                 var pdf = pdfReport.PrintPdfReport(reports);
                 var result = Request.CreateResponse(HttpStatusCode.OK);
                 result.Content = new ByteArrayContent(pdf);
-                result.Content.Headers.ContentType = new MediaTypeHeaderValue("application/pdf");                
+                result.Content.Headers.ContentType = new MediaTypeHeaderValue("application/pdf");
 
                 return result;
             }
@@ -344,7 +346,7 @@ namespace Zeus.Controllers
                 return errorResult;
             }
         }
-                
+
         [Route("getreport/view/{year}/{month}/{day}")]
         [ResponseType(typeof(IEnumerable<DailyReport>))]
         [HttpGet]
@@ -355,16 +357,13 @@ namespace Zeus.Controllers
                 var date = new DateTime(year, month, day);
                 var facilities = await context.Facilities.GetAll();
                 var reports = (await context.DailyReports.Get(x => x.ReportDate == date));
-                //if (reports == null || reports.Count() == 0)
-                //{
-                //    return BadRequest("Report not exist for date.");
-                //}
-
-                reports = reports.Select(x => {
+                
+                reports = reports.Select(x =>
+                {
                     x.Facility = facilities.FirstOrDefault(t => t.Id == x.FacilityId);
                     return x;
                 });
-                                
+
                 return Ok(reports);
             }
             catch (Exception exc)
@@ -372,7 +371,7 @@ namespace Zeus.Controllers
                 return BadRequest(exc.ToString());
             }
         }
-                
+
         [Route("getreport/view")]
         [ResponseType(typeof(IEnumerable<DailyReport>))]
         [HttpPost]
@@ -390,7 +389,8 @@ namespace Zeus.Controllers
                 //    return BadRequest("Report not exist for date.");
                 //}
 
-                reports = reports.Select(x => {
+                reports = reports.Select(x =>
+                {
                     x.Facility = facilities.FirstOrDefault(t => t.Id == x.FacilityId);
                     return x;
                 });
@@ -400,6 +400,91 @@ namespace Zeus.Controllers
             catch (Exception exc)
             {
                 return BadRequest(exc.ToString());
+            }
+        }
+
+        [Route("getfullreport")]
+        [ResponseType(typeof(IEnumerable<Facility>))]
+        [HttpGet]
+        public async Task<IHttpActionResult> GetFullReport()
+        {
+            try
+            {
+                IEnumerable<Facility> result;
+
+                var user = await Helper.GetUserByRequest(User as ClaimsPrincipal, UserManager);
+                result = await context.Facilities.GetAll();
+
+                var facilitiesIds = result.Select(x => x.Id);
+                var multiProviders = await context.ProviderFacilities.Get(x => facilitiesIds.Contains(x.FacilityId));
+                var providerIds = multiProviders.Select(x => x.ProviderId);
+                var providers = await context.Providers.Get(x => providerIds.Contains(x.Id) && (x.Type == ProviderType.Healthcare || x.Type == ProviderType.Catering));
+                var reports = await context.Reports.Get(x => facilitiesIds.Contains(x.FacilityId) && (x.Type == ReportType.HealthcareProblemReport));
+                var dr = await context.DailyReports.Get(t => t.ReportDate == DateTime.Now.Date);
+                foreach (var facility in result)
+                {
+                    facility.Reports = reports.Where(t => t.FacilityId == facility.Id).ToList();
+                    var tmpProviderIds = multiProviders.Where(x => x.FacilityId == facility.Id).Select(p => p.ProviderId);
+                    facility.Providers = providers.Where(x => tmpProviderIds.Contains(x.Id)).ToList();
+                    var tmp = dr.FirstOrDefault(t => t.FacilityId == facility.Id);
+                    facility.Arrivals =  tmp == null?0: tmp.Arrivals;
+                }
+
+                return result == null ? this.Ok(new List<Facility>().AsEnumerable()) : this.Ok(result.OrderByDescending(o => o.Name).AsEnumerable());
+            }
+            catch (Exception exc)
+            {
+                return this.BadRequest(exc.ToString());
+            }
+        }
+
+        [AllowAnonymous]
+        [Route("getfullpdf")]
+        [HttpGet]
+        public async Task<HttpResponseMessage> GetFullPdf()
+        {
+            try
+            {
+                IEnumerable<Facility> facilities;
+
+                var user = await Helper.GetUserByRequest(User as ClaimsPrincipal, UserManager);
+                facilities = await context.Facilities.GetAll();
+
+                var facilitiesIds = facilities.Select(x => x.Id);
+                var multiProviders = await context.ProviderFacilities.Get(x => facilitiesIds.Contains(x.FacilityId));
+                var providerIds = multiProviders.Select(x => x.ProviderId);
+                var providers = await context.Providers.Get(x => providerIds.Contains(x.Id) && (x.Type == ProviderType.Healthcare || x.Type == ProviderType.Catering));
+                var reports = await context.Reports.Get(x => facilitiesIds.Contains(x.FacilityId) && (x.Type == ReportType.HealthcareProblemReport));
+                var dr = await context.DailyReports.Get(t => t.ReportDate == DateTime.Now.Date);
+                foreach (var facility in facilities)
+                {
+                    facility.Reports = reports.Where(t => t.FacilityId == facility.Id).ToList();
+                    var tmpProviderIds = multiProviders.Where(x => x.FacilityId == facility.Id).Select(p => p.ProviderId);
+                    facility.Providers = providers.Where(x => tmpProviderIds.Contains(x.Id)).ToList();
+                    var tmp = dr.FirstOrDefault(t => t.FacilityId == facility.Id);
+                    facility.Arrivals = tmp == null ? 0 : tmp.Arrivals;
+                }
+
+                if (facilities == null || facilities.Count() == 0)
+                {
+                    var errorResult = Request.CreateResponse(HttpStatusCode.OK);
+                    errorResult.Content = new StringContent("No data found.");
+                    return errorResult;
+                }
+
+                var pdfReport = new PdfReportFull();
+                var pdf = pdfReport.PrintPdfReport(facilities);
+                var result = Request.CreateResponse(HttpStatusCode.OK);
+                result.Content = new ByteArrayContent(pdf);
+                result.Content.Headers.ContentType = new MediaTypeHeaderValue("application/pdf");
+
+                return result;
+            }
+            catch (Exception exc)
+            {
+                var errorResult = Request.CreateResponse(HttpStatusCode.BadRequest);
+                errorResult.Content = new StringContent(exc.ToString());
+                return errorResult;
             }
         }
     }
