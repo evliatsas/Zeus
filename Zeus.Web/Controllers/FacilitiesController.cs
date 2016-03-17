@@ -305,8 +305,7 @@ namespace Zeus.Controllers
                 return this.BadRequest(exc.ToString());
             }
         }
-
-        [AllowAnonymous]
+                
         [Route("getreport/pdf/{year}/{month}/{day}")]
         [HttpGet]
         public async Task<HttpResponseMessage> GetPdfReport(int year, int month, int day)
@@ -343,8 +342,7 @@ namespace Zeus.Controllers
                 return errorResult;
             }
         }
-
-        [AllowAnonymous]
+                
         [Route("getreport/view/{year}/{month}/{day}")]
         [ResponseType(typeof(IEnumerable<DailyReport>))]
         [HttpGet]
@@ -372,8 +370,7 @@ namespace Zeus.Controllers
                 return BadRequest(exc.ToString());
             }
         }
-
-        [AllowAnonymous]
+                
         [Route("getreport/view")]
         [ResponseType(typeof(IEnumerable<DailyReport>))]
         [HttpPost]
