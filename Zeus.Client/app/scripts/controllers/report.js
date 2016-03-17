@@ -63,7 +63,7 @@ angular
                             $scope.providers.push(response.data.Providers[index]);
                     }
                 }
-                else if ($scope.reportType == "2") {
+                else if ($scope.reportType == "2" || $scope.reportType == "6") {
                     $http({
                         method: 'GET',
                         url: baseUrl + '/common/facilities' //lookup facilities

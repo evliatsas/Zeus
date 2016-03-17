@@ -110,6 +110,7 @@ angular
 	    	CHARTS: {
 	    		FROM: 'Από',
 	    		UNTIL: 'Έως',
+                TO:'Πρός',
 	    		SHOW: 'ΕΜΦΑΝΙΣΗ',
 	    	    SHOW_DETAILS:'Εμφάνιση Στατιστικών για τις επιλεγμένες ημερομηνίες'
 	    	},
@@ -477,6 +478,7 @@ angular
 	    		FROM: 'From',
 	    		UNTIL: 'Until',
 	    		SHOW: 'Show',
+	    		TO: 'TO',
 	    		SHOW_DETAILS: 'Show Charts for selected dates'
 	    	},
 	        LOOKUP_MODAL: {
