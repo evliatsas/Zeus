@@ -1,0 +1,54 @@
+﻿<h3 class="text-center">ΣΥΝΟΠΤΙΚΗ ΚΑΤΑΣΤΑΣΗ ΠΡΟΣΦΥΓΙΚΩΝ ΡΟΩΝ</h3>
+<table class="table table-condensed table-bordered table-striped text-center">
+    <thead style="background-color: black; opacity: 0.6; color: white; font-weight: bold">
+        <tr>
+            <td rowspan="2" style="vertical-align: middle">Δομή</td>
+            <td colspan="2">Φιλοξενούμενοι</td>
+            <td colspan="2">Ροές</td>
+            <td colspan="3">Σίτιση</td>
+            <td colspan="3">Υγειονομική Υποστήριξη</td>
+        </tr>
+        <tr>
+            <td>Παραμένοντες</td>
+            <td>Χωρητικότητα</td>
+            <td>Αφίξεις</td>
+            <td>Αναχωρήσεις</td>
+            <td>Φορέας</td>
+            <td>Μερίδες</td>
+            <td>Ελλείψεις</td>
+            <td>Φορέας</td>
+            <td>Προβλήματα</td>
+            <td>Ελλείψεις</td>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="facility in facilities">
+            <td>{{facility.Name}}</td>
+            <td>{{facility.Attendance}}</td>
+            <td>{{facility.Capacity}}</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>{{facility.MaxRations}}</td>
+            <td ng-class="{'text-danger': (facility.MaxRations - facility.Capacity < 0)}">{{facility.MaxRations - facility.Capacity}}</td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+    </tbody>
+    <tfoot>
+        <tr style="font-weight: bold">
+            <td>Σύνολο</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+    </tfoot>
+</table>
