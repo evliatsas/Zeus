@@ -7,8 +7,8 @@ angular
     	var elGR = {
 	    	MENU: {
 	    	    BRAND: 'ξ ε ν ί α',
-                REPORTS:"Δελτίο Τύπου",
-	    		FACILITIES: 'Δομές Φιλοξενίας',
+                REPORTS:"Αναφορές",
+	    		FACILITIES: 'Δομές',
 	    		CONTACTS: 'Επαφές',
 	    		PROVIDERS: 'Υποστήριξη',
 	    		PERSONS: 'Ταυτοποιήσεις',
@@ -375,7 +375,7 @@ angular
 	    var enUS = {
 	        MENU: {
 	            BRAND: 'ξ ε ν ί α',
-	            REPORTS: "Daily Report",
+	            REPORTS: "Reports",
 	            FACILITIES: 'Facilities',
 	            CONTACTS: 'Contacts',
 	            PROVIDERS: 'Providers',
