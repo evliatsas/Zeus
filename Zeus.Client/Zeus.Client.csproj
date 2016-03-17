@@ -122,6 +122,7 @@
     <Content Include="app\views\calendarEntry.html" />
     <Content Include="app\views\dailyreport.html" />
     <Content Include="app\views\dailyreport_charts.html" />
+    <Content Include="app\views\facilities_table.html" />
     <Content Include="app\views\operation.html" />
     <Content Include="app\views\log.html" />
     <Content Include="app\views\archive.html" />
@@ -136,6 +137,7 @@
     <Content Include="app\views\messages.html" />
     <Content Include="app\views\operations.html" />
     <Content Include="app\views\reports\healthcare-report.html" />
+    <Content Include="app\views\reports\message-report.html" />
     <Content Include="app\views\templates\card-list.html" />
     <Content Include="app\views\templates\facility-card.html" />
     <Content Include="app\views\templates\facility-details.html" />

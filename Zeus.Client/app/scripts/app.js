@@ -45,6 +45,11 @@ angular
             controller: 'FacilitiesCtrl',
             controllerAs: 'facilities'
         })
+        .when('/facilities/table', {
+            templateUrl: 'views/facilities_table.html',
+            controller: 'FacilitiesCtrl',
+            controllerAs: 'facilities'
+        })
         .when('/facilities/:id', {
             templateUrl: 'views/facility.html',
             controller: 'FacilityCtrl',
@@ -82,6 +87,8 @@ angular
                     tempUrl += 'transport-report.html';
                 else if (type == 5)
                     tempUrl += 'situation-report.html';
+                else if (type == 6)
+                    tempUrl += 'message-report.html';
                 else if (type == 7)
                     tempUrl += 'healthcare-report.html';
                 else
