@@ -13,6 +13,8 @@ namespace Zeus.Entities
         public string Sender { get { return this.User; } }
         [BsonRequired]
         public string Recipient { get; set; }
+        public string RecipientType { get; set; }
+        
         public Message()
         {
             this.DateTime = DateTime.Now;

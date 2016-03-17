@@ -1,0 +1,61 @@
+﻿<form name="form">
+    <div class="jumbotron col-md-offset-3 col-md-6">
+        <div class="pull-right">
+            <button ng-if="!report.IsArchived" class="btn btn-info btn-fab fab" ng-click="archive()" title="{{ 'REPORT.NOT_ARCHIVED' | translate }}" ng-disabled="IsNew">
+                <i class="material-icons">archive</i>
+            </button>
+            <button ng-if="report.IsArchived" class="btn btn-info btn-fab fab" ng-click="archive()" title="{{ 'REPORT.ARCHIVED' | translate }}" ng-disabled="IsNew">
+                <i class="material-icons">unarchive</i>
+            </button>
+            <button class="btn btn-danger btn-fab fab" ng-click="delete()" title="{{ 'REPORT.DELETE' | translate }}">
+                <i class="material-icons">delete</i>
+            </button>
+            <button class="btn btn-success btn-fab fab" ng-click="save()" title="{{ 'REPORT.SAVE' | translate }}" ng-disabled="form.$invalid">
+                <i class="material-icons">save</i>
+            </button>
+        </div>
+        <div ng-bind-html="lookup.reportTitles[reportType].Description"></div>
+        <div class="form-group label-static ng-is-empty" ng-class="{ 'has-error': form.Priority.$invalid }">
+            <label for="i1" class="control-label">{{ 'REPORT.PRIORITY' | translate }}</label>
+            <select id="i1" class="form-control" name="Priority" ng-model="report.Priority" convert-to-number required>
+                <option ng-repeat="priority in lookup.priorityTypes" value="{{priority.Id}}">
+                    {{priority.Description}}
+                </option>
+            </select>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <div ng-if="reportType != 2" class="form-group label-static ng-is-empty">
+                    <label for="i4" class="control-label">{{ 'CHARTS.FROM' | translate }}</label>
+                    <!--<input type="text" class="form-control" id="i4" ng-model="report.Facility.Name" readonly>-->
+                    <input type="text" class="form-control" id="i4" value="ΚΕΠΙΧ" readonly>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group label-static ng-is-empty">
+                    <label for="i2" class="control-label">{{ 'CHARTS.TO' | translate }}</label>
+                    <select id="i2" class="form-control" name="Priority" ng-model="report.Recipient">
+                        <option ng-repeat="facility in facilities" value="{{facility.Id}}">
+                            {{facility.Description}}
+                        </option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group label-static ng-is-empty">
+                    <label for="i2" class="control-label">{{ 'CHARTS.TO' | translate }}</label>
+                    
+                    
+                </div>
+            </div>
+        </div>
+        <div class="form-group label-static ng-is-empty">
+            <label for="i3" class="control-label">{{ 'REPORT.SUBJECT' | translate }}</label>
+            <input type="text" class="form-control" id="i3" ng-model="report.Subject">
+        </div>
+        <div class="form-group label-static ng-is-empty">
+            <label for="i5" class="control-label">{{ 'REPORT.NOTES' | translate }}</label>
+            <textarea class="form-control" id="i5" ng-model="report.Notes"></textarea>
+        </div>
+    </div>
+</form>

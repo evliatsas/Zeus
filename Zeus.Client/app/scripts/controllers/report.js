@@ -48,7 +48,64 @@ angular
         }
         else
         {
+            if ($scope.reportType == "5") {
+                $scope.report = {
+                    Identities: [
+                        {
+                            Nationality: "Άγνωστη",
+                            Count: 0
+                        }
+                    ],
+                    Sensitivities: [],
+                    Procedures: []
+                };
+            }
+        }
 
+        $scope.addIdentity = function () {
+            $scope.report.Identities.push({
+                Nationality: "Άγνωστη",
+                Count: 0
+            });
+        }
+
+        $scope.addSensitivity = function () {
+            $scope.report.Sensitivities.push({
+                Nationality: "Ασυνόδευτοι Ανήλικοι",
+                Count: 0
+            });
+        }
+
+        $scope.addProcedure = function () {
+            $scope.report.Procedures.push({
+                Type: "",
+                Nationality: "Άγνωστη",
+                Count: 0
+            });
+        }
+
+        $scope.calcSensibilityCount = function () {
+            var count = 0;
+            for (var i in $scope.report.Sensitivities)
+                count += $scope.report.Sensitivities[i].Count;
+
+            return count;
+        }
+
+        $scope.calcIdentityCount = function () {
+            var count = 0;
+            for (var i in $scope.report.Identities)
+                count += $scope.report.Identities[i].Count;
+
+            return count;
+        }
+
+        $scope.calcProcedureCount = function () {
+            var count = 0;
+            for (var i in $scope.report.Procedures)
+                count += $scope.report.Procedures[i].Count;
+
+            return count;
         }
         
         $http({
@@ -63,7 +120,7 @@ angular
                             $scope.providers.push(response.data.Providers[index]);
                     }
                 }
-                else if ($scope.reportType == "2") {
+                else if ($scope.reportType == "2" || $scope.reportType == "6") {
                     $http({
                         method: 'GET',
                         url: baseUrl + '/common/facilities' //lookup facilities
