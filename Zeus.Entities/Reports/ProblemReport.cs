@@ -13,5 +13,15 @@ namespace Zeus.Entities
             this.DateTime = DateTime.Now;
             this.Type = ReportType.ProblemReport;
         }
+
+        public ProblemCategory Category { get; set; }
+
+        public enum ProblemCategory
+        {
+            Humanity,
+            Healthcare,
+            Equipment,
+            Functionality
+        }
     }
 }

@@ -36,6 +36,12 @@
                 { Id: 6, Description: 'Μήνυμα' },
                 { Id: 7, Description: 'Υγειονομική' }
             ],
+            shortageTypes: [
+                { Id: 0, Description: 'Ανθρωπιστικής Βοήθειας' },
+                { Id: 1, Description: 'Υγειονομικού Υλικού' },
+                { Id: 2, Description: 'Εξοπλισμού Εγκαταστάσεων' },
+                { Id: 3, Description: 'Λειτουργίας' }
+            ],
             reportTitles: [
                 { Id: 0, Description: '<i class="text-primary material-icons md-48 pull-left" title="Αναφορά Σίτισης">restaurant_menu </i><div class="report-header">Αναφορά Σίτισης</div>' },
                 { Id: 1, Description: '<i class="text-primary material-icons md-48 pull-left" title="Αναφορά Στέγασης">local_hotel </i><div class="report-header">Αναφορά Στέγασης</div>' },
