@@ -270,4 +270,28 @@ angular
             $location.url('/reports/6/' + fid + '/new');
         }
 
+        $scope.calcSensibilityCount = function () {
+            var count = 0;
+            for (var i in $scope.data.Sensitivities)
+                count += $scope.data.Sensitivities[i].Count;
+
+            return count;
+        }
+
+        $scope.calcIdentityCount = function () {
+            var count = 0;
+            for (var i in $scope.data.Identities)
+                count += $scope.data.Identities[i].Count;
+
+            return count;
+        }
+
+        $scope.calcProcedureCount = function () {
+            var count = 0;
+            for (var i in $scope.data.Procedures)
+                count += $scope.data.Procedures[i].Count;
+
+            return count;
+        }
+
     });

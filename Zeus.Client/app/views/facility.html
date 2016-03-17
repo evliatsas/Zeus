@@ -63,19 +63,56 @@
                 </uib-tab>
                 <uib-tab index="4" heading="{{ 'FACILITY.PERSONS' | translate }}">
                     <div class="container-fluid shadow-box">
+                        <i>{{ 'FACILITY.PERSONS' | translate }}</i>: {{calcIdentityCount()}}
                         <div class="form" ng-repeat="identity in data.Identities track by $index">
-                            <div class="form-group label-static col-md-4">
+                            <div class="form-group label-static col-md-3">
                                 <label class="control-label">{{ 'PERSON.NATIONALITY' | translate }}</label>
-                                <input type="text" class="form-control" ng-model="identity.Nationality" uib-typeahead="n for n in lookup.nationalities | filter:$viewValue" readonly>
+                                <input type="text" class="form-control" ng-model="identity.Nationality" readonly>
                             </div>
                             <div class="form-group label-static col-md-2">
                                 <label class="control-label">{{ 'OPERATION.PERSON_COUNT' | translate }}</label>
                                 <input type="number" class="form-control" ng-model="identity.Count" min="0" readonly>
                                 <span class="material-input"></span>
                             </div>
-                            <div class="form-group label-static col-md-6">
+                            <div class="form-group label-static col-md-5">
                                 <label class="control-label">{{ 'OPERATION.NOTES' | translate }}</label>
                                 <input type="text" class="form-control" ng-model="identity.Notes">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="container-fluid shadow-box">
+                        <i>{{ 'SITUATION_REPORT.SENSITIVITY' | translate }}</i>: {{calcSensibilityCount()}}
+                        <div class="form" ng-repeat="sensitivity in data.Sensitivities track by $index">
+                            <div class="form-group label-static col-md-3">
+                                <label class="control-label">{{ 'SITUATION_REPORT.SENSITIVITY_TYPE' | translate }}</label>
+                                <input type="text" class="form-control" ng-model="sensitivity.Type" readonly>
+                            </div>
+                            <div class="form-group label-static col-md-2">
+                                <label class="control-label">{{ 'OPERATION.PERSON_COUNT' | translate }}</label>
+                                <input type="number" class="form-control" ng-model="sensitivity.Count" min="0" readonly>
+                                <span class="material-input"></span>
+                            </div>
+                            <div class="form-group label-static col-md-5">
+                                <label class="control-label">{{ 'OPERATION.NOTES' | translate }}</label>
+                                <input type="text" class="form-control" ng-model="sensitivity.Notes">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="container-fluid shadow-box">
+                        <i>{{ 'SITUATION_REPORT.PROCEDURE' | translate }}</i>: {{calcProcedureCount()}}
+                        <div class="form" ng-repeat="procedure in data.Procedures track by $index">
+                            <div class="form-group label-static col-md-4">
+                                <label class="control-label">{{ 'OPERATION.TYPE' | translate }}</label>
+                                <input type="text" class="form-control" ng-model="procedure.Type" readonly>
+                            </div>
+                            <div class="form-group label-static col-md-3">
+                                <label class="control-label">{{ 'PERSON.NATIONALITY' | translate }}</label>
+                                <input type="text" class="form-control" ng-model="procedure.Nationality" readonly>
+                            </div>
+                            <div class="form-group label-static col-md-2">
+                                <label class="control-label">{{ 'OPERATION.PERSON_COUNT' | translate }}</label>
+                                <input type="number" class="form-control" ng-model="procedure.Count" min="0" readonly>
+                                <span class="material-input"></span>
                             </div>
                         </div>
                     </div>

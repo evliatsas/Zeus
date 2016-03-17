@@ -51,6 +51,7 @@ namespace Zeus.Entities
         public IList<Person> Persons { get; set; }
         public IList<Identity> Identities { get; set; }
         public IList<Sensitivity> Sensitivities { get; set; }
+        public IList<Procedure> Procedures { get; set; }
         [BsonIgnore]
         public int Arrivals { get; set; }
 
@@ -63,6 +64,7 @@ namespace Zeus.Entities
             this.Housings = new List<Housing>();
             this.Identities = new List<Identity>();
             this.Sensitivities = new List<Sensitivity>();
+            this.Procedures = new List<Procedure>();
         }
     }
 }

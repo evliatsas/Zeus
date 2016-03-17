@@ -186,6 +186,7 @@ namespace Zeus.Controllers
                         facility.Attendance = sitRep.Identities.Sum(x=>x.Count);
                         facility.Identities = sitRep.Identities;
                         facility.Sensitivities = sitRep.Sensitivities;
+                        facility.Procedures = sitRep.Procedures;
                         await context.Facilities.Update(facility);
                     }
                 }
@@ -251,6 +252,7 @@ namespace Zeus.Controllers
                             facility.Attendance = sitRep.Identities.Sum(x => x.Count);
                             facility.Identities = sitRep.Identities;
                             facility.Sensitivities = sitRep.Sensitivities;
+                            facility.Procedures = sitRep.Procedures;
                             await context.Facilities.Update(facility);
                         }
                     }
