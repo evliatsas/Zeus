@@ -179,10 +179,13 @@ namespace Zeus.Controllers
 
                 if (report.Type == ReportType.SituationReport)
                 {
+                    var sitRep = report as SituationReport;
                     var facility = await context.Facilities.GetById(report.FacilityId);
                     if (facility != null)
                     {
-                        facility.Attendance = (report as SituationReport).PersonCount;
+                        facility.Attendance = sitRep.Identities.Sum(x=>x.Count);
+                        facility.Identities = sitRep.Identities;
+                        facility.Sensitivities = sitRep.Sensitivities;
                         await context.Facilities.Update(facility);
                     }
                 }
@@ -233,18 +236,23 @@ namespace Zeus.Controllers
             try
             {
                 report.User = user.UserName;
-                report.DateTime = DateTime.Now;
-                report.IsAcknoledged = false;
 
                 var result = await context.Reports.Update(report);
 
                 if (report.Type == ReportType.SituationReport)
                 {
-                    var facility = await context.Facilities.GetById(report.FacilityId);
-                    if (facility != null)
+                    var sitRep = report as SituationReport;
+                    var last = await context.Reports.Get(r => r.Type == ReportType.SituationReport && r.FacilityId == sitRep.FacilityId && r.DateTime > sitRep.DateTime);
+                    if (last.Count() < 1) //the updated report is the most recent one
                     {
-                        facility.Attendance = (report as SituationReport).PersonCount;
-                        await context.Facilities.Update(facility);
+                        var facility = await context.Facilities.GetById(report.FacilityId);
+                        if (facility != null)
+                        {
+                            facility.Attendance = sitRep.Identities.Sum(x => x.Count);
+                            facility.Identities = sitRep.Identities;
+                            facility.Sensitivities = sitRep.Sensitivities;
+                            await context.Facilities.Update(facility);
+                        }
                     }
                 }
 

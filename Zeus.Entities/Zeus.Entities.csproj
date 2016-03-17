@@ -62,6 +62,7 @@
     <Compile Include="Entity.cs" />
     <Compile Include="Facilities\Facility.cs" />
     <Compile Include="Contacts\FacilityContact.cs" />
+    <Compile Include="Persons\Identity.cs" />
     <Compile Include="Facilities\Location.cs" />
     <Compile Include="Contacts\PhoneNo.cs" />
     <Compile Include="LogEntry.cs" />
@@ -71,6 +72,7 @@
     <Compile Include="Operations\OperationProvider.cs" />
     <Compile Include="Operations\Preparation.cs" />
     <Compile Include="Persons\FamilyRelation.cs" />
+    <Compile Include="Persons\Sensitivity.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>

@@ -44,15 +44,17 @@ namespace Zeus.Controllers
                     result = await context.Facilities.Get(x => facilityClaims.Contains(x.Id));
                 }
 
+                var facilitiesIds = result.Select(x => x.Id);
+                var multiProviders = await context.ProviderFacilities.Get(x => facilitiesIds.Contains(x.FacilityId));
+                var providerIds = multiProviders.Select(x => x.ProviderId);
+                var providers = await context.Providers.Get(x => providerIds.Contains(x.Id));
                 foreach (var facility in result)
                 {
                     facility.ReportsCount = await context.Reports.Count(x => x.FacilityId == facility.Id);
                     facility.PersonsCount = await context.Persons.Count(x => x.FacilityId == facility.Id);
                     facility.HealthcareReportsCount = await context.Reports.Count(x => x.FacilityId == facility.Id && !x.IsArchived && x.Type == ReportType.HealthcareProblemReport);
-                    var multiProviders = await context.ProviderFacilities.Get(x => x.FacilityId == facility.Id);
-                    var providerIds = multiProviders.Select(x => x.ProviderId);
-                    var providers = await context.Providers.Get(x => providerIds.Contains(x.Id));
-                    facility.Providers = providers.ToList();
+                    var tmpProviderIds = multiProviders.Where(x => x.FacilityId == facility.Id).Select(p => p.ProviderId);
+                    facility.Providers = providers.Where(x => tmpProviderIds.Contains(x.Id)).ToList();
                 }
 
                 return result == null ? this.Ok(new List<Facility>().AsEnumerable()) : this.Ok(result.OrderByDescending(o => o.Name).AsEnumerable());

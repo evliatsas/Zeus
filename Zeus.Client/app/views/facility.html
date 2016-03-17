@@ -62,14 +62,22 @@
                     </div>
                 </uib-tab>
                 <uib-tab index="4" heading="{{ 'FACILITY.PERSONS' | translate }}">
-                    <div class="shadow-box btn-group-sm">
-                        <cinnamon-grid grid-columns="personcolumns"
-                                       grid-items="data.Persons"
-                                       show-grid-buttons="true"
-                                       hide-item-buttons="true"
-                                       row-click-fn="showPerson(item)"
-                                       grid-create-fn="addPerson()">
-                        </cinnamon-grid>
+                    <div class="container-fluid shadow-box">
+                        <div class="form" ng-repeat="identity in data.Identities track by $index">
+                            <div class="form-group label-static col-md-4">
+                                <label class="control-label">{{ 'PERSON.NATIONALITY' | translate }}</label>
+                                <input type="text" class="form-control" ng-model="identity.Nationality" uib-typeahead="n for n in lookup.nationalities | filter:$viewValue" readonly>
+                            </div>
+                            <div class="form-group label-static col-md-2">
+                                <label class="control-label">{{ 'OPERATION.PERSON_COUNT' | translate }}</label>
+                                <input type="number" class="form-control" ng-model="identity.Count" min="0" readonly>
+                                <span class="material-input"></span>
+                            </div>
+                            <div class="form-group label-static col-md-6">
+                                <label class="control-label">{{ 'OPERATION.NOTES' | translate }}</label>
+                                <input type="text" class="form-control" ng-model="identity.Notes">
+                            </div>
+                        </div>
                     </div>
                 </uib-tab>
             </uib-tabset>
