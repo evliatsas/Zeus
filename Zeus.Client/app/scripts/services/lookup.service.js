@@ -8,11 +8,11 @@
     function lookupService() {
         return {
             priorities: [
-                { Id: 0, Description: '<i class="text-muted material-icons md-18" title="Χαμηλή">flag</i>' },
-                { Id: 1, Description: '<i class="text-success material-icons md-18" title="Κανονική">flag</i>' },
-                { Id: 2, Description: '<i class="text-info material-icons md-18" title="Επείγον">flag</i>' },
-                { Id: 3, Description: '<i class="text-warning material-icons md-18" title="Άμεσο">flag</i>' },
-                { Id: 4, Description: '<i class="text-danger material-icons md-18" title="Αστραπιαίο">flag</i>' },
+                { Id: 0, Description: '<i class="text-muted material-icons" title="Χαμηλή">flag</i>' },
+                { Id: 1, Description: '<i class="text-success material-icons" title="Κανονική">flag</i>' },
+                { Id: 2, Description: '<i class="text-info material-icons" title="Επείγον">flag</i>' },
+                { Id: 3, Description: '<i class="text-warning material-icons" title="Άμεσο">flag</i>' },
+                { Id: 4, Description: '<i class="text-danger material-icons" title="Αστραπιαίο">flag</i>' },
             ],
             prioritiesTitles: [
                 { Id: 0, Description: 'Χαμηλή' },

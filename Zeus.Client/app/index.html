@@ -10,7 +10,6 @@
     <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Roboto:300,400,500,700">
     <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/icon?family=Material+Icons">
     <script src="http://maps.googleapis.com/maps/api/js?language=el"></script>
-    <script type="text/javascript" src="http://google-maps-utility-library-v3.googlecode.com/svn/trunk/infobox/src/infobox.js"></script>
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
     <!-- build:css(.) styles/vendor.css -->
     <!-- bower:css -->
@@ -84,14 +83,14 @@
                     <ul class="nav navbar-nav navbar-right">
                         <li><a href="" ng-click="changeLanguage()" title="{{ languageTitle }}">{{language}}</a></li>
                         <li class="dropdown">
-                            <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="material-icons md-18">help</i> <span class="caret"></span></a>
+                            <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="material-icons md-20">help</i> <span class="caret"></span></a>
                             <ul class="dropdown-menu">
                                 <li><a href="#/help">{{ 'MENU.SUPPORT.HELP' | translate }}</a></li>
                                 <li><a href="#/about">{{ 'MENU.SUPPORT.ABOUT' | translate }}</a></li>
                             </ul>
                         </li>
                         <li class="dropdown">
-                            <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="material-icons md-18">person</i> {{userInfo.fullname}} <span class="caret"></span></a>
+                            <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="material-icons md-20">person</i> {{userInfo.fullname}} <span class="caret"></span></a>
                             <ul class="dropdown-menu">
                                 <li ng-hide="isAuth()"><a href="#/login">{{ 'MENU.USER_MENU.SIGN_IN' | translate }}</a></li>
                                 <li ng-show="isAuth()"><a href="" data-toggle="modal" data-target="#simple-dialog">{{ 'MENU.USER_MENU.CHANGE_PASSWORD' | translate }}</a></li>
@@ -136,7 +135,7 @@
     </div>
     <!--<div class="footer">
         <div class="container-fluid">
-            <div><i class="material-icons md-18">copyright</i> from the Cinnamon team</div>
+            <div><i class="material-icons">copyright</i> from the Cinnamon team</div>
         </div>
     </div>-->
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
@@ -180,6 +179,7 @@
     <script src="bower_components/angular-date-time-input/src/dateTimeInput.js"></script>
     <!-- endbuild -->
     <!-- build:js({.tmp,app}) scripts/scripts.js -->
+    <script src="vendor/infobox.js"></script>
     <script src="vendor/datetimepicker.js"></script>
     <script src="vendor/datetimepicker.templates.js"></script>
     <script src="scripts/app.js"></script>
