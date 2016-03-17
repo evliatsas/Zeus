@@ -135,6 +135,7 @@
     <Content Include="app\views\contact.html" />
     <Content Include="app\views\messages.html" />
     <Content Include="app\views\operations.html" />
+    <Content Include="app\views\reports\healthcare-report.html" />
     <Content Include="app\views\templates\card-list.html" />
     <Content Include="app\views\templates\facility-card.html" />
     <Content Include="app\views\templates\facility-details.html" />

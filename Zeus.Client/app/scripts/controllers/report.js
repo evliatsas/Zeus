@@ -31,6 +31,8 @@ angular
                     return 'SituationReport';
                 case "6":
                     return 'Message';
+                case "7":
+                    return 'HealthcareProblemReport';
             }
         }
 

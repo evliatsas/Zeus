@@ -82,6 +82,8 @@ angular
                     tempUrl += 'transport-report.html';
                 else if (type == 5)
                     tempUrl += 'situation-report.html';
+                else if (type == 7)
+                    tempUrl += 'healthcare-report.html';
                 else
                     tempUrl += 'report.html';
 

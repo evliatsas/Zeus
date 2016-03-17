@@ -164,6 +164,11 @@ angular
 	    	    ISHIRED: 'Είναι Ναυλωμένο',
 	    	    NOTES: 'Κείμενο'
 	    	},
+	    	HEALTHCARE_REPORT:{
+	    	    SUBJECT: 'Θέμα',
+	    	    NOTES: 'Προβλήματα',
+                SHORTAGE:'Ελλήψεις'
+	    	},
 	    	ARCHIVE: {
 	    	    DELETE: 'Διαγραφή Αναφοράς',
 	    	    SAVE: 'Αποθήκευση Αναφοράς',
@@ -504,6 +509,11 @@ angular
 	            OWNER: 'Ownership',
 	            ISHIRED: 'Hired',
 	            NOTES: 'Notes'
+	        },
+	        HEALTHCARE_REPORT: {
+	            SUBJECT: 'Subject',
+	            NOTES: 'Issues',
+	            SHORTAGE: 'Shortages'
 	        },
 	        ARCHIVE: {
 	            DELETE: 'Delete Report',

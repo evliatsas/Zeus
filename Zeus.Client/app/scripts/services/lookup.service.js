@@ -33,7 +33,8 @@
                 { Id: 3, Description: 'Αναφορά Προβλήματος' },
                 { Id: 4, Description: 'Αίτηση' },
                 { Id: 5, Description: 'Αναφορά Κατάστασης' },
-                { Id: 6, Description: 'Μήνυμα' }
+                { Id: 6, Description: 'Μήνυμα' },
+                { Id: 7, Description: 'Υγειονομική' }
             ],
             reportTitles: [
                 { Id: 0, Description: '<i class="text-primary material-icons md-48 pull-left" title="Αναφορά Σίτισης">restaurant_menu </i><div class="report-header">Αναφορά Σίτισης</div>' },
@@ -42,7 +43,8 @@
                 { Id: 3, Description: '<i class="text-danger material-icons md-48 pull-left" title="Αναφορά Προβλήματος">error </i><div class="report-header"><span>Αναφορά Προβλήματος</div>' },
                 { Id: 4, Description: '<i class="text-warning material-icons md-48 pull-left" title="Αίτηση">message </i><div class="report-header">Αίτηση</div>' },
                 { Id: 5, Description: '<i class="text-info material-icons md-48 pull-left" title="Αναφορά Κατάστασης">assignment </i><div class="report-header">Αναφορά Κατάστασης</div>' },
-                { Id: 6, Description: '<i class="text-primary material-icons md-48 pull-left" title="Μήνυμα">email </i><div class="report-header">Μήνυμα</div>' }
+                { Id: 6, Description: '<i class="text-primary material-icons md-48 pull-left" title="Μήνυμα">email </i><div class="report-header">Μήνυμα</div>' },
+                { Id: 7, Description: '<i class="text-warning material-icons md-48 pull-left" title="Υγειονομική Αναφορά">local_hospital</i><div class="report-header">Υγειονομική Αναφορά</div>' }
             ],
             reportTypesHtml: [
                 { Id: 0, Description: '<i class="text-primary material-icons md-18" title="Αναφορά Σίτισης">restaurant_menu</i>' },
@@ -51,7 +53,8 @@
                 { Id: 3, Description: '<i class="text-danger material-icons md-18" title="Αναφορά Προβλήματος">error</i>' },
                 { Id: 4, Description: '<i class="text-warning material-icons md-18" title="Αίτηση">message</i>' },
                 { Id: 5, Description: '<i class="text-info material-icons md-18" title="Αναφορά Κατάστασης">assignment</i>' },
-                { Id: 6, Description: '<i class="text-primary material-icons md-18" title="Μήνυμα">email</i>' }
+                { Id: 6, Description: '<i class="text-primary material-icons md-18" title="Μήνυμα">email</i>' },
+                { Id: 7, Description: '<i class="text-warning material-icons md-18" title="Υγειονομική Αναφορά">local_hospital</i>'}
             ],
             entryLevelsHtml: [
                 { Id: 'Information', Description: '<i class="text-info material-icons md-18">info</i>Information' },
