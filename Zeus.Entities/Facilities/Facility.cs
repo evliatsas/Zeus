@@ -51,6 +51,8 @@ namespace Zeus.Entities
         public IList<Person> Persons { get; set; }
         public IList<Identity> Identities { get; set; }
         public IList<Sensitivity> Sensitivities { get; set; }
+        [BsonIgnore]
+        public int Arrivals { get; set; }
 
         public Facility()
         {
