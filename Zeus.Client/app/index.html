@@ -60,16 +60,16 @@
                                 <li ng-class="getClass(['/reports/archive'])"><a href="#/reports/archive">{{ 'MENU.ARCHIVES' | translate }}</a></li>
                             </ul>
                         </li>
-                        <li class="dropdown" ng-class="getClass(['/dailyreport', '/dailyreport/stats'])">
+                        <li class="dropdown" ng-class="getClass(['/dailyreport', '/dailyreport/stats', '/reports'])">
                             <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{ 'MENU.REPORTS' | translate }} <span class="caret"></span></a>
                             <ul class="dropdown-menu">
-                                <li ng-class="getClass(['/dailyreport'])"><a href="#/dailyreport">{{ 'Σίτισης' | translate }}</a></li>
-                                <li ng-class="getClass(['/dailyreport'])"><a href="#/dailyreport">{{ 'Στέγασης' | translate }}</a></li>
-                                <li ng-class="getClass(['/dailyreport'])"><a href="#/dailyreport">{{ 'Μετακίνησης' | translate }}</a></li>
-                                <li ng-class="getClass(['/dailyreport'])"><a href="#/dailyreport">{{ 'Προβλήματος' | translate }}</a></li>
-                                <li ng-class="getClass(['/dailyreport'])"><a href="#/dailyreport">{{ 'Αίτηση' | translate }}</a></li>
-                                <li ng-class="getClass(['/dailyreport'])"><a href="#/dailyreport">{{ 'Κατάσταση' | translate }}</a></li>
-                                <li ng-class="getClass(['/dailyreport'])"><a href="#/dailyreport">{{ 'Οδηγία' | translate }}</a></li>
+                                <li ng-class="getClass(['/reports/0'])"><a href="#/reports/0">{{ 'Σίτισης' | translate }}</a></li>
+                                <li ng-class="getClass(['/reports/1'])"><a href="#/reports/1">{{ 'Στέγασης' | translate }}</a></li>
+                                <li ng-class="getClass(['/reports/2'])"><a href="#/reports/2">{{ 'Μετακίνησης' | translate }}</a></li>
+                                <li ng-class="getClass(['/reports/3'])"><a href="#/reports/3">{{ 'Προβλήματος' | translate }}</a></li>
+                                <li ng-class="getClass(['/reports/4'])"><a href="#/reports/4">{{ 'Αίτηση' | translate }}</a></li>
+                                <li ng-class="getClass(['/reports/5'])"><a href="#/reports/5">{{ 'Κατάσταση' | translate }}</a></li>
+                                <li ng-class="getClass(['/reports/6'])"><a href="#/reports/6">{{ 'Οδηγία' | translate }}</a></li>
                                 <li role="separator" class="divider"></li>
                                 <li ng-class="getClass(['/dailyreport'])"><a href="#/dailyreport">{{ 'Δελτίο Τύπου' | translate }}</a></li>
                                 <li ng-class="getClass(['/dailyreport/stats'])"><a href="#/dailyreport/stats">{{ 'MENU.CHARTS' | translate }}</a></li>
@@ -202,6 +202,7 @@
     <script src="scripts/controllers/persons.js"></script>
     <script src="scripts/controllers/person.js"></script>
     <script src="scripts/controllers/facility.js"></script>
+    <script src="scripts/controllers/reports.js"></script>
     <script src="scripts/controllers/report.js"></script>
     <script src="scripts/controllers/map.js"></script>
     <script src="scripts/controllers/login.js"></script>

@@ -89,8 +89,6 @@ angular
                     tempUrl += 'situation-report.html';
                 else if (type == 6)
                     tempUrl += 'message-report.html';
-                else if (type == 7)
-                    tempUrl += 'healthcare-report.html';
                 else
                     tempUrl += 'report.html';
 
@@ -98,6 +96,28 @@ angular
             },
             controller: 'ReportCtrl',
             controllerAs: 'reportCtrl'
+        })
+        .when('/reports/:type', {
+            templateUrl: function (params) {
+                var type = params.type;
+                var tempUrl = 'views/reports/';
+                if (type == 0)
+                    tempUrl += 'feeding-reports.html';
+                else if (type == 1)
+                    tempUrl += 'housing-reports.html';
+                else if (type == 2)
+                    tempUrl += 'transport-reports.html';
+                else if (type == 5)
+                    tempUrl += 'situation-reports.html';
+                else if (type == 6)
+                    tempUrl += 'message-reports.html';
+                else
+                    tempUrl += 'reports.html';
+
+                return tempUrl;
+            },
+            controller: 'ReportsCtrl',
+            controllerAs: 'reportsCtrl'
         })
         .when('/reports/archive', {
             templateUrl: 'views/archive.html',

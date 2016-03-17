@@ -50,6 +50,33 @@ namespace Zeus.Controllers
             return result == null ? this.Ok(new List<Report>().AsEnumerable()) : this.Ok(result.OrderByDescending(o => o.DateTime).AsEnumerable());
         }
 
+        [Route("type/{tp}")]
+        [ResponseType(typeof(IEnumerable<Report>))]
+        [HttpGet]
+        public async Task<IHttpActionResult> GetReports(int tp)
+        {
+            IEnumerable<Report> result;
+
+            var user = await Helper.GetUserByRequest(User as ClaimsPrincipal, UserManager);
+            if (user.Roles.Any(x => x == ApplicationRoles.Administrator || x == ApplicationRoles.Viewer))
+                result = await context.Reports.Get(x => !x.IsArchived && x.Type == (ReportType)tp);
+            else
+            {
+                var facilityClaims = user.Claims.Where(x => x.Type == ApplicationClaims.FacilityClaim).Select(s => s.Value);
+                result = await context.Reports.Get(x => !x.IsArchived && facilityClaims.Contains(x.FacilityId));
+            }
+
+            var facilityIds = result.Select(x => x.FacilityId).Distinct<string>();
+            var facilities = await context.Facilities.Get(x => facilityIds.Contains(x.Id));
+            result = result.Select(s =>
+            {
+                s.Facility = facilities.FirstOrDefault(t => t.Id == s.FacilityId);
+                return s;
+            });
+
+            return result == null ? this.Ok(new List<Report>().AsEnumerable()) : this.Ok(result.OrderByDescending(o => o.DateTime).AsEnumerable());
+        }
+
         [Route("{id}")]
         [ResponseType(typeof(Report))]
         [HttpGet]
