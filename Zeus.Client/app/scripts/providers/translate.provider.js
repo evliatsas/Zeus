@@ -156,11 +156,12 @@ angular
 	    	    DELETE: 'Διαγραφή Αναφοράς',
 	    	    SAVE: 'Αποθήκευση Αναφοράς',
 	    	    PRIORITY: 'Προτεραιότητα',
-	    	    CHILDREN: 'Πλήθος Παιδιών ',
 	    	    SUBJECT: 'Θέμα',
-	    	    PERSON_COUNT: 'Πλήθος Ατόμων',
-	    	    SENSITIVE_COUNT: 'Άτομα Ευαίσθητης Ομάδας',
-	    	    NOTES: 'Κείμενο'
+	    	    COUNT: 'Σύνολο',
+	    	    SENSITIVITY: 'Ευπαθείς Ευάλωτες Ομάδες',
+	    	    SENSITIVITY_TYPE: 'Είδος',
+                PROCEDURE:'Διαδικασίες Οργανισμών',
+	    	    NOTES: 'Σημειώσεις'
 	    	},
 	    	TRANSPORT_REPORT: {
 	    	    DELETE: 'Διαγραφή Αναφοράς',
@@ -520,10 +521,10 @@ angular
 	            DELETE: 'Delete Report',
 	            SAVE: 'Save Report',
 	            PRIORITY: 'Priority',
-	            CHILDREN: 'Number of Children ',
 	            SUBJECT: 'Subject',
-	            PERSON_COUNT: 'Number of Persons',
-	            SENSITIVE_COUNT: 'Number of Sensitive Persons ',
+	            COUNT: 'Total',
+	            SENSITIVE_COUNT: 'Sensitive Group of People',
+	            PROCEDURE: 'Organization Procedures',
 	            NOTES: 'Notes'
 	        },
 	        TRANSPORT_REPORT: {
