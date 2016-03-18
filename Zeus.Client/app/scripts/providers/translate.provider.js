@@ -146,7 +146,7 @@ angular
 	    	REPORT: {
 	    	    DELETE: 'Διαγραφή Αναφοράς',
 	    	    SAVE: 'Αποθήκευση Αναφοράς',
-	    	    SHORTAGE_TYPE: 'Κατηγορία',
+	    	    TYPE: 'Τύπος',
 	    	    NOT_ARCHIVED: 'Αρχειοθέτηση Αναφοράς',
 	    	    ARCHIVED: 'Εξαγωγή Αναφοράς από Αρχείο',
 	    	    PRIORITY: 'Προτεραιότητα',
@@ -181,11 +181,6 @@ angular
                 OWNER:'Ιδιοκτησία',
 	    	    ISHIRED: 'Είναι Ναυλωμένο',
 	    	    NOTES: 'Κείμενο'
-	    	},
-	    	HEALTHCARE_REPORT:{
-	    	    SUBJECT: 'Θέμα',
-	    	    NOTES: 'Προβλήματα',
-                SHORTAGE:'Ελλήψεις'
 	    	},
 	    	ARCHIVE: {
 	    	    DELETE: 'Διαγραφή Αναφοράς',
@@ -514,6 +509,7 @@ angular
 	        REPORT: {
 	            DELETE: 'Delete Report',
 	            SAVE: 'Save Report',
+                TYPE: 'Type',
 	            NOT_ARCHIVED: 'Archive Report',
 	            ARCHIVED: 'Export Report from Archive',
 	            PRIORITY: 'Priority',
@@ -547,11 +543,6 @@ angular
 	            OWNER: 'Ownership',
 	            ISHIRED: 'Hired',
 	            NOTES: 'Notes'
-	        },
-	        HEALTHCARE_REPORT: {
-	            SUBJECT: 'Subject',
-	            NOTES: 'Issues',
-	            SHORTAGE: 'Shortages'
 	        },
 	        ARCHIVE: {
 	            DELETE: 'Delete Report',

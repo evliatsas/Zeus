@@ -15,14 +15,14 @@ namespace Zeus.Entities
             this.Type = ReportType.RequestReport;
         }
 
-        public RequestCategory Category { get; set; }
+        public ReportCategory Category { get; set; }        
+    }
 
-        public enum RequestCategory
-        {
-            Humanity,
-            Healthcare,
-            Equipment,
-            Functionality
-        }
+    public enum ReportCategory
+    {
+        Humanitarian,
+        Healthcare,
+        Equipment,
+        Functionality
     }
 }

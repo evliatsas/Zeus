@@ -98,24 +98,7 @@ angular
             controllerAs: 'reportCtrl'
         })
         .when('/reports/:type', {
-            templateUrl: function (params) {
-                var type = params.type;
-                var tempUrl = 'views/reports/';
-                if (type == 0)
-                    tempUrl += 'feeding-reports.html';
-                else if (type == 1)
-                    tempUrl += 'housing-reports.html';
-                else if (type == 2)
-                    tempUrl += 'transport-reports.html';
-                else if (type == 5)
-                    tempUrl += 'situation-reports.html';
-                else if (type == 6)
-                    tempUrl += 'message-reports.html';
-                else
-                    tempUrl += 'reports.html';
-
-                return tempUrl;
-            },
+            templateUrl: 'views/reports/reports.html',
             controller: 'ReportsCtrl',
             controllerAs: 'reportsCtrl'
         })
@@ -128,11 +111,6 @@ angular
             templateUrl: 'views/log.html',
             controller: 'LogCtrl',
             controllerAs: 'logCtrl'
-        })
-        .when('/reports/messages', {
-            templateUrl: 'views/messages.html',
-            controller: 'MessagesCtrl',
-            controllerAs: 'messagesCtrl'
         })
         .when('/providers/:id', {
             templateUrl: 'views/provider.html',

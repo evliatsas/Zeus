@@ -91,7 +91,6 @@
     <Content Include="app\scripts\controllers\map.js" />
     <Content Include="app\scripts\controllers\menu.js" />
     <Content Include="app\scripts\controllers\contact.js" />
-    <Content Include="app\scripts\controllers\messages.js" />
     <Content Include="app\scripts\controllers\operations.js" />
     <Content Include="app\scripts\controllers\operation.js" />
     <Content Include="app\scripts\controllers\reports.js" />
@@ -135,16 +134,9 @@
     <Content Include="app\views\main.html" />
     <Content Include="app\views\map.html" />
     <Content Include="app\views\contact.html" />
-    <Content Include="app\views\messages.html" />
     <Content Include="app\views\operations.html" />
-    <Content Include="app\views\reports\feeding-reports.html" />
-    <Content Include="app\views\reports\healthcare-report.html" />
-    <Content Include="app\views\reports\housing-reports.html" />
-    <Content Include="app\views\reports\message-reports.html" />
     <Content Include="app\views\reports\message-report.html" />
     <Content Include="app\views\reports\reports.html" />
-    <Content Include="app\views\reports\situation-reports.html" />
-    <Content Include="app\views\reports\transport-reports.html" />
     <Content Include="app\views\templates\card-list.html" />
     <Content Include="app\views\templates\facility-card.html" />
     <Content Include="app\views\templates\facility-details.html" />

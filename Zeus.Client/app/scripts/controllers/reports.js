@@ -7,22 +7,65 @@ angular
         $scope.reports = [];
         $scope.reportType = $routeParams.type;
 
-        var getReportType = function() {
+        var customReportGrid = function() {
             switch ($scope.reportType) {
                 case "0":
-                    return 'FeedingReport';
+                    $scope.title = "Σίτισης";
+                    var col1 = { Caption: 'FEEDING_REPORT.PROVIDER', Field: 'FeedingProvider.Name' };
+                    var col2 = { Caption: 'FEEDING_REPORT.RATIONS', Field: 'Rations' };
+                    var col3 = { Caption: 'FEEDING_REPORT.MEAL', Field: 'Meal' };
+                    $scope.reportcolumns.push(col1);
+                    $scope.reportcolumns.push(col2);
+                    $scope.reportcolumns.push(col3);
+                    break;
                 case "1":
-                    return 'HousingReport';
+                    $scope.title = "Στέγασης";
+                    var col1 = { Caption: 'HOUSING_REPORT.TYPE', Field: 'Housing.Type' };
+                    var col2 = { Caption: 'HOUSING_REPORT.HOUSE_COUNT', Field: 'HousedCount' };
+                    $scope.reportcolumns.push(col1);
+                    $scope.reportcolumns.push(col2);
+                    break;
                 case "2":
-                    return 'MovementReport'
+                    $scope.title = "Μετακίνησης";
+                    var col1 = { Caption: 'TRANSPORT_REPORT.STARTING_POINT', Field: 'StartingPoint' };
+                    var col2 = { Caption: 'TRANSPORT_REPORT.DESTINATION', Field: 'Destination' };
+                    var col3 = { Caption: 'TRANSPORT_REPORT.MOVEMENT_TYPE', Field: 'MovementType' };
+                    var col4 = { Caption: 'TRANSPORT_REPORT.PERSON_COUNT', Field: 'PersonCount' };
+                    var col5 = { Caption: 'TRANSPORT_REPORT.DEPARTURE', Field: 'Departure', Type: 'DateTime' };
+                    var col6 = { Caption: 'TRANSPORT_REPORT.ETA', Field: 'ETA', Type: 'DateTime' };
+                    $scope.reportcolumns.push(col1);
+                    $scope.reportcolumns.push(col2);
+                    $scope.reportcolumns.push(col3);
+                    $scope.reportcolumns.push(col4);
+                    $scope.reportcolumns.push(col5);
+                    $scope.reportcolumns.push(col6);
+                    break;
                 case "3":
-                    return 'ProblemReport';
+                    $scope.title = "Προβλημάτων";                    
+                    var col1 = { Caption: 'FACILITY_DETAILS.CATEGORY', Field: 'Category', Type: 'Lookup', Values: lookupService.reportCategories, Tooltip: 'Κατηγορία Προβλήματος' };
+                    $scope.reportcolumns.push(col1);
+                    break;
                 case "4":
-                    return 'RequestReport';
+                    $scope.title = "Αίτησης-Ελλείψεων";
+                    var col1 = { Caption: 'FACILITY_DETAILS.CATEGORY', Field: 'Category', Type: 'Lookup', Values: lookupService.reportCategories, Tooltip: 'Κατηγορία Αίτησης' };
+                    $scope.reportcolumns.push(col1);
+                    break;
                 case "5":
-                    return 'SituationReport';
+                    $scope.title = "Τρέχουσας Κατάστασης";
+                    var col1 = { Caption: 'FACILITY_CARD.GUESTS', Field: 'PersonCount' };
+                    var col2 = { Caption: 'PERSON.SENSITIVITY', Field: 'SensitiveCount' };
+                    $scope.reportcolumns.push(col1);
+                    $scope.reportcolumns.push(col2);
+                    break;
                 case "6":
-                    return 'Message';
+                    $scope.title = "Οδηγίες-Μηνύματα";
+                    var col1 = { Caption: 'CHARTS.FROM', Field: 'Sender' };
+                    var col2 = { Caption: 'CHARTS.TO', Field: 'Recipient' };
+                    var col3 = { Caption: 'REPORT.TYPE', Field: 'RecipientType' };
+                    $scope.reportcolumns.push(col1);
+                    $scope.reportcolumns.push(col2);
+                    $scope.reportcolumns.push(col3);
+                    break;
             }
         }
 
@@ -40,6 +83,7 @@ angular
             url: baseUrl + '/reports/type/' + $routeParams.type //the unique id of the report
         }).then(function successCallback(response) {
             $scope.reports = response.data;
+            customReportGrid();
         }, function errorCallback(response) {
             messageService.getFailed(response.error);
         });

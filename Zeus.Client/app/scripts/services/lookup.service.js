@@ -17,7 +17,7 @@
             prioritiesTitles: [
                 { Id: 0, Description: 'Χαμηλή' },
                 { Id: 1, Description: 'Κανονική' },
-                 { Id: 3, Description: 'Άμεσο' },
+                { Id: 3, Description: 'Άμεσο' },
                 { Id: 4, Description: 'Αστραπιαίο' },
             ],
             classifications: [
@@ -36,7 +36,7 @@
                 { Id: 6, Description: 'Οδηγία' },
                 { Id: 7, Description: 'Υγειονομική' }
             ],
-            shortageTypes: [
+            reportCategories: [
                 { Id: 0, Description: 'Ανθρωπιστικής Βοήθειας' },
                 { Id: 1, Description: 'Υγειονομικού Υλικού' },
                 { Id: 2, Description: 'Εξοπλισμού Εγκαταστάσεων' },

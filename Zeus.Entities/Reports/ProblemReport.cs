@@ -14,14 +14,6 @@ namespace Zeus.Entities
             this.Type = ReportType.ProblemReport;
         }
 
-        public ProblemCategory Category { get; set; }
-
-        public enum ProblemCategory
-        {
-            Humanity,
-            Healthcare,
-            Equipment,
-            Functionality
-        }
+        public ReportCategory Category { get; set; }
     }
 }
