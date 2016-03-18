@@ -3,13 +3,14 @@
     <div class="form-group label-static ng-is-empty" ng-class="{ 'has-error': form.Name.$invalid }">
         <label for="i1" class="control-label">{{ 'FACILITY_DETAILS.NAME' | translate }}</label>
         <input type="text" class="form-control" id="i1" name="Name" ng-model="facility.Name" required>
-        <span class="material-input"></span>
-    </div>
+    </div>    
     <div class="form-group label-static ng-is-empty" ng-class="{ 'has-error': form.Category.$invalid }">
-        <label for="i3" class="control-label">{{ 'FACILITY_DETAILS.CATEGORY' | translate }}</label>
-        <input type="text" class="form-control" id="i3" name="Category" ng-model="facility.Category" title="{{'FACILITY_DETAILS.CATEGORY_TOOLTIP' | translate}}"
-               uib-typeahead="cat for cat in lookup.facilityCategories | filter:$viewValue" required>
-        <span class="material-input"></span>
+        <label for="Category" class="control-label">{{ 'FACILITY_DETAILS.CATEGORY' | translate }}</label>
+        <input type="text" class="form-control" id="Category" name="Category" ng-model="facility.Category" uib-typeahead="cat for cat in lookup.facilityCategories | filter:$viewValue" required>
+    </div>
+    <div class="form-group label-static ng-is-empty" ng-class="{ 'has-error': form.Area.$invalid }">
+        <label for="Area" class="control-label">{{ 'FACILITY_DETAILS.AREA' | translate }}</label>
+        <input type="text" class="form-control" id="Area" name="Area" ng-model="facility.Area" uib-typeahead="ar for ar in lookup.facilityAreas | filter:$viewValue" required>
     </div>
     <div class="form-group label-static ng-is-empty">
         <label for="i2" class="control-label">{{ 'FACILITY_DETAILS.DESCRIPTION' | translate }}</label>
@@ -37,7 +38,6 @@
                 <label for="MaxCapacity" class="control-label">{{ 'FACILITY_DETAILS.MAXCAPACITY' | translate }}</label>
                 <input type="number" class="form-control" id="MaxCapacity" ng-model="facility.MaxCapacity" 
                        title="{{'FACILITY_DETAILS.MAXCAPACITY_TOOLTIP' | translate}}" min="0">
-                <span class="material-input"></span>
             </div>
         </div>
         <div class="col-md-4">
@@ -45,7 +45,6 @@
                 <label for="RepCapacity" class="control-label">{{ 'FACILITY_DETAILS.REPORT_CAPACITY' | translate }}</label>
                 <input type="number" class="form-control" id="RepCapacity" ng-model="facility.ReportCapacity" 
                        title="{{'FACILITY_DETAILS.REPORT_CAPACITY_TOOLTIP' | translate}}" min="0">
-                <span class="material-input"></span>
             </div>
         </div>
     </div>
@@ -55,7 +54,6 @@
                 <label for="maxRations" class="control-label">{{ 'FACILITY_DETAILS.MAX_RATIONS' | translate }}</label>
                 <input type="number" class="form-control" id="maxRations" ng-model="facility.MaxRations"
                        title="{{'FACILITY_DETAILS.MAX_RATIONS_TOOLTIP' | translate}}" min="0">
-                <span class="material-input"></span>
             </div>
         </div>
         <div class="col-md-4">
