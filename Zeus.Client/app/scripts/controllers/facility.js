@@ -155,7 +155,12 @@ angular
                 },
                 Identities : [],
                 Sensitivities : [],
-                Procedures : []
+                Procedures : [],
+                Housings : [],
+                Contacts : [],
+                Providers : [],
+                Reports : [],
+                Persons : []
             };
         } else {
             $http({
