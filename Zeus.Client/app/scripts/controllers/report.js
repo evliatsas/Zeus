@@ -171,15 +171,15 @@ angular
         }
 
         $scope.getLookup = function (type) {
-            var typeName = "";
-            switch (type) {
-                case 0: typeName = "facilities";
-                    break;
-                case 1: typeName = "providers";
-                    break;
-                case 2: typeName = "contacts";
-                    break;
-            }
+            var typeName = "facilities";
+
+            if (type == "0")
+                typeName = "facilities";
+            else if (type == "1")
+                typeName = "providers";
+            else if (type == "2")
+                typeName = "contacts";
+
             $http({
                 method: 'GET',
                 url: baseUrl + '/common/' + typeName
@@ -190,13 +190,13 @@ angular
             });
         }
 
-
         if (!isInsert) {
             $http({
                 method: 'GET',
                 url: baseUrl + '/reports/' + $routeParams.id //the unique id of the report
             }).then(function successCallback(response) {
-                $scope.report = response.data;
+                $scope.getLookup(response.data.RecipientType);
+                $scope.report = response.data;               
             }, function errorCallback(response) {
                 messageService.getFailed(response.error);
             });
@@ -215,8 +215,8 @@ angular
                 };
             }
             else if ($scope.reportType == "6") {
-                $scope.report.RecipientType = 0;
                 $scope.getLookup(0);
+                $scope.report.RecipientType = 0;                
             }
         }
     });
