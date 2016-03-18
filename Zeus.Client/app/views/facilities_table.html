@@ -80,12 +80,18 @@
                     <a ng-href="{{'#/reports/' + report.Type + '/' + report.FacilityId + '/' + report.Id}}">{{report.Subject}}</a>
                 </div>
             </td>
-            <td></td>
+            <td>
+                <a ng-if="facility.Supervisor" ng-href="{{'#/contacts/' + facility.Supervisor.Id}}">({{facility.Supervisor.Administration}}) {{ facility.Supervisor.Name }}</a>
+            </td>
         </tr>
     </tbody>
     <tfoot>
         <tr style="font-weight: bold">
             <td>Σύνολο</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
             <td></td>
             <td></td>
             <td></td>

@@ -40,6 +40,8 @@ namespace Zeus.Entities
         [BsonIgnore]
         public IList<Contact> Contacts { get; set; }
         [BsonIgnore]
+        public Contact Supervisor { get { return this.Contacts.FirstOrDefault(c => c.Type == "Υπεύθυνος"); } }
+        [BsonIgnore]
         public IList<Provider> Providers { get; set; }
         [BsonIgnore]
         public IList<Provider> HealthcareProviders { get { return this.Providers.Where(x => x.Type == ProviderType.Healthcare).ToList(); } }

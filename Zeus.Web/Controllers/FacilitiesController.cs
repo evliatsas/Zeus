@@ -48,13 +48,17 @@ namespace Zeus.Controllers
                 var multiProviders = await context.ProviderFacilities.Get(x => facilitiesIds.Contains(x.FacilityId));
                 var providerIds = multiProviders.Select(x => x.ProviderId);
                 var providers = await context.Providers.Get(x => providerIds.Contains(x.Id));
+                var multiContacts = await context.FacilityContacts.Get(x => facilitiesIds.Contains(x.FacilityId));
+                var contactIds = multiContacts.Select(x => x.ContactId);
+                var contacts = await context.Contacts.Get(x => contactIds.Contains(x.Id));
                 foreach (var facility in result)
                 {
                     facility.PersonsCount = await context.Persons.Count(x => x.FacilityId == facility.Id);
                     facility.Reports = (await context.Reports.Get(x => x.FacilityId == facility.Id && !x.IsArchived)).ToList();
                     var tmpProviderIds = multiProviders.Where(x => x.FacilityId == facility.Id).Select(p => p.ProviderId);
                     facility.Providers = providers.Where(x => tmpProviderIds.Contains(x.Id)).ToList();
-
+                    var tmpContactIds = multiContacts.Where(x => x.FacilityId == facility.Id).Select(p => p.ContactId);
+                    facility.Contacts = contacts.Where(x => tmpContactIds.Contains(x.Id)).ToList();
                     var transReports = await context.Reports.Get(r => r.Type == ReportType.MovementReport && r.FacilityId == facility.Id && r.DateTime > facility.IdentitiesLastUpdated);
                     facility.Arrivals = transReports.Cast<MovementReport>().Sum(x => x.PersonCount);
                 }
