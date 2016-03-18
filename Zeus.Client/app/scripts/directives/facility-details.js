@@ -12,7 +12,7 @@ angular
                 scope.lookup = lookupService;
 
                 scope.beforeRenderStartDate = function ($view, $dates, $leftDate, $upDate, $rightDate) {
-                    if (scope.facility.StatusDateTime) {
+                    if (scope.facility && scope.facility.StatusDateTime) {
                         var activeDate = moment(scope.facility.StatusDateTime);
                         for (var i = 0; i < $dates.length; i++) {
                             if ($dates[i].localDateValue() >= activeDate.valueOf()) $dates[i].selectable = false;
@@ -21,7 +21,7 @@ angular
                 }
 
                 scope.beforeRenderEndDate = function ($view, $dates, $leftDate, $upDate, $rightDate) {
-                    if (scope.facility.StatusECT) {
+                    if (scope.facility && scope.facility.StatusECT) {
                         var activeDate = moment(scope.facility.StatusECT).subtract(1, $view).add(1, 'minute');
                         for (var i = 0; i < $dates.length; i++) {
                             if ($dates[i].localDateValue() <= activeDate.valueOf()) {
