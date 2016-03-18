@@ -303,4 +303,12 @@ angular
             return count;
         }
 
+        $scope.formatDateTime = function (dt, format) {
+            if (format == undefined || format == '') {
+                format = "DD/MM/YYYY HH:mm";
+            }
+
+            return moment(dt).isValid() ? moment(dt).format(format, 'el') : "";
+        }
+
     });

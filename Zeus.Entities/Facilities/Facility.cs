@@ -52,6 +52,8 @@ namespace Zeus.Entities
         public IList<Identity> Identities { get; set; }
         public IList<Sensitivity> Sensitivities { get; set; }
         public IList<Procedure> Procedures { get; set; }
+        public string IdentitiesLastUpdatedBy { get; set; }
+        public DateTime IdentitiesLastUpdated { get; set; }
         [BsonIgnore]
         public int Arrivals { get; set; }
 

@@ -2,7 +2,7 @@
 
 angular
     .module('zeusclientApp')
-    .controller('ReportCtrl', function ($scope, $http, $routeParams, $location, lookupService, messageService, baseUrl) {
+    .controller('ReportCtrl', function ($scope, $http, $routeParams, $location, moment, lookupService, messageService, baseUrl) {
 
         $scope.lookup = lookupService;
         $scope.facilities = [];
@@ -14,6 +14,14 @@ angular
 
         var isInsert = $routeParams.id == 'new';
         $scope.IsNew = isInsert;
+
+        $scope.formatDateTime = function (dt, format) {
+            if (format == undefined || format == '') {
+                format = "DD/MM/YYYY HH:mm";
+            }
+
+            return moment(dt).isValid() ? moment(dt).format(format, 'el') : "";
+        }
 
         var getReportType = function () {
             switch ($scope.reportType) {

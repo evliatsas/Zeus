@@ -44,5 +44,9 @@
             <label for="i5" class="control-label">{{ 'REPORT.NOTES' | translate }}</label>
             <textarea class="form-control" id="i5" ng-model="report.Notes"></textarea>
         </div>
+        <div class="pull-right" style="font-size:smaller; font-weight:lighter">
+            <p>{{ 'REPORT.LASTUPDATE' | translate }}</p>
+            <p>{{report.User}} {{formatDateTime(report.DateTime)}}</p>
+        </div>
     </div>
 </form>

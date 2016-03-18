@@ -214,6 +214,8 @@ namespace Zeus.Controllers
                         facility.Identities = sitRep.Identities;
                         facility.Sensitivities = sitRep.Sensitivities;
                         facility.Procedures = sitRep.Procedures;
+                        facility.IdentitiesLastUpdatedBy = sitRep.User;
+                        facility.IdentitiesLastUpdated = sitRep.DateTime;
                         await context.Facilities.Update(facility);
                     }
                 }
@@ -280,6 +282,8 @@ namespace Zeus.Controllers
                             facility.Identities = sitRep.Identities;
                             facility.Sensitivities = sitRep.Sensitivities;
                             facility.Procedures = sitRep.Procedures;
+                            facility.IdentitiesLastUpdatedBy = sitRep.User;
+                            facility.IdentitiesLastUpdated = sitRep.DateTime;
                             await context.Facilities.Update(facility);
                         }
                     }

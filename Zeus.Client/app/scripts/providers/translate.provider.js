@@ -153,7 +153,8 @@ angular
 	    	    PRIORITY: 'Προτεραιότητα',
 	    	    FACILITY: 'Δομή Φιλοξενίας: ',
 	    	    SUBJECT: 'Θέμα',
-                NOTES:'Κείμενο'
+	    	    NOTES: 'Κείμενο',
+	    	    LASTUPDATE: 'Τελευταία Ενημέρωση'
 	    	},
 	    	SITUATION_REPORT: {
 	    	    DELETE: 'Διαγραφή Αναφοράς',
@@ -517,7 +518,8 @@ angular
 	            PRIORITY: 'Priority',
 	            FACILITY: 'Facility',
 	            SUBJECT: 'Subject',
-	            NOTES: 'Notes'
+	            NOTES: 'Notes',
+	            LASTUPDATE: 'Last Update'
 	        },
 	        SITUATION_REPORT: {
 	            DELETE: 'Delete Report',

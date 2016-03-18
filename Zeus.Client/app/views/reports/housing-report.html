@@ -46,5 +46,9 @@
             <label for="i3" class="control-label">{{ 'HOUSING_REPORT.NOTES' | translate }}</label>
             <textarea class="form-control" id="i3" ng-model="report.Notes"></textarea>
         </div>
+        <div class="pull-right" style="font-size:smaller; font-weight:lighter">
+            <p>{{ 'REPORT.LASTUPDATE' | translate }}</p>
+            <p>{{report.User}} {{formatDateTime(report.DateTime)}}</p>
+        </div>
     </div>
 </form>
