@@ -10,7 +10,10 @@
             <td rowspan="2" style="vertical-align: middle">Δομή</td>
             <td colspan="3">Φιλοξενούμενοι</td>
             <td colspan="3">Σίτιση</td>
-            <td colspan="3">Υγειονομική Υποστήριξη</td>
+            <td colspan="2">Υγειονομική Μέριμνα</td>
+            <td colspan="1">Εφοδιασμός</td>
+            <td colspan="4">Ελλείψεις</td>
+            <td colspan="1">Επαφές</td>
         </tr>
         <tr>
             <td>Παραμένοντες</td>
@@ -21,7 +24,12 @@
             <td>Ελλείψεις</td>
             <td>Φορέας</td>
             <td>Προβλήματα</td>
-            <td>Ελλείψεις</td>
+            <td>Φορείς</td>
+            <td>Ανθρωπιστικής Βοήθειας</td>
+            <td>Υγειονομικού Υλικού</td>
+            <td>Εξοπλισμού Εγκαταστάσεων</td>
+            <td>Λειτουργίας</td>
+            <td>Υπεύθυνος</td>
         </tr>
     </thead>
     <tbody>
@@ -44,6 +52,31 @@
             </td>           
             <td>
                 <div ng-repeat="report in facility.HealthcareReports">
+                    <a ng-href="{{'#/reports/' + report.Type + '/' + report.FacilityId + '/' + report.Id}}">{{report.Subject}}</a>
+                </div>
+            </td>
+            <td>
+                <div ng-repeat="log in facility.LogisticsProviders">
+                    <a ng-href="{{'#/providers/' + log.Id}}">({{log.Administration}}) {{ log.Name }}</a>
+                </div>
+            </td>
+            <td>
+                <div ng-repeat="report in facility.HumanitarianReports">
+                    <a ng-href="{{'#/reports/' + report.Type + '/' + report.FacilityId + '/' + report.Id}}">{{report.Subject}}</a>
+                </div>
+            </td>
+            <td>
+                <div ng-repeat="report in facility.HealthRequestReports">
+                    <a ng-href="{{'#/reports/' + report.Type + '/' + report.FacilityId + '/' + report.Id}}">{{report.Subject}}</a>
+                </div>
+            </td>
+            <td>
+                <div ng-repeat="report in facility.EquipmentReports">
+                    <a ng-href="{{'#/reports/' + report.Type + '/' + report.FacilityId + '/' + report.Id}}">{{report.Subject}}</a>
+                </div>
+            </td>
+            <td>
+                <div ng-repeat="report in facility.FunctionalityReports">
                     <a ng-href="{{'#/reports/' + report.Type + '/' + report.FacilityId + '/' + report.Id}}">{{report.Subject}}</a>
                 </div>
             </td>

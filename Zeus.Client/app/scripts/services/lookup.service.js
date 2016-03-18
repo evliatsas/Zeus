@@ -43,7 +43,7 @@
             ],
             reportCategories: [
                 { Id: 0, Description: 'Ανθρωπιστικής Βοήθειας' },
-                { Id: 1, Description: 'Υγειονομικού Υλικού' },
+                { Id: 1, Description: 'Υγειονομικού Ενδιαφέροντος' },
                 { Id: 2, Description: 'Εξοπλισμού Εγκαταστάσεων' },
                 { Id: 3, Description: 'Λειτουργίας' }
             ],

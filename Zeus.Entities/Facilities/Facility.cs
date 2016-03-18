@@ -44,7 +44,9 @@ namespace Zeus.Entities
         [BsonIgnore]
         public IList<Provider> HealthcareProviders { get { return this.Providers.Where(x => x.Type == ProviderType.Healthcare).ToList(); } }
         [BsonIgnore]
-        public IList<Provider> FeedingProviders { get { return this.Providers.Where(x => x.Type == ProviderType.Catering).ToList(); } }       
+        public IList<Provider> FeedingProviders { get { return this.Providers.Where(x => x.Type == ProviderType.Catering).ToList(); } }
+        [BsonIgnore]
+        public IList<Provider> LogisticsProviders { get { return this.Providers.Where(x => x.Type == ProviderType.Logistics).ToList(); } }
         public int MaxRations { get; set; }
         [BsonIgnore]
         public IList<Report> Reports { get; set; }
@@ -54,7 +56,19 @@ namespace Zeus.Entities
         public IList<ProblemReport> HealthcareReports { get { return this.Reports.Where(x =>x.Type == ReportType.ProblemReport)
                     .Cast<ProblemReport>().Where(r => r.Category == ReportCategory.Healthcare).ToList(); } }
         [BsonIgnore]
-        public int HealthcareReportsCount { get { return this.HealthcareReports.Count(); } }       
+        public int HealthcareReportsCount { get { return this.HealthcareReports.Count(); } }    
+        [BsonIgnore]
+        public IList<RequestReport> HumanitarianReports { get { return this.Reports.Where(x => x.Type == ReportType.RequestReport)
+                    .Cast<RequestReport>().Where(r => r.Category == ReportCategory.Humanitarian).ToList(); } }
+        [BsonIgnore]
+        public IList<RequestReport> HealthRequestReports { get { return this.Reports.Where(x => x.Type == ReportType.RequestReport)
+                    .Cast<RequestReport>().Where(r => r.Category == ReportCategory.Healthcare).ToList(); } }
+        [BsonIgnore]
+        public IList<RequestReport> EquipmentReports { get {return this.Reports.Where(x => x.Type == ReportType.RequestReport)
+                    .Cast<RequestReport>().Where(r => r.Category == ReportCategory.Equipment).ToList(); } }
+        [BsonIgnore]
+        public IList<RequestReport> FunctionalityReports { get { return this.Reports.Where(x => x.Type == ReportType.RequestReport)
+                    .Cast<RequestReport>().Where(r => r.Category == ReportCategory.Functionality).ToList(); } }
         [BsonIgnore]
         public IList<Person> Persons { get; set; }
         [BsonIgnore]
