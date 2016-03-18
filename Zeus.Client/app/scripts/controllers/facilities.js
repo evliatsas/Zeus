@@ -12,4 +12,12 @@ angular
         }, function errorCallback(response) {
             messageService.getFailed(response.error);
         });
+
+        $scope.toggleView = function () {
+            $location.url("/facilities");
+        }
+
+        $scope.addFacility = function () {
+            $location.url("/facilities/new");
+        }
     });
