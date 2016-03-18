@@ -34,7 +34,7 @@
     </thead>
     <tbody>
         <tr ng-repeat="facility in facilities">
-            <td>{{facility.Name}}</td>
+            <td><a ng-href="{{'#/facilities/' + facility.Id}}">{{facility.Name}}</a></td>
             <td>{{facility.Attendance}}</td>
             <td>{{facility.Capacity}}</td>
             <td>{{facility.Arrivals}}</td>
