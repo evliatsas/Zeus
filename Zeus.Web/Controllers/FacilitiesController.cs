@@ -56,6 +56,9 @@ namespace Zeus.Controllers
                     facility.HealthcareReportsCount = problemReports.Cast<ProblemReport>().Count(x => x.Category == ReportCategory.Healthcare);
                     var tmpProviderIds = multiProviders.Where(x => x.FacilityId == facility.Id).Select(p => p.ProviderId);
                     facility.Providers = providers.Where(x => tmpProviderIds.Contains(x.Id)).ToList();
+
+                    var transReports = await context.Reports.Get(r => r.Type == ReportType.MovementReport && r.FacilityId == facility.Id && r.DateTime > facility.IdentitiesLastUpdated);
+                    facility.Arrivals = transReports.Cast<MovementReport>().Sum(x => x.PersonCount);
                 }
 
                 return result == null ? this.Ok(new List<Facility>().AsEnumerable()) : this.Ok(result.OrderByDescending(o => o.Name).AsEnumerable());
