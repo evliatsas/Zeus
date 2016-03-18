@@ -12,6 +12,8 @@ namespace Zeus.Entities.Repositories
     {
         protected internal IMongoCollection<T> collection;
 
+        public IMongoCollection<T> Collection { get { return collection; } }
+
         public MongoDbRepository(IMongoDatabase database, string collectionName)
         {
             this.collection = database.GetCollection<T>(collectionName);

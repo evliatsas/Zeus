@@ -44,6 +44,13 @@ namespace Zeus.Entities.Repositories
         //Used to block concurent initializations of context
         private static object IsInitializing = new object();
 
+        public void EnsureUniqueIndexs()
+        {
+            var facilityName = Builders<Facility>.IndexKeys.Ascending(t => t.Name);
+            var unique = new CreateIndexOptions { Unique = true };
+            Facilities.Collection.Indexes.CreateOneAsync(facilityName, unique);
+        }
+
         #endregion
 
         #region Constructor
@@ -90,6 +97,7 @@ namespace Zeus.Entities.Repositories
                 Calendar = new MongoDbRepository<CalendarEntry>(this.Database, "Calendar");
                 //set the static instance property
                 _instance = this;
+                EnsureUniqueIndexs();
             }
         }
 
