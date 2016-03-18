@@ -37,9 +37,8 @@ angular
         $scope.reportcolumns = [
             { Caption: 'GRID.TYPE', Field: 'Type', Type: 'LookupHtml', Values: lookupService.reportTypesHtml, Tooltip: 'Τύπος Αναφοράς' },
             { Caption: 'GRID.PRIORITY', Field: 'Priority', Type: 'LookupHtml', Values: lookupService.priorities, Tooltip: 'Προτεραιότητα Αναφοράς' },
-            { Caption: 'REPORT.SHORTAGE_TYPE', Field: 'Category', Type: 'Lookup', Values: lookupService.reportCategories, Tooltip: 'Κατηγορία' },
             { Caption: 'GRID.SUBJECT', Field: 'Subject' },
-            { Caption: 'GRID.AUTHOR', Field: 'User.Title' },
+            { Caption: 'GRID.AUTHOR', Field: 'User' },
             { Caption: 'GRID.DATETIME', Field: 'DateTime', Type: 'DateTime' }
         ];
 

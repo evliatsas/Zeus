@@ -27,6 +27,10 @@ angular
                 scope.addFacility = function () {
                     $location.url("/facilities/new");
                 }
+
+                scope.toggleView = function () {
+                    $location.url("/facilities/table");
+                }
             }
         };
     })

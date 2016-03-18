@@ -33,14 +33,13 @@
                 { Id: 2, Description: 'Επαφή' }
             ],
             reports: [
+                { Id: 5, Description: 'Τρέχουσας Κατάστασης' },
                 { Id: 0, Description: 'Αναφορά Σίτισης' },
                 { Id: 1, Description: 'Αναφορά Στέγασης' },
                 { Id: 2, Description: 'Αναφορά Μετακίνησης' },
-                { Id: 3, Description: 'Αναφορά Προβλήματος' },
-                { Id: 4, Description: 'Αίτηση' },
-                { Id: 5, Description: 'Αναφορά Κατάστασης' },
-                { Id: 6, Description: 'Οδηγία' },
-                { Id: 7, Description: 'Υγειονομική' }
+                { Id: 3, Description: 'Αναφορά Προβλημάτων' },
+                { Id: 4, Description: 'Αίτησης-Ελλείψεων' },                
+                { Id: 6, Description: 'Οδηγίες-Μηνύματα' }
             ],
             reportCategories: [
                 { Id: 0, Description: 'Ανθρωπιστικής Βοήθειας' },

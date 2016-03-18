@@ -96,7 +96,9 @@ angular
 	    	    HEALTHCARE: 'Αναφορά Υγειονομική'
 	    	},
 	    	CARD_LIST:{
-	    	    ADD: 'Προσθήκη Δομής Φιλοξενίας'
+	    	    ADD: 'Προσθήκη Δομής Φιλοξενίας',
+	    	    TABLE: 'Συνοπτική Προβολή',
+                CARD: 'Προβολή Καρτών'
 	    	},
 	    	FACILITY_MAP: {
 	    	    GUESTS: 'Φιλοξενούμενοι: ',
@@ -345,7 +347,7 @@ angular
 	    	    TITLE: 'Τίτλος',
 	    	    COMPANY: 'Οργανισμός',
 	    	    ADMINISTRATION: 'Διαχείριση',
-                NEW_REPORT:'Δημιουργία Νέας Αναφοράς',
+                NEW:'ΝΕΑ',
 	    	    DESCRIPTION: 'Περιγραφή',
 	    	    PERSONNEL: 'Προσωπικό',
 	    	    PRIORITY: 'Προτ.',
@@ -449,7 +451,9 @@ angular
 	            HEALTHCARE: 'Healthcare Report'
 	        },
 	        CARD_LIST:{
-	            ADD: 'Add Facility'
+	            ADD: 'Add Facility',
+	            TABLE: 'Compact View',
+	            CARD: 'Card View'
 	        },
 	        FACILITY_CARD: {
 	            GUESTS: 'Guests: ',
@@ -706,7 +710,7 @@ angular
 	            TITLE: 'Title',
 	            COMPANY: 'Organization',
 	            ADMINISTRATION: 'Administration',
-	            NEW_REPORT: 'New Report',
+	            NEW: 'NEW',
 	            DESCRIPTION: 'Description',
 	            PERSONNEL: 'Personnel',
 	            PRIORITY: 'Prior.',
