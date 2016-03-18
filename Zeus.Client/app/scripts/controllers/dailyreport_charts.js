@@ -2,7 +2,7 @@
 
 angular
     .module('zeusclientApp')
-    .controller('DailyReportChartsCtrl', function ($scope, $http, $filter, baseUrl, messageService) {
+    .controller('DailyReportChartsCtrl', function ($scope, $http, $filter, baseUrl, messageService, commonUtilities) {
 
         $scope.facilities = [];
         $scope.charts =null;
@@ -28,8 +28,7 @@ angular
         }
 
         function format(dt, format) {
-            var format = format || "DD-MM";
-            return moment(dt).isValid() ? moment(dt).format(format, 'el') : "";
+            return commonUtilities.formatDateTime(dt, format);
         }
 
         function groupBy(items, groupBy) {

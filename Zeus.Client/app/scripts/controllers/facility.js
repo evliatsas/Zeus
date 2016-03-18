@@ -2,10 +2,12 @@
 
 angular
     .module('zeusclientApp')
-    .controller('FacilityCtrl', function ($scope, $window, $timeout, $http, $routeParams, $filter, $location, $uibModal, lookupService, messageService, baseUrl) {
+    .controller('FacilityCtrl', function ($scope, $window, $timeout, $http, $routeParams, $filter, $location, $uibModal, lookupService, messageService, baseUrl, commonUtilities) {
 
         var isInsert = $routeParams.id == 'new';
         $scope.activeTab = $routeParams.tab ? parseInt($routeParams.tab) : 0;
+
+        $scope.formatDateTime = commonUtilities.formatDateTime;
 
         $scope.housingcolumns = [
             { Caption: 'GRID.TYPE', Field: 'Type', Values: lookupService.housingCategories, Tooltip: 'Τύπος Εγκατάστασης' },
@@ -301,14 +303,6 @@ angular
             }
 
             return count;
-        }
-
-        $scope.formatDateTime = function (dt, format) {
-            if (format == undefined || format == '') {
-                format = "DD/MM/YYYY HH:mm";
-            }
-
-            return moment(dt).isValid() ? moment(dt).format(format, 'el') : "";
         }
 
     });

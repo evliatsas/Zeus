@@ -5,14 +5,15 @@
         .module('zeusclientApp')
         .factory('commonUtilities', utilities);
 
-    function utilities($filter, $route) {
+    function utilities($filter, $route, moment) {
 
         var service = {
             containsById: containsById,
             filterById: filterById,
             filter: filter,
             naturalSort: naturalSort,
-            routeExists : routeExists
+            routeExists : routeExists,
+            formatDateTime: formatDateTime
         };
 
         return service;
@@ -92,5 +93,12 @@
             return tz;
         }
 
+        function formatDateTime(dt, format) {
+            if (format == undefined || format == '') {
+                format = "DD/MM/YYYY HH:mm";
+            }
+
+            return moment(dt).isValid() ? moment(dt).format(format, 'el') : "";
+        }
     }
 })();
