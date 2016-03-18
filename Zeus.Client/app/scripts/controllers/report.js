@@ -29,36 +29,8 @@ angular
                     return 'RequestReport';
                 case "5":
                     return 'SituationReport';
-                case "6":
+                case "6":                   
                     return 'Message';
-                case "7":
-                    return 'HealthcareProblemReport';
-            }
-        }
-
-        if (!isInsert) {
-            $http({
-                method: 'GET',
-                url: baseUrl + '/reports/' + $routeParams.id //the unique id of the report
-            }).then(function successCallback(response) {
-                $scope.report = response.data;
-            }, function errorCallback(response) {
-                messageService.getFailed(response.error);
-            });
-        }
-        else
-        {
-            if ($scope.reportType == "5") {
-                $scope.report = {
-                    Identities: [
-                        {
-                            Nationality: "Άγνωστη",
-                            Count: 0
-                        }
-                    ],
-                    Sensitivities: [],
-                    Procedures: []
-                };
             }
         }
 
@@ -198,4 +170,53 @@ angular
             });
         }
 
+        $scope.getLookup = function (type) {
+            var typeName = "";
+            switch (type) {
+                case 0: typeName = "facilities";
+                    break;
+                case 1: typeName = "providers";
+                    break;
+                case 2: typeName = "contacts";
+                    break;
+            }
+            $http({
+                method: 'GET',
+                url: baseUrl + '/common/' + typeName
+            }).then(function successCallback(response) {
+                $scope.lookupList = response.data;
+            }, function errorCallback(response) {
+                $scope.lookupList = [];
+            });
+        }
+
+
+        if (!isInsert) {
+            $http({
+                method: 'GET',
+                url: baseUrl + '/reports/' + $routeParams.id //the unique id of the report
+            }).then(function successCallback(response) {
+                $scope.report = response.data;
+            }, function errorCallback(response) {
+                messageService.getFailed(response.error);
+            });
+        }
+        else {
+            if ($scope.reportType == "5") {
+                $scope.report = {
+                    Identities: [
+                        {
+                            Nationality: "Άγνωστη",
+                            Count: 0
+                        }
+                    ],
+                    Sensitivities: [],
+                    Procedures: []
+                };
+            }
+            else if ($scope.reportType == "6") {
+                $scope.report.RecipientType = 0;
+                $scope.getLookup(0);
+            }
+        }
     });

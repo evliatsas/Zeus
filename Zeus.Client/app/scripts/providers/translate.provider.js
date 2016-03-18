@@ -147,6 +147,7 @@ angular
 	    	    DELETE: 'Διαγραφή Αναφοράς',
 	    	    SAVE: 'Αποθήκευση Αναφοράς',
 	    	    TYPE: 'Τύπος',
+	    	    RECIPIENT: 'Αποδέκτης',
 	    	    NOT_ARCHIVED: 'Αρχειοθέτηση Αναφοράς',
 	    	    ARCHIVED: 'Εξαγωγή Αναφοράς από Αρχείο',
 	    	    PRIORITY: 'Προτεραιότητα',
@@ -509,7 +510,8 @@ angular
 	        REPORT: {
 	            DELETE: 'Delete Report',
 	            SAVE: 'Save Report',
-                TYPE: 'Type',
+	            TYPE: 'Type',
+	            RECIPIENT: 'Recipient',
 	            NOT_ARCHIVED: 'Archive Report',
 	            ARCHIVED: 'Export Report from Archive',
 	            PRIORITY: 'Priority',

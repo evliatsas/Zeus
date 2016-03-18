@@ -13,12 +13,20 @@ namespace Zeus.Entities
         public string Sender { get { return this.User; } }
         [BsonRequired]
         public string Recipient { get; set; }
-        public string RecipientType { get; set; }
+        public RecipientType RecipientType { get; set; }
         
         public Message()
         {
             this.DateTime = DateTime.Now;
             this.Type = ReportType.Message;
+            this.RecipientType = RecipientType.Facility;
         }
+    }
+
+    public enum RecipientType
+    {
+        Facility,
+        Provider,
+        Contact
     }
 }

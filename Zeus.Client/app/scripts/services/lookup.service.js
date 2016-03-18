@@ -17,6 +17,7 @@
             prioritiesTitles: [
                 { Id: 0, Description: 'Χαμηλή' },
                 { Id: 1, Description: 'Κανονική' },
+                { Id: 2, Description:'Επείγον' },
                 { Id: 3, Description: 'Άμεσο' },
                 { Id: 4, Description: 'Αστραπιαίο' },
             ],
@@ -25,6 +26,11 @@
                 { Id: 1, Description: '<i class="fa fa-square text-success" title="Περιορισμένης Χρήσης (ΠΧ)">' },
                 { Id: 2, Description: '<i class="fa fa-square text-warning" title="Εμπιστευτικό (ΕΠ)">' },
                 { Id: 3, Description: '<i class="fa fa-square text-danger" title="Απόρρητο (ΑΠ)">' }
+            ],
+            recipientTypes:[
+                { Id: 0, Description: 'Δομή Φιλοξενίας' },
+                { Id: 1, Description: 'Φορέα Υποστήριξης' },
+                { Id: 2, Description: 'Επαφή' }
             ],
             reports: [
                 { Id: 0, Description: 'Αναφορά Σίτισης' },
