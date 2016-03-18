@@ -152,7 +152,10 @@ angular
                 Location: {
                     Type: 'Point',
                     Coordinates: [38.5306122, 25.4556341]
-                }
+                },
+                Identities : [],
+                Sensitivities : [],
+                Procedures : []
             };
         } else {
             $http({
