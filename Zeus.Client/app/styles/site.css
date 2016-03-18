@@ -2,6 +2,14 @@
   display: none !important;
 }
 
+.form-group label.control-label {
+  color: #555;
+}
+
+.form-control {
+  color: #111;
+}
+
 .map-container {
     box-shadow: 0 0 2px rgba(0,0,0,.12),0 2px 4px rgba(0,0,0,.24);
 }

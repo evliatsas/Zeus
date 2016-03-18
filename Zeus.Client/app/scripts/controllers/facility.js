@@ -272,24 +272,33 @@ angular
 
         $scope.calcSensibilityCount = function () {
             var count = 0;
-            for (var i in $scope.data.Sensitivities)
-                count += $scope.data.Sensitivities[i].Count;
+            if ($scope.data) {
+                $scope.data.Sensitivities.forEach(function (item, index) {
+                    count += item.Count;
+                })
+            }
 
             return count;
         }
 
         $scope.calcIdentityCount = function () {
             var count = 0;
-            for (var i in $scope.data.Identities)
-                count += $scope.data.Identities[i].Count;
+            if ($scope.data) {
+                $scope.data.Identities.forEach(function (item, index) {
+                    count += item.Count;
+                })
+            }
 
             return count;
         }
 
         $scope.calcProcedureCount = function () {
             var count = 0;
-            for (var i in $scope.data.Procedures)
-                count += $scope.data.Procedures[i].Count;
+            if ($scope.data) {
+                $scope.data.Procedures.forEach(function (item, index) {
+                    count += item.Count;
+                })
+            }
 
             return count;
         }
