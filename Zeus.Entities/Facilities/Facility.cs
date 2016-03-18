@@ -29,7 +29,9 @@ namespace Zeus.Entities
                 return Capacity == 0 ? 0 : Convert.ToInt32(((double)Attendance / (double)Capacity) * 100D);
             }
         }
+        [BsonIgnore]
         public bool IsSecure { get { return this.Providers.Any(p => p.Type == ProviderType.Security); } }
+        [BsonIgnore]
         public bool HasHealthcare { get { return this.Providers.Any(p => p.Type == ProviderType.Healthcare); } }
         public string Status { get; set; }
         public Nullable<DateTime> StatusDateTime { get; set; }
@@ -40,16 +42,23 @@ namespace Zeus.Entities
         [BsonIgnore]
         public IList<Provider> Providers { get; set; }
         [BsonIgnore]
-        public int ReportsCount { get; set; }
+        public IList<Provider> HealthcareProviders { get { return this.Providers.Where(x => x.Type == ProviderType.Healthcare).ToList(); } }
         [BsonIgnore]
-        public int HealthcareReportsCount { get; set; }
+        public IList<Provider> FeedingProviders { get { return this.Providers.Where(x => x.Type == ProviderType.Catering).ToList(); } }       
         public int MaxRations { get; set; }
         [BsonIgnore]
         public IList<Report> Reports { get; set; }
         [BsonIgnore]
-        public int PersonsCount { get; set; }
+        public int ReportsCount { get { return this.Reports.Count; } }
+        [BsonIgnore]
+        public IList<ProblemReport> HealthcareReports { get { return this.Reports.Where(x =>x.Type == ReportType.ProblemReport)
+                    .Cast<ProblemReport>().Where(r => r.Category == ReportCategory.Healthcare).ToList(); } }
+        [BsonIgnore]
+        public int HealthcareReportsCount { get { return this.HealthcareReports.Count(); } }       
         [BsonIgnore]
         public IList<Person> Persons { get; set; }
+        [BsonIgnore]
+        public int PersonsCount { get; set; }
         public IList<Identity> Identities { get; set; }
         public IList<Sensitivity> Sensitivities { get; set; }
         public IList<Procedure> Procedures { get; set; }

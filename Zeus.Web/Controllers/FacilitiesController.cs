@@ -50,10 +50,8 @@ namespace Zeus.Controllers
                 var providers = await context.Providers.Get(x => providerIds.Contains(x.Id));
                 foreach (var facility in result)
                 {
-                    facility.ReportsCount = await context.Reports.Count(x => x.FacilityId == facility.Id);
                     facility.PersonsCount = await context.Persons.Count(x => x.FacilityId == facility.Id);
-                    var problemReports = await context.Reports.Get(x => x.FacilityId == facility.Id && !x.IsArchived && x.Type == ReportType.ProblemReport);
-                    facility.HealthcareReportsCount = problemReports.Cast<ProblemReport>().Count(x => x.Category == ReportCategory.Healthcare);
+                    facility.Reports = (await context.Reports.Get(x => x.FacilityId == facility.Id && !x.IsArchived)).ToList();
                     var tmpProviderIds = multiProviders.Where(x => x.FacilityId == facility.Id).Select(p => p.ProviderId);
                     facility.Providers = providers.Where(x => tmpProviderIds.Contains(x.Id)).ToList();
 

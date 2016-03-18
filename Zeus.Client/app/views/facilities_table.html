@@ -30,12 +30,23 @@
             <td>{{facility.Attendance}}</td>
             <td>{{facility.Capacity}}</td>
             <td>{{facility.Arrivals}}</td>
-            <td></td>
-            <td></td>
+            <td>
+                <div ng-repeat="feed in facility.FeedingProviders">
+                    <a ng-href="{{'#/providers/' + feed.Id}}">({{feed.Administration}}) {{ feed.Name }}</a>                    
+                </div>
+            </td>   
             <td>{{facility.MaxRations}}</td>
             <td ng-class="{'text-danger': (facility.MaxRations - facility.Capacity < 0)}">{{facility.MaxRations - facility.Capacity}}</td>
-            <td></td>
-            <td></td>
+            <td>
+                <div ng-repeat="health in facility.HealthcareProviders">
+                    <a ng-href="{{'#/providers/' + health.Id}}">({{health.Administration}}) {{ health.Name }}</a>
+                </div>
+            </td>           
+            <td>
+                <div ng-repeat="report in facility.HealthcareReports">
+                    <a ng-href="{{'#/reports/' + report.Type + '/' + report.FacilityId + '/' + report.Id}}">{{report.Subject}}</a>
+                </div>
+            </td>
             <td></td>
         </tr>
     </tbody>
