@@ -205,6 +205,10 @@
                 "Administrator",
                 "User",
                 "Viewer"
+            ],
+            claimTypes: [
+                "Facility",
+                "Provider"
             ]
         };
     }
