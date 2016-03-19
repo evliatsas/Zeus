@@ -3,7 +3,7 @@
 angular.module('zeusclientApp')
        .directive('cinnamonGrid', grid);
 
-function grid($http, $filter, moment, commonUtilities) {
+function grid($http, $filter, moment, utilitiesService) {
     return {
         scope: {
             gridColumns: '=',
@@ -115,7 +115,7 @@ function grid($http, $filter, moment, commonUtilities) {
                     if (typeof scope.getValue(a, property) === 'number')
                         return sortOrder == 1 ? scope.getValue(a, property) > scope.getValue(b, property) : scope.getValue(a, property) < scope.getValue(b, property);
                     else {
-                        var result = commonUtilities.naturalSort(scope.getValue(a, property), scope.getValue(b, property));
+                        var result = utilitiesService.naturalSort(scope.getValue(a, property), scope.getValue(b, property));
                         return result * sortOrder;
                     }
                 }
@@ -259,7 +259,7 @@ function grid($http, $filter, moment, commonUtilities) {
                         prop = '';
                     }
 
-                    var group = commonUtilities.filterById(scope.groups, prop);
+                    var group = utilitiesService.filterById(scope.groups, prop);
 
                     if (!group) {
                         group = { Id: prop, items: [] };
@@ -294,7 +294,7 @@ function grid($http, $filter, moment, commonUtilities) {
 
                             var page = scope.pages[p];
 
-                            var pg = commonUtilities.filterById(page, group.Id);
+                            var pg = utilitiesService.filterById(page, group.Id);
 
                             if (!pg) {
                                 pg = { Id: group.Id, items: [] };

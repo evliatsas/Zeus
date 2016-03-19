@@ -1,4 +1,20 @@
-<div class="panel panel-primary" ng-class="{ 'panel-warning': card.Utilization > 74, 'panel-danger': card.Utilization > 100 }">
+<div class="card" style="height: 120px !important">
+
+    <div class="card-height-indicator"></div>
+
+    <div class="card-content" ng-class="{ 'bg-warning': card.Utilization > 74, 'bg-danger': card.Utilization > 100 }">
+        <div class="card-body">
+            <div style="height: 70px"><span style="font-size: 16px; height: 50px; text-overflow: ellipsis">{{card.Name}}</span></div>
+            <div style="height: 50px">
+                <span class="pull-left">{{card.Attendance}} / {{card.Capacity}}</span>
+                <span class="pull-right">{{card.Utilization}}%</span>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<!-- <div class="panel panel-primary" ng-class="{ 'panel-warning': card.Utilization > 74, 'panel-danger': card.Utilization > 100 }">
     <div class="panel-heading" ng-click="goto('/facilities/' + card.Id)" style="cursor: pointer">
         <h4>
             <span>{{card.Name}}</span>
@@ -7,19 +23,6 @@
     </div>
     <div class="panel-body">
         <div class="text-primary">{{ 'FACILITY_CARD.GUESTS' | translate }}<span class="badge">{{card.Attendance}} / {{card.Capacity}}</span></div>
-        <!-- <ul class="nav navbar-nav">
-            <li class="dropdown"><a href="" data-target="#" class="dropdown-toggle" data-toggle="dropdown">{{'FACILITY_CARD.REPORTS' | translate }} <span class="caret"></span></a></li>
-            <ul class="dropdown-menu">
-                <li><a href="" ng-click="issueReport(4, card.Id)"><i class="text-info material-icons">message</i> {{ 'FACILITY_CARD.APPLICATION' | translate }}</a></li>
-                <li><a href="" ng-click="issueReport(1, card.Id)"><i class="text-info material-icons">local_hotel</i> {{ 'FACILITY_CARD.HOUSING' | translate }}</a></li>
-                <li><a href="" ng-click="issueReport(2, card.Id)"><i class="text-info material-icons">airport_shuttle</i> {{ 'FACILITY_CARD.TRANSPORT' | translate }}</a></li>
-                <li><a href="" ng-click="issueReport(0, card.Id)"><i class="text-info material-icons">restaurant_menu</i> {{ 'FACILITY_CARD.FEEDING' | translate }}</a></li>
-                <li><a href="" ng-click="issueReport(5, card.Id)"><i class="text-info material-icons">assignment</i> {{ 'FACILITY_CARD.SITUATION' | translate }}</a></li>
-                <li><a href="" ng-click="issueReport(3, card.Id)"><i class="text-danger material-icons">error</i> {{ 'FACILITY_CARD.PROBLEM' | translate }}</a></li>
-                <li><a href="" ng-click="issueReport(7, card.Id)"><i class="text-danger material-icons">local_hospital</i> {{ 'FACILITY_CARD.HEALTHCARE' | translate }}</a></li>
-                <li><a href="" ng-click="issueReport(6, card.Id)"><i class="text-success material-icons">email</i> {{ 'FACILITY_CARD.MESSAGE' | translate }}</a></li>
-            </ul>
-        </ul> -->
         <div class="dropdown">
             <a class="dropdown-toggle" data-toggle="dropdown">{{'FACILITY_CARD.REPORTS' | translate }} <span class="caret"></span>
             </a>
@@ -35,4 +38,4 @@
             </ul>
         </div>
     </div>
-</div>
+</div> -->

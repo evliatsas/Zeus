@@ -1,5 +1,18 @@
-﻿<card-list cards="facilities"
-           card-template="views/templates/facility-card.html"
-           card-class="col-lg-3 col-md-4 col-sm-4 col-xs-12"
-           add-card="addFacility()">
-</card-list>
+﻿<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+    <button class="btn btn-info btn-fab pull-right" ng-click="addFacility()" title="{{ 'CARD_LIST.ADD' | translate }}"><i class="material-icons">add</i></button>
+    <button class="btn btn-primary btn-fab pull-right" style="margin-right:30px" ng-click="toggleView()" title="{{ 'CARD_LIST.TABLE' | translate }}"><i class="material-icons">view_comfy</i></button>
+</div>
+<div ng-repeat="facility in facilities" class="col-lg-2 col-md-3 col-sm-4 col-xs-6" style="padding: 5px">
+    <div class="card" style="height: 120px !important" ng-click="toggleCard(facility)">
+        <div class="card-height-indicator"></div>
+        <div class="card-content" ng-class="{ 'bg-warning': facility.Utilization > 74, 'bg-danger': facility.Utilization > 100 }">
+            <div class="card-body">
+                <div style="height: 70px"><span style="font-size: 16px; font-weight: bolder; height: 50px; text-overflow: ellipsis">{{facility.Name}}</span></div>
+                <div style="height: 50px">
+                    <span class="pull-left">{{facility.Attendance}} / {{facility.Capacity}}</span>
+                    <span class="pull-right">{{facility.Utilization}}%</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

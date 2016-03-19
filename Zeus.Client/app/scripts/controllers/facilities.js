@@ -14,12 +14,15 @@ angular
             messageService.getFailed(response.error);
         });
 
+        $scope.view = '';
+
         $scope.toggleView = function () {
-            $location.url("/facilities");
+            $scope.view = $scope.view == '' ? '/table' : '';
+            $location.url('/facilities' + $scope.view);
         }
 
         $scope.addFacility = function () {
-            $location.url("/facilities/new");
+            $location.url('/facilities/new');
         }
 
         $scope.attendanceClass = function (facility) {
