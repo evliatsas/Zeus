@@ -2,13 +2,14 @@
 
 angular
     .module('zeusclientApp')
-    .controller('FacilitiesCtrl', function ($scope, $http, $location, baseUrl, messageService) {
+    .controller('FacilitiesCtrl', function ($scope, $http, $location, baseUrl, utilitiesService, messageService) {
 
         $http({
             method: 'GET',
             url: baseUrl + '/facilities'
         }).then(function successCallback(response) {
             $scope.facilities = response.data;
+            $scope.groups = utilitiesService.groupBy($scope.facilities, 'Category');
             calcTotals();
         }, function errorCallback(response) {
             messageService.getFailed(response.error);
@@ -23,6 +24,38 @@ angular
 
         $scope.addFacility = function () {
             $location.url('/facilities/new');
+        }
+
+        var getCard = function (facility) {
+            var element = document.getElementById(facility.Id);
+            var card = angular.element(element);
+            return card;
+        }
+
+        var isExpanded = function (card) {
+            return card.hasClass('facility-card-expanded');
+        }
+
+        $scope.cardStyle = function (facility) {
+            var card = getCard(facility);
+            if (isExpanded(card)) {
+                return {
+                    height: 'auto'
+                }
+            }
+            else {
+                return {
+                    height: '120px' 
+                }
+            }
+        }
+
+        $scope.toggleCard = function (facility) {
+            var card = getCard(facility);
+            facility._expanded = (facility._expanded == undefined || facility._expanded == 0) ? 1 : 0;
+            card.toggleClass('facility-card-expanded');
+            card.toggleClass('col-lg-2 col-md-3 col-sm-4 col-xs-6');
+            card.toggleClass('col-lg-4 col-md-4 col-sm-12 col-xs-12');
         }
 
         $scope.attendanceClass = function (facility) {

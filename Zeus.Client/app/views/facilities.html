@@ -1,16 +1,27 @@
-﻿<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-    <button class="btn btn-info btn-fab pull-right" ng-click="addFacility()" title="{{ 'CARD_LIST.ADD' | translate }}"><i class="material-icons">add</i></button>
-    <button class="btn btn-primary btn-fab pull-right" style="margin-right:30px" ng-click="toggleView()" title="{{ 'CARD_LIST.TABLE' | translate }}"><i class="material-icons">view_comfy</i></button>
-</div>
-<div ng-repeat="facility in facilities" class="col-lg-2 col-md-3 col-sm-4 col-xs-6" style="padding: 5px">
-    <div class="card" style="height: 120px !important" ng-click="toggleCard(facility)">
-        <div class="card-height-indicator"></div>
-        <div class="card-content" ng-class="{ 'bg-warning': facility.Utilization > 74, 'bg-danger': facility.Utilization > 100 }">
-            <div class="card-body">
-                <div style="height: 70px"><span style="font-size: 16px; font-weight: bolder; height: 50px; text-overflow: ellipsis">{{facility.Name}}</span></div>
-                <div style="height: 50px">
-                    <span class="pull-left">{{facility.Attendance}} / {{facility.Capacity}}</span>
-                    <span class="pull-right">{{facility.Utilization}}%</span>
+﻿<div ng-repeat="category in groups">
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+    	<div class="pull-left">
+    		<h3>{{category.key}}</h3>
+    	</div>
+        <div ng-if="$index == 0" class="pull-right">
+            <button class="btn btn-info btn-fab pull-right" ng-click="addFacility()" title="{{ 'CARD_LIST.ADD' | translate }}"><i class="material-icons">add</i></button>
+            <button class="btn btn-primary btn-fab pull-right" style="margin-right:30px" ng-click="toggleView()" title="{{ 'CARD_LIST.TABLE' | translate }}"><i class="material-icons">view_comfy</i></button>
+        </div>
+    </div>
+    <div ng-repeat="facility in category.items | orderBy: '_expanded'" id="{{facility.Id}}" class="col-lg-2 col-md-3 col-sm-4 col-xs-6" style="padding: 5px">
+        <div class="card" style="cursor: pointer" ng-style="cardStyle(facility)" ng-click="toggleCard(facility)">
+            <div class="card-height-indicator"></div>
+            <div class="card-content" ng-class="{ 'bg-warning': facility.Utilization > 74, 'bg-danger': facility.Utilization > 100 }">
+                <div class="card-body">
+                    <div style="height: 70px"><span style="font-size: 16px; font-weight: bolder; height: 50px; text-overflow: ellipsis">{{facility.Name}}</span></div>
+                    <div ng-if="facility._expanded == 1">
+                    	<p>test</p>
+                    	<a href="#/facilities/{{facility.Id}}">Open facility</a>
+                    </div>
+                    <div style="height: 50px; position: relative; bottom: 0px">
+                        <span class="pull-left">{{facility.Attendance}} / {{facility.Capacity}}</span>
+                        <span class="pull-right">{{facility.Utilization}}%</span>
+                    </div>
                 </div>
             </div>
         </div>

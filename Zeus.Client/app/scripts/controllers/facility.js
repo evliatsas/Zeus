@@ -2,12 +2,12 @@
 
 angular
     .module('zeusclientApp')
-    .controller('FacilityCtrl', function ($scope, $window, $timeout, $http, $routeParams, $filter, $location, $uibModal, lookupService, messageService, baseUrl, commonUtilities) {
+    .controller('FacilityCtrl', function ($scope, $window, $timeout, $http, $routeParams, $filter, $location, $uibModal, baseUrl, lookupService, messageService, utilitiesService) {
 
         var isInsert = $routeParams.id == 'new';
         $scope.activeTab = $routeParams.tab ? parseInt($routeParams.tab) : 0;
 
-        $scope.formatDateTime = commonUtilities.formatDateTime;
+        $scope.formatDateTime = utilitiesService.formatDateTime;
 
         $scope.housingcolumns = [
             { Caption: 'GRID.TYPE', Field: 'Type', Values: lookupService.housingCategories, Tooltip: 'Τύπος Εγκατάστασης' },
