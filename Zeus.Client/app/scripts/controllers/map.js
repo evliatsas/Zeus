@@ -135,6 +135,8 @@ angular
             });
         }
 
+        var mapLabels = [];
+        var labelsVisible = true;
         function addLabel(element, myLatLng) {
             var myOptions = {
                 content: getLabel(element),
@@ -158,5 +160,16 @@ angular
 
             var ibLabel = new InfoBox(myOptions);
             ibLabel.open(map);
+            mapLabels.push(ibLabel);
         };
+
+        $scope.toggleLabels = function () {
+            labelsVisible = !labelsVisible;
+            mapLabels.forEach(function (element, index, array) {
+                if (labelsVisible)
+                    element.show();
+                else
+                    element.hide();
+            });
+        }
     });
