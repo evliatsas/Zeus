@@ -4,6 +4,8 @@ angular
     .module('zeusclientApp')
     .controller('MapCtrl', function($http, $scope, $compile, $templateRequest, baseUrl, messageService) {
 
+        var markers = [];
+
         var styles = [{
             featureType: "administrative.country",
             elementType: "labels",
@@ -16,9 +18,59 @@ angular
             center: { lat: 38.5306122, lng: 25.4556341 },
             zoom: 7
         });
-        
+
 
         map.setOptions({ styles: styles });
+
+        var input = document.getElementById('pac-input');
+        var searchBox = new google.maps.places.SearchBox(input);
+        map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+        map.addListener('bounds_changed', function() {
+            searchBox.setBounds(map.getBounds());
+        });
+
+        searchBox.addListener('places_changed', function() {
+            var places = searchBox.getPlaces();
+
+            if (places.length == 0) {
+                return;
+            }
+
+            // Clear out the old markers.
+            markers.forEach(function(marker) {
+                marker.setMap(null);
+            });
+            markers = [];
+
+            // For each place, get the icon, name and location.
+            var bounds = new google.maps.LatLngBounds();
+            places.forEach(function(place) {
+                var icon = {
+                    url: place.icon,
+                    size: new google.maps.Size(71, 71),
+                    origin: new google.maps.Point(0, 0),
+                    anchor: new google.maps.Point(17, 34),
+                    scaledSize: new google.maps.Size(25, 25)
+                };
+
+                // Create a marker for each place.
+                markers.push(new google.maps.Marker({
+                    map: map,
+                    icon: icon,
+                    title: place.name,
+                    position: place.geometry.location
+                }));
+
+                if (place.geometry.viewport) {
+                    // Only geocodes have viewport.
+                    bounds.union(place.geometry.viewport);
+                } else {
+                    bounds.extend(place.geometry.location);
+                }
+            });
+            map.fitBounds(bounds);
+        });
+
 
         var infowindow = new google.maps.InfoWindow();
         $scope.facilities = [];
@@ -58,14 +110,14 @@ angular
 
         function getLabel(element) {
             var label = '<div>' + element.Attendance + '/' + element.MaxCapacity + '</div>';
-            
+
             label += "<div>";
-            
-            if(element.HasHealthcare == true)
-                label += '<strong><span class="text-primary">Y</span></strong>';    
+
+            if (element.HasHealthcare == true)
+                label += '<strong><span class="text-primary">Y</span></strong>';
             else
                 label += '<strong><span class="text-danger">Y</span></strong>';
-            
+
             label += '<span> ' + element.HealthcareReportsCount + ' </span>';
             label += '<span> ' + element.MaxRations + ' </span>';
 
@@ -113,7 +165,7 @@ angular
                 marker.setIcon(icon('#f44336'));
 
             $scope.markers.push(marker);
-            addLabel(element,myLatLng);
+            addLabel(element, myLatLng);
         }
 
         $scope.moveMarker = function(facility, marker) {
@@ -137,6 +189,7 @@ angular
 
         var mapLabels = [];
         var labelsVisible = true;
+
         function addLabel(element, myLatLng) {
             var myOptions = {
                 content: getLabel(element),
@@ -163,9 +216,9 @@ angular
             mapLabels.push(ibLabel);
         };
 
-        $scope.toggleLabels = function () {
+        $scope.toggleLabels = function() {
             labelsVisible = !labelsVisible;
-            mapLabels.forEach(function (element, index, array) {
+            mapLabels.forEach(function(element, index, array) {
                 if (labelsVisible)
                     element.show();
                 else

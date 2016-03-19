@@ -1,17 +1,19 @@
-﻿[ng\:cloak], [ng-cloak], .ng-cloak {
-  display: none !important;
+﻿[ng\:cloak],
+[ng-cloak],
+.ng-cloak {
+    display: none !important;
 }
 
 .form-group label.control-label {
-  color: #555;
+    color: #555;
 }
 
 .form-control {
-  color: #111;
+    color: #111;
 }
 
 .map-container {
-    box-shadow: 0 0 2px rgba(0,0,0,.12),0 2px 4px rgba(0,0,0,.24);
+    box-shadow: 0 0 2px rgba(0, 0, 0, .12), 0 2px 4px rgba(0, 0, 0, .24);
 }
 
 .mydatepicker .form-group .form-control {
@@ -23,32 +25,34 @@
     border-bottom: 2px solid #DDD;
 }
 
-    .nav-tabs > li > a {
-        border: none;
-        color: #ff5722;
-    }
+.nav-tabs > li > a {
+    border: none;
+    color: #ff5722;
+}
 
-        .nav-tabs > li.active > a, .nav-tabs > li > a:hover {
-            border: none;
-            color: #fff !important;
-            background: transparent;
-        }
+.nav-tabs > li.active > a,
+.nav-tabs > li > a:hover {
+    border: none;
+    color: #fff !important;
+    background: transparent;
+}
 
-        .nav-tabs > li > a::after {
-            content: "";
-            background: #ff5722;
-            height: 2px;
-            position: absolute;
-            width: 100%;
-            left: 0px;
-            bottom: -1px;
-            transition: all 250ms ease 0s;
-            transform: scale(0);
-        }
+.nav-tabs > li > a::after {
+    content: "";
+    background: #ff5722;
+    height: 2px;
+    position: absolute;
+    width: 100%;
+    left: 0px;
+    bottom: -1px;
+    transition: all 250ms ease 0s;
+    transform: scale(0);
+}
 
-    .nav-tabs > li.active > a::after, .nav-tabs > li:hover > a::after {
-        transform: scale(1);
-    }
+.nav-tabs > li.active > a::after,
+.nav-tabs > li:hover > a::after {
+    transform: scale(1);
+}
 
 .tab-nav > li > a::after {
     background: #21527d none repeat scroll 0% 0%;
@@ -67,32 +71,34 @@
     background: #ff5722;
 }
 
-    .tabset-inverted .nav-tabs > li > a {
-        border: none;
-        color: #009688;
-    }
+.tabset-inverted .nav-tabs > li > a {
+    border: none;
+    color: #009688;
+}
 
-    .tabset-inverted .nav-tabs > li.active > a, .nav-tabs > li > a:hover {
-        border: none;
-        color: #fff !important;
-        background: transparent;
-    }
+.tabset-inverted .nav-tabs > li.active > a,
+.nav-tabs > li > a:hover {
+    border: none;
+    color: #fff !important;
+    background: transparent;
+}
 
-    .tabset-inverted .nav-tabs > li > a::after {
-        content: "";
-        background: #009688;
-        height: 2px;
-        position: absolute;
-        width: 100%;
-        left: 0px;
-        bottom: -1px;
-        transition: all 250ms ease 0s;
-        transform: scale(0);
-    }
+.tabset-inverted .nav-tabs > li > a::after {
+    content: "";
+    background: #009688;
+    height: 2px;
+    position: absolute;
+    width: 100%;
+    left: 0px;
+    bottom: -1px;
+    transition: all 250ms ease 0s;
+    transform: scale(0);
+}
 
-    .tabset-inverted .nav-tabs > li.active > a::after, .nav-tabs > li:hover > a::after {
-        transform: scale(1);
-    }
+.tabset-inverted .nav-tabs > li.active > a::after,
+.nav-tabs > li:hover > a::after {
+    transform: scale(1);
+}
 
 .tabset-inverted .tab-nav > li > a::after {
     background: #21527d none repeat scroll 0% 0%;
@@ -117,13 +123,13 @@
     transition: all 0.8s ease-in-out;
 }
 
-    .save-alert.morph {
-        -webkit-transform: translate(150em,0);
-        -moz-transform: translate(150em,0);
-        -o-transform: translate(150em,0);
-        -ms-transform: translate(150em,0);
-        transform: translate(150em,0);
-    }
+.save-alert.morph {
+    -webkit-transform: translate(150em, 0);
+    -moz-transform: translate(150em, 0);
+    -o-transform: translate(150em, 0);
+    -ms-transform: translate(150em, 0);
+    transform: translate(150em, 0);
+}
 
 .save-alert-fab {
     -webkit-transition: all 0.5s ease-in;
@@ -136,22 +142,23 @@
     -o-transition-delay: 0.5s;
 }
 
-    .save-alert-fab.morph {
-        -webkit-transform: translate(0, -5em);
-        -moz-transform: translate(0, -5em);
-        -o-transform: translate(0, -5em);
-        -ms-transform: translate(0, -5em);
-        transform: translate(0, -5em);
-    }
+.save-alert-fab.morph {
+    -webkit-transform: translate(0, -5em);
+    -moz-transform: translate(0, -5em);
+    -o-transform: translate(0, -5em);
+    -ms-transform: translate(0, -5em);
+    transform: translate(0, -5em);
+}
+
 
 /*.form-control {
     max-width:900px;
 }*/
 
 .report-header {
-    padding-left:20px; 
-    font-size:28pt;
-    padding-bottom:30px;
+    padding-left: 20px;
+    font-size: 28pt;
+    padding-bottom: 30px;
     color: #555;
 }
 
@@ -165,60 +172,157 @@
 
 .shadow-box {
     background-color: white;
-    box-shadow: 0 0 2px rgba(0,0,0,.12),0 2px 4px rgba(0,0,0,.24);
+    box-shadow: 0 0 2px rgba(0, 0, 0, .12), 0 2px 4px rgba(0, 0, 0, .24);
     height: 100%;
     padding: 15px 15px 15px 15px;
     margin-bottom: 30px;
 }
 
+
 /* Height breakpoints */
-@media only screen and (max-height: 567px) { .map-container { height: 440px; } }
-@media only screen and (min-height: 568px) { .map-container { height: 440px; } }
-@media only screen and (min-height: 600px) { .map-container { height: 480px; } }
-@media only screen and (min-height: 700px) { .map-container { height: 580px; } }
-@media only screen and (min-height: 800px) { .map-container { height: 680px; } }
-@media only screen and (min-height: 900px) { .map-container { height: 780px; } }
+
+@media only screen and (max-height: 567px) {
+    .map-container {
+        height: 440px;
+    }
+}
+
+@media only screen and (min-height: 568px) {
+    .map-container {
+        height: 440px;
+    }
+}
+
+@media only screen and (min-height: 600px) {
+    .map-container {
+        height: 480px;
+    }
+}
+
+@media only screen and (min-height: 700px) {
+    .map-container {
+        height: 580px;
+    }
+}
+
+@media only screen and (min-height: 800px) {
+    .map-container {
+        height: 680px;
+    }
+}
+
+@media only screen and (min-height: 900px) {
+    .map-container {
+        height: 780px;
+    }
+}
 
 .doughnut-legend {
-  list-style: none;
-  position: absolute;
-  right: 8px;
-  top: 0;
+    list-style: none;
+    position: absolute;
+    right: 8px;
+    top: 0;
 }
+
 .doughnut-legend li {
-  display: block;
-  padding-left: 30px;
-  position: relative;
-  margin-bottom: 4px;
-  border-radius: 5px;
-  padding: 2px 8px 2px 28px;
-  font-size: 14px;
-  cursor: default;
-  -webkit-transition: background-color 200ms ease-in-out;
-  -moz-transition: background-color 200ms ease-in-out;
-  -o-transition: background-color 200ms ease-in-out;
-  transition: background-color 200ms ease-in-out;
+    display: block;
+    padding-left: 30px;
+    position: relative;
+    margin-bottom: 4px;
+    border-radius: 5px;
+    padding: 2px 8px 2px 28px;
+    font-size: 14px;
+    cursor: default;
+    -webkit-transition: background-color 200ms ease-in-out;
+    -moz-transition: background-color 200ms ease-in-out;
+    -o-transition: background-color 200ms ease-in-out;
+    transition: background-color 200ms ease-in-out;
 }
+
 .doughnut-legend li:hover {
-  background-color: #fafafa;
+    background-color: #fafafa;
 }
+
 .doughnut-legend li span {
-  display: block;
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 20px;
-  height: 100%;
-  border-radius: 5px;
+    display: block;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 20px;
+    height: 100%;
+    border-radius: 5px;
 }
 
-.modal-header .modal-title span{
-    font-size:20pt; 
-    padding-left:10px;
+.modal-header .modal-title span {
+    font-size: 20pt;
+    padding-left: 10px;
 }
 
-.material-icons.md-18 { font-size: 18px; }
-.material-icons.md-20 { font-size: 20px; }
-.material-icons.md-24 { font-size: 24px; }
-.material-icons.md-36 { font-size: 36px; }
-.material-icons.md-48 { font-size: 48px; }
+.material-icons.md-18 {
+    font-size: 18px;
+}
+
+.material-icons.md-20 {
+    font-size: 20px;
+}
+
+.material-icons.md-24 {
+    font-size: 24px;
+}
+
+.material-icons.md-36 {
+    font-size: 36px;
+}
+
+.material-icons.md-48 {
+    font-size: 48px;
+}
+
+
+/* MAP CSS */
+
+.map-controls {
+    margin-top: 10px;
+    border: 1px solid transparent;
+    border-radius: 2px 0 0 2px;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    height: 32px;
+    outline: none;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+}
+
+#pac-input {
+    background-color: #fff;
+    font-family: Roboto;
+    font-size: 15px;
+    font-weight: 300;
+    margin-left: 12px;
+    padding: 0 11px 0 13px;
+    text-overflow: ellipsis;
+    width: 300px;
+}
+
+#pac-input:focus {
+    border-color: #4d90fe;
+}
+
+.pac-container {
+    font-family: Roboto;
+}
+
+#type-selector {
+    color: #fff;
+    background-color: #4d90fe;
+    padding: 5px 11px 0px 11px;
+}
+
+#type-selector label {
+    font-family: Roboto;
+    font-size: 13px;
+    font-weight: 300;
+}
+
+#target {
+    width: 345px;
+}
