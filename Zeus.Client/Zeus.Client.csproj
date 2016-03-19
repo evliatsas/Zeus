@@ -102,7 +102,6 @@
     <Content Include="app\scripts\controllers\providers.js" />
     <Content Include="app\scripts\controllers\report.js" />
     <Content Include="app\scripts\controllers\users.js" />
-    <Content Include="app\scripts\directives\card-list.js" />
     <Content Include="app\scripts\directives\facility-details.js" />
     <Content Include="app\scripts\directives\grid.js" />
     <Content Include="app\scripts\directives\on-finish-render.js" />
@@ -137,7 +136,6 @@
     <Content Include="app\views\operations.html" />
     <Content Include="app\views\reports\message-report.html" />
     <Content Include="app\views\reports\reports.html" />
-    <Content Include="app\views\templates\card-list.html" />
     <Content Include="app\views\templates\facility-card.html" />
     <Content Include="app\views\templates\facility-details.html" />
     <Content Include="app\views\templates\facility-map.html" />
