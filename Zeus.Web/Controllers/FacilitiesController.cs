@@ -63,7 +63,7 @@ namespace Zeus.Controllers
                     facility.Arrivals = transReports.Cast<MovementReport>().Sum(x => x.PersonCount);
                 }
 
-                return result == null ? this.Ok(new List<Facility>().AsEnumerable()) : this.Ok(result.OrderByDescending(o => o.Name).AsEnumerable());
+                return result == null ? this.Ok(new List<Facility>().AsEnumerable()) : this.Ok(result.OrderBy(o => o.Name).AsEnumerable());
             }
             catch (Exception exc)
             {
