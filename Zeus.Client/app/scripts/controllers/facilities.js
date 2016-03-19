@@ -8,8 +8,7 @@ angular
             method: 'GET',
             url: baseUrl + '/facilities'
         }).then(function successCallback(response) {
-            $scope.facilities = response.data;
-            $scope.groups = utilitiesService.groupBy($scope.facilities, 'Category');
+            $scope.groups = utilitiesService.groupBy(response.data, 'Category');
             calcTotals();
         }, function errorCallback(response) {
             messageService.getFailed(response.error);
@@ -18,29 +17,41 @@ angular
         $scope.view = '';
 
         $scope.toggleView = function () {
-            $scope.view = $scope.view == '' ? '/table' : '';
-            $location.url('/facilities' + $scope.view);
+            $scope.view = $scope.view == '' ? 'table' : '';
         }
 
         $scope.addFacility = function () {
             $location.url('/facilities/new');
         }
 
-        var getCard = function (facility) {
+        function getCard (facility) {
             var element = document.getElementById(facility.Id);
             var card = angular.element(element);
             return card;
         }
 
-        var isExpanded = function (card) {
+        function isExpanded (card) {
             return card.hasClass('facility-card-expanded');
         }
+
+        function calcHeight (card) {
+            if (card.hasClass('col-lg-4')) {
+                return '392px';
+            } else if (card.hasClass('col-md-6')) {
+
+            } else if (card.hasClass('col-sm-8')) {
+
+            } else {
+
+            }
+        }
+
 
         $scope.cardStyle = function (facility) {
             var card = getCard(facility);
             if (isExpanded(card)) {
                 return {
-                    height: 'auto'
+                    height: '392px'
                 }
             }
             else {
@@ -55,7 +66,7 @@ angular
             facility._expanded = (facility._expanded == undefined || facility._expanded == 0) ? 1 : 0;
             card.toggleClass('facility-card-expanded');
             card.toggleClass('col-lg-2 col-md-3 col-sm-4 col-xs-6');
-            card.toggleClass('col-lg-4 col-md-4 col-sm-12 col-xs-12');
+            card.toggleClass('col-lg-4 col-md-6 col-sm-8 col-xs-12');
         }
 
         $scope.attendanceClass = function (facility) {
@@ -71,11 +82,13 @@ angular
         $scope.totalArrivals = 0;
         $scope.totalRations = 0;
         var calcTotals = function () {
-            angular.forEach($scope.facilities, function (value, key) {
-                $scope.totalAttendance += value.Attendance;
-                $scope.totalCapacity += value.Capacity;
-                $scope.totalArrivals += value.Arrivals;
-                $scope.totalRations += value.MaxRations;
+            $scope.groups.forEach(function (group, index) {
+                group.items.forEach(function (facility, fIndex) {
+                    $scope.totalAttendance += facility.Attendance;
+                    $scope.totalCapacity += facility.Capacity;
+                    $scope.totalArrivals += facility.Arrivals;
+                    $scope.totalRations += facility.MaxRations;
+                });
             });
         }
     });
