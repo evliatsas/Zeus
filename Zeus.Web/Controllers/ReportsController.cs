@@ -362,7 +362,18 @@ namespace Zeus.Controllers
             if (!user.Roles.Any(x => x == ApplicationRoles.Administrator || x == ApplicationRoles.Viewer))
             {
                 var facilityClaims = user.Claims.Where(x => x.Type == ApplicationClaims.FacilityClaim).Select(s => s.Value);
-                reports = await context.Reports.Get(x => x.Type == ReportType.Message && facilityClaims.Contains(x.Id));
+                var providerClaims = user.Claims.Where(x => x.Type == ApplicationClaims.ProviderClaim).Select(s => s.Value);
+                var contactClaims = user.Claims.Where(x => x.Type == ApplicationClaims.ContactClaim).Select(s => s.Value);
+
+                var allreports = (await context.Reports.Get(x => x.Type == ReportType.Message && !x.IsAcknoledged)).Cast<Message>();
+                var fReports = facilityClaims.Count() > 0
+                   ? allreports.Where(x => x.RecipientType == RecipientType.Facility && facilityClaims.Contains(x.Recipient)) : new List<Message>();
+                var pReports = providerClaims.Count() > 0
+                   ? allreports.Where(x => x.RecipientType == RecipientType.Provider && providerClaims.Contains(x.Recipient)) : new List<Message>();
+                var cReports = contactClaims.Count() > 0
+                   ? allreports.Where(x => x.RecipientType == RecipientType.Contact && contactClaims.Contains(x.Recipient)) : new List<Message>();
+
+                reports = fReports.Union(pReports).Union(cReports);
             }
             else
                 reports = await context.Reports.Get(x => x.Type == ReportType.Message);
@@ -386,13 +397,20 @@ namespace Zeus.Controllers
         {
             int count = 0;
             var user = await Helper.GetUserByRequest(User as ClaimsPrincipal, UserManager);
-            if (!user.Roles.Any(x => x == ApplicationRoles.Administrator || x == ApplicationRoles.Viewer))
-            {
-                var facilityClaims = user.Claims.Where(x => x.Type == ApplicationClaims.FacilityClaim).Select(s => s.Value);
-                count = await context.Reports.Count(x => x.Type == ReportType.Message && !x.IsAcknoledged && facilityClaims.Contains(x.Id));
-            }
-            else
-                count = await context.Reports.Count(x => x.Type == ReportType.Message && !x.IsAcknoledged);
+
+            var facilityClaims = user.Claims.Where(x => x.Type == ApplicationClaims.FacilityClaim).Select(s => s.Value);
+            var providerClaims = user.Claims.Where(x => x.Type == ApplicationClaims.ProviderClaim).Select(s => s.Value);
+            var contactClaims = user.Claims.Where(x => x.Type == ApplicationClaims.ContactClaim).Select(s => s.Value);
+
+            var reports = (await context.Reports.Get(x => x.Type == ReportType.Message && !x.IsAcknoledged)).Cast<Message>();
+            var fCount = facilityClaims.Count() > 0
+                ? reports.Count(x => x.RecipientType == RecipientType.Facility && facilityClaims.Contains(x.Recipient)) : 0;
+            var pCount = providerClaims.Count() > 0
+                ? reports.Count(x => x.RecipientType == RecipientType.Provider && facilityClaims.Contains(x.Recipient)) : 0;
+            var cCount = contactClaims.Count() > 0
+                ? reports.Count(x => x.RecipientType == RecipientType.Contact && facilityClaims.Contains(x.Recipient)) : 0;
+
+            count = fCount + pCount + cCount;
 
             return this.Ok(count);
         }
