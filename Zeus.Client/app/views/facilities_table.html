@@ -36,11 +36,11 @@
         <tr ng-repeat="facility in facilities">
             <td style="text-align:left">
                 <a ng-href="{{'#/facilities/' + facility.Id}}">
-                    <span ng-class="attendanceClass(facility)">{{$index +1}}.</span>
-                    <span style="color:black"> {{facility.Name}}</span>
+                    <span>{{$index +1}}.</span>
+                    <span> {{facility.Name}}</span>
                 </a>
             </td>
-            <td>{{facility.Attendance}}</td>
+            <td ng-class="attendanceClass(facility)">{{facility.Attendance}}</td>
             <td>{{facility.Capacity}}</td>
             <td>{{facility.Arrivals}}</td>
             <td>

@@ -16,6 +16,15 @@ angular
             $scope.facilities = [];
         });
 
+        $http({
+            method: 'GET',
+            url: baseUrl + '/common/providers'
+        }).then(function successCallback(response) {
+            $scope.providers = response.data;
+        }, function errorCallback(response) {
+            $scope.providers = [];
+        });
+
         if ($scope.isInsert) {
             $scope.user = { Roles: ['Viewer'], Claims: [] };
         } else {

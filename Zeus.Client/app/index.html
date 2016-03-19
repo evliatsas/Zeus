@@ -100,13 +100,11 @@
                             <ul class="dropdown-menu">
                                 <li ng-hide="isAuth()"><a href="#/login">{{ 'MENU.USER_MENU.SIGN_IN' | translate }}</a></li>
                                 <li ng-show="isAuth()"><a href="" data-toggle="modal" data-target="#simple-dialog">{{ 'MENU.USER_MENU.CHANGE_PASSWORD' | translate }}</a></li>
-                                <li ng-show="isAuth()"><a ng-href="#/reports/6">{{ 'MENU.USER_MENU.MESSAGES' | translate }}
-                                <span class="badge">{{unread}}</span>
-                                </a></li>
                                 <li ng-show="isAuth()" role="separator" class="divider"></li>
                                 <li ng-show="isAuth()"><a href="" ng-click="logOut()">{{ 'MENU.USER_MENU.SIGN_OUT' | translate }}</a></li>
                             </ul>
                         </li>
+                        <li ng-show="isAuth()"><a ng-href="#/reports/6"><i class="material-icons md-20">message</i> <span class="badge">{{unread}}</span></a></li>
                     </ul>
                 </div>
             </div>
