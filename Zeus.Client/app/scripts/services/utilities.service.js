@@ -3,7 +3,7 @@
 
     angular
         .module('zeusclientApp')
-        .factory('commonUtilities', utilities);
+        .factory('utilitiesService', utilities);
 
     function utilities($filter, $route, moment) {
 
@@ -13,10 +13,41 @@
             filter: filter,
             naturalSort: naturalSort,
             routeExists : routeExists,
+            groupBy: groupBy,
             formatDateTime: formatDateTime
         };
 
         return service;
+
+        function formatDateTime(dt, format) {
+            var dtf = format || "DD-MM";
+            return moment(dt).isValid() ? moment(dt).format(dtf, 'el') : "";
+        }
+
+        function groupBy(items, field) {
+            var groups = [];
+            if (items == null) { return groups; }
+
+            items.forEach(function(item, index) {
+
+                var key = typeof field === "function" ? field(item) : item[field];
+
+                var group = groups.length === 0 ? null : $filter('filter')(groups, function(g) { return g.key == key; })[0];
+
+                if (group == null) {
+                    group = {
+                        key: key,
+                        items: []
+                    };
+                    groups.push(group);
+                }
+                group.items.push(item);
+            });
+
+            groups.sort(function (a, b) { return a < b; });
+
+            return groups;
+        }
 
         function routeExists(url) {
             url = url.replace('#/', '/');
@@ -91,14 +122,6 @@
                 tz[y] += j;
             }
             return tz;
-        }
-
-        function formatDateTime(dt, format) {
-            if (format == undefined || format == '') {
-                format = "DD/MM/YYYY HH:mm";
-            }
-
-            return moment(dt).isValid() ? moment(dt).format(format, 'el') : "";
         }
     }
 })();

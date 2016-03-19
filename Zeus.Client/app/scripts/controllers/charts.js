@@ -2,7 +2,7 @@
 
 angular
     .module('zeusclientApp')
-    .controller('ChartsCtrl', function ($scope, $http, $filter, baseUrl, messageService) {
+    .controller('ChartsCtrl', function ($scope, $http, $filter, baseUrl, utilitiesService, messageService) {
 
         $scope.facilities = [];
         $scope.charts =null;
@@ -37,36 +37,6 @@ angular
             });
         }
 
-        function format(dt, format) {
-            var format = format || "DD-MM";
-            return moment(dt).isValid() ? moment(dt).format(format, 'el') : "";
-        }
-
-        function groupBy(items, groupBy) {
-            var groups = [];
-            if (items == null) { return groups; }
-
-            items.forEach(function(item, index) {
-
-                var key = typeof groupBy === "function" ? groupBy(item) : item[groupBy];
-
-                var group = groups.length === 0 ? null : $filter('filter')(groups, function(g) { return g.key == key; })[0];
-
-                if (group == null) {
-                    group = {
-                        key: key,
-                        items: []
-                    };
-                    groups.push(group);
-                }
-                group.items.push(item);
-            });
-
-            groups.sort(function (a, b) { return a < b; });
-
-            return groups;
-        }
-
         function newChart(labels, series, data) {
             if (series != null && data == null) {
                 data = [];
@@ -93,7 +63,7 @@ angular
             $scope.charts.total = newChart(null, ['Φιλοξενούμενοι']);
             $scope.charts.special = newChart(null, ['Παιδιά', 'Ευαίσθητες Ομάδες']);
 
-            var byFacility = groupBy(reports, function (report) { return report.Facility.Name; });
+            var byFacility = utilitiesService.groupBy(reports, function (report) { return report.Facility.Name; });
             byFacility.forEach(function (facilityGroup, facilityIndex) {
                 var facility = facilityGroup.items[0].Facility;
                 $scope.facilities.push(facility);
@@ -101,7 +71,7 @@ angular
                 var chart = newChart(null, ['Χωρητικότητα', 'Μέγιστη Χωρητικότητα', 'Φιλοξενούμενοι']);
                 $scope.charts[facility.Id] = chart;
 
-                var byDate = groupBy(facilityGroup.items, function(report) { return format(report.DateTime, dateFormat); });
+                var byDate = utilitiesService.groupBy(facilityGroup.items, function(report) { return utilitiesService.formatDateTime(report.DateTime, dateFormat); });
                 byDate.forEach(function (dateGroup, index) {
                     chart.labels.push(dateGroup.key);
 
@@ -144,10 +114,10 @@ angular
                 data: []
             };
 
-            var labels = groupBy(reports, labelsFn);
+            var labels = utilitiesService.groupBy(reports, labelsFn);
             var empty = labels.map(function(l) { return null; });
 
-            var series = groupBy(reports, seriesFn);
+            var series = utilitiesService.groupBy(reports, seriesFn);
 
             series.forEach(function(serie, index) {
                 chart.series.push(serie.key);
@@ -186,7 +156,7 @@ angular
         function generateDataForSitReps(reports, dateFormat) {
             if (reports == null) { return; }
 
-            var labelsFn = function(report) { return format(report.DateTime, dateFormat); }
+            var labelsFn = function(report) { return utilitiesService.formatDateTime(report.DateTime, dateFormat); }
             var seriesFn = function(report) { return report.Facility.Name; }
             var dataFn = function(report) { return report.PersonCount; }
 
