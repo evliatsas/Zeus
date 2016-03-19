@@ -16,14 +16,13 @@ angular
             center: { lat: 38.5306122, lng: 25.4556341 },
             zoom: 7
         });
+        
 
         map.setOptions({ styles: styles });
 
         var infowindow = new google.maps.InfoWindow();
         $scope.facilities = [];
         $scope.markers = [];
-        $scope.mnarker = null;
-        $scope.facility = null;
 
         $http({
             method: 'GET',
