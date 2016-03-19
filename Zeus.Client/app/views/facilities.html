@@ -1,14 +1,36 @@
-﻿<div class="row">
-    <div class="col-md-12">
-        <button class="btn btn-info btn-fab pull-right" ng-click="addFacility()" title="{{ 'CARD_LIST.ADD' | translate }}"><i class="material-icons">add</i></button>
-        <button class="btn btn-primary btn-fab pull-right" style="margin-right:30px" ng-click="toggleView()" title="{{ 'CARD_LIST.CARD' | translate }}"><i class="material-icons">{{view == 'table' ? 'view_compact' : 'view_comfy'}}</i></button>
-    </div>
+﻿<div ng-if="view != 'table'" class="col-xs-7 col-sm-8 col-md-8 col-lg-8 ">
+    <table class="table-condensed table-bordered text-center">
+        <thead>
+            <tr>
+                <th></th>
+                <th>Φιλοξενούμενοι</th>
+                <th>Χωρητικότητα</th>
+                <th>Αφίξεις</th>
+                <th>Μερίδες</th>
+                <th>Ελλείψεις</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><b>Σύνολο</b></td>
+                <td>{{totalAttendance}}</td>
+                <td>{{totalCapacity}}</td>
+                <td>{{totalArrivals}}</td>
+                <td>{{totalRations}}</td>
+                <td>{{totalRations - totalCapacity}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<div class="col-xs-5 col-sm-4 col-md-4 col-lg-4 pull-right">
+    <button class="btn btn-info btn-fab pull-right" ng-click="addFacility()" title="{{ 'CARD_LIST.ADD' | translate }}"><i class="material-icons">add</i></button>
+    <button class="btn btn-primary btn-fab pull-right" style="margin-right: 20px" ng-click="toggleView()" title="{{ 'CARD_LIST.CARD' | translate }}"><i class="material-icons">{{view == 'table' ? 'view_compact' : 'view_comfy'}}</i></button>
 </div>
 <div ng-if="view != 'table'" ng-repeat="category in groups">
     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
         <h3>{{category.key}}</h3>
     </div>
-    <div ng-repeat="facility in category.items | orderBy: '_expanded'" id="{{facility.Id}}" class="col-lg-2 col-md-3 col-sm-4 col-xs-6" style="padding: 5px">
+    <div ng-repeat="facility in category.items | orderBy: ['-_expanded', 'Area']" id="{{facility.Id}}" class="col-lg-2 col-md-3 col-sm-4 col-xs-6" style="padding: 5px">
         <div class="card" style="cursor: pointer" ng-style="cardStyle(facility)" ng-click="toggleCard(facility)">
             <div class="card-height-indicator"></div>
             <div class="card-content" ng-class="{ 'bg-warning': facility.Utilization > 74, 'bg-danger': facility.Utilization > 100 }">
@@ -16,13 +38,28 @@
                     <div style="height: 70px">
                         <a href="#/facilities/{{facility.Id}}" style="font-size: 16px; font-weight: bolder; height: 50px; text-overflow: ellipsis">{{facility.Name}}</a>
                     </div>
-                    <div ng-if="facility._expanded == 1">
-                        <p>test</p>
-                        <a href="#/facilities/{{facility.Id}}">Open facility</a>
+                    <div ng-if="facility._expanded == 1" style="height: 272px">
+                        <span class="lead">{{facility.Area}}</span>
+                        <div ng-if="facility.FeedingProviders.length > 0" style="padding-top: 5px">Φορείς Σίτισης:</div>
+                        <div ng-repeat="feed in facility.FeedingProviders" style="padding-left: 10px">
+                            <a ng-href="{{'#/providers/' + feed.Id}}">({{feed.Administration}}) {{ feed.Name }}</a>
+                        </div>
+                        <div ng-if="facility.HealthcareProviders.length > 0" style="padding-top: 5px">Υγειονομική Μέριμνα:</div>
+                        <div ng-repeat="health in facility.HealthcareProviders" style="padding-left: 10px">
+                            <a ng-href="{{'#/providers/' + health.Id}}">({{health.Administration}}) {{ health.Name }}</a>
+                        </div>
+                        <div ng-if="facility.LogisticsProviders.length > 0" style="padding-top: 5px">Εφοδιασμός:</div>
+                        <div ng-repeat="log in facility.LogisticsProviders" style="padding-left: 10px">
+                            <a ng-href="{{'#/providers/' + log.Id}}">({{log.Administration}}) {{ log.Name }}</a>
+                        </div>
+                        <div ng-if="facility.Supervisor" style="position: absolute; bottom: 40px">
+                            <div>Υπεύθυνος:</div>
+                            <a ng-href="{{'#/contacts/' + facility.Supervisor.Id}}">({{facility.Supervisor.Administration}}) {{ facility.Supervisor.Name }}</a>
+                        </div>
                     </div>
-                    <div style="position: absolute; bottom: 10px">
-                        <span class="col-xs-8 col-sm-8 col-md-8 col-lg-8">{{facility.Attendance}} / {{facility.Capacity}}</span>
-                        <span class="col-xs-4 col-sm-4 col-md-4 col-lg-4">{{facility.Utilization}}%</span>
+                    <div>
+                        <span class="pull-left">{{facility.Attendance}} / {{facility.Capacity}}</span>
+                        <span class="pull-right">{{facility.Utilization}}%</span>
                     </div>
                 </div>
             </div>
@@ -58,66 +95,65 @@
         </tr>
     </thead>
     <tbody ng-repeat="category in groups">
-        	<tr style="background-color: black; opacity: 0.6; color: white; font-weight: bold">
-        		<td colspan="15">{{category.key}}</td>
-        	</tr>
-            <tr ng-repeat="facility in category.items">
-                <td style="text-align:left">
-                    <a ng-href="{{'#/facilities/' + facility.Id}}">
-                        <span>{{$index +1}}.</span>
-                        <span> {{facility.Name}}</span>
-                    </a>
-                </td>
-                <td ng-class="attendanceClass(facility)">{{facility.Attendance}}</td>
-                <td>{{facility.Capacity}}</td>
-                <td>{{facility.Arrivals}}</td>
-                <td>
-                    <div ng-repeat="feed in facility.FeedingProviders">
-                        <a ng-href="{{'#/providers/' + feed.Id}}">({{feed.Administration}}) {{ feed.Name }}</a>
-                    </div>
-                </td>
-                <td>{{facility.MaxRations}}</td>
-                <td ng-class="{'text-danger': (facility.MaxRations - facility.Capacity < 0)}">{{facility.MaxRations - facility.Capacity}}</td>
-                <td>
-                    <div ng-repeat="health in facility.HealthcareProviders">
-                        <a ng-href="{{'#/providers/' + health.Id}}">({{health.Administration}}) {{ health.Name }}</a>
-                    </div>
-                </td>
-                <td>
-                    <div ng-repeat="report in facility.HealthcareReports">
-                        <a ng-href="{{'#/reports/' + report.Type + '/' + report.FacilityId + '/' + report.Id}}">{{report.Subject}}</a>
-                    </div>
-                </td>
-                <td>
-                    <div ng-repeat="log in facility.LogisticsProviders">
-                        <a ng-href="{{'#/providers/' + log.Id}}">({{log.Administration}}) {{ log.Name }}</a>
-                    </div>
-                </td>
-                <td>
-                    <div ng-repeat="report in facility.HumanitarianReports">
-                        <a ng-href="{{'#/reports/' + report.Type + '/' + report.FacilityId + '/' + report.Id}}">{{report.Subject}}</a>
-                    </div>
-                </td>
-                <td>
-                    <div ng-repeat="report in facility.HealthRequestReports">
-                        <a ng-href="{{'#/reports/' + report.Type + '/' + report.FacilityId + '/' + report.Id}}">{{report.Subject}}</a>
-                    </div>
-                </td>
-                <td>
-                    <div ng-repeat="report in facility.EquipmentReports">
-                        <a ng-href="{{'#/reports/' + report.Type + '/' + report.FacilityId + '/' + report.Id}}">{{report.Subject}}</a>
-                    </div>
-                </td>
-                <td>
-                    <div ng-repeat="report in facility.FunctionalityReports">
-                        <a ng-href="{{'#/reports/' + report.Type + '/' + report.FacilityId + '/' + report.Id}}">{{report.Subject}}</a>
-                    </div>
-                </td>
-                <td>
-                    <a ng-if="facility.Supervisor" ng-href="{{'#/contacts/' + facility.Supervisor.Id}}">({{facility.Supervisor.Administration}}) {{ facility.Supervisor.Name }}</a>
-                </td>
-            </tr>
-
+        <tr style="background-color: black; opacity: 0.6; color: white; font-weight: bold">
+            <td colspan="15">{{category.key}}</td>
+        </tr>
+        <tr ng-repeat="facility in category.items">
+            <td style="text-align:left">
+                <a ng-href="{{'#/facilities/' + facility.Id}}">
+                    <span>{{$index +1}}.</span>
+                    <span> {{facility.Name}}</span>
+                </a>
+            </td>
+            <td ng-class="attendanceClass(facility)">{{facility.Attendance}}</td>
+            <td>{{facility.Capacity}}</td>
+            <td>{{facility.Arrivals}}</td>
+            <td>
+                <div ng-repeat="feed in facility.FeedingProviders">
+                    <a ng-href="{{'#/providers/' + feed.Id}}">({{feed.Administration}}) {{ feed.Name }}</a>
+                </div>
+            </td>
+            <td>{{facility.MaxRations}}</td>
+            <td ng-class="{'text-danger': (facility.MaxRations - facility.Capacity < 0)}">{{facility.MaxRations - facility.Capacity}}</td>
+            <td>
+                <div ng-repeat="health in facility.HealthcareProviders">
+                    <a ng-href="{{'#/providers/' + health.Id}}">({{health.Administration}}) {{ health.Name }}</a>
+                </div>
+            </td>
+            <td>
+                <div ng-repeat="report in facility.HealthcareReports">
+                    <a ng-href="{{'#/reports/' + report.Type + '/' + report.FacilityId + '/' + report.Id}}">{{report.Subject}}</a>
+                </div>
+            </td>
+            <td>
+                <div ng-repeat="log in facility.LogisticsProviders">
+                    <a ng-href="{{'#/providers/' + log.Id}}">({{log.Administration}}) {{ log.Name }}</a>
+                </div>
+            </td>
+            <td>
+                <div ng-repeat="report in facility.HumanitarianReports">
+                    <a ng-href="{{'#/reports/' + report.Type + '/' + report.FacilityId + '/' + report.Id}}">{{report.Subject}}</a>
+                </div>
+            </td>
+            <td>
+                <div ng-repeat="report in facility.HealthRequestReports">
+                    <a ng-href="{{'#/reports/' + report.Type + '/' + report.FacilityId + '/' + report.Id}}">{{report.Subject}}</a>
+                </div>
+            </td>
+            <td>
+                <div ng-repeat="report in facility.EquipmentReports">
+                    <a ng-href="{{'#/reports/' + report.Type + '/' + report.FacilityId + '/' + report.Id}}">{{report.Subject}}</a>
+                </div>
+            </td>
+            <td>
+                <div ng-repeat="report in facility.FunctionalityReports">
+                    <a ng-href="{{'#/reports/' + report.Type + '/' + report.FacilityId + '/' + report.Id}}">{{report.Subject}}</a>
+                </div>
+            </td>
+            <td>
+                <a ng-if="facility.Supervisor" ng-href="{{'#/contacts/' + facility.Supervisor.Id}}">({{facility.Supervisor.Administration}}) {{ facility.Supervisor.Name }}</a>
+            </td>
+        </tr>
     </tbody>
     <tfoot>
         <tr style="font-weight: bold">

@@ -9,7 +9,7 @@ angular
             url: baseUrl + '/facilities'
         }).then(function successCallback(response) {
             $scope.groups = utilitiesService.groupBy(response.data, 'Category');
-            calcTotals();
+            initialize();
         }, function errorCallback(response) {
             messageService.getFailed(response.error);
         });
@@ -33,19 +33,6 @@ angular
         function isExpanded (card) {
             return card.hasClass('facility-card-expanded');
         }
-
-        function calcHeight (card) {
-            if (card.hasClass('col-lg-4')) {
-                return '392px';
-            } else if (card.hasClass('col-md-6')) {
-
-            } else if (card.hasClass('col-sm-8')) {
-
-            } else {
-
-            }
-        }
-
 
         $scope.cardStyle = function (facility) {
             var card = getCard(facility);
@@ -81,9 +68,11 @@ angular
         $scope.totalCapacity = 0;
         $scope.totalArrivals = 0;
         $scope.totalRations = 0;
-        var calcTotals = function () {
+        
+        function initialize() {
             $scope.groups.forEach(function (group, index) {
                 group.items.forEach(function (facility, fIndex) {
+                    facility._expanded = 0;
                     $scope.totalAttendance += facility.Attendance;
                     $scope.totalCapacity += facility.Capacity;
                     $scope.totalArrivals += facility.Arrivals;
