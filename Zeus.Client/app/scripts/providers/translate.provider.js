@@ -108,7 +108,8 @@ angular
 	    	    UTILIZATION: 'Πληρότητα',
 	    	    TRANSITION: 'Μετάβαση',
 	    	    SAVE: 'Αποθήκευση',
-	    	    MOVE: 'Μετακίνηση'
+	    	    MOVE: 'Μετακίνηση',
+	    	    LABELS: 'Εμφάνιση/Απόκρυψη Ετικετών'
 	    	},
 	    	CHARTS: {
 	    		FROM: 'Από',
@@ -476,7 +477,8 @@ angular
 	            UTILIZATION: 'Utilization',
 	            TRANSITION: 'Transition',
 	            SAVE: 'Save',
-	            MOVE: 'Move'
+	            MOVE: 'Move',
+                LABELS: 'Show/Hide Labels'
 	        },
 	        CHARTS: {
 	    		FROM: 'From',
