@@ -34,22 +34,27 @@
     </thead>
     <tbody>
         <tr ng-repeat="facility in facilities">
-            <td><a ng-href="{{'#/facilities/' + facility.Id}}">{{facility.Name}}</a></td>
+            <td style="text-align:left">
+                <a ng-href="{{'#/facilities/' + facility.Id}}">
+                    <span ng-class="attendanceClass(facility)">{{$index +1}}.</span>
+                    <span style="color:black"> {{facility.Name}}</span>
+                </a>
+            </td>
             <td>{{facility.Attendance}}</td>
             <td>{{facility.Capacity}}</td>
             <td>{{facility.Arrivals}}</td>
             <td>
                 <div ng-repeat="feed in facility.FeedingProviders">
-                    <a ng-href="{{'#/providers/' + feed.Id}}">({{feed.Administration}}) {{ feed.Name }}</a>                    
+                    <a ng-href="{{'#/providers/' + feed.Id}}">({{feed.Administration}}) {{ feed.Name }}</a>
                 </div>
-            </td>   
+            </td>
             <td>{{facility.MaxRations}}</td>
             <td ng-class="{'text-danger': (facility.MaxRations - facility.Capacity < 0)}">{{facility.MaxRations - facility.Capacity}}</td>
             <td>
                 <div ng-repeat="health in facility.HealthcareProviders">
                     <a ng-href="{{'#/providers/' + health.Id}}">({{health.Administration}}) {{ health.Name }}</a>
                 </div>
-            </td>           
+            </td>
             <td>
                 <div ng-repeat="report in facility.HealthcareReports">
                     <a ng-href="{{'#/reports/' + report.Type + '/' + report.FacilityId + '/' + report.Id}}">{{report.Subject}}</a>
@@ -88,12 +93,12 @@
     <tfoot>
         <tr style="font-weight: bold">
             <td>Σύνολο</td>
+            <td>{{totalAttendance}}</td>
+            <td>{{totalCapacity}}</td>
+            <td>{{totalArrivals}}</td>
             <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
+            <td>{{totalRations}}</td>
+            <td>{{totalRations - totalCapacity}}</td>
             <td></td>
             <td></td>
             <td></td>
