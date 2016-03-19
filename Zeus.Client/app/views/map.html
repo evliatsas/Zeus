@@ -1,4 +1,26 @@
-<div class="map-container col-xs-12 col-sm-12 col-md-12 col-lg-12" style="padding-left: 0px; padding-right: 0px">
+﻿<div class="map-container col-xs-12 col-sm-12 col-md-12 col-lg-12" style="padding-left: 0px; padding-right: 0px">    
+    <table class="table-condensed table-bordered text-center">
+        <thead>
+            <tr>
+                <th></th>
+                <th>Φιλοξενούμενοι</th>
+                <th>Χωρητικότητα</th>
+                <th>Αφίξεις</th>
+                <th>Μερίδες</th>
+                <th>Ελλείψεις</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><b>Σύνολο:</b></td>
+                <td>{{totalAttendance}}</td>
+                <td>{{totalCapacity}}</td>
+                <td>{{totalArrivals}}</td>                
+                <td>{{totalRations}}</td>
+                <td>{{totalRations - totalCapacity}}</td>
+            </tr>
+        </tbody>
+    </table>
     <div id="map" class="map-container">
 
     </div>

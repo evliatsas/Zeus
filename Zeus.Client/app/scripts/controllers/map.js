@@ -74,7 +74,19 @@ angular
             return label;
         }
 
+        // totals
+        $scope.totalAttendance = 0;
+        $scope.totalCapacity = 0;
+        $scope.totalArrivals = 0;
+        $scope.totalRations = 0;
+
         function addMarker(element, index, array) {
+            //calc totals
+            $scope.totalAttendance += element.Attendance;
+            $scope.totalCapacity += element.Capacity;
+            $scope.totalArrivals += element.Arrivals;
+            $scope.totalRations += element.MaxRations;
+
             if (element == null || element.Location == null) {
                 return;
             }
