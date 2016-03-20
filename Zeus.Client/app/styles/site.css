@@ -278,6 +278,26 @@
     font-size: 48px;
 }
 
+/* FACILITY CARDS */
+.card-body {
+    font-weight:500;
+}
+
+.bg-danger{
+    background-color: #C50404;
+}
+
+.bg-warning{
+    background-color: #FFEB3B;
+}
+
+.form-group.label-static label.control-label{
+    font-size:14px;
+}
+
+.form-group .checkbox label {
+    color: #6C5E59;
+}
 
 /* MAP CSS */
 
