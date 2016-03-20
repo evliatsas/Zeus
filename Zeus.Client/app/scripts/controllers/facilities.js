@@ -4,11 +4,14 @@ angular
     .module('zeusclientApp')
     .controller('FacilitiesCtrl', function ($scope, $http, $location, baseUrl, utilitiesService, messageService) {
 
+        var facilities = [];
+
         $http({
             method: 'GET',
             url: baseUrl + '/facilities'
         }).then(function successCallback(response) {
-            $scope.groups = utilitiesService.groupBy(response.data, 'Category');
+            facilities = response.data;
+            $scope.groups = utilitiesService.groupBy(facilities, 'Category');
             initialize();
         }, function errorCallback(response) {
             messageService.getFailed(response.error);
@@ -18,6 +21,11 @@ angular
 
         $scope.toggleView = function () {
             $scope.view = $scope.view == '' ? 'table' : '';
+            if ($scope.view == 'table') {
+                facilities.forEach(function (item) {
+                    item._expanded = 0;
+                });
+            }
         }
 
         $scope.addFacility = function () {
