@@ -2,7 +2,7 @@
 
 angular
     .module('zeusclientApp')
-    .controller('ReportCtrl', function ($scope, $http, $routeParams, $location, moment, lookupService, messageService, baseUrl, commonUtilities) {
+    .controller('ReportCtrl', function ($scope, $http, $routeParams, $location, moment, lookupService, messageService, baseUrl, utilitiesService) {
 
         $scope.lookup = lookupService;
         $scope.facilities = [];
@@ -11,7 +11,7 @@ angular
         $scope.reportType = $routeParams.type;
 
         $scope.report.RationsRequired = true;
-        $scope.formatDateTime = commonUtilities.formatDateTime;
+        $scope.formatDateTime = utilitiesService.formatDateTime;
 
         var isInsert = $routeParams.id == 'new';
         $scope.IsNew = isInsert;

@@ -113,7 +113,6 @@
     <Content Include="app\scripts\services\message.service.js" />
     <Content Include="app\scripts\services\utilities.service.js" />
     <Content Include="app\styles\main.css" />
-    <Content Include="app\styles\material.css" />
     <Content Include="app\styles\site.css" />
     <Content Include="app\styles\typeahead.css" />
     <Content Include="app\views\about.html" />

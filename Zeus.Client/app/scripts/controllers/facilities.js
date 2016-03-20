@@ -64,6 +64,11 @@ angular
             else return 'text-success';
         }
 
+        $scope.issueReport = function (type, id) {
+            var location = '/reports/' + type + '/' + id + '/new';
+            $location.url(location);
+        }
+
         $scope.totalAttendance = 0;
         $scope.totalCapacity = 0;
         $scope.totalArrivals = 0;

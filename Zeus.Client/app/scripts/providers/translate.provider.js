@@ -87,14 +87,14 @@ angular
 	    	    HEALTHCARE: 'Υγειονομική'
 	    	},
 	    	REPORT_TITLES: {
-	    	    APPLICATION: 'Αίτηση',
+	    	    APPLICATION: 'Αναφορά Αίτησης',
 	    	    HOUSING: 'Αναφορά Στέγασης',
 	    	    TRANSPORT: 'Αναφορά Μετακίνησης',
 	    	    SITUATION: 'Αναφορά Κατάστασης',
 	    	    PROBLEM: 'Αναφορά Προβλήματος',
-	    	    MESSAGE: 'Μήνυμα',
+	    	    MESSAGE: 'Μήνυμα-Οδηγία',
 	    	    FEEDING: 'Αναφορά Σίτισης',
-	    	    HEALTHCARE: 'Αναφορά Υγειονομική'
+	    	    HEALTHCARE: 'Υγειονομική Αναφορά'
 	    	},
 	    	CARD_LIST:{
 	    	    ADD: 'Προσθήκη Δομής Φιλοξενίας',
@@ -444,12 +444,12 @@ angular
 	            MAX_RATIONS_TOOLTIP: 'Maximum Rations Capacity'
 	        },
 	        REPORT_TITLES: {
-	            APPLICATION: 'Application',
+	            APPLICATION: 'Request Report',
 	            HOUSING: 'Housing Report',
 	            TRANSPORT: 'Transportation Report',
 	            SITUATION: 'Situation Report',
 	            PROBLEM: 'Problem Report',
-	            MESSAGE: 'Message Report',
+	            MESSAGE: 'Message-Instructions',
 	            FEEDING: 'Feeding Report',
 	            HEALTHCARE: 'Healthcare Report'
 	        },
