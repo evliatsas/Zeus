@@ -2,7 +2,7 @@
 
 angular
     .module('zeusclientApp')
-    .controller('FacilitiesCtrl', function ($scope, $http, $location, baseUrl, utilitiesService, messageService) {
+    .controller('FacilitiesCtrl', function ($scope, $http, $location, $timeout, Excel, baseUrl, utilitiesService, messageService) {
 
         var facilities = [];
 
@@ -75,6 +75,11 @@ angular
         $scope.issueReport = function (type, id) {
             var location = '/reports/' + type + '/' + id + '/new';
             $location.url(location);
+        }
+
+        $scope.exportToExcel = function (tableId) { 
+            var exportHref = Excel.tableToExcel(tableId, 'Δομές Φιλοξενίας');
+            $timeout(function () { location.href = exportHref; }, 100); // trigger download
         }
 
         $scope.totalAttendance = 0;

@@ -99,7 +99,8 @@ angular
 	    	CARD_LIST:{
 	    	    ADD: 'Προσθήκη Δομής Φιλοξενίας',
 	    	    TABLE: 'Συνοπτική Προβολή',
-                CARD: 'Προβολή Καρτών'
+	    	    CARD: 'Προβολή Καρτών',
+	    	    EXCEL: 'Εξαγωγή στο Excel'
 	    	},
 	    	FACILITY_MAP: {
 	    	    GUESTS: 'Φιλοξενούμενοι: ',
@@ -457,7 +458,8 @@ angular
 	        CARD_LIST:{
 	            ADD: 'Add Facility',
 	            TABLE: 'Compact View',
-	            CARD: 'Card View'
+	            CARD: 'Card View',
+	            EXCEL: 'Export to Excel'
 	        },
 	        FACILITY_CARD: {
 	            GUESTS: 'Guests: ',
