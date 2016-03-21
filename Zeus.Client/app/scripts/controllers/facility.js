@@ -77,7 +77,7 @@ angular
             var picker = $uibModal.open({
                 animation: true,
                 size: 'md',
-                templateUrl: '/views/housing.html',
+                templateUrl: 'views/housing.html',
                 controller: 'HousingCtrl',
                 controllerAs: 'housingCtrl',
                 resolve: {
