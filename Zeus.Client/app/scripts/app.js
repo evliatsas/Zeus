@@ -184,8 +184,8 @@ angular
 
       $httpProvider.interceptors.push('authInterceptorService');
   })
-  .constant("baseUrl", "/api")// "http://192.168.1.250/zeus")
-  .constant("authUrl", "/api/oauth2/token")// "http://192.168.1.250/zeus/oauth2/token")
+  .constant("baseUrl", "http://localhost:8080")// "http://192.168.1.250/zeus")
+  .constant("authUrl", "http://localhost:8080/oauth2/token")// "http://192.168.1.250/zeus/oauth2/token")
   .constant("moment", moment)
   .constant('toastr', toastr)
   .directive('convertToNumber', function () {
