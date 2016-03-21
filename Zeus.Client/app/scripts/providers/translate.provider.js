@@ -84,7 +84,10 @@ angular
 	    	    PROBLEM: 'Πρόβλημα',
 	    	    MESSAGE: 'Μήνυμα',
 	    	    FEEDING: 'Σίτιση',
-	    	    HEALTHCARE: 'Υγειονομική'
+	    	    HEALTHCARE: 'Υγειονομική',
+	    	    ARRIVALS: 'Αφίξεις',
+	    	    SHORTAGE: 'Ελλείψεις',
+	    	    TOTAL: 'Σύνολο'
 	    	},
 	    	REPORT_TITLES: {
 	    	    APPLICATION: 'Αναφορά Αίτησης',
@@ -472,7 +475,10 @@ angular
 	            PROBLEM: 'Problem',
 	            MESSAGE: 'Message',
 	            FEEDING: 'Feeding',
-	            HEALTHCARE:'Healthcare'
+	            HEALTHCARE: 'Healthcare',
+	            ARRIVALS: 'Arrivals',
+	            SHORTAGE: 'Shortages',
+                TOTAL: 'Total'
 	        },
 	        FACILITY_MAP: {
 	            GUESTS: 'Guests: ',
