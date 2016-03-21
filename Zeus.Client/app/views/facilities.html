@@ -43,17 +43,16 @@
                             </a>
                             <ul class="dropdown-menu">
                                 <li><a href="" ng-click="issueReport(5, facility.Id)"><i class="text-info material-icons">assignment</i> {{ 'REPORT_TITLES.SITUATION' | translate }}</a></li>
+                                <li><a href="" ng-click="issueReport(0, facility.Id)"><i class="text-info material-icons">restaurant_menu</i> {{ 'REPORT_TITLES.FEEDING' | translate }}</a></li>
                                 <li><a href="" ng-click="issueReport(1, facility.Id)"><i class="text-info material-icons">local_hotel</i> {{ 'REPORT_TITLES.HOUSING' | translate }}</a></li>
                                 <li><a href="" ng-click="issueReport(2, facility.Id)"><i class="text-info material-icons">airport_shuttle</i> {{ 'REPORT_TITLES.TRANSPORT' | translate }}</a></li>
                                 <li><a href="" ng-click="issueReport(4, facility.Id)"><i class="text-info material-icons">message</i> {{ 'REPORT_TITLES.APPLICATION' | translate }}</a></li>
-                                <li><a href="" ng-click="issueReport(0, facility.Id)"><i class="text-info material-icons">restaurant_menu</i> {{ 'REPORT_TITLES.FEEDING' | translate }}</a></li>
                                 <li><a href="" ng-click="issueReport(3, facility.Id)"><i class="text-danger material-icons">error</i> {{ 'REPORT_TITLES.PROBLEM' | translate }}</a></li>
-                                <li><a href="" ng-click="issueReport(7, facility.Id)"><i class="text-danger material-icons">local_hospital</i> {{ 'REPORT_TITLES.HEALTHCARE' | translate }}</a></li>
                                 <li><a href="" ng-click="issueReport(6, facility.Id)"><i class="text-success material-icons">email</i> {{ 'REPORT_TITLES.MESSAGE' | translate }}</a></li>
                             </ul>
                         </div>
                     </div>
-                    <div ng-if="facility._expanded == 1" style="height: 272px" ng-click="toggleCard(facility)">
+                    <div ng-if="facility._expanded == 1" style="height: 312px" ng-click="toggleCard(facility)">
                         <span class="lead">{{facility.Area}}</span>
                         <div ng-if="facility.FeedingProviders.length > 0" style="padding-top: 5px">Φορείς Σίτισης:</div>
                         <div ng-repeat="feed in facility.FeedingProviders" style="padding-left: 10px">

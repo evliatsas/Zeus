@@ -12,8 +12,8 @@ namespace Zeus
 		public static ApplicationIdentityContext Create()
 		{
             // todo add settings where appropriate to switch server & database in your own application
-            var client = new MongoClient("mongodb://192.168.2.250");
-			var database = client.GetDatabase("Zeus");
+            var client = new MongoClient(Properties.Settings.Default.ConnectionString);
+			var database = client.GetDatabase(Properties.Settings.Default.DatabaseName);
 			var users = database.GetCollection<ApplicationUser>("Users");
 			var roles = database.GetCollection<IdentityRole>("Roles");
 			return new ApplicationIdentityContext(users, roles);

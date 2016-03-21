@@ -91,7 +91,7 @@ angular
             },
             controller: 'ReportCtrl',
             controllerAs: 'reportCtrl'
-        })
+        })        
         .when('/reports/archive', {
             templateUrl: 'views/archive.html',
             controller: 'ArchiveCtrl',
@@ -101,7 +101,7 @@ angular
             templateUrl: 'views/reports/reports.html',
             controller: 'ReportsCtrl',
             controllerAs: 'reportsCtrl'
-        })        
+        })   
         .when('/log', {
             templateUrl: 'views/log.html',
             controller: 'LogCtrl',
