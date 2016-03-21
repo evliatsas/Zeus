@@ -92,16 +92,16 @@ angular
             controller: 'ReportCtrl',
             controllerAs: 'reportCtrl'
         })
-        .when('/reports/:type', {
-            templateUrl: 'views/reports/reports.html',
-            controller: 'ReportsCtrl',
-            controllerAs: 'reportsCtrl'
-        })
         .when('/reports/archive', {
             templateUrl: 'views/archive.html',
             controller: 'ArchiveCtrl',
             controllerAs: 'archiveCtrl'
         })
+        .when('/reports/:type', {
+            templateUrl: 'views/reports/reports.html',
+            controller: 'ReportsCtrl',
+            controllerAs: 'reportsCtrl'
+        })        
         .when('/log', {
             templateUrl: 'views/log.html',
             controller: 'LogCtrl',

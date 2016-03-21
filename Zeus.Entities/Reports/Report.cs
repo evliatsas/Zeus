@@ -22,6 +22,7 @@ namespace Zeus.Entities
         public Facility Facility { get; set; }
         public DateTime DateTime { get; set; }
         public Priority Priority { get; set; }
+        public string Actions { get; set; }
         [BsonRequired]
         [BsonDefaultValue("Νέα Αναφορά")]
         public string Subject { get; set; }

@@ -158,6 +158,7 @@ angular
 	    	    FACILITY: 'Δομή Φιλοξενίας: ',
 	    	    SUBJECT: 'Θέμα',
 	    	    NOTES: 'Κείμενο',
+                ACTIONS: 'Ενέργειες',
 	    	    LASTUPDATE: 'Τελευταία Ενημέρωση'
 	    	},
 	    	SITUATION_REPORT: {
@@ -527,6 +528,7 @@ angular
 	            FACILITY: 'Facility',
 	            SUBJECT: 'Subject',
 	            NOTES: 'Notes',
+	            ACTIONS: 'Actions',
 	            LASTUPDATE: 'Last Update'
 	        },
 	        SITUATION_REPORT: {
