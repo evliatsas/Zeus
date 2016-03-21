@@ -134,7 +134,6 @@
     <Content Include="app\views\operations.html" />
     <Content Include="app\views\reports\message-report.html" />
     <Content Include="app\views\reports\reports.html" />
-    <Content Include="app\views\templates\facility-card.html" />
     <Content Include="app\views\templates\facility-details.html" />
     <Content Include="app\views\templates\facility-map.html" />
     <Content Include="app\views\templates\grid.html" />
