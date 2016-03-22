@@ -53,6 +53,7 @@
                     service.data.email = info.Email;
                     service.data.roles = info.Roles;
                     service.data.claims = info.Claims;
+                    service.data.isAdmin = $.inArray('Administrator', info.Roles) > -1;
                     localStorageService.set('authorization', service.data);
                     chat.setToken(service.data.token);
                     chat.connect();

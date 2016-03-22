@@ -79,9 +79,15 @@ namespace Zeus
 
         public async Task<IEnumerable<Chat>> GetMessages()
         {
-            //var identityContext = Context.Request.Get<ApplicationIdentityContext>();
-            //var users = 
-            return await context.Chats.Get(t => t.Status != ChatSatus.Archived);
+            var ctx = ApplicationIdentityContext.Create();
+            var users = await ctx.Users.FindAsync<UserViewModel>(null);
+            var messages = await context.Chats.Get(t => t.Status != ChatSatus.Archived);
+            return messages.Select(t =>
+            {
+                t.ReceiverName = "";
+                t.SenderName = "";
+                return t;
+            });
         }
 
         public override Task OnConnected()
