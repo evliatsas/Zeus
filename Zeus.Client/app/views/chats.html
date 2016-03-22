@@ -2,8 +2,11 @@
     <div class="list-group">
         <div ng-repeat="msg in messages">
             <div class="list-group-item">
+                <div class="row-action-primary" ng-class="{'text-success': msg.Status == 0}">
+                    <i class="material-icons">folder</i>
+                </div>
                 <div class="row-content">
-                	 <div class="least-content">{{msg.Send}}</div>
+                    <div class="least-content">{{msg.Send | date:'dd/MM/yyyy HH:mm'}}</div>
                     <h4 class="list-group-item-heading">{{msg.Sender}}</h4>
                     <p class="list-group-item-text">{{msg.Message}}</p>
                 </div>
@@ -13,11 +16,11 @@
     </div>
 </div>
 <div class="col-md-4">
-	<ul class="list-group">
-	  <li class="list-group-item text-danger" ng-class="{'text-success': user.Connected}" ng-repeat="user in users">{{user.FullName}} <i class="material-icons md-20">person</i></li>
-	</ul>
+    <ul class="list-group">
+        <li class="list-group-item text-danger" ng-class="{'text-success': user.Connected}" ng-repeat="user in users">{{user.FullName}} <i class="material-icons md-20">person</i></li>
+    </ul>
 </div>
 <div>
-	<textarea ng-model="newmessage"></textarea>
-	<button ng-click="send()"></button>
+    <textarea ng-model="newmessage"></textarea>
+    <button ng-click="send()"></button>
 </div>
