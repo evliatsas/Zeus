@@ -173,6 +173,11 @@ angular
             controller: 'CalendarCtrl',
             controllerAs: 'calendarCtrl'
         })
+        .when('/chats', {
+            templateUrl: 'views/chats.html',
+            controller: 'ChatsCtrl',
+            controllerAs: 'chatsCtrl'
+        })
         .otherwise({
             redirectTo: '/'
         });

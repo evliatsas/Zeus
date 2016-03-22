@@ -77,6 +77,7 @@
     <Content Include="app\scripts\controllers\archive.js" />
     <Content Include="app\scripts\controllers\calendar.js" />
     <Content Include="app\scripts\controllers\calendarEntry.js" />
+    <Content Include="app\scripts\controllers\chats.js" />
     <Content Include="app\scripts\controllers\dailyreport.js" />
     <Content Include="app\scripts\controllers\dailyreport_charts.js" />
     <Content Include="app\scripts\controllers\facilities.js" />
@@ -118,6 +119,7 @@
     <Content Include="app\views\about.html" />
     <Content Include="app\views\calendar.html" />
     <Content Include="app\views\calendarEntry.html" />
+    <Content Include="app\views\chats.html" />
     <Content Include="app\views\dailyreport.html" />
     <Content Include="app\views\dailyreport_charts.html" />
     <Content Include="app\views\operation.html" />

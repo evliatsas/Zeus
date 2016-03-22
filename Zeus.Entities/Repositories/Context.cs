@@ -24,6 +24,7 @@ namespace Zeus.Entities.Repositories
         public MongoDbRepository<FamilyRelation> FamilyRelations { get; private set; }
         public MongoDbRepository<DailyReport> DailyReports { get; private set; }
         public MongoDbRepository<CalendarEntry> Calendar { get; private set; }
+        public MongoDbRepository<Chat> Chats { get; private set; }
 
         #region Static
 
@@ -95,6 +96,7 @@ namespace Zeus.Entities.Repositories
                 FamilyRelations = new MongoDbRepository<FamilyRelation>(this.Database, "FamilyRelations");
                 DailyReports = new MongoDbRepository<DailyReport>(this.Database, "DailyReports");
                 Calendar = new MongoDbRepository<CalendarEntry>(this.Database, "Calendar");
+                Chats = new MongoDbRepository<Chat>(this.Database, "Chats");
                 //set the static instance property
                 _instance = this;
                 EnsureUniqueIndexs();

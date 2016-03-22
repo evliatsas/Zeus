@@ -103,14 +103,8 @@
                                 <li ng-show="auth.isAuth" role="separator" class="divider"></li>
                                 <li ng-show="auth.isAuth"><a href="" ng-click="logOut()">{{ 'MENU.USER_MENU.SIGN_OUT' | translate }}</a></li>
                             </ul>
-                        </li>
-                        <li class="dropdown" ng-show="auth.isAuth">
-                            <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="material-icons md-20">message</i> <span class="badge">{{unread}}</span> <span class="caret"></span></a>
-                            <ul class="dropdown-menu">
-                                <li><a ng-href="#/reports/6">Μηνύματα</a></li>
-                                <li class="divider"></li>
-                                <li ng-repeat="u in chat.connected"><a href="">{{u.username}}</a></li>
-                            </ul>
+                        </li>                            
+                        <li ng-show="auth.isAuth"><a ng-href="#/chats"><i class="material-icons md-20">message</i> <span class="badge">{{unread}}</span></a></li>
                         </li>
                     </ul>
                 </div>
@@ -229,6 +223,7 @@
     <script src="scripts/controllers/calendar.js"></script>
     <script src="scripts/controllers/calendarEntry.js"></script>
     <script src="scripts/controllers/log.js"></script>
+    <script src="scripts/controllers/chats.js"></script>
     <script src="scripts/controllers/dailyreport.js"></script>
     <script src="scripts/controllers/dailyreport_charts.js"></script>
     <script src="scripts/directives/facility-details.js"></script>

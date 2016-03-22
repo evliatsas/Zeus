@@ -6,12 +6,20 @@ using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using Zeus.Models;
+using Zeus.Entities;
 
 namespace Zeus
 {
     [Authorize]
     public class ChatHub : Hub
     {
+        private Entities.Repositories.Context context;
+
+        public ChatHub()
+        {
+            context = Entities.Repositories.Context.Instance;
+        }
+
         private static readonly ConcurrentDictionary<string, UserViewModel> Users
             = new ConcurrentDictionary<string, UserViewModel>(StringComparer.InvariantCultureIgnoreCase);
 
@@ -62,6 +70,16 @@ namespace Zeus
                 }
 
             }).Select(x => x.Value);
+        }
+
+        public async Task<int> GetUnreadCount()
+        {
+            return  await context.Chats.Count(t => t.Status == ChatSatus.UnReaded);
+        }
+
+        public async Task<IEnumerable<Chat>> GetMessages()
+        {
+            return await context.Chats.Get(t => t.Status != ChatSatus.Archived);
         }
 
         public override Task OnConnected()
@@ -145,6 +163,17 @@ namespace Zeus
             Users.TryGetValue(username, out user);
 
             return user;
+        }
+
+        private async void createMessage(string message, string sender, string to)
+        {
+            Chat chat = new Chat();
+            chat.Sender = sender;
+            chat.Receiver = to;
+            chat.Message = message;
+            chat.Send = DateTime.Now;
+            chat.Status = ChatSatus.UnReaded;
+            await context.Chats.Insert(chat);
         }
     }
 }

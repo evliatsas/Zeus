@@ -57,6 +57,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CalendarEntry.cs" />
+    <Compile Include="Chats\Chat.cs" />
     <Compile Include="Contacts\Contact.cs" />
     <Compile Include="Contacts\ProviderContact.cs" />
     <Compile Include="Entity.cs" />
