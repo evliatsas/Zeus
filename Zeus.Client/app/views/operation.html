@@ -6,11 +6,11 @@
         <button ng-show="operation.IsCancelled" class="btn btn-info btn-fab fab" ng-click="activate()" title="{{ 'OPERATION.ACTIVATE' | translate }}">
             <i class="material-icons">check_circle</i>
         </button>
-        <button class="btn btn-danger btn-fab fab" ng-click="delete()">
-            <i class="material-icons" title="{{ 'OPERATION.DELETE' | translate }}">delete</i>
+        <button class="btn btn-danger btn-fab fab" ng-click="delete()" title="{{ 'OPERATION.DELETE' | translate }}">
+            <i class="material-icons">delete</i>
         </button>
-        <button class="btn btn-success btn-fab fab" ng-click="save()" ng-disabled="form.$invalid">
-            <i class="material-icons" title="{{ 'OPERATION.SAVE' | translate }}">save</i>
+        <button class="btn btn-success btn-fab fab" ng-click="save()" ng-disabled="form.$invalid" title="{{ 'OPERATION.SAVE' | translate }}">
+            <i class="material-icons">save</i>
         </button>
     </div>
     <h2>{{ 'OPERATION.OPS' | translate }}<span class="text-primary" style="font-weight:300">{{operation.Name}}</span></h2>
