@@ -1,10 +1,10 @@
 ﻿<form name="form">
     <div class="pull-right">
-        <button class="btn btn-danger btn-fab fab" ng-click="delete()">
-            <i class="material-icons" title="{{ 'CONTACT.DELETE' | translate }}">delete</i>
+        <button class="btn btn-danger btn-fab fab" ng-click="delete()" title="{{ 'CONTACT.DELETE' | translate }}">
+            <i class="material-icons" >delete</i>
         </button>
-        <button class="btn btn-success btn-fab fab" ng-click="save()" ng-disabled="form.$invalid">
-            <i class="material-icons" title="{{ 'CONTACT.SAVE' | translate }}">save</i>
+        <button class="btn btn-success btn-fab fab" ng-click="save()" ng-disabled="form.$invalid" title="{{ 'CONTACT.SAVE' | translate }}">
+            <i class="material-icons" >save</i>
         </button>
     </div>
     <h2>{{ 'CONTACT.CON' | translate }}<span class="text-primary" style="font-weight:300">{{contact.Name}}</span></h2>

@@ -1,10 +1,10 @@
 ﻿<form name="userForm">
     <div class="pull-right">
-        <button class="btn btn-danger btn-fab fab" ng-click="delete()">
-            <i class="material-icons" title="{{ 'USER.DELETE' | translate }}">delete</i>
+        <button class="btn btn-danger btn-fab fab" ng-click="delete()" title="{{ 'USER.DELETE' | translate }}">
+            <i class="material-icons">delete</i>
         </button>
-        <button class="btn btn-success btn-fab fab" ng-click="save()" ng-disabled="userForm.$invalid">
-            <i class="material-icons" title="{{ 'USER.SAVE' | translate }}">save</i>
+        <button class="btn btn-success btn-fab fab" ng-click="save()" ng-disabled="userForm.$invalid" title="{{ 'USER.SAVE' | translate }}">
+            <i class="material-icons">save</i>
         </button>
     </div>
     <h2>{{ 'USER.TITLE' | translate }}<span class="text-primary" style="font-weight:300">{{user.FullName}}</span></h2>

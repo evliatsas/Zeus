@@ -1,11 +1,11 @@
 ﻿<div class="jumbotron col-md-offset-3 col-md-6">
     <form name="form">
         <div class="pull-right">
-            <button class="btn btn-danger btn-fab fab" ng-click="delete()">
-                <i class="material-icons" title="{{ 'CALENDAR.DELETE' | translate }}">delete</i>
+            <button class="btn btn-danger btn-fab fab" ng-click="delete()" title="{{ 'CALENDAR.DELETE' | translate }}">
+                <i class="material-icons">delete</i>
             </button>
-            <button class="btn btn-success btn-fab fab" ng-click="save()" ng-disabled="form.$invalid">
-                <i class="material-icons" title="{{ 'CALENDAR.SAVE' | translate }}">save</i>
+            <button class="btn btn-success btn-fab fab" ng-click="save()" ng-disabled="form.$invalid" title="{{ 'CALENDAR.SAVE' | translate }}">
+                <i class="material-icons">save</i>
             </button>
         </div>
         <h2>{{'CALENDAR.ENTRY_TITLE' | translate }}</h2>

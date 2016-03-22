@@ -1,13 +1,13 @@
 <form name="form">
     <div class="pull-right">
-        <button class="btn btn-primary btn-fab fab" ng-click="makeReport()">
-            <i class="material-icons" title="{{ 'FACILITY.REPORT' | translate }}">publish</i>
+        <button class="btn btn-primary btn-fab fab" ng-click="makeReport()" title="{{ 'FACILITY.REPORT' | translate }}">
+            <i class="material-icons" >publish</i>
         </button>
-        <button class="btn btn-danger btn-fab fab" ng-click="delete()">
-            <i class="material-icons" title="{{ 'FACILITY.DELETE' | translate }}">delete</i>
+        <button class="btn btn-danger btn-fab fab" ng-click="delete()" title="{{ 'FACILITY.DELETE' | translate }}">
+            <i class="material-icons">delete</i>
         </button>
-        <button class="btn btn-success btn-fab fab" ng-click="save()" ng-disabled="form.$invalid">
-            <i class="material-icons" title="{{ 'FACILITY.SAVE' | translate }}">save</i>
+        <button class="btn btn-success btn-fab fab" ng-click="save()" ng-disabled="form.$invalid" title="{{ 'FACILITY.SAVE' | translate }}">
+            <i class="material-icons" >save</i>
         </button>
     </div>
         <div class="col-md-4">
