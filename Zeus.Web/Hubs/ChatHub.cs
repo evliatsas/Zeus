@@ -79,6 +79,8 @@ namespace Zeus
 
         public async Task<IEnumerable<Chat>> GetMessages()
         {
+            //var identityContext = Context.Request.Get<ApplicationIdentityContext>();
+            //var users = 
             return await context.Chats.Get(t => t.Status != ChatSatus.Archived);
         }
 
