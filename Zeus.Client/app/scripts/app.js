@@ -23,7 +23,8 @@ angular
     'ui.dateTimeInput',
     'LocalStorageModule',
     'pascalprecht.translate',
-    'chart.js'
+    'chart.js',
+    'SignalR'
   ])
   .config(function ($routeProvider) {
 

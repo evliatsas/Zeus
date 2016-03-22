@@ -1,5 +1,7 @@
-﻿using Microsoft.Owin;
+﻿using Microsoft.AspNet.SignalR;
+using Microsoft.Owin;
 using Microsoft.Owin.Cors;
+using Microsoft.Owin.Security.OAuth;
 using MongoDB.Driver;
 using Newtonsoft.Json;
 using Owin;
@@ -19,6 +21,22 @@ namespace Zeus
             app.UseCors(CorsOptions.AllowAll);
             ConfigureAuth(app);
             app.UseWebApi(httpConfiguration);
+
+            app.Map("/signalr", map =>
+            {
+                map.UseCors(CorsOptions.AllowAll);
+
+                map.UseOAuthBearerAuthentication(new OAuthBearerAuthenticationOptions()
+                {
+                    Provider = new QueryStringOAuthBearerProvider()
+                });
+
+                var hubConfiguration = new HubConfiguration
+                {
+                    Resolver = GlobalHost.DependencyResolver,
+                };
+                map.RunSignalR(hubConfiguration);
+            });
         }
 
         public static void Register(HttpConfiguration config)
