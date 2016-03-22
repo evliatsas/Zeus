@@ -6,6 +6,8 @@ angular
 
         var ChatHub = this;
         ChatHub.connected = [];
+        ChatHub.messages = [];
+        ChatHub.users = [];
 
         var hub = new Hub('chatHub', {
             autoConnect: false,
@@ -18,9 +20,13 @@ angular
                 'userDisconnected': function(username) {
                     ChatHub.connected.splice(ChatHub.connected.indexOf(username), 1);
                     $rootScope.$apply();
+                },
+                'received': function(message) {
+                    ChatHub.messages.push(message);
+                    $rootScope.$apply();
                 }
             },
-            methods: ['getConnectedUsers'],
+            methods: ['getConnectedUsers','getUnreadCount','getMessages','getArchives','getUsers','send'],
             errorHandler: function(error) {
                 console.error(error);
             },
@@ -38,6 +44,12 @@ angular
                                 $rootScope.$apply();
                             });
                         });
+                        hub.getUsers().done(function(users) {
+                            $.each(users, function(i, user) {
+                                ChatHub.users.push(user);
+                                $rootScope.$apply();
+                            });
+                        });
                         break;
                     case $.signalR.connectionState.reconnecting:
                         //your code here
@@ -52,6 +64,11 @@ angular
         ChatHub.connect = hub.connect;
         ChatHub.disconnect = hub.disconnect;
         ChatHub.getConnectedUsers = hub.getConnectedUsers;
+        ChatHub.getUnreadCount = hub.getUnreadCount;
+        ChatHub.getMessages = hub.getMessages;
+        ChatHub.getArchives = hub.getArchives;
+        ChatHub.getUsers = hub.getUsers;
+        ChatHub.send = hub.send;
         ChatHub.setToken = function(token) {
             hub.connection.qs = {'access_token': token };
         }

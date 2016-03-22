@@ -27,8 +27,8 @@ namespace Zeus.Models
         public string NewPassword { get; set; }
         public string PasswordConfirm { get; set; }
         public string Administration { get; set; }
-
         public HashSet<string> ConnectionIds { get; set; }
+        public bool Connected { get; set; }
 
         public static ApplicationUser Map(ApplicationUser userTo, UserViewModel userFrom)
         {

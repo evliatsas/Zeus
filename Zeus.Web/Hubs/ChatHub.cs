@@ -25,11 +25,9 @@ namespace Zeus
 
         public void Send(string message)
         {
-
             string sender = Context.User.Identity.Name;
-
-            // So, broadcast the sender, too.
-            Clients.All.received(new { sender = sender, message = message, isPrivate = false });
+            var chat = createMessage(message, sender, string.Empty);
+            Clients.All.received(chat);
         }
 
         public void Send(string message, string to)
@@ -53,7 +51,8 @@ namespace Zeus
 
                 foreach (var cid in allReceivers)
                 {
-                    Clients.Client(cid).received(new { sender = sender.UserName, message = message, isPrivate = true });
+                    var chat = createMessage(message, sender.UserName, cid);
+                    Clients.Client(cid).received(chat);
                 }
             }
         }
@@ -80,13 +79,39 @@ namespace Zeus
         public async Task<IEnumerable<Chat>> GetMessages()
         {
             var ctx = ApplicationIdentityContext.Create();
-            var users = await ctx.Users.FindAsync<UserViewModel>(null);
+            var users = await ctx.AllUsersAsync();
             var messages = await context.Chats.Get(t => t.Status != ChatSatus.Archived);
             return messages.Select(t =>
             {
-                t.ReceiverName = "";
-                t.SenderName = "";
+                t.ReceiverName = users.FirstOrDefault().FullName;
+                t.SenderName = users.FirstOrDefault().FullName;
                 return t;
+            });
+        }
+
+        public async Task<IEnumerable<Chat>> GetArchives()
+        {
+            var ctx = ApplicationIdentityContext.Create();
+            var users = await ctx.AllUsersAsync();
+            var messages = await context.Chats.Get(t => t.Status == ChatSatus.Archived);
+            return messages.Select(t =>
+            {
+                t.ReceiverName = users.FirstOrDefault().FullName;
+                t.SenderName = users.FirstOrDefault().FullName;
+                return t;
+            });
+        }
+
+        public async Task<IEnumerable<UserViewModel>> GetUsers()
+        {
+            var ctx = ApplicationIdentityContext.Create();
+            var users = await ctx.AllUsersAsync();
+            var c = GetConnectedUsers();
+            return users.Where(t=>t.UserName!= Context.User.Identity.Name).Select(t =>
+            {
+                var u = UserViewModel.Map(t);
+                u.Connected = c.Any(x=>x.UserName==u.UserName);
+                return u;
             });
         }
 
@@ -173,7 +198,7 @@ namespace Zeus
             return user;
         }
 
-        private async void createMessage(string message, string sender, string to)
+        private Chat createMessage(string message, string sender, string to)
         {
             Chat chat = new Chat();
             chat.Sender = sender;
@@ -181,7 +206,8 @@ namespace Zeus
             chat.Message = message;
             chat.Send = DateTime.Now;
             chat.Status = ChatSatus.UnReaded;
-            await context.Chats.Insert(chat);
+            //await context.Chats.Insert(chat);
+            return chat;
         }
     }
 }

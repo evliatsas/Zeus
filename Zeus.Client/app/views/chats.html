@@ -14,6 +14,10 @@
 </div>
 <div class="col-md-4">
 	<ul class="list-group">
-	  <li class="list-group-item text-danger" ng-class="{{'text-success': user.Connected}}" ng-repeat="user in users">{{user.FullName}} <i class="material-icons md-20">person</i></li>
+	  <li class="list-group-item text-danger" ng-class="{'text-success': user.Connected}" ng-repeat="user in users">{{user.FullName}} <i class="material-icons md-20">person</i></li>
 	</ul>
+</div>
+<div>
+	<textarea ng-model="newmessage"></textarea>
+	<button ng-click="send()"></button>
 </div>
