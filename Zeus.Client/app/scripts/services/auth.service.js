@@ -5,7 +5,7 @@
         .module('zeusclientApp')
         .factory('authService', authService);
 
-    function authService($http, $q, $location, $sanitize, $rootScope, localStorageService, baseUrl, authUrl, messageService) {
+    function authService($http, $q, $location, $sanitize, $rootScope, localStorageService, baseUrl, authUrl, messageService, chat) {
 
         var service = {
             login: login,
@@ -43,6 +43,7 @@
                 service.data.isAuth = true;
                 service.data.userName = loginData.userName;
                 service.data.token = response.data.access_token;
+                localStorageService.set('authorization', service.data);
                 $http({
                     method: 'GET',
                     url: baseUrl + '/users/self'
@@ -53,6 +54,8 @@
                     service.data.roles = info.Roles;
                     service.data.claims = info.Claims;
                     localStorageService.set('authorization', service.data);
+                    chat.setToken(service.data.token);
+                    chat.connect();
                     $location.path("/");
                     deferred.resolve(response);
                 }, function errorCallback(response) {
@@ -61,7 +64,7 @@
                     deferred.reject(error);
                 });
             }, function(error) {
-                messageService.showError(error.data.error_description);
+                messageService.showError(error);
                 logout();
                 deferred.reject(error);
             });
@@ -81,6 +84,7 @@
         }
 
         function logout() {
+            chat.disconnect();
             localStorageService.remove('authorization');
             cleanData();
             $location.url("/");
@@ -97,8 +101,11 @@
                 service.data.email = authData.email;
                 service.data.roles = authData.roles;
                 service.data.claims = authData.claims;
+                chat.setToken(service.data.token);
+                chat.connect();
             } else {
                 cleanData();
+                chat.disconnect();
             }
         };
 

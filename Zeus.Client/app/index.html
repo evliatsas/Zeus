@@ -48,7 +48,7 @@
                     <a ng-class="getClass(['/'])" href="#/" class="navbar-brand" style="font-family: serif;">{{ 'MENU.BRAND' | translate }}</a>
                 </div>
                 <div class="collapse navbar-collapse" id="js-navbar-collapse">
-                    <ul class="nav navbar-nav" ng-show="isAuth()">
+                    <ul class="nav navbar-nav" ng-show="auth.isAuth">
                         <li class="dropdown" ng-class="getClass(['/facilities','/contacts','/providers','/persons','/charts', '/reports/archive'])">
                             <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{ 'MENU.FACILITIES' | translate }} <span class="caret"></span></a>
                             <ul class="dropdown-menu">
@@ -76,13 +76,13 @@
                             </ul>
                         </li>
                         <li ng-class="getClass(['/operations'])"><a href="#/operations">{{ 'MENU.OPERATIONS' | translate }}</a></li>
-                        <li ng-show="isAdmin()" ng-class="getClass(['/calendar'])"><a href="#/calendar">{{ 'MENU.CALENDAR' | translate }}</a></li>
+                        <li ng-show="auth.isAdmin" ng-class="getClass(['/calendar'])"><a href="#/calendar">{{ 'MENU.CALENDAR' | translate }}</a></li>
                         <li ng-class="getClass(['/map'])"><a href="#/map">{{ 'MENU.MAP' | translate }}</a></li>
-                        <li class="dropdown" ng-show="isAdmin()" ng-class="getClass(['/users','/log'])">
+                        <li class="dropdown" ng-show="auth.isAdmin" ng-class="getClass(['/users','/log'])">
                             <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{ 'MENU.ADMIN' | translate }} <span class="caret"></span></a>
                             <ul class="dropdown-menu">
-                                <li ng-show="isAdmin()" ng-class="getClass(['/users'])"><a href="#/users">{{ 'MENU.USERS' | translate }}</a></li>
-                                <li ng-show="isAdmin()" ng-class="getClass(['/log'])"><a href="#/log">{{ 'MENU.LOG' | translate }}</a></li>
+                                <li ng-show="auth.isAdmin" ng-class="getClass(['/users'])"><a href="#/users">{{ 'MENU.USERS' | translate }}</a></li>
+                                <li ng-show="auth.isAdmin" ng-class="getClass(['/log'])"><a href="#/log">{{ 'MENU.LOG' | translate }}</a></li>
                             </ul>
                         </li>
                     </ul>
@@ -96,15 +96,22 @@
                             </ul>
                         </li>
                         <li class="dropdown">
-                            <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="material-icons md-20">person</i> {{userInfo.fullname}} <span class="caret"></span></a>
+                            <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="material-icons md-20">person</i> {{auth.fullName}} <span class="caret"></span></a>
                             <ul class="dropdown-menu">
-                                <li ng-hide="isAuth()"><a href="#/login">{{ 'MENU.USER_MENU.SIGN_IN' | translate }}</a></li>
-                                <li ng-show="isAuth()"><a href="" data-toggle="modal" data-target="#simple-dialog">{{ 'MENU.USER_MENU.CHANGE_PASSWORD' | translate }}</a></li>
-                                <li ng-show="isAuth()" role="separator" class="divider"></li>
-                                <li ng-show="isAuth()"><a href="" ng-click="logOut()">{{ 'MENU.USER_MENU.SIGN_OUT' | translate }}</a></li>
+                                <li ng-hide="auth.isAuth"><a href="#/login">{{ 'MENU.USER_MENU.SIGN_IN' | translate }}</a></li>
+                                <li ng-show="auth.isAuth"><a href="" data-toggle="modal" data-target="#simple-dialog">{{ 'MENU.USER_MENU.CHANGE_PASSWORD' | translate }}</a></li>
+                                <li ng-show="auth.isAuth" role="separator" class="divider"></li>
+                                <li ng-show="auth.isAuth"><a href="" ng-click="logOut()">{{ 'MENU.USER_MENU.SIGN_OUT' | translate }}</a></li>
                             </ul>
                         </li>
-                        <li ng-show="isAuth()"><a ng-href="#/reports/6"><i class="material-icons md-20">message</i> <span class="badge">{{unread}}</span></a></li>
+                        <li class="dropdown" ng-show="auth.isAuth">
+                            <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="material-icons md-20">message</i> <span class="badge">{{unread}}</span> <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a ng-href="#/reports/6">Μηνύματα</a></li>
+                                <li class="divider"></li>
+                                <li ng-repeat="user in chat.connected">{{user.fullName}}</li>
+                            </ul>
+                        </li>
                     </ul>
                 </div>
             </div>
