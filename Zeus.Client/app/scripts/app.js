@@ -23,7 +23,8 @@ angular
     'ui.dateTimeInput',
     'LocalStorageModule',
     'pascalprecht.translate',
-    'chart.js'
+    'chart.js',
+    'SignalR'
   ])
   .config(function ($routeProvider) {
 
@@ -224,7 +225,7 @@ angular
             //"/dailyreport",
             //"/dailyreport/stats"
         ];
-        if (!authService.isAuth() && unAuthUrls.indexOf($location.path()) == -1) {
+        if (!authService.data.isAuth && unAuthUrls.indexOf($location.path()) == -1) {
             event.preventDefault();
             $location.path('/login');
         }

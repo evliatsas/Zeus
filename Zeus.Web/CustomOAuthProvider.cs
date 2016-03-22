@@ -84,6 +84,7 @@ namespace Zeus.Providers
                 var identity = new ClaimsIdentity("JWT");
                 identity.AddClaim(new Claim(ClaimTypes.NameIdentifier, user.Id));
                 identity.AddClaim(new Claim(ClaimTypes.Name, context.UserName));
+                identity.AddClaim(new Claim(ClaimTypes.Surname, user.FullName));
 
                 foreach (var role in user.Roles)
                 {

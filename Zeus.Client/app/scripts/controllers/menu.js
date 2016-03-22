@@ -2,17 +2,11 @@
 
 angular
     .module('zeusclientApp')
-    .controller('MenuCtrl', function($scope, $location, $http, $translate, baseUrl, authService) {
+    .controller('MenuCtrl', function($scope, $location, $http, $translate, baseUrl, authService, chat) {
 
         $scope.unread = 0;
-
-        $scope.isAuth = function() {
-            return authService.isAuth();
-        }
-
-        $scope.isAdmin = function() {
-            return authService.isAdmin();
-        }
+        $scope.auth = authService.data;
+        $scope.chat = chat;
 
         $scope.getClass = function(path) {
             var i = path.indexOf($location.path());
@@ -47,7 +41,7 @@ angular
 
         }
 
-        if ($scope.isAuth()) {
+        if (authService.data.isAuth) {
             $http({
                 method: 'GET',
                 url: baseUrl + '/reports/messages/unread'
