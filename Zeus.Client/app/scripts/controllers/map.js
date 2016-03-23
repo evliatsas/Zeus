@@ -2,8 +2,9 @@
 
 angular
     .module('zeusclientApp')
-    .controller('MapCtrl', function($http, $scope, $compile, $templateRequest, baseUrl, messageService) {
+    .controller('MapCtrl', function ($http, $scope, $compile, $templateRequest, baseUrl, messageService, utilitiesService) {
 
+        $scope.util = utilitiesService;
         var markers = [];
 
         var styles = [{

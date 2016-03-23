@@ -12,9 +12,9 @@
                 <datetimepicker data-ng-model="data.reportDate" data-datetimepicker-config="{ dropdownSelector: '#dropdown2', startView:'day', minView:'day' }"></datetimepicker>
             </ul>
         </div>
-    </div>
+    </div>    
 </div>
-
+<button class="btn btn-primary btn-fab fab pull-right" ng-click="util.goBack()" title="{{ 'REPORT.BACK' | translate }}"><i class="material-icons">arrow_back</i></button>
 <div class="col-md-12">
     <cinnamon-grid grid-columns="reportcolumns"
                    grid-items="reports"

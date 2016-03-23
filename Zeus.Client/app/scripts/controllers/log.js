@@ -2,9 +2,10 @@
 
 angular
     .module('zeusclientApp')
-    .controller('LogCtrl', function ($scope, $http, baseUrl, lookupService, messageService) {
+    .controller('LogCtrl', function ($scope, $http, baseUrl, lookupService, messageService, utilitiesService) {
 
         $scope.lookup = lookupService;
+        $scope.util = utilitiesService;
         $scope.entries = [];
         $scope.from = moment().subtract(7, 'days').startOf('day');
         $scope.to = moment();

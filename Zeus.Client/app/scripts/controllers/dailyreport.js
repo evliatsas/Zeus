@@ -2,7 +2,9 @@
 
 angular
     .module('zeusclientApp')
-    .controller('DailyReportCtrl', function ($scope, $http, baseUrl, messageService) {
+    .controller('DailyReportCtrl', function ($scope, $http, baseUrl, messageService, utilitiesService) {
+
+        $scope.util = utilitiesService;
 
         $scope.reportcolumns = [
             { Caption: 'Δομή Φιλοξενίας', Field: 'Facility.Name' },

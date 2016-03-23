@@ -6,7 +6,7 @@ angular
 
         $scope.facilities = [];
         $scope.charts =null;
-
+        $scope.util = utilitiesService;
         $scope.from = moment().subtract(7, 'days').startOf('day');
         $scope.to = moment();
 

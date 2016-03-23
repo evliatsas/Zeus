@@ -6,7 +6,7 @@ angular
 
         var isInsert = $routeParams.id == 'new';
         $scope.activeTab = $routeParams.tab ? parseInt($routeParams.tab) : 0;
-
+        $scope.util = utilitiesService;
         $scope.formatDateTime = utilitiesService.formatDateTime;
 
         $scope.housingcolumns = [

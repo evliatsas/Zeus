@@ -64,6 +64,10 @@ angular
 
         //************
 
+        $scope.goBack = function () {
+            $location.url('/operations');
+        }
+
         $scope.save = function () {            
             if (isInsert) {
                 // Create operation

@@ -1,5 +1,8 @@
 ﻿<form name="form">
     <div class="pull-right">
+        <button class="btn btn-primary btn-fab fab" ng-click="goBack()" title="{{ 'REPORT.BACK' | translate }}">
+            <i class="material-icons">arrow_back</i>
+        </button>
         <button ng-hide="operation.IsCancelled" class="btn btn-danger btn-fab fab" ng-click="cancel()" title="{{ 'OPERATION.CANCEL' | translate }}">
             <i class="material-icons">cancel</i>
         </button>
