@@ -25,19 +25,19 @@ namespace Zeus.Entities.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("mongodb://localhost")]
-        public string ConnectionString {
+        [global::System.Configuration.DefaultSettingValueAttribute("Zeus")]
+        public string DatabaseName {
             get {
-                return ((string)(this["ConnectionString"]));
+                return ((string)(this["DatabaseName"]));
             }
         }
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Zeus")]
-        public string DatabaseName {
+        [global::System.Configuration.DefaultSettingValueAttribute("mongodb://192.168.2.250")]
+        public string ConnectionString {
             get {
-                return ((string)(this["DatabaseName"]));
+                return ((string)(this["ConnectionString"]));
             }
         }
     }
