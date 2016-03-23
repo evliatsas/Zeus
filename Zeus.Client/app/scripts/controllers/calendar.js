@@ -2,9 +2,10 @@
 
 angular
     .module('zeusclientApp')
-    .controller('CalendarCtrl', function ($scope, $http, $location, lookupService, messageService, baseUrl) {
+    .controller('CalendarCtrl', function ($scope, $http, $location, lookupService, utilitiesService, messageService, baseUrl) {
 
         $scope.lookup = lookupService;
+        $scope.util = utilitiesService;
         $scope.calendar = [];
 
         $scope.calendarcolumns = [

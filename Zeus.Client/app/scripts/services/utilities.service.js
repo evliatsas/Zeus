@@ -5,7 +5,7 @@
         .module('zeusclientApp')
         .factory('utilitiesService', utilities);
 
-    function utilities($filter, $route, moment) {
+    function utilities($filter, $route, $window, moment) {
 
         var service = {
             containsById: containsById,
@@ -14,7 +14,8 @@
             naturalSort: naturalSort,
             routeExists : routeExists,
             groupBy: groupBy,
-            formatDateTime: formatDateTime
+            formatDateTime: formatDateTime,
+            goBack: goBack
         };
 
         return service;
@@ -122,6 +123,10 @@
                 tz[y] += j;
             }
             return tz;
+        }
+
+        function goBack() {
+            $window.history.back()
         }
     }
 })();

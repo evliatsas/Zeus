@@ -2,7 +2,7 @@
 
 angular
     .module('zeusclientApp')
-    .controller('ContactsCtrl', function ($scope, $http, $routeParams, $location, lookupService, messageService, baseUrl)  {
+    .controller('ContactsCtrl', function ($scope, $http, $routeParams, $location, lookupService, utilitiesService, messageService, baseUrl)  {
 
         var isInsert = $routeParams.id == 'new';
 
@@ -17,6 +17,7 @@ angular
         ];
 
         $scope.lookup = lookupService;
+        $scope.util = utilitiesService;
         $scope.contact = {};
 
         $scope.addContact = function () {

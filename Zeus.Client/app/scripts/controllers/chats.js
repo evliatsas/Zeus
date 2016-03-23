@@ -2,10 +2,10 @@
 
 angular
     .module('zeusclientApp')
-    .controller('ChatsCtrl', function($scope, $http, $location, $rootScope, authService, messageService, localStorageService, ChatHub) {
+    .controller('ChatsCtrl', function($scope, $http, $location, $rootScope, authService, messageService, utilitiesService, localStorageService, ChatHub) {
 
         $scope.users = ChatHub.users;
-
+        $scope.util = utilitiesService;
         $scope.messages = ChatHub.messages;
 
         $scope.send = function() {
