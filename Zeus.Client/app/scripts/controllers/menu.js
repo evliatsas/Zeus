@@ -4,10 +4,9 @@ angular
     .module('zeusclientApp')
     .controller('MenuCtrl', function($scope, $location, $http, $translate, baseUrl, authService, ChatHub) {
 
-        $scope.unread = 0;
-        $scope.auth = authService.data;
         $scope.chat = ChatHub;
-
+        $scope.auth = authService.data;
+        
         $scope.getClass = function(path) {
             var i = path.indexOf($location.path());
             if (i == -1) {
@@ -39,17 +38,6 @@ angular
                 $scope.languageTitle = "Switch to English";
             }
 
-        }
-
-        if (authService.data.isAuth) {
-            $http({
-                method: 'GET',
-                url: baseUrl + '/reports/messages/unread'
-            }).then(function successCallback(response) {
-                $scope.unread = response.data;
-            }, function errorCallback(response) {
-                $scope.unread = 0;
-            });
         }
 
     });
