@@ -2,8 +2,10 @@
 
 angular
     .module('zeusclientApp')
-    .controller('UsersCtrl', function ($scope, $http, $routeParams, $location, lookupService, messageService, baseUrl) {
+    .controller('UsersCtrl', function ($scope, $http, $routeParams, $location, lookupService, messageService, utilitiesService, baseUrl) {
         
+        $scope.util = utilitiesService;
+
         var isInsert = $routeParams.id == 'new';
 
        // $scope.showPassword = true;

@@ -2,8 +2,9 @@
 
 angular
     .module('zeusclientApp')
-    .controller('ProvidersCtrl', function ($scope, $http, $location, lookupService, messageService, baseUrl) {
+    .controller('ProvidersCtrl', function ($scope, $http, $location, lookupService, messageService, utilitiesService, baseUrl) {
 
+        $scope.util = utilitiesService;
         $scope.lookup = lookupService;
         $scope.providers = [];
 

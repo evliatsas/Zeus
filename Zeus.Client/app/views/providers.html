@@ -1,4 +1,7 @@
-﻿<h2>{{'MENU.PROVIDERS'|translate}}</h2>
+﻿<div class="col-md-12">
+    <h2 class="pull-left">{{'MENU.PROVIDERS'|translate}}</h2>
+    <button class="btn btn-primary btn-fab fab pull-right" ng-click="util.goBack()" title="{{ 'REPORT.BACK' | translate }}"><i class="material-icons">arrow_back</i></button>
+</div>
 <cinnamon-grid grid-columns="providercolumns"
                grid-items="providers"
                show-grid-buttons="true"

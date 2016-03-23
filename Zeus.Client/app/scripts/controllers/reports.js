@@ -2,8 +2,9 @@
 
 angular
     .module('zeusclientApp')
-    .controller('ReportsCtrl', function($scope, $http, $routeParams, $location, lookupService, messageService, baseUrl) {
+    .controller('ReportsCtrl', function($scope, $http, $routeParams, $location, lookupService, utilitiesService, messageService, baseUrl) {
 
+        $scope.util = utilitiesService;
         $scope.reports = [];
         $scope.reportType = $routeParams.type;
 

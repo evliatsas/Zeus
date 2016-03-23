@@ -2,7 +2,9 @@
 
 angular
     .module('zeusclientApp')
-    .controller('PersonsCtrl', function($scope, $location, $http, baseUrl, lookupService, messageService) {
+    .controller('PersonsCtrl', function ($scope, $location, $http, baseUrl, lookupService, messageService, utilitiesService) {
+
+        $scope.util = utilitiesService;
 
         $scope.addItem = function() {
             $location.url("/persons/new");

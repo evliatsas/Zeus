@@ -2,10 +2,11 @@
 
 angular
     .module('zeusclientApp')
-    .controller('PersonCtrl', function ($scope, $http, $routeParams, $location, $uibModal, baseUrl, lookupService, messageService) {
+    .controller('PersonCtrl', function ($scope, $http, $routeParams, $location, $uibModal, baseUrl, lookupService, messageService, utilitiesService) {
 
         var isInsert = $routeParams.id == 'new';
         $scope.lookup = lookupService;
+        $scope.util = utilitiesService;
 
         $scope.reportcolumns = [
             { Caption: 'GRID.NAME', Field: 'Name' },

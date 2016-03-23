@@ -2,9 +2,10 @@
 
 angular
     .module('zeusclientApp')
-    .controller('OperationsCtrl', function ($scope, $http, $location, lookupService, messageService, baseUrl) {
+    .controller('OperationsCtrl', function ($scope, $http, $location, lookupService, messageService, utilitiesService, baseUrl) {
 
         $scope.lookup = lookupService;
+        $scope.util = utilitiesService;
         $scope.operations = [];
 
         $scope.operationcolumns = [
