@@ -154,6 +154,7 @@ angular
 	    	REPORT: {
 	    	    DELETE: 'Διαγραφή Αναφοράς',
 	    	    SAVE: 'Αποθήκευση Αναφοράς',
+                BACK: 'Προηγούμενη Σελίδα',
 	    	    TYPE: 'Τύπος',
 	    	    RECIPIENT: 'Αποδέκτης',
 	    	    NOT_ARCHIVED: 'Αρχειοθέτηση Αναφοράς',
@@ -528,6 +529,7 @@ angular
 	        REPORT: {
 	            DELETE: 'Delete Report',
 	            SAVE: 'Save Report',
+	            BACK: 'Navigate to previous page',
 	            TYPE: 'Type',
 	            RECIPIENT: 'Recipient',
 	            NOT_ARCHIVED: 'Archive Report',

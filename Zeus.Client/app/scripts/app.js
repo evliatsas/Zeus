@@ -92,7 +92,7 @@ angular
             },
             controller: 'ReportCtrl',
             controllerAs: 'reportCtrl'
-        })        
+        })
         .when('/reports/archive', {
             templateUrl: 'views/archive.html',
             controller: 'ArchiveCtrl',
@@ -102,7 +102,7 @@ angular
             templateUrl: 'views/reports/reports.html',
             controller: 'ReportsCtrl',
             controllerAs: 'reportsCtrl'
-        })   
+        })
         .when('/log', {
             templateUrl: 'views/log.html',
             controller: 'LogCtrl',
@@ -119,10 +119,10 @@ angular
             controllerAs: 'providersCtrl'
         })
         .when('/operations/:id', {
-              templateUrl: 'views/operation.html',
-              controller: 'OperationCtrl',
-              controllerAs: 'operationCtrl'
-          })
+            templateUrl: 'views/operation.html',
+            controller: 'OperationCtrl',
+            controllerAs: 'operationCtrl'
+        })
         .when('/operations', {
             templateUrl: 'views/operations.html',
             controller: 'OperationsCtrl',
@@ -195,17 +195,17 @@ angular
   .constant("moment", moment)
   .constant('toastr', toastr)
   .directive('convertToNumber', function () {
-    return {
-        require: 'ngModel',
-        link: function (scope, element, attrs, ngModel) {
-            ngModel.$parsers.push(function (val) {
-                return parseInt(val, 10);
-            });
-            ngModel.$formatters.push(function (val) {
-                return '' + val;
-            });
-        }
-    };
+      return {
+          require: 'ngModel',
+          link: function (scope, element, attrs, ngModel) {
+              ngModel.$parsers.push(function (val) {
+                  return parseInt(val, 10);
+              });
+              ngModel.$formatters.push(function (val) {
+                  return '' + val;
+              });
+          }
+      };
   })
     .factory('Excel', function ($window) {
         var uri = 'data:application/vnd.ms-excel;base64,',
@@ -221,29 +221,31 @@ angular
             }
         };
     })
-.run(['$rootScope', '$location', 'authService', function ($rootScope, $location, authService) {
-    $rootScope.$on('$routeChangeStart', function (event) {
-        var unAuthUrls = [
-            //"",
-            //"/",
-            "/login",
-            //"/dailyreport",
-            //"/dailyreport/stats"
-        ];
-        if (!authService.data.isAuth && unAuthUrls.indexOf($location.path()) == -1) {
-            event.preventDefault();
-            $location.path('/login');
-        }
-    });
+    .run(['$rootScope', '$location', 'authService', function ($rootScope, $location, authService) {
+        $rootScope.$on('$routeChangeStart', function (event, next, current) {
+            var unAuthUrls = [
+                //"",
+                //"/",
+                "/login",
+                //"/dailyreport",
+                //"/dailyreport/stats"
+            ];
+            if (!authService.data.isAuth && unAuthUrls.indexOf($location.path()) == -1) {
+                event.preventDefault();
+                $location.path('/login');
+            }
 
-    // define default chart colours
-    Chart.defaults.global.colours = [
-            '#97BBCD', // blue
-            '#949FB1', // grey
-            '#F7464A', // red
-            '#46BFBD', // green
-            '#FDB45C', // yellow
-            '#DCDCDC', // light grey
-            '#4D5360'  // dark grey
+            $rootScope.previousRoot = current;
+        });
+
+        // define default chart colours
+        Chart.defaults.global.colours = [
+                '#97BBCD', // blue
+                '#949FB1', // grey
+                '#F7464A', // red
+                '#46BFBD', // green
+                '#FDB45C', // yellow
+                '#DCDCDC', // light grey
+                '#4D5360'  // dark grey
         ];
-}]);
+    }]);

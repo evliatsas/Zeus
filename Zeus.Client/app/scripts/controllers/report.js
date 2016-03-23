@@ -2,7 +2,7 @@
 
 angular
     .module('zeusclientApp')
-    .controller('ReportCtrl', function ($scope, $http, $routeParams, $location, moment, lookupService, messageService, baseUrl, utilitiesService) {
+    .controller('ReportCtrl', function ($rootScope, $scope, $http, $routeParams, $location, moment, lookupService, messageService, baseUrl, utilitiesService) {
 
         $scope.lookup = lookupService;
         $scope.facilities = [];
@@ -32,6 +32,19 @@ angular
                     return 'SituationReport';
                 case "6":                   
                     return 'Message';
+            }
+        }
+
+        $scope.goBack = function () {
+            var previous = $rootScope.previousRoot;
+            if (previous.$$route.controllerAs == "facilities") {
+                $location.url('/facilities');
+            }
+            else if (previous.$$route.controllerAs == "facility") {
+                $location.url('/facilities/' + previous.params.id + '?tab=3');
+            }
+            else { //default to reports list
+                $location.url('/reports/' + previous.params.type);
             }
         }
 
@@ -137,7 +150,7 @@ angular
                 url: baseUrl + '/reports'
             }).then(function successCallback(response) {
                 messageService.saveSuccess();
-                $location.url('/reports/' + response.data.Type + '/' + response.data.FacilityId + '/' + response.data.Id);
+                $scope.goBack();
             }, function errorCallback(response) {
                 messageService.showError(response.data);
             });
@@ -149,7 +162,7 @@ angular
                 url: baseUrl + '/reports/' + $scope.report.Id
             }).then(function successCallback(response) {
                 messageService.deleteSuccess();
-                $location.url('/facilities/' + $scope.report.FacilityId);
+                $scope.goBack();
             }, function errorCallback(response) {
                 messageService.showError(response.data);
             });
@@ -165,7 +178,7 @@ angular
                 url: baseUrl + '/reports/archive/' + $scope.report.Id //archive report
             }).then(function successCallback(response) {
                 $scope.report.IsArchived = response.data;
-                $location.url('/reports/archive');
+                $scope.goBack();
             }, function errorCallback(response) {
                 messageService.getFailed(response.error);
             });

@@ -121,7 +121,8 @@ angular
                 data: $scope.provider,
                 url: baseUrl + '/providers'
             }).then(function successCallback(response) {
-                messageService.saveSuccess();
+                $scope.provider = response.data;
+                messageService.saveSuccess();                
             }, function errorCallback(response) {
                 messageService.showError();
             });
