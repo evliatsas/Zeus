@@ -2,11 +2,52 @@
 
 angular
     .module('zeusclientApp')
-    .controller('ChatsCtrl', function($scope, $http, $location, authService, messageService, localStorageService, chat) {
+    .controller('ChatsCtrl', function($scope, $http, $location, $rootScope, authService, messageService, localStorageService, ChatHub) {
 
-        $scope.users = chat.users;
-        $scope.messages = chat.messages;
+        $scope.users = ChatHub.users;
+
+        $scope.messages = ChatHub.messages;
+
         $scope.send = function() {
-        	chat.send($scope.newmessage);
+            // if (usernames) {
+            //     for (i in usernames) {
+            //         ChatHub.send($scope.newmessage, usernames[i]);
+            //     }
+            // } else {
+            // 	ChatHub.send($scope.newmessage);
+            // }
+            ChatHub.send($scope.newmessage);
+            $scope.newmessage = "";
+        };
+
+        ChatHub.observe(connected);
+
+        function connected() {
+
+            ChatHub.getConnectedUsers().done(function(users) {
+                $.each(users, function(i, user) {
+                    ChatHub.connected.push({ username: user.UserName, fullname: user.FullName });
+                    $rootScope.$apply();
+                });
+            });
+
+            ChatHub.getUsers().done(function(users) {
+                $.each(users, function(i, user) {
+                    ChatHub.users.push(user);
+                    $rootScope.$apply();
+                });
+            });
+
+            ChatHub.getMessages().done(function(messages) {
+                $.each(messages, function(i, msg) {
+                    ChatHub.messages.push(msg);
+                    $rootScope.$apply();
+                });
+            });
         }
+
+        if (ChatHub.isConnected) {
+            connected();
+        }
+
     });

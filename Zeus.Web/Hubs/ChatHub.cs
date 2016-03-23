@@ -23,16 +23,15 @@ namespace Zeus
         private static readonly ConcurrentDictionary<string, UserViewModel> Users
             = new ConcurrentDictionary<string, UserViewModel>(StringComparer.InvariantCultureIgnoreCase);
 
-        public void Send(string message)
+        public async Task Send(string message)
         {
             string sender = Context.User.Identity.Name;
-            var chat = createMessage(message, sender, string.Empty);
+            var chat = await createMessage(message, sender, string.Empty);
             Clients.All.received(chat);
         }
 
-        public void Send(string message, string to)
+        public async Task Send(string message, string to)
         {
-
             UserViewModel receiver;
             if (Users.TryGetValue(to, out receiver))
             {
@@ -51,7 +50,7 @@ namespace Zeus
 
                 foreach (var cid in allReceivers)
                 {
-                    var chat = createMessage(message, sender.UserName, cid);
+                    var chat = await createMessage(message, sender.UserName, cid);
                     Clients.Client(cid).received(chat);
                 }
             }
@@ -198,7 +197,7 @@ namespace Zeus
             return user;
         }
 
-        private Chat createMessage(string message, string sender, string to)
+        private async Task<Chat> createMessage(string message, string sender, string to)
         {
             Chat chat = new Chat();
             chat.Sender = sender;
@@ -206,7 +205,24 @@ namespace Zeus
             chat.Message = message;
             chat.Send = DateTime.Now;
             chat.Status = ChatSatus.UnReaded;
-            //await context.Chats.Insert(chat);
+            await context.Chats.Insert(chat);
+            return chat;
+        }
+
+        public async Task<Chat> CheckMessage(string id)
+        {
+            Chat chat = await context.Chats.GetById(id);
+            chat.Status = ChatSatus.Readed;
+            chat.Oppened = DateTime.Now;
+            await context.Chats.Update(chat);
+            return chat;
+        }
+
+        public async Task<Chat> ArchiceMessage(string id)
+        {
+            Chat chat = await context.Chats.GetById(id);
+            chat.Status = ChatSatus.Archived;
+            await context.Chats.Update(chat);
             return chat;
         }
     }

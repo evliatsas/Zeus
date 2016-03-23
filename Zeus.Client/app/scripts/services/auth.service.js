@@ -5,7 +5,7 @@
         .module('zeusclientApp')
         .factory('authService', authService);
 
-    function authService($http, $q, $location, $sanitize, $rootScope, localStorageService, baseUrl, authUrl, messageService, chat) {
+    function authService($http, $q, $location, $sanitize, $rootScope, localStorageService, baseUrl, authUrl, messageService, ChatHub) {
 
         var service = {
             login: login,
@@ -55,8 +55,8 @@
                     service.data.claims = info.Claims;
                     service.data.isAdmin = $.inArray('Administrator', info.Roles) > -1;
                     localStorageService.set('authorization', service.data);
-                    chat.setToken(service.data.token);
-                    chat.connect();
+                    ChatHub.setToken(service.data.token);
+                    ChatHub.connect();
                     $location.path("/");
                     deferred.resolve(response);
                 }, function errorCallback(response) {
@@ -102,11 +102,11 @@
                 service.data.email = authData.email;
                 service.data.roles = authData.roles;
                 service.data.claims = authData.claims;
-                chat.setToken(service.data.token);
-                chat.connect();
+                ChatHub.setToken(service.data.token);
+                ChatHub.connect();
             } else {
                 cleanData();
-                chat.disconnect();
+                ChatHub.disconnect();
             }
         };
 

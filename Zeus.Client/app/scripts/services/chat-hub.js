@@ -2,12 +2,14 @@
 
 angular
     .module('zeusclientApp')
-    .factory('chat', ['$rootScope', 'Hub', 'baseUrl', function($rootScope, Hub, baseUrl) {
+    .factory('ChatHub', ['$rootScope', 'Hub', 'baseUrl', '$filter', function($rootScope, Hub, baseUrl, $filter) {
 
         var ChatHub = this;
         ChatHub.connected = [];
         ChatHub.messages = [];
         ChatHub.users = [];
+        ChatHub.unread = 0;
+        ChatHub.isConnected = false;
 
         var hub = new Hub('chatHub', {
             autoConnect: false,
@@ -15,10 +17,20 @@ angular
             listeners: {
                 'userConnected': function(username, fullname) {
                     ChatHub.connected.push({ username: username, fullname: fullname });
+                    $filter('filter')(ChatHub.users,function(u) {
+                        return u.UserName == username;
+                    })[0].Connected = true;
                     $rootScope.$apply();
                 },
-                'userDisconnected': function(username) {
-                    ChatHub.connected.splice(ChatHub.connected.indexOf(username), 1);
+                'userDisconnected': function(username) {                    
+                    var user = $filter('filter')(ChatHub.connected,function(u) {
+                        return u.UserName == username;
+                    })[0];
+                    ChatHub.connected.splice(ChatHub.connected.indexOf(user),1);
+                    $filter('filter')(ChatHub.users,function(u) {
+                        return u.UserName == username;
+                    })[0].Connected = false;
+
                     $rootScope.$apply();
                 },
                 'received': function(message) {
@@ -26,36 +38,29 @@ angular
                     $rootScope.$apply();
                 }
             },
-            methods: ['getConnectedUsers','getUnreadCount','getMessages','getArchives','getUsers','send'],
+            methods: ['getConnectedUsers','getUnreadCount','getMessages','getArchives','getUsers','send','checkMessage','archiceMessage'],
             errorHandler: function(error) {
                 console.error(error);
             },
             stateChanged: function(state) {
                 switch (state.newState) {
                     case $.signalR.connectionState.connecting:
-                        //your code here
                         break;
                     case $.signalR.connectionState.connected:
+                        ChatHub.isConnected = true;
                         ChatHub.connected.splice(0, ChatHub.connected.length);
                         $rootScope.$apply();
-                        hub.getConnectedUsers().done(function(users) {
-                            $.each(users, function(i, user) {
-                                ChatHub.connected.push({ username: user.UserName, fullname: user.FullName });
-                                $rootScope.$apply();
-                            });
+                        hub.getUnreadCount().done(function(num) {
+                            ChatHub.unread = num;
                         });
-                        hub.getUsers().done(function(users) {
-                            $.each(users, function(i, user) {
-                                ChatHub.users.push(user);
-                                $rootScope.$apply();
-                            });
-                        });
+                        if(cb) {
+                            cb();
+                        }            
                         break;
                     case $.signalR.connectionState.reconnecting:
-                        //your code here
                         break;
                     case $.signalR.connectionState.disconnected:
-                        //your code here
+                        ChatHub.isConnected = false;
                         break;
                 }
             }
@@ -69,8 +74,16 @@ angular
         ChatHub.getArchives = hub.getArchives;
         ChatHub.getUsers = hub.getUsers;
         ChatHub.send = hub.send;
+        ChatHub.checkMessage = hub.checkMessage;
+        ChatHub.archiceMessage = hub.archiceMessage;
+
+        var cb = null;
+        ChatHub.observe = function(callback) {
+            cb = callback;
+        };
+
         ChatHub.setToken = function(token) {
             hub.connection.qs = {'access_token': token };
-        }
+        };
         return ChatHub;
     }]);

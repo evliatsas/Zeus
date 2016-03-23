@@ -14,9 +14,8 @@ namespace Zeus.Models
             Roles = new List<string>();
             Claims = new List<IdentityUserClaim>();
         }
-        
-        public string FullName { get; set; }
         public string UserName { get; set; }
+        public string FullName { get; set; }        
         public string Email { get; set; }
         public string PhoneNumber { get; set; }
         public List<string> Roles { get; set; }
