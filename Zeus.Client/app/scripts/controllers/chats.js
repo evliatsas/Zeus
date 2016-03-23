@@ -4,9 +4,9 @@ angular
     .module('zeusclientApp')
     .controller('ChatsCtrl', function($scope, $http, $location, $rootScope, authService, messageService, localStorageService, ChatHub) {
 
-        $scope.users = ChatHub.users;
+    	$scope.users = ChatHub.users;
 
-        $scope.messages = ChatHub.messages;
+    	$scope.messages = ChatHub.messages;
 
         $scope.send = function() {
             // if (usernames) {
@@ -39,6 +39,7 @@ angular
             });
 
             ChatHub.getMessages().done(function(messages) {
+            	ChatHub.messages.splice(0, ChatHub.messages.length);
                 $.each(messages, function(i, msg) {
                     ChatHub.messages.push(msg);
                     $rootScope.$apply();
