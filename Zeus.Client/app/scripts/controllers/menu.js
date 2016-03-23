@@ -2,11 +2,11 @@
 
 angular
     .module('zeusclientApp')
-    .controller('MenuCtrl', function($scope, $location, $http, $translate, baseUrl, authService, chat) {
+    .controller('MenuCtrl', function($scope, $location, $http, $translate, baseUrl, authService, ChatHub) {
 
         $scope.unread = 0;
         $scope.auth = authService.data;
-        $scope.chat = chat;
+        $scope.chat = ChatHub;
 
         $scope.getClass = function(path) {
             var i = path.indexOf($location.path());
