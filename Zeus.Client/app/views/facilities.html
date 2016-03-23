@@ -26,6 +26,7 @@
     <button class="btn btn-info btn-fab pull-right" ng-click="addFacility()" title="{{ 'CARD_LIST.ADD' | translate }}"><i class="material-icons">add</i></button>
     <button class="btn btn-primary btn-fab pull-right" style="margin-right: 20px" ng-click="toggleView()" title="{{ 'CARD_LIST.CARD' | translate }}"><i class="material-icons">{{view == 'table' ? 'view_compact' : 'view_comfy'}}</i></button>
     <button ng-if="view == 'table'" class="btn btn-primary btn-fab pull-right" style="margin-right: 20px" ng-click="exportToExcel('#table1')" title="{{ 'CARD_LIST.EXCEL' | translate }}"><i class="material-icons">list</i></button>
+    <button class="btn btn-primary btn-fab fab pull-right" style="margin-right: 20px" ng-click="util.goBack()" title="{{ 'REPORT.BACK' | translate }}"><i class="material-icons">arrow_back</i></button>
 </div>
 <div ng-if="view != 'table'" ng-repeat="category in groups">
     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">

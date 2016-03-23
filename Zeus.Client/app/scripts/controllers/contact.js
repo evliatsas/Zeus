@@ -17,6 +17,19 @@ angular
              { Caption: 'GRID.UTILIZATION', Field: 'Utilization', Type: 'Percentage', Tooltip: 'Ποσοστό Πληρότητας' },
         ];
 
+        $scope.goBack = function () {
+            var previous = $rootScope.previousRoot;
+            if (previous.$$route.controllerAs == "facilities") {
+                $location.url('/facilities');
+            }
+            else if (previous.$$route.controllerAs == "facility") {
+                $location.url('/facilities/' + previous.params.id + '?tab=1');
+            }
+            else { //default to reports list
+                $location.url('/contacts');
+            }
+        }
+
         $scope.addFacility = function () {
             var picker = $uibModal.open({
                 animation: true,

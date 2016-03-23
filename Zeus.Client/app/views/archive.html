@@ -1,42 +1,47 @@
-﻿<h2>{{'MENU.ARCHIVES'|translate}}</h2>
-<form>
-    <div class="form-group label-static">
-        <div class="col-sm-4">
-            <label for="i11" class="control-label">{{ 'ARCHIVE.FROM' | translate }}</label>
-            <div class="dropdown">
-                <div class="dropdown-toggle" id="dropdown1" role="button" data-toggle="dropdown" data-target="#">
-                    <div class="input-group">
-                        <input type="text" class="form-control" data-ng-model="from" data-date-time-input="dddd DD/MM/YYYY HH:mm"><span class="input-group-addon"><i class="material-icons md-24">date_range</i></span>
+﻿<div class="col-md-12">
+    <h2 class="pull-left">{{'MENU.ARCHIVES'|translate}}</h2>
+    <button class="btn btn-primary btn-fab fab pull-right" ng-click="util.goBack()" title="{{ 'REPORT.BACK' | translate }}"><i class="material-icons">arrow_back</i></button>
+</div>
+<div class="col-md-12">
+    <form>
+        <div class="form-group label-static">
+            <div class="col-sm-4">
+                <label for="i11" class="control-label">{{ 'ARCHIVE.FROM' | translate }}</label>
+                <div class="dropdown">
+                    <div class="dropdown-toggle" id="dropdown1" role="button" data-toggle="dropdown" data-target="#">
+                        <div class="input-group">
+                            <input type="text" class="form-control" data-ng-model="from" data-date-time-input="dddd DD/MM/YYYY HH:mm"><span class="input-group-addon"><i class="material-icons md-24">date_range</i></span>
+                        </div>
                     </div>
+                    <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                        <datetimepicker data-ng-model="from" data-datetimepicker-config="{ dropdownSelector: '#dropdown1' }"
+                                        data-before-render="beforeRenderStartDate($view, $dates, $leftDate, $upDate, $rightDate)"></datetimepicker>
+                    </ul>
                 </div>
-                <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-                    <datetimepicker data-ng-model="from" data-datetimepicker-config="{ dropdownSelector: '#dropdown1' }"
-                                    data-before-render="beforeRenderStartDate($view, $dates, $leftDate, $upDate, $rightDate)"></datetimepicker>
-                </ul>
+            </div>
+            <div class="col-sm-4">
+                <label for="i11" class="control-label">{{ 'ARCHIVE.UNTIL' | translate }}</label>
+                <div class="dropdown">
+                    <div class="dropdown-toggle" id="dropdown2" role="button" data-toggle="dropdown" data-target="#">
+                        <div class="input-group">
+                            <input type="text" class="form-control" data-ng-model="to" data-date-time-input="dddd DD/MM/YYYY HH:mm"><span class="input-group-addon"><i class="material-icons md-24">date_range</i></span>
+                        </div>
+                    </div>
+                    <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                        <datetimepicker data-ng-model="to" data-datetimepicker-config="{ dropdownSelector: '#dropdown2' }"
+                                        data-before-render="beforeRenderEndDate($view, $dates, $leftDate, $upDate, $rightDate)"></datetimepicker>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <button class="btn btn-raised btn-primary pull-left" style="margin-top:-2px;" type="button" ng-click="getArchived()">
+                    {{ 'ARCHIVE.SHOW_FILE' | translate }}
+                    <i class="material-icons md-24">book</i>
+                </button>
             </div>
         </div>
-        <div class="col-sm-4">
-            <label for="i11" class="control-label">{{ 'ARCHIVE.UNTIL' | translate }}</label>
-            <div class="dropdown">
-                <div class="dropdown-toggle" id="dropdown2" role="button" data-toggle="dropdown" data-target="#">
-                    <div class="input-group">
-                        <input type="text" class="form-control" data-ng-model="to" data-date-time-input="dddd DD/MM/YYYY HH:mm"><span class="input-group-addon"><i class="material-icons md-24">date_range</i></span>
-                    </div>
-                </div>
-                <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-                    <datetimepicker data-ng-model="to" data-datetimepicker-config="{ dropdownSelector: '#dropdown2' }"
-                                    data-before-render="beforeRenderEndDate($view, $dates, $leftDate, $upDate, $rightDate)"></datetimepicker>
-                </ul>
-            </div>
-        </div>
-        <div class="col-sm-4">
-            <button class="btn btn-raised btn-primary pull-right" style="margin-top:-2px;" type="button" ng-click="getArchived()">
-                {{ 'ARCHIVE.SHOW_FILE' | translate }}
-                <i class="material-icons md-24">book</i>
-            </button>
-        </div>
-    </div>
-</form>
+    </form>
+</div>
 <hr />
 <cinnamon-grid grid-columns="reportcolumns"
                grid-items="reports"

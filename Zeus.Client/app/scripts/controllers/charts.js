@@ -5,6 +5,7 @@ angular
     .controller('ChartsCtrl', function ($scope, $http, $filter, baseUrl, utilitiesService, messageService) {
 
         $scope.facilities = [];
+        $scope.util = utilitiesService;
         $scope.charts =null;
 
         $scope.from = moment().subtract(7, 'days').startOf('day');

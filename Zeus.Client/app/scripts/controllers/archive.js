@@ -2,9 +2,10 @@
 
 angular
     .module('zeusclientApp')
-    .controller('ArchiveCtrl', function ($scope, $http, $routeParams, $uibModal, $location, baseUrl, lookupService, messageService) {
+    .controller('ArchiveCtrl', function ($scope, $http, $routeParams, $uibModal, $location, baseUrl, lookupService, utilitiesService, messageService) {
 
         $scope.lookup = lookupService;
+        $scope.util = utilitiesService;
         $scope.reports = [];
         $scope.from = moment().subtract(7, 'days').startOf('day');
         $scope.to = moment();

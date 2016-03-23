@@ -5,6 +5,7 @@ angular
     .controller('FacilitiesCtrl', function ($scope, $http, $location, $timeout, Excel, baseUrl, utilitiesService, messageService) {
 
         var facilities = [];
+        $scope.util = utilitiesService;
 
         $http({
             method: 'GET',

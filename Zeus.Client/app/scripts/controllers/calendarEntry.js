@@ -2,9 +2,10 @@
 
 angular
     .module('zeusclientApp')
-    .controller('CalendarEntryCtrl', function ($scope, $http, $routeParams, $location, lookupService, messageService, baseUrl) {
+    .controller('CalendarEntryCtrl', function ($scope, $http, $routeParams, $location, lookupService, utilitiesService, messageService, baseUrl) {
 
         $scope.lookup = lookupService;
+        $scope.util = utilitiesService;
         $scope.entry = {};
 
         var isInsert = $routeParams.id == 'new';
