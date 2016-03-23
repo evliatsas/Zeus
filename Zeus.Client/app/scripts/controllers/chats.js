@@ -39,6 +39,7 @@ angular
             });
 
             ChatHub.getMessages().done(function(messages) {
+            	ChatHub.messages.splice(0, ChatHub.messages.length);
                 $.each(messages, function(i, msg) {
                     ChatHub.messages.push(msg);
                     $rootScope.$apply();
