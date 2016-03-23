@@ -85,7 +85,7 @@
         }
 
         function logout() {
-            chat.disconnect();
+            ChatHub.disconnect();
             localStorageService.remove('authorization');
             cleanData();
             $location.url("/");
