@@ -77,7 +77,7 @@ namespace Zeus
                 {
                     Prefix = "Jobs",
                     CountersAggregateInterval = TimeSpan.FromMinutes(5),
-                    JobExpirationCheckInterval = TimeSpan.FromMinutes(1)
+                    JobExpirationCheckInterval = TimeSpan.FromMinutes(15)
                 });
 
             app.UseHangfireServer();
@@ -87,7 +87,7 @@ namespace Zeus
             // Update from HRM every day at 01:00 UTC
             RecurringJob.AddOrUpdate("Expired Operations", () =>
                     Helper.CheckExpiredOperations()
-                , "0/1 * * * *");
+                , "0/30 * * * *");
         }
     }
 }
