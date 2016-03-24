@@ -1,27 +1,31 @@
 ﻿<div class="map-container col-xs-12 col-sm-12 col-md-12 col-lg-12" style="padding-left: 0px; padding-right: 0px">   
-    <button class="btn btn-primary btn-fab pull-right" ng-click="toggleLabels()" title="{{ 'FACILITY_MAP.LABELS' | translate }}"><i class="material-icons">local_offer</i></button> 
-    <button class="btn btn-primary btn-fab fab pull-right" style="margin-right: 20px" ng-click="util.goBack()" title="{{ 'REPORT.BACK' | translate }}"><i class="material-icons">arrow_back</i></button>
-    <table class="table-condensed table-bordered text-center">
-        <thead>
-            <tr>
-                <th></th>
-                <th>{{'FACILITY_DETAILS.ATTENDANCE' | translate}}</th>
-                <th>{{'FACILITY_DETAILS.TITLE_CAPACITY' | translate}}</th>
-                <th>{{'FACILITY_CARD.ARRIVALS' | translate}}</th>
-                <th>{{'FEEDING_REPORT.RATIONS' | translate}}</th>
-                <th>{{'FACILITY_CARD.SHORTAGE' | translate}}</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td><b>{{'FACILITY_CARD.TOTAL' | translate}}</b></td>
-                <td>{{totalAttendance}}</td>
-                <td>{{totalCapacity}}</td>
-                <td>{{totalArrivals}}</td>                
-                <td>{{totalRations}}</td>
-                <td>{{totalRations - totalCapacity}}</td>
-            </tr>
-        </tbody>
+    <button id="b1" class="btn btn-primary btn-fab fab" ng-click="toggleLabels()" title="{{ 'FACILITY_MAP.LABELS' | translate }}" style="margin-right:10px;margin-top: 10px;">
+        <i class="material-icons">local_offer</i>
+    </button> 
+    <button id="b2" class="btn btn-primary btn-fab fab" ng-click="util.goBack()" title="{{ 'REPORT.BACK' | translate }}" style="margin-right:10px;margin-top: 10px;">
+        <i class="material-icons">arrow_back</i>
+    </button>
+    <table class="table-condensed table-bordered map-legend" id="legend">
+        <tr>
+            <td>{{'FACILITY_DETAILS.ATTENDANCE' | translate}}</td>
+            <td class="text-right"><b>{{totalAttendance}}</b></td>
+        </tr>
+        <tr>
+            <td>{{'FACILITY_DETAILS.TITLE_CAPACITY' | translate}}</td>
+            <td class="text-right"><b>{{totalCapacity}}</b></td>
+        </tr>
+        <tr>
+            <td>{{'FACILITY_CARD.ARRIVALS' | translate}}</td>
+            <td class="text-right"><b>{{totalArrivals}}</b></td>
+        </tr>
+        <tr>
+            <td>{{'FEEDING_REPORT.RATIONS' | translate}}</td>
+            <td class="text-right"><b>{{totalRations}}</b></td>
+        </tr>
+        <tr>
+            <td>{{'FACILITY_CARD.SHORTAGE' | translate}}</b></td>
+            <td class="text-right"><b>{{totalRations - totalCapacity}}</b></td>
+        </tr>
     </table>
     <input id="pac-input" class="map-controls" type="text" placeholder="{{'GRID.SEARCH' | translate}}">
     <div id="map" class="map-container">
