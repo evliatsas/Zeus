@@ -238,6 +238,8 @@ angular
             $rootScope.previousRoot = current;
         });
 
+        toastr.options.positionClass = "toast-bottom-right";
+
         // define default chart colours
         Chart.defaults.global.colours = [
                 '#97BBCD', // blue
