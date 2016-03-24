@@ -2,7 +2,7 @@
 
 angular
     .module('zeusclientApp')
-    .controller('ChatsCtrl', function($scope, $http, $location, $rootScope, authService, messageService, utilitiesService, localStorageService, ChatHub) {
+    .controller('ChatsCtrl', function($scope, $http, $location, $rootScope, $timeout, authService, messageService, utilitiesService, localStorageService, ChatHub) {
 
         $scope.users = ChatHub.users;
         $scope.util = utilitiesService;
@@ -16,8 +16,17 @@ angular
             // } else {
             // 	ChatHub.send($scope.newmessage);
             // }
+            if ($scope.newmessage == '') {
+                return;
+            }
+
             ChatHub.send($scope.newmessage);
-            $scope.newmessage = "";
+            $scope.newmessage = '';
+
+            $timeout(function () {
+                var element = document.getElementById("messages");
+                element.scrollTop = 100000;
+            }, 10);
         };
 
         ChatHub.observe(connected);

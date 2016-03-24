@@ -188,24 +188,30 @@
     float: left;
     height: 100%;
     width: 80%;
-    background-color: green; 
 }
 .chat-messages {
-    height: calc(100% - 100px);
+    height: calc(100% - 85px);
     width: 100%;
-    background-color: red;
+    overflow-y: scroll;
 }
 .chat-input {
     width: 100%;
-    height: 100px;
-    background-color: blue; 
+    height: 85px;
 }
 .chat-user-list {
     float: right;
+    display: block;
     height: 100%;
     width: 20%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding-left: 10px;
     background-color: black;
     opacity: 0.8;
+}
+.chat-username {
+    color: white;
 }
 
 /* Height breakpoints */
@@ -217,32 +223,32 @@
 
 @media only screen and (min-height: 568px) {
     .map-container { height: 440px; }
-    .chat-container { height: 440px; }
+    .chat-container { height: 468px; }
 }
 
 @media only screen and (min-height: 600px) {
     .map-container { height: 480px; }
-    .chat-container { height: 480px; }
+    .chat-container { height: 500px; }
 }
 
 @media only screen and (min-height: 650px) {
     .map-container { height: 530px; }
-    .chat-container { height: 530px; }
+    .chat-container { height: 550px; }
 }
 
 @media only screen and (min-height: 700px) {
     .map-container { height: 580px; }
-    .chat-container { height: 580px; }
+    .chat-container { height: 600px; }
 }
 
 @media only screen and (min-height: 750px) {
     .map-container { height: 630px; }
-    .chat-container { height: 630px; }
+    .chat-container { height: 650px; }
 }
 
 @media only screen and (min-height: 800px) {
     .map-container { height: 680px; }
-    .chat-container { height: 680px; }
+    .chat-container { height: 700px; }
 }
 
 @media only screen and (min-height: 850px) {
