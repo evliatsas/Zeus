@@ -20,7 +20,7 @@ namespace Zeus
             context = Entities.Repositories.Context.Instance;
         }
 
-        private static readonly ConcurrentDictionary<string, UserViewModel> Users
+        public static readonly ConcurrentDictionary<string, UserViewModel> Users
             = new ConcurrentDictionary<string, UserViewModel>(StringComparer.InvariantCultureIgnoreCase);
 
         public async Task Send(string message)
@@ -54,6 +54,22 @@ namespace Zeus
                     Clients.Client(cid).received(chat);
                 }
             }
+        }
+
+        public void NotifyAll(Priority priority, string title, string message)
+        {
+            Clients.All.notify(priority, title, message);
+        }
+
+        public void NotifyUsers(Priority priority, string title, string message, IEnumerable<string> userIds)
+        {
+            foreach(var id in userIds)
+                Clients.Client(id).notify(priority, title, message);
+        }
+
+        public void NotifyUser(Priority priority, string title, string message, string userId)
+        {
+            Clients.Client(userId).notify(priority, title, message);
         }
 
         public IEnumerable<UserViewModel> GetConnectedUsers()

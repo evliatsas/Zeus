@@ -22,6 +22,15 @@ angular
 
 
         map.setOptions({ styles: styles });
+        
+        var legend = document.getElementById('legend');
+        map.controls[google.maps.ControlPosition.LEFT_BOTTOM].push(legend);
+        
+        var b1 = document.getElementById('b1');
+        map.controls[google.maps.ControlPosition.TOP_RIGHT].push(b1);
+        
+        var b2 = document.getElementById('b2');
+        map.controls[google.maps.ControlPosition.TOP_RIGHT].push(b2);
 
         var input = document.getElementById('pac-input');
         var searchBox = new google.maps.places.SearchBox(input);
