@@ -36,9 +36,20 @@ angular
                 'received': function(message) {
                     ChatHub.messages.push(message);
                     $rootScope.$apply();
+                },
+                'notify': function (priority, title, message) {
+                    if (priority == 0){
+                        toastr.info(message, title, { closeButton: true, timeOut: 30000 });
+                    }                        
+                    else if (priority < 3) {
+                        toastr.warning(message, title, { closeButton: true, timeOut: 60000 });
+                    }
+                    else {
+                        toastr.error(message, title, { closeButton: true, timeOut: 60000 });
+                    }
                 }
             },
-            methods: ['getConnectedUsers','getUnreadCount','getMessages','getArchives','getUsers','send','checkMessage','archiceMessage'],
+            methods: ['getConnectedUsers','getUnreadCount','getMessages','getArchives','getUsers','send','checkMessage','archiveMessage'],
             errorHandler: function(error) {
                 console.error(error);
             },
@@ -75,7 +86,7 @@ angular
         ChatHub.getUsers = hub.getUsers;
         ChatHub.send = hub.send;
         ChatHub.checkMessage = hub.checkMessage;
-        ChatHub.archiceMessage = hub.archiceMessage;
+        ChatHub.archiveMessage = hub.archiveMessage;
 
         var cb = null;
         ChatHub.observe = function(callback) {

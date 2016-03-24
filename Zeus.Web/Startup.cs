@@ -7,6 +7,9 @@ using Newtonsoft.Json;
 using Owin;
 using Serilog;
 using System.Web.Http;
+using Hangfire;
+using Hangfire.Mongo;
+using System;
 
 [assembly: OwinStartup(typeof(Zeus.Startup))]
 
@@ -20,6 +23,7 @@ namespace Zeus
             Register(httpConfiguration);
             app.UseCors(CorsOptions.AllowAll);
             ConfigureAuth(app);
+            ConfigureHangfire(app);
             app.UseWebApi(httpConfiguration);
 
             app.Map("/signalr", map =>
@@ -62,6 +66,28 @@ namespace Zeus
             .CreateLogger();
 
             Log.Logger = log;
+        }
+
+        private void ConfigureHangfire(IAppBuilder app)
+        {
+            Hangfire.GlobalConfiguration.Configuration.UseMongoStorage(
+                Properties.Settings.Default.ConnectionString,
+                Properties.Settings.Default.DatabaseName,
+                new MongoStorageOptions()
+                {
+                    Prefix = "Jobs",
+                    CountersAggregateInterval = TimeSpan.FromMinutes(5),
+                    JobExpirationCheckInterval = TimeSpan.FromMinutes(1)
+                });
+
+            app.UseHangfireServer();
+            app.UseHangfireDashboard();
+
+            //Configure Reccuring Jobs
+            // Update from HRM every day at 01:00 UTC
+            RecurringJob.AddOrUpdate("Expired Operations", () =>
+                    Helper.CheckExpiredOperations()
+                , "0/1 * * * *");
         }
     }
 }
