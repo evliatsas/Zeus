@@ -2,10 +2,11 @@
 
 angular
     .module('zeusclientApp')
-    .controller('ProviderCtrl', function ($scope, $http, $routeParams, $uibModal, $location, lookupService, messageService, baseUrl) {
+    .controller('ProviderCtrl', function ($scope, $http, $routeParams, $uibModal, $location, lookupService, messageService, baseUrl, utilitiesService) {
 
         var isInsert = $routeParams.id == 'new';
         $scope.lookup = lookupService;
+        $scope.util = utilitiesService;
 
         $scope.facilityColumns = [
              { Caption: 'GRID.TYPE', Field: 'Type', Tooltip: 'Τύπος Εγκατάστασης' },

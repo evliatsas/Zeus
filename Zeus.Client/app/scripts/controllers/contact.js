@@ -2,7 +2,7 @@
 
 angular
     .module('zeusclientApp')
-    .controller('ContactCtrl', function ($scope, $http, $routeParams, $uibModal, $location, baseUrl, lookupService, messageService) {
+    .controller('ContactCtrl', function ($rootScope, $scope, $http, $routeParams, $uibModal, $location, baseUrl, lookupService, messageService, utilitiesService) {
 
         var isInsert = $routeParams.id == 'new';
         $scope.lookup = lookupService;
@@ -25,8 +25,11 @@ angular
             else if (previous.$$route.controllerAs == "facility") {
                 $location.url('/facilities/' + previous.params.id + '?tab=1');
             }
-            else { //default to reports list
+            else if (previous.$$route.controllerAs == "contactsCtrl") {
                 $location.url('/contacts');
+            }
+            else { //default
+                utilitiesService.goBack();
             }
         }
 
