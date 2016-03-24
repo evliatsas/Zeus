@@ -178,43 +178,91 @@
     margin-bottom: 30px;
 }
 
+/* Chat */
+
+.chat-container {
+    padding: 0px;
+    margin: 0px;
+}
+.chat-main {
+    float: left;
+    height: 100%;
+    width: 80%;
+    background-color: green; 
+}
+.chat-messages {
+    height: calc(100% - 100px);
+    width: 100%;
+    background-color: red;
+}
+.chat-input {
+    width: 100%;
+    height: 100px;
+    background-color: blue; 
+}
+.chat-user-list {
+    float: right;
+    height: 100%;
+    width: 20%;
+    background-color: black;
+    opacity: 0.8;
+}
 
 /* Height breakpoints */
 
 @media only screen and (max-height: 567px) {
-    .map-container {
-        height: 440px;
-    }
+    .map-container { height: 440px; }
+    .chat-container { height: 467px; }
 }
 
 @media only screen and (min-height: 568px) {
-    .map-container {
-        height: 440px;
-    }
+    .map-container { height: 440px; }
+    .chat-container { height: 440px; }
 }
 
 @media only screen and (min-height: 600px) {
-    .map-container {
-        height: 480px;
-    }
+    .map-container { height: 480px; }
+    .chat-container { height: 480px; }
+}
+
+@media only screen and (min-height: 650px) {
+    .map-container { height: 530px; }
+    .chat-container { height: 530px; }
 }
 
 @media only screen and (min-height: 700px) {
-    .map-container {
-        height: 580px;
-    }
+    .map-container { height: 580px; }
+    .chat-container { height: 580px; }
+}
+
+@media only screen and (min-height: 750px) {
+    .map-container { height: 630px; }
+    .chat-container { height: 630px; }
 }
 
 @media only screen and (min-height: 800px) {
-    .map-container {
-        height: 680px;
-    }
+    .map-container { height: 680px; }
+    .chat-container { height: 680px; }
+}
+
+@media only screen and (min-height: 850px) {
+    .map-container { height: 730px; }
+    .chat-container { height: 750px; }
 }
 
 @media only screen and (min-height: 900px) {
-    .map-container {
-        height: 780px;
-    }
+    .map-container { height: 780px; }
+    .chat-container { height: 800px; }
+}
+
+@media only screen and (min-height: 950px) {
+    .map-container { height: 730px; }
+    .chat-container { height: 850px; }
+}
+
+@media only screen and (min-height: 1000px) {
+    .map-container { height: 880px; }
+    .chat-container { height: 900px; }
 }
 
 .doughnut-legend {
