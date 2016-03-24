@@ -25,6 +25,7 @@ angular
         function connected() {
 
             ChatHub.getConnectedUsers().done(function(users) {
+                ChatHub.connected.splice(0, ChatHub.connected.length);
                 $.each(users, function(i, user) {
                     ChatHub.connected.push({ username: user.UserName, fullname: user.FullName });
                     $rootScope.$apply();
@@ -32,6 +33,7 @@ angular
             });
 
             ChatHub.getUsers().done(function(users) {
+                ChatHub.users.splice(0, ChatHub.users.length);
                 $.each(users, function(i, user) {
                     ChatHub.users.push(user);
                     $rootScope.$apply();
