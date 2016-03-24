@@ -2,11 +2,11 @@
 
 angular
     .module('zeusclientApp')
-    .controller('ProviderCtrl', function ($scope, $http, $routeParams, $uibModal, $location, lookupService, messageService, baseUrl, utilitiesService) {
+    .controller('ProviderCtrl', function ($scope, $http, $routeParams, $uibModal, $location, lookupService, $rootScope, messageService, baseUrl, utilitiesService) {
 
         var isInsert = $routeParams.id == 'new';
         $scope.lookup = lookupService;
-        $scope.util = utilitiesService;
+        //$scope.util = utilitiesService;
 
         $scope.facilityColumns = [
              { Caption: 'GRID.TYPE', Field: 'Type', Tooltip: 'Τύπος Εγκατάστασης' },
@@ -17,6 +17,22 @@ angular
              { Caption: 'GRID.ATTENDANCE', Field: 'Attendance', Tooltip: 'Πλήθος Φιλοξενούμενων' },
              { Caption: 'GRID.UTILIZATION', Field: 'Utilization', Type: 'Percentage', Tooltip: 'Ποσοστό Πληρότητας' },
         ];
+
+        $scope.goBack = function () {
+            var previous = $rootScope.previousRoot;
+            if (previous.$$route.controllerAs == "facilities") {
+                $location.url('/facilities');
+            }
+            else if (previous.$$route.controllerAs == "facility") {
+                $location.url('/facilities/' + previous.params.id + '?tab=2');
+            }
+            else if (previous.$$route.controllerAs == "providersCtrl") {
+                $location.url('/providers');
+            }
+            else { //default
+                utilitiesService.goBack();
+            }
+        }
 
         $scope.addPersonnel = function () {
             $scope.provider.Personnel.push({});
