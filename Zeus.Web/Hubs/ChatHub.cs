@@ -135,11 +135,14 @@ namespace Zeus
             string userName = Context.User.Identity.Name;
             string fullName = ((ClaimsIdentity)Context.User.Identity).Claims.FirstOrDefault(t => t.Type == ClaimTypes.Surname).Value;
             string connectionId = Context.ConnectionId;
-
+            var roles = ((ClaimsIdentity)Context.User.Identity).Claims.Where(t => t.Type == ClaimTypes.Role).Select(t=>t.Value);
+            var claims = ((ClaimsIdentity)Context.User.Identity).Claims.Select(t=>new AspNet.Identity.MongoDB.IdentityUserClaim() { Type = t.Type, Value= t.Value});
             var user = Users.GetOrAdd(userName, _ => new UserViewModel
             {
                 UserName = userName,
                 FullName = fullName,
+                Roles = new List<string>( roles),
+                Claims = new List<AspNet.Identity.MongoDB.IdentityUserClaim>(claims),
                 ConnectionIds = new HashSet<string>()
             });
 

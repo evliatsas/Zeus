@@ -14,6 +14,7 @@ namespace Zeus.Models
             Roles = new List<string>();
             Claims = new List<IdentityUserClaim>();
         }
+
         public string UserName { get; set; }
         public string FullName { get; set; }        
         public string Email { get; set; }
@@ -35,8 +36,8 @@ namespace Zeus.Models
             userTo.UserName = userFrom.UserName;
             userTo.Email = userFrom.Email;
             userTo.PhoneNumber = userFrom.PhoneNumber;
-            userTo.Roles = userFrom.Roles;
-            userTo.Claims = userFrom.Claims;
+            userTo.Roles = new List<string>(userFrom.Roles);
+            userTo.Claims = new List<IdentityUserClaim>(userFrom.Claims);
             userTo.Tag = userFrom.Tag;
             userTo.Notes = userFrom.Notes;
             userTo.Administration = userFrom.Administration;
@@ -50,8 +51,8 @@ namespace Zeus.Models
             userTo.UserName = userFrom.UserName;
             userTo.Email = userFrom.Email;
             userTo.PhoneNumber = userFrom.PhoneNumber;
-            userTo.Roles = userFrom.Roles;
-            userTo.Claims = userFrom.Claims;
+            userTo.Roles = new List<string>(userFrom.Roles);
+            userTo.Claims = new List<IdentityUserClaim>(userFrom.Claims);
             userTo.Tag = userFrom.Tag;
             userTo.Notes = userFrom.Notes;
             userTo.Administration = userFrom.Administration;
