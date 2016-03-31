@@ -5,10 +5,10 @@ angular
     .config(function ($translateProvider) {
 
     	var elGR = {
-	    	MENU: {
+    	    MENU: {
 	    	    BRAND: 'ξ ε ν ί α',
-                REPORTS:"Αναφορές",
-	    		FACILITIES: 'Δομές',
+                REPORTS:"Συγκεντρωτικές Αναφορές",
+	    		FACILITIES: 'Δομές Φιλοξενίας',
 	    		CONTACTS: 'Επαφές',
 	    		PROVIDERS: 'Υποστήριξη',
 	    		PERSONS: 'Ταυτοποιήσεις',
@@ -52,7 +52,7 @@ angular
 	    	    TITLE: 'Δομή Φιλοξενίας: ',
 	    	    NAME: 'Όνομα',
 	    	    DESCRIPTION: 'Περιγραφή',
-	    	    CATEGORY: 'Κατηγορία',
+	    	    CATEGORY: 'Γεωγραφική Κατηγορία',
 	    	    AREA: 'Περιοχή',	    	    
 	    	    TYPE: 'Τύπος',
 	    	    TITLE_CAPACITY: 'Χωρητικότητα',
@@ -64,11 +64,11 @@ angular
 	    	    ISSECURE: 'Φυλασσόμενος Χώρος',
 	    	    HAS_HEALTHCARE: 'Υγεινομική Υποστήριξη',
 	    	    STATUS: 'Κατάσταση',
-	    	    ADMINISTRATION: 'Διαχείριση',
+	    	    ADMINISTRATION: 'Φορέας Διαχείρισης',
 	    	    NOTES: 'Σημειώσεις',
 	    	    STATUS_DATETIME: 'Ημερομηνία Κατάστασης',
 	    	    STATUS_ECT: 'Εκτιμώμενη Ημερομηνία Αποκατάστασης',
-	    	    CATEGORY_TOOLTIP: 'Γεωγραφική Περιοχή',
+	    	    CATEGORY_TOOLTIP: 'Κατηγορία Γεωγραφικής Περιοχής',
 	    	    CAPACITY_TOOLTIP: 'Τρέχουσα Χωρητικότητα Δ.Φ.',
 	    	    MAXCAPACITY_TOOLTIP: 'Μέγιστη Χωρητικότητα Δ.Φ.',
 	    	    REPORT_CAPACITY_TOOLTIP: 'Μέγιστη Χωρητικότητα Ημερήσιας Αναφοράς',
@@ -89,7 +89,12 @@ angular
 	    	    HEALTHCARE: 'Υγειονομική',
 	    	    ARRIVALS: 'Αφίξεις',
 	    	    SHORTAGE: 'Ελλείψεις',
-	    	    TOTAL: 'Σύνολο'
+	    	    TOTAL: 'Σύνολο',
+	    	    HEADERS: {
+	    	        FEEDING: 'Φορείς Σίτισης',
+	    	        HEALTHCARE: 'Υγειονομική Μέριμνα',
+	    	        LOGISTICS: 'Υγιεινή και Καθαριότητα'
+	    	    }
 	    	},
 	    	REPORT_TITLES: {
 	    	    APPLICATION: 'Αναφορά Αίτησης',
@@ -219,7 +224,7 @@ angular
 	    	    TITLE: 'Τίτλος',
 	    	    NAME: 'Όνοματεπώνυμο',
 	    	    COMPANY: 'Οργανισμός',
-	    	    ADMINISTRATION: 'Διαχείριση',
+	    	    ADMINISTRATION: 'Φορέας Διαχείρισης',
 	    	    TYPE: 'Κατηγορία',
 	    	    ADDRESS: 'Διεύθυνση',
 	    	    EMAIL: 'Email',
@@ -266,9 +271,9 @@ angular
 	    	HOUSING: {
 	    	    DELETE: 'Διαγραφή Εγκατάστασης',
 	    	    SAVE: 'Αποθήκευση Εγκατάστασης',
-	    	    EDIT_HOUSING: 'Επεξεργασία Εγκατάστασης ',
-	    	    NEW_HOUSING: 'Νέα Εγκατάσταση ',
-	    	    TYPE: 'Κατηγορία',
+	    	    EDIT_HOUSING: 'Επεξεργασία Στέγασης',
+	    	    NEW_HOUSING: 'Είδος Στέγασης',
+	    	    TYPE: 'Τύπος',
 	    	    STATUS: 'Κατάσταση',
 	    	    CAPACITY: 'Χωρητικότητα Ατόμων Μονάδας',
 	    	    HOUSING_COUNT: 'Πλήθος Μονάδων',
@@ -312,7 +317,7 @@ angular
 	    	    PERSONNEL:'Προσωπικό',
 	    	    PERSONNEL_COUNT: 'Πλήθος',
 	    	    PERSONNEL_TYPE: 'Κατηγορία',
-	    	    ADMINISTRATION: 'Διαχείριση',
+	    	    ADMINISTRATION: 'Φορέας Διαχείρισης',
 	    	    SERVICES: 'Προσφερόμενες Υπηρεσίες',
 	    	    SERVICE: 'Υπηρεσία',
 	    	    INSTRUCTIONS: 'Οδηγίες',
@@ -357,7 +362,7 @@ angular
 	    	    NAME: 'Όνομα',
 	    	    TITLE: 'Τίτλος',
 	    	    COMPANY: 'Οργανισμός',
-	    	    ADMINISTRATION: 'Διαχείριση',
+	    	    ADMINISTRATION: 'Φορ. Διαχ.',
                 NEW:'ΝΕΑ',
 	    	    DESCRIPTION: 'Περιγραφή',
 	    	    PERSONNEL: 'Προσωπικό',

@@ -102,7 +102,7 @@ angular
                 $scope.report.FacilityId = response.data.Id;
                 if ($scope.reportType == "0") {
                     for (var index in response.data.Providers) {
-                        if (response.data.Providers[index].Type == $scope.reportType)
+                        if (response.data.Providers[index].Type == "3")
                             $scope.providers.push(response.data.Providers[index]);
                     }
                 }
