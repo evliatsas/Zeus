@@ -268,14 +268,13 @@ namespace Zeus.Controllers
                 report.User = user.UserName;
 
                 var result = await context.Reports.Update(report);
-
-                if (report.Type == ReportType.SituationReport)
+                var last = await context.Reports.Get(r => r.Type == ReportType.SituationReport && r.FacilityId == report.FacilityId && r.DateTime > report.DateTime);
+                if (last.Count() < 1) //the updated report is the most recent one
                 {
-                    var sitRep = report as SituationReport;
-                    var last = await context.Reports.Get(r => r.Type == ReportType.SituationReport && r.FacilityId == sitRep.FacilityId && r.DateTime > sitRep.DateTime);
-                    if (last.Count() < 1) //the updated report is the most recent one
+                    var facility = await context.Facilities.GetById(report.FacilityId);
+                    if (report.Type == ReportType.SituationReport)
                     {
-                        var facility = await context.Facilities.GetById(report.FacilityId);
+                        var sitRep = report as SituationReport;
                         if (facility != null)
                         {
                             facility.Attendance = sitRep.Identities.Sum(x => x.Count);
@@ -285,6 +284,33 @@ namespace Zeus.Controllers
                             facility.IdentitiesLastUpdatedBy = sitRep.User;
                             facility.IdentitiesLastUpdated = sitRep.DateTime;
                             await context.Facilities.Update(facility);
+                        }
+                    }
+                    else if (report.Type == ReportType.FeedingReport)
+                    {
+                        var fRep = report as FeedingReport;
+                        if(facility != null)
+                        {
+                            var facilityProvider = (await context.ProviderFacilities.Get(x => x.FacilityId == facility.Id && x.ProviderId == fRep.FeedingProviderId)).FirstOrDefault();
+                            if (facilityProvider == null)
+                                facilityProvider = new ProviderFacility() { FacilityId = facility.Id, ProviderId = fRep.FeedingProviderId };
+
+                            facilityProvider.LastUpdated = fRep.DateTime;
+                            facilityProvider.Items = new List<Lookup>() { new Lookup() { Id = fRep.Meal, Description = fRep.Rations.ToString() } };
+                        }
+                    }
+                    else if (report.Type == ReportType.HealthcareReport)
+                    {
+                        var hRep = report as HealthcareReport;
+                        if (facility != null)
+                        {
+                            var facilityProvider = (await context.ProviderFacilities.Get(x => x.FacilityId == facility.Id && x.ProviderId == hRep.HealthcareProviderId)).FirstOrDefault();
+                            if (facilityProvider == null)
+                                facilityProvider = new ProviderFacility() { FacilityId = facility.Id, ProviderId = hRep.HealthcareProviderId };
+
+                            facilityProvider.LastUpdated = hRep.DateTime;
+                            facilityProvider.Items = hRep.Items;
+                            facilityProvider.Personnel = hRep.Personnel;
                         }
                     }
                 }

@@ -13,27 +13,24 @@ namespace Zeus.Entities
         [BsonDefaultValue("Νέος Προμηθευτής")]
         public string Name { get; set; }
         public string Description { get; set; }      
-        public int PersonnelCount { get; set; }
         public string Administration { get; set; }
-        public string Instructions { get; set; }
-        public IList<Personnel> Personnel { get; set; }
+        public string Instructions { get; set; }  
         [BsonIgnore]
-        public int TotalPersonnel { get { return this.Personnel.Sum(x => x.PersonnelCount); } }
-        public IList<Lookup> Items { get; set; }
-        [BsonIgnore]
-        public IList<Contact> Contacts { get; set; }
-        [BsonIgnore]
-        public IList<Facility> Facilities { get; set; }
+        public IList<Contact> Contacts { get; set; }       
         [BsonRequired]
         [BsonDefaultValue(ProviderType.Security)]
         public ProviderType Type { get; set; }
+        [BsonIgnore]
+        public IList<ProviderFacility> ProviderFacilities { get; set; }
+        [BsonIgnore]
+        public IEnumerable<Facility> Facilities { get { return this.ProviderFacilities.Where(p => p.Facility != null).Select(x => x.Facility); } }
+        [BsonIgnore]
+        public int PersonnelCount { get { return this.ProviderFacilities.Sum(x => x.TotalPersonnel); } }
 
         public Provider()
         {
             this.Contacts = new List<Contact>();
-            this.Facilities = new List<Facility>();
-            this.Items = new List<Lookup>();
-            this.Personnel = new List<Personnel>();
+            this.ProviderFacilities = new List<ProviderFacility>();   
         }
     }
 

@@ -52,7 +52,7 @@ namespace Zeus
                 var admins = ChatHub.Users.Where(x => x.Value.Roles.Contains(ApplicationRoles.Administrator)).SelectMany(k => k.Value.ConnectionIds).AsEnumerable();
                 var viewers = ChatHub.Users.Where(x => x.Value.Roles.Contains(ApplicationRoles.Viewer)).SelectMany(k => k.Value.ConnectionIds);
                 var now = DateTime.Now;
-                var ops = await ctx.Operations.Get(x => !x.End.HasValue && x.ETA < now);
+                var ops = await ctx.Operations.Get(x =>!x.IsCancelled && !x.End.HasValue && x.ETA < now);
                 var title = "Επιχειρήσεις";
                 foreach(var op in ops)
                 {

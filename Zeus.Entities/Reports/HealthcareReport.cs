@@ -7,21 +7,18 @@ using System.Threading.Tasks;
 
 namespace Zeus.Entities
 {
-    public class ProviderFacility : Entity
+    public class HealthcareReport : Report
     {
-        public string ProviderId { get; set; }
-        public string FacilityId { get; set; }
+        [BsonIgnore]
+        public Provider HealthcareProvider { get; set; }
+        public string HealthcareProviderId { get; set; }
         public IList<Lookup> Items { get; set; }
         public IList<Personnel> Personnel { get; set; }
-        public Nullable<DateTime> LastUpdated { get; set; }
-        [BsonIgnore]
-        public Facility Facility { get; set; }
-        [BsonIgnore]
-        public int TotalPersonnel { get { return this.Personnel.Sum(x => x.PersonnelCount); } }
-       
 
-        public ProviderFacility()
+        public HealthcareReport()
         {
+            this.DateTime = DateTime.Now;
+            this.Type = ReportType.HealthcareReport;
             this.Items = new List<Lookup>();
             this.Personnel = new List<Personnel>();
         }
