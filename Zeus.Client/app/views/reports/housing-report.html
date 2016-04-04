@@ -37,13 +37,15 @@
         </div>
         <div class="form-group label-static ng-is-empty" ng-class="{ 'has-error': form.HousingType.$invalid }">
             <label for="i3" class="control-label">{{ 'HOUSING_REPORT.TYPE' | translate }}</label>
-            <input type="text" class="form-control" id="i3" name="HousingType" ng-model="report.Housing.Type"
-                    uib-typeahead="cat for cat in lookup.housingCategories | filter:$viewValue" required>
+            <select id="i3" class="form-control" name="HousingType" ng-model="housingIndex" ng-change="onSelectedHouseIndex()" required>
+                <option ng-repeat="house in housings" value="{{$index}}">
+                    {{house.Type}} ({{house.Capacity}})
+                </option>
+            </select>
         </div>
         <div class="form-group label-static ng-is-empty">
             <label for="i4" class="control-label">{{ 'HOUSING_REPORT.HOUSE_COUNT' | translate }}</label>
-            <input type="number" class="form-control" id="i4" ng-model="report.HousedCount" min="0">
-            <span class="material-input"></span>
+            <input type="number" class="form-control" id="i4" ng-model="housingAttendance" ng-change="onSelectedHouseAttendance()" min="0">
         </div>
         <div class="form-group label-static ng-is-empty">
             <label for="i3" class="control-label">{{ 'HOUSING_REPORT.NOTES' | translate }}</label>

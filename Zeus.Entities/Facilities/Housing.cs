@@ -22,7 +22,7 @@ namespace Zeus.Entities
                 if (Capacity == 0 || Count == 0)
                     return 0;
                 else
-                    return Convert.ToInt32(((double)Attendance / (double)(Capacity * (double)Count)) * 100D);
+                    return Convert.ToInt32(((double)Attendance / ((double)Capacity * (double)Count)) * 100D);
             }
         }
         public string Status { get; set; }
