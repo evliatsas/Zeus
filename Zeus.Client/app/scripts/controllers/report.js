@@ -275,4 +275,12 @@ angular
 
             return -1;
         }
+
+        $scope.addPersonnel = function () {
+            $scope.report.Personnel.push({});
+        }
+
+        $scope.addItem = function () {
+            $scope.report.Items.push({});
+        }
     });

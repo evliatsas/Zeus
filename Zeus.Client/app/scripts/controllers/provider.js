@@ -9,13 +9,13 @@ angular
         //$scope.util = utilitiesService;
 
         $scope.facilityColumns = [
-             { Caption: 'GRID.TYPE', Field: 'Type', Tooltip: 'Τύπος Εγκατάστασης' },
-             { Caption: 'GRID.NAME', Field: 'Name', Tooltip: 'Όνομα Εγκατάστασης' },
-             { Caption: 'GRID.DESCRIPTION', Field: 'Description', Tooltip: 'Περιγραφή Εγκατάστασης' },
-             { Caption: 'GRID.CAPACITY', Field: 'Capacity', Tooltip: 'Τρέχουσα Χωρητικότητα' },
-             { Caption: 'GRID.ADMINISTRATION', Field: 'Administration', Tooltip: 'Διοικητική Υπαγωγή' },
-             { Caption: 'GRID.ATTENDANCE', Field: 'Attendance', Tooltip: 'Πλήθος Φιλοξενούμενων' },
-             { Caption: 'GRID.UTILIZATION', Field: 'Utilization', Type: 'Percentage', Tooltip: 'Ποσοστό Πληρότητας' },
+             { Caption: 'GRID.TYPE', Field: 'Facility.Type', Tooltip: 'Τύπος Εγκατάστασης' },
+             { Caption: 'GRID.NAME', Field: 'Facility.Name', Tooltip: 'Όνομα Εγκατάστασης' },
+             { Caption: 'GRID.DESCRIPTION', Field: 'Facility.Description', Tooltip: 'Περιγραφή Εγκατάστασης' },
+             { Caption: 'GRID.CAPACITY', Field: 'Facility.Capacity', Tooltip: 'Τρέχουσα Χωρητικότητα' },
+             { Caption: 'GRID.ADMINISTRATION', Field: 'Facility.Administration', Tooltip: 'Διοικητική Υπαγωγή' },
+             { Caption: 'GRID.ATTENDANCE', Field: 'Facility.Attendance', Tooltip: 'Πλήθος Φιλοξενούμενων' },
+             { Caption: 'GRID.UTILIZATION', Field: 'Facility.Utilization', Type: 'Percentage', Tooltip: 'Ποσοστό Πληρότητας' },
         ];
 
         $scope.goBack = function () {
@@ -32,14 +32,6 @@ angular
             else { //default
                 utilitiesService.goBack();
             }
-        }
-
-        $scope.addPersonnel = function () {
-            $scope.provider.Personnel.push({});
-        }
-
-        $scope.addItem = function () {
-            $scope.provider.Items.push({});
         }
 
         $scope.addFacility = function () {

@@ -14,6 +14,8 @@ namespace Zeus.Entities
         public string HealthcareProviderId { get; set; }
         public IList<Lookup> Items { get; set; }
         public IList<Personnel> Personnel { get; set; }
+        [BsonIgnore]
+        public int TotalPersonnel { get { return this.Personnel.Sum(x => x.PersonnelCount); } }
 
         public HealthcareReport()
         {
