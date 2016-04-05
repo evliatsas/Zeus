@@ -70,6 +70,7 @@
             <div ng-repeat="item in report.Items">
                 <div class="form-inline">
                     <input type="text" class="form-control" placeholder="{{ 'PROVIDER.SERVICE' | translate }}" ng-model="item.Id">
+                    <input type="number" class="form-control" placeholder="{{ 'GRID.COUNT' | translate }}" ng-model="item.Description">
                     <button class="btn btn-info" style="padding: 0px; top: 5px" ng-click="report.Items.splice($index, 1)"><i class="material-icons">clear</i></button>
                 </div>
             </div>

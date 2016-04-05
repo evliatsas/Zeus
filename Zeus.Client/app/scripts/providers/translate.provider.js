@@ -324,7 +324,8 @@ angular
 	    	    NOTES: 'Σημειώσεις',
 	    	    FACILITIES: 'Δομές Φιλοξενίας',
 	    	    CONTACTS: 'Επαφές',
-                TOTAL: 'Σύνολο'
+	    	    TOTAL: 'Σύνολο',
+                GROUP: 'Κλιμάκιο'
 	    	},
 	    	PERSON: {
 	    	    DELETE: 'Διαγραφή Ταυτοποιημένου',
@@ -698,7 +699,8 @@ angular
 	            NOTES: 'Notes',
 	            FACILITIES: 'Facilities',
 	            CONTACTS: 'Contacts',
-	            TOTAL: 'Total'
+	            TOTAL: 'Total',
+	            GROUP: 'Group'
 	        },
 	        PERSON: {
 	            DELETE: 'Delete Identified Person',

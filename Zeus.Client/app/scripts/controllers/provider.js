@@ -7,17 +7,7 @@ angular
         var isInsert = $routeParams.id == 'new';
         $scope.lookup = lookupService;
         //$scope.util = utilitiesService;
-
-        $scope.facilityColumns = [
-             { Caption: 'GRID.TYPE', Field: 'Facility.Type', Tooltip: 'Τύπος Εγκατάστασης' },
-             { Caption: 'GRID.NAME', Field: 'Facility.Name', Tooltip: 'Όνομα Εγκατάστασης' },
-             { Caption: 'GRID.DESCRIPTION', Field: 'Facility.Description', Tooltip: 'Περιγραφή Εγκατάστασης' },
-             { Caption: 'GRID.CAPACITY', Field: 'Facility.Capacity', Tooltip: 'Τρέχουσα Χωρητικότητα' },
-             { Caption: 'GRID.ADMINISTRATION', Field: 'Facility.Administration', Tooltip: 'Διοικητική Υπαγωγή' },
-             { Caption: 'GRID.ATTENDANCE', Field: 'Facility.Attendance', Tooltip: 'Πλήθος Φιλοξενούμενων' },
-             { Caption: 'GRID.UTILIZATION', Field: 'Facility.Utilization', Type: 'Percentage', Tooltip: 'Ποσοστό Πληρότητας' },
-        ];
-
+        
         $scope.goBack = function () {
             var previous = $rootScope.previousRoot;
             if (previous.$$route.controllerAs == "facilities") {
@@ -60,6 +50,12 @@ angular
         
         $scope.showFacility = function (facility) {
             var location = '/facilities/' + facility.Id;
+
+            if ($scope.provider.Type == "0")
+                location = '/reports/7/' + facility.Facility.Id + '/' + facility.LastUpdateReportId;
+            else if ($scope.provider.Type == "3")
+                location = '/reports/0/' + facility.Facility.Id + '/' + facility.LastUpdateReportId;
+            
             $location.url(location);
         }
 
@@ -112,6 +108,37 @@ angular
             }, function errorCallback(response) {
                 messageService.showError(response.data);
             });
+        }
+
+        var setFacilityColumns = function (type) {
+            if (type == "0") {
+                $scope.facilityColumns = [
+                   { Caption: 'GRID.TYPE', Field: 'Facility.Type', Tooltip: 'Τύπος Εγκατάστασης' },
+                   { Caption: 'GRID.NAME', Field: 'Facility.Name', Tooltip: 'Όνομα Εγκατάστασης' },
+                   { Caption: 'PROVIDER.GROUP', Field: 'PersonnelText', Tooltip: 'Κλιμάκιο Εγκατάστασης' },
+                   { Caption: 'PROVIDER.SERVICE', Field: 'ItemsText', Tooltip: 'Προσφερόμενες Υπηρεσίες' },
+                   { Caption: 'REPORT.LASTUPDATE', Type: 'DateTime', Field: 'LastUpdated', Tooltip: 'Τελευταία Ενημέρωση' }
+                ];
+            }
+            else if (type == "3") {
+                $scope.facilityColumns = [
+                   { Caption: 'GRID.TYPE', Field: 'Facility.Type', Tooltip: 'Τύπος Εγκατάστασης' },
+                   { Caption: 'GRID.NAME', Field: 'Facility.Name', Tooltip: 'Όνομα Εγκατάστασης' },
+                   { Caption: 'FEEDING_REPORT.RATIONS', Field: 'ItemsText', Tooltip: 'Γεύμα (Μερίδες)' },
+                   { Caption: 'REPORT.LASTUPDATE', Type: 'DateTime', Field: 'LastUpdated', Tooltip: 'Τελευταία Ενημέρωση' }
+                ];
+            }
+            else {
+                $scope.facilityColumns = [
+                    { Caption: 'GRID.TYPE', Field: 'Facility.Type', Tooltip: 'Τύπος Εγκατάστασης' },
+                    { Caption: 'GRID.NAME', Field: 'Facility.Name', Tooltip: 'Όνομα Εγκατάστασης' },
+                    { Caption: 'GRID.DESCRIPTION', Field: 'Facility.Description', Tooltip: 'Περιγραφή Εγκατάστασης' },
+                    { Caption: 'GRID.CAPACITY', Field: 'Facility.Capacity', Tooltip: 'Τρέχουσα Χωρητικότητα' },
+                    { Caption: 'GRID.ADMINISTRATION', Field: 'Facility.Administration', Tooltip: 'Διοικητική Υπαγωγή' },
+                    { Caption: 'GRID.ATTENDANCE', Field: 'Facility.Attendance', Tooltip: 'Πλήθος Φιλοξενούμενων' },
+                    { Caption: 'GRID.UTILIZATION', Field: 'Facility.Utilization', Type: 'Percentage', Tooltip: 'Ποσοστό Πληρότητας' },
+                ];
+            }
         }
 
         // SAVE - DELETE

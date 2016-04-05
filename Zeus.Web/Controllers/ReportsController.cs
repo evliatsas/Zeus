@@ -234,6 +234,7 @@ namespace Zeus.Controllers
                         }
 
                         facilityProvider.LastUpdated = fRep.DateTime;
+                        facilityProvider.LastUpdateReportId = fRep.Id;
                         facilityProvider.Items = new List<Lookup>() { new Lookup() { Id = fRep.Meal, Description = fRep.Rations.ToString() } };
 
                         if (isInsert)
@@ -256,6 +257,7 @@ namespace Zeus.Controllers
                         }
 
                         facilityProvider.LastUpdated = hRep.DateTime;
+                        facilityProvider.LastUpdateReportId = hRep.Id;
                         facilityProvider.Items = hRep.Items;
                         facilityProvider.Personnel = hRep.Personnel;
 
@@ -381,6 +383,7 @@ namespace Zeus.Controllers
                             }
 
                             facilityProvider.LastUpdated = hRep.DateTime;
+                            facilityProvider.LastUpdateReportId = hRep.Id;
                             facilityProvider.Items = hRep.Items;
                             facilityProvider.Personnel = hRep.Personnel;
 
