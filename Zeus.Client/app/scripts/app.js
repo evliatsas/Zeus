@@ -85,6 +85,8 @@ angular
                     tempUrl += 'situation-report.html';
                 else if (type == 6)
                     tempUrl += 'message-report.html';
+                else if (type == 7)
+                    tempUrl += 'healthcare-report.html';
                 else
                     tempUrl += 'report.html';
 

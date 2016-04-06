@@ -22,7 +22,7 @@
         </div>
         <div class="form-group label-static ng-is-empty" ng-class="{ 'has-error': form.Type.$invalid }">
             <label for="i3" class="control-label">{{ 'PROVIDER.TYPE' | translate }}</label>
-            <select class="form-control" name="Type" ng-model="provider.Type" required convert-to-number>
+            <select class="form-control" name="Type" ng-model="provider.Type" ng-change="setFacilityColumns()" required convert-to-number>
                 <option ng-repeat="type in lookup.providerTypes" value="{{type.Id}}">
                     {{type.Description}}
                 </option>

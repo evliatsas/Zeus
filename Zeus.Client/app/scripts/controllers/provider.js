@@ -6,7 +6,6 @@ angular
 
         var isInsert = $routeParams.id == 'new';
         $scope.lookup = lookupService;
-        //$scope.util = utilitiesService;
         
         $scope.goBack = function () {
             var previous = $rootScope.previousRoot;
@@ -96,21 +95,29 @@ angular
             $location.url(location);
         }
 
-        if (isInsert) {
-            $scope.contact = {};
-            $scope.provider = { Type: 0, Personnel:[], Items:[]};
-        } else {
-            $http({
-                method: 'GET',
-                url: baseUrl + '/providers/' + $routeParams.id //the unique id of the provider
-            }).then(function successCallback(response) {
-                $scope.provider = response.data;
-            }, function errorCallback(response) {
-                messageService.showError(response.data);
-            });
-        }
+        var load = function () {
 
-        var setFacilityColumns = function (type) {
+            if (isInsert) {
+                $scope.contact = {};
+                $scope.provider = { Type: 0 };
+                $scope.setFacilityColumns();
+            } else {
+                $http({
+                    method: 'GET',
+                    url: baseUrl + '/providers/' + $routeParams.id //the unique id of the provider
+                }).then(function successCallback(response) {
+                    $scope.provider = response.data;
+                    $scope.setFacilityColumns();
+                }, function errorCallback(response) {
+                    messageService.showError(response.data);
+                });
+            }
+        }
+        
+        load();
+
+        $scope.setFacilityColumns = function () {
+            var type = $scope.provider.Type;
             if (type == "0") {
                 $scope.facilityColumns = [
                    { Caption: 'GRID.TYPE', Field: 'Facility.Type', Tooltip: 'Τύπος Εγκατάστασης' },

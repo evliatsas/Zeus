@@ -33,6 +33,8 @@ angular
                     return 'SituationReport';
                 case "6":                   
                     return 'Message';
+                case "7":
+                    return 'HealthcareReport';
             }
         }
 
@@ -190,6 +192,12 @@ angular
                             $scope.providers.push(response.data.Providers[index]);
                     }
                 }
+                else if ($scope.reportType == "7") {
+                    for (var index in response.data.Providers) {
+                        if (response.data.Providers[index].Type == "0") //type of healthcare provider
+                            $scope.providers.push(response.data.Providers[index]);
+                    }
+                }
                 else if ($scope.reportType == "1") { //housing report
                     //fill the available housings
                     $scope.housings = response.data.Housings;
@@ -249,6 +257,10 @@ angular
                             $scope.housingIndex = 0;
                             $scope.housingAttendance = 0
                         }
+                    }
+                    else if ($scope.reportType == "7") {
+                        $scope.report.Personnel = [];
+                        $scope.report.Items = [];
                     }
                 }
             });

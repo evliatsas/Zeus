@@ -12,6 +12,7 @@ namespace Zeus.Entities
         typeof(ProblemReport), 
         typeof(RequestReport), 
         typeof(SituationReport),
+        typeof(HealthcareReport),
         typeof(Message))]
     public abstract class Report : Entity
     {

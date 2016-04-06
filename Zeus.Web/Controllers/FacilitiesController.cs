@@ -77,37 +77,46 @@ namespace Zeus.Controllers
         public async Task<IHttpActionResult> GetFacility(string id)
         {
             var user = await Helper.GetUserByRequest(User as ClaimsPrincipal, UserManager);
-            if (!user.Roles.Any(x => x == ApplicationRoles.Administrator || x == ApplicationRoles.Viewer))
+            try
             {
-                var facilityClaims = user.Claims.Where(x => x.Type == ApplicationClaims.FacilityClaim).Select(s => s.Value);
-                if (!facilityClaims.Contains(id))
+                if (!user.Roles.Any(x => x == ApplicationRoles.Administrator || x == ApplicationRoles.Viewer))
                 {
-                    Log.Fatal("Security violation. User {user} requested Facility Info {facility} with insufficient rights", user.UserName, id);
-                    return this.BadRequest("Δεν έχεται το δικαίωμα να δείτε την εγγραφή που ζητήσατε.");
+                    var facilityClaims = user.Claims.Where(x => x.Type == ApplicationClaims.FacilityClaim).Select(s => s.Value);
+                    if (!facilityClaims.Contains(id))
+                    {
+                        Log.Fatal("Security violation. User {user} requested Facility Info {facility} with insufficient rights", user.UserName, id);
+                        return this.BadRequest("Δεν έχεται το δικαίωμα να δείτε την εγγραφή που ζητήσατε.");
+                    }
                 }
-            }
 
-            var facility = await context.Facilities.GetById(id);
-            if (facility != null)
+                var facility = await context.Facilities.GetById(id);
+                if (facility != null)
+                {
+                    var multiContacts = await context.FacilityContacts.Get(x => x.FacilityId == id);
+                    var contactIds = multiContacts.Select(x => x.ContactId);
+                    var contacts = await context.Contacts.Get(x => contactIds.Contains(x.Id));
+                    facility.Contacts = contacts.ToList();
+
+                    var multiProviders = await context.ProviderFacilities.Get(x => x.FacilityId == id);
+                    var providerIds = multiProviders.Select(x => x.ProviderId);
+                    var providers = await context.Providers.Get(x => providerIds.Contains(x.Id));
+                    foreach (var p in providers)
+                        p.ProviderFacilities.Add(multiProviders.First(x => x.ProviderId == p.Id));
+                    facility.Providers = providers.ToList();
+
+                    var persons = await context.Persons.Get(x => x.FacilityId == id);
+                    facility.Persons = persons.ToList();
+
+                    var reports = await context.Reports.Get(x => x.FacilityId == id);
+                    facility.Reports = reports.ToList();
+                }
+
+                return facility == null ? (IHttpActionResult)this.NotFound() : this.Ok(facility);
+            }
+            catch(Exception exc)
             {
-                var multiContacts = await context.FacilityContacts.Get(x => x.FacilityId == id);
-                var contactIds = multiContacts.Select(x => x.ContactId);
-                var contacts = await context.Contacts.Get(x => contactIds.Contains(x.Id));
-                facility.Contacts = contacts.ToList();
-
-                var multiProviders = await context.ProviderFacilities.Get(x => x.FacilityId == id);
-                var providerIds = multiProviders.Select(x => x.ProviderId);
-                var providers = await context.Providers.Get(x => providerIds.Contains(x.Id));
-                facility.Providers = providers.ToList();
-
-                var persons = await context.Persons.Get(x => x.FacilityId == id);
-                facility.Persons = persons.ToList();
-
-                var reports = await context.Reports.Get(x => x.FacilityId == id);
-                facility.Reports = reports.ToList();
+                return this.BadRequest(exc.ToString());
             }
-
-            return facility == null ? (IHttpActionResult)this.NotFound() : this.Ok(facility);
         }
 
         [Route("")]
