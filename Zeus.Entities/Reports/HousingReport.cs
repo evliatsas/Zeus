@@ -9,7 +9,6 @@ namespace Zeus.Entities
 {
     public class HousingReport : Report
     {
-        public int HousedCount { get; set; }
         [BsonRequired]
         public Housing Housing { get; set; }
 
@@ -17,6 +16,7 @@ namespace Zeus.Entities
         {
             this.DateTime = DateTime.Now;
             this.Type = ReportType.HousingReport;
+            this.Housing = new Housing();
         }
     }
 }

@@ -6,6 +6,7 @@ angular
 
         $scope.lookup = lookupService;
         $scope.facilities = [];
+        $scope.housings = [];
         $scope.providers = [];
         $scope.report = {};
         $scope.reportType = $routeParams.type;
@@ -93,35 +94,7 @@ angular
 
             return count;
         }
-        
-        $http({
-            method: 'GET',
-            url: baseUrl + '/facilities/' + $routeParams.fid //the unique id of the facility
-            }).then(function successCallback(response) {
-                $scope.report.Facility = response.data;
-                $scope.report.FacilityId = response.data.Id;
-                if ($scope.reportType == "0") {
-                    for (var index in response.data.Providers) {
-                        if (response.data.Providers[index].Type == $scope.reportType)
-                            $scope.providers.push(response.data.Providers[index]);
-                    }
-                }
-                else if ($scope.reportType == "2" || $scope.reportType == "6") {
-                    $http({
-                        method: 'GET',
-                        url: baseUrl + '/common/facilities' //lookup facilities
-                    }).then(function successCallback(response) {
-                        $scope.facilities = response.data;
-                    }, function errorCallback(response) {
-                        $scope.facilities = [];
-                        messageService.getFailed(response.error);
-                    });
-                }
-            }, function errorCallback(response) {
-                $scope.report.Facility = {};
-        });
-
-
+       
         $scope.save = function () {
             $scope.report.Type = $scope.reportType;
             var rt = getReportType();
@@ -204,33 +177,110 @@ angular
             });
         }
 
-        if (!isInsert) {
+        var load = function () {
             $http({
                 method: 'GET',
-                url: baseUrl + '/reports/' + $routeParams.id //the unique id of the report
+                url: baseUrl + '/facilities/' + $routeParams.fid //the unique id of the facility
             }).then(function successCallback(response) {
-                $scope.getLookup(response.data.RecipientType);
-                $scope.report = response.data;               
+                $scope.report.Facility = response.data;
+                $scope.report.FacilityId = response.data.Id;
+                if ($scope.reportType == "0") {
+                    for (var index in response.data.Providers) {
+                        if (response.data.Providers[index].Type == "3") //type of facility provider
+                            $scope.providers.push(response.data.Providers[index]);
+                    }
+                }
+                else if ($scope.reportType == "1") { //housing report
+                    //fill the available housings
+                    $scope.housings = response.data.Housings;
+                }
+                else if ($scope.reportType == "2" || $scope.reportType == "6") {
+                    $http({
+                        method: 'GET',
+                        url: baseUrl + '/common/facilities' //lookup facilities
+                    }).then(function successCallback(response) {
+                        $scope.facilities = response.data;
+                    }, function errorCallback(response) {
+                        $scope.facilities = [];
+                        messageService.getFailed(response.error);
+                    });
+                }
             }, function errorCallback(response) {
-                messageService.getFailed(response.error);
+                $scope.report.Facility = {};
+            })
+            .then(function () {
+                if (!isInsert) {
+                    $http({
+                        method: 'GET',
+                        url: baseUrl + '/reports/' + $routeParams.id //the unique id of the report
+                    }).then(function successCallback(response) {
+                        $scope.getLookup(response.data.RecipientType);
+                        $scope.report = response.data;
+                        if ($scope.reportType == "1") {
+                            $scope.housingIndex = getHousingIndex();
+                            if ($scope.housingIndex>-1)
+                                $scope.housingAttendance = $scope.housings[$scope.housingIndex].Attendance;
+                            else
+                                $scope.housingAttendance = 0
+                        }
+                    }, function errorCallback(response) {
+                        messageService.getFailed(response.error);
+                    });
+                }
+                else {
+                    if ($scope.reportType == "5") {
+                        $scope.report = {
+                            Identities: [
+                                {
+                                    Nationality: "Άγνωστη",
+                                    Count: 0
+                                }
+                            ],
+                            Sensitivities: [],
+                            Procedures: []
+                        };
+                    }
+                    else if ($scope.reportType == "6") {
+                        $scope.getLookup(0);
+                        $scope.report.RecipientType = 0;
+                    }
+                    else if ($scope.reportType == "1") {
+                        if ($scope.housings.length > 0) {
+                            $scope.housingIndex = 0;
+                            $scope.housingAttendance = 0
+                        }
+                    }
+                }
             });
         }
-        else {
-            if ($scope.reportType == "5") {
-                $scope.report = {
-                    Identities: [
-                        {
-                            Nationality: "Άγνωστη",
-                            Count: 0
-                        }
-                    ],
-                    Sensitivities: [],
-                    Procedures: []
-                };
+
+        load();
+
+        $scope.onSelectedHouseIndex = function () {
+            if ($scope.housingIndex == -1)
+                $scope.report.Housing = {};
+            else
+                $scope.report.Housing = $scope.housings[$scope.housingIndex];
+        }
+
+        $scope.onSelectedHouseAttendance = function () {
+            $scope.report.Housing.Attendance = $scope.housingAttendance;
+        }
+
+        var getHousingIndex = function () {
+            for (var i in $scope.housings) {
+                if ($scope.housings[i].Type == $scope.report.Housing.Type && $scope.housings[i].Capacity == $scope.report.Housing.Capacity)
+                    return i;
             }
-            else if ($scope.reportType == "6") {
-                $scope.getLookup(0);
-                $scope.report.RecipientType = 0;                
-            }
+
+            return -1;
+        }
+
+        $scope.addPersonnel = function () {
+            $scope.report.Personnel.push({});
+        }
+
+        $scope.addItem = function () {
+            $scope.report.Items.push({});
         }
     });

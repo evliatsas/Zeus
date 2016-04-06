@@ -69,10 +69,14 @@ namespace Zeus.Controllers
                     var contacts = await context.Contacts.Get(x => contactIds.Contains(x.Id));
                     provider.Contacts = contacts.ToList();
 
-                    var multiFacilities = await context.ProviderFacilities.Get(x => x.ProviderId == id);
+                    var multiFacilities = await context.ProviderFacilities.Get(x => x.ProviderId == id);     
                     var facilityIds = multiFacilities.Select(x => x.FacilityId);
-                    var facilities = await context.Facilities.Get(x => facilityIds.Contains(x.Id));
-                    provider.Facilities = facilities.ToList();
+                    var facilities = await context.Facilities.Get(x => facilityIds.Contains(x.Id));                   
+                    foreach(var pf in multiFacilities)
+                    {
+                        pf.Facility = facilities.FirstOrDefault(x => x.Id == pf.FacilityId);
+                    }
+                    provider.ProviderFacilities = multiFacilities.ToList();
                 }
 
                 return provider == null ? (IHttpActionResult)this.NotFound() : this.Ok(provider);
@@ -105,16 +109,7 @@ namespace Zeus.Controllers
                 });
                 await context.ProviderContacts.BulkInsert(contacts);
                 //insert facilities
-                var facilities = provider.Facilities.Select(x =>
-                {
-                    var record = new ProviderFacility()
-                    {
-                        ProviderId = provider.Id,
-                        FacilityId = x.Id
-                    };
-                    return record;
-                });
-                await context.ProviderFacilities.BulkInsert(facilities);
+                await context.ProviderFacilities.BulkInsert(provider.ProviderFacilities);
 
                 var data = await context.Providers.Insert(provider);
 
@@ -176,17 +171,8 @@ namespace Zeus.Controllers
                 });
                 await context.ProviderContacts.BulkInsert(contacts);
                 //update facilities
-                await context.ProviderFacilities.Delete(x => x.ProviderId == provider.Id);
-                var facilities = provider.Facilities.Select(x =>
-                {
-                    var record = new ProviderFacility()
-                    {
-                        ProviderId = provider.Id,
-                        FacilityId = x.Id
-                    };
-                    return record;
-                });
-                await context.ProviderFacilities.BulkInsert(facilities);
+                await context.ProviderFacilities.Delete(x => x.ProviderId == provider.Id);               
+                await context.ProviderFacilities.BulkInsert(provider.ProviderFacilities);
 
                 var result = await context.Providers.Update(provider);
 

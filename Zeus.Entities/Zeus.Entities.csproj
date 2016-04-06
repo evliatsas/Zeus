@@ -84,6 +84,7 @@
     <Compile Include="Providers\ProviderFacility.cs" />
     <Compile Include="Reports\DailyReport.cs" />
     <Compile Include="Reports\FeedingReport.cs" />
+    <Compile Include="Reports\HealthcareReport.cs" />
     <Compile Include="Reports\HousingReport.cs" />
     <Compile Include="Reports\Message.cs" />
     <Compile Include="Reports\MovementReport.cs" />

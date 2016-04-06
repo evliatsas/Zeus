@@ -204,10 +204,11 @@ namespace Zeus.Controllers
                 report.IsAcknoledged = false;
                 var data = await context.Reports.Insert(report);
 
+                var facility = await context.Facilities.GetById(report.FacilityId);
                 if (report.Type == ReportType.SituationReport)
                 {
                     var sitRep = report as SituationReport;
-                    var facility = await context.Facilities.GetById(report.FacilityId);
+                    
                     if (facility != null)
                     {
                         facility.Attendance = sitRep.Identities.Sum(x=>x.Count);
@@ -217,6 +218,66 @@ namespace Zeus.Controllers
                         facility.IdentitiesLastUpdatedBy = sitRep.User;
                         facility.IdentitiesLastUpdated = sitRep.DateTime;
                         await context.Facilities.Update(facility);
+                    }
+                }
+                else if (report.Type == ReportType.FeedingReport)
+                {
+                    var fRep = report as FeedingReport;
+                    if (facility != null)
+                    {
+                        var isInsert = false;
+                        var facilityProvider = (await context.ProviderFacilities.Get(x => x.FacilityId == facility.Id && x.ProviderId == fRep.FeedingProviderId)).FirstOrDefault();
+                        if (facilityProvider == null)
+                        {
+                            facilityProvider = new ProviderFacility() { FacilityId = facility.Id, ProviderId = fRep.FeedingProviderId };
+                            isInsert = true;
+                        }
+
+                        facilityProvider.LastUpdated = fRep.DateTime;
+                        facilityProvider.LastUpdateReportId = fRep.Id;
+                        facilityProvider.Items = new List<Lookup>() { new Lookup() { Id = fRep.Meal, Description = fRep.Rations.ToString() } };
+
+                        if (isInsert)
+                            await context.ProviderFacilities.Insert(facilityProvider);
+                        else
+                            await context.ProviderFacilities.Update(facilityProvider);
+                    }
+                }
+                else if (report.Type == ReportType.HealthcareReport)
+                {
+                    var hRep = report as HealthcareReport;
+                    if (facility != null)
+                    {
+                        var isInsert = false;
+                        var facilityProvider = (await context.ProviderFacilities.Get(x => x.FacilityId == facility.Id && x.ProviderId == hRep.HealthcareProviderId)).FirstOrDefault();
+                        if (facilityProvider == null)
+                        {
+                            facilityProvider = new ProviderFacility() { FacilityId = facility.Id, ProviderId = hRep.HealthcareProviderId };
+                            isInsert = true;
+                        }
+
+                        facilityProvider.LastUpdated = hRep.DateTime;
+                        facilityProvider.LastUpdateReportId = hRep.Id;
+                        facilityProvider.Items = hRep.Items;
+                        facilityProvider.Personnel = hRep.Personnel;
+
+                        if (isInsert)
+                            await context.ProviderFacilities.Insert(facilityProvider);
+                        else
+                            await context.ProviderFacilities.Update(facilityProvider);
+                    }
+                }
+                else if (report.Type == ReportType.HousingReport)
+                {
+                    var houseRep = report as HousingReport;
+                    if (facility != null)
+                    {
+                        var housing = facility.Housings.FirstOrDefault(x => x.Type == houseRep.Housing.Type && x.Capacity == houseRep.Housing.Capacity);
+                        if (housing != null)
+                        {
+                            housing.Attendance = houseRep.Housing.Attendance;
+                            await context.Facilities.Update(facility);
+                        }
                     }
                 }
 
@@ -268,14 +329,13 @@ namespace Zeus.Controllers
                 report.User = user.UserName;
 
                 var result = await context.Reports.Update(report);
-
-                if (report.Type == ReportType.SituationReport)
+                var last = await context.Reports.Get(r => r.Type == report.Type && r.FacilityId == report.FacilityId && r.DateTime > report.DateTime);
+                if (last.Count() < 1) //the updated report is the most recent one
                 {
-                    var sitRep = report as SituationReport;
-                    var last = await context.Reports.Get(r => r.Type == ReportType.SituationReport && r.FacilityId == sitRep.FacilityId && r.DateTime > sitRep.DateTime);
-                    if (last.Count() < 1) //the updated report is the most recent one
+                    var facility = await context.Facilities.GetById(report.FacilityId);
+                    if (report.Type == ReportType.SituationReport)
                     {
-                        var facility = await context.Facilities.GetById(report.FacilityId);
+                        var sitRep = report as SituationReport;
                         if (facility != null)
                         {
                             facility.Attendance = sitRep.Identities.Sum(x => x.Count);
@@ -285,6 +345,65 @@ namespace Zeus.Controllers
                             facility.IdentitiesLastUpdatedBy = sitRep.User;
                             facility.IdentitiesLastUpdated = sitRep.DateTime;
                             await context.Facilities.Update(facility);
+                        }
+                    }
+                    else if (report.Type == ReportType.FeedingReport)
+                    {
+                        var fRep = report as FeedingReport;
+                        if(facility != null)
+                        {
+                            var isInsert = false;
+                            var facilityProvider = (await context.ProviderFacilities.Get(x => x.FacilityId == facility.Id && x.ProviderId == fRep.FeedingProviderId)).FirstOrDefault();
+                            if (facilityProvider == null)
+                            {
+                                facilityProvider = new ProviderFacility() { FacilityId = facility.Id, ProviderId = fRep.FeedingProviderId };
+                                isInsert = true;
+                            }
+
+                            facilityProvider.LastUpdated = fRep.DateTime;
+                            facilityProvider.Items = new List<Lookup>() { new Lookup() { Id = fRep.Meal, Description = fRep.Rations.ToString() } };
+
+                            if (isInsert)
+                                await context.ProviderFacilities.Insert(facilityProvider);
+                            else
+                                await context.ProviderFacilities.Update(facilityProvider);
+                        }
+                    }
+                    else if (report.Type == ReportType.HealthcareReport)
+                    {
+                        var hRep = report as HealthcareReport;
+                        if (facility != null)
+                        {
+                            var isInsert = false;
+                            var facilityProvider = (await context.ProviderFacilities.Get(x => x.FacilityId == facility.Id && x.ProviderId == hRep.HealthcareProviderId)).FirstOrDefault();
+                            if (facilityProvider == null)
+                            {
+                                facilityProvider = new ProviderFacility() { FacilityId = facility.Id, ProviderId = hRep.HealthcareProviderId };
+                                isInsert = true;
+                            }
+
+                            facilityProvider.LastUpdated = hRep.DateTime;
+                            facilityProvider.LastUpdateReportId = hRep.Id;
+                            facilityProvider.Items = hRep.Items;
+                            facilityProvider.Personnel = hRep.Personnel;
+
+                            if (isInsert)
+                                await context.ProviderFacilities.Insert(facilityProvider);
+                            else
+                                await context.ProviderFacilities.Update(facilityProvider);
+                        }
+                    }
+                    else if(report.Type == ReportType.HousingReport)
+                    {
+                        var houseRep = report as HousingReport;
+                        if(facility != null)
+                        {
+                            var housing = facility.Housings.FirstOrDefault(x => x.Type == houseRep.Housing.Type && x.Capacity == houseRep.Housing.Capacity);
+                            if (housing != null)
+                            {
+                                housing.Attendance = houseRep.Housing.Attendance;
+                                await context.Facilities.Update(facility);
+                            }
                         }
                     }
                 }

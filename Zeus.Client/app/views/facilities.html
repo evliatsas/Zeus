@@ -56,20 +56,20 @@
                     </div>
                     <div ng-if="facility._expanded == 1" style="height: 312px" ng-click="toggleCard(facility)">
                         <span class="lead">{{facility.Area}}</span>
-                        <div ng-if="facility.FeedingProviders.length > 0" style="padding-top: 5px">Φορείς Σίτισης:</div>
+                        <div ng-if="facility.FeedingProviders.length > 0" style="padding-top: 5px">{{'FACILITY_CARD.HEADERS.FACILITY' | translate}}:</div>
                         <div ng-repeat="feed in facility.FeedingProviders" style="padding-left: 10px">
                             <a ng-href="{{'#/providers/' + feed.Id}}">({{feed.Administration}}) {{ feed.Name }}</a>
                         </div>
-                        <div ng-if="facility.HealthcareProviders.length > 0" style="padding-top: 5px">Υγειονομική Μέριμνα:</div>
+                        <div ng-if="facility.HealthcareProviders.length > 0" style="padding-top: 5px">{{'FACILITY_CARD.HEADERS.HEALTHCARE' | translate}}:</div>
                         <div ng-repeat="health in facility.HealthcareProviders" style="padding-left: 10px">
                             <a ng-href="{{'#/providers/' + health.Id}}">({{health.Administration}}) {{ health.Name }}</a>
                         </div>
-                        <div ng-if="facility.LogisticsProviders.length > 0" style="padding-top: 5px">Εφοδιασμός:</div>
+                        <div ng-if="facility.LogisticsProviders.length > 0" style="padding-top: 5px">{{'FACILITY_CARD.HEADERS.LOGISTICS' | translate}}:</div>
                         <div ng-repeat="log in facility.LogisticsProviders" style="padding-left: 10px">
                             <a ng-href="{{'#/providers/' + log.Id}}">({{log.Administration}}) {{ log.Name }}</a>
                         </div>
                         <div ng-if="facility.Supervisor" style="position: absolute; bottom: 40px">
-                            <div>Υπεύθυνος:</div>
+                            <div>{{'OPERATION.SUPERVISOR' | translate}}:</div>
                             <a ng-href="{{'#/contacts/' + facility.Supervisor.Id}}">({{facility.Supervisor.Administration}}) {{ facility.Supervisor.Name }}</a>
                         </div>
                     </div>
