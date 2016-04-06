@@ -49,18 +49,14 @@ namespace Zeus
             var task = Task.Run(async () =>
             {
                 var hub = GlobalHost.ConnectionManager.GetHubContext<ChatHub>();
-                var admins = ChatHub.Users.Where(x => x.Value.Roles.Contains(ApplicationRoles.Administrator)).SelectMany(k => k.Value.ConnectionIds).AsEnumerable();
-                var viewers = ChatHub.Users.Where(x => x.Value.Roles.Contains(ApplicationRoles.Viewer)).SelectMany(k => k.Value.ConnectionIds);
+                
                 var now = DateTime.Now;
-                var ops = await ctx.Operations.Get(x => !x.End.HasValue && x.ETA < now);
+                var ops = await ctx.Operations.Get(x => !x.IsCancelled && !x.End.HasValue && x.ETA < now);
                 var title = "Επιχειρήσεις";
                 foreach(var op in ops)
                 {
                     var facilities = new List<string>() { op.StartingPoint, op.Destination };
-                    var users = ChatHub.Users.Where(x =>((x.Value.Claims.Where(c => c.Type == ApplicationClaims.FacilityClaim).Select(s => s.Value)).Intersect(facilities)).Count() > 0)
-                        .SelectMany(k=>k.Value.ConnectionIds);
-
-                    var overall = admins.Union(viewers).Union(users).Distinct<string>().ToList();
+                    var overall = GetViewUsers(facilities);
                     var msg = String.Format("Η Επιχείρηση {0} δεν έχει ολοκληρωθεί, παρότι έχει παρέλθει το εκτιμώμενο πέρας ({1}) !", op.Name, op.ETA.ToString("dd/MM HH:mm"));
 
                     //hub.NotifyUsers(Priority.Immediate, title, msg, overall);
@@ -76,5 +72,17 @@ namespace Zeus
         }
 
         #endregion
+
+        public static List<string> GetViewUsers (IEnumerable<string> facilityIds)
+        {
+            var admins = ChatHub.Users.Where(x => x.Value.Roles.Contains(ApplicationRoles.Administrator)).SelectMany(k => k.Value.ConnectionIds).AsEnumerable();
+            var viewers = ChatHub.Users.Where(x => x.Value.Roles.Contains(ApplicationRoles.Viewer)).SelectMany(k => k.Value.ConnectionIds);
+            var users = ChatHub.Users.Where(x => ((x.Value.Claims.Where(c => c.Type == ApplicationClaims.FacilityClaim).Select(s => s.Value)).Intersect(facilityIds)).Count() > 0)
+                       .SelectMany(k => k.Value.ConnectionIds);
+
+            var overall = admins.Union(viewers).Union(users).Distinct<string>().ToList();
+
+            return overall;
+        }
     }
 }
