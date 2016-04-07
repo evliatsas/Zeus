@@ -113,8 +113,6 @@ angular
                 });
             }
         }
-        
-        load();
 
         $scope.setFacilityColumns = function () {
             var type = $scope.provider.Type;
@@ -186,4 +184,6 @@ angular
         $scope.delete = function () {
             messageService.askDeleteConfirmation(deleteProvider);
         }
+
+        load();
     });

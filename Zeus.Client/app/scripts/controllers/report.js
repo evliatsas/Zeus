@@ -53,7 +53,7 @@ angular
 
         $scope.addIdentity = function () {
             $scope.report.Identities.push({
-                Nationality: "Άγνωστη",
+                Nationality: "Μικτή",
                 Count: 0
             });
         }
@@ -68,7 +68,7 @@ angular
         $scope.addProcedure = function () {
             $scope.report.Procedures.push({
                 Type: "",
-                Nationality: "Άγνωστη",
+                Nationality: "Μικτή",
                 Count: 0
             });
         }
@@ -237,16 +237,14 @@ angular
                 }
                 else {
                     if ($scope.reportType == "5") {
-                        $scope.report = {
-                            Identities: [
-                                {
-                                    Nationality: "Άγνωστη",
-                                    Count: 0
-                                }
-                            ],
-                            Sensitivities: [],
-                            Procedures: []
-                        };
+                        $scope.report.Identities = [
+                            {
+                                Nationality: "Μικτή",
+                                Count: 0
+                            }
+                        ];
+                        $scope.report.Sensitivities= [];
+                        $scope.report.Procedures= [];
                     }
                     else if ($scope.reportType == "6") {
                         $scope.getLookup(0);
