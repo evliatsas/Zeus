@@ -18,17 +18,19 @@
         </div>
         <div class="col-md-8" style="padding-top:20px;">
             <uib-tabset justified="true" active="activeTab">
-                <uib-tab index="0" heading="{{ 'FACILITY.HOUSING' | translate }}">
+                <uib-tab index="0" heading="{{ 'FACILITY.REPORTS' | translate }}">
                     <div class="shadow-box btn-group-sm">
-                        <cinnamon-grid grid-columns="housingcolumns"
-                                       grid-items="data.Housings"
-                                       show-grid-buttons="true"
+                        <cinnamon-grid grid-columns="reportcolumns"
+                                       grid-items="data.Reports"
+                                       show-grid-buttons="false"
                                        hide-item-buttons="true"
-                                       row-click-fn="editHousing(item)"
-                                       grid-create-fn="addHousing()">
+                                       row-click-fn="showReport(item)"
+                                       custom-action-fn="createReport(item)"
+                                       highlight="!item.IsAcknoledged"
+                                       custom-action-items="reportactions">
                         </cinnamon-grid>
                     </div>
-                </uib-tab>
+                </uib-tab>                
                 <uib-tab index="1" heading="{{ 'FACILITY.CONTACTS' | translate }}">
                     <div class="shadow-box btn-group-sm">
                         <cinnamon-grid grid-columns="contactColumns"
@@ -51,16 +53,14 @@
                         </cinnamon-grid>
                     </div>
                 </uib-tab>
-                <uib-tab index="3" heading="{{ 'FACILITY.REPORTS' | translate }}">
+                <uib-tab index="3" heading="{{ 'FACILITY.HOUSING' | translate }}">
                     <div class="shadow-box btn-group-sm">
-                        <cinnamon-grid grid-columns="reportcolumns"
-                                       grid-items="data.Reports"
-                                       show-grid-buttons="false"
+                        <cinnamon-grid grid-columns="housingcolumns"
+                                       grid-items="data.Housings"
+                                       show-grid-buttons="true"
                                        hide-item-buttons="true"
-                                       row-click-fn="showReport(item)"
-                                       custom-action-fn="createReport(item)"
-                                       highlight="!item.IsAcknoledged"
-                                       custom-action-items="reportactions">
+                                       row-click-fn="editHousing(item)"
+                                       grid-create-fn="addHousing()">
                         </cinnamon-grid>
                     </div>
                 </uib-tab>

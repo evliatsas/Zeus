@@ -108,7 +108,7 @@ namespace Zeus.Controllers
                     facility.Persons = persons.ToList();
 
                     var reports = await context.Reports.Get(x => x.FacilityId == id);
-                    facility.Reports = reports.ToList();
+                    facility.Reports = reports.OrderByDescending(o=>o.DateTime).ToList();
                 }
 
                 return facility == null ? (IHttpActionResult)this.NotFound() : this.Ok(facility);

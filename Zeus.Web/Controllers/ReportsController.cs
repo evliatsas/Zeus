@@ -130,7 +130,7 @@ namespace Zeus.Controllers
                 s.Facility = facility;
                 return s;
             });
-            return reports == null ? (IHttpActionResult)this.NotFound() : this.Ok(reports);
+            return reports == null ? (IHttpActionResult)this.NotFound() : this.Ok(reports.OrderByDescending(o=>o.DateTime));
         }
 
         [Route(Routes.Facilities + "/stats")]

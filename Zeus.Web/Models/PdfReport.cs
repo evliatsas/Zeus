@@ -57,7 +57,7 @@ namespace Zeus.Models
             table.DefaultCell.Border = Rectangle.BOX;
 
             {
-                string s = string.Format("ΣΥΝΟΠΤΙΚΗ ΚΑΤΑΣΤΑΣΗ ΠΡΟΣΦΥΓΙΚΏΝ ΡΟΩΝ ΤΗΣ {0:dd/MM/yyyy} \n ΩΡΑ {1:HH:mm}", reports.Max(t=>t.ReportDate), reports.Max(t=>t.ReportDateTime));
+                string s = string.Format("ΣΥΝΟΠΤΙΚΗ ΚΑΤΑΣΤΑΣΗ ΠΡΟΣΦΥΓΙΚΩΝ ΡΟΩΝ ΤΗΣ {0:dd/MM/yyyy} \n ΩΡΑ {0:HH:mm}", reports.Max(t=>t.ReportDateTime).ToLocalTime());
                 PdfPCell cell = new PdfPCell(new Phrase(s, titleFont));
                 cell.HorizontalAlignment = Element.ALIGN_CENTER;
                 cell.Colspan = 5;

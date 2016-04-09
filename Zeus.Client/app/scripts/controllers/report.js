@@ -44,7 +44,7 @@ angular
                 $location.url('/facilities');
             }
             else if (previous.$$route.controllerAs == "facility") {
-                $location.url('/facilities/' + previous.params.id + '?tab=3');
+                $location.url('/facilities/' + previous.params.id + '?tab=0');
             }
             else { //default to reports list
                 $location.url('/reports/' + previous.params.type);
