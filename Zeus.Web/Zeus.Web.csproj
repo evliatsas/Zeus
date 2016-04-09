@@ -184,6 +184,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
+    <None Include="Properties\PublishProfiles\local.pubxml" />
     <None Include="Properties\PublishProfiles\publish.pubxml" />
     <None Include="Properties\PublishProfiles\zeus.pubxml" />
     <None Include="Properties\Settings.settings">
