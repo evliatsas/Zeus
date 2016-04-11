@@ -21,6 +21,16 @@ namespace Zeus.Entities
         public IList<Facility> Facilities { get; set; }
         [BsonIgnore]
         public IList<Provider> Providers { get; set; }
+        [BsonIgnore]
+        public string PhoneNumbers
+        {
+            get
+            {
+                string phones = Helper.ConcateStrings(this.Phones.Select(x => x.Number));
+
+                return phones.TrimEnd('\r', '\n');
+            }
+        }
 
         public Contact()
         {

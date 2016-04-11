@@ -59,8 +59,8 @@ namespace Zeus.Controllers
                     facility.Providers = providers.Where(x => tmpProviderIds.Contains(x.Id)).ToList();
                     var tmpContactIds = multiContacts.Where(x => x.FacilityId == facility.Id).Select(p => p.ContactId);
                     facility.Contacts = contacts.Where(x => tmpContactIds.Contains(x.Id)).ToList();
-                    var transReports = await context.Reports.Get(r => r.Type == ReportType.MovementReport && r.FacilityId == facility.Id && r.DateTime > facility.IdentitiesLastUpdated);
-                    facility.Arrivals = transReports.Cast<MovementReport>().Sum(x => x.PersonCount);
+                    //var transReports = await context.Reports.Get(r => r.Type == ReportType.MovementReport && r.FacilityId == facility.Id && r.DateTime > facility.IdentitiesLastUpdated);
+                    //facility.Arrivals = transReports.Cast<MovementReport>().Sum(x => x.PersonCount);
                 }
 
                 return result == null ? this.Ok(new List<Facility>().AsEnumerable()) : this.Ok(result.OrderBy(o => o.Name).AsEnumerable());

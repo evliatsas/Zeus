@@ -63,6 +63,7 @@
     <Compile Include="Entity.cs" />
     <Compile Include="Facilities\Facility.cs" />
     <Compile Include="Contacts\FacilityContact.cs" />
+    <Compile Include="Helper.cs" />
     <Compile Include="Operations\Procedure.cs" />
     <Compile Include="Persons\Identity.cs" />
     <Compile Include="Facilities\Location.cs" />

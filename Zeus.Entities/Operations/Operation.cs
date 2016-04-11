@@ -37,11 +37,11 @@ namespace Zeus.Entities
             get {
                 string problems = string.Empty;
                 var preps = this.Preparations.Select(x => x.Problems);
-                problems += ConcateStrings(preps);
+                problems += Helper.ConcateStrings(preps);
                 var trans = this.Transports.Select(x => x.Problems);
-                problems += ConcateStrings(trans);
+                problems += Helper.ConcateStrings(trans);
                 var prov = this.Providers.Select(x => x.Problems);
-                problems += ConcateStrings(prov);
+                problems += Helper.ConcateStrings(prov);
 
                 return problems.TrimEnd('\r', '\n');
             }
@@ -67,17 +67,6 @@ namespace Zeus.Entities
             this.Transports = new List<Transportation>();
             this.Providers = new List<OperationProvider>();
             this.IsCancelled = false;
-        }
-
-        public string ConcateStrings(IEnumerable<string> strings)
-        {
-            string result = string.Empty;
-
-            foreach (var s in strings)
-                if(!string.IsNullOrEmpty(s))
-                    result += s + "\n";
-
-            return result;
-        }
+        }        
     }
 }

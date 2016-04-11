@@ -58,6 +58,13 @@
         </div>
         <div class="col-md-4">
             <div class="form-group label-static ng-is-empty">
+                <label for="arrivals" class="control-label">{{ 'FACILITY_DETAILS.ARRIVALS' | translate }}</label>
+                <input type="number" class="form-control" id="arrivals" ng-model="facility.Arrivals"
+                       title="{{'FACILITY_DETAILS.ARRIVALS' | translate}}" min="0">
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group label-static ng-is-empty">
                 <label for="Attendance" class="control-label">{{ 'FACILITY_DETAILS.ATTENDANCE' | translate }}</label>
                 <input type="number" class="form-control" id="Attendance" ng-model="facility.Attendance" title="{{'FACILITY_DETAILS.ATTENDANCE_TOOLTIP' | translate}}" readonly>
             </div>

@@ -23,7 +23,8 @@ angular
             { Caption: 'GRID.NAME', Field: 'Name' },
             { Caption: 'GRID.TITLE', Field: 'Title' },
             { Caption: 'GRID.COMPANY', Field: 'Company' },
-            { Caption: 'GRID.ADMINISTRATION', Field: 'Administration' }
+            { Caption: 'GRID.ADMINISTRATION', Field: 'Administration' },
+            { Caption: 'GRID.PHONES', Field: 'PhoneNumbers'}
         ];
 
         $scope.providerColumns = [
