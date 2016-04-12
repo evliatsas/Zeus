@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zeus.Client", "Zeus.Client\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zeus.Web", "Zeus.Web\Zeus.Web.csproj", "{5495A212-0D2A-448B-A66B-E52CB2DCA89B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zeus.Tester", "Zeus.Tester\Zeus.Tester.csproj", "{0B63D477-AA14-46CD-8C12-B5A615230042}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{5495A212-0D2A-448B-A66B-E52CB2DCA89B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5495A212-0D2A-448B-A66B-E52CB2DCA89B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5495A212-0D2A-448B-A66B-E52CB2DCA89B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0B63D477-AA14-46CD-8C12-B5A615230042}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0B63D477-AA14-46CD-8C12-B5A615230042}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0B63D477-AA14-46CD-8C12-B5A615230042}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0B63D477-AA14-46CD-8C12-B5A615230042}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -241,6 +241,8 @@ namespace Zeus.Controllers
                 await context.Facilities.Delete(id);
                 await context.FacilityContacts.Delete(x => x.FacilityId == id);
                 await context.ProviderFacilities.Delete(x => x.FacilityId == id);
+                await context.Reports.Delete(x => x.FacilityId == id);
+                await context.DailyReports.Delete(x => x.FacilityId == id);
 
                 // clean up persons facility
                 var filter = Builders<Person>.Filter.Eq("FacilityId", id);
@@ -267,7 +269,6 @@ namespace Zeus.Controllers
             {
                 bool isNew = false;
                 DailyReport report;
-                DailyReport previousReport;
                 Facility facility;
                 DateTime date = DateTime.Now.Date;
                 DateTime previousDate = date.AddDays(-1);
@@ -283,7 +284,6 @@ namespace Zeus.Controllers
                 }
 
                 facility = await context.Facilities.GetById(id);
-                previousReport = (await context.DailyReports.Get(x => x.FacilityId == id && x.ReportDate == previousDate)).FirstOrDefault();
                 report = (await context.DailyReports.Get(x => x.FacilityId == id && x.ReportDate == date)).FirstOrDefault();
 
                 if (report == null)
@@ -298,7 +298,7 @@ namespace Zeus.Controllers
 
                 report.FacilityId = facility.Id;
                 report.ReportDateTime = DateTime.Now;
-                report.Arrivals = previousReport == null ? 0 : facility.Attendance - previousReport.Attendance;
+                report.Arrivals = facility.Arrivals;
                 report.Attendance = facility.Attendance;
                 report.Capacity = facility.Capacity;
                 report.ReportDate = date;
